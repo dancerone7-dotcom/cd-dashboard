@@ -219,6 +219,11 @@ details[open]>.dtlsum::before{transform:rotate(90deg)}
 .refgroup:first-child .refghead{margin-top:2px}
 .catin{font-family:var(--sans);font-size:13px;padding:7px 10px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--ink);min-width:240px;margin-top:2px}
 .catin:focus{outline:none;border-color:var(--coral)}
+.libchk{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink);cursor:pointer;margin-top:4px}
+.libchk input{width:16px;height:16px;margin-top:1px;accent-color:var(--coral);flex:0 0 auto}
+.libchk b{font-weight:600}
+.libchk .d{display:block;color:var(--muted);font-size:11.5px;margin-top:2px;font-weight:400}
+.oneoffgrp .refghead{color:var(--warn)}
 .side{display:flex;flex-direction:column;gap:11px}
 .lbox{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
 .lrow{display:flex;gap:10px;font-size:12px;margin:7px 0;line-height:1.3}
@@ -1398,17 +1403,20 @@ function renderReference(){
   const list=GOALS.filter(g=>g.profileId);
   if(!list.some(g=>g.id===refId)) refId=list[0].id;
   const byName={}; list.forEach(g=>byName[g.name]=g); const used=new Set();
-  const btn=g=>`<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?'<span class="ctag">custom</span>':''}</button>`;
+  const isOneOff=g=>g.custom && ACTIVITIES[g.profileId] && ACTIVITIES[g.profileId].oneOff;
+  const btn=g=>`<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?`<span class="ctag">${isOneOff(g)?'one-off':'custom'}</span>`:''}</button>`;
   let rl='';
   DOMAIN_GROUPS.forEach(([dom,names])=>{
     const items=names.map(n=>byName[n]).filter(Boolean);
-    const customInDom=list.filter(g=>g.custom && ACTIVITIES[g.profileId] && ACTIVITIES[g.profileId].domain===dom);
+    const customInDom=list.filter(g=>g.custom && !isOneOff(g) && ACTIVITIES[g.profileId] && ACTIVITIES[g.profileId].domain===dom);
     const all=items.concat(customInDom); if(!all.length) return;
     all.forEach(g=>used.add(g.id));
     rl+=`<div class="refgroup"><div class="refghead">${dom}</div>${all.map(btn).join('')}</div>`;
   });
-  const leftover=list.filter(g=>!used.has(g.id));
-  if(leftover.length) rl+=`<div class="refgroup"><div class="refghead">Added by you</div>${leftover.map(btn).join('')}</div>`;
+  const libLeftover=list.filter(g=>!used.has(g.id) && !isOneOff(g));
+  if(libLeftover.length) rl+=`<div class="refgroup"><div class="refghead">Added by you</div>${libLeftover.map(btn).join('')}</div>`;
+  const oneOffs=list.filter(isOneOff);
+  if(oneOffs.length) rl+=`<div class="refgroup oneoffgrp"><div class="refghead">One-off · this report</div>${oneOffs.map(btn).join('')}</div>`;
   $("#refList").innerHTML=rl+`<button class="addgoal ${building?'on':''}" id="newAct">+ Build a custom activity</button>`;
   document.querySelectorAll('#refList [data-ref]').forEach(b=>b.onclick=()=>{building=false;refId=b.dataset.ref;renderReference();});
   $("#newAct").onclick=()=>startBuilder();
@@ -1441,8 +1449,8 @@ function metricOptions(sel){
 }
 function startBuilder(editId){
   if(editId&&ACTIVITIES[editId]){const a=ACTIVITIES[editId];
-    draft={editId, name:a.name, sub:a.sub||'', domain:a.domain||'', comps:a.reqs.filter(r=>r.metric).map(r=>({metric:r.metric,req:String(r.req),why:r.why||''}))};
-  } else { draft={editId:null,name:'',sub:'',domain:'',comps:[{metric:'',req:'',why:''},{metric:'',req:'',why:''}]}; }
+    draft={editId, name:a.name, sub:a.sub||'', domain:a.domain||'', oneOff:!!a.oneOff, comps:a.reqs.filter(r=>r.metric).map(r=>({metric:r.metric,req:String(r.req),why:r.why||''}))};
+  } else { draft={editId:null,name:'',sub:'',domain:'',oneOff:false,comps:[{metric:'',req:'',why:''},{metric:'',req:'',why:''}]}; }
   building=true; renderReference();
 }
 function renderBuilder(){
@@ -1459,8 +1467,9 @@ function renderBuilder(){
       <input class="namein" data-f="name" value="${esc(draft.name)}" placeholder="Activity name in the patient’s own words">
       <input class="subin" data-f="sub" value="${esc(draft.sub)}" placeholder="One-line description (optional)"></div>
     <div class="pv">
-      <div class="bsectitle">Category</div>
-      <select class="catin" data-f="domain"><option value="">Choose a bucket…</option>${DOMAIN_GROUPS.map(([d])=>`<option value="${d}"${draft.domain===d?' selected':''}>${d}</option>`).join('')}</select>
+      <label class="libchk"><input type="checkbox" id="libToggle"${!draft.oneOff?' checked':''}><span><b>Add to the activity library</b><span class="d">Reusable for any patient. Uncheck to keep it a one-off for this report only.</span></span></label>
+      ${!draft.oneOff?`<div class="bsectitle" style="margin-top:14px">Category</div>
+      <select class="catin" data-f="domain"><option value="">Choose a bucket…</option>${DOMAIN_GROUPS.map(([d])=>`<option value="${d}"${draft.domain===d?' selected':''}>${d}</option>`).join('')}</select>`:''}
       <div class="bsectitle" style="margin-top:14px">Components: pick the physical qualities this activity demands</div>
       <div class="crows">${rows}</div>
       <button class="btn" id="suggestB">✦ Suggest from name</button>
@@ -1482,6 +1491,7 @@ function renderBuilder(){
   $("#refDetail").querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{draft.comps.splice(+b.dataset.rm,1); if(!draft.comps.length)draft.comps.push({metric:'',req:'',why:''}); renderBuilder();});
   $("#cancelB").onclick=()=>{building=false; renderReference();};
   $("#saveB").onclick=saveCustomActivity;
+  const lt=$("#libToggle"); if(lt) lt.onchange=()=>{ draft.oneOff=!lt.checked; renderBuilder(); };
 }
 function suggestForDraft(){
   const name=(draft.name||'').trim(); if(!name){alert('Type the activity name first, then suggest.');return;}
@@ -1497,8 +1507,8 @@ function saveCustomActivity(){
   const reqs=comps.map(c=>{const reg=METRIC_REGISTRY[c.metric];
     return {cat:reg.cat,label:reg.label,metric:c.metric,unit:reg.unit,dir:reg.dir,req:parseFloat(c.req),basis:'modeled',coachSet:true,backcast:reg.backcast,declinePctPerDecade:reg.declinePctPerDecade,src:reg.src,why:(c.why||'').trim()||(reg.label+' for this activity.'),evi:'Coach-authored custom activity.'};});
   let id=draft.editId;
-  if(id){ ACTIVITIES[id]=Object.assign({},ACTIVITIES[id],{name,sub:(draft.sub||'').trim(),domain:draft.domain||'',reqs}); const gg=goalById(id); if(gg)gg.name=name; }
-  else { id='custom-'+(customSeq++); ACTIVITIES[id]={name,sub:(draft.sub||'').trim(),custom:true,domain:draft.domain||'',reqs}; GOALS.push({id,name,profileId:id,custom:true}); selectedGoals.add(id); }
+  if(id){ ACTIVITIES[id]=Object.assign({},ACTIVITIES[id],{name,sub:(draft.sub||'').trim(),domain:draft.domain||'',oneOff:!!draft.oneOff,reqs}); const gg=goalById(id); if(gg)gg.name=name; }
+  else { id='custom-'+(customSeq++); ACTIVITIES[id]={name,sub:(draft.sub||'').trim(),custom:true,domain:draft.domain||'',oneOff:!!draft.oneOff,reqs}; GOALS.push({id,name,profileId:id,custom:true}); selectedGoals.add(id); }
   building=false; refId=id; renderReference();
 }
 function deleteActivity(id){
