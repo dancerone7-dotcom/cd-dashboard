@@ -224,6 +224,13 @@ details[open]>.dtlsum::before{transform:rotate(90deg)}
 .libchk b{font-weight:600}
 .libchk .d{display:block;color:var(--muted);font-size:11.5px;margin-top:2px;font-weight:400}
 .oneoffgrp .refghead{color:var(--warn)}
+.refradarwrap{max-width:520px;margin:10px auto 22px}
+.refradar{width:100%;height:auto;overflow:visible}
+.refrthr{fill:rgba(16,185,129,.09);stroke:#10b981;stroke-width:2}
+.refrlbl{font-family:var(--sans);font-size:11.5px;font-weight:700}
+.refrval{fill:var(--muted);font-size:10.5px;font-weight:600}
+.refrc1{fill:#059669;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.5px}
+.refrc2{fill:var(--muted);font-family:var(--sans);font-size:10px;letter-spacing:.5px}
 .side{display:flex;flex-direction:column;gap:11px}
 .lbox{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
 .lrow{display:flex;gap:10px;font-size:12px;margin:7px 0;line-height:1.3}
@@ -1227,8 +1234,9 @@ function renderSlide(){
         : `you're on track on ${nClear} of ${total} qualities. The ones to train are <b class="tk">${joinNat(gaps)}</b>, with <b class="tk">${worst.short}</b> furthest behind at about <b>${worst.shortBy}% short</b>.`);
     }
   }
+  const who=PATIENT.name?PATIENT.name+'’s ':'';
   const head=`<div class="slide-head"><div class="head-row">
-      <div><div class="eyebrow">Centenarian Decathlon · Functional Capacity Profile</div>
+      <div><div class="eyebrow">${who}Centenarian Decathlon · Functional Capacity Profile</div>
         <h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div>
         <div class="intensity"><span class="ilbl">Intensity</span>${INTENSITY.map(([lbl,f])=>`<button class="ibtn ${Math.abs((goalIntensity[g.id]||1)-f)<0.01?'on':''}" data-int="${f}">${lbl}</button>`).join('')}<span class="ihint">a uniform dial that scales every requirement equally</span></div></div>
       <div class="readiness"><div class="big ${rCls}">${rWord}</div><div class="cap">${rCap}</div><div class="cap2">${nClear}/${C.length} clear at ${TGT}</div><div class="rdisc">projected scenario · not a prediction</div></div>
@@ -1364,8 +1372,8 @@ function renderOverview(){
   </div>`;
   const scope=`<div class="scope"><b>What this covers.</b> This projects physical capacity: strength, power, mobility, aerobic fitness, and balance. It does not account for disease, pain, bone density, or cognition, which can limit function just as much. Read it as one piece of the picture, not the whole of how you will function at ${TGT}.</div>`;
   $("#slide").innerHTML=`<div class="slide-head"><div class="head-row"><div>
-      <div class="eyebrow">Centenarian Decathlon · Functional Capacity Profile</div>
-      <h1 class="slide-title">${PATIENT.name||'Patient'} · at a glance</h1>
+      <div class="eyebrow">Functional Capacity Profile · at a glance</div>
+      <h1 class="slide-title">${PATIENT.name?PATIENT.name+'’s ':''}Centenarian Decathlon</h1>
       <div class="slide-sub">${PATIENT.sex} · age ${AGE} · marginal decade ${TGT}. ${goals.length} goal${goals.length===1?'':'s'} projected to ${TGT}. Tap a tile for the full profile.</div></div></div></div>
     <div class="pv">${scorecard}${scope}${synth}<div class="ovgrid">${cards}</div>
     <div class="ovlegend"><b style="color:var(--cream)">Reading this honestly.</b> A planning scenario, not a prediction. <span style="color:#2563eb">Blue</span> = current, <span style="color:#bc2a2a">coral dashed</span> = the no-training projection to ${TGT}, <span style="color:#059669">green ring</span> = what each goal needs. Tile colour: <b style="color:#059669">green</b> clears · <b style="color:#d97706">amber</b> on the line · <b style="color:#bc2a2a">coral</b> a gap to train.</div></div>`+FOOT;
@@ -1398,6 +1406,20 @@ function filterRefList(){
     const anyVisible=[...grp.querySelectorAll('[data-ref]')].some(b=>b.style.display!=='none');
     grp.style.display=anyVisible?'':'none';
   });
+}
+const CATCOLOR={Mobility:'#2563eb',Strength:'#bc2a2a',Power:'#9333ea',Aerobic:'#0891b2',Eccentric:'#d97706',Balance:'#4d7c0f',Core:'#6d28d9',Endurance:'#a16207'};
+function refRadarSVG(reqs){
+  const C=(reqs||[]).filter(r=>r.metric&&r.req!=null);
+  if(C.length<3) return '';
+  const N=C.length,R=135,cx=280,cy=215,ang=i=>(-90+i*360/N)*Math.PI/180;
+  const ringPts=f=>C.map((c,i)=>{const a=ang(i);return ((cx+Math.cos(a)*R*f).toFixed(1))+','+((cy+Math.sin(a)*R*f).toFixed(1));}).join(' ');
+  let grid=''; [0.5,1].forEach(f=>grid+=`<polygon class="rgrid" points="${ringPts(f)}"/>`);
+  let axes='',labels='';
+  C.forEach((c,i)=>{const a=ang(i),co=Math.cos(a);
+    axes+=`<line class="raxis" x1="${cx}" y1="${cy}" x2="${(cx+co*R).toFixed(1)}" y2="${(cy+Math.sin(a)*R).toFixed(1)}"/>`;
+    const lx=cx+co*(R+24), ly=cy+Math.sin(a)*(R+24), anc=Math.abs(co)<0.3?'middle':(co>0?'start':'end');
+    labels+=`<text class="refrlbl" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anc}"><tspan x="${lx.toFixed(1)}" fill="${CATCOLOR[c.cat]||'#39404b'}">${shortLabel(c.label)}</tspan><tspan x="${lx.toFixed(1)}" dy="14" class="refrval">${fmtU(c.req,c.unit)}</tspan></text>`;});
+  return `<svg viewBox="0 0 560 430" class="refradar" role="img" aria-label="required at ${TGT}">${grid}${axes}<polygon class="refrthr" points="${ringPts(0.7)}"/>${labels}<text class="refrc1" x="${cx}" y="${(cy-3).toFixed(1)}" text-anchor="middle">Required</text><text class="refrc2" x="${cx}" y="${(cy+13).toFixed(1)}" text-anchor="middle">at ${TGT}</text></svg>`;
 }
 function renderReference(){
   const list=GOALS.filter(g=>g.profileId);
@@ -1433,10 +1455,11 @@ function renderReference(){
     </div>`;}).join("");
   const qual=(act.reqs||[]).filter(r=>!r.metric);
   const cats=[...new Set((act.reqs||[]).filter(r=>r.cat).map(r=>r.cat))];
+  const radar=refRadarSVG(act.reqs);
   const actions=act.custom?`<div class="buildactions" style="margin-bottom:12px"><button class="btn" id="editAct">Edit</button><button class="btn" id="delAct">Delete activity</button></div>`:'';
   $("#refDetail").innerHTML=`<div class="slide-head"><div class="eyebrow">Centenarian Decathlon · Activity requirements${act.custom?' · custom':''}</div>
     <h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div>${cats.length?`<div class="dchips">${cats.map(c=>`<span class="dchip qcat ${c}"><span class="dd"></span>${c}</span>`).join('')}</div>`:''}</div>
-    <div class="pv">${actions}<div class="refgrid">${cards}</div>
+    <div class="pv">${actions}${radar?`<div class="refradarwrap">${radar}</div>`:''}<div class="refgrid">${cards}</div>
     ${qual.length?`<div class="qnote">Also coached, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:''}
     <div class="refnote">Fixed task demands: the capacity each activity requires at a reserve level, independent of any patient. Build a patient’s report in the next tab to project their measurements against these.</div></div>`+FOOT;
   if(act.custom){ $("#editAct").onclick=()=>startBuilder(g.id); $("#delAct").onclick=()=>deleteActivity(g.id); }
@@ -1536,7 +1559,7 @@ function renderBuild(){
       <div class="buildactions">
         <button class="btn" id="impBtn">Import…</button><button class="btn" id="expBtn">Export</button>
         <button class="btn primary" id="toReport">View report →</button></div></div>
-    <div class="bsec"><div class="bsectitle">Patient <span class="funit">de-identified: use a code or initials, not a name</span></div>
+    <div class="bsec"><div class="bsectitle">Patient <span class="funit">de-identified initials or code, used to title the report (e.g. DC’s Centenarian Decathlon)</span></div>
       <div class="fgrid">
         <label class="fld"><span class="flbl">Code / initials</span><input type="text" data-pt="name" value="${PATIENT.name||''}"></label>
         <label class="fld"><span class="flbl">Sex</span><select data-pt="sex"><option value="male" ${PATIENT.sex==='male'?'selected':''}>male</option><option value="female" ${PATIENT.sex==='female'?'selected':''}>female</option></select></label>
