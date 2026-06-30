@@ -214,6 +214,9 @@ details[open]>.dtlsum::before{transform:rotate(90deg)}
 .dchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
 .dchip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 9px 3px 7px;border-radius:999px;background:rgba(15,23,42,.04);border:1px solid var(--line)}
 .dchip .dd{width:6px;height:6px;border-radius:50%;background:currentColor}
+.refgroup{margin-bottom:3px}
+.refghead{font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin:13px 6px 4px;opacity:.85}
+.refgroup:first-child .refghead{margin-top:2px}
 .side{display:flex;flex-direction:column;gap:11px}
 .lbox{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
 .lrow{display:flex;gap:10px;font-size:12px;margin:7px 0;line-height:1.3}
@@ -1370,18 +1373,39 @@ function renderOverview(){
 }
 
 /* ── TAB 1 · Reference + custom-activity authoring (no patient data) ── */
+const DOMAIN_GROUPS=[
+  ["Daily essentials",["Effortlessly sit and stand from the floor","Rise from a chair or toilet without using hands","Open any jar, bottle, or packaging with confidence","Bend naturally to tie shoes and dress, without sitting","Drive between errands, handling transfers and shopping bags","Independently complete all household chores","Tend the garden for 2 continuous hours","Balance on one leg for a full 30 seconds","Enjoy sexual expression without pain or limitation"]],
+  ["Lift & carry",["Confidently lift and carry a small child or pet from the floor","Assist a 30 lb child from a car seat and carry them indoors","Manage 20 lb of overhead luggage through an airport","Climb and descend two flights of stairs carrying 25 lb"]],
+  ["Walking & hiking",["Walk 3 miles on formed paths in under an hour","Walk and control a 60 lb dog for a 60-minute hike","Navigate uneven mountain terrain for a 60-minute hike","Stride through soft beach sand for 2 miles within an hour"]],
+  ["Endurance & cardio",["Complete an energetic 5 km run in 40 minutes","Swim 500 m without stopping, under 25 minutes","Row 10,000 m in a single hour","Cycle 10 miles in an hour on flat pavement"]],
+  ["Sport",["Enjoy 90 minutes of tennis, padel, or pickleball","Play 18 holes of golf carrying your own clubs","Kick a football 50 feet with convincing form","Participate fully in social bowling","Handle a moderate-caliber weapon with steady control","Ski green runs for 3 hours, using any chairlift"]],
+  ["Lifestyle & social",["Dance with a partner for 45 enjoyable minutes","Move through a complete yoga class with control","Ride horseback for 40 minutes across level pasture","Fully participate in an outdoor gathering or festival for 2+ hours"]],
+  ["Water & adventure",["Swim safely at ocean beaches in average conditions","Snorkel or SCUBA for 45 minutes","Surf small to moderate waves in clean conditions","Paddle a kayak for 90 minutes on calm water","Navigate a small to medium yacht in favorable conditions"]],
+];
 function filterRefList(){
   const q=(document.getElementById('refSearch')?.value||'').toLowerCase().trim();
   document.querySelectorAll('#refList [data-ref]').forEach(b=>{
     b.style.display=(!q||b.textContent.toLowerCase().includes(q))?'':'none';
   });
+  document.querySelectorAll('#refList .refgroup').forEach(grp=>{
+    const anyVisible=[...grp.querySelectorAll('[data-ref]')].some(b=>b.style.display!=='none');
+    grp.style.display=anyVisible?'':'none';
+  });
 }
 function renderReference(){
   const list=GOALS.filter(g=>g.profileId);
   if(!list.some(g=>g.id===refId)) refId=list[0].id;
-  $("#refList").innerHTML=list.map(g=>
-    `<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?'<span class="ctag">custom</span>':''}</button>`).join("")
-    +`<button class="addgoal ${building?'on':''}" id="newAct">+ Build a custom activity</button>`;
+  const byName={}; list.forEach(g=>byName[g.name]=g); const used=new Set();
+  const btn=g=>`<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?'<span class="ctag">custom</span>':''}</button>`;
+  let rl='';
+  DOMAIN_GROUPS.forEach(([dom,names])=>{
+    const items=names.map(n=>byName[n]).filter(Boolean); if(!items.length) return;
+    items.forEach(g=>used.add(g.id));
+    rl+=`<div class="refgroup"><div class="refghead">${dom}</div>${items.map(btn).join('')}</div>`;
+  });
+  const leftover=list.filter(g=>!used.has(g.id));
+  if(leftover.length) rl+=`<div class="refgroup"><div class="refghead">Added by you</div>${leftover.map(btn).join('')}</div>`;
+  $("#refList").innerHTML=rl+`<button class="addgoal ${building?'on':''}" id="newAct">+ Build a custom activity</button>`;
   document.querySelectorAll('#refList [data-ref]').forEach(b=>b.onclick=()=>{building=false;refId=b.dataset.ref;renderReference();});
   $("#newAct").onclick=()=>startBuilder();
   const rs=$("#refSearch"); if(rs){ rs.oninput=filterRefList; filterRefList(); }
