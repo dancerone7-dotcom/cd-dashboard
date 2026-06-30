@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centenarian Decathlon · Reference &amp; Dashboard | Early Medical®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   EARLY MEDICAL BRAND  (from generator design rules)
+   DARK_BG #3E4555 · navy #1E2D38 · CORAL #bc2a2a · TEAL #2563eb
+   Headings Cormorant Garamond · body Calibri
+   Activity slide = 16:9 (10 × 5.625") so it drops into Canva.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --slate:#ffffff; --slate-2:#f1f3f5; --navy:#ffffff; --navy-2:#ffffff;
+  --coral:#bc2a2a; --teal:#2563eb; --cream:#39404b; --white:#1a1f2b;
+  --ink:#39404b; --muted:#64748b;
+  --ok:#10b981; --ok-soft:#a7f3d0; --warn:#d97706; --gap:#bc2a2a;
+  --line:rgba(15,23,42,.1);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Avenir','Avenir Next',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);background:#eef1f4;color:var(--ink);
+  -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+
+/* ── Top app bar (UI chrome, not part of the slide) ── */
+.appbar{display:flex;align-items:center;gap:18px;padding:12px 22px;background:var(--navy);
+  color:var(--cream);border-bottom:1px solid var(--line)}
+.brandmark{font-family:var(--serif);font-size:22px;letter-spacing:.5px;font-weight:600}
+.brandmark span{color:var(--coral)}
+.appbar .spacer{flex:1}
+.seg{display:inline-flex;background:rgba(15,23,42,.05);border-radius:999px;padding:3px}
+.seg button{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.3px;
+  color:var(--cream);background:transparent;border:0;padding:7px 16px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--coral);color:#fff}
+.patient-chip{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--cream)}
+.patient-chip .nm{font-weight:700}
+.patient-chip .meta{color:var(--muted)}
+
+/* ── Layout: catalog rail + stage ── */
+.shell{display:flex;flex:1;min-height:0}
+.rail{width:248px;flex:0 0 248px;background:var(--navy-2);color:var(--cream);
+  padding:16px 12px;overflow:auto;border-right:1px solid var(--line)}
+.rail h4{font-family:var(--sans);text-transform:uppercase;letter-spacing:1.5px;font-size:11px;
+  color:var(--muted);margin:6px 8px 12px}
+.actbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;
+  border:0;color:var(--cream);padding:11px 10px;border-radius:9px;cursor:pointer;font-size:13.5px;
+  font-family:var(--sans);line-height:1.25;margin-bottom:2px}
+.actbtn:hover{background:rgba(15,23,42,.04)}
+.actbtn.on{background:var(--coral);color:#fff}
+.actbtn.soon{opacity:.45;cursor:default}
+.actbtn .ring{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-size:12px;font-weight:800;border:2px solid currentColor}
+.actbtn.z-clear .ring{color:#059669} .actbtn.z-borderline .ring{color:#d97706} .actbtn.z-gap .ring{color:#bc2a2a}
+.actbtn.on .ring{color:#fff}
+.actbtn .lbl{flex:1}
+.actbtn .pct{font-size:11px;color:#64748b}
+.actbtn.on .pct{color:rgba(255,255,255,.9)}
+.rail .addnote{margin:14px 8px;font-size:11.5px;color:var(--muted);line-height:1.5}
+
+.stage{flex:1;min-width:0;overflow:auto;padding:24px;display:flex;justify-content:center;align-items:flex-start}
+
+/* ── The brandable slide (≈16:9 presence, grows with content) ── */
+.slide{width:100%;max-width:1024px;min-width:0;min-height:560px;background:var(--slate);color:var(--cream);
+  border-radius:14px;box-shadow:0 24px 60px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;
+  position:relative}
+.slide-head{padding:20px 30px 14px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--coral);font-weight:700}
+.slide-title{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.05;margin:4px 0 0}
+.slide-sub{font-size:13px;color:var(--muted);margin-top:5px;max-width:80%}
+.head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.readiness{text-align:right;flex:0 0 auto}
+.readiness .big{font-family:var(--serif);font-size:27px;line-height:1.05;font-weight:600}
+.readiness .big.r-gap{color:#bc2a2a} .readiness .big.r-bord{color:#d97706} .readiness .big.r-clear{color:#059669}
+.readiness .cap{font-size:10.5px;color:var(--muted);margin-top:3px;max-width:240px;margin-left:auto;line-height:1.35}
+.readiness .cap2{font-size:10px;color:var(--muted);opacity:.8;margin-top:3px}
+
+/* category coverage chips */
+.cov{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.cov .chip{font-size:10.5px;letter-spacing:.4px;padding:4px 9px;border-radius:999px;
+  border:1px solid var(--line);color:var(--muted);display:flex;align-items:center;gap:5px}
+.cov .chip.active{color:var(--cream);border-color:var(--teal)}
+.cov .chip b{font-weight:700}
+
+/* requirement rows */
+.rows{flex:1;overflow:visible;padding:10px 30px 8px}
+.req{display:grid;grid-template-columns:188px 1fr 232px;gap:16px;align-items:center;
+  padding:11px 0;border-bottom:1px solid rgba(15,23,42,.045)}
+.req:last-child{border-bottom:0}
+.req .q{min-width:0}
+.req .qcat{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700}
+.qcat.Mobility{color:var(--teal)} .qcat.Strength{color:var(--coral)}
+.qcat.Power{color:#9333ea} .qcat.Aerobic{color:#0891b2}
+.qcat.Eccentric{color:#d97706} .qcat.Balance{color:#4d7c0f}
+.qcat.Core{color:#6d28d9} .qcat.Endurance{color:#a16207}
+.req .qlbl{font-size:14px;font-weight:600;color:var(--white);margin-top:2px;line-height:1.2}
+.req .src{font-size:11px;color:var(--muted);margin-top:3px}
+.badge{display:inline-block;font-size:9.5px;letter-spacing:.4px;padding:1.5px 6px;border-radius:4px;
+  font-weight:700;vertical-align:middle;margin-left:6px}
+.badge.confirmed{background:rgba(16,185,129,.18);color:#059669;border:1px solid rgba(16,185,129,.4)}
+.badge.modeled{background:rgba(217,119,6,.15);color:#d97706;border:1px solid rgba(217,119,6,.4)}
+.badge.coachset{background:rgba(188,42,42,.18);color:#bc2a2a;border:1px solid rgba(188,42,42,.45)}
+
+/* gap track */
+.track{position:relative;height:46px}
+.bar{position:absolute;left:0;right:0;top:27px;height:6px;border-radius:3px;background:rgba(15,23,42,.1)}
+.bar .fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,var(--teal),#0891b2);opacity:.55}
+.mk{position:absolute;transform:translateX(-50%);top:6px;text-align:center}
+.mk .dot{width:14px;height:14px;border-radius:50%;margin:0 auto;border:2.5px solid var(--slate)}
+.mk.now .dot{background:var(--white)}
+.mk.goal .dot{background:transparent;border-color:var(--cream);width:2px;height:20px;border-radius:0;border-left:2px dashed var(--cream)}
+.mk.back .dot{background:var(--warn)}
+.mk .tag{font-size:9px;color:var(--muted);margin-top:1px;white-space:nowrap}
+.mk.now .tag{color:var(--white);font-weight:700}
+.mk.back .tag{color:var(--warn)}
+.req.qual .track{display:flex;align-items:center;color:var(--muted);font-size:12px;font-style:italic}
+
+/* numbers column */
+.nums{display:flex;gap:8px;justify-content:flex-end}
+.cell{flex:1;max-width:70px;text-align:center;padding:6px 4px;border-radius:8px;background:rgba(15,23,42,.03)}
+.cell .v{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1}
+.cell .k{font-size:8.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.cell.now{background:rgba(15,23,42,.06)}
+.cell.status-gap{box-shadow:inset 0 0 0 1.5px var(--gap)}
+.cell.status-warn{box-shadow:inset 0 0 0 1.5px var(--warn)}
+.cell.status-ok{box-shadow:inset 0 0 0 1.5px var(--ok)}
+.cell .v.gap{color:#bc2a2a} .cell .v.warn{color:#d97706} .cell .v.ok{color:#059669}
+
+/* reference mode: show the "why" */
+.why{grid-column:1/-1;font-size:12px;color:#475569;line-height:1.5;padding:2px 0 4px;
+  border-left:2px solid var(--teal);padding-left:12px;margin-top:2px;display:none}
+body.ref .why{display:block}
+body.ref .req{grid-template-columns:188px 1fr 232px}
+.why .evi{color:var(--muted);font-style:italic}
+
+/* footer band */
+.foot{margin-top:auto;background:#f8fafc;border-top:1px solid var(--line);display:flex;align-items:center;
+  justify-content:space-between;padding:9px 30px;font-size:11px;letter-spacing:1px}
+.foot .em{font-family:var(--serif);font-size:15px;color:var(--cream)}
+.foot .pillars{display:flex;gap:18px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.foot .pillars .on{color:var(--coral)}
+
+/* legend under slide */
+.legend{max-width:1024px;margin:14px auto 30px;display:flex;gap:22px;flex-wrap:wrap;
+  font-size:12px;color:#475569;align-items:center;justify-content:center}
+.legend .it{display:flex;align-items:center;gap:7px}
+.sw{width:13px;height:13px;border-radius:50%;display:inline-block}
+.sw.now{background:#fff} .sw.req{width:2px;height:15px;border-radius:0;border-left:2px dashed #475569;background:transparent}
+.sw.back{background:var(--warn)}
+.legend .note{flex-basis:100%;text-align:center;color:var(--muted);font-size:11px}
+.actbtn.pend{opacity:.55} .actbtn.pend:hover{opacity:.8}
+.addgoal{margin:10px 6px 4px;width:calc(100% - 12px);background:rgba(37,99,235,.14);border:1px dashed var(--teal);
+  color:var(--cream);padding:10px;border-radius:9px;cursor:pointer;font-size:13px;font-family:var(--sans)}
+.addgoal:hover{background:rgba(37,99,235,.24)}
+
+/* ── radar patient view (matches the Functional Capacity Profile mock) ── */
+.pv{padding:12px 26px 6px;display:flex;flex-direction:column;gap:12px;flex:1}
+.pv-top{display:grid;grid-template-columns:1.45fr 1fr;gap:16px;align-items:start}
+.radarwrap{display:flex;justify-content:center;padding-top:2px}
+.radarwrap svg{width:100%;max-width:430px;height:auto}
+.bchartwrap{padding-top:2px}
+.bchart{display:flex;flex-direction:column;gap:8px}
+.bscale{position:relative;height:13px;margin:0 42px 1px 146px;font-size:9px;color:var(--muted)}
+.bscale span{position:absolute;transform:translateX(-50%);white-space:nowrap;text-transform:uppercase;letter-spacing:.4px}
+.brow{display:grid;grid-template-columns:138px 1fr 40px;gap:8px;align-items:center}
+.blabel{display:flex;align-items:center;gap:5px;min-width:0;font-size:11.5px}
+.blabel .bnm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--cream)}
+.zico{font-size:10px;flex:0 0 auto;font-weight:700}
+.zico.z-clear{color:#059669} .zico.z-borderline{color:#d97706} .zico.z-gap{color:#bc2a2a}
+.btrack{position:relative;height:18px;background:rgba(15,23,42,.045);border-radius:5px;overflow:hidden}
+.bband{position:absolute;top:0;bottom:0;background:rgba(217,119,6,.17)}
+.bproj{position:absolute;top:0;bottom:0;left:0;border-radius:5px 0 0 5px}
+.bproj.z-clear{background:#10b981} .bproj.z-borderline{background:#d97706} .bproj.z-gap{background:#bc2a2a}
+.bthr{position:absolute;top:-2px;bottom:-2px;width:2px;background:#10b981;z-index:3}
+.bcur{position:absolute;top:-3px;bottom:-3px;width:2px;background:#2563eb;z-index:4;box-shadow:0 0 0 1px rgba(255,255,255,.85)}
+.bval{font-size:11px;font-weight:700;text-align:right}
+.bval.z-clear{color:#059669} .bval.z-borderline{color:#d97706} .bval.z-gap{color:#bc2a2a}
+.rdisc{font-size:9px;color:var(--muted);font-style:italic;margin-top:3px;letter-spacing:.2px}
+.missnote{background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.3);color:#b45309;border-radius:9px;padding:9px 13px;font-size:11.5px;line-height:1.4;margin-bottom:6px}
+.rgrid{fill:none;stroke:rgba(15,23,42,.06)}
+.raxis{stroke:rgba(15,23,42,.1)}
+.rlabel{fill:var(--cream);font-size:11px;font-family:var(--sans)}
+.rtick{fill:var(--muted);font-size:9px;font-family:var(--sans)}
+.rcur{fill:rgba(37,99,235,.16);stroke:#2563eb;stroke-width:2}
+.rproj{fill:none;stroke:#bc2a2a;stroke-width:2;stroke-dasharray:5 4}
+.rthr{fill:none;stroke:#10b981;stroke-width:2}
+.rband{fill:none;stroke:rgba(217,119,6,.32);stroke-width:1;stroke-dasharray:2 3}
+.rprojband{fill:rgba(188,42,42,.15);stroke:none}
+.side{display:flex;flex-direction:column;gap:11px}
+.lbox{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
+.lrow{display:flex;gap:10px;font-size:12px;margin:7px 0;line-height:1.3}
+.lrow .ln{flex:0 0 22px;height:0;border-top:3px solid;margin-top:7px}
+.ln.cur{border-color:#2563eb} .ln.proj{border-color:#bc2a2a;border-top-style:dashed} .ln.thr{border-color:#10b981}
+.lrow b{color:var(--white);font-weight:600} .lrow .d{color:var(--muted);font-size:11px}
+.statusttl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:2px 0 6px}
+.srow{display:flex;align-items:center;gap:7px;background:rgba(15,23,42,.025);border:1px solid var(--line);
+  border-radius:8px;padding:6px 10px;margin:5px 0;font-size:12px}
+.srow.z-gap{background:rgba(188,42,42,.10);border-color:rgba(188,42,42,.28)}
+.srow.z-borderline{background:rgba(217,119,6,.10);border-color:rgba(217,119,6,.28)}
+.srow.z-clear{background:rgba(16,185,129,.09);border-color:rgba(16,185,129,.22)}
+.srow .nm{color:var(--white);font-weight:600} .srow .df{margin-left:auto;font-weight:600}
+.srow.z-gap .df{color:#bc2a2a} .srow.z-borderline .df{color:#d97706} .srow.z-clear .df{color:#059669}
+.cdot{font-size:9px;line-height:1;flex:0 0 auto}
+.cdot.direct{color:#059669} .cdot.proxy{color:#d97706} .cdot.extrapolated{color:#94a3b8}
+.pcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;padding:2px 0 8px}
+.pcard{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
+.pcard .ct{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.pcard .big{font-family:var(--serif);font-size:13px;color:var(--muted);margin:4px 0 2px}
+.pcard .big .n{font-size:23px;color:var(--white)} .pcard .big .p{font-size:21px;color:#bc2a2a}
+.pbar{height:6px;border-radius:3px;background:rgba(15,23,42,.1);position:relative;margin:8px 0 6px}
+.pbar .f{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:#bc2a2a}
+.pbar .t{position:absolute;top:-3px;width:2px;height:12px;background:#10b981;z-index:2}
+.pbar .band{position:absolute;top:0;bottom:0;border-radius:3px;background:rgba(217,119,6,.20)}
+.pcard.z-clear .pbar .f{background:#10b981} .pcard.z-borderline .pbar .f{background:#d97706}
+.pcard.z-clear{border-color:rgba(16,185,129,.30)} .pcard.z-borderline{border-color:rgba(217,119,6,.30)} .pcard.z-gap{border-color:rgba(188,42,42,.30)}
+.pcard .cap{font-size:10.5px;color:var(--muted);line-height:1.4}
+.pcard .cap.warn{color:#bc2a2a;font-weight:600}
+.pcard .cap.bord{color:#d97706;font-weight:600} .pcard .cap.ok2{color:#059669;font-weight:600}
+.pcard .rng{font-size:9.5px;color:var(--muted);opacity:.8;margin-top:2px;font-style:italic}
+.pcard .raw{font-size:10px;color:var(--muted);margin-top:3px;opacity:.85}
+.cardwhy{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-size:11.5px;color:#475569;line-height:1.45}
+.cardwhy .evi{color:var(--muted);font-style:italic}
+body.ref .cardwhy{display:block}
+body.ref .pcards{grid-template-columns:1fr}
+body.ref .radarwrap{display:none}
+body.ref .pv-top{grid-template-columns:1fr}
+.qnote{font-size:11.5px;color:var(--muted);font-style:italic;padding:2px 0 4px}
+.pending-box{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:26px;text-align:center}
+.pending-box .pt{font-family:var(--serif);font-size:22px;color:var(--cream)}
+.pending-box .pd{font-size:13px;color:var(--muted);max-width:460px;line-height:1.5}
+.sugg{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:560px}
+.sugg .s{font-size:11.5px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--cream)}
+
+@media (max-width:1000px){
+  .pv-top{grid-template-columns:1fr}
+  .radarwrap svg{max-width:360px}
+  .pcards{grid-template-columns:1fr 1fr}
+}
+/* ── Multi-tab shell ── */
+.tabpane{display:none}
+body.tab-reference #tab-reference{display:flex}
+body.tab-build #tab-build{display:flex}
+body.tab-report #tab-report{display:flex}
+body.tab-reference .cardwhy{display:block}
+.refgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:12px;padding:4px 0 8px}
+.refgrid .pcard .cardwhy{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.reqbig{font-family:var(--serif);font-size:18px;color:var(--cream);margin:5px 0 2px}
+.reqbig b{color:#bc2a2a}
+.refnote{margin-top:14px;padding-top:11px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);line-height:1.5;font-style:italic}
+/* ── Build-report form ── */
+#tab-build{overflow:auto;display:none}
+.buildwrap{width:100%;max-width:980px;color:var(--cream)}
+.buildhead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.buildhead .slide-title{font-size:30px}
+.buildactions{display:flex;gap:8px}
+.btn{font-family:var(--sans);font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:rgba(15,23,42,.04);color:var(--cream);cursor:pointer}
+.btn:hover{background:rgba(15,23,42,.1)}
+.btn.primary{background:var(--coral);border-color:var(--coral);color:#fff}
+.bsec{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.bsectitle{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px}
+.fgroup{margin:6px 0 12px}
+.fgtitle{font-size:12px;font-weight:700;color:#475569;margin:10px 0 6px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:8px 14px}
+.fld{display:flex;flex-direction:column;gap:3px;font-size:12px}
+.flbl{color:#475569}
+.funit{color:var(--muted);font-weight:400;font-size:10.5px;text-transform:none;letter-spacing:0}
+.fld input,.fld select{font-family:var(--sans);font-size:14px;padding:7px 9px;border-radius:7px;border:1px solid var(--line);background:#ffffff;color:var(--white)}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--coral)}
+.gchks{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:3px 12px}
+.gchk{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#475569;padding:4px 6px;border-radius:6px;cursor:pointer}
+.gchk:hover{background:rgba(15,23,42,.03)}
+.gchk input{width:15px;height:15px;accent-color:var(--coral);flex:0 0 auto}
+/* ── Custom-activity builder ── */
+.addgoal{display:block;width:calc(100% - 16px);margin:10px 8px;padding:9px;border-radius:8px;border:1px dashed var(--line);background:transparent;color:var(--cream);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;text-align:center}
+.addgoal:hover,.addgoal.on{background:rgba(188,42,42,.18);border-color:var(--coral)}
+.ctag{margin-left:6px;font-size:8.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--coral);border:1px solid rgba(188,42,42,.4);border-radius:4px;padding:1px 4px;flex:0 0 auto}
+.namein{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--cream);background:transparent;border:none;border-bottom:1px solid var(--line);width:100%;padding:2px 0}
+.subin{font-family:var(--sans);font-size:13px;color:var(--muted);background:transparent;border:none;border-bottom:1px solid var(--line);width:100%;padding:5px 0;margin-top:8px}
+.namein:focus,.subin:focus{outline:none;border-color:var(--coral)}
+.namein::placeholder{color:rgba(15,23,42,.32)}
+.crows{margin:10px 0}
+.crow{display:grid;grid-template-columns:minmax(0,1.5fr) 92px 30px minmax(0,1.5fr) 26px;gap:8px;align-items:center;margin-bottom:8px}
+.crow select,.crow input{font-family:var(--sans);font-size:13px;padding:7px 8px;border-radius:7px;border:1px solid var(--line);background:#ffffff;color:var(--white);min-width:0}
+.crow select:focus,.crow input:focus{outline:none;border-color:var(--coral)}
+.cunit{font-size:11px;color:var(--muted)}
+.crm{background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;padding:0}
+.crm:hover{color:var(--coral)}
+.crow input.oor{border-color:var(--warn);background:rgba(217,119,6,.13)}
+.ihint{font-size:10px;color:var(--muted);opacity:.75;font-style:italic;margin-left:2px}
+/* ── Overview - all goals at a glance ── */
+.actbtn.ovbtn{border:1px solid var(--line);border-radius:8px;margin-bottom:8px;background:rgba(15,23,42,.03)}
+.actbtn.ovbtn.on{background:var(--coral);color:#fff;border-color:var(--coral)}
+.actbtn.ovbtn .lbl{font-weight:700;font-size:12.5px;letter-spacing:.3px;flex:1}
+.ovgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:12px;padding:4px 0 8px}
+.ovcard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;background:rgba(15,23,42,.025);border:1px solid var(--line);border-left:3px solid var(--line);border-radius:11px;padding:12px 10px;cursor:pointer;color:var(--cream);font-family:var(--sans)}
+.ovcard:hover{background:rgba(15,23,42,.045);border-color:rgba(15,23,42,.14)}
+.ovcard.z-clear{border-left-color:#10b981} .ovcard.z-borderline{border-left-color:#d97706} .ovcard.z-gap{border-left-color:#bc2a2a}
+.ovname{font-size:12px;font-weight:600;line-height:1.3;min-height:31px;display:flex;align-items:center;justify-content:center}
+.ovmini{width:108px;height:100px}
+.minisvg{width:108px;height:100px;overflow:visible}
+.ovword{font-family:var(--serif);font-size:16px;font-weight:600;margin-top:2px}
+.ovword.z-clear{color:#059669} .ovword.z-borderline{color:#d97706} .ovword.z-gap{color:#bc2a2a}
+.ovcap{font-size:10.5px;color:var(--muted);line-height:1.3}
+.ovclear{font-size:9.5px;color:var(--muted);opacity:.8;letter-spacing:.3px}
+.ovlegend{margin-top:16px;padding-top:11px;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:var(--muted)}
+.intensity{display:flex;align-items:center;gap:6px;margin-top:9px}
+.ilbl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.ibtn{font-family:var(--sans);font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(15,23,42,.03);color:var(--muted);cursor:pointer}
+.ibtn:hover{color:var(--cream)}
+.ibtn.on{background:var(--coral);border-color:var(--coral);color:#fff}
+/* ── Cross-goal limiter synthesis ── */
+.synth{background:rgba(188,42,42,.07);border:1px solid rgba(188,42,42,.2);border-radius:12px;padding:13px 15px;margin-bottom:14px}
+.synth.synthok{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.25);color:#047857;font-size:13px;font-weight:600;padding:14px 16px}
+.synthttl{font-size:13px;font-weight:700;color:var(--cream);margin-bottom:9px}
+.synthsub{font-size:10.5px;font-weight:400;color:var(--muted);letter-spacing:.2px}
+.synthrow{display:grid;grid-template-columns:132px 62px minmax(60px,1fr) 1.5fr;gap:10px;align-items:center;width:100%;text-align:left;background:transparent;border:none;border-radius:7px;padding:5px 7px;cursor:pointer;color:var(--cream);font-family:var(--sans)}
+.synthrow:hover{background:rgba(15,23,42,.03)}
+.synthrow.on{background:rgba(15,23,42,.06)}
+.synthq{font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.synthn{font-size:11px;color:var(--muted);white-space:nowrap}
+.synthbar{height:7px;border-radius:4px;background:rgba(15,23,42,.06);overflow:hidden}
+.synthfill{height:100%;background:#bc2a2a;border-radius:4px}
+.synthgoals{font-size:10.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ovcard.hl{border-color:var(--coral);box-shadow:0 0 0 1px var(--coral)}
+.ovcard.dim{opacity:.3}
+/* ── Strengths / exposures scorecard + scope ── */
+.scorecard{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:13px}
+.sccol{border-radius:12px;padding:12px 14px;border:1px solid var(--line)}
+.sccol.up{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.25)}
+.sccol.dn{background:rgba(188,42,42,.07);border-color:rgba(188,42,42,.2)}
+.schd{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.scico{font-size:13px;font-weight:700}
+.sccol.up .scico{color:#059669} .sccol.dn .scico{color:#bc2a2a}
+.scttl{font-size:12px;font-weight:700;color:var(--cream);letter-spacing:.3px;text-transform:uppercase}
+.scqs{display:flex;flex-wrap:wrap;gap:5px 12px;margin-bottom:7px}
+.scq{font-size:13px;font-weight:700}
+.scnote{font-size:10.5px;color:var(--muted);line-height:1.35}
+.scope{font-size:11px;line-height:1.5;color:var(--muted);background:rgba(15,23,42,.02);border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:8px;padding:9px 13px;margin-bottom:14px}
+.scope b{color:var(--cream);font-weight:600}
+@media print{.appbar,.rail{display:none!important} .stage{overflow:visible;padding:0}}
+</style>
+</head>
+<body class="tab-reference">
+
+<div class="appbar">
+  <div class="brandmark">Early Medical<span>®</span></div>
+  <div class="seg" id="tabSeg">
+    <button data-tab="reference" class="on">Reference</button>
+    <button data-tab="build">Build report</button>
+    <button data-tab="report">Report</button>
+  </div>
+  <div class="spacer"></div>
+  <div class="patient-chip" id="patientChip"></div>
+</div>
+
+<!-- TAB 1 · REFERENCE (no patient data) -->
+<div class="shell tabpane" id="tab-reference">
+  <aside class="rail">
+    <h4>CD activities</h4>
+    <div id="refList"></div>
+    <div class="addnote">Click an activity to see the physical-quality requirements it demands. No patient data.</div>
+  </aside>
+  <main class="stage">
+    <div style="width:100%;max-width:1024px"><section class="slide" id="refDetail"></section></div>
+  </main>
+</div>
+
+<!-- TAB 2 · BUILD REPORT (input) -->
+<main class="stage tabpane" id="tab-build">
+  <div class="buildwrap" id="buildForm"></div>
+</main>
+
+<!-- TAB 3 · REPORT (the deliverable) -->
+<div class="shell tabpane" id="tab-report">
+  <aside class="rail">
+    <h4>This patient’s goals</h4>
+    <div id="catalog"></div>
+    <div class="addnote" id="addNote"></div>
+    <button class="btn" style="margin:10px 8px;width:calc(100% - 16px)" onclick="window.print()">⎙ Print / Save PDF</button>
+  </aside>
+  <main class="stage">
+    <div style="width:100%;max-width:1024px">
+      <section class="slide" id="slide"></section>
+      <div class="legend" id="legend"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   1) BACKCASTING ENGINE  - ported from generator.py
+   EM sex × decade strength-decline synthesis (norm_tables.py:216)
+   annual % performance loss; walk a reserve back from age 90 → now.
+   ══════════════════════════════════════════════════════════════ */
+const DECLINE = {
+  male:[ {min:0,max:39,annual:1.0},{min:40,max:49,annual:1.1},{min:50,max:59,annual:1.5},
+         {min:60,max:69,annual:1.9},{min:70,max:79,annual:3.6},{min:80,max:120,annual:4.0} ],
+  female:[ {min:0,max:39,annual:0.95},{min:40,max:49,annual:1.55},{min:50,max:59,annual:3.1},
+           {min:60,max:69,annual:2.2},{min:70,max:79,annual:2.9},{min:80,max:120,annual:3.45} ]
+};
+const rateFor=(sex,age)=>{const b=(DECLINE[sex]||DECLINE.male).find(b=>age>=b.min&&age<=b.max);return (b?b.annual:1.0)/100;};
+// "How high must I be NOW to still clear `reserve` at age 90, given my decline curve?"
+// Strength/power → age-stepped sex×decade walk. Aerobic etc. → flat rate from a
+// quality-specific per-decade % (VO₂ has no strength age-bands).
+function backcastNow(sex, ageNow, reserve, dir='higher_better', target=90, declinePctPerDecade=null){
+  if(declinePctPerDecade){
+    const annual = 1-Math.pow(1-declinePctPerDecade/100, 0.1);
+    const mult = Math.pow(1-annual, target-ageNow);
+    return dir==='lower_better' ? reserve*mult : reserve/mult;
+  }
+  let v=reserve;
+  for(let y=target; y>ageNow; y--){ const r=rateFor(sex,y-1); v = dir==='lower_better' ? v*(1-r) : v/(1-r); }
+  return v;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   2) PATIENT  - sample inputs (this is what the live app will inject
+      from the patient JSON / VALD / passive-ROM exam).
+   ══════════════════════════════════════════════════════════════ */
+let PATIENT = {
+  name:"Sample patient", sex:"male", age:57, marginalDecadeAge:90,
+  metrics:{
+    // ── Passive ROM exam (degrees) ──
+    shoulderFlexion_deg:152, thoracicExt_deg:38, thoracicRot_deg:42,
+    hipFlexion_deg:112, ankleDF_deg:34, hamstringSLR_deg:70,
+    // ── Strength (VALD DynaMo / ForceDecks, body-mass normalized) ──
+    shoulderER_NmKg:0.18, ohPress_xBW:0.42, grip_lb:84,
+    kneeExt_xBW:0.46, beltSquat_xBW:3.4, bench_xBW:1.9,
+    // ── Power / reactive ──
+    cmjPower_WkG:38.2, cmjRSI:0.35, hopRSI:1.2,
+    // ── Aerobic (CPET) ──
+    vo2:36,
+    // ── Endurance / core / balance ──
+    calfRaise_reps:22, trunkExt_s:90, trunkFlex_s:45,
+    balanceSL_EO_s:30, balanceSL_EC_s:14,
+    // ── PCA movement tests (gym units) ──
+    backSquat_pctBW:100, relDeadlift_pctBW:140, plankHeelWall_s:80, cuffExtRot_lb:17.5,
+    deadHang_s:75, suitcaseCarry_pctBW:45, ohPress_pctBW:18, loadedStepup_pctBW:40, stepDown_in:16,
+    // ── Research-specific tests (pROM + VALD) ──
+    hipIR_deg:32, hipAbd_xBW:0.20, slHop_cm:130, kneeFlex_xBW:0.42, chinup_reps:6,
+  }
+};
+
+/* ══════════════════════════════════════════════════════════════
+   3) ACTIVITY CATALOG  - pure data. Team edits values, not logic.
+      Each activity: 6–7 requirements across quality categories.
+      basis:'confirmed' (evidence-backed threshold) | 'modeled' (drafted
+      from biomechanical/performance demand, pending clinical sign-off).
+      backcast:true only where a validated age/sex decline rate applies.
+   ══════════════════════════════════════════════════════════════ */
+const ACTIVITIES = {
+ "overhead-bin":{
+  name:"Manage 20 lb of overhead luggage through an airport",
+  sub:"Press a ~20–30 lb bag overhead from shoulder height, with control, while standing in a moving aisle.",
+  reqs:[
+   {cat:"Mobility", label:"Shoulder flexion ROM", metric:"shoulderFlexion_deg", unit:"°", dir:"higher_better", req:155, basis:"modeled", src:"pROM: shoulder flexion", why:"Overhead reach requires ~121° of shoulder flexion, the defining ROM gate for the task.", evi:"Namdari 2012, J Shoulder Elbow Surg (PMID 22047785)."},
+   {cat:"Strength", label:"Single-arm overhead press", metric:"ohPress_pctBW", unit:"% BW", dir:"higher_better", req:15, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA single-arm OH press", why:"Direct force-velocity and joint match to pressing a bag overhead, the prime mover.", evi:"A 20–25 lb bag pressed single-arm is ~11–14% BW; 15% adds reserve. The prior 20% over-specified the task."},
+   {cat:"Strength", label:"Cuff DB external rotation", metric:"cuffExtRot_lb", unit:"lb", dir:"higher_better", req:9, basis:"modeled", backcast:true, declinePctPerDecade:7, src:"PCA cuff ext. rot.", why:"The cuff centres the humeral head under overhead load; ER weakness is the first thing to fail.", evi:"Fixed task-demand target (research-derived) (Cools / overhead-athlete cuff literature)."},
+   {cat:"Strength", label:"Dead hang", metric:"deadHang_s", unit:"s", dir:"higher_better", req:30, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA dead hang", why:"Holding and positioning the bag overhead is grip-limited.", evi:"Grip strength as functional biomarker. Leong/PURE, Lancet 2015."}
+  ]
+ },
+ "floor-rise":{
+  name:"Effortlessly sit and stand from the floor",
+  sub:"Lower to the floor and stand back up under control. No hands. The sitting-rising test: a composite of power, mobility, and balance.",
+  reqs:[
+   {cat:"Strength", label:"Back squat 5RM", metric:"backSquat_pctBW", unit:"% BW", dir:"higher_better", req:60, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA back squat", why:"Rising from the floor is a deep-squat-pattern effort; the back squat is the highest-carryover loaded test of that pattern. Fixed demand sets a bodyweight rise well sub-maximal.", evi:"Squat-pattern movement specificity (SAID; Behm & Sale 1993); deep-squat kinetics."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Adds the rate-to-rise on top of squat strength. Leg power fades faster than strength with age and predicts floor-transfer.", evi:"Alcazar 2021, J Cachexia Sarcopenia Muscle; Brito/Araújo SRT 2014."},
+   {cat:"Eccentric", label:"Eccentric step-down", metric:"stepDown_in", unit:"in box", dir:"higher_better", req:10, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA eccentric step-down", why:"Lowering to the floor is an eccentric, quad-dominant descent, the half of the task concentric squat strength misses.", evi:"Fixed demand; eccentric LE control (PMC6044589)."},
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:115, basis:"modeled", src:"pROM: hip flexion", why:"Folding to the floor needs ~115–125° of hip flexion.", evi:"Deep squat-sit ROM (PMC7276781)."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:38, basis:"confirmed", src:"pROM: knee-to-wall", why:"The deep squat-sit position needs ~15–24° weight-bearing dorsiflexion.", evi:"Weight-bearing DF & deep squat-sit (PMC12358486)."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"The rise passes through narrow, asymmetric single-limb bases.", evi:"Single-leg stance & falls (PMC7554797)."}
+  ]
+ },
+ "hike-pack":{
+  name:"Navigate uneven mountain terrain for a 60-minute hike",
+  sub:"Sustained aerobic effort over uneven terrain. Repeated uphill drive and downhill eccentric braking.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:40, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET: Zone 2 / VT", why:"OPTIMAL target so aerobic capacity is NOT the limiter on a 60-min hike (~7 MET demand ÷ ~62% sustainable); the bare minimum to complete is ≈ 30.", evi:"Ainsworth 2011 Compendium; Voloshina 2013 (+28% uneven terrain); Joyner & Coyle 2008."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Uphill stepping is loaded single-leg hip/knee extension. Grade recruits glutes and quads as primary drivers.", evi:"Franz & Kram. Leg-muscle activation by grade."},
+   {cat:"Eccentric", label:"Eccentric step-down", metric:"stepDown_in", unit:"in box", dir:"higher_better", req:10, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA eccentric step-down", why:"Downhill braking is the signature damaging load. Slow, high-displacement eccentric knee-extensor work; the step-down matches it (not the fast SSC of hop RSI).", evi:"Chen PLOS One (PMC5348007); Loiacono braking-control."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:23, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"The soleus is the fatigue-resistant powerhouse for sustained climbing and descending push-off.", evi:"Hébert-Losier 2017; soleus MTU (PMC7578824)."},
+   {cat:"Balance", label:"Single-leg stance (eyes closed)", metric:"balanceSL_EC_s", unit:"s", dir:"higher_better", req:8, basis:"modeled", src:"Force-plate balance", why:"Uneven ground raises stride variability ~25%; eyes-closed stance isolates the proprioceptive/ankle demand.", evi:"Trail stability (PMC12633145)."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:38, basis:"confirmed", src:"pROM: knee-to-wall", why:"Limited dorsiflexion alters incline kinematics and raises injury risk on grades.", evi:"DF & incline walking (S0966636221006305)."}
+  ]
+ },
+ "carry-grandkids":{
+  name:"Confidently lift and carry a small child or pet from the floor",
+  sub:"A deadlift-pattern lift to a loaded carry of an awkward, one-sided, shifting load. Then set it down under control.",
+  reqs:[
+   {cat:"Strength", label:"Relative deadlift 5RM", metric:"relDeadlift_pctBW", unit:"% BW", dir:"higher_better", req:65, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA relative deadlift", why:"Direct hinge-pattern match to lifting a child off the floor.", evi:"Fixed demand: a 40 lb child ≈ 22% BW, so a 65% BW 5RM keeps the lift comfortably sub-maximal."},
+   {cat:"Strength", label:"Suitcase carry", metric:"suitcaseCarry_pctBW", unit:"% BW", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA suitcase carry", why:"A one-sided child load is an anti-lateral-flexion demand. QL/obliques resisting side-bend. Which the suitcase carry matches and the front plank does not.", evi:"A 40 lb child is ~22% BW one-sided; 25% adds reserve. The prior 40% was near a maximal one-arm carry (Holmstrup 2018)."},
+   {cat:"Strength", label:"Dead hang", metric:"deadHang_s", unit:"s", dir:"higher_better", req:30, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA dead hang", why:"Holding an awkward, squirming load is grip-limited.", evi:"Grip & mortality/function. Leong/PURE, Lancet 2015."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:55, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"A front-held child also imposes an anterior moment requiring anti-extension bracing.", evi:"Fixed demand; trunk anti-extension under anterior load."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Lifting from the floor needs rapid hip/knee extension; CMJ power is the criterion lower-limb power measure.", evi:"Alcazar 2018 leg-power norms."},
+   {cat:"Eccentric", label:"Eccentric step-down", metric:"stepDown_in", unit:"in box", dir:"higher_better", req:10, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA eccentric step-down", why:"Setting the child down under control is an eccentric knee-extensor deceleration, the moment most likely to tweak a back.", evi:"Eccentric braking & independence (PMC10946755)."}
+  ]
+ },
+ "tennis":{
+  name:"Enjoy 90 minutes of tennis, padel, or pickleball",
+  sub:"Intermittent multidirectional sport. Repeated accelerations and decelerations, rotational strokes, and an overhead serve.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:43, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"OPTIMAL target so repeated rallies stay aerobic and between-point recovery is easy (peak-rally ~30 ÷ ~70%); the bare minimum is ≈ 32.", evi:"Baiget 2015 (match-avg ~52% VO₂max); Kovacs 2007; Joyner & Coyle 2008."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:30, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Concentric output for acceleration and the jump-serve.", evi:"Racket-sport power (PMC10101231)."},
+   {cat:"Eccentric", label:"Drop-jump RSI", metric:"cmjRSI", unit:"m/s", dir:"higher_better", req:0.45, basis:"modeled", backcast:true, declinePctPerDecade:13, src:"VALD ForceDecks (drop jump)", why:"Fast-SSC reactive strength is the strongest jump-test correlate of change-of-direction and first-step speed.", evi:"RSI & CoD systematic review (ScienceDirect 2023)."},
+   {cat:"Eccentric", label:"Single-leg hop", metric:"slHop_cm", unit:"cm", dir:"higher_better", req:145, basis:"modeled", backcast:true, declinePctPerDecade:13, src:"VALD single-leg hop", why:"~75% of ACL tears are noncontact decelerations; the single-leg hop captures single-limb braking control and asymmetry that bilateral jumps miss.", evi:"Hop battery & re-injury (JOSPT, PMC6942029)."},
+   {cat:"Strength", label:"Shoulder external rotation (isometric)", metric:"shoulderER_NmKg", unit:"Nm/kg", dir:"higher_better", req:0.22, basis:"modeled", backcast:true, declinePctPerDecade:4, src:"VALD isometric shoulder ER", why:"The serve decelerates the arm through the cuff; isometric ER quantifies the ~12% deficit and side-to-side asymmetry a drill cannot.", evi:"Ellenbecker; infraspinatus atrophy in players (IJSPT). Nm/kg target extrapolated; no direct older-adult Nm/kg norm exists."},
+   {cat:"Mobility", label:"Thoracic rotation ROM", metric:"thoracicRot_deg", unit:"°", dir:"higher_better", req:45, basis:"modeled", src:"pROM: T-spine rotation", why:"The kinetic chain sequences legs→trunk→shoulder; restricted thoracic rotation shifts load distally and cuts racket speed.", evi:"Serve kinetic chain (PMC3445225)."}
+  ]
+ },
+ "push-ups":{name:"Perform 20 consecutive push-ups", sub:"(Not on the patient catalog. Retained as a profile only.)", reqs:[]},
+ "touch-toes":{
+  name:"Bend naturally to tie shoes and dress, without sitting",
+  sub:"Forward bend to the floor (lumbopelvic rhythm) plus single-leg standing dressing. A mobility- and balance-led goal.",
+  reqs:[
+   {cat:"Mobility", label:"Straight-leg raise ROM", metric:"hamstringSLR_deg", unit:"°", dir:"higher_better", req:80, basis:"modeled", src:"pROM: straight-leg raise", why:"Forward-reach distance is gated by hamstring length, which restricts anterior pelvic tilt in the lumbopelvic rhythm.", evi:"Johnson 2010, Arch Phys Med Rehabil (PMC2909693)."},
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:110, basis:"modeled", src:"pROM: hip flexion", why:"Reaching the floor is achieved by pelvic anterior rotation = hip flexion; hip range sets how much the spine must make up.", evi:"Lumbopelvic rhythm (Esola)."},
+   {cat:"Strength", label:"Hip abduction (isometric)", metric:"hipAbd_xBW", unit:"× BW", dir:"higher_better", req:0.25, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD isometric hip abduction", why:"Dressing on one leg loads the stance-leg abductors to hold the pelvis level, a demand two-foot stance hides.", evi:"Hsue & Su 2011, Gait Posture (PMC3127469)."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"Standing dressing forces single-limb support with simultaneous trunk flexion, a recognised fall scenario.", evi:"Hsue & Su 2011; single-leg stance & falls (PMC7554797)."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:35, basis:"confirmed", src:"pROM: knee-to-wall", why:"Bending forward over a fixed standing foot drives the tibia forward (weight-bearing dorsiflexion).", evi:"Weight-bearing DF (PMC12358486)."}
+  ]
+ },
+ "sprint-triathlon":{
+  name:"Complete an energetic 5 km run in 40 minutes",
+  sub:"Sustained sub-threshold running. Limited more by economy, lower-limb stiffness, and durability than by raw power.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:44, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET: VO₂ + economy + LT", why:"OPTIMAL target so the pace sits comfortably sub-threshold (~8 MET ÷ ~65%); ~34 is just-able. vVO₂max is the strongest 5 km predictor.", evi:"ACSM running eqn; Joyner & Coyle 2008; Li 2021."},
+   {cat:"Eccentric", label:"Drop-jump RSI", metric:"cmjRSI", unit:"m/s", dir:"higher_better", req:0.45, basis:"modeled", backcast:true, declinePctPerDecade:13, src:"VALD ForceDecks (drop jump)", why:"Lower-limb stiffness was the strongest correlate of running economy; drop-jump RSI is its validated proxy. CMJ power was NOT correlated.", evi:"Li et al. 2021, J Strength Cond Res (PMID 31809458)."},
+   {cat:"Strength", label:"Isometric knee flexion (hamstring)", metric:"kneeFlex_xBW", unit:"× BW", dir:"higher_better", req:0.35, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD ForceFrame (knee flexion)", why:"Hamstring strength resists the eccentric loads of repeated foot strikes and protects against late-race breakdown.", evi:"Isometric hamstring strength → running durability (measured proxy; NordBord not in EM battery). 0.35×BW extrapolated from athlete norms; no published older-adult ForceFrame cutoff."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:23, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"Soleus efficiency and endurance lower running cost and resist late-race fatigue.", evi:"Soleus MTU (PMC7578824); Achilles stiffness (PMC7893283)."},
+   {cat:"Eccentric", label:"Repeated-hop RSI", metric:"hopRSI", unit:"m/s", dir:"higher_better", req:0.5, basis:"modeled", backcast:true, declinePctPerDecade:13, src:"VALD ForceDecks (hops)", why:"Repeated hops probe reactive stiffness under accumulating fatigue, the closest proxy to running durability.", evi:"Reactive-strength endurance & durability."}
+  ]
+ },
+ "chair-rise":{
+  name:"Rise from a chair or toilet without using hands",
+  sub:"Stand from a standard seat height under control, no hands, an easier squat-pattern transfer than the floor, done dozens of times a day.",
+  reqs:[
+   {cat:"Strength", label:"Back squat 5RM", metric:"backSquat_pctBW", unit:"% BW", dir:"higher_better", req:40, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA back squat", why:"Chair rise is a partial-depth squat-pattern effort; the back squat is the highest-carryover loaded test of that pattern.", evi:"Squat-pattern specificity; STS extensor moment ~1.5 N·m·kg⁻¹ (Yoshioka 2007)."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Rate of force to break inertia and stand; leg power fades faster than strength and is the validated functional predictor.", evi:"Alcazar 2021 STS-power independence cut-points."},
+   {cat:"Eccentric", label:"Eccentric step-down", metric:"stepDown_in", unit:"in box", dir:"higher_better", req:8, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA eccentric step-down", why:"Sitting down under control. Not dropping into the seat. Is the eccentric half of the transfer.", evi:"Eccentric LE control (PMC6044589)."},
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:95, basis:"modeled", src:"pROM: hip flexion", why:"A standard seat needs ~90–95° hip flexion to load and unload the legs.", evi:"Seat-height STS kinematics."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:30, basis:"modeled", src:"pROM: knee-to-wall", why:"The shin travels forward over the foot to shift weight ahead of the base before standing.", evi:"Weight-bearing DF in sit-to-stand."}
+  ]
+ },
+ "stairs-load":{
+  name:"Climb and descend two flights of stairs carrying 25 lb",
+  sub:"Loaded stair ascent and descent, non-stop. Single-leg drive up, eccentric control down, with a 25 lb load in hand.",
+  reqs:[
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:30, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Stair ascent is loaded single-leg knee/hip extension; the loaded step-up is the closest pattern match, with the 25 lb added.", evi:"Stair-ascent kinetics; loaded single-leg drive."},
+   {cat:"Eccentric", label:"Eccentric step-down", metric:"stepDown_in", unit:"in box", dir:"higher_better", req:10, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA eccentric step-down", why:"Descending stairs under load is the high eccentric knee-extensor demand, where loaded descent control fails first. Capped at 10 in (25 cm), the upper clinical step-down box.", evi:"Stair-descent knee moment ~1.2 N·m·kg⁻¹ (PMID 25082325), raised by load."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Climbing two flights non-stop needs sustained rate of force, not just max strength.", evi:"Alcazar 2021 leg-power norms."},
+   {cat:"Strength", label:"Suitcase carry", metric:"suitcaseCarry_pctBW", unit:"% BW", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA suitcase carry", why:"The 25 lb load is carried one-sided up the stairs. Grip and anti-lateral-flexion under load.", evi:"25 lb ≈ 14% BW one-sided; carry demand + reserve."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:33, basis:"modeled", src:"pROM: knee-to-wall", why:"Stair climbing needs ankle range to clear the step and load the shin.", evi:"Weight-bearing DF in stair climbing."}
+  ]
+ },
+ "chores":{
+  name:"Independently complete all household chores",
+  sub:"The everyday mix. Lifting and bending, carrying, reaching, and staying on your feet. A composite functional goal.",
+  reqs:[
+   {cat:"Strength", label:"Relative deadlift 5RM", metric:"relDeadlift_pctBW", unit:"% BW", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA relative deadlift", why:"Lifting and bending to laundry, bins, and low cupboards is a repeated hinge pattern under light load.", evi:"Hinge-pattern carryover; light household loads + reserve."},
+   {cat:"Strength", label:"Suitcase carry", metric:"suitcaseCarry_pctBW", unit:"% BW", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA suitcase carry", why:"Groceries, laundry baskets, and bins are one-sided loaded carries through the home.", evi:"Loaded-carry demand for household items."},
+   {cat:"Mobility", label:"Shoulder flexion ROM", metric:"shoulderFlexion_deg", unit:"°", dir:"higher_better", req:150, basis:"modeled", src:"pROM: shoulder flexion", why:"Reaching high shelves, hanging clothes, and cleaning needs near-full overhead range.", evi:"Functional overhead reach (Namdari 2012)."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:40, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Bending, reaching, and sustained stooped postures need trunk endurance to protect the back.", evi:"Trunk-endurance & low-back protection (McGill)."},
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"Chores are light-moderate work sustained over time; aerobic base keeps them from tiring you out.", evi:"Light housework ~3–3.5 MET (Ainsworth 2011); optimal so it is not the limiter."}
+  ]
+ },
+ "walk-3mi":{
+  name:"Walk 3 miles on formed paths in under an hour",
+  sub:"Sustained brisk walking on even ground, an aerobic and lower-leg-endurance task more than a strength one.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"A brisk 3-mile hour is ~4.5 MET sustained; the optimal target keeps it a comfortable conversation pace.", evi:"Brisk walk 4.8 MET (Ainsworth 2011); optimal ≈ demand ÷ 65%."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:16, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"The calf propels every step; endurance, not strength, is what fades over an hour.", evi:"Hébert-Losier 2017 heel-rise norms."},
+   {cat:"Strength", label:"Hip abduction (isometric)", metric:"hipAbd_xBW", unit:"× BW", dir:"higher_better", req:0.15, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD ForceFrame (hip abduction)", why:"Each step is single-leg stance; the hip abductors hold the pelvis level and keep gait efficient.", evi:"Hip-abductor role in gait (Hsue & Su 2011)."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:30, basis:"modeled", src:"pROM: knee-to-wall", why:"Adequate ankle range gives a smooth heel-to-toe stride and clears the foot in swing.", evi:"Ankle DF in gait."}
+  ]
+ },
+ "open-jars":{
+  name:"Open any jar, bottle, or packaging with confidence",
+  sub:"A focused upper-limb task. Grip and forearm torque with shoulder bracing. Fewer variables by nature.",
+  reqs:[
+   {cat:"Strength", label:"Grip strength", metric:"grip_lb", unit:"lb", dir:"higher_better", req:66, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD grip", why:"Crushing grip on the lid is the prime mover; below this, the jar wins.", evi:"Grip strength biomarker (Leong/PURE 2015); above sarcopenia floor for forceful opening."},
+   {cat:"Strength", label:"Grip endurance (dead hang)", metric:"deadHang_s", unit:"s", dir:"higher_better", req:30, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA dead hang", why:"A stubborn lid is a sustained, repeated grip effort, not a single squeeze.", evi:"Grip-endurance reserve."},
+   {cat:"Strength", label:"Cuff DB external rotation", metric:"cuffExtRot_lb", unit:"lb", dir:"higher_better", req:9, basis:"modeled", backcast:true, declinePctPerDecade:7, src:"PCA cuff ext. rot.", why:"The cuff stabilises the shoulder while the forearm twists against resistance.", evi:"Cuff stability under forceful opening."}
+  ]
+ },
+ "festival":{
+  name:"Fully participate in an outdoor gathering or festival for 2+ hours",
+  sub:"Two-plus hours on your feet. Standing, strolling, navigating crowds. A low-intensity endurance-and-stability goal.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:11, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"The demand is light (standing/strolling ~2 MET) but sustained for hours. Standing endurance is limited by leg fatigue, not aerobic capacity, so the bar sits low.", evi:"Standing/strolling ~1.8–2.5 MET (Ainsworth 2011)."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:16, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"Standing and walking for hours is a calf and foot endurance task. Sore legs end the day early.", evi:"Hébert-Losier 2017 heel-rise norms."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:38, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Hours of upright standing is a postural-endurance task for the trunk.", evi:"Trunk postural endurance."}
+  ]
+ },
+ "dance":{
+  name:"Dance with a partner for 45 enjoyable minutes",
+  sub:"Sustained moderate movement with quick weight shifts, turns, and rhythm. Aerobic, balance, power, and rotation.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:30, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"45 minutes of active partner dance is ~6 MET sustained; the optimal target keeps it joyful rather than breathless.", evi:"Measured ballroom ~6 MET (Lankford 2014); optimal ≈ demand ÷ 70%."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:18, basis:"modeled", src:"Force-plate balance", why:"Turns, spins, and weight transfers pass repeatedly through single-leg stance.", evi:"Dynamic balance; single-leg stance (PMC7554797)."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Quick steps, rises, and the occasional lift need lower-body power, not just endurance.", evi:"Alcazar 2021 leg-power norms."},
+   {cat:"Mobility", label:"Thoracic rotation ROM", metric:"thoracicRot_deg", unit:"°", dir:"higher_better", req:40, basis:"modeled", src:"pROM: T-spine rotation", why:"Frame, turns, and styling come from mid-back rotation; stiffness makes movement look and feel wooden.", evi:"Thoracic rotation for rotational movement."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:23, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"45 minutes on the balls of the feet is a calf-endurance task.", evi:"Hébert-Losier 2017 heel-rise norms."}
+  ]
+ },
+ "beach-sand":{
+  name:"Stride through soft beach sand for 2 miles within an hour",
+  sub:"Soft sand costs 2–3× firm ground, a deceptively hard sustained leg-and-aerobic task.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"Soft dry sand costs 2.1–2.7× firm ground (~8 MET); the optimal target keeps a 2-mile beach walk a comfortable effort.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:25, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"Each sand step is a big calf push-off with energy lost to the surface.", evi:"Hébert-Losier 2017 norms."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Sand absorbs force, so every stride is a higher single-leg effort than firm ground.", evi:"Single-leg drive carryover."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"The shifting surface challenges single-leg control every step.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:32, basis:"modeled", src:"pROM: knee-to-wall", why:"Ankle range manages the uneven, yielding surface.", evi:"Weight-bearing DF."}
+  ]
+ },
+ "dog-walk":{
+  name:"Walk and control a 60 lb dog for a 60-minute hike",
+  sub:"A 60-minute hike while controlling a strong dog. Aerobic, plus grip and bracing against pulls.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:30, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"An hour of hiking is a sustained aerobic task; the optimal keeps it easy.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Strength", label:"Grip strength", metric:"grip_lb", unit:"lb", dir:"higher_better", req:66, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD grip", why:"Controlling a 60 lb dog that lunges is a real grip and forearm demand.", evi:"Grip biomarker (Leong/PURE 2015)."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Uneven trail and the occasional brace is single-leg leg work.", evi:"Single-leg drive carryover."},
+   {cat:"Eccentric", label:"Eccentric step-down", metric:"stepDown_in", unit:"in box", dir:"higher_better", req:10, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA eccentric step-down", why:"Descents and sudden braces load the quads eccentrically.", evi:"Eccentric knee-extensor control (PMID 25082325)."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"Sudden pulls on uneven ground test single-leg balance.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:20, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"Calf endurance for an hour of varied walking.", evi:"Hébert-Losier 2017 norms."}
+  ]
+ },
+ "cycle-10mi":{
+  name:"Cycle 10 miles in an hour on flat pavement",
+  sub:"A steady hour on the bike. Aerobic and quad-endurance led.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:37, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"A 10-mile flat hour is ~6.8 MET; the optimal keeps it sub-threshold.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Pedalling is repeated single-leg knee/hip extension; step-up is the closest leg-strength match.", evi:"Single-leg drive carryover."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Power for hills, surges, and getting up to speed.", evi:"Alcazar 2021 leg-power norms."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:18, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"Calf contributes to the pedal stroke over the hour.", evi:"Hébert-Losier 2017 norms."}
+  ]
+ },
+ "row-10k":{
+  name:"Row 10,000 m in a single hour",
+  sub:"An hour on the erg, one of the most aerobically demanding tasks here, plus pull, hinge, and grip.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:30, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"A 10 km erg in an hour is a moderate ~5 MET effort (a 3:00/500 m split); the optimal keeps it comfortably sub-threshold.", evi:"ACSM rowing equation. The prior 50 was near-elite-rower territory (Hagerman 1984)."},
+   {cat:"Strength", label:"Chin-up", metric:"chinup_reps", unit:"reps", dir:"higher_better", req:3, basis:"modeled", backcast:true, declinePctPerDecade:8, src:"PCA chin-up", why:"The drive finishes with a powerful upper-body pull, repeated thousands of times.", evi:"Upper-body pulling capacity (PCA standard)."},
+   {cat:"Strength", label:"Relative deadlift 5RM", metric:"relDeadlift_pctBW", unit:"% BW", dir:"higher_better", req:60, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA relative deadlift", why:"Each stroke is a leg-and-hip hinge drive; the deadlift is the pattern match.", evi:"Hinge-pattern carryover."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:50, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"The trunk transmits force between legs and arms every stroke.", evi:"Trunk anti-extension endurance."},
+   {cat:"Strength", label:"Grip strength", metric:"grip_lb", unit:"lb", dir:"higher_better", req:66, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD grip", why:"An hour gripping the handle is a forearm-endurance demand.", evi:"Grip biomarker (Leong/PURE 2015)."}
+  ]
+ },
+ "swim-500m":{
+  name:"Swim 500 m without stopping, under 25 minutes",
+  sub:"Continuous freestyle. Propulsion comes from the upper-body pull, with shoulder range and a stable core.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:31, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"500 m continuous is ~5.8 MET; the optimal keeps the pace comfortable.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Strength", label:"Chin-up", metric:"chinup_reps", unit:"reps", dir:"higher_better", req:3, basis:"modeled", backcast:true, declinePctPerDecade:8, src:"PCA chin-up", why:"Freestyle propulsion is an upper-body pulling action.", evi:"Upper-body pulling capacity (PCA standard)."},
+   {cat:"Mobility", label:"Shoulder flexion ROM", metric:"shoulderFlexion_deg", unit:"°", dir:"higher_better", req:155, basis:"modeled", src:"pROM: shoulder flexion", why:"The catch and recovery need near-full overhead shoulder range.", evi:"Functional shoulder ROM (Namdari 2012)."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"A stable, streamlined body position comes from trunk endurance.", evi:"Trunk anti-extension endurance."},
+   {cat:"Mobility", label:"Thoracic rotation ROM", metric:"thoracicRot_deg", unit:"°", dir:"higher_better", req:40, basis:"modeled", src:"pROM: T-spine rotation", why:"Each stroke rotates through the trunk; thoracic rotation drives reach and roll.", evi:"Rotational mobility."}
+  ]
+ },
+ "ocean-swim":{
+  name:"Swim safely at ocean beaches in average conditions",
+  sub:"Open-water swimming with chop and sighting, the same engine as pool swimming, with extra reserve for safety.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:37, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"Open water adds ~10–25% to the cost of pool swimming; reserve matters for safety.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Strength", label:"Chin-up", metric:"chinup_reps", unit:"reps", dir:"higher_better", req:3, basis:"modeled", backcast:true, declinePctPerDecade:8, src:"PCA chin-up", why:"Sustained upper-body pull against drag and chop.", evi:"Upper-body pulling capacity (PCA standard)."},
+   {cat:"Mobility", label:"Shoulder flexion ROM", metric:"shoulderFlexion_deg", unit:"°", dir:"higher_better", req:155, basis:"modeled", src:"pROM: shoulder flexion", why:"Full overhead shoulder range for an efficient, fatigue-resistant stroke.", evi:"Functional shoulder ROM (Namdari 2012)."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Core endurance holds body position in moving water.", evi:"Trunk anti-extension endurance."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:12, basis:"modeled", src:"Force-plate balance", why:"Wading in and out through surf and shifting sand needs standing balance.", evi:"Araujo 2022; Springer 2007."}
+  ]
+ },
+ "snorkel-scuba":{
+  name:"Snorkel or SCUBA for 45 minutes",
+  sub:"Forty-five minutes finning underwater. Leg-driven propulsion with aerobic reserve for the unexpected.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:38, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"~5–6 MET, but a margin matters for emergency exertion underwater.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:23, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"Finning is a sustained calf and lower-leg endurance task.", evi:"Hébert-Losier 2017 norms."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Core endurance manages equipment and body trim in the water.", evi:"Trunk anti-extension endurance."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:35, basis:"modeled", src:"pROM: knee-to-wall", why:"Ankle range drives an efficient fin kick.", evi:"Weight-bearing DF."},
+   {cat:"Mobility", label:"Shoulder flexion ROM", metric:"shoulderFlexion_deg", unit:"°", dir:"higher_better", req:150, basis:"modeled", src:"pROM: shoulder flexion", why:"Shoulder range to don gear and reach valves and straps.", evi:"Functional shoulder ROM (Namdari 2012)."}
+  ]
+ },
+ "ski-green":{
+  name:"Ski green runs for 3 hours, using any chairlift",
+  sub:"Three hours of beginner runs, the signature demand is sustained eccentric quad control, with reserve for cold and altitude.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:33, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"Descents are ~45% of capacity with lift rest, but a margin covers cold, altitude, and a fall recovery.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Eccentric", label:"Eccentric step-down", metric:"stepDown_in", unit:"in box", dir:"higher_better", req:14, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA eccentric step-down", why:"Skiing is sustained eccentric quad work, the defining and most fatiguing demand.", evi:"Eccentric knee-extensor control (PMID 25082325)."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Edging, traversing, and pushing along are loaded single-leg leg drives.", evi:"Single-leg drive carryover."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Power to absorb terrain and recover balance quickly.", evi:"Alcazar 2021 leg-power norms."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:18, basis:"modeled", src:"Force-plate balance", why:"Skiing is dynamic single-leg balance, repeatedly.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:32, basis:"modeled", src:"pROM: knee-to-wall", why:"Ankle range maintains the forward ski stance.", evi:"Weight-bearing DF."}
+  ]
+ },
+ "kayak":{
+  name:"Paddle a kayak for 90 minutes on calm water",
+  sub:"Ninety minutes of paddling, an upper-body pull and trunk-rotation task with grip endurance.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:31, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"~4 MET sustained over 90 minutes, arms-dominant; the optimal keeps it relaxed.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Strength", label:"Chin-up", metric:"chinup_reps", unit:"reps", dir:"higher_better", req:3, basis:"modeled", backcast:true, declinePctPerDecade:8, src:"PCA chin-up", why:"Each stroke is an upper-body pull; pulling capacity sets the ceiling.", evi:"Upper-body pulling capacity (PCA standard)."},
+   {cat:"Mobility", label:"Thoracic rotation ROM", metric:"thoracicRot_deg", unit:"°", dir:"higher_better", req:45, basis:"modeled", src:"pROM: T-spine rotation", why:"Paddling power comes from trunk rotation, not just the arms.", evi:"Rotational mobility."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"The core transfers rotation into the paddle and protects the back.", evi:"Trunk anti-extension endurance."},
+   {cat:"Strength", label:"Grip strength", metric:"grip_lb", unit:"lb", dir:"higher_better", req:62, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD grip", why:"Ninety minutes on the paddle shaft is a grip-endurance demand.", evi:"Grip biomarker (Leong/PURE 2015)."}
+  ]
+ },
+ "golf-18":{
+  name:"Play 18 holes of golf carrying your own clubs",
+  sub:"Four-plus hours walking the course with a bag, plus a rotational swing. Endurance, carry, and mobility.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"Eighteen holes is hours of walking; the optimal keeps the round from tiring you out.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Strength", label:"Suitcase carry", metric:"suitcaseCarry_pctBW", unit:"% BW", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA suitcase carry", why:"Carrying the bag for the round is a sustained loaded carry.", evi:"Loaded-carry demand."},
+   {cat:"Mobility", label:"Thoracic rotation ROM", metric:"thoracicRot_deg", unit:"°", dir:"higher_better", req:45, basis:"modeled", src:"pROM: T-spine rotation", why:"The swing is a coiled trunk rotation; thoracic range drives clubhead speed.", evi:"Rotational mobility."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"Power transfers through the legs into the swing.", evi:"Alcazar 2021 leg-power norms."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"The swing and uneven lies challenge single-leg balance.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Endurance", label:"Calf-raise endurance", metric:"calfRaise_reps", unit:"reps", dir:"higher_better", req:20, basis:"confirmed", backcast:true, declinePctPerDecade:9, src:"Heel-rise test", why:"Calf endurance for the miles walked.", evi:"Hébert-Losier 2017 norms."}
+  ]
+ },
+ "garden-2h":{
+  name:"Tend the garden for 2 continuous hours",
+  sub:"Two hours of light-moderate work. Squatting, kneeling, lifting, and carrying. A gentle, sustained ADL.",
+  reqs:[
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:28, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"~3.8–5 MET sustained; the optimal keeps two hours comfortable, not draining.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter (Joyner & Coyle 2008)."},
+   {cat:"Strength", label:"Relative deadlift 5RM", metric:"relDeadlift_pctBW", unit:"% BW", dir:"higher_better", req:50, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA relative deadlift", why:"Lifting bags, pots, and digging is a repeated hinge under light load.", evi:"Hinge-pattern carryover."},
+   {cat:"Strength", label:"Suitcase carry", metric:"suitcaseCarry_pctBW", unit:"% BW", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA suitcase carry", why:"Hauling tools, soil, and water is a loaded carry around the garden.", evi:"Loaded-carry demand."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:40, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Sustained bent and kneeling postures need trunk endurance to spare the back.", evi:"Trunk anti-extension endurance."},
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:110, basis:"modeled", src:"pROM: hip flexion", why:"Kneeling and deep squatting to plant and weed need hip range.", evi:"Functional hip ROM."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:12, basis:"modeled", src:"Force-plate balance", why:"Reaching, stepping over beds, and rising from kneeling challenge balance.", evi:"Araujo 2022; Springer 2007."}
+  ]
+ },
+ "balance-30s":{
+  name:"Balance on one leg for a full 30 seconds",
+  sub:"A direct test of single-leg postural control, a strong standalone marker of longevity and fall risk.",
+  reqs:[
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:30, basis:"modeled", src:"Force-plate balance", why:"The goal itself: hold a steady single-leg stance for 30 seconds, eyes open.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Balance", label:"Single-leg stance (eyes closed)", metric:"balanceSL_EC_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"Eyes-closed stance isolates the proprioceptive and vestibular contribution.", evi:"Springer 2007 (eyes closed)."},
+   {cat:"Strength", label:"Hip abduction (isometric)", metric:"hipAbd_xBW", unit:"× BW", dir:"higher_better", req:0.18, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD ForceFrame (hip abduction)", why:"The hip abductors hold the pelvis level throughout the stance.", evi:"Hip-abductor stabiliser (Hsue & Su 2011)."},
+   {cat:"Mobility", label:"Ankle dorsiflexion ROM", metric:"ankleDF_deg", unit:"°", dir:"higher_better", req:30, basis:"modeled", src:"pROM: knee-to-wall", why:"Ankle stability and range support the small corrections that keep you upright.", evi:"Weight-bearing DF."}
+  ]
+ },
+ "car-seat-child":{
+  name:"Assist a 30 lb child from a car seat and carry them indoors",
+  sub:"Lifting a 30 lb child out of an awkward, twisted car-seat position, then carrying them inside.",
+  reqs:[
+   {cat:"Strength", label:"Relative deadlift 5RM", metric:"relDeadlift_pctBW", unit:"% BW", dir:"higher_better", req:55, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA relative deadlift", why:"Lifting a 30 lb child (~17% BW), a hinge from a low, awkward position with reserve.", evi:"Hinge-pattern carryover."},
+   {cat:"Strength", label:"Suitcase carry", metric:"suitcaseCarry_pctBW", unit:"% BW", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA suitcase carry", why:"Carrying the child indoors is a loaded carry.", evi:"Loaded-carry demand."},
+   {cat:"Mobility", label:"Thoracic rotation ROM", metric:"thoracicRot_deg", unit:"°", dir:"higher_better", req:45, basis:"modeled", src:"pROM: T-spine rotation", why:"Reaching and twisting into the car seat loads trunk rotation.", evi:"Rotational mobility."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"The trunk braces against a twisting, off-centre load.", evi:"Trunk anti-extension endurance."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"A burst of power to lift the child clear of the seat.", evi:"Alcazar 2021 leg-power norms."}
+  ]
+ },
+ "yoga":{
+  name:"Move through a complete yoga class with control",
+  sub:"A full class of poses and flows. Mobility-led, with balance, core control, and overhead range.",
+  reqs:[
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:115, basis:"modeled", src:"pROM: hip flexion", why:"Deep folds, lunges, and seated poses need substantial hip flexion.", evi:"Functional hip ROM."},
+   {cat:"Mobility", label:"Thoracic rotation ROM", metric:"thoracicRot_deg", unit:"°", dir:"higher_better", req:45, basis:"modeled", src:"pROM: T-spine rotation", why:"Twists and revolved poses come from thoracic rotation.", evi:"Rotational mobility."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:18, basis:"modeled", src:"Force-plate balance", why:"Tree, warrior, and standing-balance poses demand single-leg control.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:50, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Plank, chaturanga, and held poses are trunk-endurance work.", evi:"Trunk anti-extension endurance."},
+   {cat:"Mobility", label:"Shoulder flexion ROM", metric:"shoulderFlexion_deg", unit:"°", dir:"higher_better", req:155, basis:"modeled", src:"pROM: shoulder flexion", why:"Downward dog and overhead reaches need near-full shoulder range.", evi:"Functional shoulder ROM (Namdari 2012)."}
+  ]
+ },
+ "bowling":{
+  name:"Participate fully in social bowling",
+  sub:"A smooth approach ending in a single-leg slide, a pendulum swing, and a controlled release of a 10–16 lb ball.",
+  reqs:[
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"The slide-and-release drives off the legs.", evi:"Alcazar 2021 leg-power norms."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"The approach finishes in a single-leg lunge-slide.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Strength", label:"Grip strength", metric:"grip_lb", unit:"lb", dir:"higher_better", req:62, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD grip", why:"Holding and swinging a 10–16 lb ball, frame after frame.", evi:"Grip biomarker (Leong/PURE 2015)."},
+   {cat:"Mobility", label:"Shoulder flexion ROM", metric:"shoulderFlexion_deg", unit:"°", dir:"higher_better", req:150, basis:"modeled", src:"pROM: shoulder flexion", why:"The pendulum backswing needs good shoulder range.", evi:"Functional shoulder ROM (Namdari 2012)."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"The lunge-slide loads the lead leg.", evi:"Single-leg drive carryover."}
+  ]
+ },
+ "football-kick":{
+  name:"Kick a football 50 feet with convincing form",
+  sub:"A ballistic kicking action. Explosive leg power through a big range, balanced on the plant leg.",
+  reqs:[
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:28, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"The strike is an explosive lower-body power action.", evi:"Alcazar 2021 leg-power norms."},
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:110, basis:"modeled", src:"pROM: hip flexion", why:"A convincing kick needs hip range through backswing and follow-through.", evi:"Functional hip ROM."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:18, basis:"modeled", src:"Force-plate balance", why:"The plant leg must stay stable through the strike.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Eccentric", label:"CMJ / drop-jump RSI", metric:"cmjRSI", unit:"m/s", dir:"higher_better", req:0.4, basis:"modeled", backcast:true, declinePctPerDecade:13, src:"VALD ForceDecks (RSI)", why:"The plant-and-strike uses fast elastic (stretch-shortening) qualities.", evi:"Reactive-strength index."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Plant-leg strength stabilises the kick.", evi:"Single-leg drive carryover."}
+  ]
+ },
+ "horseback":{
+  name:"Ride horseback for 40 minutes across level pasture",
+  sub:"Forty minutes in the saddle. Postural and core control to absorb the horse, hip mobility to straddle, and balance on a moving animal.",
+  reqs:[
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Trunk endurance holds posture and absorbs the horse for 40 minutes.", evi:"Trunk endurance."},
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:100, basis:"modeled", src:"pROM: hip flexion", why:"The seated straddle needs open hips.", evi:"Functional hip ROM."},
+   {cat:"Strength", label:"Hip abduction (isometric)", metric:"hipAbd_xBW", unit:"× BW", dir:"higher_better", req:0.18, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD ForceFrame (hip abduction)", why:"The hip muscles grip the horse and hold the seat.", evi:"Hip stabiliser (Hsue & Su 2011)."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"Staying centred on a moving horse is dynamic balance.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Strength", label:"Grip strength", metric:"grip_lb", unit:"lb", dir:"higher_better", req:55, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD grip", why:"Holding and working the reins.", evi:"Grip biomarker (Leong/PURE 2015)."}
+  ]
+ },
+ "surf":{
+  name:"Surf small to moderate waves in clean conditions",
+  sub:"Paddling out, an explosive pop-up to the feet, then dynamic balance riding the wave, one of the more demanding goals here.",
+  reqs:[
+   {cat:"Strength", label:"Chin-up", metric:"chinup_reps", unit:"reps", dir:"higher_better", req:4, basis:"modeled", backcast:true, declinePctPerDecade:8, src:"PCA chin-up", why:"Paddling is sustained, repeated upper-body pulling.", evi:"Upper-body pulling capacity."},
+   {cat:"Power", label:"CMJ peak power", metric:"cmjPower_WkG", unit:"W/kg", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:12, src:"VALD ForceDecks (CMJ)", why:"The pop-up from prone to standing is an explosive push.", evi:"Alcazar 2021 leg-power norms."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:20, basis:"modeled", src:"Force-plate balance", why:"Riding the board is dynamic single-leg-capable balance.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:55, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"The pop-up and board control are core-driven.", evi:"Trunk endurance."},
+   {cat:"Mobility", label:"Shoulder flexion ROM", metric:"shoulderFlexion_deg", unit:"°", dir:"higher_better", req:155, basis:"modeled", src:"pROM: shoulder flexion", why:"The paddling reach needs full overhead shoulder range.", evi:"Functional shoulder ROM (Namdari 2012)."},
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:35, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"Paddling out and repositioning is sustained aerobic work.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter."}
+  ]
+ },
+ "yacht":{
+  name:"Navigate a small to medium yacht in favorable conditions",
+  sub:"Handling lines, winches, and helm on a moving, heeling deck. Grip, upper-body pull, and balance.",
+  reqs:[
+   {cat:"Strength", label:"Grip strength", metric:"grip_lb", unit:"lb", dir:"higher_better", req:66, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD grip", why:"Lines, winches, and the helm are grip-led.", evi:"Grip biomarker (Leong/PURE 2015)."},
+   {cat:"Strength", label:"Chin-up", metric:"chinup_reps", unit:"reps", dir:"higher_better", req:3, basis:"modeled", backcast:true, declinePctPerDecade:8, src:"PCA chin-up", why:"Hauling and winching lines is an upper-body pull.", evi:"Upper-body pulling capacity."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"A moving, heeling deck challenges balance constantly.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Bracing against the heel of the boat is core work.", evi:"Trunk endurance."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:20, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Moving around the deck and bracing on uneven footing.", evi:"Single-leg drive carryover."}
+  ]
+ },
+ "drive-errands":{
+  name:"Drive between errands, handling transfers and shopping bags",
+  sub:"Repeated car transfers in and out, carrying shopping, and twisting to reach, an everyday composite.",
+  reqs:[
+   {cat:"Strength", label:"Back squat 5RM", metric:"backSquat_pctBW", unit:"% BW", dir:"higher_better", req:40, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA back squat", why:"Getting in and out of the car is a squat-pattern transfer (your STS proxy).", evi:"Squat-pattern carryover (SAID)."},
+   {cat:"Strength", label:"Suitcase carry", metric:"suitcaseCarry_pctBW", unit:"% BW", dir:"higher_better", req:25, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA suitcase carry", why:"Shopping bags are loaded carries to and from the car.", evi:"Loaded-carry demand."},
+   {cat:"Mobility", label:"Thoracic rotation ROM", metric:"thoracicRot_deg", unit:"°", dir:"higher_better", req:40, basis:"modeled", src:"pROM: T-spine rotation", why:"Turning to check mirrors and reach into the back seat loads trunk rotation.", evi:"Rotational mobility."},
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:100, basis:"modeled", src:"pROM: hip flexion", why:"Lowering into a low car seat needs hip range.", evi:"Functional hip ROM."}
+  ]
+ },
+ "weapon":{
+  name:"Handle a moderate-caliber weapon with steady control",
+  sub:"Holding a weapon steady on target. Note: fine-motor steadiness itself is not in the assessment, these are its physical underpinnings (a fatigue-resistant hold and a stable base).",
+  reqs:[
+   {cat:"Strength", label:"Shoulder external rotation (isometric)", metric:"shoulderER_NmKg", unit:"Nm/kg", dir:"higher_better", req:0.18, basis:"modeled", backcast:true, declinePctPerDecade:4, src:"VALD ForceFrame (shoulder ER)", why:"Holding the arm and weapon steady is an isometric shoulder demand; strength reserve resists sway and fatigue.", evi:"Shoulder-rotation torque norms (Hams 2019). Nm/kg target extrapolated; no direct older-adult Nm/kg norm exists."},
+   {cat:"Strength", label:"Grip strength", metric:"grip_lb", unit:"lb", dir:"higher_better", req:62, basis:"modeled", backcast:true, declinePctPerDecade:5, src:"VALD grip", why:"A firm, repeatable grip on the weapon.", evi:"Grip biomarker (Leong/PURE 2015)."},
+   {cat:"Balance", label:"Single-leg stance (eyes open)", metric:"balanceSL_EO_s", unit:"s", dir:"higher_better", req:10, basis:"modeled", src:"Force-plate balance", why:"A steady stance is limited by postural stability and sway.", evi:"Araujo 2022; Springer 2007."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"A stable trunk is the base from which a steady aim is held.", evi:"Trunk endurance."}
+  ]
+ },
+ "sexual-expression":{
+  name:"Enjoy sexual expression without pain or limitation",
+  sub:"The physical capacities that underpin comfortable, unrestricted intimacy. Mobility, core endurance, strength, aerobic capacity, and positional control. Pain or limitation also warrants clinical (orthopedic) review.",
+  reqs:[
+   {cat:"Mobility", label:"Hip flexion ROM", metric:"hipFlexion_deg", unit:"°", dir:"higher_better", req:110, basis:"modeled", src:"pROM: hip flexion", why:"Comfortable range across positions needs hip mobility.", evi:"Functional hip ROM."},
+   {cat:"Core", label:"Heel-to-wall plank", metric:"plankHeelWall_s", unit:"s", dir:"higher_better", req:45, basis:"modeled", backcast:true, declinePctPerDecade:6, src:"PCA heel-to-wall plank", why:"Sustained postures are trunk-endurance work.", evi:"Trunk endurance."},
+   {cat:"Strength", label:"Loaded step-up", metric:"loadedStepup_pctBW", unit:"% BW", dir:"higher_better", req:18, basis:"modeled", backcast:true, declinePctPerDecade:11, src:"PCA loaded step-up", why:"Lower-body and hip strength support positions and movement.", evi:"Single-leg drive carryover."},
+   {cat:"Aerobic", label:"VO₂ max", metric:"vo2", unit:"mL/kg/min", dir:"higher_better", req:22, basis:"modeled", backcast:true, declinePctPerDecade:10, src:"CPET", why:"Sustained activity carries a moderate aerobic component.", evi:"Compendium demand (Ainsworth 2011); optimal so aerobic is not the limiter."}
+  ]
+ },
+ // Custom / off-list goals get auto-suggested components (see SUGGEST_RULES).
+};
+
+const CATS=["Mobility","Strength","Power","Aerobic","Eccentric","Balance","Core","Endurance"];
+
+/* ══════════════════════════════════════════════════════════════
+   4) RENDER
+   ══════════════════════════════════════════════════════════════ */
+const $=s=>document.querySelector(s);
+let tab="reference";
+
+/* ── Your canonical CD catalog. `profile` links a goal to a drafted component
+   set in ACTIVITIES; goals without one are pending (auto-suggested below). ── */
+const CATALOG=[
+ {name:"Effortlessly sit and stand from the floor", profile:"floor-rise"},
+ {name:"Confidently lift and carry a small child or pet from the floor", profile:"carry-grandkids"},
+ {name:"Enjoy sexual expression without pain or limitation", profile:"sexual-expression"},
+ {name:"Fully participate in an outdoor gathering or festival for 2+ hours", profile:"festival"},
+ {name:"Assist a 30 lb child from a car seat and carry them indoors", profile:"car-seat-child"},
+ {name:"Dance with a partner for 45 enjoyable minutes", profile:"dance"},
+ {name:"Open any jar, bottle, or packaging with confidence", profile:"open-jars"},
+ {name:"Bend naturally to tie shoes and dress, without sitting", profile:"touch-toes"},
+ {name:"Drive between errands, handling transfers and shopping bags", profile:"drive-errands"},
+ {name:"Independently complete all household chores", profile:"chores"},
+ {name:"Rise from a chair or toilet without using hands", profile:"chair-rise"},
+ {name:"Stride through soft beach sand for 2 miles within an hour", profile:"beach-sand"},
+ {name:"Tend the garden for 2 continuous hours", profile:"garden-2h"},
+ {name:"Walk and control a 60 lb dog for a 60-minute hike", profile:"dog-walk"},
+ {name:"Manage 20 lb of overhead luggage through an airport", profile:"overhead-bin"},
+ {name:"Climb and descend two flights of stairs carrying 25 lb", profile:"stairs-load"},
+ {name:"Participate fully in social bowling", profile:"bowling"},
+ {name:"Handle a moderate-caliber weapon with steady control", profile:"weapon"},
+ {name:"Navigate a small to medium yacht in favorable conditions", profile:"yacht"},
+ {name:"Kick a football 50 feet with convincing form", profile:"football-kick"},
+ {name:"Enjoy 90 minutes of tennis, padel, or pickleball", profile:"tennis"},
+ {name:"Swim safely at ocean beaches in average conditions", profile:"ocean-swim"},
+ {name:"Snorkel or SCUBA for 45 minutes", profile:"snorkel-scuba"},
+ {name:"Ride horseback for 40 minutes across level pasture", profile:"horseback"},
+ {name:"Navigate uneven mountain terrain for a 60-minute hike", profile:"hike-pack"},
+ {name:"Ski green runs for 3 hours, using any chairlift", profile:"ski-green"},
+ {name:"Swim 500 m without stopping, under 25 minutes", profile:"swim-500m"},
+ {name:"Play 18 holes of golf carrying your own clubs", profile:"golf-18"},
+ {name:"Complete an energetic 5 km run in 40 minutes", profile:"sprint-triathlon"},
+ {name:"Row 10,000 m in a single hour", profile:"row-10k"},
+ {name:"Cycle 10 miles in an hour on flat pavement", profile:"cycle-10mi"},
+ {name:"Walk 3 miles on formed paths in under an hour", profile:"walk-3mi"},
+ {name:"Paddle a kayak for 90 minutes on calm water", profile:"kayak"},
+ {name:"Move through a complete yoga class with control", profile:"yoga"},
+ {name:"Surf small to moderate waves in clean conditions", profile:"surf"},
+ {name:"Balance on one leg for a full 30 seconds", profile:"balance-30s"},
+];
+const GOALS=CATALOG.map((c,i)=>({id:c.profile||('g'+i), name:c.name, profileId:c.profile||null}));
+let activeId=GOALS[0].id;
+const goalById=id=>GOALS.find(g=>g.id===id);
+
+/* ── Multi-tab state ── */
+const DEFAULT_GOALS=['floor-rise','chair-rise','carry-grandkids','hike-pack','walk-3mi','stairs-load','open-jars','overhead-bin','balance-30s','tennis'];
+let selectedGoals=new Set(DEFAULT_GOALS);
+let refId=(GOALS.find(g=>g.profileId)||GOALS[0]).id;
+
+/* Form metadata: every measured input, grouped by assessment, with unit + typical range. */
+const METRIC_META=[
+ {group:'Passive ROM · Chris’ assessment (degrees)', items:[
+   ['shoulderFlexion_deg','Shoulder flexion','°',120,180],
+   ['thoracicRot_deg','Thoracic rotation','°',30,70],
+   ['hipFlexion_deg','Hip flexion','°',90,135],
+   ['ankleDF_deg','Ankle dorsiflexion (knee-to-wall)','°',20,50],
+   ['hamstringSLR_deg','Straight-leg raise (hamstring)','°',50,110] ]},
+ {group:'Strength · VALD (DynaMo / ForceFrame / grip)', items:[
+   ['grip_lb','Grip strength','lb',40,150],
+   ['shoulderER_NmKg','Shoulder ER (isometric)','Nm/kg',0.10,0.40],
+   ['hipAbd_xBW','Hip abduction (isometric)','× BW',0.10,0.45],
+   ['kneeFlex_xBW','Knee flexion / hamstring (isometric)','× BW',0.20,0.70] ]},
+ {group:'Power & reactive · VALD ForceDecks', items:[
+   ['cmjPower_WkG','CMJ peak power','W/kg',15,55],
+   ['cmjRSI','CMJ / drop-jump RSI','m/s',0.20,0.80],
+   ['hopRSI','Repeated-hop RSI','m/s',0.40,2.20],
+   ['slHop_cm','Single-leg hop','cm',60,230] ]},
+ {group:'Aerobic · CPET', items:[
+   ['vo2','VO₂max','mL/kg/min',15,60] ]},
+ {group:'Endurance, core & balance', items:[
+   ['calfRaise_reps','Calf-raise endurance','reps',10,45],
+   ['plankHeelWall_s','Heel-to-wall plank','s',20,180],
+   ['balanceSL_EO_s','Single-leg stance, eyes open','s',5,90],
+   ['balanceSL_EC_s','Single-leg stance, eyes closed','s',3,40] ]},
+ {group:'PCA field tests', items:[
+   ['backSquat_pctBW','Back squat 5RM','% BW',30,200],
+   ['relDeadlift_pctBW','Relative deadlift 5RM','% BW',40,250],
+   ['loadedStepup_pctBW','Loaded step-up','% BW',10,80],
+   ['suitcaseCarry_pctBW','Suitcase carry (60 s, 1 hand)','% BW',10,90],
+   ['ohPress_pctBW','Single-arm overhead press','% BW',5,40],
+   ['cuffExtRot_lb','Cuff DB external rotation','lb',3,30],
+   ['deadHang_s','Dead hang','s',10,150],
+   ['stepDown_in','Eccentric step-down','in box',4,22],
+   ['chinup_reps','Chin-up','reps',0,25] ]},
+];
+/* Canonical properties per measured test (cat/unit/decline/src), derived from the catalog - used to author custom activities. */
+const METRIC_REGISTRY=(()=>{const reg={};for(const id in ACTIVITIES)for(const r of (ACTIVITIES[id].reqs||[])){if(r.metric&&!reg[r.metric])reg[r.metric]={cat:r.cat,label:r.label,unit:r.unit,dir:r.dir||'higher_better',backcast:r.backcast,declinePctPerDecade:r.declinePctPerDecade,src:r.src};}return reg;})();
+const METRIC_INFO=(()=>{const m={};METRIC_META.forEach(g=>g.items.forEach(([k,lbl,unit,lo,hi])=>m[k]={lbl,unit,lo,hi}));return m;})();
+let customSeq=1, building=false, draft=null, showOverview=true, goalIntensity={};
+const INTENSITY=[['Recreational',0.85],['Standard',1.0],['Demanding',1.2]]; // scales a goal's requirements (e.g. green-run vs black-diamond)
+const CAT_DEFAULT={Strength:'backSquat_pctBW',Power:'cmjPower_WkG',Aerobic:'vo2',Eccentric:'stepDown_in',Balance:'balanceSL_EO_s',Mobility:'hipFlexion_deg',Core:'plankHeelWall_s',Endurance:'calfRaise_reps'}; // representative test per quality, for the custom-builder auto-suggest
+
+/* ── "% OF REQUIREMENT" - no AU. Each axis = how the patient compares to what
+   THIS goal needs (100% = exactly enough). Everything else shows raw clinical
+   units. ROM stays raw degrees (static). Strength thresholds come from the PCA
+   age-graded standards. ── */
+let AGE, TGT, YRS; const syncAge=()=>{AGE=PATIENT.age; TGT=PATIENT.marginalDecadeAge; YRS=Math.max(0,TGT-AGE);}; syncAge();
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const BALANCE_DECLINE=18; // %/decade midlife base for single-leg balance; the age curve below steepens it to ~halving per decade in the 80s (Bohannon 2006).
+const declineRate=r=> r.declinePctPerDecade || (r.cat==='Balance'?BALANCE_DECLINE:0);
+const isStatic=r=> r.cat==='Mobility' || !declineRate(r);
+/* Literature-matched age acceleration: decline is not flat - it steepens after ~60.
+   VO₂max ~10%/dec midlife → ~20–25%/dec in the 70s (Fleg 2005); leg strength to ~3–4%/yr
+   in the 70s–80s (Goodpaster 2006); single-leg balance ~halves per decade (Bohannon 2006).
+   We walk year-by-year from now to the marginal decade, scaling each quality's base annual
+   loss by an age factor. (annual loss capped at 50%/yr to bound the steep balance curve.) */
+const lerpAccel=(age,pts)=>{ if(age<=pts[0][0])return pts[0][1]; for(let i=1;i<pts.length;i++){ if(age<=pts[i][0]){ const a=pts[i-1],b=pts[i]; return a[1]+(b[1]-a[1])*(age-a[0])/(b[0]-a[0]); } } return pts[pts.length-1][1]; };
+const accelAt=age=>lerpAccel(age,[[55,1.0],[65,1.3],[75,2.0],[85,2.6],[95,3.0]]);       // population decline acceleration, continuous (strength, power, reactive, balance)
+const accelAtAero=age=>lerpAccel(age,[[55,1.0],[65,1.1],[75,1.3],[85,1.6],[95,1.8]]);   // aerobic: trained "stays-active" curve, gentler late-life rise (Pollock 1997; Fleg 2005)
+const AERO_DECLINE=8; // VO₂ is the most training-responsive quality and these are patients who train, so aerobic uses a gentle "stays-active" curve (base ~8%/dec with mild late-life acceleration via accelAtAero, Pollock 1997) rather than the steep population curve.
+const SEX_ADJ={grip_lb:0.7}; // female grip norms run ~65–70% of male (Cruz-Jentoft 2019 sarcopenia cutoffs ~60/35 lb (27/16 kg)). Scale the absolute grip target by sex; %BW and time-based targets are already ~sex-neutral.
+// Sex-specific decline: women's relative muscular decline runs ~20% shallower than men's (Health ABC: 1.9–3.6 vs 3.2–4.1%/yr in the 70s); aerobic relative decline is slightly less steep too. (The perimenopausal-50s acceleration is not separately modeled - a stated simplification.)
+const SEX_DECLINE=(sex,cat)=> sex==='female' ? ({Strength:0.8,Power:0.8,Eccentric:0.8,Aerobic:0.9}[cat] ?? 1) : 1;
+const projForward=(raw,dPerDec,ageNow,target,accel=accelAt)=>{
+  if(!dPerDec) return raw;
+  const baseA=1-Math.pow(1-dPerDec/100,0.1);
+  let v=raw;
+  for(let a=ageNow;a<target;a++) v*=(1-Math.min(0.5,baseA*accel(a)));
+  return v;
+};
+const fmtU=(v,u)=>{ if(v==null) return '—';
+  const dec=(u==='Nm/kg'||u==='m/s')?2:((u==='lb'||u==='× BW'||u==='N/kg')?1:0);
+  const n=parseFloat((+v).toFixed(dec));
+  return u==='°'?`${n}°`:`${n} ${u}`.trim(); };
+
+/* Fixed task-demand target (research-derived)s: Proficient @ age ≤40, declining by quality group
+   (mirrors PCA_Decade_Standards.xlsx). Threshold = the standard at the patient's
+   marginal-decade age. basis 'confirmed' - these are the practice's real standards. */
+const PCA_DECLINE={Max:11,BWE:8,Cuff:7,Hold:6,Ecc:6};
+const PCA={
+  BackSquat:{male:90,female:90,group:'Max',round:5,unit:'% BW',label:'Back Squat 5RM'},
+  RelativeDeadlift:{male:125,female:125,group:'Max',round:5,unit:'% BW',label:'Relative Deadlift 5RM'},
+  HeelToWallPlank:{male:90,female:90,group:'Hold',round:5,unit:'s',label:'Heel-to-Wall Plank'},
+  CuffExtRot:{male:15,female:10,group:'Cuff',round:2.5,unit:'lb',label:'Cuff DB Ext. Rot. ×8'},
+  DeadHang:{male:90,female:60,group:'Hold',round:5,unit:'s',label:'Dead Hang'},
+  LoadedBench:{male:125,female:100,group:'Max',round:5,unit:'% BW',label:'Loaded Bench 1RM'},
+  SingleArmOHPress:{male:20,female:15,group:'Max',round:5,unit:'% BW',label:'Single-Arm OH Press ×8'},
+  SuitcaseCarry:{male:40,female:40,group:'Hold',round:5,unit:'% BW',label:'Suitcase Carry 60s'},
+  LoadedStepup:{male:35,female:35,group:'Max',round:5,unit:'% BW',label:'Loaded Step-up'},
+  EccentricStepDown:{male:16,female:12,group:'Ecc',round:2,unit:'in box',label:'Eccentric Step-Down'},
+};
+const mround=(x,m)=>Math.round(x/m)*m;
+function pcaThreshold(key,sex){const t=PCA[key]; if(!t) return null;
+  const base=sex==='female'?t.female:t.male, dec=clamp(Math.floor((Math.max(40,TGT)-40)/10),0,5);
+  return {val:mround(base*Math.pow(1-PCA_DECLINE[t.group]/100,dec),t.round), unit:t.unit, label:t.label}; }
+
+function shortLabel(label){ // clean, short radar-axis names
+  let s=label.split('(')[0].trim()
+    .replace(/Single-arm overhead press/i,'OH press')
+    .replace(/Cuff DB external rotation/i,'Rotator cuff')
+    .replace(/CMJ \/ drop-jump RSI/i,'Jump RSI')
+    .replace(/Repeated-hop RSI/i,'Hop RSI')
+    .replace(/CMJ peak power/i,'CMJ power')
+    .replace(/Single-leg stance/i,'Balance')
+    .replace(/Calf-raise endurance/i,'Calf endurance')
+    .replace(/Straight-leg raise ROM/i,'Hamstring')
+    .replace(/Shoulder external rotation/i,'Shoulder ER')
+    .replace(/Hip internal rotation/i,'Hip IR')
+    .replace(/Isometric knee flexion/i,'Hamstring')
+    .replace(/Single-leg hop/i,'SL hop')
+    .replace(/Drop-jump RSI/i,'Jump RSI')
+    .replace(/\s*ROM$/i,'');
+  const w=s.split(/\s+/); return w.length>2 ? w.slice(0,2).join(' ') : s;
+}
+/* Per-component confidence - how directly the test maps to the task's real demand.
+   direct = validated measure of the demanded quality; proxy = a static/passive/related stand-in
+   for a dynamic quality (passive ROM vs active-under-load, single-leg stance vs reactive balance,
+   CMJ vs sit-to-stand power, isometric vs eccentric); extrapolated = target has no direct older-adult norm. */
+const CONFIDENCE={
+  grip_lb:'direct', vo2:'direct', backSquat_pctBW:'direct', relDeadlift_pctBW:'direct',
+  loadedStepup_pctBW:'direct', suitcaseCarry_pctBW:'direct', ohPress_pctBW:'direct',
+  calfRaise_reps:'direct', chinup_reps:'direct', deadHang_s:'direct', plankHeelWall_s:'direct',
+  cmjPower_WkG:'proxy', cmjRSI:'proxy', hopRSI:'proxy', slHop_cm:'proxy', stepDown_in:'proxy',
+  balanceSL_EO_s:'proxy', balanceSL_EC_s:'proxy', hipAbd_xBW:'proxy', cuffExtRot_lb:'proxy',
+  shoulderFlexion_deg:'proxy', hipFlexion_deg:'proxy', ankleDF_deg:'proxy', thoracicRot_deg:'proxy', hamstringSLR_deg:'proxy',
+  shoulderER_NmKg:'extrapolated', kneeFlex_xBW:'extrapolated'
+};
+const CONF_META={direct:{dot:'●',label:'direct measure'},proxy:{dot:'◐',label:'proxy measure'},extrapolated:{dot:'○',label:'extrapolated target'}};
+const basisBadge=r=> r.coachSet ? `<span class="badge coachset" title="Threshold set by a coach, not derived from literature">✎ coach-set</span>` : `<span class="badge ${r.basis}">${r.basis==='confirmed'?'✔ confirmed':'~ modeled'}</span>`;
+const ZICON={clear:'✓',borderline:'≈',gap:'⚠'}; // redundant (non-colour) zone cue for colour-blind safety
+/* Borderline band: a value within ±10% of the bar sits inside test-retest noise - report "on the line", not pass/fail. */
+const zoneOf=p=> p>=110?'clear' : p>=90?'borderline' : 'gap';
+/* Projection uncertainty band: the decline rate is a population estimate with wide individual variance.
+   The band applies ±40% to each quality's rate (a gentler / steeper-than-average decline), giving the
+   range most individuals fall in. It widens with the projection horizon, as real uncertainty does. */
+const BAND_LO=0.6, BAND_HI=1.4;
+
+function components(reqs,intensity){
+  intensity=intensity||1;
+  return (reqs||[]).map(r=>{
+    if(!r.metric) return null;
+    const raw=PATIENT.metrics[r.metric]; if(raw==null) return null;
+    let req=r.req, unit=r.unit, src=r.src;
+    if(r.pcaTest){ const p=pcaThreshold(r.pcaTest,PATIENT.sex); if(p){ req=p.val; unit=p.unit; src=`PCA: ${p.label} → age-${TGT} standard`; } }
+    if(req!=null) req=req*intensity;
+    if(PATIENT.sex==='female' && SEX_ADJ[r.metric]) req=Math.round(req*SEX_ADJ[r.metric]);
+    if(req==null) return null;
+    const lower=r.dir==='lower_better';
+    let projRaw,projLo,projHi;
+    if(isStatic(r)){ projRaw=projLo=projHi=raw; }
+    else { const aero=r.cat==='Aerobic', rate=(aero?AERO_DECLINE:declineRate(r))*SEX_DECLINE(PATIENT.sex,r.cat), acf=aero?accelAtAero:accelAt;
+      projRaw=projForward(raw,rate,AGE,TGT,acf);
+      projLo=projForward(raw,rate*BAND_HI,AGE,TGT,acf);   // steeper-than-average decline → lower capacity
+      projHi=projForward(raw,rate*BAND_LO,AGE,TGT,acf); } // gentler-than-average → higher capacity
+    const pct=v=> clamp(Math.round((lower? req/v : v/req)*100),0,175);
+    const curPct=pct(raw), projPct=pct(projRaw), projPctLo=pct(projLo), projPctHi=pct(projHi);
+    const meets=lower? projRaw<=req : projRaw>=req, meetsNow=lower? raw<=req : raw>=req;
+    return {r,raw,projRaw,projLo,projHi,req,unit,src,short:shortLabel(r.label),
+      curPct,projPct,projPctLo,projPctHi,static:isStatic(r),meetsNow,meets,zone:zoneOf(projPct),conf:CONFIDENCE[r.metric]||'proxy',shortBy:Math.max(0,100-projPct)};
+  }).filter(Boolean);
+}
+
+function radarSVG(C){
+  if(C.length<3) return `<div style="color:var(--muted);font-size:13px;text-align:center;padding:40px">Add ≥3 measurable components to plot the radar.</div>`;
+  const N=C.length,R=112,cx=215,cy=150,MAX=160, ang=i=>(-90+i*360/N)*Math.PI/180;
+  const pt=(i,p)=>[(cx+Math.cos(ang(i))*R*clamp(p,0,MAX)/MAX).toFixed(1),(cy+Math.sin(ang(i))*R*clamp(p,0,MAX)/MAX).toFixed(1)];
+  const ring=p=>C.map((c,i)=>pt(i,p).join(',')).join(' ');
+  const poly=k=>C.map((c,i)=>pt(i,c[k]).join(',')).join(' ');
+  const pathOf=k=>'M'+C.map((c,i)=>pt(i,c[k]).join(',')).join(' L')+' Z';
+  let grid='';[50,150].forEach(p=>grid+=`<polygon class="rgrid" points="${ring(p)}"/>`);
+  let axes='',labels='';
+  C.forEach((c,i)=>{const a=ang(i),[x,y]=pt(i,MAX);axes+=`<line class="raxis" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/>`;
+    const lx=cx+Math.cos(a)*(R+15),ly=cy+Math.sin(a)*(R+15),co=Math.cos(a);
+    const anc=Math.abs(co)<0.30?'middle':(co>0?'start':'end');
+    const w=c.short.split(' '); const lines=(c.short.length>11&&w.length>1)?[w[0],w.slice(1).join(' ')]:[c.short];
+    const dy0=lines.length>1?-3:4;
+    const tsp=lines.map((ln,j)=>`<tspan x="${lx.toFixed(1)}" dy="${j===0?dy0:11}">${ln}</tspan>`).join('');
+    labels+=`<text class="rlabel" y="${ly.toFixed(1)}" text-anchor="${anc}">${tsp}</text>`;});
+  const dots=(k,col)=>C.map((c,i)=>{const[x,y]=pt(i,c[k]);return `<circle cx="${x}" cy="${y}" r="3.3" fill="${col}"/>`;}).join('');
+  return `<svg viewBox="0 0 430 300" role="img" aria-label="readiness radar">${grid}${axes}
+    <polygon class="rband" points="${ring(110)}"/><polygon class="rband" points="${ring(90)}"/>
+    <polygon class="rthr" points="${ring(100)}"/>
+    <path class="rprojband" d="${pathOf('projPctHi')+' '+pathOf('projPctLo')}" fill-rule="evenodd"/>
+    <polygon class="rproj" points="${poly('projPct')}"/><polygon class="rcur" points="${poly('curPct')}"/>
+    ${dots('projPct','#bc2a2a')}${dots('curPct','#2563eb')}
+    <text class="rtick" x="${cx}" y="${(cy-R*100/MAX-4).toFixed(1)}" text-anchor="middle">100% = required</text>
+    ${labels}</svg>`;
+}
+
+function barChart(C){
+  const P=v=>clamp(v/175*100,0,100);
+  return `<div class="bchart"><div class="bscale"><span style="left:${P(100)}%">100% = required at ${TGT}</span></div>`+
+    C.map(c=>`<div class="brow">
+      <div class="blabel"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span><span class="bnm">${c.short}</span><span class="cdot ${c.conf}" title="${CONF_META[c.conf].label}">${CONF_META[c.conf].dot}</span></div>
+      <div class="btrack">
+        <div class="bband" style="left:${P(90)}%;width:${(P(110)-P(90)).toFixed(1)}%"></div>
+        <div class="bproj z-${c.zone}" style="width:${P(c.projPct)}%"></div>
+        <div class="bthr" style="left:${P(100)}%"></div>
+        <div class="bcur" style="left:${P(c.curPct)}%" title="current: ${c.curPct}% of requirement"></div>
+      </div>
+      <div class="bval z-${c.zone}">${c.projPct}%</div></div>`).join('')+`</div>`;
+}
+function statusBox(C){
+  return `<div class="statusttl">Status at age ${TGT}</div>`+C.map(c=>{
+    const lbl = c.zone==='clear'?'on track' : c.zone==='borderline'?'on the line' : c.shortBy+'% short';
+    return `<div class="srow z-${c.zone}"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span><span class="cdot ${c.conf}" title="${CONF_META[c.conf].label}">${CONF_META[c.conf].dot}</span><span class="nm">${c.short}</span><span class="df">${lbl}</span></div>`;
+  }).join('');
+}
+
+function cardsHTML(C){
+  return `<div class="pcards">`+C.map(c=>{
+    const flag=!c.meetsNow?`<div class="cap warn">⚠ Below what it needs today</div>`
+      : c.zone==='gap'?`<div class="cap warn">⚠ Gap at ${TGT} · ${c.shortBy}% short</div>`
+      : c.zone==='borderline'?`<div class="cap bord">≈ On the line at ${TGT}, inside test-retest noise</div>`
+      : `<div class="cap ok2">✓ Clears at ${TGT}</div>`;
+    const band=`<div class="band" style="left:${(90/160*100).toFixed(1)}%;width:${(20/160*100).toFixed(1)}%"></div>`;
+    return `<div class="pcard z-${c.zone}">
+      <div class="ct qcat ${c.r.cat}">${c.short}</div>
+      <div class="big"><span class="n">${fmtU(c.raw,c.unit)}</span> now → <span class="p">${fmtU(c.projRaw,c.unit)}</span>${c.static?' (held)':' proj.'}</div>
+      <div class="pbar">${band}<div class="f" style="width:${clamp(c.projPct/160*100,0,100).toFixed(0)}%"></div><div class="t" style="left:${(100/160*100).toFixed(0)}%"></div></div>
+      <div class="cap">Need ${fmtU(c.req,c.unit)} · projected ${c.projPct}% of it</div>${c.static?'':`<div class="rng">illustrative range ${fmtU(c.projLo,c.unit)}–${fmtU(c.projHi,c.unit)} at ${TGT}</div>`}${flag}
+      <div class="raw"><span class="cdot ${c.conf}" title="${CONF_META[c.conf].label}">${CONF_META[c.conf].dot}</span> ${CONF_META[c.conf].label} · ${c.src||''}</div>
+      <div class="cardwhy">${basisBadge(c.r)} ${c.r.why} <span class="evi">${c.r.evi||''}</span></div>
+    </div>`;
+  }).join('')+`</div>`;
+}
+
+const SUGGEST_RULES=[
+ {kw:/floor|sit and stand|\brise\b|toilet|chair|get up/i, c:[['Strength','Lower-body strength'],['Power','Rate of force to stand'],['Mobility','Hip & ankle ROM'],['Balance','Single-leg control'],['Eccentric','Controlled descent']]},
+ {kw:/carry|lift|child|pet|luggage|groceries|clubs|\bload\b|\bdog\b|bags/i, c:[['Strength','Grip / hold'],['Strength','Total-body lifting'],['Core','Trunk endurance under load'],['Power','Pick-up power'],['Eccentric','Lowering control']]},
+ {kw:/hike|walk|stride|sand|terrain|stairs|climb|garden/i, c:[['Aerobic','Sustained aerobic'],['Strength','Knee extension'],['Eccentric','Descent braking'],['Endurance','Calf-raise endurance'],['Balance','Uneven-surface balance']]},
+ {kw:/run|jog|5 ?k|10 ?k/i, c:[['Aerobic','VO₂ max'],['Eccentric','Run durability (RSI)'],['Power','Running power'],['Strength','Knee extension'],['Endurance','Calf endurance']]},
+ {kw:/swim|snorkel|scuba|surf|kayak|\brow\b|yacht|paddle/i, c:[['Aerobic','Aerobic / swim capacity'],['Strength','Upper-body pulling'],['Mobility','Shoulder ROM'],['Core','Trunk endurance'],['Endurance','Sustained output']]},
+ {kw:/tennis|padel|pickleball|bowling|golf|football|kick|\bski\b|horse/i, c:[['Power','Lower-body power'],['Eccentric','Deceleration / cutting'],['Mobility','Thoracic rotation'],['Strength','Rotational / cuff strength'],['Balance','Single-leg control'],['Aerobic','Intermittent aerobic']]},
+ {kw:/jar|bottle|open|packaging|weapon|handle/i, c:[['Strength','Grip / forearm'],['Strength','Shoulder stability'],['Mobility','Wrist / forearm ROM']]},
+ {kw:/dance|yoga|festival|gathering|chores/i, c:[['Mobility','Multi-joint ROM'],['Balance','Dynamic balance'],['Core','Trunk endurance'],['Strength','Functional strength'],['Aerobic','Sustained low-intensity']]},
+ {kw:/balance|one leg|stand/i, c:[['Balance','Single-leg stance'],['Strength','Ankle / hip stabilisers'],['Mobility','Ankle ROM']]},
+ {kw:/cycle|bike/i, c:[['Aerobic','VO₂ / threshold'],['Strength','Knee extension'],['Power','Cycling power'],['Endurance','Sustained output']]},
+ {kw:/bend|tie shoes|dress|reach|overhead|shelf/i, c:[['Mobility','Hip/hamstring or shoulder ROM'],['Strength','Postural / cuff strength'],['Eccentric','Controlled motion']]},
+ {kw:/sexual|intimacy/i, c:[['Mobility','Hip ROM'],['Strength','Core & hip strength'],['Aerobic','Aerobic capacity'],['Balance','Positional control']]},
+ {kw:/drive|car seat|transfer/i, c:[['Mobility','Trunk rotation & hip ROM'],['Strength','Grip & arm strength'],['Power','Lower-body power (CMJ)']]},
+];
+function suggestComponents(name){const out=[],seen=new Set();
+  for(const r of SUGGEST_RULES){if(r.kw.test(name))for(const [cat,lbl] of r.c){const k=cat+lbl;if(!seen.has(k)){seen.add(k);out.push({cat,label:lbl});}}}
+  return out.slice(0,7);}
+
+const FOOT=`<div class="foot"><div class="em">Early Medical<span style="color:var(--coral)">®</span></div>
+  <div class="pillars"><span>Objective</span><span class="on">Strategy</span><span>Tactics</span></div></div>`;
+
+function renderSlide(){
+  syncAge();
+  const g=goalById(activeId); if(!g)return;
+  const act=g.profileId?ACTIVITIES[g.profileId]:null;
+  if(!act){ renderPending(g); return; }
+  const C=components(act.reqs, goalIntensity[g.id]||1), qual=(act.reqs||[]).filter(r=>!r.metric);
+  const missing=(act.reqs||[]).filter(r=>r.metric && PATIENT.metrics[r.metric]==null).map(r=>shortLabel(r.label));
+  // Task readiness is gated by the BINDING CONSTRAINT (worst component), not a pass-count - a task fails at its weakest link.
+  const worst=C.length?C.slice().sort((a,b)=>a.projPct-b.projPct)[0]:null;
+  const nGap=C.filter(c=>c.zone==='gap').length, nClear=C.filter(c=>c.zone==='clear').length;
+  let rWord,rCls,rCap;
+  if(!C.length){rWord='—';rCls='';rCap='no measurable components yet';}
+  else if(nGap){rWord='Gap';rCls='r-gap';rCap=`limited by ${worst.short} · ${worst.shortBy}% short`;}
+  else if(nClear<C.length){rWord='On the line';rCls='r-bord';rCap=`closest call: ${worst.short}, within test noise`;}
+  else {rWord='Clears';rCls='r-clear';rCap=`all ${C.length} components clear at ${TGT}`;}
+  const head=`<div class="slide-head"><div class="head-row">
+      <div><div class="eyebrow">Centenarian Decathlon · Functional Capacity Profile</div>
+        <h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div>
+        <div class="intensity"><span class="ilbl">Intensity</span>${INTENSITY.map(([lbl,f])=>`<button class="ibtn ${Math.abs((goalIntensity[g.id]||1)-f)<0.01?'on':''}" data-int="${f}">${lbl}</button>`).join('')}<span class="ihint">a uniform dial that scales every requirement equally</span></div></div>
+      <div class="readiness"><div class="big ${rCls}">${rWord}</div><div class="cap">${rCap}</div><div class="cap2">${nClear}/${C.length} clear at ${TGT}</div><div class="rdisc">projected scenario · not a prediction</div></div>
+    </div></div>`;
+  const body=`<div class="pv">
+    ${missing.length?`<div class="missnote">⚠ No measurement entered for <b>${missing.join(', ')}</b>; ${missing.length===1?'that component is':'those components are'} not shown. Add ${missing.length===1?'it':'them'} in Build report for a complete profile.</div>`:''}
+    <div class="pv-top">
+      <div class="bchartwrap">${barChart(C)}</div>
+      <div class="side">
+        <div class="lbox">
+          <div class="lrow"><span class="ln cur"></span><span><b>Current · age ${AGE}</b><br><span class="d">Blue line, today’s assessment</span></span></div>
+          <div class="lrow"><span class="ln proj"></span><span><b>Projected · age ${TGT}</b><br><span class="d">Coloured bar, the projection if you keep today’s habits (illustrative range per card)</span></span></div>
+          <div class="lrow"><span class="ln thr"></span><span><b>What it requires</b><br><span class="d">Green line at 100%, exactly enough at ${TGT}</span></span></div>
+          <div class="lrow" style="border-top:1px solid var(--line);padding-top:8px;margin-top:4px;display:block"><span class="d">Each bar = % of what this goal needs. <b style="color:#059669">✓ clears</b> ≥110% · <b style="color:#d97706">≈ on the line</b> 90–110% · <b style="color:#bc2a2a">⚠ gap</b> &lt;90%. Gated by the <b>weakest</b> component, not the average.</span></div>
+          <div class="lrow" style="display:block;margin-top:6px"><span class="d">Test confidence: <b>●</b> direct · <b>◐</b> proxy (static/passive stand-in for a dynamic quality) · <b>○</b> extrapolated target.</span></div>
+        </div>
+        <div class="lbox">${statusBox(C)}</div>
+      </div>
+    </div>
+    ${cardsHTML(C)}
+    ${qual.length?`<div class="qnote">Also coached, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:''}
+    <div style="margin-top:16px;padding-top:11px;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:var(--muted)">
+      <b style="color:var(--cream);font-weight:600">Reading this honestly.</b>
+      This is a planning scenario, not a prediction; individual decline varies widely from the population averages used here.
+      The <b style="color:var(--coral);font-weight:600">projected</b> line assumes you keep today’s habits; training harder bends it in your favour.
+      Each requirement is a population average with a safety margin, not a hard cut-off.
+      Every threshold and decline rate is drawn from published research, but the projections themselves have not been validated against real age-${TGT} outcomes. Read this as a literature-anchored estimate, not a clinical test result.
+    </div>
+  </div>`;
+  $("#slide").innerHTML=head+body+FOOT;
+  $("#legend").innerHTML='';
+}
+
+function renderPending(g){
+  const sugg=suggestComponents(g.name);
+  const head=`<div class="slide-head"><div class="eyebrow">Centenarian Decathlon · ${g.custom?'Custom goal':'Profile pending'}</div>
+    <h1 class="slide-title">${g.name}</h1>
+    <div class="slide-sub">No drafted component set yet. The framework below is the starting point for the exercise team. An auto-generated first pass from the activity's demands.</div></div>`;
+  const body=`<div class="pending-box">
+    <div class="pt">Suggested components</div>
+    <div class="pd">Auto-derived from this goal's demands. Your team confirms which apply, sets each threshold, and tags it ✔ confirmed.</div>
+    <div class="sugg">${sugg.length?sugg.map(s=>`<span class="s"><b style="color:#8fb8e6">${s.cat}</b> · ${s.label}</span>`).join(''):'<span class="s">No keyword match; assign components manually.</span>'}</div>
+  </div>`;
+  $("#slide").innerHTML=head+body+FOOT;
+  $("#legend").innerHTML='';
+}
+
+function renderCatalog(){
+  syncAge();
+  const goals=GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId);
+  if(goals.length && !goals.some(g=>g.id===activeId)) activeId=goals[0].id;
+  if(!goals.length){ $("#catalog").innerHTML=`<div class="addnote">No goals selected yet. Pick this patient’s goals in <b>Build report</b>.</div>`; $("#addNote").innerHTML=''; $("#slide").innerHTML=''; $("#legend").innerHTML=''; return; }
+  const ov=`<button class="actbtn ovbtn ${showOverview?'on':''}" id="ovBtn"><span class="lbl">◆ Overview · all goals</span></button>`;
+  $("#catalog").innerHTML=ov+goals.map(g=>{
+    const C=components(ACTIVITIES[g.profileId].reqs, goalIntensity[g.id]||1);
+    const nClear=C.filter(c=>c.zone==='clear').length;
+    const tz = !C.length?'' : C.some(c=>c.zone==='gap')?'gap' : (nClear<C.length?'borderline':'clear');
+    return `<button class="actbtn z-${tz} ${(!showOverview&&g.id===activeId)?'on':''}" data-id="${g.id}">
+      <span class="ring">${nClear}</span><span class="lbl">${g.name}</span><span class="pct">${nClear}/${C.length}</span></button>`;
+  }).join("");
+  $("#addNote").innerHTML=`<b>${goals.length}</b> goal${goals.length===1?'':'s'} in this report. Edit the selection in <b>Build report</b>.`;
+  $("#ovBtn").onclick=()=>{showOverview=true;renderCatalog();renderReportBody();};
+  document.querySelectorAll('#tab-report .actbtn[data-id]').forEach(b=>b.onclick=()=>{showOverview=false;activeId=b.dataset.id;renderCatalog();renderReportBody();});
+}
+function renderReportBody(){ showOverview ? renderOverview() : renderSlide(); }
+
+function miniRadar(C){
+  if(C.length<3) return '';
+  const N=C.length,R=42,cx=54,cy=50,MAX=160,ang=i=>(-90+i*360/N)*Math.PI/180;
+  const pt=(i,p)=>[(cx+Math.cos(ang(i))*R*clamp(p,0,MAX)/MAX).toFixed(1),(cy+Math.sin(ang(i))*R*clamp(p,0,MAX)/MAX).toFixed(1)];
+  const poly=k=>C.map((c,i)=>pt(i,c[k]).join(',')).join(' ');
+  return `<svg viewBox="0 0 108 100" class="minisvg" aria-hidden="true">
+    <polygon points="${C.map((c,i)=>pt(i,100).join(',')).join(' ')}" fill="none" stroke="#10b981" stroke-width="1.2"/>
+    <polygon points="${poly('curPct')}" fill="rgba(37,99,235,.13)" stroke="#2563eb" stroke-width="1.3"/>
+    <polygon points="${poly('projPct')}" fill="none" stroke="#bc2a2a" stroke-width="1.3" stroke-dasharray="3 2"/></svg>`;
+}
+function limiterSynthesis(goals){
+  const agg={};
+  goals.forEach(g=>{
+    components(ACTIVITIES[g.profileId].reqs, goalIntensity[g.id]||1).forEach(c=>{
+      if(c.zone==='gap'){ const k=c.short;
+        (agg[k]=agg[k]||{short:c.short,cat:c.r.cat,ids:[],names:[],sev:0});
+        agg[k].ids.push(g.id); agg[k].names.push(g.name); agg[k].sev+=c.shortBy; }
+    });
+  });
+  return Object.values(agg).sort((a,b)=> b.ids.length-a.ids.length || b.sev-a.sev);
+}
+function qualityRollup(goals){
+  const agg={};
+  goals.forEach(g=>{
+    components(ACTIVITIES[g.profileId].reqs, goalIntensity[g.id]||1).forEach(c=>{
+      const a=(agg[c.short]=agg[c.short]||{short:c.short,cat:c.r.cat,n:0,sum:0,clears:0,gaps:0});
+      a.n++; a.sum+=c.projPct; if(c.zone==='clear')a.clears++; if(c.zone==='gap')a.gaps++;
+    });
+  });
+  return Object.values(agg).map(a=>({short:a.short,cat:a.cat,n:a.n,avg:a.sum/a.n,clears:a.clears,gaps:a.gaps}));
+}
+function renderOverview(){
+  const goals=GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId);
+  const cards=goals.map(g=>{
+    const C=components(ACTIVITIES[g.profileId].reqs, goalIntensity[g.id]||1);
+    const nClear=C.filter(c=>c.zone==='clear').length, nGap=C.filter(c=>c.zone==='gap').length;
+    const worst=C.slice().sort((a,b)=>a.projPct-b.projPct)[0];
+    const tz=nGap?'gap':(nClear<C.length?'borderline':'clear');
+    const word=nGap?'Gap':(nClear<C.length?'On the line':'Clears');
+    const cap=nGap?`limited by ${worst.short}`:(nClear<C.length?`closest: ${worst.short}`:'all clear');
+    return `<button class="ovcard z-${tz}" data-id="${g.id}">
+      <div class="ovname">${g.name}</div>
+      <div class="ovmini">${miniRadar(C)}</div>
+      <div class="ovword z-${tz}">${ZICON[tz]} ${word}</div>
+      <div class="ovcap">${cap}</div>
+      <div class="ovclear">${nClear}/${C.length} clear at ${TGT}</div></button>`;
+  }).join("");
+  const lim=limiterSynthesis(goals), maxN=lim.length?lim[0].ids.length:1;
+  const synth = lim.length ? `<div class="synth">
+      <div class="synthttl">Train these to lift the most goals <span class="synthsub">shared limiters across the decathlon · tap a row to highlight its goals</span></div>
+      ${lim.slice(0,5).map(l=>`<button class="synthrow" data-ids="${l.ids.join(' ')}">
+        <span class="synthq qcat ${l.cat}">${l.short}</span>
+        <span class="synthn">${l.ids.length} goal${l.ids.length===1?'':'s'}</span>
+        <div class="synthbar"><div class="synthfill" style="width:${(l.ids.length/maxN*100).toFixed(0)}%"></div></div>
+        <span class="synthgoals">${l.names.slice(0,3).join(', ')}${l.names.length>3?` +${l.names.length-3}`:''}</span></button>`).join('')}
+    </div>` : `<div class="synth synthok">Every goal clears or sits on the line at ${TGT}. No shared training gaps.</div>`;
+  const roll=qualityRollup(goals);
+  const strengths=roll.filter(q=>q.gaps===0 && q.avg>=110).sort((a,b)=> b.avg-a.avg || b.clears-a.clears).slice(0,3);
+  const exposures=lim.slice(0,3);
+  const chips=arr=>arr.map(s=>`<span class="scq qcat ${s.cat}">${s.short}</span>`).join('');
+  const scorecard=`<div class="scorecard">
+    <div class="sccol up"><div class="schd"><span class="scico">✓</span><span class="scttl">Strongest</span></div>${strengths.length?`<div class="scqs">${chips(strengths)}</div><div class="scnote">comfortably above what these goals need at ${TGT}</div>`:`<div class="scnote">No standout reserves yet at ${TGT}.</div>`}</div>
+    <div class="sccol dn"><div class="schd"><span class="scico">⚠</span><span class="scttl">Most exposed</span></div>${exposures.length?`<div class="scqs">${chips(exposures)}</div><div class="scnote">furthest below · these limit the most goals</div>`:`<div class="scnote">No gaps at ${TGT}; every goal clears or sits on the line.</div>`}</div>
+  </div>`;
+  const scope=`<div class="scope"><b>What this covers.</b> This projects physical capacity: strength, power, mobility, aerobic fitness, and balance. It does not account for disease, pain, bone density, or cognition, which can limit function just as much. Read it as one piece of the picture, not the whole of how you will function at ${TGT}.</div>`;
+  $("#slide").innerHTML=`<div class="slide-head"><div class="head-row"><div>
+      <div class="eyebrow">Centenarian Decathlon · Functional Capacity Profile</div>
+      <h1 class="slide-title">${PATIENT.name||'Patient'} · at a glance</h1>
+      <div class="slide-sub">${PATIENT.sex} · age ${AGE} · marginal decade ${TGT}. ${goals.length} goal${goals.length===1?'':'s'} projected to ${TGT}. Tap a tile for the full profile.</div></div></div></div>
+    <div class="pv">${scorecard}${scope}${synth}<div class="ovgrid">${cards}</div>
+    <div class="ovlegend"><b style="color:var(--cream)">Reading this honestly.</b> A planning scenario, not a prediction. <span style="color:#2563eb">Blue</span> = current, <span style="color:#bc2a2a">coral dashed</span> = the no-training projection to ${TGT}, <span style="color:#059669">green ring</span> = what each goal needs. Tile colour: <b style="color:#059669">green</b> clears · <b style="color:#d97706">amber</b> on the line · <b style="color:#bc2a2a">coral</b> a gap to train.</div></div>`+FOOT;
+  document.querySelectorAll('#slide .ovcard').forEach(b=>b.onclick=()=>{showOverview=false;activeId=b.dataset.id;renderCatalog();renderReportBody();});
+  document.querySelectorAll('#slide .synthrow').forEach(r=>r.onclick=()=>{
+    const ids=r.dataset.ids.split(' '), on=r.classList.contains('on');
+    document.querySelectorAll('#slide .synthrow').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('#slide .ovcard').forEach(x=>x.classList.remove('hl','dim'));
+    if(!on){ r.classList.add('on'); document.querySelectorAll('#slide .ovcard').forEach(x=>{ ids.includes(x.dataset.id)?x.classList.add('hl'):x.classList.add('dim'); }); }
+  });
+  $("#legend").innerHTML='';
+}
+
+/* ── TAB 1 · Reference + custom-activity authoring (no patient data) ── */
+function renderReference(){
+  const list=GOALS.filter(g=>g.profileId);
+  if(!list.some(g=>g.id===refId)) refId=list[0].id;
+  $("#refList").innerHTML=list.map(g=>
+    `<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?'<span class="ctag">custom</span>':''}</button>`).join("")
+    +`<button class="addgoal ${building?'on':''}" id="newAct">+ Build a custom activity</button>`;
+  document.querySelectorAll('#refList [data-ref]').forEach(b=>b.onclick=()=>{building=false;refId=b.dataset.ref;renderReference();});
+  $("#newAct").onclick=()=>startBuilder();
+  if(building){ renderBuilder(); return; }
+  const g=goalById(refId), act=ACTIVITIES[g.profileId];
+  const cards=(act.reqs||[]).filter(r=>r.metric&&r.req!=null).map(r=>{const conf=CONFIDENCE[r.metric]||'proxy';
+    return `<div class="pcard">
+      <div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div>
+      <div class="reqbig">Requires <b>${fmtU(r.req,r.unit)}</b></div>
+      <div class="cap">${r.label} · ${r.cat}</div>
+      <div class="raw"><span class="cdot ${conf}">${CONF_META[conf].dot}</span> ${CONF_META[conf].label} · ${r.src||''}</div>
+      <div class="cardwhy">${basisBadge(r)} ${r.why} <span class="evi">${r.evi||''}</span></div>
+    </div>`;}).join("");
+  const qual=(act.reqs||[]).filter(r=>!r.metric);
+  const actions=act.custom?`<div class="buildactions" style="margin-bottom:12px"><button class="btn" id="editAct">Edit</button><button class="btn" id="delAct">Delete activity</button></div>`:'';
+  $("#refDetail").innerHTML=`<div class="slide-head"><div class="eyebrow">Centenarian Decathlon · Activity requirements${act.custom?' · custom':''}</div>
+    <h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div></div>
+    <div class="pv">${actions}<div class="refgrid">${cards}</div>
+    ${qual.length?`<div class="qnote">Also coached, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:''}
+    <div class="refnote">Fixed task demands: the capacity each activity requires at a reserve level, independent of any patient. Build a patient’s report in the next tab to project their measurements against these.</div></div>`+FOOT;
+  if(act.custom){ $("#editAct").onclick=()=>startBuilder(g.id); $("#delAct").onclick=()=>deleteActivity(g.id); }
+}
+
+function metricOptions(sel){
+  const byCat={}; for(const k in METRIC_REGISTRY){const c=METRIC_REGISTRY[k].cat;(byCat[c]=byCat[c]||[]).push(k);}
+  return `<option value="">choose a test…</option>`+Object.keys(byCat).sort().map(cat=>
+    `<optgroup label="${cat}">`+byCat[cat].map(k=>`<option value="${k}" ${k===sel?'selected':''}>${METRIC_REGISTRY[k].label} (${METRIC_REGISTRY[k].unit})</option>`).join("")+`</optgroup>`).join("");
+}
+function startBuilder(editId){
+  if(editId&&ACTIVITIES[editId]){const a=ACTIVITIES[editId];
+    draft={editId, name:a.name, sub:a.sub||'', comps:a.reqs.filter(r=>r.metric).map(r=>({metric:r.metric,req:String(r.req),why:r.why||''}))};
+  } else { draft={editId:null,name:'',sub:'',comps:[{metric:'',req:'',why:''},{metric:'',req:'',why:''}]}; }
+  building=true; renderReference();
+}
+function renderBuilder(){
+  const esc=s=>(s||'').replace(/"/g,'&quot;');
+  const oor=c=>{const info=c.metric?METRIC_INFO[c.metric]:null;const v=parseFloat(c.req);return !!(info&&c.req!==''&&!isNaN(v)&&(v<info.lo||v>info.hi));};
+  const rows=draft.comps.map((c,i)=>{const info=c.metric?METRIC_INFO[c.metric]:null;
+    return `<div class="crow">
+      <select data-ci="${i}" data-f="metric">${metricOptions(c.metric)}</select>
+      <input type="number" step="any" data-ci="${i}" data-f="req" value="${esc(c.req)}" class="${oor(c)?'oor':''}" title="${info?('typical '+info.lo+'–'+info.hi+' '+info.unit):''}" placeholder="${info?('typ. '+info.lo+'–'+info.hi):'value'}">
+      <span class="cunit">${info?info.unit:''}</span>
+      <input type="text" data-ci="${i}" data-f="why" value="${esc(c.why)}" placeholder="why it matters (optional)">
+      <button class="crm" data-rm="${i}" title="remove">×</button></div>`;}).join("");
+  $("#refDetail").innerHTML=`<div class="slide-head"><div class="eyebrow">Custom activity${draft.editId?' · editing':''}</div>
+      <input class="namein" data-f="name" value="${esc(draft.name)}" placeholder="Activity name in the patient’s own words">
+      <input class="subin" data-f="sub" value="${esc(draft.sub)}" placeholder="One-line description (optional)"></div>
+    <div class="pv">
+      <div class="bsectitle">Components: pick the physical qualities this activity demands</div>
+      <div class="crows">${rows}</div>
+      <button class="btn" id="suggestB">✦ Suggest from name</button>
+      <button class="btn" id="addComp">+ Add component</button>
+      <div class="buildactions" style="margin-top:18px">
+        <button class="btn" id="cancelB">Cancel</button>
+        <button class="btn primary" id="saveB">${draft.editId?'Save changes':'Save activity'}</button></div>
+      <div class="refnote">Choose a measured test for each quality and set the requirement it demands. Category, decline rate, and confidence are inherited from the test. Saved activities join the catalog and can be added to any patient’s report.</div>
+    </div>`;
+  $("#refDetail").querySelectorAll('[data-f]').forEach(el=>{
+    const ev=el.tagName==='SELECT'?'change':'input';
+    el.addEventListener(ev,()=>{ const ci=el.dataset.ci, f=el.dataset.f;
+      if(ci!==undefined) draft.comps[+ci][f]=el.value; else draft[f]=el.value;
+      if(f==='req'){ const m=draft.comps[+ci].metric, info=m?METRIC_INFO[m]:null, v=parseFloat(el.value); el.classList.toggle('oor', !!(info&&el.value!==''&&!isNaN(v)&&(v<info.lo||v>info.hi))); }
+      if(f==='metric') renderBuilder(); });
+  });
+  $("#addComp").onclick=()=>{ if(draft.comps.length<8){draft.comps.push({metric:'',req:'',why:''}); renderBuilder();} };
+  $("#suggestB").onclick=suggestForDraft;
+  $("#refDetail").querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{draft.comps.splice(+b.dataset.rm,1); if(!draft.comps.length)draft.comps.push({metric:'',req:'',why:''}); renderBuilder();});
+  $("#cancelB").onclick=()=>{building=false; renderReference();};
+  $("#saveB").onclick=saveCustomActivity;
+}
+function suggestForDraft(){
+  const name=(draft.name||'').trim(); if(!name){alert('Type the activity name first, then suggest.');return;}
+  const seen=new Set(), comps=[];
+  suggestComponents(name).forEach(s=>{const m=CAT_DEFAULT[s.cat]; if(m&&METRIC_REGISTRY[m]&&!seen.has(m)){seen.add(m); comps.push({metric:m,req:'',why:s.label});}});
+  if(!comps.length){alert('No keyword match for that name. Add components manually.');return;}
+  draft.comps=comps.slice(0,6); renderBuilder();
+}
+function saveCustomActivity(){
+  const name=(draft.name||'').trim(); if(!name){alert('Give the activity a name.');return;}
+  const comps=draft.comps.filter(c=>c.metric&&c.req!==''&&!isNaN(parseFloat(c.req)));
+  if(!comps.length){alert('Add at least one component with a required value.');return;}
+  const reqs=comps.map(c=>{const reg=METRIC_REGISTRY[c.metric];
+    return {cat:reg.cat,label:reg.label,metric:c.metric,unit:reg.unit,dir:reg.dir,req:parseFloat(c.req),basis:'modeled',coachSet:true,backcast:reg.backcast,declinePctPerDecade:reg.declinePctPerDecade,src:reg.src,why:(c.why||'').trim()||(reg.label+' for this activity.'),evi:'Coach-authored custom activity.'};});
+  let id=draft.editId;
+  if(id){ ACTIVITIES[id]=Object.assign({},ACTIVITIES[id],{name,sub:(draft.sub||'').trim(),reqs}); const gg=goalById(id); if(gg)gg.name=name; }
+  else { id='custom-'+(customSeq++); ACTIVITIES[id]={name,sub:(draft.sub||'').trim(),custom:true,reqs}; GOALS.push({id,name,profileId:id,custom:true}); selectedGoals.add(id); }
+  building=false; refId=id; renderReference();
+}
+function deleteActivity(id){
+  if(!ACTIVITIES[id]||!ACTIVITIES[id].custom)return;
+  if(!confirm('Delete this custom activity? It will be removed from any report using it.'))return;
+  delete ACTIVITIES[id]; const gi=GOALS.findIndex(g=>g.id===id); if(gi>=0)GOALS.splice(gi,1); selectedGoals.delete(id);
+  building=false; refId=(GOALS.find(g=>g.profileId)||{}).id; renderReference();
+}
+
+/* ── TAB 2 · Build report (input form) ── */
+function renderBuild(){
+  const m=PATIENT.metrics;
+  const fields=METRIC_META.map(grp=>`<div class="fgroup"><div class="fgtitle">${grp.group}</div><div class="fgrid">`+
+    grp.items.map(([k,lbl,unit,lo,hi])=>`<label class="fld"><span class="flbl">${lbl} <span class="funit">${unit}</span></span>
+      <input type="number" step="any" data-metric="${k}" value="${m[k]??''}" placeholder="typ. ${lo}–${hi}"></label>`).join("")+
+    `</div></div>`).join("");
+  const goals=GOALS.filter(g=>g.profileId).map(g=>
+    `<label class="gchk"><input type="checkbox" data-goal="${g.id}" ${selectedGoals.has(g.id)?'checked':''}><span>${g.name}</span></label>`).join("");
+  $("#buildForm").innerHTML=`
+    <div class="buildhead"><div><div class="eyebrow">Centenarian Decathlon</div><h1 class="slide-title">Build a patient report</h1></div>
+      <div class="buildactions">
+        <button class="btn" id="impBtn">Import…</button><button class="btn" id="expBtn">Export</button>
+        <button class="btn primary" id="toReport">View report →</button></div></div>
+    <div class="bsec"><div class="bsectitle">Patient <span class="funit">de-identified: use a code or initials, not a name</span></div>
+      <div class="fgrid">
+        <label class="fld"><span class="flbl">Code / initials</span><input type="text" data-pt="name" value="${PATIENT.name||''}"></label>
+        <label class="fld"><span class="flbl">Sex</span><select data-pt="sex"><option value="male" ${PATIENT.sex==='male'?'selected':''}>male</option><option value="female" ${PATIENT.sex==='female'?'selected':''}>female</option></select></label>
+        <label class="fld"><span class="flbl">Current age <span class="funit">years</span></span><input type="number" data-pt="age" value="${PATIENT.age}"></label>
+        <label class="fld"><span class="flbl">Marginal-decade age <span class="funit">years</span></span><input type="number" data-pt="marginalDecadeAge" value="${PATIENT.marginalDecadeAge}"></label>
+      </div></div>
+    <div class="bsec"><div class="bsectitle">Assessment measurements</div>${fields}</div>
+    <div class="bsec"><div class="bsectitle">Goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div>
+      <div class="gchks">${goals}</div></div>
+    <input type="file" id="impFile" accept="application/json" hidden>`;
+  $("#buildForm").querySelectorAll('input[data-metric]').forEach(inp=>inp.oninput=()=>{
+    const v=inp.value.trim(); PATIENT.metrics[inp.dataset.metric]= v===''?null:parseFloat(v); });
+  $("#buildForm").querySelectorAll('[data-pt]').forEach(inp=>inp.oninput=()=>{
+    const k=inp.dataset.pt; PATIENT[k]=(k==='age'||k==='marginalDecadeAge')?(parseInt(inp.value)||0):inp.value; syncAge(); renderChip(); });
+  $("#buildForm").querySelectorAll('input[data-goal]').forEach(c=>c.onchange=()=>{
+    c.checked?selectedGoals.add(c.dataset.goal):selectedGoals.delete(c.dataset.goal);
+    $("#goalCount").textContent=selectedGoals.size+' selected'; });
+  $("#toReport").onclick=()=>setTab('report'); $("#expBtn").onclick=exportData;
+  $("#impBtn").onclick=()=>$("#impFile").click(); $("#impFile").onchange=importData;
+}
+
+function exportData(){
+  const custom={}; selectedGoals.forEach(id=>{ if(ACTIVITIES[id]&&ACTIVITIES[id].custom) custom[id]=ACTIVITIES[id]; });
+  const data={patient:{name:PATIENT.name,sex:PATIENT.sex,age:PATIENT.age,marginalDecadeAge:PATIENT.marginalDecadeAge},metrics:PATIENT.metrics,goals:[...selectedGoals],intensity:goalIntensity,customActivities:custom};
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
+  a.download=((PATIENT.name||'patient').replace(/[^a-z0-9]+/gi,'_'))+'_cd.json'; a.click();
+}
+function importData(e){
+  const f=e.target.files[0]; if(!f)return; const r=new FileReader();
+  r.onload=()=>{ try{ const d=JSON.parse(r.result);
+    if(d.customActivities) for(const id in d.customActivities){ if(!ACTIVITIES[id]){ ACTIVITIES[id]=Object.assign({},d.customActivities[id],{custom:true}); GOALS.push({id,name:d.customActivities[id].name,profileId:id,custom:true}); } }
+    if(d.patient) Object.assign(PATIENT,d.patient);
+    if(d.metrics) Object.assign(PATIENT.metrics,d.metrics);
+    if(Array.isArray(d.goals)) selectedGoals=new Set(d.goals);
+    if(d.intensity) goalIntensity=Object.assign({},d.intensity);
+    syncAge(); renderBuild(); renderChip();
+  }catch(err){ alert('Could not read that file: '+err.message); } };
+  r.readAsText(f); e.target.value='';
+}
+
+function renderChip(){
+  $("#patientChip").innerHTML = tab==='reference'
+    ? `<span class="meta">Reference · all activities, all requirements</span>`
+    : tab==='build' ? `<span class="meta">Building report…</span>`
+    : `<span class="nm">${PATIENT.name||'—'}</span><span class="meta">${PATIENT.sex} · age ${PATIENT.age} · marginal decade ${PATIENT.marginalDecadeAge}</span>`;
+}
+
+function setTab(t){
+  tab=t; document.body.className='tab-'+t;
+  document.querySelectorAll('#tabSeg button').forEach(x=>x.classList.toggle('on',x.dataset.tab===t));
+  renderChip();
+  if(t==='reference') renderReference();
+  else if(t==='build') renderBuild();
+  else { renderCatalog(); renderReportBody(); }
+}
+$("#tabSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(b) setTab(b.dataset.tab);});
+$("#slide").addEventListener('click',e=>{const b=e.target.closest('.ibtn'); if(b){ goalIntensity[activeId]=parseFloat(b.dataset.int); renderCatalog(); renderReportBody(); }});
+
+setTab('reference');
+</script>
+</body>
+</html>
