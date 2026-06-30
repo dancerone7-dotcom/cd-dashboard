@@ -312,6 +312,15 @@ body.tab-reference .cardwhy{display:block}
 .bsinner{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:11px 24px}
 .bsmeta{font-size:12px;color:var(--muted);margin-right:auto}
 .bsmeta b{color:var(--ink);font-weight:700}
+#buildForm.goalsel .fgroup .fld:not(.needed){opacity:.4}
+#buildForm.focusgoals .fgroup .fld:not(.needed){display:none}
+#buildForm.focusgoals .fgroup:not(.has-needed){display:none}
+.meashead{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:18px 2px 11px}
+.meashead .measlbl{margin:0}
+.focustog{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--ink);cursor:pointer;user-select:none}
+.focustog input{width:15px;height:15px;accent-color:var(--coral);flex:0 0 auto}
+.focusn{color:var(--muted);font-size:11px}
+.goalsfirst{margin:0 0 10px}
 .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:8px 14px}
 .fld{display:flex;flex-direction:column;gap:3px;font-size:12px}
 .flbl{color:#475569}
@@ -1054,7 +1063,7 @@ const METRIC_META=[
 /* Canonical properties per measured test (cat/unit/decline/src), derived from the catalog - used to author custom activities. */
 const METRIC_REGISTRY=(()=>{const reg={};for(const id in ACTIVITIES)for(const r of (ACTIVITIES[id].reqs||[])){if(r.metric&&!reg[r.metric])reg[r.metric]={cat:r.cat,label:r.label,unit:r.unit,dir:r.dir||'higher_better',backcast:r.backcast,declinePctPerDecade:r.declinePctPerDecade,src:r.src};}return reg;})();
 const METRIC_INFO=(()=>{const m={};METRIC_META.forEach(g=>g.items.forEach(([k,lbl,unit,lo,hi])=>m[k]={lbl,unit,lo,hi}));return m;})();
-let customSeq=1, building=false, draft=null, showOverview=true, goalIntensity={};
+let customSeq=1, building=false, draft=null, showOverview=true, goalIntensity={}, focusGoals=true;
 const INTENSITY=[['Recreational',0.85],['Standard',1.0],['Demanding',1.2]]; // scales a goal's requirements (e.g. green-run vs black-diamond)
 const CAT_DEFAULT={Strength:'backSquat_pctBW',Power:'cmjPower_WkG',Aerobic:'vo2',Eccentric:'stepDown_in',Balance:'balanceSL_EO_s',Mobility:'hipFlexion_deg',Core:'plankHeelWall_s',Endurance:'calfRaise_reps'}; // representative test per quality, for the custom-builder auto-suggest
 
@@ -1601,13 +1610,36 @@ function deleteActivity(id){
 
 /* ── TAB 2 · Build report (input form) ── */
 function updateGroupCount(grpEl){ if(!grpEl)return; const inps=grpEl.querySelectorAll('input[data-metric]'); const filled=[...inps].filter(i=>i.value.trim()!=='').length; const c=grpEl.querySelector('.fgcount'); if(c) c.textContent=filled+'/'+inps.length+' entered'; }
+function neededMetricsFor(){
+  const s=new Set();
+  GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId).forEach(g=>{
+    (ACTIVITIES[g.profileId].reqs||[]).forEach(r=>{ if(r.metric) s.add(r.metric); });
+  });
+  return s;
+}
+function applyGoalFocus(){
+  const bf=$("#buildForm"); if(!bf) return;
+  const needed=neededMetricsFor(); let nc=0, tot=0;
+  bf.querySelectorAll('.fgroup').forEach(grp=>{ let any=false;
+    grp.querySelectorAll('input[data-metric]').forEach(inp=>{ tot++; const need=needed.has(inp.dataset.metric);
+      inp.closest('.fld').classList.toggle('needed', need); if(need){any=true;nc++;} });
+    grp.classList.toggle('has-needed', any); });
+  const has=selectedGoals.size>0;
+  bf.classList.toggle('goalsel', has);
+  bf.classList.toggle('focusgoals', has && focusGoals);
+  const fn=$("#focusn"); if(fn) fn.textContent=has?`(${nc} of ${tot})`:'';
+  const ftw=$("#focusTogWrap"); if(ftw) ftw.style.display=has?'':'none';
+  const gc=$("#goalCount"); if(gc) gc.textContent=selectedGoals.size+' selected';
+  const sc=$("#stickyCount"); if(sc) sc.textContent=selectedGoals.size;
+}
 function renderBuild(){
   const m=PATIENT.metrics;
+  const needed=neededMetricsFor();
   const groupAccent=n=>/ROM|mobilit/i.test(n)?'#2563eb':/strength/i.test(n)?'#bc2a2a':/power|reactive/i.test(n)?'#9333ea':/aerobic|cpet/i.test(n)?'#0891b2':/endurance|core|balance/i.test(n)?'#4d7c0f':/PCA|field/i.test(n)?'#a16207':'#64748b';
   const fields=METRIC_META.map(grp=>{
     const filled=grp.items.filter(([k])=>m[k]!=null&&m[k]!=='').length;
-    return `<div class="fgroup" style="border-left-color:${groupAccent(grp.group)}"><div class="fgtitle">${grp.group}<span class="fgcount">${filled}/${grp.items.length} entered</span></div><div class="fgrid">`+
-    grp.items.map(([k,lbl,unit,lo,hi])=>`<label class="fld"><span class="flbl">${lbl} <span class="funit">${unit}</span></span>
+    return `<div class="fgroup ${grp.items.some(([k])=>needed.has(k))?'has-needed':''}" style="border-left-color:${groupAccent(grp.group)}"><div class="fgtitle">${grp.group}<span class="fgcount">${filled}/${grp.items.length} entered</span></div><div class="fgrid">`+
+    grp.items.map(([k,lbl,unit,lo,hi])=>`<label class="fld ${needed.has(k)?'needed':''}"><span class="flbl">${lbl} <span class="funit">${unit}</span></span>
       <input type="number" step="any" class="${m[k]==null||m[k]===''?'empty':''}" data-metric="${k}" value="${m[k]??''}" placeholder="typ. ${lo}–${hi}"></label>`).join("")+
     `</div></div>`;}).join("");
   const goals=GOALS.filter(g=>g.profileId).map(g=>
@@ -1624,9 +1656,12 @@ function renderBuild(){
         <label class="fld"><span class="flbl">Current age <span class="funit">years</span></span><input type="number" data-pt="age" value="${PATIENT.age}"></label>
         <label class="fld"><span class="flbl">Marginal-decade age <span class="funit">years</span></span><input type="number" data-pt="marginalDecadeAge" value="${PATIENT.marginalDecadeAge}"></label>
       </div></div>
-    <div class="bsectitle measlbl">Assessment measurements</div>${fields}
-    <div class="bsec"><div class="bsectitle">Goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div>
+    <div class="bsec"><div class="bsectitle">Step 1 · Goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div>
+      <div class="addnote goalsfirst">Pick this patient’s goals first. The measurements below then focus on what those goals actually need.</div>
       <div class="gchks">${goals}</div></div>
+    <div class="meashead"><div class="bsectitle measlbl">Step 2 · Assessment measurements</div>
+      <label class="focustog" id="focusTogWrap"><input type="checkbox" id="focusTog" ${focusGoals?'checked':''}> Show only what these goals need <span class="focusn" id="focusn"></span></label></div>
+    ${fields}
     <div class="buildsticky"><div class="bsinner"><span class="bsmeta"><b id="stickyCount">${selectedGoals.size}</b> goal${selectedGoals.size===1?'':'s'} selected · ready when you are</span><button class="btn primary" id="toReport2">View report →</button></div></div>
     <input type="file" id="impFile" accept="application/json" hidden>`;
   $("#buildForm").querySelectorAll('input[data-metric]').forEach(inp=>inp.oninput=()=>{
@@ -1635,12 +1670,12 @@ function renderBuild(){
   $("#buildForm").querySelectorAll('[data-pt]').forEach(inp=>inp.oninput=()=>{
     const k=inp.dataset.pt; PATIENT[k]=(k==='age'||k==='marginalDecadeAge')?(parseInt(inp.value)||0):inp.value; syncAge(); renderChip(); });
   $("#buildForm").querySelectorAll('input[data-goal]').forEach(c=>c.onchange=()=>{
-    c.checked?selectedGoals.add(c.dataset.goal):selectedGoals.delete(c.dataset.goal);
-    $("#goalCount").textContent=selectedGoals.size+' selected';
-    const sc=$("#stickyCount"); if(sc) sc.textContent=selectedGoals.size; });
+    c.checked?selectedGoals.add(c.dataset.goal):selectedGoals.delete(c.dataset.goal); applyGoalFocus(); });
+  const ft=$("#focusTog"); if(ft) ft.onchange=()=>{ focusGoals=ft.checked; applyGoalFocus(); };
   const toRep=()=>setTab('report');
   $("#toReport").onclick=toRep; const tr2=$("#toReport2"); if(tr2) tr2.onclick=toRep; $("#expBtn").onclick=exportData;
   $("#impBtn").onclick=()=>$("#impFile").click(); $("#impFile").onchange=importData;
+  applyGoalFocus();
 }
 
 function pageVerdict(C){
