@@ -389,7 +389,15 @@ body.tab-reference .cardwhy{display:block}
 .scnote{font-size:10.5px;color:var(--muted);line-height:1.35}
 .scope{font-size:11px;line-height:1.5;color:var(--muted);background:rgba(15,23,42,.02);border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:8px;padding:9px 13px;margin-bottom:14px}
 .scope b{color:var(--cream);font-weight:600}
-@media print{.appbar,.rail{display:none!important} .stage{overflow:visible;padding:0}}
+#printDoc{display:none}
+@media print{
+  .appbar,.rail{display:none!important}
+  .stage{overflow:visible;padding:0}
+  body.printing .tabpane{display:none!important}
+  body.printing #printDoc{display:block!important;max-width:1024px;margin:0 auto}
+  body.printing .printpage+.printpage{break-before:page;page-break-before:always}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+}
 </style>
 </head>
 <body class="tab-reference">
@@ -429,7 +437,7 @@ body.tab-reference .cardwhy{display:block}
     <h4>This patient’s goals</h4>
     <div id="catalog"></div>
     <div class="addnote" id="addNote"></div>
-    <button class="btn" style="margin:10px 8px;width:calc(100% - 16px)" onclick="window.print()">⎙ Print / Save PDF</button>
+    <button class="btn" style="margin:10px 8px;width:calc(100% - 16px)" onclick="exportPDF()">⎙ Export report (PDF)</button>
   </aside>
   <main class="stage">
     <div style="width:100%;max-width:1024px">
@@ -438,6 +446,7 @@ body.tab-reference .cardwhy{display:block}
     </div>
   </main>
 </div>
+<div id="printDoc" aria-hidden="true"></div>
 
 <script>
 /* ══════════════════════════════════════════════════════════════
@@ -1585,6 +1594,26 @@ function renderBuild(){
   $("#impBtn").onclick=()=>$("#impFile").click(); $("#impFile").onchange=importData;
 }
 
+function buildPrintDoc(){
+  const goals=GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId);
+  if(!goals.length) return '';
+  const savedActive=activeId, savedOverview=showOverview;
+  const cap=()=>'<section class="printpage">'+$("#slide").innerHTML.replace(/<details /g,'<details open ')+'</section>';
+  let html='';
+  showOverview=true; renderReportBody(); html+=cap();
+  showOverview=false;
+  goals.forEach(g=>{ activeId=g.id; renderReportBody(); html+=cap(); });
+  activeId=savedActive; showOverview=savedOverview; renderCatalog(); renderReportBody();
+  return html;
+}
+function exportPDF(){
+  const doc=buildPrintDoc();
+  if(!doc){ alert('No goals in this report yet. Pick goals in Build report first.'); return; }
+  const pd=$("#printDoc"); pd.innerHTML=doc;
+  document.body.classList.add('printing');
+  window.onafterprint=()=>{ document.body.classList.remove('printing'); pd.innerHTML=''; window.onafterprint=null; };
+  window.print();
+}
 function exportData(){
   const custom={}; selectedGoals.forEach(id=>{ if(ACTIVITIES[id]&&ACTIVITIES[id].custom) custom[id]=ACTIVITIES[id]; });
   const data={patient:{name:PATIENT.name,sex:PATIENT.sex,age:PATIENT.age,marginalDecadeAge:PATIENT.marginalDecadeAge},metrics:PATIENT.metrics,goals:[...selectedGoals],intensity:goalIntensity,customActivities:custom};
