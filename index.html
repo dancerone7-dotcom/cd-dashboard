@@ -205,6 +205,9 @@ details[open]>.dtlsum::before{transform:rotate(90deg)}
 .dtlhint{font-weight:400;color:var(--muted);font-size:10.5px}
 .dtl{margin-top:14px;padding-top:2px;border-top:1px solid var(--line)}
 .legdtl>.dtlsum{padding:3px 0}
+.ckey{display:flex;flex-wrap:wrap;gap:5px 16px;align-items:center;font-size:11px;color:var(--muted);padding:2px 2px 4px;margin-bottom:2px}
+.ckey>span{display:inline-flex;align-items:center;gap:7px}
+.ckey .ln{flex:0 0 20px;height:0;border-top:3px solid;margin:0}
 .refsearch{width:100%;box-sizing:border-box;margin:0 0 9px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;font-family:var(--sans);font-size:12.5px;color:var(--ink);background:#fff}
 .refsearch:focus{outline:none;border-color:var(--coral)}
 .refsearch::placeholder{color:var(--muted)}
@@ -1225,17 +1228,16 @@ function renderSlide(){
     <div class="pv-top">
       <div class="bchartwrap">${barChart(C)}
         ${C.length>=3?`<div class="radarsec">
-          <div class="radarttl">Capacity shape at ${TGT} <span class="radarsub">blue = today · coral dashed = projected to ${TGT} · green ring = 100% required</span></div>
+          <div class="radarttl">Capacity shape at ${TGT}</div>
           <div class="radarwrap">${radarSVG(C)}</div>
         </div>`:''}
       </div>
       <div class="side">
-        <details class="lbox legdtl"><summary class="dtlsum">How to read this chart</summary>
-          <div class="lrow" style="margin-top:9px"><span class="ln cur"></span><span><b>Current · age ${AGE}</b><br><span class="d">Blue line, today’s assessment</span></span></div>
-          <div class="lrow"><span class="ln proj"></span><span><b>Projected · age ${TGT}</b><br><span class="d">Coloured bar, the projection if you keep today’s habits (illustrative range per card)</span></span></div>
-          <div class="lrow"><span class="ln thr"></span><span><b>What it requires</b><br><span class="d">Green line at 100%, exactly enough at ${TGT}</span></span></div>
-          <div class="lrow" style="border-top:1px solid var(--line);padding-top:8px;margin-top:4px;display:block"><span class="d">Each bar = % of what this goal needs. <b style="color:#059669">✓ clears</b> ≥110% · <b style="color:#d97706">≈ on the line</b> 90–110% · <b style="color:#bc2a2a">⚠ gap</b> &lt;90%. Gated by the <b>weakest</b> component, not the average.</span></div>
-        </details>
+        <div class="ckey">
+          <span><span class="ln cur"></span>Current</span>
+          <span><span class="ln proj"></span>Projected to ${TGT}</span>
+          <span><span class="ln thr"></span>Required (100%)</span>
+        </div>
         <div class="lbox">${statusBox(C)}</div>
       </div>
     </div>
