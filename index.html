@@ -217,6 +217,8 @@ details[open]>.dtlsum::before{transform:rotate(90deg)}
 .refgroup{margin-bottom:3px}
 .refghead{font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin:13px 6px 4px;opacity:.85}
 .refgroup:first-child .refghead{margin-top:2px}
+.catin{font-family:var(--sans);font-size:13px;padding:7px 10px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--ink);min-width:240px;margin-top:2px}
+.catin:focus{outline:none;border-color:var(--coral)}
 .side{display:flex;flex-direction:column;gap:11px}
 .lbox{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
 .lrow{display:flex;gap:10px;font-size:12px;margin:7px 0;line-height:1.3}
@@ -1399,9 +1401,11 @@ function renderReference(){
   const btn=g=>`<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?'<span class="ctag">custom</span>':''}</button>`;
   let rl='';
   DOMAIN_GROUPS.forEach(([dom,names])=>{
-    const items=names.map(n=>byName[n]).filter(Boolean); if(!items.length) return;
-    items.forEach(g=>used.add(g.id));
-    rl+=`<div class="refgroup"><div class="refghead">${dom}</div>${items.map(btn).join('')}</div>`;
+    const items=names.map(n=>byName[n]).filter(Boolean);
+    const customInDom=list.filter(g=>g.custom && ACTIVITIES[g.profileId] && ACTIVITIES[g.profileId].domain===dom);
+    const all=items.concat(customInDom); if(!all.length) return;
+    all.forEach(g=>used.add(g.id));
+    rl+=`<div class="refgroup"><div class="refghead">${dom}</div>${all.map(btn).join('')}</div>`;
   });
   const leftover=list.filter(g=>!used.has(g.id));
   if(leftover.length) rl+=`<div class="refgroup"><div class="refghead">Added by you</div>${leftover.map(btn).join('')}</div>`;
@@ -1437,8 +1441,8 @@ function metricOptions(sel){
 }
 function startBuilder(editId){
   if(editId&&ACTIVITIES[editId]){const a=ACTIVITIES[editId];
-    draft={editId, name:a.name, sub:a.sub||'', comps:a.reqs.filter(r=>r.metric).map(r=>({metric:r.metric,req:String(r.req),why:r.why||''}))};
-  } else { draft={editId:null,name:'',sub:'',comps:[{metric:'',req:'',why:''},{metric:'',req:'',why:''}]}; }
+    draft={editId, name:a.name, sub:a.sub||'', domain:a.domain||'', comps:a.reqs.filter(r=>r.metric).map(r=>({metric:r.metric,req:String(r.req),why:r.why||''}))};
+  } else { draft={editId:null,name:'',sub:'',domain:'',comps:[{metric:'',req:'',why:''},{metric:'',req:'',why:''}]}; }
   building=true; renderReference();
 }
 function renderBuilder(){
@@ -1455,7 +1459,9 @@ function renderBuilder(){
       <input class="namein" data-f="name" value="${esc(draft.name)}" placeholder="Activity name in the patient’s own words">
       <input class="subin" data-f="sub" value="${esc(draft.sub)}" placeholder="One-line description (optional)"></div>
     <div class="pv">
-      <div class="bsectitle">Components: pick the physical qualities this activity demands</div>
+      <div class="bsectitle">Category</div>
+      <select class="catin" data-f="domain"><option value="">Choose a bucket…</option>${DOMAIN_GROUPS.map(([d])=>`<option value="${d}"${draft.domain===d?' selected':''}>${d}</option>`).join('')}</select>
+      <div class="bsectitle" style="margin-top:14px">Components: pick the physical qualities this activity demands</div>
       <div class="crows">${rows}</div>
       <button class="btn" id="suggestB">✦ Suggest from name</button>
       <button class="btn" id="addComp">+ Add component</button>
@@ -1491,8 +1497,8 @@ function saveCustomActivity(){
   const reqs=comps.map(c=>{const reg=METRIC_REGISTRY[c.metric];
     return {cat:reg.cat,label:reg.label,metric:c.metric,unit:reg.unit,dir:reg.dir,req:parseFloat(c.req),basis:'modeled',coachSet:true,backcast:reg.backcast,declinePctPerDecade:reg.declinePctPerDecade,src:reg.src,why:(c.why||'').trim()||(reg.label+' for this activity.'),evi:'Coach-authored custom activity.'};});
   let id=draft.editId;
-  if(id){ ACTIVITIES[id]=Object.assign({},ACTIVITIES[id],{name,sub:(draft.sub||'').trim(),reqs}); const gg=goalById(id); if(gg)gg.name=name; }
-  else { id='custom-'+(customSeq++); ACTIVITIES[id]={name,sub:(draft.sub||'').trim(),custom:true,reqs}; GOALS.push({id,name,profileId:id,custom:true}); selectedGoals.add(id); }
+  if(id){ ACTIVITIES[id]=Object.assign({},ACTIVITIES[id],{name,sub:(draft.sub||'').trim(),domain:draft.domain||'',reqs}); const gg=goalById(id); if(gg)gg.name=name; }
+  else { id='custom-'+(customSeq++); ACTIVITIES[id]={name,sub:(draft.sub||'').trim(),custom:true,domain:draft.domain||'',reqs}; GOALS.push({id,name,profileId:id,custom:true}); selectedGoals.add(id); }
   building=false; refId=id; renderReference();
 }
 function deleteActivity(id){
