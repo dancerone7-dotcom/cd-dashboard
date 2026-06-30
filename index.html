@@ -190,6 +190,11 @@ body.ref .req{grid-template-columns:188px 1fr 232px}
 .rthr{fill:none;stroke:#10b981;stroke-width:2}
 .rband{fill:none;stroke:rgba(217,119,6,.32);stroke-width:1;stroke-dasharray:2 3}
 .rprojband{fill:rgba(188,42,42,.15);stroke:none}
+.radarsec{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);text-align:center}
+.radarttl{font-size:13px;font-weight:700;color:var(--cream);margin-bottom:2px}
+.radarsub{font-size:10.5px;font-weight:400;color:var(--muted);letter-spacing:.2px}
+.radarwrap{max-width:470px;margin:8px auto 0}
+.radarwrap svg{width:100%;height:auto;overflow:visible}
 .side{display:flex;flex-direction:column;gap:11px}
 .lbox{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
 .lrow{display:flex;gap:10px;font-size:12px;margin:7px 0;line-height:1.3}
@@ -1194,6 +1199,10 @@ function renderSlide(){
         <div class="lbox">${statusBox(C)}</div>
       </div>
     </div>
+    ${C.length>=3?`<div class="radarsec">
+      <div class="radarttl">Capacity shape at ${TGT} <span class="radarsub">blue = today · coral dashed = projected to ${TGT} · green ring = 100% required</span></div>
+      <div class="radarwrap">${radarSVG(C)}</div>
+    </div>`:''}
     ${cardsHTML(C)}
     ${qual.length?`<div class="qnote">Also coached, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:''}
     <div style="margin-top:16px;padding-top:11px;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:var(--muted)">
