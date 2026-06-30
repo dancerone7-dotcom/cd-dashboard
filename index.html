@@ -435,9 +435,9 @@ body.tab-reference .cardwhy{display:block}
 <div class="shell tabpane" id="tab-report">
   <aside class="rail">
     <h4>This patient’s goals</h4>
+    <button class="btn primary" style="margin:2px 8px 12px;width:calc(100% - 16px)" onclick="exportPDF()">Export as PDF</button>
     <div id="catalog"></div>
     <div class="addnote" id="addNote"></div>
-    <button class="btn" style="margin:10px 8px;width:calc(100% - 16px)" onclick="exportPDF()">⎙ Export report (PDF)</button>
   </aside>
   <main class="stage">
     <div style="width:100%;max-width:1024px">
@@ -1566,7 +1566,7 @@ function renderBuild(){
   $("#buildForm").innerHTML=`
     <div class="buildhead"><div><div class="eyebrow">Centenarian Decathlon</div><h1 class="slide-title">Build a patient report</h1></div>
       <div class="buildactions">
-        <button class="btn" id="impBtn">Import…</button><button class="btn" id="expBtn">Export</button>
+        <button class="btn" id="impBtn">Import…</button><button class="btn" id="expBtn">Export data</button>
         <button class="btn primary" id="toReport">View report →</button></div></div>
     <div class="bsec"><div class="bsectitle">Patient <span class="funit">de-identified initials or code, used to title the report (e.g. DC’s Centenarian Decathlon)</span></div>
       <div class="fgrid">
