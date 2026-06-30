@@ -446,6 +446,18 @@ body.tab-reference .cardwhy{display:block}
 .sumgrid .ovword{font-size:13px;margin-top:0}
 .sumgrid .ovclear{font-size:8px}
 .sumscope{margin-top:auto;font-size:9px;padding-top:8px}
+.pp-cover{padding:0}
+.covtop{padding:.5in .5in .3in;border-bottom:2px solid var(--coral);flex:0 0 auto}
+.pbrand.cbig{font-size:26px}
+.covcore{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;padding:0 .7in;min-height:0}
+.coveyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:8px}
+.covtitle{font-family:var(--serif);font-size:46px;font-weight:600;line-height:1.04;margin:0 0 12px;color:var(--ink)}
+.covtag{font-size:14px;color:var(--muted);line-height:1.5;max-width:6in;margin-bottom:26px}
+.covmeta{display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--line);padding-top:18px;max-width:5.2in}
+.covrow{display:flex;gap:14px;font-size:13px;align-items:baseline}
+.cmk{flex:0 0 1.5in;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-size:10px;font-weight:700}
+.cmv{color:var(--ink);font-weight:600}
+.pp-cover .pfoot{padding:.14in .5in .22in}
 @page{size:letter landscape;margin:0}
 @media print{
   .appbar,.rail{display:none!important}
@@ -1655,6 +1667,7 @@ function renderBuild(){
         <label class="fld"><span class="flbl">Sex</span><select data-pt="sex"><option value="male" ${PATIENT.sex==='male'?'selected':''}>male</option><option value="female" ${PATIENT.sex==='female'?'selected':''}>female</option></select></label>
         <label class="fld"><span class="flbl">Current age <span class="funit">years</span></span><input type="number" data-pt="age" value="${PATIENT.age}"></label>
         <label class="fld"><span class="flbl">Marginal-decade age <span class="funit">years</span></span><input type="number" data-pt="marginalDecadeAge" value="${PATIENT.marginalDecadeAge}"></label>
+        <label class="fld"><span class="flbl">Prepared by <span class="funit">optional · shown on the report cover</span></span><input type="text" data-pt="clinician" value="${PATIENT.clinician||''}"></label>
       </div></div>
     <div class="bsec"><div class="bsectitle">Step 1 · Goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div>
       <div class="addnote goalsfirst">Pick this patient’s goals first. The measurements below then focus on what those goals actually need.</div>
@@ -1712,12 +1725,12 @@ function printCompTable(C){
     C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.zone}">${c.zone==='clear'?'on track':c.zone==='borderline'?'on the line':c.shortBy+'% short'}</td></tr>`).join('')+
     `</tbody></table>`;
 }
-function printGoalPage(g,pageNum,total){
+function printGoalPage(g,pageNum,total,goalNum,goalTotal){
   const act=ACTIVITIES[g.profileId];
   const C=components(act.reqs, goalIntensity[g.id]||1);
   const v=pageVerdict(C), tk=pageTakeaway(g,C,v);
   const qual=(act.reqs||[]).filter(r=>!r.metric);
-  const inner=`<div class="pgtitle"><div><div class="pgeyebrow">Goal ${pageNum-1} of ${total-1}</div><h1 class="pgh1">${g.name}</h1>${act.sub?`<div class="pgsub">${act.sub}</div>`:''}</div>
+  const inner=`<div class="pgtitle"><div><div class="pgeyebrow">Goal ${goalNum} of ${goalTotal}</div><h1 class="pgh1">${g.name}</h1>${act.sub?`<div class="pgsub">${act.sub}</div>`:''}</div>
       <div class="pgverdict ${v.cls}"><div class="pgword">${v.word}</div><div class="pgcap">${v.cap}</div><div class="pgclear">${v.nClear}/${C.length} clear at ${TGT}</div></div></div>
     ${tk?`<div class="pgtake">${tk}</div>`:''}
     <div class="pgmain">
@@ -1731,7 +1744,7 @@ function printGoalPage(g,pageNum,total){
     </div>`;
   return printFrame(pageNum,total,'pp-goal',inner);
 }
-function printSummaryPage(goals,total){
+function printSummaryPage(goals,total,pageNum){
   const who=PATIENT.name?PATIENT.name+'’s ':'';
   const lim=limiterSynthesis(goals), maxN=lim.length?lim[0].ids.length:1;
   const roll=qualityRollup(goals);
@@ -1746,14 +1759,36 @@ function printSummaryPage(goals,total){
     ${synth}
     <div class="ovgrid sumgrid">${tiles}</div>
     <div class="scope sumscope"><b>What this covers.</b> Physical capacity only (strength, power, mobility, aerobic fitness, balance). It does not account for disease, pain, bone density, or cognition, which can limit function just as much. One piece of the picture, not the whole of how you will function at ${TGT}.</div>`;
-  return printFrame(1,total,'pp-summary',inner);
+  return printFrame(pageNum,total,'pp-summary',inner);
+}
+function printCoverPage(goals,total){
+  const who=PATIENT.name?PATIENT.name+'’s':'Your';
+  let dateStr=''; try{ dateStr=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }catch(e){}
+  const row=(k,v)=>`<div class="covrow"><span class="cmk">${k}</span><span class="cmv">${v}</span></div>`;
+  return `<section class="ppage pp-cover">
+    <div class="covtop"><div class="pbrand cbig">Early Medical<span class="preg">®</span></div></div>
+    <div class="covcore">
+      <div class="coveyebrow">Functional Capacity Profile</div>
+      <h1 class="covtitle">${who} Centenarian Decathlon</h1>
+      <div class="covtag">A planning scenario projecting today’s physical capacity toward the marginal decade at ${TGT}.</div>
+      <div class="covmeta">
+        ${row('Prepared for', PATIENT.name||'Patient')}
+        ${row('Profile', `${PATIENT.sex} · age ${AGE} · marginal decade ${TGT}`)}
+        ${row('Goals', `${goals.length} activities`)}
+        ${row('Prepared by', PATIENT.clinician||'Early Medical')}
+        ${dateStr?row('Date', dateStr):''}
+      </div>
+    </div>
+    <footer class="pfoot"><div class="ppillars"><span>Objective</span><span class="on">Strategy</span><span>Tactics</span></div><div class="pfr">Planning scenario, not a clinical prediction · page 1 of ${total}</div></footer>
+  </section>`;
 }
 function buildPrintDoc(){
   const goals=GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId);
   if(!goals.length) return '';
-  const total=goals.length+1;
-  let html=printSummaryPage(goals,total);
-  goals.forEach((g,i)=>{ html+=printGoalPage(g,i+2,total); });
+  const total=goals.length+2;
+  let html=printCoverPage(goals,total);
+  html+=printSummaryPage(goals,total,2);
+  goals.forEach((g,i)=>{ html+=printGoalPage(g,i+3,total,i+1,goals.length); });
   return html;
 }
 function exportPDF(){
@@ -1766,7 +1801,7 @@ function exportPDF(){
 }
 function exportData(){
   const custom={}; selectedGoals.forEach(id=>{ if(ACTIVITIES[id]&&ACTIVITIES[id].custom) custom[id]=ACTIVITIES[id]; });
-  const data={patient:{name:PATIENT.name,sex:PATIENT.sex,age:PATIENT.age,marginalDecadeAge:PATIENT.marginalDecadeAge},metrics:PATIENT.metrics,goals:[...selectedGoals],intensity:goalIntensity,customActivities:custom};
+  const data={patient:{name:PATIENT.name,sex:PATIENT.sex,age:PATIENT.age,marginalDecadeAge:PATIENT.marginalDecadeAge,clinician:PATIENT.clinician},metrics:PATIENT.metrics,goals:[...selectedGoals],intensity:goalIntensity,customActivities:custom};
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
   a.download=((PATIENT.name||'patient').replace(/[^a-z0-9]+/gi,'_'))+'_cd.json'; a.click();
