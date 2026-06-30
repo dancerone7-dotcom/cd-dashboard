@@ -198,6 +198,19 @@ body.ref .req{grid-template-columns:188px 1fr 232px}
 .takeaway{margin-top:13px;padding-top:12px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.5;color:var(--ink);max-width:820px}
 .takeaway b{font-weight:700}
 .takeaway .tk{color:var(--coral);font-weight:700}
+.dtlsum{cursor:pointer;font-size:12px;font-weight:700;color:var(--coral);padding:7px 0;list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
+.dtlsum::-webkit-details-marker{display:none}
+.dtlsum::before{content:'▸';font-size:9px;color:var(--coral);transition:transform .15s}
+details[open]>.dtlsum::before{transform:rotate(90deg)}
+.dtlhint{font-weight:400;color:var(--muted);font-size:10.5px}
+.dtl{margin-top:14px;padding-top:2px;border-top:1px solid var(--line)}
+.legdtl>.dtlsum{padding:3px 0}
+.refsearch{width:100%;box-sizing:border-box;margin:0 0 9px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;font-family:var(--sans);font-size:12.5px;color:var(--ink);background:#fff}
+.refsearch:focus{outline:none;border-color:var(--coral)}
+.refsearch::placeholder{color:var(--muted)}
+.dchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.dchip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 9px 3px 7px;border-radius:999px;background:rgba(15,23,42,.04);border:1px solid var(--line)}
+.dchip .dd{width:6px;height:6px;border-radius:50%;background:currentColor}
 .side{display:flex;flex-direction:column;gap:11px}
 .lbox{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
 .lrow{display:flex;gap:10px;font-size:12px;margin:7px 0;line-height:1.3}
@@ -261,7 +274,7 @@ body.tab-reference .cardwhy{display:block}
 .refnote{margin-top:14px;padding-top:11px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);line-height:1.5;font-style:italic}
 /* ── Build-report form ── */
 #tab-build{overflow:auto;display:none}
-.buildwrap{width:100%;max-width:980px;color:var(--cream)}
+.buildwrap{width:100%;max-width:980px;color:var(--cream);padding-bottom:64px}
 .buildhead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
 .buildhead .slide-title{font-size:30px}
 .buildactions{display:flex;gap:8px}
@@ -270,8 +283,15 @@ body.tab-reference .cardwhy{display:block}
 .btn.primary{background:var(--coral);border-color:var(--coral);color:#fff}
 .bsec{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
 .bsectitle{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px}
-.fgroup{margin:6px 0 12px}
-.fgtitle{font-size:12px;font-weight:700;color:#475569;margin:10px 0 6px}
+.fgroup{background:#fff;border:1px solid var(--line);border-left:3px solid var(--muted);border-radius:10px;padding:11px 14px;margin:0 0 11px}
+.fgtitle{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;font-weight:700;color:#475569;margin:0 0 9px}
+.fgcount{font-size:10px;font-weight:700;letter-spacing:.4px;color:var(--muted);background:rgba(15,23,42,.05);padding:2px 8px;border-radius:999px;white-space:nowrap}
+.fld input.empty{border-style:dashed;border-color:rgba(15,23,42,.22);background:rgba(15,23,42,.012)}
+.measlbl{margin:18px 2px 11px}
+.buildsticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(238,241,244,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+.bsinner{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:11px 24px}
+.bsmeta{font-size:12px;color:var(--muted);margin-right:auto}
+.bsmeta b{color:var(--ink);font-weight:700}
 .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:8px 14px}
 .fld{display:flex;flex-direction:column;gap:3px;font-size:12px}
 .flbl{color:#475569}
@@ -369,6 +389,7 @@ body.tab-reference .cardwhy{display:block}
 <div class="shell tabpane" id="tab-reference">
   <aside class="rail">
     <h4>CD activities</h4>
+    <input id="refSearch" class="refsearch" type="search" placeholder="Search activities…" autocomplete="off">
     <div id="refList"></div>
     <div class="addnote">Click an activity to see the physical-quality requirements it demands. No patient data.</div>
   </aside>
@@ -1102,7 +1123,6 @@ function radarSVG(C){
     <path class="rprojband" d="${pathOf('projPctHi')+' '+pathOf('projPctLo')}" fill-rule="evenodd"/>
     <polygon class="rproj" points="${poly('projPct')}"/><polygon class="rcur" points="${poly('curPct')}"/>
     ${dots('projPct','#bc2a2a')}${dots('curPct','#2563eb')}
-    <text class="rtick" x="${cx}" y="${(cy-R*100/MAX-4).toFixed(1)}" text-anchor="middle">100% = required</text>
     ${labels}</svg>`;
 }
 
@@ -1210,16 +1230,16 @@ function renderSlide(){
         </div>`:''}
       </div>
       <div class="side">
-        <div class="lbox">
-          <div class="lrow"><span class="ln cur"></span><span><b>Current · age ${AGE}</b><br><span class="d">Blue line, today’s assessment</span></span></div>
+        <details class="lbox legdtl"><summary class="dtlsum">How to read this chart</summary>
+          <div class="lrow" style="margin-top:9px"><span class="ln cur"></span><span><b>Current · age ${AGE}</b><br><span class="d">Blue line, today’s assessment</span></span></div>
           <div class="lrow"><span class="ln proj"></span><span><b>Projected · age ${TGT}</b><br><span class="d">Coloured bar, the projection if you keep today’s habits (illustrative range per card)</span></span></div>
           <div class="lrow"><span class="ln thr"></span><span><b>What it requires</b><br><span class="d">Green line at 100%, exactly enough at ${TGT}</span></span></div>
           <div class="lrow" style="border-top:1px solid var(--line);padding-top:8px;margin-top:4px;display:block"><span class="d">Each bar = % of what this goal needs. <b style="color:#059669">✓ clears</b> ≥110% · <b style="color:#d97706">≈ on the line</b> 90–110% · <b style="color:#bc2a2a">⚠ gap</b> &lt;90%. Gated by the <b>weakest</b> component, not the average.</span></div>
-        </div>
+        </details>
         <div class="lbox">${statusBox(C)}</div>
       </div>
     </div>
-    ${cardsHTML(C)}
+    ${C.length?`<details class="dtl"><summary class="dtlsum">Show the numbers behind this <span class="dtlhint">${C.length} component${C.length===1?'':'s'}, current → projected</span></summary>${cardsHTML(C)}</details>`:''}
     ${qual.length?`<div class="qnote">Also coached, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:''}
     <div style="margin-top:16px;padding-top:11px;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:var(--muted)">
       <b style="color:var(--cream);font-weight:600">Reading this honestly.</b>
@@ -1348,6 +1368,12 @@ function renderOverview(){
 }
 
 /* ── TAB 1 · Reference + custom-activity authoring (no patient data) ── */
+function filterRefList(){
+  const q=(document.getElementById('refSearch')?.value||'').toLowerCase().trim();
+  document.querySelectorAll('#refList [data-ref]').forEach(b=>{
+    b.style.display=(!q||b.textContent.toLowerCase().includes(q))?'':'none';
+  });
+}
 function renderReference(){
   const list=GOALS.filter(g=>g.profileId);
   if(!list.some(g=>g.id===refId)) refId=list[0].id;
@@ -1356,6 +1382,7 @@ function renderReference(){
     +`<button class="addgoal ${building?'on':''}" id="newAct">+ Build a custom activity</button>`;
   document.querySelectorAll('#refList [data-ref]').forEach(b=>b.onclick=()=>{building=false;refId=b.dataset.ref;renderReference();});
   $("#newAct").onclick=()=>startBuilder();
+  const rs=$("#refSearch"); if(rs){ rs.oninput=filterRefList; filterRefList(); }
   if(building){ renderBuilder(); return; }
   const g=goalById(refId), act=ACTIVITIES[g.profileId];
   const cards=(act.reqs||[]).filter(r=>r.metric&&r.req!=null).map(r=>{const conf=CONFIDENCE[r.metric]||'proxy';
@@ -1367,9 +1394,10 @@ function renderReference(){
       <div class="cardwhy">${basisBadge(r)} ${r.why} <span class="evi">${r.evi||''}</span></div>
     </div>`;}).join("");
   const qual=(act.reqs||[]).filter(r=>!r.metric);
+  const cats=[...new Set((act.reqs||[]).filter(r=>r.cat).map(r=>r.cat))];
   const actions=act.custom?`<div class="buildactions" style="margin-bottom:12px"><button class="btn" id="editAct">Edit</button><button class="btn" id="delAct">Delete activity</button></div>`:'';
   $("#refDetail").innerHTML=`<div class="slide-head"><div class="eyebrow">Centenarian Decathlon · Activity requirements${act.custom?' · custom':''}</div>
-    <h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div></div>
+    <h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div>${cats.length?`<div class="dchips">${cats.map(c=>`<span class="dchip qcat ${c}"><span class="dd"></span>${c}</span>`).join('')}</div>`:''}</div>
     <div class="pv">${actions}<div class="refgrid">${cards}</div>
     ${qual.length?`<div class="qnote">Also coached, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:''}
     <div class="refnote">Fixed task demands: the capacity each activity requires at a reserve level, independent of any patient. Build a patient’s report in the next tab to project their measurements against these.</div></div>`+FOOT;
@@ -1449,12 +1477,16 @@ function deleteActivity(id){
 }
 
 /* ── TAB 2 · Build report (input form) ── */
+function updateGroupCount(grpEl){ if(!grpEl)return; const inps=grpEl.querySelectorAll('input[data-metric]'); const filled=[...inps].filter(i=>i.value.trim()!=='').length; const c=grpEl.querySelector('.fgcount'); if(c) c.textContent=filled+'/'+inps.length+' entered'; }
 function renderBuild(){
   const m=PATIENT.metrics;
-  const fields=METRIC_META.map(grp=>`<div class="fgroup"><div class="fgtitle">${grp.group}</div><div class="fgrid">`+
+  const groupAccent=n=>/ROM|mobilit/i.test(n)?'#2563eb':/strength/i.test(n)?'#bc2a2a':/power|reactive/i.test(n)?'#9333ea':/aerobic|cpet/i.test(n)?'#0891b2':/endurance|core|balance/i.test(n)?'#4d7c0f':/PCA|field/i.test(n)?'#a16207':'#64748b';
+  const fields=METRIC_META.map(grp=>{
+    const filled=grp.items.filter(([k])=>m[k]!=null&&m[k]!=='').length;
+    return `<div class="fgroup" style="border-left-color:${groupAccent(grp.group)}"><div class="fgtitle">${grp.group}<span class="fgcount">${filled}/${grp.items.length} entered</span></div><div class="fgrid">`+
     grp.items.map(([k,lbl,unit,lo,hi])=>`<label class="fld"><span class="flbl">${lbl} <span class="funit">${unit}</span></span>
-      <input type="number" step="any" data-metric="${k}" value="${m[k]??''}" placeholder="typ. ${lo}–${hi}"></label>`).join("")+
-    `</div></div>`).join("");
+      <input type="number" step="any" class="${m[k]==null||m[k]===''?'empty':''}" data-metric="${k}" value="${m[k]??''}" placeholder="typ. ${lo}–${hi}"></label>`).join("")+
+    `</div></div>`;}).join("");
   const goals=GOALS.filter(g=>g.profileId).map(g=>
     `<label class="gchk"><input type="checkbox" data-goal="${g.id}" ${selectedGoals.has(g.id)?'checked':''}><span>${g.name}</span></label>`).join("");
   $("#buildForm").innerHTML=`
@@ -1469,18 +1501,22 @@ function renderBuild(){
         <label class="fld"><span class="flbl">Current age <span class="funit">years</span></span><input type="number" data-pt="age" value="${PATIENT.age}"></label>
         <label class="fld"><span class="flbl">Marginal-decade age <span class="funit">years</span></span><input type="number" data-pt="marginalDecadeAge" value="${PATIENT.marginalDecadeAge}"></label>
       </div></div>
-    <div class="bsec"><div class="bsectitle">Assessment measurements</div>${fields}</div>
+    <div class="bsectitle measlbl">Assessment measurements</div>${fields}
     <div class="bsec"><div class="bsectitle">Goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div>
       <div class="gchks">${goals}</div></div>
+    <div class="buildsticky"><div class="bsinner"><span class="bsmeta"><b id="stickyCount">${selectedGoals.size}</b> goal${selectedGoals.size===1?'':'s'} selected · ready when you are</span><button class="btn primary" id="toReport2">View report →</button></div></div>
     <input type="file" id="impFile" accept="application/json" hidden>`;
   $("#buildForm").querySelectorAll('input[data-metric]').forEach(inp=>inp.oninput=()=>{
-    const v=inp.value.trim(); PATIENT.metrics[inp.dataset.metric]= v===''?null:parseFloat(v); });
+    const v=inp.value.trim(); PATIENT.metrics[inp.dataset.metric]= v===''?null:parseFloat(v);
+    inp.classList.toggle('empty', v===''); updateGroupCount(inp.closest('.fgroup')); });
   $("#buildForm").querySelectorAll('[data-pt]').forEach(inp=>inp.oninput=()=>{
     const k=inp.dataset.pt; PATIENT[k]=(k==='age'||k==='marginalDecadeAge')?(parseInt(inp.value)||0):inp.value; syncAge(); renderChip(); });
   $("#buildForm").querySelectorAll('input[data-goal]').forEach(c=>c.onchange=()=>{
     c.checked?selectedGoals.add(c.dataset.goal):selectedGoals.delete(c.dataset.goal);
-    $("#goalCount").textContent=selectedGoals.size+' selected'; });
-  $("#toReport").onclick=()=>setTab('report'); $("#expBtn").onclick=exportData;
+    $("#goalCount").textContent=selectedGoals.size+' selected';
+    const sc=$("#stickyCount"); if(sc) sc.textContent=selectedGoals.size; });
+  const toRep=()=>setTab('report');
+  $("#toReport").onclick=toRep; const tr2=$("#toReport2"); if(tr2) tr2.onclick=toRep; $("#expBtn").onclick=exportData;
   $("#impBtn").onclick=()=>$("#impFile").click(); $("#impFile").onchange=importData;
 }
 
