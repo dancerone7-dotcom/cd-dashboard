@@ -1187,7 +1187,12 @@ function renderSlide(){
   const body=`<div class="pv">
     ${missing.length?`<div class="missnote">⚠ No measurement entered for <b>${missing.join(', ')}</b>; ${missing.length===1?'that component is':'those components are'} not shown. Add ${missing.length===1?'it':'them'} in Build report for a complete profile.</div>`:''}
     <div class="pv-top">
-      <div class="bchartwrap">${barChart(C)}</div>
+      <div class="bchartwrap">${barChart(C)}
+        ${C.length>=3?`<div class="radarsec">
+          <div class="radarttl">Capacity shape at ${TGT} <span class="radarsub">blue = today · coral dashed = projected to ${TGT} · green ring = 100% required</span></div>
+          <div class="radarwrap">${radarSVG(C)}</div>
+        </div>`:''}
+      </div>
       <div class="side">
         <div class="lbox">
           <div class="lrow"><span class="ln cur"></span><span><b>Current · age ${AGE}</b><br><span class="d">Blue line, today’s assessment</span></span></div>
@@ -1199,10 +1204,6 @@ function renderSlide(){
         <div class="lbox">${statusBox(C)}</div>
       </div>
     </div>
-    ${C.length>=3?`<div class="radarsec">
-      <div class="radarttl">Capacity shape at ${TGT} <span class="radarsub">blue = today · coral dashed = projected to ${TGT} · green ring = 100% required</span></div>
-      <div class="radarwrap">${radarSVG(C)}</div>
-    </div>`:''}
     ${cardsHTML(C)}
     ${qual.length?`<div class="qnote">Also coached, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:''}
     <div style="margin-top:16px;padding-top:11px;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:var(--muted)">
