@@ -553,26 +553,26 @@ function backcastNow(sex, ageNow, reserve, dir='higher_better', target=90, decli
       from the patient JSON / VALD / passive-ROM exam).
    ══════════════════════════════════════════════════════════════ */
 let PATIENT = {
-  name:"Sample patient", sex:"male", age:57, marginalDecadeAge:90,
+  name:"PW", sex:"male", age:54, marginalDecadeAge:90,
   metrics:{
     // ── Passive ROM exam (degrees) ──
-    shoulderFlexion_deg:152, thoracicExt_deg:38, thoracicRot_deg:42,
-    hipFlexion_deg:112, ankleDF_deg:34, hamstringSLR_deg:70,
+    shoulderFlexion_deg:168, thoracicExt_deg:44, thoracicRot_deg:46,
+    hipFlexion_deg:122, ankleDF_deg:43, hamstringSLR_deg:82,
     // ── Strength (VALD DynaMo / ForceDecks, body-mass normalized) ──
-    shoulderER_NmKg:0.18, ohPress_xBW:0.42, grip_lb:84,
-    kneeExt_xBW:0.46, beltSquat_xBW:3.4, bench_xBW:1.9,
+    shoulderER_NmKg:0.22, ohPress_xBW:0.55, grip_lb:112,
+    kneeExt_xBW:0.58, beltSquat_xBW:4.2, bench_xBW:2.3,
     // ── Power / reactive ──
-    cmjPower_WkG:38.2, cmjRSI:0.35, hopRSI:1.2,
+    cmjPower_WkG:57, cmjRSI:0.62, hopRSI:2.3,
     // ── Aerobic (CPET) ──
-    vo2:36,
+    vo2:50,
     // ── Endurance / core / balance ──
-    calfRaise_reps:22, trunkExt_s:90, trunkFlex_s:45,
-    balanceSL_EO_s:30, balanceSL_EC_s:14,
+    calfRaise_reps:38, trunkExt_s:120, trunkFlex_s:70,
+    balanceSL_EO_s:48, balanceSL_EC_s:34,
     // ── PCA movement tests (gym units) ──
-    backSquat_pctBW:100, relDeadlift_pctBW:140, plankHeelWall_s:80, cuffExtRot_lb:17.5,
-    deadHang_s:75, suitcaseCarry_pctBW:45, ohPress_pctBW:18, loadedStepup_pctBW:40, stepDown_in:16,
+    backSquat_pctBW:115, relDeadlift_pctBW:160, plankHeelWall_s:100, cuffExtRot_lb:22.5,
+    deadHang_s:95, suitcaseCarry_pctBW:55, ohPress_pctBW:22, loadedStepup_pctBW:48, stepDown_in:18,
     // ── Research-specific tests (pROM + VALD) ──
-    hipIR_deg:32, hipAbd_xBW:0.20, slHop_cm:130, kneeFlex_xBW:0.42, chinup_reps:6,
+    hipIR_deg:36, hipAbd_xBW:0.30, slHop_cm:170, kneeFlex_xBW:0.56, chinup_reps:10,
   }
 };
 
