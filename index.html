@@ -400,15 +400,17 @@ body.tab-reference .cardwhy{display:block}
 .scope b{color:var(--cream);font-weight:600}
 #printDoc{display:none}
 .ppage{width:11in;height:8.5in;background:#fff;color:var(--ink);box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;font-family:var(--sans)}
-.phead{display:flex;justify-content:space-between;align-items:center;padding:.26in .5in .13in;border-bottom:2px solid var(--coral);flex:0 0 auto}
-.pbrand{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink)}
-.preg{color:var(--coral);font-size:11px;vertical-align:super}
-.pheadr{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700}
+.ptagrow{display:flex;justify-content:flex-end;padding:.28in .5in 0;flex:0 0 auto}
+.ptag{font-family:var(--serif);font-size:14px;color:#7a828f;letter-spacing:.3px}
+.ptag i{font-style:italic}
+.treg{font-size:8px;vertical-align:super}
 .pbody{flex:1 1 auto;padding:.22in .5in;display:flex;flex-direction:column;min-height:0;overflow:hidden}
-.pfoot{display:flex;justify-content:space-between;align-items:center;padding:.1in .5in .18in;border-top:1px solid var(--line);flex:0 0 auto}
-.ppillars{display:flex;gap:16px;font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
-.ppillars .on{color:var(--coral);font-weight:700}
-.pfr{font-size:9px;color:var(--muted)}
+.pfoot{flex:0 0 auto}
+.pfbar{height:3px;background:linear-gradient(90deg,#2a7cfb 0%,#8f63c4 50%,#c05e6d 100%)}
+.pfinner{display:flex;justify-content:space-between;align-items:center;background:#39404b;padding:.12in .5in}
+.pfbrand{font-family:var(--serif);font-size:14px;color:rgba(255,255,255,.72)}
+.pfpillar{font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.78);font-weight:600}
+.pfpg{color:rgba(255,255,255,.45);letter-spacing:.5px}
 .pgtitle{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex:0 0 auto}
 .pgeyebrow{font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:2px}
 .pgh1{font-family:var(--serif);font-size:25px;font-weight:600;line-height:1.05;margin:0}
@@ -446,18 +448,19 @@ body.tab-reference .cardwhy{display:block}
 .sumgrid .ovword{font-size:13px;margin-top:0}
 .sumgrid .ovclear{font-size:8px}
 .sumscope{margin-top:auto;font-size:9px;padding-top:8px}
-.pp-cover{padding:0}
-.covtop{padding:.5in .5in .3in;border-bottom:2px solid var(--coral);flex:0 0 auto}
-.pbrand.cbig{font-size:26px}
-.covcore{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;padding:0 .7in;min-height:0}
-.coveyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:8px}
-.covtitle{font-family:var(--serif);font-size:46px;font-weight:600;line-height:1.04;margin:0 0 12px;color:var(--ink)}
-.covtag{font-size:14px;color:var(--muted);line-height:1.5;max-width:6in;margin-bottom:26px}
-.covmeta{display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--line);padding-top:18px;max-width:5.2in}
+.pp-cover{padding:0;background:#39404b;color:#fff}
+.pp-cover .covtagrow{display:flex;justify-content:flex-end;padding:.4in .55in 0;flex:0 0 auto}
+.pp-cover .ptag{color:rgba(255,255,255,.8)}
+.covcore{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;padding:0 .75in;min-height:0}
+.coveyebrow{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.66);font-weight:600;margin-bottom:10px}
+.covtitle{font-family:var(--serif);font-size:52px;font-weight:500;line-height:1.03;margin:0 0 14px;color:#fff}
+.covtagline{font-size:14px;color:rgba(255,255,255,.6);line-height:1.5;max-width:6in;margin-bottom:28px;font-style:italic}
+.covmeta{display:flex;flex-direction:column;gap:9px;border-top:1px solid rgba(255,255,255,.18);padding-top:18px;max-width:5.4in}
 .covrow{display:flex;gap:14px;font-size:13px;align-items:baseline}
-.cmk{flex:0 0 1.5in;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-size:10px;font-weight:700}
-.cmv{color:var(--ink);font-weight:600}
-.pp-cover .pfoot{padding:.14in .5in .22in}
+.cmk{flex:0 0 1.5in;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.8px;font-size:10px;font-weight:700}
+.cmv{color:rgba(255,255,255,.92);font-weight:500}
+.covfoot{padding:.3in .55in .42in;flex:0 0 auto}
+.covfoot .pfbrand{font-family:var(--serif);font-size:15px;color:rgba(255,255,255,.55)}
 @page{size:letter landscape;margin:0}
 @media print{
   .appbar,.rail{display:none!important}
@@ -1713,11 +1716,10 @@ function pageTakeaway(g,C,v){
     : `you're on track on ${v.nClear} of ${total} qualities. The ones to train are <b class="tk">${jn(gaps)}</b>, with <b class="tk">${v.worst.short}</b> furthest behind (<b>${v.worst.shortBy}% short</b>).`);
 }
 function printFrame(pageNum,total,cls,inner){
-  const who=PATIENT.name?PATIENT.name+'’s ':'';
   return `<section class="ppage ${cls}">
-    <header class="phead"><div class="pbrand">Early Medical<span class="preg">®</span></div><div class="pheadr">${who}Centenarian Decathlon · Functional Capacity Profile</div></header>
+    <div class="ptagrow"><div class="ptag">Being <i>early</i> matters<sup class="treg">®</sup></div></div>
     <div class="pbody">${inner}</div>
-    <footer class="pfoot"><div class="ppillars"><span>Objective</span><span class="on">Strategy</span><span>Tactics</span></div><div class="pfr">Planning scenario, not a clinical prediction · page ${pageNum} of ${total}</div></footer>
+    <footer class="pfoot"><div class="pfbar"></div><div class="pfinner"><div class="pfbrand">Early Medical</div><div class="pfpillar">Objective · Strategy · Tactics<span class="pfpg"> · ${pageNum} / ${total}</span></div></div></footer>
   </section>`;
 }
 function printCompTable(C){
@@ -1766,11 +1768,11 @@ function printCoverPage(goals,total){
   let dateStr=''; try{ dateStr=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }catch(e){}
   const row=(k,v)=>`<div class="covrow"><span class="cmk">${k}</span><span class="cmv">${v}</span></div>`;
   return `<section class="ppage pp-cover">
-    <div class="covtop"><div class="pbrand cbig">Early Medical<span class="preg">®</span></div></div>
+    <div class="covtagrow"><div class="ptag">Being <i>early</i> matters<sup class="treg">®</sup></div></div>
     <div class="covcore">
       <div class="coveyebrow">Functional Capacity Profile</div>
       <h1 class="covtitle">${who} Centenarian Decathlon</h1>
-      <div class="covtag">A planning scenario projecting today’s physical capacity toward the marginal decade at ${TGT}.</div>
+      <div class="covtagline">A planning scenario projecting today’s physical capacity toward the marginal decade at ${TGT}.</div>
       <div class="covmeta">
         ${row('Prepared for', PATIENT.name||'Patient')}
         ${row('Profile', `${PATIENT.sex} · age ${AGE} · marginal decade ${TGT}`)}
@@ -1779,7 +1781,7 @@ function printCoverPage(goals,total){
         ${dateStr?row('Date', dateStr):''}
       </div>
     </div>
-    <footer class="pfoot"><div class="ppillars"><span>Objective</span><span class="on">Strategy</span><span>Tactics</span></div><div class="pfr">Planning scenario, not a clinical prediction · page 1 of ${total}</div></footer>
+    <div class="covfoot"><div class="pfbrand">Early Medical</div></div>
   </section>`;
 }
 function buildPrintDoc(){
