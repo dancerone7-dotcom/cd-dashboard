@@ -26,9 +26,9 @@ HHS explains that health information associated with identifiers can be PHI and 
 
 ## Release evidence
 
-- [ ] Repository scan confirms no patient artifacts or secrets.
-- [ ] Browser network inspection confirms entered values are not transmitted.
-- [ ] Privacy warning is visible before import/export use.
+- [x] Repository scan confirms no patient artifacts or secrets.
+- [x] Browser and source inspection confirm entered values are not transmitted by application code.
+- [x] Privacy warning is visible before import/export use.
 - [ ] Clinical owner approves the identifier convention.
 - [ ] Privacy/security owner approves the deployment boundary and retention process.
 - [ ] A named person owns incident response and removal of accidental commits.

@@ -6,8 +6,8 @@ This checklist separates completed engineering evidence from approvals that must
 
 1. **Automated model validation and CI**
    - [x] Local validator covers 36 goals, 83 metrics, finite projections, import/export, print generation, evidence grades, balance units, privacy boundaries, and accessible tab semantics.
-   - [ ] GitHub Actions workflow is prepared locally at `.github/workflows/validate.yml`; publishing is blocked until a credential with GitHub `workflow` write permission is used.
-   - [ ] Publish the workflow and confirm it passes on the release commit.
+   - [x] GitHub Actions workflow is published at `.github/workflows/validate.yml`.
+   - [x] Push and pull-request runs passed on workflow commit `f01a3bd`.
 
 2. **Clinical calibration register**
    - [x] The 22 unvalidated candidate thresholds are listed and remain supporting trajectory only.
