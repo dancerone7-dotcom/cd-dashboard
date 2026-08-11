@@ -6396,9 +6396,12 @@ function exportPDF(){
   window.onafterprint=()=>{ document.body.classList.remove('printing'); pd.innerHTML=''; window.onafterprint=null; };
   window.print();
 }
-function exportData(){
+function dashboardSnapshot(){
   const custom={}; selectedGoals.forEach(id=>{ if(ACTIVITIES[id]&&ACTIVITIES[id].custom) custom[id]=ACTIVITIES[id]; });
-  const data={modelVersion:'3.1',patient:{name:PATIENT.name,sex:PATIENT.sex,age:PATIENT.age,marginalDecadeAge:PATIENT.marginalDecadeAge,bodyWeight_lb:PATIENT.bodyWeight_lb,clinician:PATIENT.clinician},metrics:PATIENT.metrics,goals:[...selectedGoals],customActivities:custom};
+  return {modelVersion:'3.1',patient:{name:PATIENT.name,sex:PATIENT.sex,age:PATIENT.age,marginalDecadeAge:PATIENT.marginalDecadeAge,bodyWeight_lb:PATIENT.bodyWeight_lb,clinician:PATIENT.clinician},metrics:PATIENT.metrics,goals:[...selectedGoals],customActivities:custom};
+}
+function exportData(){
+  const data=dashboardSnapshot();
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
   a.download=((PATIENT.name||'patient').replace(/[^a-z0-9]+/gi,'_'))+'_cd.json'; a.click();

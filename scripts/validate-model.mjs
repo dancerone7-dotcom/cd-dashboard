@@ -15,7 +15,7 @@ globalThis.__MODEL__={
   DECLINE_CURVES,FAMILY_BAND,FORECAST_EVIDENCE,MEASUREMENT_PROTOCOLS,
   TASK_DEMAND_EVIDENCE,THRESHOLDS_AWAITING_CALIBRATION,MET_CONVENTION,
   components,scoreableReqs,supportReqs,modelInputCount,goalEvaluation,
-  projectCapacity,resolveRequirement,buildPrintDoc,applyImportedData,
+  projectCapacity,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,
   setSelectedGoals(ids){selectedGoals=new Set(ids);},syncAge
 };`;
 const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>''}};
@@ -98,7 +98,13 @@ for(const scenario of [{scale:1.2,sex:'male',age:52},{scale:1,sex:'female',age:5
   for(const item of M.CATALOG){const act=M.ACTIVITIES[item.profile],parts=M.components(act.reqs),ev=M.goalEvaluation(act,parts);check(validZones.has(ev.zone),`${item.profile}: invalid status ${ev.zone}.`);check(ev.score==null||finite(ev.score),`${item.profile}: non-finite readiness score.`);for(const part of parts)check(['raw','projRaw','projLo','projHi','req','projPct'].every(key=>finite(part[key])),`${item.profile}/${part.r.metric}: non-finite component output.`);}
 }
 
-/* Import filtering rejects unknown/non-finite clinical data. */
+/* Export/import round-trip and import filtering. */
+const snapshot=JSON.parse(JSON.stringify(M.dashboardSnapshot()));
+check(snapshot.modelVersion==='3.1','Export snapshot has the wrong model version.');
+check(Object.keys(snapshot.metrics).length===Object.keys(M.PATIENT.metrics).length,'Export snapshot omitted assessment metrics.');
+check(Array.isArray(snapshot.goals)&&snapshot.goals.length>0,'Export snapshot omitted selected goals.');
+M.applyImportedData(snapshot);
+check(M.PATIENT.name===snapshot.patient.name&&M.PATIENT.sex===snapshot.patient.sex,'Export/import round-trip changed patient identity fields.');
 M.applyImportedData({patient:{name:'<bad> A',sex:'other',age:55,marginalDecadeAge:90,bodyWeight_lb:175},metrics:{vo2:Infinity,unknown_metric:123},goals:['walk-3mi','not-a-goal']});
 check(!M.PATIENT.name.includes('<'),'Imported display text was not sanitized.');
 check(M.PATIENT.metrics.vo2==null,'Non-finite imported metric was not rejected.');
@@ -113,4 +119,4 @@ check(!/\b(?:NaN|Infinity)\b/.test(printDoc),'Full print document contains NaN o
 console.log('Centenarian Decathlon model audit');
 console.table(rows);
 if(errors.length){console.error(`\nFAIL (${errors.length})`);for(const error of errors)console.error(`- ${error}`);process.exitCode=1;}
-else console.log(`\nPASS · ${rows.length} goals · ${Object.keys(M.METRICS).length} metrics · fixed-demand, missing-data, scenario, import, and ${38}-page print checks`);
+else console.log(`\nPASS · ${rows.length} goals · ${Object.keys(M.METRICS).length} metrics · fixed-demand, missing-data, scenario, export/import, and ${38}-page print checks`);
