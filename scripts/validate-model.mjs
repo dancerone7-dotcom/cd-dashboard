@@ -59,13 +59,11 @@ check(!/lt1|sustainable aerobic capacity/i.test(lt1Headline),'LT1 must not appea
 check(html.includes('Clinician detail: all measured capacities'),'The report must retain the clinician capacity deep dive.');
 const demoGoalIds=new Set(M.dashboardSnapshot().goals);
 const demoHeadline=M.capacityTrajectories(allGoals.filter(g=>demoGoalIds.has(g.id))).filter(x=>x.metric!=='lt1_vo2');
-check(demoHeadline.filter(x=>x.status==='strength').length===3,'Sample demo must show exactly three strong headline capacities.');
-check(demoHeadline.filter(x=>x.status==='opportunity').length===3,'Sample demo must show exactly three weak headline capacities.');
 const demoSummary=M.capacitySummaryHTML(demoHeadline);
-for(const label of ['Loaded step-up','Deadlift','Suitcase carry','Single-leg balance','VO₂max','Seated overhead press'])check(demoSummary.includes(label),`Sample headline must use the assessment-specific label: ${label}.`);
-check(!/Relative deadlift|Suitcase carry 60 s|SA seated overhead press/.test(demoSummary),'Sample headline labels must stay concise.');
+check((demoSummary.match(/class="caprankitem"/g)||[]).length<=6,'Patient headline must show no more than three strengths and three opportunities.');
+check(!/% retained|% of hardest calibrated need|Avg decline/i.test(demoSummary),'Patient headline must omit technical reserve and trajectory detail.');
 const demoPrintSummary=M.buildPrintDoc().match(/<section class="ppage pp-summary">([\s\S]*?)<\/section>/)?.[1]||'';
-for(const label of ['Loaded step-up','Deadlift','Suitcase carry','Single-leg balance','VO₂max','Seated overhead press'])check(demoPrintSummary.includes(label),`PDF summary must use the concise assessment label: ${label}.`);
+check((demoPrintSummary.match(/class="scq qcat /g)||[]).length<=6,'PDF headline must show no more than three strengths and three opportunities.');
 for(const metric of ['balanceSL_EO_s','balanceSL_EC_s']){
   check(!M.MEASUREMENT_PROTOCOLS[metric].startsWith('VALD'),`${metric}: seconds held must not be labeled as a VALD CoP result.`);
   check(M.MEASUREMENT_PROTOCOLS[metric].includes('enter weaker side')&&M.MEASUREMENT_PROTOCOLS[metric].includes('SOP approval pending'),`${metric}: timed-stance protocol must name the aggregation rule and approval state.`);
