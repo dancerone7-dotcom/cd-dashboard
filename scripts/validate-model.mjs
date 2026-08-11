@@ -13,7 +13,7 @@ const source=`${match[1].slice(0,stopAt)}
 globalThis.__MODEL__={
   ACTIVITIES,CATALOG,GOALS,METRICS,METRIC_GROUPS,PATIENT,BASELINE_METRICS,
   DECLINE_CURVES,FAMILY_BAND,FORECAST_EVIDENCE,MEASUREMENT_PROTOCOLS,
-  TASK_DEMAND_EVIDENCE,THRESHOLDS_AWAITING_CALIBRATION,MET_CONVENTION,
+  TASK_DEMAND_EVIDENCE,TASK_GRADE_UNCERTAINTY,THRESHOLDS_AWAITING_CALIBRATION,MET_CONVENTION,
   components,scoreableReqs,supportReqs,modelInputCount,goalEvaluation,
   projectCapacity,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,
   setSelectedGoals(ids){selectedGoals=new Set(ids);},syncAge
@@ -34,6 +34,10 @@ check(M.CATALOG.length===36,`Expected 36 canonical goals; found ${M.CATALOG.leng
 check(Object.keys(M.ACTIVITIES).length===36,`Expected 36 activity definitions; found ${Object.keys(M.ACTIVITIES).length}.`);
 check(Object.keys(M.METRICS).length===83,`Expected 83 assessment metrics; found ${Object.keys(M.METRICS).length}.`);
 check(M.MET_CONVENTION.mlKgMinPerMET===3.5,'Task-demand MET convention must remain the fixed adult 3.5 mL/kg/min value.');
+check(Object.values(M.TASK_DEMAND_EVIDENCE).every(e=>['A','B','C'].includes(e.grade)),'Every Compendium task mapping must carry an A/B/C evidence grade.');
+check(!/\b(?:fetch|XMLHttpRequest|sendBeacon)\s*\(/.test(html),'Dashboard must not transmit entered clinical data over the network.');
+check(html.includes('role="tablist"')&&html.includes('aria-selected="true"'),'Dashboard navigation must expose accessible tab semantics.');
+check(html.includes('exported JSON and PDFs contain the health data entered here'),'Builder must show the export privacy warning.');
 
 const grouped=M.METRIC_GROUPS.flatMap(([,keys])=>keys);
 for(const metric of Object.keys(M.METRICS))check(grouped.filter(key=>key===metric).length===1,`${metric}: must appear in exactly one assessment group.`);
@@ -43,6 +47,13 @@ for(const [metric,meta] of Object.entries(M.METRICS)){
   check(!!M.FORECAST_EVIDENCE[meta.family],`${metric}: missing forecast evidence for ${meta.family}.`);
   if(meta.src?.startsWith('VALD'))check((meta.measurementSource||'').includes('·'),`${metric}: VALD measurement must name an explicit test protocol.`);
 }
+for(const metric of ['balanceSL_EO_s','balanceSL_EC_s']){
+  check(!M.MEASUREMENT_PROTOCOLS[metric].startsWith('VALD'),`${metric}: seconds held must not be labeled as a VALD CoP result.`);
+  check(M.MEASUREMENT_PROTOCOLS[metric].includes('enter weaker side')&&M.MEASUREMENT_PROTOCOLS[metric].includes('SOP approval pending'),`${metric}: timed-stance protocol must name the aggregation rule and approval state.`);
+}
+const balanceRequirement=M.ACTIVITIES['balance-30s'].reqs.find(r=>r.metric==='balanceSL_EO_s');
+check(balanceRequirement?.req===30&&M.METRICS.balanceSL_EO_s.unit==='s','Single-leg balance must use a fixed 30-second target in seconds.');
+check(M.projectCapacity(48,'balance','male',54,90,1)<48,'Single-leg balance must apply the balance-family age-decline model to seconds held.');
 for(const metric of ['ankleDF_cm','shoulderFlexion_deg','thoracicExt_deg','thoracicRot_deg','hipFlexion_deg','hipIR_deg','hamstringSLR_deg'])check(M.METRICS[metric].family==='none',`${metric}: ROM must remain context-only until longitudinal calibration.`);
 
 for(const item of M.CATALOG){
@@ -62,7 +73,11 @@ for(const item of M.CATALOG){
     check(r.basis==='task'||r.basis==='research',`${item.profile}/${r.metric}: scoreable threshold has non-defensible basis ${r.basis}.`);
     check(!!(r.taskSource||r.src||r.evi),`${item.profile}/${r.metric}: scoreable threshold lacks a task source.`);
     check(resolved.req==null||resolved.unit===meta.unit,`${item.profile}/${r.metric}: resolved unit ${resolved.unit} does not match ${meta.unit}.`);
-    if(r.reqKind?.startsWith('aerobic'))check(!!r.taskSource,`${item.profile}/${r.metric}: aerobic demand lacks Compendium mapping.`);
+    if(r.reqKind?.startsWith('aerobic')){
+      check(!!r.taskSource,`${item.profile}/${r.metric}: aerobic demand lacks Compendium mapping.`);
+      check(['A','B','C'].includes(r.taskEvidenceGrade),`${item.profile}/${r.metric}: aerobic demand lacks a task-evidence grade.`);
+      check((+r.demandUncertainty||0)>=(M.TASK_GRADE_UNCERTAINTY[r.taskEvidenceGrade]||.35),`${item.profile}/${r.metric}: demand uncertainty is too narrow for task evidence ${r.taskEvidenceGrade}.`);
+    }
   }
   const inputs=M.modelInputCount(act),complexity=Number(act.complexity);
   const [min,max]=complexity<=2?[3,5]:complexity===3?[4,6]:[5,7];
@@ -100,7 +115,7 @@ for(const scenario of [{scale:1.2,sex:'male',age:52},{scale:1,sex:'female',age:5
 
 /* Export/import round-trip and import filtering. */
 const snapshot=JSON.parse(JSON.stringify(M.dashboardSnapshot()));
-check(snapshot.modelVersion==='3.1','Export snapshot has the wrong model version.');
+check(snapshot.modelVersion==='3.2','Export snapshot has the wrong model version.');
 check(Object.keys(snapshot.metrics).length===Object.keys(M.PATIENT.metrics).length,'Export snapshot omitted assessment metrics.');
 check(Array.isArray(snapshot.goals)&&snapshot.goals.length>0,'Export snapshot omitted selected goals.');
 M.applyImportedData(snapshot);

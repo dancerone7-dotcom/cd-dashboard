@@ -16,8 +16,8 @@
 :root{
   --slate:#ffffff; --slate-2:#f1f3f5; --navy:#ffffff; --navy-2:#ffffff;
   --coral:#bc2a2a; --teal:#2563eb; --cream:#39404b; --white:#1a1f2b;
-  --ink:#39404b; --muted:#64748b;
-  --ok:#10b981; --ok-soft:#a7f3d0; --warn:#d97706; --gap:#bc2a2a;
+  --ink:#39404b; --muted:#475569;
+  --ok:#10b981; --ok-soft:#a7f3d0; --warn:#92400e; --gap:#bc2a2a;
   --line:rgba(15,23,42,.1);
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'Avenir','Avenir Next',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
@@ -26,6 +26,7 @@
 html,body{margin:0;padding:0}
 body{font-family:var(--sans);background:#eef1f4;color:var(--ink);
   -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+*:focus-visible{outline:3px solid #2563eb;outline-offset:2px}
 
 /* ── Top app bar (UI chrome, not part of the slide) ── */
 .appbar{display:flex;align-items:center;gap:18px;padding:12px 22px;background:var(--navy);
@@ -55,10 +56,10 @@ body{font-family:var(--sans);background:#eef1f4;color:var(--ink);
 .actbtn.soon{opacity:.45;cursor:default}
 .actbtn .ring{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;
   font-size:12px;font-weight:800;border:2px solid currentColor}
-.actbtn.z-clear .ring{color:#059669} .actbtn.z-borderline .ring{color:#d97706} .actbtn.z-gap .ring{color:#bc2a2a}
+.actbtn.z-clear .ring{color:#047857} .actbtn.z-borderline .ring{color:#92400e} .actbtn.z-gap .ring{color:#bc2a2a}
 .actbtn.on .ring{color:#fff}
 .actbtn .lbl{flex:1}
-.actbtn .pct{font-size:11px;color:#64748b}
+.actbtn .pct{font-size:11px;color:#475569}
 .actbtn.on .pct{color:rgba(255,255,255,.9)}
 .rail .addnote{margin:14px 8px;font-size:11.5px;color:var(--muted);line-height:1.5}
 
@@ -75,7 +76,7 @@ body{font-family:var(--sans);background:#eef1f4;color:var(--ink);
 .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
 .readiness{text-align:right;flex:0 0 auto}
 .readiness .big{font-family:var(--serif);font-size:27px;line-height:1.05;font-weight:600}
-.readiness .big.r-gap{color:#bc2a2a} .readiness .big.r-bord{color:#d97706} .readiness .big.r-clear{color:#059669}
+.readiness .big.r-gap{color:#bc2a2a} .readiness .big.r-bord{color:#92400e} .readiness .big.r-clear{color:#047857}
 .readiness .cap{font-size:10.5px;color:var(--muted);margin-top:3px;max-width:240px;margin-left:auto;line-height:1.35}
 .readiness .cap2{font-size:10px;color:var(--muted);opacity:.8;margin-top:3px}
 
@@ -95,14 +96,14 @@ body{font-family:var(--sans);background:#eef1f4;color:var(--ink);
 .req .qcat{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700}
 .qcat.Mobility{color:var(--teal)} .qcat.Strength{color:var(--coral)}
 .qcat.Power{color:#9333ea} .qcat.Aerobic{color:#0891b2}
-.qcat.Eccentric{color:#d97706} .qcat.Balance{color:#4d7c0f}
+.qcat.Eccentric{color:#92400e} .qcat.Balance{color:#3f6212}
 .qcat.Core{color:#6d28d9} .qcat.Endurance{color:#a16207}
 .req .qlbl{font-size:14px;font-weight:600;color:var(--white);margin-top:2px;line-height:1.2}
 .req .src{font-size:11px;color:var(--muted);margin-top:3px}
 .badge{display:inline-block;font-size:9.5px;letter-spacing:.4px;padding:1.5px 6px;border-radius:4px;
   font-weight:700;vertical-align:middle;margin-left:6px}
-.badge.confirmed{background:rgba(16,185,129,.18);color:#059669;border:1px solid rgba(16,185,129,.4)}
-.badge.modeled{background:rgba(217,119,6,.15);color:#d97706;border:1px solid rgba(217,119,6,.4)}
+.badge.confirmed{background:rgba(16,185,129,.18);color:#047857;border:1px solid rgba(16,185,129,.4)}
+.badge.modeled{background:rgba(217,119,6,.15);color:#92400e;border:1px solid rgba(217,119,6,.4)}
 .badge.coachset{background:rgba(188,42,42,.18);color:#bc2a2a;border:1px solid rgba(188,42,42,.45)}
 
 /* gap track */
@@ -128,7 +129,7 @@ body{font-family:var(--sans);background:#eef1f4;color:var(--ink);
 .cell.status-gap{box-shadow:inset 0 0 0 1.5px var(--gap)}
 .cell.status-warn{box-shadow:inset 0 0 0 1.5px var(--warn)}
 .cell.status-ok{box-shadow:inset 0 0 0 1.5px var(--ok)}
-.cell .v.gap{color:#bc2a2a} .cell .v.warn{color:#d97706} .cell .v.ok{color:#059669}
+.cell .v.gap{color:#bc2a2a} .cell .v.warn{color:#92400e} .cell .v.ok{color:#047857}
 
 /* reference mode: show the "why" */
 .why{grid-column:1/-1;font-size:12px;color:#475569;line-height:1.5;padding:2px 0 4px;
@@ -170,17 +171,17 @@ body.ref .req{grid-template-columns:188px 1fr 232px}
 .blabel{display:flex;align-items:center;gap:5px;min-width:0;font-size:11.5px}
 .blabel .bnm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--cream)}
 .zico{font-size:10px;flex:0 0 auto;font-weight:700}
-.zico.z-clear{color:#059669} .zico.z-borderline{color:#d97706} .zico.z-gap{color:#bc2a2a}
+.zico.z-clear{color:#047857} .zico.z-borderline{color:#92400e} .zico.z-gap{color:#bc2a2a}
 .btrack{position:relative;height:18px;background:rgba(15,23,42,.045);border-radius:5px;overflow:hidden}
 .bband{position:absolute;top:0;bottom:0;background:rgba(217,119,6,.17)}
 .bproj{position:absolute;top:0;bottom:0;left:0;border-radius:5px 0 0 5px}
-.bproj.z-clear{background:#10b981} .bproj.z-borderline{background:#d97706} .bproj.z-gap{background:#bc2a2a}
+.bproj.z-clear{background:#10b981} .bproj.z-borderline{background:#92400e} .bproj.z-gap{background:#bc2a2a}
 .bthr{position:absolute;top:-2px;bottom:-2px;width:2px;background:#10b981;z-index:3}
 .bcur{position:absolute;top:-3px;bottom:-3px;width:2px;background:#2563eb;z-index:4;box-shadow:0 0 0 1px rgba(255,255,255,.85)}
 .bval{font-size:11px;font-weight:700;text-align:right}
-.bval.z-clear{color:#059669} .bval.z-borderline{color:#d97706} .bval.z-gap{color:#bc2a2a}
+.bval.z-clear{color:#047857} .bval.z-borderline{color:#92400e} .bval.z-gap{color:#bc2a2a}
 .rdisc{font-size:9px;color:var(--muted);font-style:italic;margin-top:3px;letter-spacing:.2px}
-.missnote{background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.3);color:#b45309;border-radius:9px;padding:9px 13px;font-size:11.5px;line-height:1.4;margin-bottom:6px}
+.missnote{background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.3);color:#92400e;border-radius:9px;padding:9px 13px;font-size:11.5px;line-height:1.4;margin-bottom:6px}
 .rgrid{fill:none;stroke:rgba(15,23,42,.06)}
 .raxis{stroke:rgba(15,23,42,.1)}
 .rlabel{fill:var(--cream);font-size:11px;font-family:var(--sans)}
@@ -229,7 +230,7 @@ details[open]>.dtlsum::before{transform:rotate(90deg)}
 .refrthr{fill:rgba(16,185,129,.09);stroke:#10b981;stroke-width:2}
 .refrlbl{font-family:var(--sans);font-size:11.5px;font-weight:700}
 .refrval{fill:var(--muted);font-size:10.5px;font-weight:600}
-.refrc1{fill:#059669;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.5px}
+.refrc1{fill:#047857;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.5px}
 .refrc2{fill:var(--muted);font-family:var(--sans);font-size:10px;letter-spacing:.5px}
 .side{display:flex;flex-direction:column;gap:11px}
 .lbox{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
@@ -244,9 +245,9 @@ details[open]>.dtlsum::before{transform:rotate(90deg)}
 .srow.z-borderline{background:rgba(217,119,6,.10);border-color:rgba(217,119,6,.28)}
 .srow.z-clear{background:rgba(16,185,129,.09);border-color:rgba(16,185,129,.22)}
 .srow .nm{color:var(--white);font-weight:600} .srow .df{margin-left:auto;font-weight:600}
-.srow.z-gap .df{color:#bc2a2a} .srow.z-borderline .df{color:#d97706} .srow.z-clear .df{color:#059669}
+.srow.z-gap .df{color:#bc2a2a} .srow.z-borderline .df{color:#92400e} .srow.z-clear .df{color:#047857}
 .cdot{font-size:9px;line-height:1;flex:0 0 auto}
-.cdot.direct{color:#059669} .cdot.proxy{color:#d97706} .cdot.extrapolated{color:#94a3b8}
+.cdot.direct{color:#047857} .cdot.proxy{color:#92400e} .cdot.extrapolated{color:#94a3b8}
 .pcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;padding:2px 0 8px}
 .pcard{background:rgba(15,23,42,.025);border:1px solid var(--line);border-radius:11px;padding:11px 13px}
 .pcard .ct{font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
@@ -256,11 +257,11 @@ details[open]>.dtlsum::before{transform:rotate(90deg)}
 .pbar .f{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:#bc2a2a}
 .pbar .t{position:absolute;top:-3px;width:2px;height:12px;background:#10b981;z-index:2}
 .pbar .band{position:absolute;top:0;bottom:0;border-radius:3px;background:rgba(217,119,6,.20)}
-.pcard.z-clear .pbar .f{background:#10b981} .pcard.z-borderline .pbar .f{background:#d97706}
+.pcard.z-clear .pbar .f{background:#10b981} .pcard.z-borderline .pbar .f{background:#92400e}
 .pcard.z-clear{border-color:rgba(16,185,129,.30)} .pcard.z-borderline{border-color:rgba(217,119,6,.30)} .pcard.z-gap{border-color:rgba(188,42,42,.30)}
 .pcard .cap{font-size:10.5px;color:var(--muted);line-height:1.4}
 .pcard .cap.warn{color:#bc2a2a;font-weight:600}
-.pcard .cap.bord{color:#d97706;font-weight:600} .pcard .cap.ok2{color:#059669;font-weight:600}
+.pcard .cap.bord{color:#92400e;font-weight:600} .pcard .cap.ok2{color:#047857;font-weight:600}
 .pcard .rng{font-size:9.5px;color:var(--muted);opacity:.8;margin-top:2px;font-style:italic}
 .pcard .raw{font-size:10px;color:var(--muted);margin-top:3px;opacity:.85}
 .cardwhy{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-size:11.5px;color:#475569;line-height:1.45}
@@ -355,12 +356,12 @@ body.tab-reference .cardwhy{display:block}
 .ovgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:12px;padding:4px 0 8px}
 .ovcard{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;background:rgba(15,23,42,.025);border:1px solid var(--line);border-left:3px solid var(--line);border-radius:11px;padding:12px 10px;cursor:pointer;color:var(--cream);font-family:var(--sans)}
 .ovcard:hover{background:rgba(15,23,42,.045);border-color:rgba(15,23,42,.14)}
-.ovcard.z-clear{border-left-color:#10b981} .ovcard.z-borderline{border-left-color:#d97706} .ovcard.z-gap{border-left-color:#bc2a2a}
+.ovcard.z-clear{border-left-color:#10b981} .ovcard.z-borderline{border-left-color:#92400e} .ovcard.z-gap{border-left-color:#bc2a2a}
 .ovname{font-size:12px;font-weight:600;line-height:1.3;min-height:31px;display:flex;align-items:center;justify-content:center}
 .ovmini{width:108px;height:100px}
 .minisvg{width:108px;height:100px;overflow:visible}
 .ovword{font-family:var(--serif);font-size:16px;font-weight:600;margin-top:2px}
-.ovword.z-clear{color:#059669} .ovword.z-borderline{color:#d97706} .ovword.z-gap{color:#bc2a2a}
+.ovword.z-clear{color:#047857} .ovword.z-borderline{color:#92400e} .ovword.z-gap{color:#bc2a2a}
 .ovcap{font-size:10.5px;color:var(--muted);line-height:1.3}
 .ovclear{font-size:9.5px;color:var(--muted);opacity:.8;letter-spacing:.3px}
 .ovlegend{margin-top:16px;padding-top:11px;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:var(--muted)}
@@ -391,7 +392,7 @@ body.tab-reference .cardwhy{display:block}
 .sccol.dn{background:rgba(188,42,42,.07);border-color:rgba(188,42,42,.2)}
 .schd{display:flex;align-items:center;gap:7px;margin-bottom:8px}
 .scico{font-size:13px;font-weight:700}
-.sccol.up .scico{color:#059669} .sccol.dn .scico{color:#bc2a2a}
+.sccol.up .scico{color:#047857} .sccol.dn .scico{color:#bc2a2a}
 .scttl{font-size:12px;font-weight:700;color:var(--cream);letter-spacing:.3px;text-transform:uppercase}
 .scqs{display:flex;flex-wrap:wrap;gap:5px 12px;margin-bottom:7px}
 .scq{font-size:13px;font-weight:700}
@@ -417,7 +418,7 @@ body.tab-reference .cardwhy{display:block}
 .pgsub{font-size:11px;color:var(--muted);margin-top:3px;max-width:6.2in}
 .pgverdict{text-align:right;flex:0 0 auto}
 .pgword{font-family:var(--serif);font-size:23px;font-weight:600;line-height:1}
-.pgverdict.r-gap .pgword{color:var(--coral)} .pgverdict.r-bord .pgword{color:var(--warn)} .pgverdict.r-clear .pgword{color:#059669}
+.pgverdict.r-gap .pgword{color:var(--coral)} .pgverdict.r-bord .pgword{color:var(--warn)} .pgverdict.r-clear .pgword{color:#047857}
 .pgcap{font-size:10px;color:var(--muted);margin-top:2px} .pgclear{font-size:9.5px;color:var(--muted)}
 .pgtake{font-size:12.5px;line-height:1.45;color:var(--ink);margin:8px 0 2px;padding:8px 12px;background:rgba(188,42,42,.045);border-left:3px solid var(--coral);border-radius:6px;flex:0 0 auto}
 .pgtake .tk{color:var(--coral);font-weight:700} .pgtake b{font-weight:700}
@@ -432,7 +433,7 @@ body.tab-reference .cardwhy{display:block}
 .ptbl th{text-align:left;font-size:8px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);font-weight:700;border-bottom:1.5px solid var(--line);padding:4px 6px}
 .ptbl td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
 .ptbl .ptq{font-weight:700;white-space:nowrap} .ptbl .pts{font-weight:700;white-space:nowrap;text-align:right}
-.ptbl tr.z-gap .pts{color:var(--coral)} .ptbl tr.z-borderline .pts{color:var(--warn)} .ptbl tr.z-clear .pts{color:#059669}
+.ptbl tr.z-gap .pts{color:var(--coral)} .ptbl tr.z-borderline .pts{color:var(--warn)} .ptbl tr.z-clear .pts{color:#047857}
 .ptbl .zico{font-size:10px}
 .pgqnote{font-size:9px;color:var(--muted);font-style:italic;margin-top:2px}
 .synthrow.nohover{cursor:default}
@@ -441,13 +442,16 @@ body.tab-reference .cardwhy{display:block}
 .pp-summary .synth{margin-bottom:6px;padding:7px 13px}
 .pp-summary .synthttl{margin-bottom:6px}
 .pp-summary .synthrow{padding:2px 6px}
-.sumgrid{grid-template-columns:repeat(5,1fr);gap:7px;margin-top:6px;flex:0 0 auto}
-.sumgrid .ovcard{padding:6px 4px;gap:2px;cursor:default}
-.sumgrid .ovname{font-size:9.5px;min-height:22px}
+.sumgrid{grid-template-columns:repeat(6,1fr);gap:4px;margin-top:4px;flex:0 0 auto}
+.sumgrid .ovcard{padding:4px 3px;gap:1px;cursor:default;border-radius:7px}
+.sumgrid .ovname{font-size:8px;min-height:18px;line-height:1.12}
 .sumgrid .ovmini,.sumgrid .minisvg{width:70px;height:59px}
-.sumgrid .ovword{font-size:13px;margin-top:0}
-.sumgrid .ovclear{font-size:8px}
-.sumscope{margin-top:auto;font-size:9px;padding-top:8px}
+.sumgrid .ovword{font-size:10.5px;margin-top:0;line-height:1.05}
+.sumgrid .ovclear{display:none}
+.sumscope{margin-top:4px;font-size:8px;padding:5px 8px;line-height:1.25}
+.pp-summary .scorecard{gap:7px;margin-bottom:5px}.pp-summary .sccol{padding:7px 9px}.pp-summary .schd{margin-bottom:4px}.pp-summary .scnote{display:none}
+.pp-summary .synth{padding:5px 9px;margin-bottom:4px}.pp-summary .synthttl{margin-bottom:3px}.pp-summary .synthrow{grid-template-columns:105px 48px minmax(50px,1fr) 1.6fr;gap:6px;padding:1px 4px}.pp-summary .synthq{font-size:10.5px}.pp-summary .synthn,.pp-summary .synthgoals{font-size:8.5px}
+.pgsupport{margin-top:10px;border:1px solid var(--line);border-left:4px solid #475569;border-radius:8px;padding:10px 12px;background:#f8fafc}.pgsupport h2{font-family:var(--serif);font-size:18px;margin:0 0 3px}.pgsupport>p{font-size:9.5px;color:var(--muted);margin:0 0 8px}.pgsupport .ptbl td{padding:6px}.pgsupport .supportflag{color:#475569;font-weight:700}
 .pp-cover{padding:0;background:#39404b;color:#fff}
 .pp-cover .covtagrow{display:flex;justify-content:flex-end;padding:.4in .55in 0;flex:0 0 auto}
 .pp-cover .ptag{color:rgba(255,255,255,.8)}
@@ -466,31 +470,31 @@ body.tab-reference .cardwhy{display:block}
 .ovbars-scale{font-size:9.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin:0 0 3px 300px}
 .ovbarrow{display:grid;grid-template-columns:300px 1fr 84px;gap:12px;align-items:center;width:100%;text-align:left;background:rgba(15,23,42,.02);border:1px solid var(--line);border-left:3px solid var(--line);border-radius:9px;padding:8px 12px;cursor:pointer;color:var(--cream);font-family:var(--sans)}
 .ovbarrow:hover{background:rgba(15,23,42,.04)}
-.ovbarrow.z-clear{border-left-color:#10b981} .ovbarrow.z-borderline{border-left-color:#d97706} .ovbarrow.z-gap{border-left-color:#bc2a2a}
+.ovbarrow.z-clear{border-left-color:#10b981} .ovbarrow.z-borderline{border-left-color:#92400e} .ovbarrow.z-gap{border-left-color:#bc2a2a}
 .ovbarrow.hl{border-color:var(--coral);box-shadow:0 0 0 1px var(--coral)} .ovbarrow.dim{opacity:.3}
 .obl{display:flex;align-items:center;gap:7px;min-width:0;font-size:12.5px}
 .obl .obnm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--cream);font-weight:600}
 .obtrack{position:relative;height:16px;background:rgba(15,23,42,.05);border-radius:5px;overflow:hidden}
 .obfill{position:absolute;left:0;top:0;bottom:0;border-radius:5px 0 0 5px}
-.obfill.z-clear{background:#10b981} .obfill.z-borderline{background:#d97706} .obfill.z-gap{background:#bc2a2a}
+.obfill.z-clear{background:#10b981} .obfill.z-borderline{background:#92400e} .obfill.z-gap{background:#bc2a2a}
 .obthr{position:absolute;top:-2px;bottom:-2px;left:57.14%;width:2px;background:#10b981;z-index:2}
 .obval{font-size:11px;font-weight:700;text-align:right}
-.obval.z-clear{color:#059669} .obval.z-borderline{color:#d97706} .obval.z-gap{color:#bc2a2a}
+.obval.z-clear{color:#047857} .obval.z-borderline{color:#92400e} .obval.z-gap{color:#bc2a2a}
 .ovgrid-hero{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .ovgrid-hero .ovcard{padding:16px 12px}
 .synth-hero{background:rgba(188,42,42,.10);border-width:2px}
 /* ── Hero-specific goal-page blocks ── */
 .actionlead{display:flex;gap:14px;align-items:flex-start;background:rgba(188,42,42,.06);border:1px solid rgba(188,42,42,.22);border-left:4px solid var(--coral);border-radius:11px;padding:13px 16px;margin-bottom:6px}
-.actionlead.ok{background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.25);border-left-color:#059669}
+.actionlead.ok{background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.25);border-left-color:#047857}
 .actionlead .allbl{flex:0 0 auto;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;color:var(--coral);padding-top:3px}
-.actionlead.ok .allbl{color:#059669}
+.actionlead.ok .allbl{color:#047857}
 .actionlead .atxt{font-size:13.5px;line-height:1.5;color:var(--ink)} .actionlead .atxt .tk{color:var(--coral);font-weight:700}
 .btitle{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:700;margin:2px 0 4px}
 .scgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(212px,1fr));gap:10px;margin-bottom:4px}
 .sctile{background:rgba(15,23,42,.025);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:11px;padding:12px 14px}
-.sctile.z-clear{border-left-color:#10b981} .sctile.z-borderline{border-left-color:#d97706} .sctile.z-gap{border-left-color:#bc2a2a}
+.sctile.z-clear{border-left-color:#10b981} .sctile.z-borderline{border-left-color:#92400e} .sctile.z-gap{border-left-color:#bc2a2a}
 .sctile .scq2{font-size:14px;font-weight:700;color:var(--white);line-height:1.2}
-.sctile .scz{font-size:13px;font-weight:700;margin-top:5px} .sctile .scz.z-clear{color:#059669} .sctile .scz.z-borderline{color:#d97706} .sctile .scz.z-gap{color:#bc2a2a}
+.sctile .scz{font-size:13px;font-weight:700;margin-top:5px} .sctile .scz.z-clear{color:#047857} .sctile .scz.z-borderline{color:#92400e} .sctile .scz.z-gap{color:#bc2a2a}
 .sctile .scsrc{font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.3}
 .herobar{margin:2px 8px 12px}
 .herobar-lbl{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px}
@@ -516,19 +520,33 @@ body.tab-reference .cardwhy{display:block}
 }
 
 /* v3 model semantics */
-.dchip{white-space:nowrap}.pcard .reqbig{line-height:1.2}.actbtn.z-incomplete .ring{color:#64748b}
+.dchip{white-space:nowrap}.pcard .reqbig{line-height:1.2}.actbtn.z-incomplete .ring{color:#475569}
 .model-note{font-size:11px;color:var(--muted);line-height:1.45}.fld select[data-metric]{min-height:36px}
+.privacy-note{font-size:11.5px;line-height:1.5;color:#475569;background:#eff6ff;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:9px;padding:10px 12px;margin-top:11px}
+.privacy-note b{color:#1e3a8a}
 
 #tab-report .herobar{display:none}
 .caprank{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:13px}
 .caprankcol{border:1px solid var(--line);border-radius:11px;padding:11px 13px;background:rgba(15,23,42,.02)}
 .caprankcol.good{border-left:4px solid #10b981}.caprankcol.bad{border-left:4px solid #bc2a2a}
-.caprankhead{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}.caprankcol.good .caprankhead{color:#059669}.caprankcol.bad .caprankhead{color:#bc2a2a}
+.caprankhead{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}.caprankcol.good .caprankhead{color:#047857}.caprankcol.bad .caprankhead{color:#bc2a2a}
 .caprankitem{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid rgba(15,23,42,.06);font-size:12px}.caprankitem:last-child{border-bottom:0}
 .caprankitem b{display:block;color:var(--white);font-weight:700}.caprankitem span{display:block;color:var(--muted);font-size:10px;margin-top:1px}.caprankval{text-align:right;color:#475569;font-size:10.5px;line-height:1.35;max-width:46%}
-.capacitydetails{margin-top:14px}.ctablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:9px;background:#fff}.ctable{border-collapse:collapse;width:100%;min-width:820px;font-size:10.5px}.ctable th{position:sticky;top:0;background:#f8fafc;color:var(--muted);text-align:left;text-transform:uppercase;letter-spacing:.45px;font-size:8.5px;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}.ctable td{padding:7px 8px;border-bottom:1px solid rgba(15,23,42,.06);vertical-align:top;white-space:nowrap}.ctable td:first-child{white-space:normal;min-width:170px}.ctable td:first-child span{display:block;color:var(--muted);font-size:9px;margin-top:2px}.ctable tr:last-child td{border-bottom:0}.ctbadge{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px}.ctbadge.strength{background:rgba(16,185,129,.12);color:#047857}.ctbadge.opportunity{background:rgba(188,42,42,.1);color:#bc2a2a}.ctbadge.watch{background:rgba(217,119,6,.12);color:#b45309}.ctbadge.trajectory,.ctbadge.context{background:rgba(100,116,139,.12);color:#475569}.ctable small{display:block;color:var(--muted);font-size:8.5px;margin-top:2px}
+.capacitydetails{margin-top:14px}.ctablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:9px;background:#fff}.ctable{border-collapse:collapse;width:100%;min-width:820px;font-size:10.5px}.ctable th{position:sticky;top:0;background:#f8fafc;color:var(--muted);text-align:left;text-transform:uppercase;letter-spacing:.45px;font-size:8.5px;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}.ctable td{padding:7px 8px;border-bottom:1px solid rgba(15,23,42,.06);vertical-align:top;white-space:nowrap}.ctable td:first-child{white-space:normal;min-width:170px}.ctable td:first-child span{display:block;color:var(--muted);font-size:9px;margin-top:2px}.ctable tr:last-child td{border-bottom:0}.ctbadge{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px}.ctbadge.strength{background:rgba(16,185,129,.12);color:#047857}.ctbadge.opportunity{background:rgba(188,42,42,.1);color:#bc2a2a}.ctbadge.watch{background:rgba(217,119,6,.12);color:#92400e}.ctbadge.trajectory,.ctbadge.context{background:rgba(100,116,139,.12);color:#475569}.ctable small{display:block;color:var(--muted);font-size:8.5px;margin-top:2px}
 @media(max-width:760px){.caprank{grid-template-columns:1fr}.caprankval{max-width:50%}}
-.supportonly{border:1px solid rgba(100,116,139,.28);background:rgba(100,116,139,.06);border-radius:10px;padding:12px 14px;color:#475569;font-size:12.5px;line-height:1.5;margin-bottom:10px}.supportgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:9px;margin-top:8px}.supportcard{border:1px solid var(--line);border-left:3px solid #64748b;border-radius:9px;padding:10px 11px;background:rgba(15,23,42,.02);min-width:0}.supportcard>div:first-child{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.supportcard b{font-size:11.5px;color:var(--white)}.supportcard span{font-size:9px;color:var(--muted)}.supportval{font-family:var(--serif);font-size:17px;color:#475569;margin:6px 0 4px}.supportval span{font-family:var(--sans);display:block;font-size:9px}.supportbar{height:5px;border-radius:4px;background:rgba(100,116,139,.12);overflow:hidden}.supportbar i{display:block;height:100%;background:#64748b;border-radius:4px}.supportnote{font-size:9.5px;color:var(--muted);line-height:1.35;margin-top:6px}.supportref{border-left-color:#64748b}.protectstrip{font-size:10.5px;line-height:1.5;color:#475569;background:rgba(100,116,139,.06);border:1px solid var(--line);border-radius:9px;padding:8px 11px;margin:-3px 0 13px}.protectstrip b{color:var(--white)}.protectstrip span{color:var(--muted);font-size:9.5px}.ctbadge.support{background:rgba(100,116,139,.12);color:#475569}
+@media(max-width:700px){
+  .appbar{align-items:flex-start;flex-wrap:wrap;gap:9px;padding:10px 12px}
+  .brandmark{font-size:20px}.appbar .spacer{display:none}
+  .seg{order:3;width:100%;display:grid;grid-template-columns:repeat(3,1fr)}
+  .seg button{padding:8px 6px;font-size:12px}
+  .datactl{order:4;width:100%;margin-right:0}.datactl select{flex:1;min-width:0}.patient-chip{display:none}
+  .shell{flex-direction:column}.rail{width:100%;flex:0 0 auto;max-height:38vh;border-right:0;border-bottom:1px solid var(--line)}
+  .stage{padding:12px}.slide-head{padding:17px 18px 12px}.slide-sub{max-width:100%}.pv{padding:12px 14px 6px}
+  .pcards{grid-template-columns:1fr}.ovbarrow{grid-template-columns:minmax(110px,1.2fr) minmax(80px,1fr) 62px;gap:7px;padding:8px}.ovbars-scale{margin-left:0}
+  .head-row{align-items:flex-start}.readiness .cap{max-width:150px}.buildwrap{padding-bottom:78px}
+  .bsinner{padding:9px 12px}.bsmeta{font-size:10.5px}.gchks{grid-template-columns:1fr}
+}
+.supportonly{border:1px solid rgba(100,116,139,.28);background:rgba(100,116,139,.06);border-radius:10px;padding:12px 14px;color:#475569;font-size:12.5px;line-height:1.5;margin-bottom:10px}.supportgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:9px;margin-top:8px}.supportcard{border:1px solid var(--line);border-left:3px solid #475569;border-radius:9px;padding:10px 11px;background:rgba(15,23,42,.02);min-width:0}.supportcard>div:first-child{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.supportcard b{font-size:11.5px;color:var(--white)}.supportcard span{font-size:9px;color:var(--muted)}.supportval{font-family:var(--serif);font-size:17px;color:#475569;margin:6px 0 4px}.supportval span{font-family:var(--sans);display:block;font-size:9px}.supportbar{height:5px;border-radius:4px;background:rgba(100,116,139,.12);overflow:hidden}.supportbar i{display:block;height:100%;background:#475569;border-radius:4px}.supportnote{font-size:9.5px;color:var(--muted);line-height:1.35;margin-top:6px}.supportref{border-left-color:#475569}.protectstrip{font-size:10.5px;line-height:1.5;color:#475569;background:rgba(100,116,139,.06);border:1px solid var(--line);border-radius:9px;padding:8px 11px;margin:-3px 0 13px}.protectstrip b{color:var(--white)}.protectstrip span{color:var(--muted);font-size:9.5px}.ctbadge.support{background:rgba(100,116,139,.12);color:#475569}
 
 
 </style>
@@ -537,32 +555,32 @@ body.tab-reference .cardwhy{display:block}
 
 <div class="appbar">
   <div class="brandmark">Early Medical<span>®</span></div>
-  <div class="seg" id="tabSeg">
-    <button data-tab="reference" class="on">Reference</button>
-    <button data-tab="build">Build report</button>
-    <button data-tab="report">Report</button>
+  <div class="seg" id="tabSeg" role="tablist" aria-label="Dashboard sections">
+    <button id="tab-reference-button" type="button" role="tab" aria-controls="tab-reference" aria-selected="true" data-tab="reference" class="on">Reference</button>
+    <button id="tab-build-button" type="button" role="tab" aria-controls="tab-build" aria-selected="false" data-tab="build">Build report</button>
+    <button id="tab-report-button" type="button" role="tab" aria-controls="tab-report" aria-selected="false" data-tab="report">Report</button>
   </div>
   <div class="spacer"></div>
   <div class="datactl">
-    <span class="dlbl">Data set</span>
-    <select id="dataSel">
-      <option value="sample">PW · sample (54M)</option>
+    <label class="dlbl" for="dataSel">Data set</label>
+    <select id="dataSel" aria-label="Demonstration data set">
+      <option value="sample">Demo · sample (54M)</option>
       <option value="strong">Strong all-rounder (52M)</option>
       <option value="typical">Typical, some gaps (56M)</option>
       <option value="gaps">Multiple gaps (66M)</option>
       <option value="female">Female, mixed (57F)</option>
       <option value="older">Older, deconditioned (72M)</option>
     </select>
-    <button id="dataRand" class="databtn" title="Randomise a new patient">🎲 Random</button>
+    <button type="button" id="dataRand" class="databtn" title="Randomise a new demonstration patient" aria-label="Randomise a new demonstration patient">🎲 Random</button>
   </div>
   <div class="patient-chip" id="patientChip"></div>
 </div>
 
 <!-- TAB 1 · REFERENCE (no patient data) -->
-<div class="shell tabpane" id="tab-reference">
+<div class="shell tabpane" id="tab-reference" role="tabpanel" aria-labelledby="tab-reference-button">
   <aside class="rail">
     <h4>CD activities</h4>
-    <input id="refSearch" class="refsearch" type="search" placeholder="Search activities…" autocomplete="off">
+    <input id="refSearch" class="refsearch" type="search" placeholder="Search activities…" autocomplete="off" aria-label="Search activities">
     <div id="refList"></div>
     <div class="addnote">Click an activity to see the physical-quality requirements it demands. No patient data.</div>
   </aside>
@@ -572,17 +590,17 @@ body.tab-reference .cardwhy{display:block}
 </div>
 
 <!-- TAB 2 · BUILD REPORT (input) -->
-<main class="stage tabpane" id="tab-build">
+<main class="stage tabpane" id="tab-build" role="tabpanel" aria-labelledby="tab-build-button">
   <div class="buildwrap" id="buildForm"></div>
 </main>
 
 <!-- TAB 3 · REPORT (the deliverable) -->
-<div class="shell tabpane" id="tab-report">
+<div class="shell tabpane" id="tab-report" role="tabpanel" aria-labelledby="tab-report-button">
   <aside class="rail">
     <h4>This patient’s goals</h4>
     <div class="herobar"><div class="herobar-lbl">Report style</div>
       <div class="heroseg" id="heroSeg"><button data-hero="D" class="on">Hybrid</button><button data-hero="A">Action</button><button data-hero="B">Trajectory</button><button data-hero="C">Scorecard</button></div></div>
-    <button class="btn primary" style="margin:2px 8px 12px;width:calc(100% - 16px)" onclick="exportPDF()">Export as PDF</button>
+    <button type="button" class="btn primary" style="margin:2px 8px 12px;width:calc(100% - 16px)" onclick="exportPDF()">Export as PDF</button>
     <div id="catalog"></div>
     <div class="addnote" id="addNote"></div>
   </aside>
@@ -601,7 +619,7 @@ body.tab-reference .cardwhy{display:block}
       from the patient JSON / VALD / passive-ROM exam).
    ══════════════════════════════════════════════════════════════ */
 let PATIENT = {
-  name:"PW", sex:"male", age:54, marginalDecadeAge:90, bodyWeight_lb:175, clinician:"",
+  name:"Demo", sex:"male", age:54, marginalDecadeAge:90, bodyWeight_lb:175, clinician:"",
   metrics:{"vo2":55,"lt1_vo2":34,"almi":8.5,"ffmi":20.2,"bmd_tscore":-0.3,"gait_grade":"Proficient","toeDex_grade":"Proficient","ankleDF_cm":10,"hopRSI":1.6,"toe1_pctBW":10,"anklePF_xBW":1.9,"toe25_pctBW":5,"calfRaise_reps":38,"priSquat_grade":"Proficient","bwSquat_grade":"Proficient","cmjPower_WkG":42,"dropJump_RSI":1.35,"stsPower_Wkg":5.2,"beltSquatIso_xBW":3.0,"backSquat_pctBW":115,"wallSit_s":100,"hinge_grade":"Proficient","toeTouch_grade":"Proficient","broadJump_cm":190,"mbBackThrow_m":6.0,"kneeFlex_xBW":0.56,"relDeadlift_pctBW":160,"slControl_grade":"Proficient","trendelenburg_grade":"Proficient","balanceSL_EO_s":48,"balanceSL_EC_s":18,"slVertJump_cm":25,"hipAbd_xBW":0.3,"hipAdd_xBW":0.28,"kneeExt_xBW":0.62,"stepDown_in":16,"loadedStepup_pctBW":38,"rfeSplitSquat_pctBW":34,"slBridge_s":70,"pushup_reps":18,"ohPress_pctBW":22,"bench_pctBW":120,"grip_lb":112,"shoulderER_NmKg":0.22,"cuffExtRot_lb":15,"chinup_reps":10,"loadedRow_pctBW":30,"deadHang_s":95,"dns_grade":"Proficient","hipHike_grade":"Developing","standingRotation_grade":"Proficient","rotMBThrow_m":5.5,"plankHeelWall_s":100,"sidePlank_s":90,"sorensen_s":150,"pallof_pctBW":20,"suitcaseCarry_pctBW":45,"shoulderFlexion_deg":156,"thoracicExt_deg":38,"thoracicRot_deg":46,"hipFlexion_deg":122,"hipIR_deg":36,"hamstringSLR_deg":82}
 };
 const BASELINE_METRICS=JSON.parse(JSON.stringify(PATIENT.metrics));
@@ -5770,32 +5788,35 @@ for(const [activityId,activity] of Object.entries(ACTIVITIES)){
 /* Adult Compendium task demand is a fixed task convention (1 MET = 3.5
    mL/kg/min). It never changes with patient age or sex. */
 const TASK_DEMAND_EVIDENCE={
-  'sexual-expression':{met:3.0,src:'2024 Adult Compendium 14020 · sexual activity, general, moderate effort'},
-  festival:{met:3.5,src:'2024 Adult Compendium · mixed standing/walking event proxy; broad task uncertainty'},
-  dance:{met:6.0,src:'2024 Adult Compendium 03042 · recreational ballroom dance'},
-  chores:{met:4.0,src:'2024 Adult Compendium · representative moderate household-work proxy'},
-  'beach-sand':{met:4.5,src:'2024 Adult Compendium 17262 · walking on sand or plowed field'},
-  'garden-2h':{met:3.8,src:'2024 Adult Compendium 08245 · gardening, general, moderate effort'},
-  'dog-walk':{met:4.5,src:'2024 Adult Compendium · mixed trail/dog-walking proxy; broad task uncertainty'},
-  tennis:{met:6.0,src:'2024 Adult Compendium 15680 · tennis, doubles; proxy for racquet-sport options'},
-  'ocean-swim':{met:6.0,src:'2024 Adult Compendium 18300 · swimming in lake, ocean, or river'},
-  'snorkel-scuba':{met:5.0,src:'2024 Adult Compendium 18210 · snorkeling; lower-demand valid option in the goal'},
-  horseback:{met:5.5,src:'2024 Adult Compendium 15370 · horseback riding, general'},
-  'hike-pack':{met:6.0,src:'2024 Adult Compendium · hiking, cross-country'},
-  'swim-500m':{met:5.8,src:'2024 Adult Compendium 18240 · slow recreational freestyle laps'},
-  'golf-18':{met:4.3,src:'2024 Adult Compendium 15265 · golf, carrying clubs'},
-  'sprint-triathlon':{met:7.8,src:'2024 Adult Compendium 12029 · running 4.3–4.8 mph; 5 km in 40 min = 4.66 mph'},
-  'row-10k':{met:7.5,src:'2024 Adult Compendium 02072 · rowing ergometer, 100–149 W; 10 km/h is about 104 W'},
-  'cycle-10mi':{met:6.8,src:'2024 Adult Compendium 01020 · cycling 10–11.9 mph'},
-  'walk-3mi':{met:3.8,src:'2024 Adult Compendium 17190 · walking 2.8–3.4 mph, firm level surface'},
-  kayak:{met:5.0,src:'2024 Adult Compendium 18100 · kayaking, moderate effort'},
-  surf:{met:3.0,src:'2024 Adult Compendium 18220 · surfing, general; broad burst-demand uncertainty'}
+  'sexual-expression':{met:3.0,grade:'B',src:'2024 Adult Compendium 14020 · sexual activity, general, moderate effort'},
+  festival:{met:3.5,grade:'C',src:'2024 Adult Compendium · mixed standing/walking event proxy; broad task uncertainty'},
+  dance:{met:6.0,grade:'B',src:'2024 Adult Compendium 03042 · recreational ballroom dance'},
+  chores:{met:4.0,grade:'C',src:'2024 Adult Compendium · representative moderate household-work proxy'},
+  'beach-sand':{met:4.5,grade:'A',src:'2024 Adult Compendium 17262 · walking on sand or plowed field'},
+  'garden-2h':{met:3.8,grade:'A',src:'2024 Adult Compendium 08245 · gardening, general, moderate effort'},
+  'dog-walk':{met:4.5,grade:'C',src:'2024 Adult Compendium · mixed trail/dog-walking proxy; broad task uncertainty'},
+  tennis:{met:6.0,grade:'C',src:'2024 Adult Compendium 15680 · tennis, doubles; proxy for tennis, padel, or pickleball options'},
+  'ocean-swim':{met:6.0,grade:'B',src:'2024 Adult Compendium 18300 · swimming in lake, ocean, or river'},
+  'snorkel-scuba':{met:5.0,grade:'B',src:'2024 Adult Compendium 18210 · snorkeling; lower-demand valid option in the goal'},
+  horseback:{met:5.5,grade:'B',src:'2024 Adult Compendium 15370 · horseback riding, general'},
+  'hike-pack':{met:6.0,grade:'B',src:'2024 Adult Compendium · hiking, cross-country'},
+  'swim-500m':{met:5.8,grade:'B',src:'2024 Adult Compendium 18240 · slow recreational freestyle laps'},
+  'golf-18':{met:4.3,grade:'A',src:'2024 Adult Compendium 15265 · golf, carrying clubs'},
+  'sprint-triathlon':{met:7.8,grade:'A',src:'2024 Adult Compendium 12029 · running 4.3–4.8 mph; 5 km in 40 min = 4.66 mph'},
+  'row-10k':{met:7.5,grade:'A',src:'2024 Adult Compendium 02072 · rowing ergometer, 100–149 W; 10 km/h is about 104 W'},
+  'cycle-10mi':{met:6.8,grade:'A',src:'2024 Adult Compendium 01020 · cycling 10–11.9 mph'},
+  'walk-3mi':{met:3.8,grade:'A',src:'2024 Adult Compendium 17190 · walking 2.8–3.4 mph, firm level surface'},
+  kayak:{met:5.0,grade:'B',src:'2024 Adult Compendium 18100 · kayaking, moderate effort'},
+  surf:{met:3.0,grade:'C',src:'2024 Adult Compendium 18220 · surfing, general; broad burst-demand uncertainty'}
 };
+const TASK_GRADE_UNCERTAINTY={A:.15,B:.25,C:.35};
 for(const [activityId,evidence] of Object.entries(TASK_DEMAND_EVIDENCE)){
   for(const requirement of ACTIVITIES[activityId]?.reqs||[]){
     if(requirement.reqKind!=='aerobic_vo2'&&requirement.reqKind!=='aerobic_lt1')continue;
     requirement.reqArgs.met=evidence.met;
     requirement.taskSource=evidence.src;
+    requirement.taskEvidenceGrade=evidence.grade;
+    requirement.demandUncertainty=Math.max(+requirement.demandUncertainty||0,TASK_GRADE_UNCERTAINTY[evidence.grade]||.35);
   }
 }
 
@@ -5867,8 +5888,8 @@ const MEASUREMENT_PROTOCOLS={
   beltSquatIso_xBW:'VALD ForceFrame · Belt Squat Isometric',
   broadJump_cm:'VALD ForceDecks · Broad Jump',
   kneeFlex_xBW:'VALD ForceFrame · Knee Flexion Isometric',
-  balanceSL_EO_s:'VALD / timed stance · single-leg balance, eyes open; confirm capture protocol',
-  balanceSL_EC_s:'Timed stance · single-leg balance, eyes closed; confirm capture protocol',
+  balanceSL_EO_s:'Timed single-leg stance · firm surface · arms at sides · eyes open · 60 s cap · best of 2/side, enter weaker side · SOP approval pending',
+  balanceSL_EC_s:'Timed single-leg stance · firm surface · arms at sides · eyes closed · 60 s cap · best of 2/side, enter weaker side · SOP approval pending',
   slVertJump_cm:'VALD ForceDecks · Single-Leg Vertical Jump',
   hipAbd_xBW:'VALD ForceFrame · Hip Abduction Isometric',
   hipAdd_xBW:'VALD ForceFrame · Hip Adduction Isometric',
@@ -5965,7 +5986,7 @@ function components(reqs){
     const family=meta.family||'none';const projRaw=projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1);const [projLo,projHi]=projectBand(+raw,family);
     const lower=r.dir==='lower_better';const pct=v=>clamp(Math.round((lower?req/v:v/req)*100),0,175);const curPct=pct(+raw),projPct=pct(projRaw);
     const reserveLo=lower?reqLo/projHi*100:projLo/reqHi*100,reserveHi=lower?reqHi/projLo*100:projHi/reqLo*100;
-    return {r,raw:+raw,projRaw,projLo,projHi,req,reqLo,reqHi,demandUncertainty:du,reserveLo,reserveHi,unit,measurementSource:meta.measurementSource||meta.src,taskSource:r.taskSource||r.src||'',forecastSource:(FORECAST_EVIDENCE[family]||FORECAST_EVIDENCE.none).src,short:shortLabel(r.label),curPct,projPct,projPctLo:pct(projLo),projPctHi:pct(projHi),static:family==='none',meetsNow:lower?+raw<=req:+raw>=req,meets:lower?projRaw<=req:projRaw>=req,zone:zoneOf(projPct),conf:r.confidence||meta.confidence||'proxy',shortBy:Math.max(0,100-projPct),family};
+    return {r,raw:+raw,projRaw,projLo,projHi,req,reqLo,reqHi,demandUncertainty:du,reserveLo,reserveHi,unit,measurementSource:meta.measurementSource||meta.src,taskSource:r.taskSource||r.src||'',taskEvidenceGrade:r.taskEvidenceGrade||null,forecastSource:(FORECAST_EVIDENCE[family]||FORECAST_EVIDENCE.none).src,short:shortLabel(r.label),curPct,projPct,projPctLo:pct(projLo),projPctHi:pct(projHi),static:family==='none',meetsNow:lower?+raw<=req:+raw>=req,meets:lower?projRaw<=req:projRaw>=req,zone:zoneOf(projPct),conf:r.confidence||meta.confidence||'proxy',shortBy:Math.max(0,100-projPct),family};
   }).filter(Boolean);
 }
 function scoreableReqs(act){return (act.reqs||[]).filter(r=>r.metric&&r.role!=='modifier'&&r.role!=='support'&&METRICS[r.metric]?.kind!=='grade'&&(r.reqKind||Number.isFinite(+r.req)&&+r.req>0));}
@@ -6057,7 +6078,7 @@ function cardsHTML(C){
       <div class="pbar">${band}<div class="f" style="width:${clamp(c.projPct/160*100,0,100).toFixed(0)}%"></div><div class="t" style="left:${(100/160*100).toFixed(0)}%"></div></div>
       <div class="cap">Need ${fmtU(c.req,c.unit)} · projected ${c.projPct}% of it</div>${c.static?'':`<div class="rng">illustrative range ${fmtU(c.projLo,c.unit)}–${fmtU(c.projHi,c.unit)} at ${TGT}</div>`}${flag}
       <div class="raw"><span class="cdot ${c.conf}" title="${CONF_META[c.conf].label}">${CONF_META[c.conf].dot}</span> ${CONF_META[c.conf].label} · measurement: ${c.measurementSource||''}</div>
-      <div class="cardwhy">${basisBadge(c.r)} ${c.r.why} <span class="evi">Task: ${c.taskSource||'clinical mapping pending'} · Forecast: ${c.forecastSource||'no numerical forecast'}</span></div>
+      <div class="cardwhy">${basisBadge(c.r)} ${c.r.why} <span class="evi">Task${c.taskEvidenceGrade?` evidence ${c.taskEvidenceGrade}`:''}: ${c.taskSource||'clinical mapping pending'} · Forecast: ${c.forecastSource||'no numerical forecast'}</span></div>
     </div>`;
   }).join('')+`</div>`;
 }
@@ -6139,7 +6160,7 @@ function miniRadar(C){
     <polygon points="${poly('curPct')}" fill="rgba(37,99,235,.13)" stroke="#2563eb" stroke-width="1.3"/>
     <polygon points="${poly('projPct')}" fill="none" stroke="#bc2a2a" stroke-width="1.3" stroke-dasharray="3 2"/></svg>`;
 }
-function limiterSynthesis(goals){const agg={};goals.forEach(g=>{const act=ACTIVITIES[g.profileId],C=components(act.reqs),ev=goalEvaluation(act,C);if(ev.zone==='incomplete'||ev.zone==='uncalibrated')return;C.filter(c=>c.zone==='gap').forEach(c=>{const k=c.r.group||c.short,evidence=FORECAST_EVIDENCE[c.family]||FORECAST_EVIDENCE.none,evidenceWeight={A:1,B:.85,C:.65,'—':.45}[evidence.grade]||.65,taskWeight=c.r.basis==='task'?1:.85,vulnerability=c.static?0:Math.max(0,(1-c.projRaw/c.raw)*100);const a=agg[k]||(agg[k]={short:c.short,cat:c.r.cat,ids:[],names:[],sev:0,priority:0});if(!a.ids.includes(g.id)){a.ids.push(g.id);a.names.push(g.name);}a.sev+=c.shortBy;a.priority+=(c.shortBy+vulnerability*.35)*evidenceWeight*taskWeight;});});return Object.values(agg).sort((a,b)=>b.ids.length-a.ids.length||b.priority-a.priority||b.sev-a.sev);}
+function limiterSynthesis(goals){const agg={};goals.forEach(g=>{const act=ACTIVITIES[g.profileId],C=components(act.reqs),ev=goalEvaluation(act,C);if(ev.zone==='incomplete'||ev.zone==='uncalibrated')return;C.filter(c=>c.zone==='gap').forEach(c=>{const k=c.r.group||c.short,evidence=FORECAST_EVIDENCE[c.family]||FORECAST_EVIDENCE.none,evidenceWeight={A:1,B:.85,C:.65,'—':.45}[evidence.grade]||.65,taskWeight=({A:1,B:.85,C:.65}[c.taskEvidenceGrade]??(c.r.basis==='task'?1:.85)),vulnerability=c.static?0:Math.max(0,(1-c.projRaw/c.raw)*100);const a=agg[k]||(agg[k]={short:c.short,cat:c.r.cat,ids:[],names:[],sev:0,priority:0});if(!a.ids.includes(g.id)){a.ids.push(g.id);a.names.push(g.name);}a.sev+=c.shortBy;a.priority+=(c.shortBy+vulnerability*.35)*evidenceWeight*taskWeight;});});return Object.values(agg).sort((a,b)=>b.ids.length-a.ids.length||b.priority-a.priority||b.sev-a.sev);}
 function qualityRollup(goals){const agg={};goals.forEach(g=>components(ACTIVITIES[g.profileId].reqs).forEach(c=>{const k=c.r.group||c.short,a=agg[k]||(agg[k]={short:c.short,cat:c.r.cat,n:0,sum:0,clears:0,gaps:0});a.n++;a.sum+=c.projPct;if(c.zone==='clear')a.clears++;if(c.zone==='gap')a.gaps++;}));return Object.values(agg).map(a=>({...a,avg:a.sum/a.n}));}
 function capacityTrajectories(goals){
   const demandMap={},useMap={};
@@ -6197,7 +6218,7 @@ function filterRefList(){
     grp.style.display=anyVisible?'':'none';
   });
 }
-const CATCOLOR={Mobility:'#2563eb',Strength:'#bc2a2a',Power:'#9333ea',Aerobic:'#0891b2',Eccentric:'#d97706',Balance:'#4d7c0f',Core:'#6d28d9',Endurance:'#a16207'};
+const CATCOLOR={Mobility:'#2563eb',Strength:'#bc2a2a',Power:'#9333ea',Aerobic:'#0891b2',Eccentric:'#92400e',Balance:'#3f6212',Core:'#6d28d9',Endurance:'#a16207'};
 function refRadarSVG(reqs){
   const C=(reqs||[]).filter(r=>r.metric&&r.req!=null);
   if(C.length<3) return '';
@@ -6213,7 +6234,7 @@ function refRadarSVG(reqs){
 }
 function renderReference(){
   const list=GOALS.filter(g=>g.profileId);if(!list.some(g=>g.id===refId))refId=list[0].id;const byName={};list.forEach(g=>byName[g.name]=g);const used=new Set();const isOneOff=g=>g.custom&&ACTIVITIES[g.profileId]?.oneOff;const btn=g=>`<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?`<span class="ctag">${isOneOff(g)?'one-off':'custom'}</span>`:''}</button>`;let rl='';DOMAIN_GROUPS.forEach(([dom,names])=>{const items=names.map(n=>byName[n]).filter(Boolean),customInDom=list.filter(g=>g.custom&&!isOneOff(g)&&ACTIVITIES[g.profileId]?.domain===dom),all=items.concat(customInDom);if(!all.length)return;all.forEach(g=>used.add(g.id));rl+=`<div class="refgroup"><div class="refghead">${dom}</div>${all.map(btn).join('')}</div>`;});const left=list.filter(g=>!used.has(g.id)&&!isOneOff(g));if(left.length)rl+=`<div class="refgroup"><div class="refghead">Added by you</div>${left.map(btn).join('')}</div>`;const one=list.filter(isOneOff);if(one.length)rl+=`<div class="refgroup oneoffgrp"><div class="refghead">One-off · this report</div>${one.map(btn).join('')}</div>`;$("#refList").innerHTML=rl+`<button class="addgoal ${building?'on':''}" id="newAct">+ Build a custom activity</button>`;document.querySelectorAll('#refList [data-ref]').forEach(b=>b.onclick=()=>{building=false;refId=b.dataset.ref;renderReference();});$("#newAct").onclick=()=>startBuilder();const rs=$("#refSearch");if(rs){rs.oninput=filterRefList;filterRefList();}if(building){renderBuilder();return;}
-  const g=goalById(refId),act=ACTIVITIES[g.profileId];const cards=(act.reqs||[]).map(r=>{const meta=METRICS[r.metric]||{};if(r.role==='modifier')return `<div class="pcard"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig"><b>Context / modifier</b></div><div class="cap">${r.why||''}</div><div class="raw">◇ not included in readiness score · measurement: ${meta.measurementSource||r.src||''}</div></div>`;if(r.role==='support')return `<div class="pcard supportref"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig"><b>Supporting trajectory</b></div><div class="cap">Feeds prioritization and decline modeling; no fabricated pass/fail threshold.</div><div class="raw">◐ measurement: ${meta.measurementSource||r.src||''}</div><div class="cardwhy">${r.why||''} <span class="evi">${r.calibrationNote||''} Forecast: ${(FORECAST_EVIDENCE[meta.family]||FORECAST_EVIDENCE.none).src}</span></div></div>`;const rr=resolveRequirement(r),req=rr.req;return `<div class="pcard"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig">Requires <b>${req==null?'patient-specific input':fmtU(req,rr.unit||r.unit)}</b></div><div class="cap">${r.role==='gate'?'Hard prerequisite':'Calibrated contributing capacity'} · weight ${r.weight||1}</div><div class="raw"><span class="cdot ${r.confidence||meta.confidence||'proxy'}">${CONF_META[r.confidence||meta.confidence||'proxy']?.dot||'◐'}</span> measurement: ${meta.measurementSource||r.src||''}</div><div class="cardwhy">${basisBadge(r)} ${r.why||''} <span class="evi">Task: ${r.taskSource||r.src||'clinical mapping pending'} · Forecast: ${(FORECAST_EVIDENCE[meta.family]||FORECAST_EVIDENCE.none).src}</span></div></div>`;}).join('');
+  const g=goalById(refId),act=ACTIVITIES[g.profileId];const cards=(act.reqs||[]).map(r=>{const meta=METRICS[r.metric]||{};if(r.role==='modifier')return `<div class="pcard"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig"><b>Context / modifier</b></div><div class="cap">${r.why||''}</div><div class="raw">◇ not included in readiness score · measurement: ${meta.measurementSource||r.src||''}</div></div>`;if(r.role==='support')return `<div class="pcard supportref"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig"><b>Supporting trajectory</b></div><div class="cap">Feeds prioritization and decline modeling; no fabricated pass/fail threshold.</div><div class="raw">◐ measurement: ${meta.measurementSource||r.src||''}</div><div class="cardwhy">${r.why||''} <span class="evi">${r.calibrationNote||''} Forecast: ${(FORECAST_EVIDENCE[meta.family]||FORECAST_EVIDENCE.none).src}</span></div></div>`;const rr=resolveRequirement(r),req=rr.req;return `<div class="pcard"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig">Requires <b>${req==null?'patient-specific input':fmtU(req,rr.unit||r.unit)}</b></div><div class="cap">${r.role==='gate'?'Hard prerequisite':'Calibrated contributing capacity'} · weight ${r.weight||1}</div><div class="raw"><span class="cdot ${r.confidence||meta.confidence||'proxy'}">${CONF_META[r.confidence||meta.confidence||'proxy']?.dot||'◐'}</span> measurement: ${meta.measurementSource||r.src||''}</div><div class="cardwhy">${basisBadge(r)} ${r.why||''} <span class="evi">Task${r.taskEvidenceGrade?` evidence ${r.taskEvidenceGrade}`:''}: ${r.taskSource||r.src||'clinical mapping pending'} · Forecast: ${(FORECAST_EVIDENCE[meta.family]||FORECAST_EVIDENCE.none).src}</span></div></div>`;}).join('');
   const cats=[...new Set((act.reqs||[]).map(r=>r.cat).filter(Boolean))];const actions=act.custom?`<div class="buildactions" style="margin-bottom:12px"><button class="btn" id="editAct">Edit</button><button class="btn" id="delAct">Delete activity</button></div>`:'';$("#refDetail").innerHTML=`<div class="slide-head"><div class="eyebrow">Centenarian Decathlon · v3 activity model</div><h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div><div class="dchips"><span class="dchip"><span class="dd"></span>Complexity ${act.complexity||'?'} / 5</span><span class="dchip"><span class="dd"></span>${modelInputCount(act)} model inputs · ${scoreableReqs(act).length} calibrated</span>${cats.map(c=>`<span class="dchip qcat ${c}"><span class="dd"></span>${c}</span>`).join('')}</div></div><div class="pv">${actions}<div class="refgrid">${cards}</div><div class="refnote"><b>Model rule:</b> task demand stays fixed with age. Age and sex affect projected capacity, not the suitcase, stair, distance or duration. Only calibrated task thresholds affect readiness. Supporting trajectories and qualitative modifiers guide prioritization without creating artificial pass/fail gates.</div></div>`+FOOT;if(act.custom){$("#editAct").onclick=()=>startBuilder(g.id);$("#delAct").onclick=()=>deleteActivity(g.id);}
 }
 function metricOptions(sel){const byCat={};for(const [k,m] of Object.entries(METRIC_REGISTRY)){if(m.kind==='grade'||m.confidence==='context')continue;(byCat[m.cat]=byCat[m.cat]||[]).push(k);}return `<option value="">choose a test…</option>`+Object.keys(byCat).sort().map(cat=>`<optgroup label="${cat}">${byCat[cat].map(k=>`<option value="${k}" ${k===sel?'selected':''}>${METRIC_REGISTRY[k].label} (${METRIC_REGISTRY[k].unit})</option>`).join('')}</optgroup>`).join('');}
@@ -6294,10 +6315,10 @@ function updateGroupCount(grpEl){if(!grpEl)return;const ctrls=grpEl.querySelecto
 function neededMetricsFor(){const s=new Set();GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId).forEach(g=>(ACTIVITIES[g.profileId].reqs||[]).forEach(r=>{if(r.metric)s.add(r.metric);}));return s;}
 function applyGoalFocus(){const bf=$("#buildForm");if(!bf)return;const needed=neededMetricsFor();let nc=0,tot=0;bf.querySelectorAll('.fgroup').forEach(grp=>{let any=false;grp.querySelectorAll('[data-metric]').forEach(inp=>{tot++;const need=needed.has(inp.dataset.metric);inp.closest('.fld').classList.toggle('needed',need);if(need){any=true;nc++;}});grp.classList.toggle('has-needed',any);});const has=selectedGoals.size>0;bf.classList.toggle('goalsel',has);bf.classList.toggle('focusgoals',has&&focusGoals);const fn=$("#focusn");if(fn)fn.textContent=has?`(${nc} of ${tot})`:'';const ftw=$("#focusTogWrap");if(ftw)ftw.style.display=has?'':'none';const gc=$("#goalCount");if(gc)gc.textContent=selectedGoals.size+' selected';const sc=$("#stickyCount");if(sc)sc.textContent=selectedGoals.size;}
 function renderBuild(){
- const m=PATIENT.metrics,needed=neededMetricsFor();const groupAccent=n=>/CPET|aerobic/i.test(n)?'#0891b2':/DEXA/i.test(n)?'#64748b':/upper|strength|hinge|single|double/i.test(n)?'#bc2a2a':/locomotion/i.test(n)?'#4d7c0f':/core/i.test(n)?'#6d28d9':/mobility/i.test(n)?'#2563eb':'#64748b';
+ const m=PATIENT.metrics,needed=neededMetricsFor();const groupAccent=n=>/CPET|aerobic/i.test(n)?'#0891b2':/DEXA/i.test(n)?'#475569':/upper|strength|hinge|single|double/i.test(n)?'#bc2a2a':/locomotion/i.test(n)?'#3f6212':/core/i.test(n)?'#6d28d9':/mobility/i.test(n)?'#2563eb':'#475569';
  const fields=METRIC_META.map(grp=>{const filled=grp.items.filter(([k])=>m[k]!=null&&m[k]!=='').length;return `<div class="fgroup ${grp.items.some(([k])=>needed.has(k))?'has-needed':''}" style="border-left-color:${groupAccent(grp.group)}"><div class="fgtitle">${grp.group}<span class="fgcount">${filled}/${grp.items.length} entered</span></div><div class="fgrid">${grp.items.map(([k,lbl,unit,lo,hi,kind])=>{const meta=METRICS[k];if(kind==='grade')return `<label class="fld ${needed.has(k)?'needed':''}"><span class="flbl">${lbl} <span class="funit">qualitative</span></span><select data-metric="${k}"><option value="">not entered</option>${GRADE_OPTIONS.map(v=>`<option value="${v}" ${m[k]===v?'selected':''}>${v}</option>`).join('')}</select></label>`;return `<label class="fld ${needed.has(k)?'needed':''}"><span class="flbl">${lbl} <span class="funit">${unit}</span></span><input type="number" step="any" class="${m[k]==null||m[k]===''?'empty':''}" data-metric="${k}" value="${m[k]??''}" placeholder="${lo!=null&&hi!=null?'typ. '+lo+'–'+hi:''}"></label>`;}).join('')}</div></div>`;}).join('');
  const goals=GOALS.filter(g=>g.profileId).map(g=>`<label class="gchk"><input type="checkbox" data-goal="${g.id}" ${selectedGoals.has(g.id)?'checked':''}><span>${g.name} <span class="funit">· ${ACTIVITIES[g.profileId]?.complexity||'?'} / 5</span></span></label>`).join('');
- $("#buildForm").innerHTML=`<div class="buildhead"><div><div class="eyebrow">Centenarian Decathlon · v3</div><h1 class="slide-title">Build a patient report</h1></div><div class="buildactions"><button class="btn" id="impBtn">Import…</button><button class="btn" id="expBtn">Export data</button><button class="btn primary" id="toReport">View report →</button></div></div><div class="bsec"><div class="bsectitle">Patient</div><div class="fgrid"><label class="fld"><span class="flbl">Code / initials</span><input type="text" data-pt="name" value="${PATIENT.name||''}"></label><label class="fld"><span class="flbl">Sex</span><select data-pt="sex"><option value="male" ${PATIENT.sex==='male'?'selected':''}>male</option><option value="female" ${PATIENT.sex==='female'?'selected':''}>female</option></select></label><label class="fld"><span class="flbl">Current age <span class="funit">years</span></span><input type="number" data-pt="age" value="${PATIENT.age}"></label><label class="fld"><span class="flbl">Marginal-decade age <span class="funit">years</span></span><input type="number" data-pt="marginalDecadeAge" value="${PATIENT.marginalDecadeAge}"></label><label class="fld"><span class="flbl">Body weight <span class="funit">lb · required for fixed-load goals</span></span><input type="number" step="0.1" data-pt="bodyWeight_lb" value="${PATIENT.bodyWeight_lb??''}"></label><label class="fld"><span class="flbl">Prepared by</span><input type="text" data-pt="clinician" value="${PATIENT.clinician||''}"></label></div></div><div class="bsec"><div class="bsectitle">Step 1 · Goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div><div class="addnote goalsfirst">Complexity determines how many independent capacity dimensions are modeled; it does not mechanically make a goal harder to pass.</div><div class="gchks">${goals}</div></div><div class="meashead"><div class="bsectitle measlbl">Step 2 · Assessment measurements</div><label class="focustog" id="focusTogWrap"><input type="checkbox" id="focusTog" ${focusGoals?'checked':''}> Show only what these goals need <span class="focusn" id="focusn"></span></label></div>${fields}<div class="buildsticky"><div class="bsinner"><span class="bsmeta"><b id="stickyCount">${selectedGoals.size}</b> goals selected · missing critical data will be reported as Incomplete</span><button class="btn primary" id="toReport2">View report →</button></div></div><input type="file" id="impFile" accept="application/json" hidden>`;
+ $("#buildForm").innerHTML=`<div class="buildhead"><div><div class="eyebrow">Centenarian Decathlon · v3</div><h1 class="slide-title">Build a patient report</h1></div><div class="buildactions"><button type="button" class="btn" id="impBtn">Import…</button><button type="button" class="btn" id="expBtn">Export data</button><button type="button" class="btn primary" id="toReport">View report →</button></div></div><div class="bsec"><div class="bsectitle">Patient</div><div class="fgrid"><label class="fld"><span class="flbl">Code / initials</span><input type="text" autocomplete="off" data-pt="name" value="${PATIENT.name||''}"></label><label class="fld"><span class="flbl">Sex</span><select data-pt="sex"><option value="male" ${PATIENT.sex==='male'?'selected':''}>male</option><option value="female" ${PATIENT.sex==='female'?'selected':''}>female</option></select></label><label class="fld"><span class="flbl">Current age <span class="funit">years</span></span><input type="number" data-pt="age" value="${PATIENT.age}"></label><label class="fld"><span class="flbl">Marginal-decade age <span class="funit">years</span></span><input type="number" data-pt="marginalDecadeAge" value="${PATIENT.marginalDecadeAge}"></label><label class="fld"><span class="flbl">Body weight <span class="funit">lb · required for fixed-load goals</span></span><input type="number" step="0.1" data-pt="bodyWeight_lb" value="${PATIENT.bodyWeight_lb??''}"></label><label class="fld"><span class="flbl">Prepared by</span><input type="text" autocomplete="off" data-pt="clinician" value="${PATIENT.clinician||''}"></label></div><div class="privacy-note" role="note"><b>Privacy:</b> Use a study code or initials only. The dashboard processes entries in this browser, but exported JSON and PDFs contain the health data entered here. Store exports only in an approved clinical location; never commit them to GitHub.</div></div><div class="bsec"><div class="bsectitle">Step 1 · Goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div><div class="addnote goalsfirst">Complexity determines how many independent capacity dimensions are modeled; it does not mechanically make a goal harder to pass.</div><div class="gchks">${goals}</div></div><div class="meashead"><div class="bsectitle measlbl">Step 2 · Assessment measurements</div><label class="focustog" id="focusTogWrap"><input type="checkbox" id="focusTog" ${focusGoals?'checked':''}> Show only what these goals need <span class="focusn" id="focusn"></span></label></div>${fields}<div class="buildsticky"><div class="bsinner"><span class="bsmeta"><b id="stickyCount">${selectedGoals.size}</b> goals selected · missing critical data will be reported as Incomplete</span><button type="button" class="btn primary" id="toReport2">View report →</button></div></div><input type="file" id="impFile" accept="application/json" hidden>`;
  $("#buildForm").querySelectorAll('[data-metric]').forEach(inp=>{const ev=inp.tagName==='SELECT'?'change':'input';inp.addEventListener(ev,()=>{const v=String(inp.value||'').trim();PATIENT.metrics[inp.dataset.metric]=v===''?null:(inp.tagName==='SELECT'?v:parseFloat(v));if(inp.classList)inp.classList.toggle('empty',v==='');updateGroupCount(inp.closest('.fgroup'));});});
  $("#buildForm").querySelectorAll('[data-pt]').forEach(inp=>{const ev=inp.tagName==='SELECT'?'change':'input';inp.addEventListener(ev,()=>{const k=inp.dataset.pt;if(k==='age'||k==='marginalDecadeAge')PATIENT[k]=parseInt(inp.value)||0;else if(k==='bodyWeight_lb')PATIENT[k]=parseFloat(inp.value)||null;else PATIENT[k]=cleanText(inp.value);syncAge();renderChip();});});
  $("#buildForm").querySelectorAll('input[data-goal]').forEach(c=>c.onchange=()=>{c.checked?selectedGoals.add(c.dataset.goal):selectedGoals.delete(c.dataset.goal);applyGoalFocus();});const ft=$("#focusTog");if(ft)ft.onchange=()=>{focusGoals=ft.checked;applyGoalFocus();};const toRep=()=>setTab('report');$("#toReport").onclick=toRep;const tr2=$("#toReport2");if(tr2)tr2.onclick=toRep;$("#expBtn").onclick=exportData;$("#impBtn").onclick=()=>$("#impFile").click();$("#impFile").onchange=importData;applyGoalFocus();
@@ -6317,16 +6338,24 @@ function printCompTable(C){
     C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.zone}">${c.zone==='clear'?'on track':c.zone==='borderline'?'on the line':c.shortBy+'% short'}</td></tr>`).join('')+
     `</tbody></table>`;
 }
+function printSupportTable(S){
+  return `<div class="pgsupport"><h2>Supporting capacity trajectories</h2><p>These measured capacities inform training priorities and age-decline scenarios, but do not create a pass/fail result until a task-specific threshold is validated.</p><table class="ptbl"><thead><tr><th>Capacity</th><th>Now → ${TGT}</th><th>Retained</th><th>Use</th></tr></thead><tbody>`+
+    S.map(s=>`<tr><td class="ptq">${s.short}</td><td>${fmtU(s.raw,s.meta.unit)} → ${fmtU(s.proj,s.meta.unit)}</td><td>${s.retention==null?'context':Math.round(s.retention)+'%'}</td><td class="supportflag">support only</td></tr>`).join('')+
+    `</tbody></table></div>`;
+}
 function printGoalPage(g,pageNum,total,goalNum,goalTotal){
   const act=ACTIVITIES[g.profileId];
   const C=components(act.reqs);
+  const S=supportComponents(act);
   const v=pageVerdict(C,act), tk=pageTakeaway(g,C,v);
   const qual=(act.reqs||[]).filter(r=>!r.metric);
   const worst=v.worst, Csort=C.slice().sort((a,b)=>a.projPct-b.projPct);
   const ckey=`<div class="ckey"><span><span class="ln cur"></span>Current</span><span><span class="ln proj"></span>Projected to ${TGT}</span><span><span class="ln thr"></span>Required</span></div>`;
   const qn=qual.length?`<div class="pgqnote">Also worked on, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:'';
   let pmain;
-  if(HERO==='C'){
+  if(!C.length){
+    pmain=printSupportTable(S);
+  } else if(HERO==='C'){
     const tiles=Csort.map(c=>{const lbl=c.zone==='clear'?'On track':c.zone==='borderline'?'On the line':`${c.shortBy}% short`;return `<div class="sctile z-${c.zone}"><div class="scq2">${c.short}</div><div class="scz z-${c.zone}">${ZICON[c.zone]} ${lbl}</div><div class="scsrc">${c.r.cat} · ${c.src||''}</div></div>`;}).join('');
     pmain=`<div class="scgrid" style="margin-top:8px">${tiles}</div>${qn}`;
   } else {
@@ -6351,8 +6380,8 @@ function printSummaryPage(goals,total,pageNum){
   const exposures=lim.slice(0,3);
   const chips=arr=>arr.map(s=>`<span class="scq qcat ${s.cat}">${s.short}</span>`).join('');
   const scorecard=`<div class="scorecard"><div class="sccol up"><div class="schd"><span class="scico">✓</span><span class="scttl">Strongest</span></div>${strengths.length?`<div class="scqs">${chips(strengths)}</div><div class="scnote">above what these goals need at ${TGT}</div>`:`<div class="scnote">Nothing well above target yet.</div>`}</div><div class="sccol dn"><div class="schd"><span class="scico">⚠</span><span class="scttl">Most exposed</span></div>${exposures.length?`<div class="scqs">${chips(exposures)}</div><div class="scnote">furthest below · these limit the most goals</div>`:`<div class="scnote">No gaps at ${TGT}.</div>`}</div></div>`;
-  const synth=lim.length?`<div class="synth"><div class="synthttl">Train these to lift the most goals <span class="synthsub">shared limiters across the decathlon</span></div>${lim.slice(0,5).map(l=>`<div class="synthrow nohover"><span class="synthq qcat ${l.cat}">${l.short}</span><span class="synthn">${l.ids.length} goal${l.ids.length===1?'':'s'}</span><div class="synthbar"><div class="synthfill" style="width:${(l.ids.length/maxN*100).toFixed(0)}%"></div></div><span class="synthgoals">${l.names.slice(0,3).join(', ')}${l.names.length>3?` +${l.names.length-3}`:''}</span></div>`).join('')}</div>`:`<div class="synth synthok">Every goal clears or sits on the line at ${TGT}.</div>`;
-  const tiles=goals.map(g=>{const act=ACTIVITIES[g.profileId],C=components(act.reqs),v=goalEvaluation(act,C),tz=(v.zone==='incomplete'||v.zone==='uncalibrated')?'borderline':v.zone;return `<div class="ovcard z-${tz}"><div class="ovname">${g.name}</div><div class="ovword z-${tz}">${(v.zone==='incomplete'||v.zone==='uncalibrated')?'?':ZICON[v.zone]} ${v.word}</div><div class="ovclear">${Math.round(v.coverage*100)}% evidence</div></div>`;}).join('');
+  const synth=lim.length?`<div class="synth"><div class="synthttl">Train these to lift the most goals <span class="synthsub">shared limiters across the decathlon</span></div>${lim.slice(0,3).map(l=>`<div class="synthrow nohover"><span class="synthq qcat ${l.cat}">${l.short}</span><span class="synthn">${l.ids.length} goal${l.ids.length===1?'':'s'}</span><div class="synthbar"><div class="synthfill" style="width:${(l.ids.length/maxN*100).toFixed(0)}%"></div></div><span class="synthgoals">${l.names.slice(0,3).join(', ')}${l.names.length>3?` +${l.names.length-3}`:''}</span></div>`).join('')}</div>`:`<div class="synth synthok">Every goal clears or sits on the line at ${TGT}.</div>`;
+  const tiles=goals.map(g=>{const act=ACTIVITIES[g.profileId],C=components(act.reqs),v=goalEvaluation(act,C),tz=(v.zone==='incomplete'||v.zone==='uncalibrated')?'borderline':v.zone;return `<div class="ovcard z-${tz}"><div class="ovname">${g.name}</div><div class="ovword z-${tz}">${(v.zone==='incomplete'||v.zone==='uncalibrated')?'?':ZICON[v.zone]} ${v.word}</div></div>`;}).join('');
   const inner=`<div class="pgtitle"><div><div class="pgeyebrow">Functional Capacity Profile · at a glance</div><h1 class="pgh1 sumh1">${who}Centenarian Decathlon</h1><div class="pgsub">${PATIENT.sex} · age ${AGE} · ${PATIENT.bodyWeight_lb||'—'} lb · marginal decade ${TGT} · ${goals.length} goals projected to ${TGT}</div></div></div>
     ${HERO==='A'?synth+`<div class="ovgrid sumgrid">${tiles}</div>`+scorecard:HERO==='C'?`<div class="ovgrid sumgrid">${tiles}</div>`+synth+scorecard:HERO==='B'?`<div class="ovgrid sumgrid">${tiles}</div>`+synth+scorecard:scorecard+synth+`<div class="ovgrid sumgrid">${tiles}</div>`}
     <div class="scope sumscope"><b>What this covers.</b> ${COPY.scope()}</div>`;
@@ -6398,7 +6427,7 @@ function exportPDF(){
 }
 function dashboardSnapshot(){
   const custom={}; selectedGoals.forEach(id=>{ if(ACTIVITIES[id]&&ACTIVITIES[id].custom) custom[id]=ACTIVITIES[id]; });
-  return {modelVersion:'3.1',patient:{name:PATIENT.name,sex:PATIENT.sex,age:PATIENT.age,marginalDecadeAge:PATIENT.marginalDecadeAge,bodyWeight_lb:PATIENT.bodyWeight_lb,clinician:PATIENT.clinician},metrics:PATIENT.metrics,goals:[...selectedGoals],customActivities:custom};
+  return {modelVersion:'3.2',patient:{name:PATIENT.name,sex:PATIENT.sex,age:PATIENT.age,marginalDecadeAge:PATIENT.marginalDecadeAge,bodyWeight_lb:PATIENT.bodyWeight_lb,clinician:PATIENT.clinician},metrics:PATIENT.metrics,goals:[...selectedGoals],customActivities:custom};
 }
 function exportData(){
   const data=dashboardSnapshot();
@@ -6436,23 +6465,24 @@ function renderChip(){
 
 function setTab(t){
   tab=t; document.body.className='tab-'+t;
-  document.querySelectorAll('#tabSeg button').forEach(x=>x.classList.toggle('on',x.dataset.tab===t));
+  document.querySelectorAll('#tabSeg button').forEach(x=>{const on=x.dataset.tab===t;x.classList.toggle('on',on);x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;});
   renderChip();
   if(t==='reference') renderReference();
   else if(t==='build') renderBuild();
   else { renderCatalog(); renderReportBody(); }
 }
 $("#tabSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(b) setTab(b.dataset.tab);});
+$("#tabSeg").addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;const tabs=[...document.querySelectorAll('#tabSeg button')],current=tabs.indexOf(document.activeElement);let next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(current+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;e.preventDefault();tabs[next].focus();setTab(tabs[next].dataset.tab);});
 $("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; HERO=b.dataset.hero; document.querySelectorAll('#heroSeg button').forEach(x=>x.classList.toggle('on',x.dataset.hero===HERO)); renderReportBody();});
 const COPY={
   scope:()=>`This model uses measured physical capacities from the Early Medical assessment, CPET, and selected context from DEXA. Supporting trajectories, qualitative movement screens, and DEXA context are shown separately from the readiness score unless a direct task relationship is defensible.`,
   disclaimerLead:'How to read this.',
   disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization; measured capacity is projected forward using age- and sex-specific literature-informed decline curves with a deliberately broad uncertainty range. Training, disease, injury, body-weight change, and survivor effects can materially alter the trajectory.`
 };
-const DATASETS={sample:{label:'PW · sample (54M)',sex:'male',age:54,mode:'sample'},strong:{label:'Strong all-rounder (52M)',sex:'male',age:52,mode:'strong'},typical:{label:'Typical, some gaps (56M)',sex:'male',age:56,mode:'typical'},gaps:{label:'Multiple gaps (66M)',sex:'male',age:66,mode:'gaps'},female:{label:'Female, mixed (57F)',sex:'female',age:57,mode:'female'},older:{label:'Older, deconditioned (72M)',sex:'male',age:72,mode:'older'}};
+const DATASETS={sample:{label:'Demo · sample (54M)',sex:'male',age:54,mode:'sample'},strong:{label:'Strong all-rounder (52M)',sex:'male',age:52,mode:'strong'},typical:{label:'Typical, some gaps (56M)',sex:'male',age:56,mode:'typical'},gaps:{label:'Multiple gaps (66M)',sex:'male',age:66,mode:'gaps'},female:{label:'Female, mixed (57F)',sex:'female',age:57,mode:'female'},older:{label:'Older, deconditioned (72M)',sex:'male',age:72,mode:'older'}};
 const _SCALE={strong:1.20,typical:1.00,gaps:.78,older:.72,female:1.00};
 function genMetrics(mode){const m={};for(const k in BASELINE_METRICS){const v=BASELINE_METRICS[k];if(typeof v==='string'){m[k]=v;continue;}const f=mode==='random'?.70+Math.random()*.65:(_SCALE[mode]??1);let z=v*f;const info=METRIC_INFO[k];if(info?.hi!=null)z=Math.min(z,info.hi);m[k]=Math.round(z*100)/100;}return m;}
-function applyDataset(key){if(key==='sample'){PATIENT={name:'PW',sex:'male',age:54,marginalDecadeAge:90,bodyWeight_lb:175,clinician:'',metrics:JSON.parse(JSON.stringify(BASELINE_METRICS))};}else if(key==='random'){PATIENT={name:'Random demo',sex:Math.random()<.5?'male':'female',age:50+Math.floor(Math.random()*24),marginalDecadeAge:90,bodyWeight_lb:160+Math.round(Math.random()*45),clinician:'',metrics:genMetrics('random')};}else{const d=DATASETS[key]||DATASETS.sample;PATIENT={name:d.label,sex:d.sex,age:d.age,marginalDecadeAge:90,bodyWeight_lb:d.sex==='female'?145:175,clinician:'',metrics:genMetrics(d.mode)};}syncAge();renderChip();if(tab==='report'){renderCatalog();renderReportBody();}else if(tab==='build')renderBuild();else renderReference();}
+function applyDataset(key){if(key==='sample'){PATIENT={name:'Demo',sex:'male',age:54,marginalDecadeAge:90,bodyWeight_lb:175,clinician:'',metrics:JSON.parse(JSON.stringify(BASELINE_METRICS))};}else if(key==='random'){PATIENT={name:'Random demo',sex:Math.random()<.5?'male':'female',age:50+Math.floor(Math.random()*24),marginalDecadeAge:90,bodyWeight_lb:160+Math.round(Math.random()*45),clinician:'',metrics:genMetrics('random')};}else{const d=DATASETS[key]||DATASETS.sample;PATIENT={name:d.label,sex:d.sex,age:d.age,marginalDecadeAge:90,bodyWeight_lb:d.sex==='female'?145:175,clinician:'',metrics:genMetrics(d.mode)};}syncAge();renderChip();if(tab==='report'){renderCatalog();renderReportBody();}else if(tab==='build')renderBuild();else renderReference();}
 
 (function(){const ds=document.getElementById('dataSel'); if(ds) ds.addEventListener('change',e=>applyDataset(e.target.value));
   const dr=document.getElementById('dataRand'); if(dr) dr.addEventListener('click',()=>{ if(ds) ds.selectedIndex=-1; applyDataset('random'); });})();
