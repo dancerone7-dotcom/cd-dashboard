@@ -39,9 +39,10 @@ This checklist separates completed engineering evidence from approvals that must
    - [ ] Privacy/security owner approves the public-origin boundary, identifier convention, retention, and incident-response ownership.
 
 8. **Independent review**
+   - [x] Project owner approves opening the pull request and demo deployment for team review only.
    - [ ] Clinical reviewer completes the signoff table in `docs/clinical-calibration.md`.
    - [ ] Technical reviewer approves the pull request after examining the model diff, validator, and rendered PDF.
-   - [ ] Pull request is changed from draft to ready only after both reviews are recorded.
+   - [x] Pull request is ready for team review; this does not represent clinical or production approval.
 
 9. **Merge, deploy, and smoke test**
    - [ ] Merge the approved pull request to `main`.
@@ -50,4 +51,4 @@ This checklist separates completed engineering evidence from approvals that must
 
 ## Release decision
 
-Do not merge for clinical use while any item in sections 2, 3, 7, or 8 is open. The public GitHub Pages site is demo-only until the privacy/security owner documents a different deployment decision.
+The project owner approves publishing this build solely as a demo for team review. Do not use it with real patient data or for clinical decisions while any item in sections 2, 3, 7, or 8 is open. The public GitHub Pages site remains demo-only until the privacy/security owner documents a different deployment decision.

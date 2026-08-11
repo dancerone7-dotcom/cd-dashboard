@@ -80,6 +80,7 @@ VALD ForceDecks supports Quiet Stand, Single Leg Stand, and Single Leg Range of 
 
 | Role | Name | Decision | Date |
 |---|---|---|---|
+| Project owner | dancerone7-dotcom | Approved for team review and demo deployment only; not clinical-use approval | 2026-08-11 |
 | Clinical owner | _required_ | _pending_ | _pending_ |
 | Assessment/VALD protocol owner | _required_ | _pending_ | _pending_ |
 | Technical reviewer | _required_ | _pending_ | _pending_ |
