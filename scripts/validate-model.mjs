@@ -15,6 +15,7 @@ globalThis.__MODEL__={
   DECLINE_CURVES,FAMILY_BAND,FORECAST_EVIDENCE,MEASUREMENT_PROTOCOLS,
   TASK_DEMAND_EVIDENCE,TASK_GRADE_UNCERTAINTY,THRESHOLDS_AWAITING_CALIBRATION,MET_CONVENTION,
   components,scoreableReqs,supportReqs,modelInputCount,goalEvaluation,
+  capacityTrajectories,capacitySummaryHTML,limiterSynthesis,
   projectCapacity,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,
   setSelectedGoals(ids){selectedGoals=new Set(ids);},syncAge
 };`;
@@ -42,11 +43,27 @@ check(html.includes('exported JSON and PDFs contain the health data entered here
 const grouped=M.METRIC_GROUPS.flatMap(([,keys])=>keys);
 for(const metric of Object.keys(M.METRICS))check(grouped.filter(key=>key===metric).length===1,`${metric}: must appear in exactly one assessment group.`);
 for(const metric of grouped)check(!!M.METRICS[metric],`${metric}: grouped assessment metric is undefined.`);
+const lt1Uses=Object.values(M.ACTIVITIES).flatMap(act=>(act.reqs||[]).filter(r=>r.metric==='lt1_vo2'));
+check(!!M.METRICS.lt1_vo2&&grouped.includes('lt1_vo2'),'LT1 must remain available in the canonical clinician assessment library.');
+check(lt1Uses.length>0&&lt1Uses.every(r=>r.role==='support'),'Every LT1 activity use must remain clinician-supporting rather than scoreable.');
+check(Object.values(M.ACTIVITIES).every(act=>!M.scoreableReqs(act).some(r=>r.metric==='lt1_vo2')),'LT1 must not contribute to CD readiness scoring.');
 for(const [metric,meta] of Object.entries(M.METRICS)){
   check(!!M.DECLINE_CURVES[meta.family],`${metric}: missing decline family ${meta.family}.`);
   check(!!M.FORECAST_EVIDENCE[meta.family],`${metric}: missing forecast evidence for ${meta.family}.`);
   if(meta.src?.startsWith('VALD'))check((meta.measurementSource||'').includes('·'),`${metric}: VALD measurement must name an explicit test protocol.`);
 }
+
+const allGoals=M.GOALS.filter(g=>g.profileId);
+const lt1Headline=M.capacitySummaryHTML(M.capacityTrajectories(allGoals));
+check(!/lt1|sustainable aerobic capacity/i.test(lt1Headline),'LT1 must not appear in headline capacity prioritization.');
+check(html.includes('Clinician detail: all measured capacities'),'The report must retain the clinician capacity deep dive.');
+const demoGoalIds=new Set(M.dashboardSnapshot().goals);
+const demoHeadline=M.capacityTrajectories(allGoals.filter(g=>demoGoalIds.has(g.id))).filter(x=>x.metric!=='lt1_vo2');
+const demoSummary=M.capacitySummaryHTML(demoHeadline);
+check((demoSummary.match(/class="caprankitem"/g)||[]).length<=6,'Patient headline must show no more than three strengths and three opportunities.');
+check(!/% retained|% of hardest calibrated need|Avg decline/i.test(demoSummary),'Patient headline must omit technical reserve and trajectory detail.');
+const demoPrintSummary=M.buildPrintDoc().match(/<section class="ppage pp-summary">([\s\S]*?)<\/section>/)?.[1]||'';
+check((demoPrintSummary.match(/class="scq qcat /g)||[]).length<=6,'PDF headline must show no more than three strengths and three opportunities.');
 for(const metric of ['balanceSL_EO_s','balanceSL_EC_s']){
   check(!M.MEASUREMENT_PROTOCOLS[metric].startsWith('VALD'),`${metric}: seconds held must not be labeled as a VALD CoP result.`);
   check(M.MEASUREMENT_PROTOCOLS[metric].includes('enter weaker side')&&M.MEASUREMENT_PROTOCOLS[metric].includes('SOP approval pending'),`${metric}: timed-stance protocol must name the aggregation rule and approval state.`);
