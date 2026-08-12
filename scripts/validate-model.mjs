@@ -18,11 +18,11 @@ globalThis.__MODEL__={
   ACTIVITIES,CATALOG,GOALS,METRICS,METRIC_GROUPS,PATIENT,BASELINE_METRICS,
   DECLINE_CURVES,FAMILY_BAND,FORECAST_EVIDENCE,EVIDENCE_HORIZONS,MEASUREMENT_PROTOCOLS,
   TASK_DEMAND_EVIDENCE,TASK_GRADE_UNCERTAINTY,EXACT_PERFORMANCE_TASKS,THRESHOLDS_AWAITING_CALIBRATION,MET_CONVENTION,
-  CALIBRATION_BREADTH,DEPENDENCY_MAP,GOAL_AUDIT_REGISTER,DEMO_ARCHETYPES,
+  CALIBRATION_BREADTH,DEPENDENCY_MAP,GOAL_AUDIT_REGISTER,DEMO_ARCHETYPES,GRADE_OPTIONS,VALD_PERCENTILE_METRICS,EM_ASSESSMENT_BANDS,FOUNDATIONAL_SCREEN,
   components,scoreableReqs,supportReqs,supportComponents,modelInputCount,goalEvaluation,
-  capacityTrajectories,capacitySummaryHTML,limiterSynthesis,
+  capacityTrajectories,capacitySummaryHTML,limiterSynthesis,assessmentContext,supportPrioritySynthesis,foundationalPrioritySynthesis,trainingPrioritySynthesis,foundationalSummaryHTML,
   projectCapacity,projectBandAt,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,
-  reportModeHTML,archetypeMetrics,createArchetypePatient,
+  reportModeHTML,archetypeMetrics,createArchetypePatient,randomDemoPatient,
   setSelectedGoals(ids){selectedGoals=new Set(ids);},setReportMode(mode){HERO=mode;},
   setPatient(patient){const copy=JSON.parse(JSON.stringify(patient));for(const key of Object.keys(PATIENT))delete PATIENT[key];Object.assign(PATIENT,copy);syncAge();},getPatient(){return PATIENT;},syncAge
 };`;
@@ -48,6 +48,11 @@ check(Object.values(M.TASK_DEMAND_EVIDENCE).every(e=>['A','B','C'].includes(e.gr
 check(!/\b(?:fetch|XMLHttpRequest|sendBeacon)\s*\(/.test(html),'Dashboard must not transmit entered clinical data over the network.');
 check(html.includes('role="tablist"')&&html.includes('aria-selected="true"'),'Dashboard navigation must expose accessible tab semantics.');
 check(html.includes('exported JSON and PDFs contain the health data entered here'),'Builder must show the export privacy warning.');
+const namedDemoBlock=html.slice(html.indexOf('const DEMO_ARCHETYPES='),html.indexOf('function randomDemoPatient'));
+check(!/familyFactors|metricFactors/.test(namedDemoBlock),'Named demo code still contains factor-based derivation.');
+check(!/Needs attention/.test(html),'Unsupported qualitative demo value remains.');
+check(html.includes('demoGrades=GRADE_OPTIONS.slice(0,3)'),'Random demos must restrict qualitative grades to tested result values.');
+check(html.includes('Foundational screen · never clearance')&&html.includes('never create a future task threshold')&&/do(?:es|) not predict injury/.test(html),'Assessment-priority pathways are not visibly separated from task clearance and injury prediction.');
 
 const grouped=M.METRIC_GROUPS.flatMap(([,keys])=>keys);
 for(const metric of Object.keys(M.METRICS))check(grouped.filter(key=>key===metric).length===1,`${metric}: must appear in exactly one assessment group.`);
@@ -154,21 +159,29 @@ M.PATIENT.bodyWeight_lb=null;
 for(const item of M.CATALOG){const act=M.ACTIVITIES[item.profile];if(M.scoreableReqs(act).some(r=>r.reqKind==='fixed_load_pctBW'))check(M.goalEvaluation(act,M.components(act.reqs)).zone==='incomplete',`${item.profile}: missing body weight did not produce Incomplete.`);}
 M.PATIENT.bodyWeight_lb=original.bw;M.syncAge();
 
-/* Seven deterministic archetypes: distinct vectors, status profiles, and headlines. */
-const archetypeVectors=[],statusVectors=new Set(),headlineSets=new Set(),archetypeResults=[];
+/* Seven deterministic archetypes: independent native-unit patients with diverse outputs. */
+const archetypeVectors=[],statusVectors=new Set(),headlineSets=new Set(),strengthFirst=new Set(),opportunityFirst=new Set(),priorityFirst=new Set(),strengthSets=new Set(),opportunitySets=new Set(),prioritySets=new Set(),archetypeResults=[];
 for(const key of Object.keys(M.DEMO_ARCHETYPES)){
-  const patient=M.createArchetypePatient(key),vector=Object.entries(patient.metrics).filter(([,v])=>typeof v==='number').map(([,v])=>v);archetypeVectors.push(vector);M.setPatient(patient);
+  const profile=M.DEMO_ARCHETYPES[key],patient=M.createArchetypePatient(key),numericEntries=Object.entries(patient.metrics).filter(([,v])=>typeof v==='number'),vector=numericEntries.map(([,v])=>v);archetypeVectors.push(vector);M.setPatient(patient);
+  check(profile.metrics&&typeof profile.metrics==='object'&&!('familyFactors' in profile)&&!('metricFactors' in profile),`${key}: named archetype must be an explicit native-unit patient, not a factor recipe.`);
+  check(Object.keys(patient.metrics).length===Object.keys(M.BASELINE_METRICS).length,`${key}: native-unit profile must include every original sample measure.`);
+  for(const [metric,value] of Object.entries(patient.metrics)){const meta=M.METRICS[metric];check(!!meta,`${key}: unknown metric ${metric}.`);if(meta?.kind==='grade')check(M.GRADE_OPTIONS.includes(value),`${key}/${metric}: illegal qualitative value ${value}.`);else check(finite(value)&&(meta.lo==null||value>=meta.lo)&&(meta.hi==null||value<=meta.hi),`${key}/${metric}: ${value} is outside legal native-unit range.`);}
   const statuses=M.CATALOG.map(item=>M.goalEvaluation(M.ACTIVITIES[item.profile],M.components(M.ACTIVITIES[item.profile].reqs)).zone),statusCounts=statuses.reduce((a,z)=>(a[z]=(a[z]||0)+1,a),{});statusVectors.add(statuses.join('|'));
-  const headline=M.capacitySummaryHTML(M.capacityTrajectories(allGoals));headlineSets.add([...headline.matchAll(/<b>(.*?)<\/b>/g)].map(x=>x[1]).join('|'));
-  const priorities=M.limiterSynthesis(allGoals).slice(0,3).map(x=>x.metric);
-  archetypeResults.push({key,statuses:Object.entries(statusCounts).map(([status,count])=>`${status}:${count}`).join(' · '),priorities:priorities.join(', ')||'none'});
+  const traj=M.capacityTrajectories(allGoals),headline=M.capacitySummaryHTML(traj),strengths=traj.filter(x=>x.metric!=='lt1_vo2'&&x.status==='strength').sort((a,b)=>b.strengthScore-a.strengthScore||(b.reservePct||0)-(a.reservePct||0)).slice(0,3),opportunities=traj.filter(x=>x.metric!=='lt1_vo2'&&x.status==='opportunity').sort((a,b)=>(a.reservePct||999)-(b.reservePct||999)||b.opportunityScore-a.opportunityScore).slice(0,3),safeStrength=strengths.length?strengths:traj.filter(x=>x.metric!=='lt1_vo2'&&x.reservePct!=null).sort((a,b)=>(b.reservePct||0)-(a.reservePct||0)).slice(0,3),safeOpp=opportunities.length?opportunities:traj.filter(x=>x.metric!=='lt1_vo2'&&x.reservePct!=null).sort((a,b)=>(a.reservePct||999)-(b.reservePct||999)).slice(0,3),priorities=M.trainingPrioritySynthesis(allGoals).slice(0,3);
+  const strengthMetrics=safeStrength.map(x=>x.metric),opportunityMetrics=safeOpp.map(x=>x.metric),priorityMetrics=priorities.map(x=>x.metric);headlineSets.add([...headline.matchAll(/<b>(.*?)<\/b>/g)].map(x=>x[1]).join('|'));strengthSets.add(strengthMetrics.join('|'));opportunitySets.add(opportunityMetrics.join('|'));prioritySets.add(priorityMetrics.join('|'));if(strengthMetrics[0])strengthFirst.add(strengthMetrics[0]);if(opportunityMetrics[0])opportunityFirst.add(opportunityMetrics[0]);if(priorityMetrics[0])priorityFirst.add(priorityMetrics[0]);
+  archetypeResults.push({key,statuses:Object.entries(statusCounts).map(([status,count])=>`${status}:${count}`).join(' · '),strengths:strengthMetrics.join(', ')||'none',opportunities:opportunityMetrics.join(', ')||'none',priorities:priorityMetrics.join(', ')||'none'});
   for(const item of M.CATALOG){const act=M.ACTIVITIES[item.profile],parts=M.components(act.reqs),ev=M.goalEvaluation(act,parts);check(validZones.has(ev.zone),`${key}/${item.profile}: invalid status ${ev.zone}.`);check(ev.score==null||finite(ev.score),`${key}/${item.profile}: non-finite readiness score.`);for(const part of parts)check(['raw','projRaw','projLo','projHi','req','projPct'].every(prop=>finite(part[prop])),`${key}/${item.profile}/${part.r.metric}: non-finite component output.`);}
 }
 for(let i=0;i<archetypeVectors.length;i++)for(let j=i+1;j<archetypeVectors.length;j++)check(archetypeVectors[i].some((v,k)=>Math.abs(v-archetypeVectors[j][k])>1e-9),`Archetype vectors ${i} and ${j} are identical.`);
-for(const [key,profile] of Object.entries(M.DEMO_ARCHETYPES)){const factors=Object.values(profile.familyFactors).filter((v,i,a)=>a.indexOf(v)===i);check(key==='balanced'||factors.length>=4,`${key}: family pattern is too uniform.`);}
 check(JSON.stringify(M.archetypeMetrics('balanced'))===JSON.stringify(M.BASELINE_METRICS),'Balanced archetype must preserve the origin/main sample measurements exactly.');
 check(statusVectors.size>=4,`Demo goal-status vectors are insufficiently distinct (${statusVectors.size}/4).`);
 check(headlineSets.size>=4,`Demo headline sets are insufficiently distinct (${headlineSets.size}/4).`);
+check(strengthSets.size>=5&&strengthFirst.size>=2,`Demo top strengths lack meaningful diversity (${strengthSets.size} sets; ${strengthFirst.size} first-ranked measures).`);
+check(opportunitySets.size>=5&&opportunityFirst.size>=3,`Demo opportunities lack meaningful diversity (${opportunitySets.size} sets; ${opportunityFirst.size} first-ranked measures).`);
+check(prioritySets.size>=4&&priorityFirst.size>=2,`Demo action priorities lack meaningful diversity (${prioritySets.size} sets; ${priorityFirst.size} first-ranked measures).`);
+check(archetypeResults.filter(result=>result.strengths.split(', ').includes('relDeadlift_pctBW')).length<=5,'Fewer than two physiologically distinct demos omit deadlift from the strength headline.');
+check([...M.GRADE_OPTIONS.slice(3)].every(code=>/^NT-/.test(code)),'Non-testing grade options must be explicit NT reason codes.');
+for(let i=0;i<100;i++)for(const [metric,value] of Object.entries(M.randomDemoPatient().metrics))if(M.METRICS[metric]?.kind==='grade')check(M.GRADE_OPTIONS.slice(0,3).includes(value),`Random demo assigned non-testing result ${value} to ${metric}.`);
 
 /* Five modes must be structurally different and preserve their selected PDF mode. */
 M.setPatient(M.createArchetypePatient('balanced'));M.setSelectedGoals(M.GOALS.map(g=>g.id));
@@ -195,6 +208,41 @@ check((M.DEPENDENCY_MAP.loadedStepup_pctBW?.clearanceGoals||[]).includes('stairs
 check(!(M.DEPENDENCY_MAP.grip_lb?.clearanceGoals||[]).length,'Grip remains support/prioritization only; it must not grant readiness clearance.');
 check((M.DEPENDENCY_MAP.balanceSL_EO_s?.clearanceGoals||[]).includes('balance-30s'),'Timed single-leg balance must directly affect the balance goal.');
 check(!(M.DEPENDENCY_MAP.cmjPower_WkG?.clearanceGoals||[]).includes('open-jars'),'CMJ must not clear unrelated daily tasks.');
+check(M.assessmentContext('grip_lb')?.kind==='percentile','Grip assessment context must use an entered age/sex-matched VALD percentile.');
+const gripRaw=M.PATIENT.metrics.grip_lb,gripPct=M.PATIENT.assessmentPercentiles.grip_lb,gripContextBefore=M.assessmentContext('grip_lb');M.PATIENT.metrics.grip_lb=gripRaw*.5;const gripContextRawOnly=M.assessmentContext('grip_lb');check(gripContextRawOnly.percentile===gripPct&&gripContextRawOnly.deficit===gripContextBefore.deficit,'Raw VALD value must not be converted into an invented percentile.');M.PATIENT.metrics.grip_lb=gripRaw;
+const stsContext=M.assessmentContext('stsPower_Wkg');check(stsContext?.kind==='native-band'&&/current-assessment band/.test(stsContext.label),'Early Medical native-unit band must be current-assessment context.');
+const contextAge=M.PATIENT.age;M.PATIENT.age=92;M.syncAge();check(M.assessmentContext('stsPower_Wkg')==null,'Early Medical 80-90 band was silently extended beyond its age coverage.');M.PATIENT.age=contextAge;M.syncAge();
+
+/* Support-priority sensitivity: measured context may reorder training, never clearance. */
+const supportSensitivity={};M.setPatient(M.createArchetypePatient('balanced'));M.setSelectedGoals(M.GOALS.map(g=>g.id));
+for(const metric of ['grip_lb','cmjPower_WkG','hopRSI','dropJump_RSI','kneeExt_xBW']){
+  check(!(M.DEPENDENCY_MAP[metric]?.clearanceGoals||[]).length,`${metric}: support sensitivity requires a support-only metric.`);
+  const baseline=JSON.parse(JSON.stringify(M.getPatient())),beforeClearance=Object.fromEntries(M.GOALS.map(g=>{const act=M.ACTIVITIES[g.id];return [g.id,M.goalEvaluation(act,M.components(act.reqs))];})),beforePriorities=M.supportPrioritySynthesis(allGoals),beforeItem=beforePriorities.find(x=>x.metric===metric),changed=JSON.parse(JSON.stringify(baseline));
+  changed.metrics[metric]=Math.max(M.METRICS[metric].lo??0,changed.metrics[metric]*.55);if(M.VALD_PERCENTILE_METRICS.has(metric))changed.assessmentPercentiles[metric]=8;M.setPatient(changed);
+  const afterClearance=Object.fromEntries(M.GOALS.map(g=>{const act=M.ACTIVITIES[g.id];return [g.id,M.goalEvaluation(act,M.components(act.reqs))];})),afterPriorities=M.supportPrioritySynthesis(allGoals),afterItem=afterPriorities.find(x=>x.metric===metric),beforeRank=beforePriorities.findIndex(x=>x.metric===metric),afterRank=afterPriorities.findIndex(x=>x.metric===metric);
+  check(!!afterItem&&afterItem.priority>(beforeItem?.priority||0),`${metric}: poorer assessment context did not increase support priority.`);
+  check(afterRank>=0&&(beforeRank<0||afterRank<beforeRank||afterItem.priority>(beforeItem?.priority||0)*1.25),`${metric}: changing measured support did not meaningfully change prioritization.`);
+  for(const g of M.GOALS){const a=beforeClearance[g.id],b=afterClearance[g.id];check(a.zone===b.zone&&((a.score==null&&b.score==null)||(a.score!=null&&b.score!=null&&Math.abs(a.score-b.score)<1e-10)),`${metric}: support-only context changed ${g.id} clearance.`);}
+  supportSensitivity[metric]={beforeRank:beforeRank<0?null:beforeRank+1,afterRank:afterRank+1,beforePriority:beforeItem?.priority||0,afterPriority:afterItem.priority};M.setPatient(baseline);
+}
+check(!/task threshold|pass\/fail|clearance/i.test(JSON.stringify(M.EM_ASSESSMENT_BANDS)),'Assessment context bands contain task-clearance semantics.');
+
+/* Goal-independent foundation screen: marked shoulder weakness must surface without clearance effects. */
+check(['shoulderER_NmKg','cuffExtRot_lb','ohPress_pctBW'].every(metric=>metric in M.FOUNDATIONAL_SCREEN),'Foundational screen does not cover the shoulder-strength pattern.');
+M.setPatient(M.createArchetypePatient('balanced'));M.setSelectedGoals(['walk-3mi','balance-30s']);
+const shoulderBaseline=JSON.parse(JSON.stringify(M.getPatient())),shoulderBefore=Object.fromEntries(['walk-3mi','balance-30s'].map(id=>{const act=M.ACTIVITIES[id];return [id,M.goalEvaluation(act,M.components(act.reqs))];})),shoulderChanged=JSON.parse(JSON.stringify(shoulderBaseline));
+shoulderChanged.metrics.shoulderER_NmKg=.08;shoulderChanged.metrics.cuffExtRot_lb=3;shoulderChanged.metrics.ohPress_pctBW=4;shoulderChanged.assessmentPercentiles.shoulderER_NmKg=5;M.setPatient(shoulderChanged);
+const shoulderFoundation=M.foundationalPrioritySynthesis(),shoulderPriorities=M.trainingPrioritySynthesis(M.GOALS.filter(g=>['walk-3mi','balance-30s'].includes(g.id))),shoulderMetrics=['shoulderER_NmKg','cuffExtRot_lb','ohPress_pctBW'],shoulderAfter=Object.fromEntries(['walk-3mi','balance-30s'].map(id=>{const act=M.ACTIVITIES[id];return [id,M.goalEvaluation(act,M.components(act.reqs))];}));
+check(shoulderFoundation.some(item=>shoulderMetrics.includes(item.metric)&&item.context.deficit>=60),'Marked shoulder weakness did not enter the goal-independent foundational screen.');
+check(shoulderPriorities.slice(0,5).some(item=>shoulderMetrics.includes(item.metric)&&(item.pathway==='foundational'||item.pathway==='combined')),'Marked shoulder weakness did not reach What to work on first when selected goals had no shoulder dependency.');
+check(/shoulder/i.test(M.foundationalSummaryHTML())&&M.foundationalSummaryHTML().includes('do not predict injury'),'Marked shoulder weakness is not summarized outside the Action-only priority list.');
+const shoulderGoals=M.GOALS.filter(g=>['walk-3mi','balance-30s'].includes(g.id));for(const mode of ['C','B','R','D'])check(/Foundational assessment concerns/.test(M.reportModeHTML(mode,shoulderGoals)),`Marked shoulder weakness is hidden in live ${mode} mode.`);for(const mode of ['C','A','B','R','D']){M.setReportMode(mode);check(/shoulder/i.test(M.buildPrintDoc()),`Marked shoulder weakness is hidden in ${mode} PDF summary.`);}
+check(['walk-3mi','balance-30s'].every(id=>{const a=shoulderBefore[id],b=shoulderAfter[id];return a.zone===b.zone&&((a.score==null&&b.score==null)||(a.score!=null&&b.score!=null&&Math.abs(a.score-b.score)<1e-10));}),'Goal-independent shoulder screen changed CD task clearance.');
+check(!shoulderMetrics.some(metric=>(M.DEPENDENCY_MAP[metric]?.clearanceGoals||[]).some(id=>id==='walk-3mi'||id==='balance-30s')),'Shoulder screening test accidentally selected goals with shoulder clearance dependencies.');
+const ntPatient=JSON.parse(JSON.stringify(shoulderBaseline));ntPatient.metrics.slControl_grade='NT-PAIN';ntPatient.metrics.hipHike_grade='NT-TIME';M.setPatient(ntPatient);const ntScreen=M.foundationalPrioritySynthesis();
+check(ntScreen.some(item=>item.metric==='slControl_grade'&&item.context.kind==='clinical-review'),'NT-PAIN did not surface as a foundational clinical-review concern.');
+check(!ntScreen.some(item=>item.metric==='hipHike_grade'),'NT-TIME was misclassified as a measured weakness or clinical-risk finding.');
+M.setPatient(shoulderBaseline);M.setSelectedGoals(M.GOALS.map(g=>g.id));M.setReportMode('A');
 
 /* Late-life uncertainty must widen beyond the observed horizon. */
 for(const family of ['aero','lower_strength','power','balance']){const h=M.EVIDENCE_HORIZONS[family],within=M.projectBandAt(100,family,'male',50,Math.max(55,h.extrapolationStartAge-1)),beyond=M.projectBandAt(100,family,'male',50,Math.min(105,h.extrapolationStartAge+15)),rel=a=>(a[1]-a[0])/Math.max(1e-9,(a[1]+a[0])/2);check(rel(beyond)>rel(within),`${family}: uncertainty did not widen beyond evidence horizon.`);}
@@ -203,9 +251,11 @@ for(const family of ['aero','lower_strength','power','balance']){const h=M.EVIDE
 const snapshot=JSON.parse(JSON.stringify(M.dashboardSnapshot()));
 check(snapshot.modelVersion==='4.0','Export snapshot has the wrong model version.');
 check(Object.keys(snapshot.metrics).length===Object.keys(M.PATIENT.metrics).length,'Export snapshot omitted assessment metrics.');
+check(JSON.stringify(snapshot.assessmentPercentiles)===JSON.stringify(M.PATIENT.assessmentPercentiles),'Export snapshot omitted or changed assessment percentiles.');
 check(Array.isArray(snapshot.goals)&&snapshot.goals.length>0,'Export snapshot omitted selected goals.');
 M.applyImportedData(snapshot);
 check(M.PATIENT.name===snapshot.patient.name&&M.PATIENT.sex===snapshot.patient.sex,'Export/import round-trip changed patient identity fields.');
+check(JSON.stringify(M.PATIENT.assessmentPercentiles)===JSON.stringify(snapshot.assessmentPercentiles),'Export/import round-trip changed assessment percentiles.');
 M.applyImportedData({patient:{name:'<bad> A',sex:'other',age:55,marginalDecadeAge:90,bodyWeight_lb:175},metrics:{vo2:Infinity,unknown_metric:123},goals:['walk-3mi','not-a-goal']});
 check(!M.PATIENT.name.includes('<'),'Imported display text was not sanitized.');
 check(M.PATIENT.metrics.vo2==null,'Non-finite imported metric was not rejected.');
@@ -220,6 +270,7 @@ check(!/\b(?:NaN|Infinity)\b/.test(printDoc),'Full print document contains NaN o
 console.log('Centenarian Decathlon model audit');
 console.table(rows);
 console.log('\nDemo archetypes');console.table(archetypeResults);
-console.log('\nSensitivity');console.dir(sensitivity,{depth:4});
+console.log('\nClearance dependency sensitivity');console.dir(sensitivity,{depth:4});
+console.log('\nSupport-priority sensitivity');console.dir(supportSensitivity,{depth:4});
 if(errors.length){console.error(`\nFAIL (${errors.length})`);for(const error of errors)console.error(`- ${error}`);process.exitCode=1;}
-else console.log(`\nPASS · ${rows.length} goals · ${Object.keys(M.METRICS).length} metrics · 7 archetypes · 5 modes · sensitivity, calibration-breadth, evidence-horizon, fixed-demand, missing-data, export/import, and ${38}-page print checks`);
+else console.log(`\nPASS · ${rows.length} goals · ${Object.keys(M.METRICS).length} metrics · 7 native-unit archetypes · 5 modes · headline diversity, clearance, goal-support and goal-independent foundational sensitivity, calibration-breadth, evidence-horizon, fixed-demand, missing-data, export/import, and ${38}-page print checks`);

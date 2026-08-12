@@ -5,7 +5,10 @@ This document records the V4 implementation and validation state. It is a model-
 ## What changed
 
 - Added five genuinely different live and PDF presentation modes: Simple, Action, Trajectory, Capacity wheel (prototype), and Clinician detail.
-- Replaced whole-patient demo scaling with seven deterministic, non-uniform archetypes. The balanced archetype preserves the origin/main sample measurements exactly.
+- Replaced whole-patient demo scaling with seven explicit deterministic native-unit patients. No named demo is calculated from the balanced sample, and the female profile is an independently specified synthetic patient. The balanced archetype preserves the origin/main sample measurements exactly.
+- Added a support-priority pathway that is mathematically separate from task clearance. It combines current age/sex assessment context, selected-goal leverage, expected vulnerability, and forecast evidence confidence; action rows state whether they come from a calibrated task gap or assessment support that can never grant clearance.
+- Added a goal-independent foundational assessment screen. Marked shoulder, hip, knee, foot/ankle, balance, movement-quality, or trunk findings can reach **What to work on first** even when none of the selected CD goals uses that measure. These findings identify current training-capacity concerns for clinician review; they do not predict injury, diagnose pathology, or change task clearance.
+- Added input/export support for age/sex-matched VALD percentiles. Where no numeric VALD percentile is supplied, the model does not infer one from the raw value. Early Medical current-age/sex bands and VALD percentiles are assessment context only, never longitudinal slopes or future task thresholds.
 - Added an explicit metric-to-goal dependency map and perturbation tests for VO2max, deadlift, loaded step-up, grip, timed single-leg balance, and CMJ power.
 - Added calibration-breadth rules: complexity 1-2 requires 1 independent calibrated dimension, complexity 3-4 requires 2, and complexity 5 requires 3 for a full clear.
 - Corrected the 10,000 m row definition to 3:00/500 m and about 60 W using the Concept2 equation `watts = 2.80 / pace^3`, with pace in seconds per meter. VO2 and LT1 are support-only for this goal until an individual erg-power mapping is calibrated.
@@ -16,17 +19,17 @@ This document records the V4 implementation and validation state. It is a model-
 
 ## Before and after demos
 
-The legacy demos were all generated from the same sample vector by a single scalar (`1.20`, `1.00`, `0.78`, `1.00`, or `0.72`). Five of six legacy profiles therefore shared the same headline measures: Deadlift, Sit-to-stand relative power, VO2max, Single-leg balance, and Loaded step-up. The V4 profiles vary capacity families and selected metrics independently.
+The legacy demos were all generated from the same sample vector by a single scalar (`1.20`, `1.00`, `0.78`, `1.00`, or `0.72`). Five of six legacy profiles therefore shared the same headline measures. The first V4 pass still built named profiles by multiplying the same baseline by family and metric factors. The correction replaces that mechanism with seven complete native-unit measurement records.
 
 | V4 archetype | Goal-status counts | Leading calibrated priorities | Headline measures |
 |---|---|---|---|
-| Balanced all-rounder | 6 clear, 9 line, 8 partial, 3 gap, 10 trajectory | VO2max; seated overhead press | Single-leg balance; suitcase carry; deadlift; VO2max; seated overhead press |
-| Aerobic strong / strength limited | 4 clear, 3 line, 15 partial, 4 gap, 10 trajectory | Suitcase carry; loaded step-up; seated overhead press | Single-leg balance; deadlift; sit-to-stand power; loaded step-up; suitcase carry; seated overhead press |
-| Strength strong / aerobic limited | 6 clear, 1 line, 2 partial, 17 gap, 10 trajectory | VO2max | Single-leg balance; suitcase carry; deadlift; VO2max |
-| Power strong / balance-reactive limited | 5 clear, 9 line, 8 partial, 4 gap, 10 trajectory | VO2max; single-leg balance; seated overhead press | Deadlift; sit-to-stand power; single-leg balance; VO2max; seated overhead press |
-| Female mixed, independent | 4 clear, 7 line, 12 partial, 3 gap, 10 trajectory | Suitcase carry; seated overhead press; loaded step-up | Single-leg balance; deadlift; sit-to-stand power; seated overhead press; suitcase carry; loaded step-up |
-| Older resilient | 7 clear, 1 line, 17 partial, 1 gap, 10 trajectory | Seated overhead press | Single-leg balance; suitcase carry; deadlift; seated overhead press |
-| Older deconditioned | 5 clear, 6 line, 4 partial, 11 gap, 10 trajectory | VO2max; single-leg balance | Suitcase carry; deadlift; sit-to-stand power; VO2max; single-leg balance |
+| Balanced all-rounder | 6 clear, 9 line, 8 partial, 3 gap, 10 trajectory | Knee extension; sit-to-stand power; shoulder ER (assessment/foundational support) | Deadlift; sit-to-stand power; single-leg balance; VO2max; overhead press |
+| Aerobic strong / strength limited | 4 clear, 7 line, 10 partial, 5 gap, 10 trajectory | Knee extension; plantarflexion; hip abduction (assessment support) | Sit-to-stand power; balance; loaded step-up; overhead press; suitcase carry |
+| Strength strong / aerobic limited | 4 clear, 4 line, 1 partial, 17 gap, 10 trajectory | VO2max task gap; knee extension and drop-jump support | Deadlift; sit-to-stand power; suitcase carry; VO2max |
+| Power strong / balance-reactive limited | 3 clear, 9 line, 5 partial, 9 gap, 10 trajectory | Balance and hip-abduction screen; VO2max task gap | Sit-to-stand power; deadlift; balance; overhead press; VO2max |
+| Female mixed, independent | 4 clear, 8 line, 6 partial, 8 gap, 10 trajectory | Deadlift foundational screen; VO2max task gap; knee-extension support | Sit-to-stand power; balance; overhead press; VO2max |
+| Older resilient | 7 clear, 5 line, 6 partial, 8 gap, 10 trajectory | VO2max task gap; knee extension and plantarflexion support | Deadlift; sit-to-stand power; balance; overhead press; VO2max |
+| Older deconditioned | 2 clear, 1 line, 1 partial, 22 gap, 10 trajectory | VO2max task gap; knee extension and plantarflexion support | Sit-to-stand power; overhead press; balance; loaded step-up |
 
 Counts are consequences of the entered synthetic measurements and model rules. No target count of green, amber, or red goals is enforced.
 
@@ -40,6 +43,10 @@ Counts are consequences of the entered synthetic measurements and model rules. N
 | Grip down 28% | Jar/carry/handling support profiles changed | No readiness clearance changed |
 | Timed single-leg balance down 28% | 30-second balance clearance changed; terrain/sport support changed | Unrelated upper-body clearance did not change |
 | CMJ power down 28% | Dance, kicking, skiing, and surfing support profiles changed | Unrelated daily-task clearance did not change |
+
+Separate support-priority perturbations lowered the measured value and, for VALD tests, the entered current age/sex percentile. Grip moved from support rank 7 to 1, CMJ power from 12 to 1, pogo RSI from 15 to 2, drop-jump RSI from 13 to 2, and knee extension remained rank 1 with a substantially higher priority score. Every goal's clearance zone and score remained unchanged in all five perturbations.
+
+A separate goal-independent test selected only walking and timed balance, then introduced marked shoulder ER, cuff-endurance, and overhead-strength deficits. A shoulder measure entered the top five training priorities even though neither selected goal had a shoulder clearance dependency; both goals' readiness zones and scores were unchanged.
 
 ## Exact performance-task audit
 
@@ -109,13 +116,13 @@ The complete machine-readable register, including task formulas, sources, confid
 1. Fixed external loads are exact task inputs, but reserve multipliers above those loads are Early Medical clinical assumptions.
 2. Peak-VO2-to-sustainable-task fractions are Early Medical clinical assumptions and may vary by modality, training, disease, and individual efficiency.
 3. Most complex sport and adventure goals still lack enough independent calibrated test dimensions; V4 reports these as partially calibrated or trajectory-only.
-4. Grip, CMJ power, reactive tests, and LT1 inform support/prioritization but do not grant clearance where no validated task threshold exists.
+4. Grip, CMJ power, reactive tests, knee extension, and the broader foundational assessment screen can inform training priorities but do not grant clearance where no validated task threshold exists. A low screen result is not an injury-probability estimate. LT1 remains clinician support-only and is excluded from headline prioritization.
 5. Late-life projections are scenarios, not observed individual trajectories. Central estimates are damped and uncertainty widens beyond each evidence horizon.
 6. Task performance depends on skill, equipment, environment, pain, disease, injury, and behavior that this physical-capacity model does not fully represent.
 
 ## Validation and visual QA
 
-- `node scripts/validate-model.mjs`: PASS - 36 goals, 83 metrics, 7 archetypes, 5 modes, sensitivity, calibration breadth, evidence horizons, fixed demand, missing data, import/export, and 38-page print checks.
-- Browser smoke tests: PASS - Reference, Build report, all five report modes, and all seven demo archetypes; no console errors or warnings.
-- PDF render QA: PASS - five mode-specific 38-page PDFs rendered at US Letter landscape; summaries and representative goal pages visually inspected after the overflow correction.
-- Screenshots: [Simple](qa-screenshots/simple.png), [Action](qa-screenshots/action.png), [Trajectory](qa-screenshots/trajectory.png), [Capacity wheel](qa-screenshots/capacity-wheel.png), [Clinician detail](qa-screenshots/clinician-detail.png), [Reference](qa-screenshots/reference.png), and [Build report](qa-screenshots/build-report.png).
+- `node scripts/validate-model.mjs`: PASS - 36 goals, 83 metrics, 7 native-unit archetypes, 5 modes, headline diversity, clearance, goal-support and goal-independent foundational sensitivity, calibration breadth, evidence horizons, fixed demand, missing data, import/export, and 38-page print checks.
+- Browser smoke tests: PASS - Reference (36 activities), Build report (36 goals, 10 assessment groups, 13 VALD percentile inputs), all five report modes, and all seven demo archetypes. All 35 archetype/mode combinations produced the intended structural mode and non-empty content.
+- PDF render QA: PASS - corrected Action-mode 38-page fixture rendered at US Letter landscape; the foundational/support/task pathway summary and representative goal pages were visually inspected for clipping, overlap, and legibility.
+- Screenshots: [Simple](qa-screenshots/simple.png), [Action](qa-screenshots/action.png), [Trajectory](qa-screenshots/trajectory.png), [Capacity wheel](qa-screenshots/capacity-wheel.png), [Clinician detail](qa-screenshots/clinician-detail.png), [Reference](qa-screenshots/reference.png), [Build report](qa-screenshots/build-report.png), [goal-independent shoulder screen](qa-screenshots/foundational-shoulder-screen.png), and the seven `demo-*.png` archetype captures.
