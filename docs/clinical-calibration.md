@@ -29,13 +29,15 @@ A candidate threshold may become scoreable only when a named clinician documents
 | 500 m swim | B | 5.8 MET slow recreational freestyle | Confirm stroke and pool/open-water context |
 | 18-hole golf carrying clubs | A | 4.3 MET carrying clubs | Confirm course grade and cart prohibition |
 | 5 km in 40 minutes | A | 7.8 MET running 4.3–4.8 mph | None beyond standard course definition |
-| 10,000 m row in one hour | A | 7.5 MET ergometer 100–149 W | Confirm ergometer and damper conventions |
+| 10,000 m row in one hour | Direct pace / C mapping | 3:00/500 m = approximately 60 W by the Concept2 pace-to-watts equation | Keep VO2 and LT1 support-only until individual erg-power conversion is calibrated; confirm ergometer and damper conventions |
 | 10-mile cycle in one hour | A | 6.8 MET cycling 10–11.9 mph | Confirm bike type, wind, and stop rules |
 | 3-mile walk under one hour | A | 3.8 MET walking 2.8–3.4 mph | Confirm firm, level formed path |
 | Kayaking | B | 5.0 MET moderate kayaking | Define craft, water, wind, and duration |
 | Surfing | C | 3.0 MET general surfing | Define paddling, pop-up, wave, and burst demands |
 
 Source convention: the [2024 Adult Compendium](https://pacompendium.com/adult-compendium/) uses a standard adult MET; its terms page defines 1 MET as approximately 3.5 mL/kg/min. These are task-demand conventions, not age-adjusted patient values.
+
+The rower is the exception to a category-first MET mapping: its primary demand is the exact Concept2 pace and power. Concept2 defines `watts = 2.80 / pace³`, where pace is seconds per meter; 180 seconds per 500 m therefore yields approximately 60 W. The dashboard does not convert that external power to an individual VO2 clearance threshold without a calibrated patient-specific equation.
 
 ## Candidate thresholds kept out of readiness scoring
 
