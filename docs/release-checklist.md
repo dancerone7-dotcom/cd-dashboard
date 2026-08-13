@@ -50,7 +50,7 @@ This checklist separates completed engineering evidence from approvals that must
    - [ ] Smoke-test Reference, Build report, Report, JSON import/export, and PDF export on the public URL.
 
 10. **V4 review-preview traceability**
-   - [ ] Treat the branch commit reviewed in PR #3 as the source of truth; the dashboard exposes model `4.0` and approved source `a9a2d06548972359593d79e36aef8c5519d2ca45` as non-clinical build metadata.
+   - [ ] Treat the branch commit reviewed in PR #3 as the source of truth; the dashboard exposes model `4.0` and approved model base `a9a2d06548972359593d79e36aef8c5519d2ca45` as non-clinical build metadata.
    - [ ] Deploy `/v4-review/` only through a separate, explicit main-branch commit that copies `index.html` from the exact newly approved branch SHA without editing the copied file.
    - [ ] After every preview deployment, verify the live preview file hash/title against that approved SHA and verify the root URL remains unchanged.
    - [ ] Do not assume `/v4-review/` represents the current PR merely because PR #3 has new commits; update this identifier and redeploy only after explicit approval.

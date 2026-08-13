@@ -21,12 +21,13 @@ globalThis.__MODEL__={
   CALIBRATION_BREADTH,CALIBRATION_ELIGIBILITY_RULE,DEPENDENCY_MAP,GOAL_AUDIT_REGISTER,DEMO_ARCHETYPES,GRADE_OPTIONS,VALD_PERCENTILE_METRICS,EM_ASSESSMENT_BANDS,FOUNDATIONAL_SCREEN,
   components,scoreableReqs,supportReqs,supportComponents,calibrationEligibleRequirement,validatedDirectGate,modelInputCount,goalEvaluation,goalAuditRecord,currentGoalAuditRegister,
   capacityTrajectories,capacitySummaryHTML,limiterSynthesis,assessmentContext,supportPrioritySynthesis,foundationalPrioritySynthesis,trainingPrioritySynthesis,goalTrainingPrioritySynthesis,patientGoalOutlook,patientStory,foundationalSummaryHTML,goalPrioritiesHTML,trajectoryRowsHTML,capacityWheelDimensions,overviewWheelSVG,
-  projectCapacity,projectBandAt,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,metricRangeValid,patientFieldError,percentileContextCurrent,invalidatePercentileContext,
+  projectCapacity,projectBandAt,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,metricRangeValid,patientFieldError,percentileContextCurrent,invalidatePercentileContext,updateBuildValidity,
+  markDirty,clearDirty,markDraftDirty,clearDraftDirty,hasUnsavedChanges,discardDraft,commitDraftChanges,
   reportModeHTML,archetypeMetrics,createArchetypePatient,randomDemoPatient,
   setSelectedGoals(ids){selectedGoals=new Set(ids);},setReportMode(mode){HERO=mode;trajectoryExpanded=false;},setTrajectoryExpanded(value){trajectoryExpanded=!!value;},
-  setPatient(patient){const copy=JSON.parse(JSON.stringify(patient));for(const key of Object.keys(PATIENT))delete PATIENT[key];Object.assign(PATIENT,copy);syncAge();},getPatient(){return PATIENT;},getReportMode(){return HERO;},syncAge
+  setPatient(patient){const copy=JSON.parse(JSON.stringify(patient));for(const key of Object.keys(PATIENT))delete PATIENT[key];Object.assign(PATIENT,copy);syncAge();},getPatient(){return PATIENT;},getReportMode(){return HERO;},setFormError(key,message){formErrors[key]=message;},getFormErrors(){return {...formErrors};},getWorkflowState(){return {dirty,draftDirty,hasUnsavedChanges:hasUnsavedChanges()};},syncAge
 };`;
-const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>''},window:{addEventListener(){}},document:{querySelectorAll(){return[];}}};
+const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>''},window:{addEventListener(){}},document:{querySelector(){return null;},querySelectorAll(){return[];}}};
 context.globalThis=context;
 vm.runInNewContext(source,context,{filename:'index.inline.js'});
 const M=context.__MODEL__;
@@ -50,10 +51,13 @@ check(!/\b(?:fetch|XMLHttpRequest|sendBeacon)\s*\(/.test(html),'Dashboard must n
 check(html.includes('role="tablist"')&&html.includes('aria-selected="true"'),'Dashboard navigation must expose accessible tab semantics.');
 check(html.includes('exported JSON and PDFs contain the health data entered here'),'Builder must show the export privacy warning.');
 check(!/localStorage|sessionStorage/.test(html),'Patient data must not be persisted in localStorage or sessionStorage.');
-check(html.includes("beforeunload")&&html.includes("if(!dirty)return"),'Unsaved-change page-unload protection is missing.');
+check(html.includes("beforeunload")&&html.includes("if(!hasUnsavedChanges())return"),'Patient and custom-draft unload protection is missing.');
 check(/#heroSeg[\s\S]*?renderCatalog\(\);renderReportBody\(\);/.test(html),'Report-mode changes must refresh the goal sidebar so clinician calibration wording cannot remain in patient modes.');
 check(M.MODEL_VERSION==='4.0'&&M.APPROVED_SOURCE_COMMIT==='a9a2d06548972359593d79e36aef8c5519d2ca45','Review traceability metadata is incorrect.');
-check(html.includes('Review build · model')&&html.includes('approved source'),'Review UI must expose a non-clinical build identifier.');
+check(html.includes('Review build · model')&&html.includes('approved model base')&&!html.includes('approved source'),'Review UI must identify the frozen approved model base without implying it is the executable commit.');
+check(html.includes('No unsaved changes')&&!html.includes('Saved/exported state'),'Clean-state wording must not imply browser persistence.');
+check(/function startBuilder[\s\S]*?clearDraftDirty\(\);building=true/.test(html),'Opening a custom-activity builder must initialize a clean draft state.');
+check(/\[data-f\][\s\S]*?markDraftDirty\(\)/.test(html)&&/addComp[\s\S]*?markDraftDirty\(\)/.test(html)&&/data-rm[\s\S]*?markDraftDirty\(\)/.test(html)&&/libToggle[\s\S]*?markDraftDirty\(\)/.test(html)&&/suggestForDraft[\s\S]*?markDraftDirty\(\)/.test(html),'Meaningful custom-activity edits must mark the draft dirty.');
 const namedDemoBlock=html.slice(html.indexOf('const DEMO_ARCHETYPES='),html.indexOf('function randomDemoPatient'));
 check(!/familyFactors|metricFactors/.test(namedDemoBlock),'Named demo code still contains factor-based derivation.');
 check(!/Needs attention/.test(html),'Unsupported qualitative demo value remains.');
@@ -348,6 +352,8 @@ check(M.patientFieldError('age',17)!==''&&M.patientFieldError('age',18)===''&&M.
 check(M.patientFieldError('marginalDecadeAge',53,{age:54})!==''&&M.patientFieldError('marginalDecadeAge',54,{age:54})===''&&M.patientFieldError('marginalDecadeAge',111,{age:54})!=='','Marginal-decade validation does not enforce current age through 110.');
 check(M.patientFieldError('bodyWeight_lb','')===''&&M.patientFieldError('bodyWeight_lb',39)!==''&&M.patientFieldError('bodyWeight_lb',40)===''&&M.patientFieldError('bodyWeight_lb',700)===''&&M.patientFieldError('bodyWeight_lb',701)!=='','Body-weight validation does not enforce blank or 40–700 lb.');
 for(const [metric,meta] of Object.entries(M.METRICS))if(meta.kind!=='grade'){check(M.metricRangeValid(metric,'')&&M.metricRangeValid(metric,meta.lo)&&M.metricRangeValid(metric,meta.hi),`${metric}: valid blank/boundary input rejected.`);check(!M.metricRangeValid(metric,meta.lo-1)&&!M.metricRangeValid(metric,meta.hi+1),`${metric}: out-of-range finite input accepted.`);}
+M.setFormError('percentile:grip_lb','VALD percentile must be blank or a whole number from 1 to 99.');M.PATIENT.assessmentPercentiles={grip_lb:57};M.PATIENT.assessmentPercentileContext={age:M.PATIENT.age,sex:M.PATIENT.sex};check(!M.updateBuildValidity(),'Invalid percentile must block report and export actions.');M.invalidatePercentileContext();check(!Object.keys(M.PATIENT.assessmentPercentiles).length&&M.PATIENT.assessmentPercentileContext===null,'Age/sex invalidation did not clear VALD percentile data and context.');check(!Object.keys(M.getFormErrors()).some(key=>key.startsWith('percentile:'))&&M.updateBuildValidity(),'Age/sex invalidation left a stale percentile validation error blocking the workflow.');
+M.clearDirty();M.clearDraftDirty();check(!M.getWorkflowState().hasUnsavedChanges,'A clean workflow is incorrectly marked unsaved.');M.markDraftDirty();check(M.getWorkflowState().draftDirty&&M.hasUnsavedChanges(),'An unsaved custom-activity draft does not trigger unload protection.');M.discardDraft();check(!M.getWorkflowState().draftDirty&&!M.getWorkflowState().dirty&&!M.hasUnsavedChanges(),'Cancel did not discard the custom draft independently of patient/report dirty state.');M.markDraftDirty();M.commitDraftChanges();check(!M.getWorkflowState().draftDirty&&M.getWorkflowState().dirty&&M.hasUnsavedChanges(),'Saving a custom draft did not clear draft state and mark dashboard data dirty.');M.clearDirty();
 M.applyImportedData(snapshot);
 check(M.PATIENT.name===snapshot.patient.name&&M.PATIENT.sex===snapshot.patient.sex,'Export/import round-trip changed patient identity fields.');
 check(JSON.stringify(M.PATIENT.assessmentPercentiles)===JSON.stringify(snapshot.assessmentPercentiles),'Export/import round-trip changed assessment percentiles.');
