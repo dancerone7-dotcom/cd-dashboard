@@ -29,7 +29,7 @@ model.selectAll();
 model.setMode(process.argv[3]||'C');
 const printDoc=model.buildPrintDoc();
 const pageCount=(printDoc.match(/<section class="ppage/g)||[]).length;
-if(pageCount!==38)throw new Error(`Expected 38 pages; generated ${pageCount}.`);
+if(pageCount!==39)throw new Error(`Expected 39 pages; generated ${pageCount}.`);
 if(/\b(?:NaN|Infinity)\b/.test(printDoc))throw new Error('Print document contains a non-finite value.');
 
 const outputPath=path.resolve(process.argv[2]||'tmp/print/cd-dashboard-full.html');
