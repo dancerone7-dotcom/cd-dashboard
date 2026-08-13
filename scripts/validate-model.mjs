@@ -51,6 +51,7 @@ check(html.includes('role="tablist"')&&html.includes('aria-selected="true"'),'Da
 check(html.includes('exported JSON and PDFs contain the health data entered here'),'Builder must show the export privacy warning.');
 check(!/localStorage|sessionStorage/.test(html),'Patient data must not be persisted in localStorage or sessionStorage.');
 check(html.includes("beforeunload")&&html.includes("if(!dirty)return"),'Unsaved-change page-unload protection is missing.');
+check(/#heroSeg[\s\S]*?renderCatalog\(\);renderReportBody\(\);/.test(html),'Report-mode changes must refresh the goal sidebar so clinician calibration wording cannot remain in patient modes.');
 check(M.MODEL_VERSION==='4.0'&&M.APPROVED_SOURCE_COMMIT==='a9a2d06548972359593d79e36aef8c5519d2ca45','Review traceability metadata is incorrect.');
 check(html.includes('Review build · model')&&html.includes('approved source'),'Review UI must expose a non-clinical build identifier.');
 const namedDemoBlock=html.slice(html.indexOf('const DEMO_ARCHETYPES='),html.indexOf('function randomDemoPatient'));

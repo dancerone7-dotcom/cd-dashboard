@@ -6780,7 +6780,7 @@ function setTab(t){
 }
 $("#tabSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(b) setTab(b.dataset.tab);});
 $("#tabSeg").addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;const tabs=[...document.querySelectorAll('#tabSeg button')],current=tabs.indexOf(document.activeElement);let next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(current+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;e.preventDefault();tabs[next].focus();setTab(tabs[next].dataset.tab);});
-$("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; HERO=b.dataset.hero;markDirty();trajectoryExpanded=false;document.querySelectorAll('#heroSeg button').forEach(x=>x.classList.toggle('on',x.dataset.hero===HERO)); renderReportBody();});
+$("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; HERO=b.dataset.hero;markDirty();trajectoryExpanded=false;document.querySelectorAll('#heroSeg button').forEach(x=>x.classList.toggle('on',x.dataset.hero===HERO));renderCatalog();renderReportBody();});
 const COPY={
   scope:()=>`This model uses measured physical capacities from the Early Medical assessment, CPET, and selected context from DEXA. Supporting trajectories, qualitative movement screens, and DEXA context are shown separately from the readiness score unless a direct task relationship is defensible.`,
   disclaimerLead:'How to read this.',
