@@ -15,7 +15,7 @@ if(demoStart<0||demoEnd<0)throw new Error('V4 demo archetype block not found.');
 const source=`${match[1].slice(0,stopAt)}
 ${match[1].slice(demoStart,demoEnd)}
 globalThis.__MODEL__={
-  MODEL_VERSION,APPROVED_SOURCE_COMMIT,VALID_REPORT_MODES,ACTIVITIES,CATALOG,GOALS,METRICS,METRIC_GROUPS,PATIENT,BASELINE_METRICS,
+  MODEL_VERSION,APPROVED_SOURCE_COMMIT,VALID_REPORT_MODES,ACTIVITIES,CATALOG,GOALS,METRICS,METRIC_GROUPS,PATIENT,BASELINE_METRICS,NAMED_DEMO_GOALS,
   DECLINE_CURVES,FAMILY_BAND,FORECAST_EVIDENCE,EVIDENCE_HORIZONS,MEASUREMENT_PROTOCOLS,
   TASK_DEMAND_EVIDENCE,TASK_GRADE_UNCERTAINTY,EXACT_PERFORMANCE_TASKS,THRESHOLDS_AWAITING_CALIBRATION,MET_CONVENTION,
   CALIBRATION_BREADTH,CALIBRATION_ELIGIBILITY_RULE,DEPENDENCY_MAP,GOAL_AUDIT_REGISTER,DEMO_ARCHETYPES,GRADE_OPTIONS,VALD_PERCENTILE_METRICS,EM_ASSESSMENT_BANDS,FOUNDATIONAL_SCREEN,
@@ -23,7 +23,7 @@ globalThis.__MODEL__={
   capacityTrajectories,capacitySummaryHTML,limiterSynthesis,assessmentContext,supportPrioritySynthesis,foundationalPrioritySynthesis,trainingPrioritySynthesis,goalTrainingPrioritySynthesis,patientGoalOutlook,patientStory,foundationalSummaryHTML,goalPrioritiesHTML,trajectoryRowsHTML,capacityWheelDimensions,overviewWheelSVG,
   projectCapacity,projectBandAt,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,metricRangeValid,patientFieldError,percentileContextCurrent,invalidatePercentileContext,updateBuildValidity,
   markDirty,clearDirty,markDraftDirty,clearDraftDirty,hasUnsavedChanges,discardDraft,commitDraftChanges,
-  reportModeHTML,archetypeMetrics,createArchetypePatient,randomDemoPatient,
+  reportModeHTML,archetypeMetrics,createArchetypePatient,randomDemoPatient,modelConfidenceHTML,
   setSelectedGoals(ids){selectedGoals=new Set(ids);},setReportMode(mode){HERO=mode;trajectoryExpanded=false;},setTrajectoryExpanded(value){trajectoryExpanded=!!value;},
   setPatient(patient){const copy=JSON.parse(JSON.stringify(patient));for(const key of Object.keys(PATIENT))delete PATIENT[key];Object.assign(PATIENT,copy);syncAge();},getPatient(){return PATIENT;},getReportMode(){return HERO;},setFormError(key,message){formErrors[key]=message;},getFormErrors(){return {...formErrors};},getWorkflowState(){return {dirty,draftDirty,hasUnsavedChanges:hasUnsavedChanges()};},syncAge
 };`;
@@ -52,6 +52,7 @@ check(html.includes('role="tablist"')&&html.includes('aria-selected="true"'),'Da
 check(html.includes('exported JSON and PDFs contain the health data entered here'),'Builder must show the export privacy warning.');
 check(!/localStorage|sessionStorage/.test(html),'Patient data must not be persisted in localStorage or sessionStorage.');
 check(html.includes("beforeunload")&&html.includes("if(!hasUnsavedChanges())return"),'Patient and custom-draft unload protection is missing.');
+check((html.match(/delete PATIENT\.demoKey/g)||[]).length>=5,'Manual edits/import must clear named-demo presentation state.');
 check(/#heroSeg[\s\S]*?renderCatalog\(\);renderReportBody\(\);/.test(html),'Report-mode changes must refresh the goal sidebar so clinician calibration wording cannot remain in patient modes.');
 check(M.MODEL_VERSION==='4.0'&&M.APPROVED_SOURCE_COMMIT==='a9a2d06548972359593d79e36aef8c5519d2ca45','Review traceability metadata is incorrect.');
 check(html.includes('Review build · model')&&html.includes('approved model base')&&!html.includes('approved source'),'Review UI must identify the frozen approved model base without implying it is the executable commit.');
@@ -203,7 +204,8 @@ for(const item of M.CATALOG){const act=M.ACTIVITIES[item.profile];if(M.scoreable
 M.PATIENT.bodyWeight_lb=original.bw;M.syncAge();
 
 /* Seven deterministic archetypes: independent native-unit patients with diverse outputs. */
-const archetypeVectors=[],statusVectors=new Set(),headlineSets=new Set(),strengthFirst=new Set(),opportunityFirst=new Set(),priorityFirst=new Set(),strengthSets=new Set(),opportunitySets=new Set(),prioritySets=new Set(),archetypeResults=[];
+const archetypeVectors=[],statusVectors=new Set(),headlineSets=new Set(),strengthFirst=new Set(),opportunityFirst=new Set(),priorityFirst=new Set(),strengthSets=new Set(),opportunitySets=new Set(),prioritySets=new Set(),demoStrengthSets=new Set(),demoPrioritySets=new Set(),archetypeResults=[],namedDemoGoals=M.GOALS.filter(goal=>M.NAMED_DEMO_GOALS.includes(goal.id));
+check(namedDemoGoals.length===M.NAMED_DEMO_GOALS.length&&new Set(M.NAMED_DEMO_GOALS).size===M.NAMED_DEMO_GOALS.length,'Named demo goal set must resolve to unique canonical goals.');
 for(const key of Object.keys(M.DEMO_ARCHETYPES)){
   const profile=M.DEMO_ARCHETYPES[key],patient=M.createArchetypePatient(key),numericEntries=Object.entries(patient.metrics).filter(([,v])=>typeof v==='number'),vector=numericEntries.map(([,v])=>v);archetypeVectors.push(vector);M.setPatient(patient);
   check(profile.metrics&&typeof profile.metrics==='object'&&!('familyFactors' in profile)&&!('metricFactors' in profile),`${key}: named archetype must be an explicit native-unit patient, not a factor recipe.`);
@@ -211,7 +213,16 @@ for(const key of Object.keys(M.DEMO_ARCHETYPES)){
   for(const [metric,value] of Object.entries(patient.metrics)){const meta=M.METRICS[metric];check(!!meta,`${key}: unknown metric ${metric}.`);if(meta?.kind==='grade')check(M.GRADE_OPTIONS.includes(value),`${key}/${metric}: illegal qualitative value ${value}.`);else check(finite(value)&&(meta.lo==null||value>=meta.lo)&&(meta.hi==null||value<=meta.hi),`${key}/${metric}: ${value} is outside legal native-unit range.`);}
   const statuses=M.CATALOG.map(item=>M.goalEvaluation(M.ACTIVITIES[item.profile],M.components(M.ACTIVITIES[item.profile].reqs)).zone),statusCounts=statuses.reduce((a,z)=>(a[z]=(a[z]||0)+1,a),{});statusVectors.add(statuses.join('|'));
   const traj=M.capacityTrajectories(allGoals),story=M.patientStory(allGoals,traj),headline=M.capacitySummaryHTML(story),strengthMetrics=story.topStrengths.map(x=>x.metric),opportunityMetrics=story.wholeBodyOpportunities.map(x=>x.metric).slice(0,3),priorityMetrics=story.topTrainingPriorities.map(x=>x.metric).slice(0,3);headlineSets.add([...headline.matchAll(/<b>(.*?)<\/b>/g)].map(x=>x[1]).join('|'));strengthSets.add(strengthMetrics.join('|'));opportunitySets.add(opportunityMetrics.join('|'));prioritySets.add(priorityMetrics.join('|'));if(strengthMetrics[0])strengthFirst.add(strengthMetrics[0]);if(opportunityMetrics[0])opportunityFirst.add(opportunityMetrics[0]);if(priorityMetrics[0])priorityFirst.add(priorityMetrics[0]);
-  archetypeResults.push({key,statuses:Object.entries(statusCounts).map(([status,count])=>`${status}:${count}`).join(' · '),strengths:strengthMetrics.join(', ')||'none',opportunities:opportunityMetrics.join(', ')||'none',priorities:priorityMetrics.join(', ')||'none'});
+  const demoStory=M.patientStory(namedDemoGoals,M.capacityTrajectories(namedDemoGoals),{demo:true}),demoHTML=M.reportModeHTML('C',namedDemoGoals,{demo:true}),demoStrengths=demoStory.topStrengths.map(item=>item.metric),demoPriorities=demoStory.topTrainingPriorities.slice(0,3).map(item=>item.metric);demoStrengthSets.add(demoStrengths.join('|'));demoPrioritySets.add(demoPriorities.join('|'));M.setSelectedGoals(M.NAMED_DEMO_GOALS);M.setReportMode('C');const demoPrint=M.buildPrintDoc();
+  check(demoStory.modelConfidence.level==='established'&&demoStory.modelConfidence.enough===namedDemoGoals.length,`${key}: named demo has an incomplete default goal estimate.`);
+  check(demoStory.goalOutlooks.every(outlook=>outlook.evidenceReady&&!['building','tracking'].includes(outlook.status)),`${key}: named demo retains incomplete-picture goal messaging.`);
+  check(demoStrengths.length>=3,`${key}: named demo yields fewer than three meaningful strengths.`);
+  check(demoPriorities.length>=3,`${key}: named demo yields fewer than three goal-linked priorities.`);
+  check(demoStrengths.every(metric=>!demoStory.topTrainingPriorities.some(item=>item.metric===metric)&&!demoStory.wholeBodyOpportunities.some(item=>item.metric===metric)),`${key}: named demo presents a strength as a goal priority or whole-body opportunity.`);
+  check(demoHTML.includes('data-demo-completeness="complete"')&&demoHTML.includes('Complete illustrative example')&&demoHTML.includes('Full demo dataset loaded'),`${key}: named demo is missing its illustrative-completeness message.`);
+  check(demoPrint.includes('data-demo-completeness="complete"')&&!/How complete is the picture\?|Some goal estimates available|Still building the assessment picture|We are still building the full picture|missing key measurements|still need/i.test(demoPrint),`${key}: named demo print output is incomplete or exposes missing-data messaging.`);
+  check(!/How complete is the picture\?|Some goal estimates available|Still building the assessment picture|We are still building the full picture|missing key measurements|still need/i.test(demoHTML),`${key}: named demo exposes real-workflow missing-data messaging.`);
+  archetypeResults.push({key,statuses:Object.entries(statusCounts).map(([status,count])=>`${status}:${count}`).join(' · '),strengths:demoStrengths.join(', ')||'none',opportunities:opportunityMetrics.join(', ')||'none',priorities:demoPriorities.join(', ')||'none'});
   for(const item of M.CATALOG){const act=M.ACTIVITIES[item.profile],parts=M.components(act.reqs),ev=M.goalEvaluation(act,parts);check(validZones.has(ev.zone),`${key}/${item.profile}: invalid status ${ev.zone}.`);check(ev.score==null||finite(ev.score),`${key}/${item.profile}: non-finite readiness score.`);for(const part of parts)check(['raw','projRaw','projLo','projHi','req','projPct'].every(prop=>finite(part[prop])),`${key}/${item.profile}/${part.r.metric}: non-finite component output.`);}
 }
 for(let i=0;i<archetypeVectors.length;i++)for(let j=i+1;j<archetypeVectors.length;j++)check(archetypeVectors[i].some((v,k)=>Math.abs(v-archetypeVectors[j][k])>1e-9),`Archetype vectors ${i} and ${j} are identical.`);
@@ -221,6 +232,8 @@ check(headlineSets.size>=4,`Demo headline sets are insufficiently distinct (${he
 check(strengthSets.size>=5&&strengthFirst.size>=2,`Demo top strengths lack meaningful diversity (${strengthSets.size} sets; ${strengthFirst.size} first-ranked measures).`);
 check(opportunitySets.size>=5&&opportunityFirst.size>=3,`Demo opportunities lack meaningful diversity (${opportunitySets.size} sets; ${opportunityFirst.size} first-ranked measures).`);
 check(prioritySets.size>=4&&priorityFirst.size>=2,`Demo action priorities lack meaningful diversity (${prioritySets.size} sets; ${priorityFirst.size} first-ranked measures).`);
+check(demoStrengthSets.size>=4,`Named demo default strengths lack meaningful differentiation (${demoStrengthSets.size}/4 distinct sets).`);
+check(demoPrioritySets.size>=3,`Named demo default priorities lack meaningful differentiation (${demoPrioritySets.size}/3 distinct sets).`);
 check(archetypeResults.filter(result=>result.strengths.split(', ').includes('relDeadlift_pctBW')).length<=5,'Fewer than two physiologically distinct demos omit deadlift from the strength headline.');
 check([...M.GRADE_OPTIONS.slice(3)].every(code=>/^NT-/.test(code)),'Non-testing grade options must be explicit NT reason codes.');
 for(let i=0;i<100;i++)for(const [metric,value] of Object.entries(M.randomDemoPatient().metrics))if(M.METRICS[metric]?.kind==='grade')check(M.GRADE_OPTIONS.slice(0,3).includes(value),`Random demo assigned non-testing result ${value} to ${metric}.`);
@@ -265,6 +278,7 @@ check(canonicalStory.modelConfidence.level!=='mixed'||canonicalStory.modelConfid
 check(!!buildingGoal&&M.patientStory([buildingGoal]).modelConfidence.label==='Still building the assessment picture','Building model-availability state uses the wrong patient wording.');
 const partialGoal=allGoals.find(g=>M.goalEvaluation(M.ACTIVITIES[g.id],M.components(M.ACTIVITIES[g.id].reqs)).zone==='partial');
 if(partialGoal){const outlook=M.patientStory([partialGoal]).goalOutlooks[0];check(outlook.label==='Building the picture'&&outlook.status==='building','Partial patient language must remain neutral and calibration-safe.');check(!/Partially calibrated|Close \/ build reserve|^Opportunity$/i.test(outlook.label),'Partial patient language exposes technical or definitive goal-level wording.');}
+const manualPatient=JSON.parse(JSON.stringify(M.createArchetypePatient('balanced')));delete manualPatient.demoKey;manualPatient.metrics.stsPower_Wkg=null;M.setPatient(manualPatient);const manualStory=M.patientStory(namedDemoGoals,M.capacityTrajectories(namedDemoGoals)),manualHTML=M.reportModeHTML('C',namedDemoGoals);check(manualStory.modelConfidence.level==='mixed'&&manualHTML.includes('How complete is the picture?')&&manualHTML.includes('Some goal estimates available')&&!manualHTML.includes('data-demo-completeness="complete"'),'Manual workflow no longer exposes honest incomplete-picture messaging.');check(manualStory.goalOutlooks.some(outlook=>outlook.status==='tracking'&&outlook.label==='Tracking'),'Manual workflow no longer preserves missing-data goal behavior.');const unflaggedDemoStory=M.patientStory(namedDemoGoals,M.capacityTrajectories(namedDemoGoals)),unflaggedDemoHTML=M.reportModeHTML('C',namedDemoGoals);check(unflaggedDemoStory.topStrengths.length<3&&!unflaggedDemoHTML.includes('data-demo-completeness="complete"'),'Demo-only completion or strength fallback leaked into the ordinary patient-story API.');M.setPatient(M.createArchetypePatient('balanced'));
 check(!/Evidence picture established|Evidence picture is still developing|Building the evidence picture/.test(modeHTML.join('')),'Legacy patient-facing model-confidence wording remains.');
 check(/eligible observed dimensions|mapping confidence/i.test(M.reportModeHTML('D',allGoals)),'Clinician Detail lost exact calibration and mapping language.');
 check(canonicalStory.topTrainingPriorities.every(item=>!canonicalStory.wholeBodyOpportunities.some(f=>f.metric===item.metric)||item.kind==='priority'),'Patient story pathways were not kept separate.');
