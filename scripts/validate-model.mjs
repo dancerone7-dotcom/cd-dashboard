@@ -15,18 +15,18 @@ if(demoStart<0||demoEnd<0)throw new Error('V4 demo archetype block not found.');
 const source=`${match[1].slice(0,stopAt)}
 ${match[1].slice(demoStart,demoEnd)}
 globalThis.__MODEL__={
-  ACTIVITIES,CATALOG,GOALS,METRICS,METRIC_GROUPS,PATIENT,BASELINE_METRICS,
+  MODEL_VERSION,APPROVED_SOURCE_COMMIT,VALID_REPORT_MODES,ACTIVITIES,CATALOG,GOALS,METRICS,METRIC_GROUPS,PATIENT,BASELINE_METRICS,
   DECLINE_CURVES,FAMILY_BAND,FORECAST_EVIDENCE,EVIDENCE_HORIZONS,MEASUREMENT_PROTOCOLS,
   TASK_DEMAND_EVIDENCE,TASK_GRADE_UNCERTAINTY,EXACT_PERFORMANCE_TASKS,THRESHOLDS_AWAITING_CALIBRATION,MET_CONVENTION,
   CALIBRATION_BREADTH,CALIBRATION_ELIGIBILITY_RULE,DEPENDENCY_MAP,GOAL_AUDIT_REGISTER,DEMO_ARCHETYPES,GRADE_OPTIONS,VALD_PERCENTILE_METRICS,EM_ASSESSMENT_BANDS,FOUNDATIONAL_SCREEN,
   components,scoreableReqs,supportReqs,supportComponents,calibrationEligibleRequirement,validatedDirectGate,modelInputCount,goalEvaluation,goalAuditRecord,currentGoalAuditRegister,
   capacityTrajectories,capacitySummaryHTML,limiterSynthesis,assessmentContext,supportPrioritySynthesis,foundationalPrioritySynthesis,trainingPrioritySynthesis,goalTrainingPrioritySynthesis,patientGoalOutlook,patientStory,foundationalSummaryHTML,goalPrioritiesHTML,trajectoryRowsHTML,capacityWheelDimensions,overviewWheelSVG,
-  projectCapacity,projectBandAt,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,
+  projectCapacity,projectBandAt,resolveRequirement,buildPrintDoc,dashboardSnapshot,applyImportedData,metricRangeValid,patientFieldError,percentileContextCurrent,invalidatePercentileContext,
   reportModeHTML,archetypeMetrics,createArchetypePatient,randomDemoPatient,
   setSelectedGoals(ids){selectedGoals=new Set(ids);},setReportMode(mode){HERO=mode;trajectoryExpanded=false;},setTrajectoryExpanded(value){trajectoryExpanded=!!value;},
-  setPatient(patient){const copy=JSON.parse(JSON.stringify(patient));for(const key of Object.keys(PATIENT))delete PATIENT[key];Object.assign(PATIENT,copy);syncAge();},getPatient(){return PATIENT;},syncAge
+  setPatient(patient){const copy=JSON.parse(JSON.stringify(patient));for(const key of Object.keys(PATIENT))delete PATIENT[key];Object.assign(PATIENT,copy);syncAge();},getPatient(){return PATIENT;},getReportMode(){return HERO;},syncAge
 };`;
-const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>''}};
+const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>''},window:{addEventListener(){}},document:{querySelectorAll(){return[];}}};
 context.globalThis=context;
 vm.runInNewContext(source,context,{filename:'index.inline.js'});
 const M=context.__MODEL__;
@@ -49,6 +49,10 @@ check(Object.values(M.TASK_DEMAND_EVIDENCE).every(e=>['A','B','C'].includes(e.gr
 check(!/\b(?:fetch|XMLHttpRequest|sendBeacon)\s*\(/.test(html),'Dashboard must not transmit entered clinical data over the network.');
 check(html.includes('role="tablist"')&&html.includes('aria-selected="true"'),'Dashboard navigation must expose accessible tab semantics.');
 check(html.includes('exported JSON and PDFs contain the health data entered here'),'Builder must show the export privacy warning.');
+check(!/localStorage|sessionStorage/.test(html),'Patient data must not be persisted in localStorage or sessionStorage.');
+check(html.includes("beforeunload")&&html.includes("if(!dirty)return"),'Unsaved-change page-unload protection is missing.');
+check(M.MODEL_VERSION==='4.0'&&M.APPROVED_SOURCE_COMMIT==='a9a2d06548972359593d79e36aef8c5519d2ca45','Review traceability metadata is incorrect.');
+check(html.includes('Review build · model')&&html.includes('approved source'),'Review UI must expose a non-clinical build identifier.');
 const namedDemoBlock=html.slice(html.indexOf('const DEMO_ARCHETYPES='),html.indexOf('function randomDemoPatient'));
 check(!/familyFactors|metricFactors/.test(namedDemoBlock),'Named demo code still contains factor-based derivation.');
 check(!/Needs attention/.test(html),'Unsupported qualitative demo value remains.');
@@ -222,6 +226,7 @@ const modes={C:'simple',A:'action',B:'trajectory',R:'capacity-wheel',D:'clinicia
 const canonicalStory=M.patientStory(allGoals),patientForbidden=/Partially calibrated|eligible observed dimensions|validated gate failure|mapping confidence|confidence-qualified observed dimensions/i;
 const canonicalOrder=M.goalTrainingPrioritySynthesis(allGoals,M.capacityTrajectories(allGoals)).filter(item=>item.metric!=='lt1_vo2').slice(0,12).map(item=>item.metric);
 check(JSON.stringify(canonicalStory.topTrainingPriorities.map(item=>item.metric))===JSON.stringify(canonicalOrder),'Patient story must preserve the first 12 items from the existing goal-priority synthesis ordering.');
+check(canonicalStory.topStrengths.every(item=>!canonicalStory.topTrainingPriorities.some(priority=>priority.metric===item.metric)),'A patient-story strength is also present in the current top-12 goal priorities.');
 const wheelDisplayDimensions=story=>{const dimensions=M.capacityWheelDimensions(story);return dimensions.length>=3?dimensions:[];};
 const expectedPriorityMetrics=(mode,story)=>mode==='C'?story.topTrainingPriorities.slice(0,3).map(item=>item.metric):mode==='A'?story.topTrainingPriorities.map(item=>item.metric):mode==='B'?story.topTrainingPriorities.filter(item=>finite(item.raw)&&finite(item.projected)).slice(0,8).map(item=>item.metric):mode==='R'?wheelDisplayDimensions(story).filter(item=>item.kind==='priority').map(item=>item.metric):[];
 const expectedStrengthMetrics=(mode,story)=>mode==='C'||mode==='A'?story.topStrengths.map(item=>item.metric):mode==='R'?wheelDisplayDimensions(story).filter(item=>item.kind==='strength').map(item=>item.metric):[];
@@ -253,10 +258,12 @@ const readyGoal=allGoals.find(g=>M.patientStory([g]).goalOutlooks[0]?.evidenceRe
 check(!!readyGoal&&M.patientStory([readyGoal]).modelConfidence.label==='Goal estimates available','Established model-availability state uses the wrong patient wording.');
 check(canonicalStory.modelConfidence.level!=='mixed'||canonicalStory.modelConfidence.label==='Some goal estimates available','Mixed model-availability state uses the wrong patient wording.');
 check(!!buildingGoal&&M.patientStory([buildingGoal]).modelConfidence.label==='Still building the assessment picture','Building model-availability state uses the wrong patient wording.');
+const partialGoal=allGoals.find(g=>M.goalEvaluation(M.ACTIVITIES[g.id],M.components(M.ACTIVITIES[g.id].reqs)).zone==='partial');
+if(partialGoal){const outlook=M.patientStory([partialGoal]).goalOutlooks[0];check(outlook.label==='Building the picture'&&outlook.status==='building','Partial patient language must remain neutral and calibration-safe.');check(!/Partially calibrated|Close \/ build reserve|^Opportunity$/i.test(outlook.label),'Partial patient language exposes technical or definitive goal-level wording.');}
 check(!/Evidence picture established|Evidence picture is still developing|Building the evidence picture/.test(modeHTML.join('')),'Legacy patient-facing model-confidence wording remains.');
 check(/eligible observed dimensions|mapping confidence/i.test(M.reportModeHTML('D',allGoals)),'Clinician Detail lost exact calibration and mapping language.');
 check(canonicalStory.topTrainingPriorities.every(item=>!canonicalStory.wholeBodyOpportunities.some(f=>f.metric===item.metric)||item.kind==='priority'),'Patient story pathways were not kept separate.');
-for(const key of Object.keys(M.DEMO_ARCHETYPES)){M.setPatient(M.createArchetypePatient(key));const story=M.patientStory(allGoals);for(const mode of ['C','A','B','R']){const out=M.reportModeHTML(mode,allGoals);check(JSON.stringify(readStory(out,'priority'))===JSON.stringify(expectedPriorityMetrics(mode,story)),`${key}/${mode}: goal priorities do not match the mode-specific canonical subset.`);check(JSON.stringify(readStory(out,'strength'))===JSON.stringify(expectedStrengthMetrics(mode,story)),`${key}/${mode}: strengths do not match the mode-specific canonical subset.`);for(const item of story.wholeBodyOpportunities)check(out.includes(`data-story-foundation="${item.metric}"`),`${key}/${mode}: canonical foundation ${item.metric} is missing.`);check(!patientForbidden.test(out),`${key}/${mode}: model-development language leaked into the patient view.`);}}
+for(const key of Object.keys(M.DEMO_ARCHETYPES)){M.setPatient(M.createArchetypePatient(key));const story=M.patientStory(allGoals);check(story.topStrengths.every(item=>!story.topTrainingPriorities.some(priority=>priority.metric===item.metric)),`${key}: strength overlaps the top-12 goal-priority story.`);for(const mode of ['C','A','B','R']){const out=M.reportModeHTML(mode,allGoals);check(JSON.stringify(readStory(out,'priority'))===JSON.stringify(expectedPriorityMetrics(mode,story)),`${key}/${mode}: goal priorities do not match the mode-specific canonical subset.`);check(JSON.stringify(readStory(out,'strength'))===JSON.stringify(expectedStrengthMetrics(mode,story)),`${key}/${mode}: strengths do not match the mode-specific canonical subset.`);if(mode==='A'){const displayedPriorities=new Set(readStory(out,'priority'));check(readStory(out,'strength').every(metric=>!displayedPriorities.has(metric)),`${key}/action: a metric is displayed as both a strength and goal-linked priority.`);}for(const item of story.wholeBodyOpportunities)check(out.includes(`data-story-foundation="${item.metric}"`),`${key}/${mode}: canonical foundation ${item.metric} is missing.`);check(!patientForbidden.test(out),`${key}/${mode}: model-development language leaked into the patient view.`);}}
 M.setPatient(M.createArchetypePatient('balanced'));
 
 /* Metric-to-goal sensitivity: only declared clearance dependencies may change. */
@@ -332,16 +339,26 @@ check(M.EVIDENCE_HORIZONS.power.baselineAgeRange==='19–68 years'&&/9\.6 years/
 /* Export/import round-trip and import filtering. */
 const snapshot=JSON.parse(JSON.stringify(M.dashboardSnapshot()));
 check(snapshot.modelVersion==='4.0','Export snapshot has the wrong model version.');
+check(snapshot.build?.modelVersion==='4.0'&&snapshot.build?.approvedSourceCommit===M.APPROVED_SOURCE_COMMIT,'Export snapshot omitted review-build traceability.');
 check(Object.keys(snapshot.metrics).length===Object.keys(M.PATIENT.metrics).length,'Export snapshot omitted assessment metrics.');
 check(JSON.stringify(snapshot.assessmentPercentiles)===JSON.stringify(M.PATIENT.assessmentPercentiles),'Export snapshot omitted or changed assessment percentiles.');
 check(Array.isArray(snapshot.goals)&&snapshot.goals.length>0,'Export snapshot omitted selected goals.');
+check(M.patientFieldError('age',17)!==''&&M.patientFieldError('age',18)===''&&M.patientFieldError('age',110)===''&&M.patientFieldError('age',111)!=='','Current-age validation does not enforce 18–110.');
+check(M.patientFieldError('marginalDecadeAge',53,{age:54})!==''&&M.patientFieldError('marginalDecadeAge',54,{age:54})===''&&M.patientFieldError('marginalDecadeAge',111,{age:54})!=='','Marginal-decade validation does not enforce current age through 110.');
+check(M.patientFieldError('bodyWeight_lb','')===''&&M.patientFieldError('bodyWeight_lb',39)!==''&&M.patientFieldError('bodyWeight_lb',40)===''&&M.patientFieldError('bodyWeight_lb',700)===''&&M.patientFieldError('bodyWeight_lb',701)!=='','Body-weight validation does not enforce blank or 40–700 lb.');
+for(const [metric,meta] of Object.entries(M.METRICS))if(meta.kind!=='grade'){check(M.metricRangeValid(metric,'')&&M.metricRangeValid(metric,meta.lo)&&M.metricRangeValid(metric,meta.hi),`${metric}: valid blank/boundary input rejected.`);check(!M.metricRangeValid(metric,meta.lo-1)&&!M.metricRangeValid(metric,meta.hi+1),`${metric}: out-of-range finite input accepted.`);}
 M.applyImportedData(snapshot);
 check(M.PATIENT.name===snapshot.patient.name&&M.PATIENT.sex===snapshot.patient.sex,'Export/import round-trip changed patient identity fields.');
 check(JSON.stringify(M.PATIENT.assessmentPercentiles)===JSON.stringify(snapshot.assessmentPercentiles),'Export/import round-trip changed assessment percentiles.');
-M.applyImportedData({patient:{name:'<bad> A',sex:'other',age:55,marginalDecadeAge:90,bodyWeight_lb:175},metrics:{vo2:Infinity,unknown_metric:123},goals:['walk-3mi','not-a-goal']});
-check(!M.PATIENT.name.includes('<'),'Imported display text was not sanitized.');
-check(M.PATIENT.metrics.vo2==null,'Non-finite imported metric was not rejected.');
-check(!('unknown_metric' in M.PATIENT.metrics),'Unknown imported metric was not rejected.');
+check(Object.keys(M.METRICS).every(metric=>(M.PATIENT.metrics[metric]??null)===(snapshot.metrics[metric]??null)),'Export/import round-trip changed measurements.');
+check(JSON.stringify([...snapshot.goals].sort())===JSON.stringify(M.dashboardSnapshot().goals.sort()),'Export/import round-trip changed selected goals.');
+check(M.getReportMode()===snapshot.reportMode,'Export/import round-trip did not restore report mode.');
+check(JSON.stringify(M.dashboardSnapshot().customActivities)===JSON.stringify(snapshot.customActivities),'Export/import round-trip changed custom selected activities.');
+const customSnapshot=JSON.parse(JSON.stringify(snapshot)),customId='custom-round-trip';customSnapshot.customActivities={[customId]:{name:'Synthetic custom carry',sub:'Round-trip fixture',complexity:2,custom:true,domain:'Daily essentials',oneOff:true,reqs:[{metric:'suitcaseCarry_pctBW',req:30,why:'Synthetic import/export QA'}]}};customSnapshot.goals=[...snapshot.goals,customId];M.applyImportedData(customSnapshot);const customRoundTrip=M.dashboardSnapshot();check(customRoundTrip.goals.includes(customId)&&customRoundTrip.customActivities[customId]?.name==='Synthetic custom carry'&&customRoundTrip.customActivities[customId]?.reqs[0]?.metric==='suitcaseCarry_pctBW','Custom selected activity did not survive import/export round trip.');
+for(const version of [undefined,'3.0','5.0']){let rejected=false;try{M.applyImportedData({...snapshot,modelVersion:version});}catch(error){rejected=/modelVersion/.test(error.message);}check(rejected,`Import silently accepted incompatible modelVersion ${version??'missing'}.`);}
+for(const [label,mutation] of [['age',{patient:{...snapshot.patient,age:17}}],['target',{patient:{...snapshot.patient,marginalDecadeAge:snapshot.patient.age-1}}],['weight',{patient:{...snapshot.patient,bodyWeight_lb:701}}],['metric',{metrics:{...snapshot.metrics,vo2:M.METRICS.vo2.hi+1}}]]){let rejected=false;try{M.applyImportedData({...snapshot,...mutation});}catch(error){rejected=true;}check(rejected,`Import accepted out-of-range ${label}.`);}
+const staleSnapshot={...snapshot,patient:{...snapshot.patient,age:snapshot.patient.age+1}};let staleRejected=false;try{M.applyImportedData(staleSnapshot);}catch(error){staleRejected=/percentile|stale/i.test(error.message);}check(staleRejected,'Import accepted age/sex-mismatched VALD percentiles.');
+M.applyImportedData(snapshot);const priorityWithPct=M.supportPrioritySynthesis(allGoals).find(item=>item.metric==='grip_lb')?.priority||0,foundationWithPct=M.foundationalPrioritySynthesis().find(item=>item.metric==='grip_lb')?.priority||0;M.PATIENT.age+=1;M.syncAge();check(M.assessmentContext('grip_lb')?.kind==='unavailable','A stale VALD percentile remained active after age changed.');const priorityStale=M.supportPrioritySynthesis(allGoals).find(item=>item.metric==='grip_lb')?.priority||0,foundationStale=M.foundationalPrioritySynthesis().find(item=>item.metric==='grip_lb')?.priority||0;check(priorityStale===0&&foundationStale===0&&(priorityWithPct>0||foundationWithPct>0),'Stale percentile influenced support or foundational priorities.');M.applyImportedData(snapshot);delete M.ACTIVITIES[customId];const customGoalIndex=M.GOALS.findIndex(g=>g.id===customId);if(customGoalIndex>=0)M.GOALS.splice(customGoalIndex,1);
 
 /* Full print document: cover + summary + full priorities + all 36 goal pages. */
 M.setSelectedGoals(M.GOALS.map(g=>g.id));

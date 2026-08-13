@@ -18,7 +18,7 @@ globalThis.__PRINT__={
   selectAll(){selectedGoals=new Set(GOALS.map(g=>g.id));},
   setMode(mode){HERO=mode;}
 };`;
-const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>scopeText}};
+const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>scopeText},window:{addEventListener(){}},document:{querySelectorAll(){return[];}}};
 context.globalThis=context;
 vm.runInNewContext(source,context,{filename:'index.inline.js'});
 const model=context.__PRINT__;
