@@ -15,9 +15,10 @@ if(stopAt<0)throw new Error('Dashboard initialization marker not found.');
 const source=`${script.slice(0,stopAt)}
 globalThis.__PRINT__={
   GOALS,PATIENT,BASELINE_METRICS,buildPrintDoc,
-  selectAll(){selectedGoals=new Set(GOALS.map(g=>g.id));}
+  selectAll(){selectedGoals=new Set(GOALS.map(g=>g.id));},
+  setMode(mode){HERO=mode;}
 };`;
-const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>scopeText}};
+const context={console,Math,Date,JSON,Set,Map,Object,Array,Number,String,Boolean,RegExp,isFinite,parseFloat,parseInt,Blob:class{},COPY:{scope:()=>scopeText},window:{addEventListener(){}},document:{querySelectorAll(){return[];}}};
 context.globalThis=context;
 vm.runInNewContext(source,context,{filename:'index.inline.js'});
 const model=context.__PRINT__;
@@ -25,9 +26,10 @@ model.PATIENT.name='Synthetic QA';
 model.PATIENT.clinician='Release validation';
 model.PATIENT.metrics=JSON.parse(JSON.stringify(model.BASELINE_METRICS));
 model.selectAll();
+model.setMode(process.argv[3]||'C');
 const printDoc=model.buildPrintDoc();
 const pageCount=(printDoc.match(/<section class="ppage/g)||[]).length;
-if(pageCount!==38)throw new Error(`Expected 38 pages; generated ${pageCount}.`);
+if(pageCount!==39)throw new Error(`Expected 39 pages; generated ${pageCount}.`);
 if(/\b(?:NaN|Infinity)\b/.test(printDoc))throw new Error('Print document contains a non-finite value.');
 
 const outputPath=path.resolve(process.argv[2]||'tmp/print/cd-dashboard-full.html');
