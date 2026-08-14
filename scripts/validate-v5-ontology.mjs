@@ -14,6 +14,7 @@ const FILES = Object.freeze({
   aliases: 'test-aliases.json',
   units: 'units.json',
   completionStates: 'completion-states.json',
+  sourceInventory: 'source-inventory.json',
 });
 
 const SURFACE_ORDER = Object.freeze([
@@ -82,6 +83,24 @@ const REQUIRED_COMPLETION_STATES = Object.freeze([
   'unable',
   'redundant',
 ]);
+const SOURCE_METADATA_FIELDS = Object.freeze([
+  'originalLabel',
+  'sourceSurface',
+  'sourceSystemId',
+  'positionLabel',
+  'categoryLabel',
+  'explicitMotionWording',
+  'explicitUnitWording',
+  'originalRowIdentifier',
+  'sourceSnapshotId',
+]);
+const SOURCE_POSITION_TO_CANONICAL = new Map([
+  ['Supine', 'supine'],
+  ['Prone', 'prone'],
+  ['Seated', 'seated'],
+  ['Standing', 'standing'],
+  ['Other Table', 'other'],
+]);
 
 function addError(errors, code, message) {
   errors.push({ code, message });
@@ -131,7 +150,7 @@ async function readJson(root, filename) {
 }
 
 export async function loadOntology(root = DEFAULT_ROOT) {
-  const [definitionsFile, sourceSystemsFile, protocolsFile, protocolVersionsFile, aliasesFile, unitsFile, completionStatesFile] =
+  const [definitionsFile, sourceSystemsFile, protocolsFile, protocolVersionsFile, aliasesFile, unitsFile, completionStatesFile, sourceInventoryFile] =
     await Promise.all([
       readJson(root, FILES.definitions),
       readJson(root, FILES.sourceSystems),
@@ -140,6 +159,7 @@ export async function loadOntology(root = DEFAULT_ROOT) {
       readJson(root, FILES.aliases),
       readJson(root, FILES.units),
       readJson(root, FILES.completionStates),
+      readJson(root, FILES.sourceInventory),
     ]);
 
   return {
@@ -152,6 +172,8 @@ export async function loadOntology(root = DEFAULT_ROOT) {
     aliases: aliasesFile.aliases,
     units: unitsFile.units,
     completionStates: completionStatesFile.completionStates,
+    sourceSnapshots: sourceInventoryFile.sourceSnapshots,
+    sourceInventoryRecords: sourceInventoryFile.sourceInventoryRecords,
   };
 }
 
@@ -160,6 +182,9 @@ export function resolveSourceName(ontology, { sourceSystemId, sourceLabel }) {
   for (const row of ontology.knownSourceRows ?? []) {
     if (row.sourceSystemId === sourceSystemId && row.sourceLabel === sourceLabel) {
       candidates.push({ definitionId: row.expectedDefinitionId, matchType: 'canonical' });
+    }
+    if (row.sourceSystemId === sourceSystemId && row.sourceMetadata?.originalLabel === sourceLabel) {
+      candidates.push({ definitionId: row.expectedDefinitionId, matchType: 'source_original' });
     }
   }
   for (const alias of ontology.aliases ?? []) {
@@ -176,8 +201,19 @@ export function resolveSourceName(ontology, { sourceSystemId, sourceLabel }) {
   return {
     status: 'resolved',
     definitionId: definitionIds[0],
-    matchType: canonical ? 'canonical' : 'alias',
+    matchType: canonical ? 'canonical' : candidates.some((candidate) => candidate.matchType === 'source_original') ? 'source_original' : 'alias',
   };
+}
+
+function canonicalMotionFromSourceWording(wording) {
+  if (!wording) return null;
+  const normalized = wording.toLowerCase().replaceAll(' ', '');
+  if (normalized === 'active/passive') return 'active_and_passive';
+  if (normalized === 'active') return 'active';
+  if (normalized === 'passive') return 'passive';
+  if (normalized === 'isometric') return 'isometric';
+  if (normalized === 'dynamic') return 'dynamic';
+  return null;
 }
 
 export function validateOntology(ontology) {
@@ -190,6 +226,8 @@ export function validateOntology(ontology) {
   const protocolVersions = ontology.protocolVersions ?? [];
   const aliases = ontology.aliases ?? [];
   const completionStates = ontology.completionStates ?? [];
+  const sourceSnapshots = ontology.sourceSnapshots ?? [];
+  const sourceInventoryRecords = ontology.sourceInventoryRecords ?? [];
 
   for (const id of duplicateValues(definitions, 'id')) {
     addError(errors, 'DUPLICATE_DEFINITION_ID', `Duplicate assessment definition ID: ${id}`);
@@ -217,12 +255,24 @@ export function validateOntology(ontology) {
   for (const id of duplicateValues(rows, 'id')) {
     addError(errors, 'DUPLICATE_KNOWN_ROW_ID', `Duplicate known-source row ID: ${id}`);
   }
+  for (const id of duplicateValues(sourceInventoryRecords, 'id')) {
+    addError(errors, 'DUPLICATE_SOURCE_INVENTORY_ID', `Duplicate source-inventory record ID: ${id}`);
+  }
+  for (const id of duplicateValues(sourceSnapshots, 'id')) {
+    addError(errors, 'DUPLICATE_SOURCE_SNAPSHOT_ID', `Duplicate source-snapshot ID: ${id}`);
+  }
 
   const sourceIds = new Set(sourceSystems.map((source) => source.id));
   const unitIds = new Set(units.map((unit) => unit.id));
   const definitionIds = new Set(definitions.map((definition) => definition.id));
   const protocolIds = new Set(protocols.map((protocol) => protocol.id));
   const versionKeys = new Set(protocolVersions.map((version) => protocolKey(version.protocolId, version.version)));
+  const sourceSnapshotIds = new Set(sourceSnapshots.map((snapshot) => snapshot.id));
+  for (const snapshot of sourceSnapshots) {
+    if (!snapshot.id || !snapshot.displayName || !snapshot.scope || !snapshot.captureState) {
+      addError(errors, 'INCOMPLETE_SOURCE_SNAPSHOT', `${snapshot.id || '<source snapshot>'} lacks required capture metadata`);
+    }
+  }
 
   for (const definition of definitions) {
     const prefix = definition.id || '<definition without ID>';
@@ -341,6 +391,82 @@ export function validateOntology(ontology) {
     }
   }
 
+  const sourceRecordsById = new Map(sourceInventoryRecords.map((record) => [record.id, record]));
+  const sourceRecordUseCounts = new Map();
+  for (const row of rows) {
+    const record = sourceRecordsById.get(row.sourceInventoryRecordId);
+    if (!record) {
+      addError(errors, 'SOURCE_INVENTORY_UNRESOLVED', `${row.id} does not reference a source-inventory record`);
+      continue;
+    }
+    sourceRecordUseCounts.set(record.id, (sourceRecordUseCounts.get(record.id) ?? 0) + 1);
+    if (record.definitionId !== row.expectedDefinitionId) {
+      addError(errors, 'SOURCE_INVENTORY_DEFINITION_MISMATCH', `${row.id} source record points to ${record.definitionId}`);
+    }
+    if (record.sourceSurface !== row.surface || record.sourceSystemId !== row.sourceSystemId) {
+      addError(errors, 'SOURCE_METADATA_MISMATCH', `${row.id} source surface or system was rewritten`);
+    }
+    if (!record.originalLabel) {
+      addError(errors, 'SOURCE_LABEL_MISSING', `${record.id} does not preserve an original source label`);
+    }
+    if (!sourceSnapshotIds.has(record.sourceSnapshotId)) {
+      addError(errors, 'UNKNOWN_SOURCE_SNAPSHOT', `${record.id} references unknown snapshot ${record.sourceSnapshotId}`);
+    }
+    for (const field of SOURCE_METADATA_FIELDS) {
+      if (!Object.hasOwn(record, field) || !Object.hasOwn(row.sourceMetadata ?? {}, field)) {
+        addError(errors, 'SOURCE_METADATA_DROPPED', `${row.id} does not preserve source field ${field}`);
+      } else if (row.sourceMetadata[field] !== record[field]) {
+        addError(errors, 'SOURCE_METADATA_MISMATCH', `${row.id} rewrites source field ${field}`);
+      }
+    }
+
+    const definition = definitions.find((candidate) => candidate.id === row.expectedDefinitionId);
+    if (!definition) continue;
+    if (record.unambiguousCanonicalUnitId !== null) {
+      if (!unitIds.has(record.unambiguousCanonicalUnitId)) {
+        addError(errors, 'UNKNOWN_UNIT', `${record.id} maps explicit unit wording to unknown unit ${record.unambiguousCanonicalUnitId}`);
+      } else if (definition.canonicalUnitId !== record.unambiguousCanonicalUnitId) {
+        addError(errors, 'EXPLICIT_UNIT_MISMATCH', `${definition.id} does not preserve explicit source unit ${record.explicitUnitWording}`);
+      }
+    }
+    const sourceMotion = canonicalMotionFromSourceWording(record.explicitMotionWording);
+    if (sourceMotion && definition.motionMode !== sourceMotion) {
+      addError(errors, 'EXPLICIT_MOTION_MISMATCH', `${definition.id} does not preserve explicit source motion ${record.explicitMotionWording}`);
+    }
+    if (record.positionLabel !== null) {
+      const directCanonicalPosition = SOURCE_POSITION_TO_CANONICAL.get(record.positionLabel);
+      if (!directCanonicalPosition) {
+        addError(errors, 'UNKNOWN_SOURCE_POSITION', `${record.id} has unsupported source position ${record.positionLabel}`);
+      } else if (definition.position !== directCanonicalPosition) {
+        const mapping = definition.canonicalization?.position;
+        const mappingValid = mapping
+          && mapping.sourceValue === record.positionLabel
+          && mapping.canonicalValue === definition.position
+          && typeof mapping.note === 'string'
+          && mapping.note.trim().length > 0
+          && ['pending', 'approved'].includes(mapping.approvalState);
+        if (!mappingValid) {
+          addError(errors, 'UNDOCUMENTED_POSITION_CANONICALIZATION', `${definition.id} changes ${record.positionLabel} to ${definition.position} without a valid mapping`);
+        } else {
+          const protocolVersion = protocolVersions.find(
+            (version) => version.protocolId === definition.protocolId && version.version === definition.protocolVersion,
+          );
+          if (mapping.approvalState === 'approved' && protocolVersion?.approvalState !== 'approved') {
+            addError(errors, 'UNSUPPORTED_CANONICALIZATION_APPROVAL', `${definition.id} position mapping is approved without an approved protocol`);
+          }
+          if (protocolVersion?.approvalState !== 'approved' && mapping.approvalState !== 'pending') {
+            addError(errors, 'CANONICALIZATION_MUST_BE_PENDING', `${definition.id} position mapping must remain pending`);
+          }
+        }
+      }
+    }
+  }
+  for (const record of sourceInventoryRecords) {
+    const count = sourceRecordUseCounts.get(record.id) ?? 0;
+    if (count === 0) addError(errors, 'SOURCE_INVENTORY_UNUSED', `${record.id} is not mapped to a known source row`);
+    if (count > 1) addError(errors, 'SOURCE_INVENTORY_MULTIPLE', `${record.id} is mapped ${count} times`);
+  }
+
   const exactNames = new Map();
   const addExactName = (sourceSystemId, sourceLabel, definitionId, kind) => {
     const key = `${sourceSystemId}\u0000${sourceLabel}`;
@@ -349,6 +475,11 @@ export function validateOntology(ontology) {
     exactNames.set(key, existing);
   };
   rows.forEach((row) => addExactName(row.sourceSystemId, row.sourceLabel, row.expectedDefinitionId, 'canonical'));
+  rows.forEach((row) => {
+    if (row.sourceMetadata?.originalLabel) {
+      addExactName(row.sourceSystemId, row.sourceMetadata.originalLabel, row.expectedDefinitionId, 'source_original');
+    }
+  });
   for (const alias of aliases) {
     if (alias.matchType !== 'exact') {
       addError(errors, 'NON_EXACT_ALIAS', `${alias.sourceSystemId}:${alias.sourceLabel} is not exact`);
@@ -383,7 +514,8 @@ export function validateOntology(ontology) {
 
   const bySlug = new Map(definitions.map((definition) => [definition.slug, definition]));
   const requiredDistinctions = [
-    ['prom-hip-ir-at-0', { motionMode: 'passive', position: 'supine', positionDetail: 'hip_at_0_degrees' }],
+    ['prom-hip-er-at-0', { motionMode: 'passive', position: 'prone', positionDetail: 'hip_at_0_degrees' }],
+    ['prom-hip-ir-at-0', { motionMode: 'passive', position: 'prone', positionDetail: 'hip_at_0_degrees' }],
     ['prom-hip-ir-at-90', { motionMode: 'passive', position: 'supine', positionDetail: 'hip_at_90_degrees' }],
     ['prom-shoulder-er-supine', { motionMode: 'passive', position: 'supine' }],
     ['prom-active-shoulder-er-at-90-prone', { motionMode: 'active', position: 'prone', positionDetail: 'shoulder_at_90_degrees' }],
@@ -414,6 +546,9 @@ export function validateOntology(ontology) {
   if (definitions.length !== 140) {
     addError(errors, 'DEFINITION_COUNT_MISMATCH', `Canonical definition count is ${definitions.length}; expected 140`);
   }
+  if (sourceInventoryRecords.length !== 140) {
+    addError(errors, 'SOURCE_INVENTORY_COUNT_MISMATCH', `Source-inventory count is ${sourceInventoryRecords.length}; expected 140`);
+  }
 
   const pendingProtocolFields = protocolVersions.flatMap((version) =>
     (version.pendingFields ?? []).map((field) => ({
@@ -434,6 +569,8 @@ export function validateOntology(ontology) {
       protocolCount: protocols.length,
       protocolVersionCount: protocolVersions.length,
       pendingProtocolFieldCount: pendingProtocolFields.length,
+      sourceInventoryRecordCount: sourceInventoryRecords.length,
+      positionCanonicalizationCount: definitions.filter((definition) => definition.canonicalization?.position).length,
     },
     pendingProtocolFields,
   };
@@ -472,6 +609,28 @@ export function renderCoverageReport(ontology) {
   for (const source of ontology.sourceSystems) {
     lines.push(`| ${source.displayName} (` + '`' + `${source.id}` + '`' + `) | ${result.summary.sourceCounts[source.id]} |`);
   }
+  const sourceRecordsByDefinition = new Map(ontology.sourceInventoryRecords.map((record) => [record.definitionId, record]));
+  const promSourceRecords = ontology.sourceInventoryRecords.filter((record) => record.sourceSurface === 'prom_orthopedic');
+  const promPositionCounts = countBy(promSourceRecords, 'positionLabel');
+  const positionCanonicalizations = ontology.definitions.filter((definition) => definition.canonicalization?.position);
+  lines.push(
+    '',
+    '## Independent source fidelity',
+    '',
+    `- Raw source-inventory records: ${result.summary.sourceInventoryRecordCount}`,
+    `- pROM/orthopedic source rows audited: ${promSourceRecords.length}`,
+    `- pROM source Position values: Supine ${promPositionCounts.Supine ?? 0}; Prone ${promPositionCounts.Prone ?? 0}; Seated ${promPositionCounts.Seated ?? 0}; Standing ${promPositionCounts.Standing ?? 0}; Other Table ${promPositionCounts['Other Table'] ?? 0}`,
+    `- Documented source-to-canonical position mappings: ${result.summary.positionCanonicalizationCount}`,
+    '- The raw source label, source Position value, category, explicit motion wording, explicit unit wording and original row identifier are stored separately from the canonical definition.',
+    '',
+    '| Original source label | Source position | Canonical position | Approval | Canonicalization note |',
+    '|---|---|---|---|---|',
+  );
+  for (const definition of positionCanonicalizations) {
+    const record = sourceRecordsByDefinition.get(definition.id);
+    const mapping = definition.canonicalization.position;
+    lines.push(`| ${md(record?.originalLabel)} | ${md(mapping.sourceValue)} | ${md(mapping.canonicalValue)} | ${md(mapping.approvalState)} | ${md(mapping.note)} |`);
+  }
   lines.push(
     '',
     '## Exact aliases',
@@ -500,9 +659,12 @@ export function renderCoverageReport(ontology) {
     lines.push(`| ${md(protocolKey(version.protocolId, version.version))} | ${md(version.approvalState)} | ${md((version.pendingFields ?? []).join(', '))} |`);
   }
   const nullUnitDefinitions = ontology.definitions.filter((definition) => definition.canonicalUnitId === null);
+  const explicitUnitRecords = ontology.sourceInventoryRecords.filter((record) => record.explicitUnitWording !== null);
   lines.push(
     '',
     '## Explicitly unresolved source units',
+    '',
+    `${explicitUnitRecords.length} source rows contain explicit unit wording; each is retained in raw metadata and checked against its canonical unit.`,
     '',
     `${nullUnitDefinitions.length} definitions use an explicit null canonical unit because the approved inventory does not establish one. This includes all 49 PCA performance rows plus source rows whose output unit or scoring method still requires protocol-owner confirmation. The row-level nulls are visible in the source crosswalk.`,
     '',
@@ -518,6 +680,7 @@ export function renderCoverageReport(ontology) {
 
 export function renderSourceCrosswalk(ontology) {
   const definitionsById = new Map(ontology.definitions.map((definition) => [definition.id, definition]));
+  const sourceRecordsById = new Map(ontology.sourceInventoryRecords.map((record) => [record.id, record]));
   const lines = [
     '# V5 Assessment Source Field Crosswalk',
     '',
@@ -525,13 +688,15 @@ export function renderSourceCrosswalk(ontology) {
     '',
     'This crosswalk audits source-label coverage. A row here establishes identity and provenance only; it does not establish capacity meaning, task relevance, or clinical interpretation.',
     '',
-    '| Source | Source label | Canonical test ID | Source system | Unit | Laterality | Motion mode | Position | Protocol/version |',
-    '|---|---|---|---|---|---|---|---|---|',
+    '| Source | Inventory label | Original source label | Original row ID | Category | Source position | Canonical test ID | Source system | Explicit motion | Canonical motion | Explicit unit | Canonical unit | Laterality | Canonical position | Position mapping | Protocol/version |',
+    '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|',
   ];
   for (const row of ontology.knownSourceRows) {
     const definition = definitionsById.get(row.expectedDefinitionId);
+    const sourceRecord = sourceRecordsById.get(row.sourceInventoryRecordId);
+    const mapping = definition?.canonicalization?.position;
     lines.push(
-      `| ${md(row.surface)} | ${md(row.sourceLabel)} | ${md(definition?.id)} | ${md(definition?.sourceSystemId)} | ${md(definition?.canonicalUnitId)} | ${md(definition?.lateralityModel)} | ${md(definition?.motionMode)} | ${md([definition?.position, definition?.positionDetail].filter(Boolean).join(' · '))} | ${md(definition ? protocolKey(definition.protocolId, definition.protocolVersion) : null)} |`,
+      `| ${md(row.surface)} | ${md(row.sourceLabel)} | ${md(sourceRecord?.originalLabel)} | ${md(sourceRecord?.originalRowIdentifier)} | ${md(sourceRecord?.categoryLabel)} | ${md(sourceRecord?.positionLabel)} | ${md(definition?.id)} | ${md(definition?.sourceSystemId)} | ${md(sourceRecord?.explicitMotionWording)} | ${md(definition?.motionMode)} | ${md(sourceRecord?.explicitUnitWording)} | ${md(definition?.canonicalUnitId)} | ${md(definition?.lateralityModel)} | ${md([definition?.position, definition?.positionDetail].filter(Boolean).join(' · '))} | ${md(mapping ? `${mapping.approvalState}: ${mapping.note}` : null)} | ${md(definition ? protocolKey(definition.protocolId, definition.protocolVersion) : null)} |`,
     );
   }
   lines.push('');

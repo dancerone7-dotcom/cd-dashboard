@@ -30,6 +30,47 @@ const REQUIRED_COMPLETION_STATES = Object.freeze([
   'unable',
   'redundant',
 ]);
+const PROM_SOURCE_ROWS = Object.freeze([
+  ['prom-shoulder-er-supine', 'Shoulder ER', 'Supine', 'Shoulder'],
+  ['prom-shoulder-ir-supine', 'Shoulder IR', 'Supine', 'Shoulder'],
+  ['prom-shoulder-flexion-supine', 'Shoulder Flexion', 'Supine', 'Shoulder'],
+  ['prom-active-shoulder-er-at-90-prone', 'Shoulder ER @ 90° (active)', 'Prone', 'Shoulder'],
+  ['prom-active-shoulder-ir-at-90-prone', 'Shoulder IR @ 90° (active)', 'Prone', 'Shoulder'],
+  ['prom-active-shoulder-flexion-prone', 'Shoulder Flexion (active)', 'Prone', 'Shoulder'],
+  ['prom-shoulder-extension-active-passive', 'Shoulder Extension (active/passive)', 'Prone', 'Shoulder'],
+  ['prom-hip-flexion', 'Hip Flexion', 'Supine', 'Hip'],
+  ['prom-hip-er-at-90', 'Hip ER @ 90°', 'Supine', 'Hip'],
+  ['prom-hip-ir-at-90', 'Hip IR @ 90°', 'Supine', 'Hip'],
+  ['prom-hip-er-at-0', 'Hip ER @ 0°', 'Prone', 'Hip'],
+  ['prom-hip-ir-at-0', 'Hip IR @ 0°', 'Prone', 'Hip'],
+  ['prom-active-seated-hip-er', 'Hip ER (active)', 'Seated', 'Hip'],
+  ['prom-active-seated-hip-ir', 'Hip IR (active)', 'Seated', 'Hip'],
+  ['prom-hip-abduction', 'Hip Abduction', 'Supine', 'Hip'],
+  ['prom-hip-extension', 'Hip Extensions', 'Prone', 'Hip'],
+  ['prom-faber', 'FABER Test', 'Supine', 'Hip'],
+  ['prom-thomas', 'Thomas Test', 'Other Table', 'Hip'],
+  ['prom-ober', 'Side Lying Ober’s Test', 'Other Table', 'Hip'],
+  ['prom-knee-extension', 'Knee Extension', 'Supine', 'Knee / tibia'],
+  ['prom-knee-flexion', 'Knee Flexion', 'Supine', 'Knee / tibia'],
+  ['prom-tibial-er-ir-passive', 'Tibial ER/IR', 'Supine', 'Knee / tibia'],
+  ['prom-tibial-er-ir-active', 'Tibial ER/IR (active)', 'Seated', 'Knee / tibia'],
+  ['prom-ankle-dorsiflexion', 'Ankle Dorsiflexion (Active and Knee to Wall)', 'Standing', 'Foot / ankle'],
+  ['prom-ankle-inversion-eversion', 'Ankle Inversion/Eversion (active)', 'Seated', 'Foot / ankle'],
+  ['prom-talocrural-assessment', 'Foot- Talocrural', 'Supine', 'Foot / ankle'],
+  ['prom-subtalar-assessment', 'Foot- Subtalar', 'Supine', 'Foot / ankle'],
+  ['prom-mid-foot-assessment', 'Mid-Foot', 'Supine', 'Foot / ankle'],
+  ['prom-1st-ray-assessment', 'Foot- 1st Ray', 'Supine', 'Foot / ankle'],
+  ['prom-general-foot-ankle-assessment', 'Foot- Ankle', 'Supine', 'Foot / ankle'],
+  ['prom-calf-raise', 'Ankle Calf Raise', 'Standing', 'Foot / ankle'],
+  ['prom-lumbar-rotation', 'Lumbar Rotation', 'Prone', 'Spine / trunk'],
+  ['prom-quadruped-lumbar-locked-thoracic-rotation', 'Quadruped Lumbar Locked T-Spine Rotation', 'Prone', 'Spine / trunk'],
+  ['prom-thoracic-lumbar-vertebral-spring-mobility', 'Thoracic/Lumbar Vertebral Spring Mobility', 'Prone', 'Spine / trunk'],
+  ['prom-prone-press-up', 'Prone Press Up', 'Prone', 'Spine / trunk'],
+  ['prom-straight-leg-raise', 'Straight Leg Raise', 'Supine', 'Other screens'],
+  ['prom-active-straight-leg-raise', 'Active Straight Leg Raise', 'Supine', 'Other screens'],
+  ['prom-half-kneeling-balance', 'Half-Kneeling Balance', 'Standing', 'Other screens'],
+  ['prom-si-laslett-cluster', 'SI Laslet Cluster Tests', 'Other Table', 'Other screens'],
+]);
 
 function clone(value) {
   return structuredClone(value);
@@ -61,6 +102,8 @@ test('the complete V5-00 ontology validates with the required known-source cover
     dari: 0,
   });
   assert.equal(result.summary.knownSourceRowCount, 140);
+  assert.equal(result.summary.sourceInventoryRecordCount, 140);
+  assert.equal(result.summary.positionCanonicalizationCount, 3);
 });
 
 test('every known source row resolves exactly once and unknown labels require import review', async () => {
@@ -129,7 +172,7 @@ test('clinically distinct positions and active/passive modes remain separate def
   );
 
   assert.notEqual(hipIr0.id, hipIr90.id);
-  assert.equal(hipIr0.position, 'supine');
+  assert.equal(hipIr0.position, 'prone');
   assert.equal(hipIr0.positionDetail, 'hip_at_0_degrees');
   assert.equal(hipIr90.position, 'supine');
   assert.equal(hipIr90.positionDetail, 'hip_at_90_degrees');
@@ -138,6 +181,90 @@ test('clinically distinct positions and active/passive modes remain separate def
   assert.equal(shoulderErProne.motionMode, 'active');
   assert.equal(shoulderErProne.position, 'prone');
   assert.equal(shoulderErProne.positionDetail, 'shoulder_at_90_degrees');
+});
+
+test('all 39 pROM rows preserve the authoritative source label, position, and category independently', async () => {
+  const ontology = await loadOntology(ROOT);
+  assert.equal(PROM_SOURCE_ROWS.length, 39);
+  const definitionsBySlug = new Map(ontology.definitions.map((definition) => [definition.slug, definition]));
+  const sourceRecordsByDefinition = new Map(
+    ontology.sourceInventoryRecords.map((record) => [record.definitionId, record]),
+  );
+
+  for (const [slug, originalLabel, positionLabel, categoryLabel] of PROM_SOURCE_ROWS) {
+    const definition = definitionsBySlug.get(slug);
+    const sourceRecord = sourceRecordsByDefinition.get(definition.id);
+    assert.equal(sourceRecord.originalLabel, originalLabel, `${slug} label`);
+    assert.equal(sourceRecord.positionLabel, positionLabel, `${slug} source position`);
+    assert.equal(sourceRecord.categoryLabel, categoryLabel, `${slug} category`);
+    assert.equal(sourceRecord.sourceSurface, 'prom_orthopedic');
+    assert.equal(sourceRecord.sourceSystemId, 'manual_orthopedic_exam');
+  }
+
+  assert.equal(sourceRecordsByDefinition.get(definitionsBySlug.get('prom-hip-er-at-0').id).positionLabel, 'Prone');
+  assert.equal(sourceRecordsByDefinition.get(definitionsBySlug.get('prom-hip-ir-at-0').id).positionLabel, 'Prone');
+  assert.equal(
+    ontology.sourceSnapshots.find((snapshot) => snapshot.id === 'source-snapshot.prom-current-supplement-2026-08-13').captureState,
+    'pending_master_reconciliation',
+  );
+  assert.deepEqual(
+    resolveSourceName(ontology, {
+      sourceSystemId: 'manual_orthopedic_exam',
+      sourceLabel: 'Hip IR @ 0°',
+    }),
+    { status: 'resolved', definitionId: definitionsBySlug.get('prom-hip-ir-at-0').id, matchType: 'source_original' },
+  );
+});
+
+test('source and canonical positions may differ only through an explicit pending or approved mapping', async () => {
+  const ontology = await loadOntology(ROOT);
+  const quadruped = ontology.definitions.find(
+    (definition) => definition.slug === 'prom-quadruped-lumbar-locked-thoracic-rotation',
+  );
+  const sourceRecord = ontology.sourceInventoryRecords.find((record) => record.definitionId === quadruped.id);
+
+  assert.equal(sourceRecord.positionLabel, 'Prone');
+  assert.equal(quadruped.position, 'quadruped');
+  assert.deepEqual(quadruped.canonicalization.position, {
+    sourceValue: 'Prone',
+    canonicalValue: 'quadruped',
+    note: 'The tracker groups this row under Prone, while the original test label explicitly identifies a quadruped test position.',
+    approvalState: 'pending',
+  });
+
+  const undocumented = clone(ontology);
+  delete undocumented.definitions.find((definition) => definition.id === quadruped.id).canonicalization;
+  expectErrorCode(undocumented, 'UNDOCUMENTED_POSITION_CANONICALIZATION');
+});
+
+test('validator detects rewritten source position, motion wording, label, and explicit unit metadata', async () => {
+  const ontology = await loadOntology(ROOT);
+  const hipIr0 = ontology.definitions.find((definition) => definition.slug === 'prom-hip-ir-at-0');
+  const row = ontology.knownSourceRows.find((candidate) => candidate.expectedDefinitionId === hipIr0.id);
+
+  const positionMutated = clone(ontology);
+  positionMutated.knownSourceRows.find((candidate) => candidate.id === row.id).sourceMetadata.positionLabel = 'Supine';
+  expectErrorCode(positionMutated, 'SOURCE_METADATA_MISMATCH');
+
+  const rawPositionMutated = clone(ontology);
+  rawPositionMutated.sourceInventoryRecords.find((record) => record.definitionId === hipIr0.id).positionLabel = 'Supine';
+  expectErrorCode(rawPositionMutated, 'SOURCE_METADATA_MISMATCH');
+
+  const motionMutated = clone(ontology);
+  motionMutated.knownSourceRows.find(
+    (candidate) => candidate.expectedDefinitionId === 'atd.prom.004',
+  ).sourceMetadata.explicitMotionWording = null;
+  expectErrorCode(motionMutated, 'SOURCE_METADATA_MISMATCH');
+
+  const labelMutated = clone(ontology);
+  labelMutated.knownSourceRows.find((candidate) => candidate.id === row.id).sourceMetadata.originalLabel = 'Hip IR at zero';
+  expectErrorCode(labelMutated, 'SOURCE_METADATA_MISMATCH');
+
+  const unitMutated = clone(ontology);
+  unitMutated.knownSourceRows.find(
+    (candidate) => candidate.expectedDefinitionId === 'atd.v4-vald.003',
+  ).sourceMetadata.explicitUnitWording = null;
+  expectErrorCode(unitMutated, 'SOURCE_METADATA_MISMATCH');
 });
 
 test('completion states preserve missing and clinical non-completion without numeric zero', async () => {

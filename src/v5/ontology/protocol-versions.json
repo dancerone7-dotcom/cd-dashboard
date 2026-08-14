@@ -1256,7 +1256,7 @@
       "version": "pending-1",
       "approvalState": "pending",
       "position": null,
-      "motionMode": "dynamic",
+      "motionMode": "passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
@@ -1469,7 +1469,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Shoulder ER, supine",
+      "provenance": "Shoulder ER",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1477,7 +1477,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -1491,7 +1492,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Shoulder IR, supine",
+      "provenance": "Shoulder IR",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1499,7 +1500,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -1513,7 +1515,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Shoulder flexion, supine",
+      "provenance": "Shoulder Flexion",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1521,7 +1523,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -1535,7 +1538,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Active shoulder ER at 90°, prone",
+      "provenance": "Shoulder ER @ 90° (active)",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1557,7 +1560,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Active shoulder IR at 90°, prone",
+      "provenance": "Shoulder IR @ 90° (active)",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1579,7 +1582,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Active shoulder flexion, prone",
+      "provenance": "Shoulder Flexion (active)",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1594,16 +1597,15 @@
       "protocolId": "protocol.atd.prom.007",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "prone",
       "motionMode": "active_and_passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Shoulder extension, active/passive",
+      "provenance": "Shoulder Extension (active/passive)",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -1624,7 +1626,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Hip flexion",
+      "provenance": "Hip Flexion",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1632,7 +1634,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -1646,7 +1649,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Hip ER at 90°",
+      "provenance": "Hip ER @ 90°",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1654,7 +1657,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -1668,7 +1672,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Hip IR at 90°",
+      "provenance": "Hip IR @ 90°",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1676,21 +1680,22 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
       "protocolId": "protocol.atd.prom.011",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": "supine",
+      "position": "prone",
       "motionMode": "passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Hip ER at 0°",
+      "provenance": "Hip ER @ 0°",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1698,21 +1703,22 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
       "protocolId": "protocol.atd.prom.012",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": "supine",
+      "position": "prone",
       "motionMode": "passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Hip IR at 0°",
+      "provenance": "Hip IR @ 0°",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1720,7 +1726,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -1734,7 +1741,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Active seated hip ER",
+      "provenance": "Hip ER (active)",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1756,7 +1763,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Active seated hip IR",
+      "provenance": "Hip IR (active)",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1771,46 +1778,46 @@
       "protocolId": "protocol.atd.prom.015",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": "passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Hip abduction",
+      "provenance": "Hip Abduction",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
       "protocolId": "protocol.atd.prom.016",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "prone",
       "motionMode": "passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Hip extension",
+      "provenance": "Hip Extensions",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -1824,7 +1831,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "FABER",
+      "provenance": "FABER Test",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1832,7 +1839,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -1846,7 +1854,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Thomas",
+      "provenance": "Thomas Test",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -1854,7 +1862,9 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "position",
+        "motionMode"
       ]
     },
     {
@@ -1868,101 +1878,100 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Ober",
+      "provenance": "Side Lying Ober’s Test",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
       "protocolId": "protocol.atd.prom.020",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": "passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Knee extension",
+      "provenance": "Knee Extension",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
       "protocolId": "protocol.atd.prom.021",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": "passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Knee flexion",
+      "provenance": "Knee Flexion",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
       "protocolId": "protocol.atd.prom.022",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": "passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Tibial ER/IR, passive",
+      "provenance": "Tibial ER/IR",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
       "protocolId": "protocol.atd.prom.023",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "seated",
       "motionMode": "active",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Tibial ER/IR, active",
+      "provenance": "Tibial ER/IR (active)",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -1976,16 +1985,15 @@
       "protocolId": "protocol.atd.prom.024",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
-      "motionMode": "passive",
+      "position": "standing",
+      "motionMode": "active",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Ankle dorsiflexion",
+      "provenance": "Ankle Dorsiflexion (Active and Knee to Wall)",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -1999,16 +2007,15 @@
       "protocolId": "protocol.atd.prom.025",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
-      "motionMode": "passive",
+      "position": "seated",
+      "motionMode": "active",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Ankle inversion/eversion",
+      "provenance": "Ankle Inversion/Eversion (active)",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -2022,17 +2029,15 @@
       "protocolId": "protocol.atd.prom.026",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": null,
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Talocrural assessment",
+      "provenance": "Foot- Talocrural",
       "pendingFields": [
-        "position",
-        "motionMode",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -2046,17 +2051,15 @@
       "protocolId": "protocol.atd.prom.027",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": null,
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Subtalar assessment",
+      "provenance": "Foot- Subtalar",
       "pendingFields": [
-        "position",
-        "motionMode",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -2070,17 +2073,15 @@
       "protocolId": "protocol.atd.prom.028",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": null,
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Mid-foot assessment",
+      "provenance": "Mid-Foot",
       "pendingFields": [
-        "position",
-        "motionMode",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -2094,17 +2095,15 @@
       "protocolId": "protocol.atd.prom.029",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": null,
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "1st ray assessment",
+      "provenance": "Foot- 1st Ray",
       "pendingFields": [
-        "position",
-        "motionMode",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -2118,17 +2117,15 @@
       "protocolId": "protocol.atd.prom.030",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "supine",
       "motionMode": null,
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "General foot/ankle assessment",
+      "provenance": "Foot- Ankle",
       "pendingFields": [
-        "position",
-        "motionMode",
         "equipment",
         "trialCount",
         "lateralityConvention",
@@ -2149,7 +2146,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Calf raise",
+      "provenance": "Ankle Calf Raise",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -2157,30 +2154,31 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
       "protocolId": "protocol.atd.prom.032",
       "version": "pending-1",
       "approvalState": "pending",
-      "position": null,
+      "position": "prone",
       "motionMode": "active_and_passive",
       "equipment": null,
       "trialCount": null,
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Lumbar rotation",
+      "provenance": "Lumbar Rotation",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -2194,7 +2192,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Quadruped lumbar-locked thoracic rotation",
+      "provenance": "Quadruped Lumbar Locked T-Spine Rotation",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -2202,7 +2200,9 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "position",
+        "motionMode"
       ]
     },
     {
@@ -2216,7 +2216,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Thoracic/lumbar vertebral spring mobility",
+      "provenance": "Thoracic/Lumbar Vertebral Spring Mobility",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -2224,7 +2224,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -2238,7 +2239,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Prone press-up",
+      "provenance": "Prone Press Up",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -2246,7 +2247,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -2260,7 +2262,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Straight-leg raise",
+      "provenance": "Straight Leg Raise",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -2268,7 +2270,8 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {
@@ -2282,7 +2285,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Active straight-leg raise",
+      "provenance": "Active Straight Leg Raise",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -2304,7 +2307,7 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "Half-kneeling balance",
+      "provenance": "Half-Kneeling Balance",
       "pendingFields": [
         "equipment",
         "trialCount",
@@ -2312,7 +2315,9 @@
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "position",
+        "motionMode"
       ]
     },
     {
@@ -2326,16 +2331,16 @@
       "lateralityConvention": null,
       "selectedOutput": null,
       "aggregationRule": null,
-      "provenance": "SI Laslett cluster",
+      "provenance": "SI Laslet Cluster Tests",
       "pendingFields": [
-        "position",
         "equipment",
         "trialCount",
         "lateralityConvention",
         "selectedOutput",
         "aggregationRule",
         "protocolOwner",
-        "approvalDate"
+        "approvalDate",
+        "motionMode"
       ]
     },
     {

@@ -29,6 +29,20 @@ V5-00 catalogs assessment inputs only. It does not assign capacity meaning, CD g
 | VALD DynaMo (`vald_dynamo`) | 1 |
 | DARI (`dari`) | 0 |
 
+## Independent source fidelity
+
+- Raw source-inventory records: 140
+- pROM/orthopedic source rows audited: 39
+- pROM source Position values: Supine 18; Prone 11; Seated 4; Standing 3; Other Table 3
+- Documented source-to-canonical position mappings: 3
+- The raw source label, source Position value, category, explicit motion wording, explicit unit wording and original row identifier are stored separately from the canonical definition.
+
+| Original source label | Source position | Canonical position | Approval | Canonicalization note |
+|---|---|---|---|---|
+| Thomas Test | Other Table | supine | pending | The source uses the non-physical grouping Other Table; the canonical supine position remains pending protocol-owner approval. |
+| Quadruped Lumbar Locked T-Spine Rotation | Prone | quadruped | pending | The tracker groups this row under Prone, while the original test label explicitly identifies a quadruped test position. |
+| Half-Kneeling Balance | Standing | half_kneeling | pending | The tracker groups this row under Standing, while the original test label explicitly identifies a half-kneeling test position. |
+
 ## Exact aliases
 
 | Source system | Exact source label | Canonical definition ID |
@@ -45,7 +59,7 @@ Unknown labels are not fuzzy-matched. They return the explicit `import_review` s
 
 - Protocols: 140
 - Protocol versions: 140
-- Pending protocol-owner fields: 1087
+- Pending protocol-owner fields: 1092
 - Pending fields remain null or otherwise explicitly unresolved; source labels were not expanded into unstated setup details.
 
 | Protocol/version | Approval | Pending fields |
@@ -115,45 +129,45 @@ Unknown labels are not fuzzy-matched. They return the explicit `import_review` s
 | protocol.atd.pca.047@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
 | protocol.atd.pca.048@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
 | protocol.atd.pca.049@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.001@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.002@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.003@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.001@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.002@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.003@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
 | protocol.atd.prom.004@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
 | protocol.atd.prom.005@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
 | protocol.atd.prom.006@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.007@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.008@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.009@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.010@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.011@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.012@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.007@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.008@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.009@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.010@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.011@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.012@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
 | protocol.atd.prom.013@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
 | protocol.atd.prom.014@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.015@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.016@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.017@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.018@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.019@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.020@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.021@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.022@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.023@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.024@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.025@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.026@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.027@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.028@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.029@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.030@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.031@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.032@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.033@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.034@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.035@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.036@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.015@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.016@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.017@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.018@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, position, motionMode |
+| protocol.atd.prom.019@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.020@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.021@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.022@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.023@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.024@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.025@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.026@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.027@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.028@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.029@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.030@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.031@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.032@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.033@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, position, motionMode |
+| protocol.atd.prom.034@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.035@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
+| protocol.atd.prom.036@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
 | protocol.atd.prom.037@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.038@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
-| protocol.atd.prom.039@pending-1 | pending | position, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
+| protocol.atd.prom.038@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, position, motionMode |
+| protocol.atd.prom.039@pending-1 | pending | equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate, motionMode |
 | protocol.atd.cpet.001@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
 | protocol.atd.cpet.002@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
 | protocol.atd.cpet.003@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
@@ -192,6 +206,8 @@ Unknown labels are not fuzzy-matched. They return the explicit `import_review` s
 | protocol.atd.dexa.018@pending-1 | pending | position, motionMode, equipment, trialCount, lateralityConvention, selectedOutput, aggregationRule, protocolOwner, approvalDate |
 
 ## Explicitly unresolved source units
+
+32 source rows contain explicit unit wording; each is retained in raw metadata and checked against its canonical unit.
 
 61 definitions use an explicit null canonical unit because the approved inventory does not establish one. This includes all 49 PCA performance rows plus source rows whose output unit or scoring method still requires protocol-owner confirmation. The row-level nulls are visible in the source crosswalk.
 

@@ -8,7 +8,19 @@
       "sourceLabel": "PRI Functional Squat",
       "expectedDefinitionId": "atd.pca.001",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.001",
+      "sourceMetadata": {
+        "originalLabel": "PRI Functional Squat",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Double Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.002",
@@ -17,7 +29,19 @@
       "sourceLabel": "Bodyweight Squat",
       "expectedDefinitionId": "atd.pca.002",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.002",
+      "sourceMetadata": {
+        "originalLabel": "Bodyweight Squat",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Double Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.003",
@@ -26,7 +50,19 @@
       "sourceLabel": "Wall Sit",
       "expectedDefinitionId": "atd.pca.003",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.003",
+      "sourceMetadata": {
+        "originalLabel": "Wall Sit",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Double Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.004",
@@ -35,7 +71,19 @@
       "sourceLabel": "Goblet Squat",
       "expectedDefinitionId": "atd.pca.004",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.004",
+      "sourceMetadata": {
+        "originalLabel": "Goblet Squat",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Double Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.005",
@@ -44,7 +92,19 @@
       "sourceLabel": "Front Squat",
       "expectedDefinitionId": "atd.pca.005",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.005",
+      "sourceMetadata": {
+        "originalLabel": "Front Squat",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Double Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.006",
@@ -53,7 +113,19 @@
       "sourceLabel": "Back Squat",
       "expectedDefinitionId": "atd.pca.006",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.006",
+      "sourceMetadata": {
+        "originalLabel": "Back Squat",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Double Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.007",
@@ -62,7 +134,19 @@
       "sourceLabel": "Vertical Jump",
       "expectedDefinitionId": "atd.pca.007",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.007",
+      "sourceMetadata": {
+        "originalLabel": "Vertical Jump",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Double Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.008",
@@ -71,7 +155,19 @@
       "sourceLabel": "Toe Touch",
       "expectedDefinitionId": "atd.pca.008",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.008",
+      "sourceMetadata": {
+        "originalLabel": "Toe Touch",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Hinge",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.009",
@@ -80,7 +176,19 @@
       "sourceLabel": "Toe Touch Opposite Foot Reach",
       "expectedDefinitionId": "atd.pca.009",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.009",
+      "sourceMetadata": {
+        "originalLabel": "Toe Touch Opposite Foot Reach",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Hinge",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.010",
@@ -89,7 +197,19 @@
       "sourceLabel": "Hip Hinge with Dowel",
       "expectedDefinitionId": "atd.pca.010",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.010",
+      "sourceMetadata": {
+        "originalLabel": "Hip Hinge with Dowel",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Hinge",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.011",
@@ -98,7 +218,19 @@
       "sourceLabel": "KB Deadlift",
       "expectedDefinitionId": "atd.pca.011",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.011",
+      "sourceMetadata": {
+        "originalLabel": "KB Deadlift",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Hinge",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.012",
@@ -107,7 +239,19 @@
       "sourceLabel": "Relative Deadlift",
       "expectedDefinitionId": "atd.pca.012",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.012",
+      "sourceMetadata": {
+        "originalLabel": "Relative Deadlift",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Hinge",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.013",
@@ -116,7 +260,19 @@
       "sourceLabel": "Broad Jump",
       "expectedDefinitionId": "atd.pca.013",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.013",
+      "sourceMetadata": {
+        "originalLabel": "Broad Jump",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Hinge",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.014",
@@ -125,7 +281,19 @@
       "sourceLabel": "Toe Dexterity",
       "expectedDefinitionId": "atd.pca.014",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.014",
+      "sourceMetadata": {
+        "originalLabel": "Toe Dexterity",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Locomotion",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.015",
@@ -134,7 +302,19 @@
       "sourceLabel": "1st Toe Flexion",
       "expectedDefinitionId": "atd.pca.015",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.015",
+      "sourceMetadata": {
+        "originalLabel": "1st Toe Flexion",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Locomotion",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.016",
@@ -143,7 +323,19 @@
       "sourceLabel": "Toes 2–5 Flexion",
       "expectedDefinitionId": "atd.pca.016",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.016",
+      "sourceMetadata": {
+        "originalLabel": "Toes 2–5 Flexion",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Locomotion",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.017",
@@ -152,7 +344,19 @@
       "sourceLabel": "Half-Kneeling Dorsiflexion",
       "expectedDefinitionId": "atd.pca.017",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.017",
+      "sourceMetadata": {
+        "originalLabel": "Half-Kneeling Dorsiflexion",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Locomotion",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.018",
@@ -161,7 +365,19 @@
       "sourceLabel": "Standing Rotation",
       "expectedDefinitionId": "atd.pca.018",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.018",
+      "sourceMetadata": {
+        "originalLabel": "Standing Rotation",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Locomotion",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.019",
@@ -170,7 +386,19 @@
       "sourceLabel": "Single-Leg Calf Raise",
       "expectedDefinitionId": "atd.pca.019",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.019",
+      "sourceMetadata": {
+        "originalLabel": "Single-Leg Calf Raise",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Locomotion",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.020",
@@ -179,7 +407,19 @@
       "sourceLabel": "Gait Analysis",
       "expectedDefinitionId": "atd.pca.020",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.020",
+      "sourceMetadata": {
+        "originalLabel": "Gait Analysis",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Locomotion",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.021",
@@ -188,7 +428,19 @@
       "sourceLabel": "Trendelenburg",
       "expectedDefinitionId": "atd.pca.021",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.021",
+      "sourceMetadata": {
+        "originalLabel": "Trendelenburg",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Single Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.022",
@@ -197,7 +449,19 @@
       "sourceLabel": "Fukuda Step Test",
       "expectedDefinitionId": "atd.pca.022",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.022",
+      "sourceMetadata": {
+        "originalLabel": "Fukuda Step Test",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Single Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.023",
@@ -206,7 +470,19 @@
       "sourceLabel": "Bodyweight Split Squat",
       "expectedDefinitionId": "atd.pca.023",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.023",
+      "sourceMetadata": {
+        "originalLabel": "Bodyweight Split Squat",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Single Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.024",
@@ -215,7 +491,19 @@
       "sourceLabel": "Eccentric Step Down",
       "expectedDefinitionId": "atd.pca.024",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.024",
+      "sourceMetadata": {
+        "originalLabel": "Eccentric Step Down",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Single Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.025",
@@ -224,7 +512,19 @@
       "sourceLabel": "Loaded Step-Up",
       "expectedDefinitionId": "atd.pca.025",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.025",
+      "sourceMetadata": {
+        "originalLabel": "Loaded Step-Up",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Single Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.026",
@@ -233,7 +533,19 @@
       "sourceLabel": "Single-Leg Vertical Jump",
       "expectedDefinitionId": "atd.pca.026",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.026",
+      "sourceMetadata": {
+        "originalLabel": "Single-Leg Vertical Jump",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Single Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.027",
@@ -242,7 +554,19 @@
       "sourceLabel": "Single-Leg Broad Jump",
       "expectedDefinitionId": "atd.pca.027",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.027",
+      "sourceMetadata": {
+        "originalLabel": "Single-Leg Broad Jump",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Single Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.028",
@@ -251,7 +575,19 @@
       "sourceLabel": "Single-Leg Pogos",
       "expectedDefinitionId": "atd.pca.028",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.028",
+      "sourceMetadata": {
+        "originalLabel": "Single-Leg Pogos",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Single Leg",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.029",
@@ -260,7 +596,19 @@
       "sourceLabel": "DNS 3-Month",
       "expectedDefinitionId": "atd.pca.029",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.029",
+      "sourceMetadata": {
+        "originalLabel": "DNS 3-Month",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.030",
@@ -269,7 +617,19 @@
       "sourceLabel": "Posterior Mediastinum Expansion",
       "expectedDefinitionId": "atd.pca.030",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.030",
+      "sourceMetadata": {
+        "originalLabel": "Posterior Mediastinum Expansion",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.031",
@@ -278,7 +638,19 @@
       "sourceLabel": "Standing Hip Hike",
       "expectedDefinitionId": "atd.pca.031",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.031",
+      "sourceMetadata": {
+        "originalLabel": "Standing Hip Hike",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.032",
@@ -287,7 +659,19 @@
       "sourceLabel": "Heel-to-Wall Plank",
       "expectedDefinitionId": "atd.pca.032",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.032",
+      "sourceMetadata": {
+        "originalLabel": "Heel-to-Wall Plank",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.033",
@@ -296,7 +680,19 @@
       "sourceLabel": "Side Plank",
       "expectedDefinitionId": "atd.pca.033",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.033",
+      "sourceMetadata": {
+        "originalLabel": "Side Plank",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.034",
@@ -305,7 +701,19 @@
       "sourceLabel": "Copenhagen Plank",
       "expectedDefinitionId": "atd.pca.034",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.034",
+      "sourceMetadata": {
+        "originalLabel": "Copenhagen Plank",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.035",
@@ -314,7 +722,19 @@
       "sourceLabel": "Weighted Plank",
       "expectedDefinitionId": "atd.pca.035",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.035",
+      "sourceMetadata": {
+        "originalLabel": "Weighted Plank",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.036",
@@ -323,7 +743,19 @@
       "sourceLabel": "Suitcase Carry",
       "expectedDefinitionId": "atd.pca.036",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.036",
+      "sourceMetadata": {
+        "originalLabel": "Suitcase Carry",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.037",
@@ -332,7 +764,19 @@
       "sourceLabel": "Pallof Hold",
       "expectedDefinitionId": "atd.pca.037",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.037",
+      "sourceMetadata": {
+        "originalLabel": "Pallof Hold",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.038",
@@ -341,7 +785,19 @@
       "sourceLabel": "Prone Isometric T / Prone T variants",
       "expectedDefinitionId": "atd.pca.038",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.038",
+      "sourceMetadata": {
+        "originalLabel": "Prone Isometric T / Prone T variants",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Pull",
+        "explicitMotionWording": "Isometric",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.039",
@@ -350,7 +806,19 @@
       "sourceLabel": "Cuff Strength / DB External Rotation",
       "expectedDefinitionId": "atd.pca.039",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.039",
+      "sourceMetadata": {
+        "originalLabel": "Cuff Strength / DB External Rotation",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Pull",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.040",
@@ -359,7 +827,19 @@
       "sourceLabel": "Grip Dynamometer",
       "expectedDefinitionId": "atd.pca.040",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.040",
+      "sourceMetadata": {
+        "originalLabel": "Grip Dynamometer",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Pull",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.041",
@@ -368,7 +848,19 @@
       "sourceLabel": "Passive Hang",
       "expectedDefinitionId": "atd.pca.041",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.041",
+      "sourceMetadata": {
+        "originalLabel": "Passive Hang",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Pull",
+        "explicitMotionWording": "Passive",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.042",
@@ -377,7 +869,19 @@
       "sourceLabel": "Chin-Up",
       "expectedDefinitionId": "atd.pca.042",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.042",
+      "sourceMetadata": {
+        "originalLabel": "Chin-Up",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Pull",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.043",
@@ -386,7 +890,19 @@
       "sourceLabel": "Weighted Chin-Up",
       "expectedDefinitionId": "atd.pca.043",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.043",
+      "sourceMetadata": {
+        "originalLabel": "Weighted Chin-Up",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Pull",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.044",
@@ -395,7 +911,19 @@
       "sourceLabel": "Elevated Push-Up",
       "expectedDefinitionId": "atd.pca.044",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.044",
+      "sourceMetadata": {
+        "originalLabel": "Elevated Push-Up",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Push",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.045",
@@ -404,7 +932,19 @@
       "sourceLabel": "Wall Push-Up",
       "expectedDefinitionId": "atd.pca.045",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.045",
+      "sourceMetadata": {
+        "originalLabel": "Wall Push-Up",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Push",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.046",
@@ -413,7 +953,19 @@
       "sourceLabel": "Loaded Bench Press",
       "expectedDefinitionId": "atd.pca.046",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.046",
+      "sourceMetadata": {
+        "originalLabel": "Loaded Bench Press",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Push",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.047",
@@ -422,7 +974,19 @@
       "sourceLabel": "Unilateral Push",
       "expectedDefinitionId": "atd.pca.047",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.047",
+      "sourceMetadata": {
+        "originalLabel": "Unilateral Push",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Push",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.048",
@@ -431,7 +995,19 @@
       "sourceLabel": "Push-Up on Force Plate",
       "expectedDefinitionId": "atd.pca.048",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.048",
+      "sourceMetadata": {
+        "originalLabel": "Push-Up on Force Plate",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Push",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.pca_master.049",
@@ -440,7 +1016,19 @@
       "sourceLabel": "Plyometric Push-Up",
       "expectedDefinitionId": "atd.pca.049",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.pca_master.049",
+      "sourceMetadata": {
+        "originalLabel": "Plyometric Push-Up",
+        "sourceSurface": "pca_master",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Upper Push",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.001",
@@ -449,7 +1037,19 @@
       "sourceLabel": "Shoulder ER, supine",
       "expectedDefinitionId": "atd.prom.001",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.001",
+      "sourceMetadata": {
+        "originalLabel": "Shoulder ER",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Shoulder",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.prom-current-supplement-2026-08-13"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.002",
@@ -458,7 +1058,19 @@
       "sourceLabel": "Shoulder IR, supine",
       "expectedDefinitionId": "atd.prom.002",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.002",
+      "sourceMetadata": {
+        "originalLabel": "Shoulder IR",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Shoulder",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.prom-current-supplement-2026-08-13"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.003",
@@ -467,7 +1079,19 @@
       "sourceLabel": "Shoulder flexion, supine",
       "expectedDefinitionId": "atd.prom.003",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.003",
+      "sourceMetadata": {
+        "originalLabel": "Shoulder Flexion",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Shoulder",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.prom-current-supplement-2026-08-13"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.004",
@@ -476,7 +1100,19 @@
       "sourceLabel": "Active shoulder ER at 90°, prone",
       "expectedDefinitionId": "atd.prom.004",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.004",
+      "sourceMetadata": {
+        "originalLabel": "Shoulder ER @ 90° (active)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Shoulder",
+        "explicitMotionWording": "active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e800d8980dc89182327cf",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.005",
@@ -485,7 +1121,19 @@
       "sourceLabel": "Active shoulder IR at 90°, prone",
       "expectedDefinitionId": "atd.prom.005",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.005",
+      "sourceMetadata": {
+        "originalLabel": "Shoulder IR @ 90° (active)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Shoulder",
+        "explicitMotionWording": "active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80269031e592dd03f4f2",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.006",
@@ -494,7 +1142,19 @@
       "sourceLabel": "Active shoulder flexion, prone",
       "expectedDefinitionId": "atd.prom.006",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.006",
+      "sourceMetadata": {
+        "originalLabel": "Shoulder Flexion (active)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Shoulder",
+        "explicitMotionWording": "active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e808783c2f789239f7878",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.007",
@@ -503,7 +1163,19 @@
       "sourceLabel": "Shoulder extension, active/passive",
       "expectedDefinitionId": "atd.prom.007",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.007",
+      "sourceMetadata": {
+        "originalLabel": "Shoulder Extension (active/passive)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Shoulder",
+        "explicitMotionWording": "active/passive",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e803ab5a6e1c183b1c237",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.008",
@@ -512,7 +1184,19 @@
       "sourceLabel": "Hip flexion",
       "expectedDefinitionId": "atd.prom.008",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.008",
+      "sourceMetadata": {
+        "originalLabel": "Hip Flexion",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e802cabf9e9f4820e2dd6",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.009",
@@ -521,7 +1205,19 @@
       "sourceLabel": "Hip ER at 90°",
       "expectedDefinitionId": "atd.prom.009",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.009",
+      "sourceMetadata": {
+        "originalLabel": "Hip ER @ 90°",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e80c894bfc4b980ecd330",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.010",
@@ -530,7 +1226,19 @@
       "sourceLabel": "Hip IR at 90°",
       "expectedDefinitionId": "atd.prom.010",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.010",
+      "sourceMetadata": {
+        "originalLabel": "Hip IR @ 90°",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e8006be25e0b46a4f0e18",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.011",
@@ -539,7 +1247,19 @@
       "sourceLabel": "Hip ER at 0°",
       "expectedDefinitionId": "atd.prom.011",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.011",
+      "sourceMetadata": {
+        "originalLabel": "Hip ER @ 0°",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80d1a254cdf1423fa030",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.012",
@@ -548,7 +1268,19 @@
       "sourceLabel": "Hip IR at 0°",
       "expectedDefinitionId": "atd.prom.012",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.012",
+      "sourceMetadata": {
+        "originalLabel": "Hip IR @ 0°",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e801991affac62c531fdf",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.013",
@@ -557,7 +1289,19 @@
       "sourceLabel": "Active seated hip ER",
       "expectedDefinitionId": "atd.prom.013",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.013",
+      "sourceMetadata": {
+        "originalLabel": "Hip ER (active)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Seated",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": "active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e8071a5e1c63a4d2c60e3",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.014",
@@ -566,7 +1310,19 @@
       "sourceLabel": "Active seated hip IR",
       "expectedDefinitionId": "atd.prom.014",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.014",
+      "sourceMetadata": {
+        "originalLabel": "Hip IR (active)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Seated",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": "active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80379692c52f6a78005b",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.015",
@@ -575,7 +1331,19 @@
       "sourceLabel": "Hip abduction",
       "expectedDefinitionId": "atd.prom.015",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.015",
+      "sourceMetadata": {
+        "originalLabel": "Hip Abduction",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e80bf8fc8eb8cbdcd802e",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.016",
@@ -584,7 +1352,19 @@
       "sourceLabel": "Hip extension",
       "expectedDefinitionId": "atd.prom.016",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.016",
+      "sourceMetadata": {
+        "originalLabel": "Hip Extensions",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80d5af4dda87f735cfff",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.017",
@@ -593,7 +1373,19 @@
       "sourceLabel": "FABER",
       "expectedDefinitionId": "atd.prom.017",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.017",
+      "sourceMetadata": {
+        "originalLabel": "FABER Test",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e809f89d6f6494bcea77f",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.018",
@@ -602,7 +1394,19 @@
       "sourceLabel": "Thomas",
       "expectedDefinitionId": "atd.prom.018",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.018",
+      "sourceMetadata": {
+        "originalLabel": "Thomas Test",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Other Table",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e809e9a0ef3cbcc051be0",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.019",
@@ -611,7 +1415,19 @@
       "sourceLabel": "Ober",
       "expectedDefinitionId": "atd.prom.019",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.019",
+      "sourceMetadata": {
+        "originalLabel": "Side Lying Ober’s Test",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Other Table",
+        "categoryLabel": "Hip",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e803fa2b9f6f431cfcf13",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.020",
@@ -620,7 +1436,19 @@
       "sourceLabel": "Knee extension",
       "expectedDefinitionId": "atd.prom.020",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.020",
+      "sourceMetadata": {
+        "originalLabel": "Knee Extension",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Knee / tibia",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e807aae51e93464f54e19",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.021",
@@ -629,7 +1457,19 @@
       "sourceLabel": "Knee flexion",
       "expectedDefinitionId": "atd.prom.021",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.021",
+      "sourceMetadata": {
+        "originalLabel": "Knee Flexion",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Knee / tibia",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e80259f8bf94679e15e7a",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.022",
@@ -638,7 +1478,19 @@
       "sourceLabel": "Tibial ER/IR, passive",
       "expectedDefinitionId": "atd.prom.022",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.022",
+      "sourceMetadata": {
+        "originalLabel": "Tibial ER/IR",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Knee / tibia",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e805da6dce3fb7c9a45e6",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.023",
@@ -647,7 +1499,19 @@
       "sourceLabel": "Tibial ER/IR, active",
       "expectedDefinitionId": "atd.prom.023",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.023",
+      "sourceMetadata": {
+        "originalLabel": "Tibial ER/IR (active)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Seated",
+        "categoryLabel": "Knee / tibia",
+        "explicitMotionWording": "active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e806b8d97c1855dfef75b",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.024",
@@ -656,7 +1520,19 @@
       "sourceLabel": "Ankle dorsiflexion",
       "expectedDefinitionId": "atd.prom.024",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.024",
+      "sourceMetadata": {
+        "originalLabel": "Ankle Dorsiflexion (Active and Knee to Wall)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Standing",
+        "categoryLabel": "Foot / ankle",
+        "explicitMotionWording": "Active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80a9bafff513b1d32a6d",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.025",
@@ -665,7 +1541,19 @@
       "sourceLabel": "Ankle inversion/eversion",
       "expectedDefinitionId": "atd.prom.025",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.025",
+      "sourceMetadata": {
+        "originalLabel": "Ankle Inversion/Eversion (active)",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Seated",
+        "categoryLabel": "Foot / ankle",
+        "explicitMotionWording": "active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e803685a3ffc57b0d8e38",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.026",
@@ -674,7 +1562,19 @@
       "sourceLabel": "Talocrural assessment",
       "expectedDefinitionId": "atd.prom.026",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.026",
+      "sourceMetadata": {
+        "originalLabel": "Foot- Talocrural",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Foot / ankle",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e80a5baedd3a2ea958a82",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.027",
@@ -683,7 +1583,19 @@
       "sourceLabel": "Subtalar assessment",
       "expectedDefinitionId": "atd.prom.027",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.027",
+      "sourceMetadata": {
+        "originalLabel": "Foot- Subtalar",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Foot / ankle",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e80d3bdd6e41c1e6e23a7",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.028",
@@ -692,7 +1604,19 @@
       "sourceLabel": "Mid-foot assessment",
       "expectedDefinitionId": "atd.prom.028",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.028",
+      "sourceMetadata": {
+        "originalLabel": "Mid-Foot",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Foot / ankle",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e80c3b9f3d07536fc7832",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.029",
@@ -701,7 +1625,19 @@
       "sourceLabel": "1st ray assessment",
       "expectedDefinitionId": "atd.prom.029",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.029",
+      "sourceMetadata": {
+        "originalLabel": "Foot- 1st Ray",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Foot / ankle",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e80329646c45eec4dc433",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.030",
@@ -710,7 +1646,19 @@
       "sourceLabel": "General foot/ankle assessment",
       "expectedDefinitionId": "atd.prom.030",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.030",
+      "sourceMetadata": {
+        "originalLabel": "Foot- Ankle",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Foot / ankle",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e80fbaa34cdef469c3e62",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.031",
@@ -719,7 +1667,19 @@
       "sourceLabel": "Calf raise",
       "expectedDefinitionId": "atd.prom.031",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.031",
+      "sourceMetadata": {
+        "originalLabel": "Ankle Calf Raise",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Standing",
+        "categoryLabel": "Foot / ankle",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80eaa903ec2e5fb97b7b",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.032",
@@ -728,7 +1688,19 @@
       "sourceLabel": "Lumbar rotation",
       "expectedDefinitionId": "atd.prom.032",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.032",
+      "sourceMetadata": {
+        "originalLabel": "Lumbar Rotation",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Spine / trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80aba8e9cb42f1fd350a",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.033",
@@ -737,7 +1709,19 @@
       "sourceLabel": "Quadruped lumbar-locked thoracic rotation",
       "expectedDefinitionId": "atd.prom.033",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.033",
+      "sourceMetadata": {
+        "originalLabel": "Quadruped Lumbar Locked T-Spine Rotation",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Spine / trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80a58ee2c68877ad37c7",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.034",
@@ -746,7 +1730,19 @@
       "sourceLabel": "Thoracic/lumbar vertebral spring mobility",
       "expectedDefinitionId": "atd.prom.034",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.034",
+      "sourceMetadata": {
+        "originalLabel": "Thoracic/Lumbar Vertebral Spring Mobility",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Spine / trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e802cbf74d624e0748ae9",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.035",
@@ -755,7 +1751,19 @@
       "sourceLabel": "Prone press-up",
       "expectedDefinitionId": "atd.prom.035",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.035",
+      "sourceMetadata": {
+        "originalLabel": "Prone Press Up",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Prone",
+        "categoryLabel": "Spine / trunk",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80c7a89af6a1afdee1d6",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.036",
@@ -764,7 +1772,19 @@
       "sourceLabel": "Straight-leg raise",
       "expectedDefinitionId": "atd.prom.036",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.036",
+      "sourceMetadata": {
+        "originalLabel": "Straight Leg Raise",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Other screens",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e805f8fd5f51510becef4",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.037",
@@ -773,7 +1793,19 @@
       "sourceLabel": "Active straight-leg raise",
       "expectedDefinitionId": "atd.prom.037",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.037",
+      "sourceMetadata": {
+        "originalLabel": "Active Straight Leg Raise",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Supine",
+        "categoryLabel": "Other screens",
+        "explicitMotionWording": "Active",
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2bd7b1f21c4e803fab7fedcaa3d684fd",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.038",
@@ -782,7 +1814,19 @@
       "sourceLabel": "Half-kneeling balance",
       "expectedDefinitionId": "atd.prom.038",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.038",
+      "sourceMetadata": {
+        "originalLabel": "Half-Kneeling Balance",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Standing",
+        "categoryLabel": "Other screens",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e80c8895ee90e7ced0275",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.prom_orthopedic.039",
@@ -791,7 +1835,19 @@
       "sourceLabel": "SI Laslett cluster",
       "expectedDefinitionId": "atd.prom.039",
       "expectedSourceSystemId": "manual_orthopedic_exam",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.prom_orthopedic.039",
+      "sourceMetadata": {
+        "originalLabel": "SI Laslet Cluster Tests",
+        "sourceSurface": "prom_orthopedic",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "positionLabel": "Other Table",
+        "categoryLabel": "Other screens",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": "2be7b1f21c4e8072bce9d8ded8105683",
+        "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03"
+      }
     },
     {
       "id": "source-row.cpet_tracker.001",
@@ -800,7 +1856,19 @@
       "sourceLabel": "VO2max relative",
       "expectedDefinitionId": "atd.cpet.001",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.001",
+      "sourceMetadata": {
+        "originalLabel": "VO2max relative",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.002",
@@ -809,7 +1877,19 @@
       "sourceLabel": "VO2max absolute",
       "expectedDefinitionId": "atd.cpet.002",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.002",
+      "sourceMetadata": {
+        "originalLabel": "VO2max absolute",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.003",
@@ -818,7 +1898,19 @@
       "sourceLabel": "VO2 at Zone 2",
       "expectedDefinitionId": "atd.cpet.003",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.003",
+      "sourceMetadata": {
+        "originalLabel": "VO2 at Zone 2",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.004",
@@ -827,7 +1919,19 @@
       "sourceLabel": "Percent of VO2max at Zone 2",
       "expectedDefinitionId": "atd.cpet.004",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.004",
+      "sourceMetadata": {
+        "originalLabel": "Percent of VO2max at Zone 2",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "Percent",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.005",
@@ -836,7 +1940,19 @@
       "sourceLabel": "Zone 2 heart rate",
       "expectedDefinitionId": "atd.cpet.005",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.005",
+      "sourceMetadata": {
+        "originalLabel": "Zone 2 heart rate",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.006",
@@ -845,7 +1961,19 @@
       "sourceLabel": "Zone 2 bike power",
       "expectedDefinitionId": "atd.cpet.006",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.006",
+      "sourceMetadata": {
+        "originalLabel": "Zone 2 bike power",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.007",
@@ -854,7 +1982,19 @@
       "sourceLabel": "Zone 2 treadmill speed",
       "expectedDefinitionId": "atd.cpet.007",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.007",
+      "sourceMetadata": {
+        "originalLabel": "Zone 2 treadmill speed",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.008",
@@ -863,7 +2003,19 @@
       "sourceLabel": "Zone 2 treadmill incline",
       "expectedDefinitionId": "atd.cpet.008",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.008",
+      "sourceMetadata": {
+        "originalLabel": "Zone 2 treadmill incline",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.009",
@@ -872,7 +2024,19 @@
       "sourceLabel": "METs at VO2max",
       "expectedDefinitionId": "atd.cpet.009",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.009",
+      "sourceMetadata": {
+        "originalLabel": "METs at VO2max",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "METs",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.010",
@@ -881,7 +2045,19 @@
       "sourceLabel": "METs at Zone 2 from metabolic cart",
       "expectedDefinitionId": "atd.cpet.010",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.010",
+      "sourceMetadata": {
+        "originalLabel": "METs at Zone 2 from metabolic cart",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "METs",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.011",
@@ -890,7 +2066,19 @@
       "sourceLabel": "METs at Zone 2 from device",
       "expectedDefinitionId": "atd.cpet.011",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.011",
+      "sourceMetadata": {
+        "originalLabel": "METs at Zone 2 from device",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "METs",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.012",
@@ -899,7 +2087,19 @@
       "sourceLabel": "METs from bike",
       "expectedDefinitionId": "atd.cpet.012",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.012",
+      "sourceMetadata": {
+        "originalLabel": "METs from bike",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "METs",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.013",
@@ -908,7 +2108,19 @@
       "sourceLabel": "METs from treadmill",
       "expectedDefinitionId": "atd.cpet.013",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.013",
+      "sourceMetadata": {
+        "originalLabel": "METs from treadmill",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "METs",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.014",
@@ -917,7 +2129,19 @@
       "sourceLabel": "Watts/kg",
       "expectedDefinitionId": "atd.cpet.014",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.014",
+      "sourceMetadata": {
+        "originalLabel": "Watts/kg",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "Watts/kg",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.015",
@@ -926,7 +2150,19 @@
       "sourceLabel": "Heart-rate max",
       "expectedDefinitionId": "atd.cpet.015",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.015",
+      "sourceMetadata": {
+        "originalLabel": "Heart-rate max",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.016",
@@ -935,7 +2171,19 @@
       "sourceLabel": "Heart-rate recovery",
       "expectedDefinitionId": "atd.cpet.016",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.016",
+      "sourceMetadata": {
+        "originalLabel": "Heart-rate recovery",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.017",
@@ -944,7 +2192,19 @@
       "sourceLabel": "Maximum fat oxidation",
       "expectedDefinitionId": "atd.cpet.017",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.017",
+      "sourceMetadata": {
+        "originalLabel": "Maximum fat oxidation",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.cpet_tracker.018",
@@ -953,7 +2213,19 @@
       "sourceLabel": "Resting lactate",
       "expectedDefinitionId": "atd.cpet.018",
       "expectedSourceSystemId": "cpet",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.cpet_tracker.018",
+      "sourceMetadata": {
+        "originalLabel": "Resting lactate",
+        "sourceSurface": "cpet_tracker",
+        "sourceSystemId": "cpet",
+        "positionLabel": null,
+        "categoryLabel": "CPET tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.001",
@@ -962,7 +2234,19 @@
       "sourceLabel": "Bodyweight",
       "expectedDefinitionId": "atd.dexa.001",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.001",
+      "sourceMetadata": {
+        "originalLabel": "Bodyweight",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.002",
@@ -971,7 +2255,19 @@
       "sourceLabel": "Body-fat percentage",
       "expectedDefinitionId": "atd.dexa.002",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.002",
+      "sourceMetadata": {
+        "originalLabel": "Body-fat percentage",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "percentage",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.003",
@@ -980,7 +2276,19 @@
       "sourceLabel": "Visceral adipose tissue (VAT)",
       "expectedDefinitionId": "atd.dexa.003",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.003",
+      "sourceMetadata": {
+        "originalLabel": "Visceral adipose tissue (VAT)",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.004",
@@ -989,7 +2297,19 @@
       "sourceLabel": "Appendicular lean mass index (ALMI)",
       "expectedDefinitionId": "atd.dexa.004",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.004",
+      "sourceMetadata": {
+        "originalLabel": "Appendicular lean mass index (ALMI)",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.005",
@@ -998,7 +2318,19 @@
       "sourceLabel": "Fat-free mass index (FFMI)",
       "expectedDefinitionId": "atd.dexa.005",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.005",
+      "sourceMetadata": {
+        "originalLabel": "Fat-free mass index (FFMI)",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.006",
@@ -1007,7 +2339,19 @@
       "sourceLabel": "Left-arm lean mass",
       "expectedDefinitionId": "atd.dexa.006",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.006",
+      "sourceMetadata": {
+        "originalLabel": "Left-arm lean mass",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.007",
@@ -1016,7 +2360,19 @@
       "sourceLabel": "Right-arm lean mass",
       "expectedDefinitionId": "atd.dexa.007",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.007",
+      "sourceMetadata": {
+        "originalLabel": "Right-arm lean mass",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.008",
@@ -1025,7 +2381,19 @@
       "sourceLabel": "Left-leg lean mass",
       "expectedDefinitionId": "atd.dexa.008",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.008",
+      "sourceMetadata": {
+        "originalLabel": "Left-leg lean mass",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.009",
@@ -1034,7 +2402,19 @@
       "sourceLabel": "Right-leg lean mass",
       "expectedDefinitionId": "atd.dexa.009",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.009",
+      "sourceMetadata": {
+        "originalLabel": "Right-leg lean mass",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.010",
@@ -1043,7 +2423,19 @@
       "sourceLabel": "Lean-mass symmetry",
       "expectedDefinitionId": "atd.dexa.010",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.010",
+      "sourceMetadata": {
+        "originalLabel": "Lean-mass symmetry",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": null,
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.011",
@@ -1052,7 +2444,19 @@
       "sourceLabel": "Lumbar-spine T-score",
       "expectedDefinitionId": "atd.dexa.011",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.011",
+      "sourceMetadata": {
+        "originalLabel": "Lumbar-spine T-score",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "T-score",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.012",
@@ -1061,7 +2465,19 @@
       "sourceLabel": "Lumbar-spine Z-score",
       "expectedDefinitionId": "atd.dexa.012",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.012",
+      "sourceMetadata": {
+        "originalLabel": "Lumbar-spine Z-score",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "Z-score",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.013",
@@ -1070,7 +2486,19 @@
       "sourceLabel": "Left-femur T-score",
       "expectedDefinitionId": "atd.dexa.013",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.013",
+      "sourceMetadata": {
+        "originalLabel": "Left-femur T-score",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "T-score",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.014",
@@ -1079,7 +2507,19 @@
       "sourceLabel": "Left-femur Z-score",
       "expectedDefinitionId": "atd.dexa.014",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.014",
+      "sourceMetadata": {
+        "originalLabel": "Left-femur Z-score",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "Z-score",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.015",
@@ -1088,7 +2528,19 @@
       "sourceLabel": "Right-femur T-score",
       "expectedDefinitionId": "atd.dexa.015",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.015",
+      "sourceMetadata": {
+        "originalLabel": "Right-femur T-score",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "T-score",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.016",
@@ -1097,7 +2549,19 @@
       "sourceLabel": "Right-femur Z-score",
       "expectedDefinitionId": "atd.dexa.016",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.016",
+      "sourceMetadata": {
+        "originalLabel": "Right-femur Z-score",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "Z-score",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.017",
@@ -1106,7 +2570,19 @@
       "sourceLabel": "Forearm 33% radius T-score",
       "expectedDefinitionId": "atd.dexa.017",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.017",
+      "sourceMetadata": {
+        "originalLabel": "Forearm 33% radius T-score",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "T-score",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.dexa_tracker.018",
@@ -1115,7 +2591,19 @@
       "sourceLabel": "Forearm 33% radius Z-score",
       "expectedDefinitionId": "atd.dexa.018",
       "expectedSourceSystemId": "dexa",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.dexa_tracker.018",
+      "sourceMetadata": {
+        "originalLabel": "Forearm 33% radius Z-score",
+        "sourceSurface": "dexa_tracker",
+        "sourceSystemId": "dexa",
+        "positionLabel": null,
+        "categoryLabel": "DEXA tracker",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "Z-score",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.001",
@@ -1124,7 +2612,19 @@
       "sourceLabel": "VALD ForceDecks · Single-Leg Pogos",
       "expectedDefinitionId": "atd.v4-vald.001",
       "expectedSourceSystemId": "vald_forcedecks",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.001",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceDecks · Single-Leg Pogos",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forcedecks",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "m/s",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.002",
@@ -1133,7 +2633,19 @@
       "sourceLabel": "VALD ForceFrame · seated calf / ankle plantarflexion isometric",
       "expectedDefinitionId": "atd.v4-vald.002",
       "expectedSourceSystemId": "vald_forceframe",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.002",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceFrame · seated calf / ankle plantarflexion isometric",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forceframe",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": "isometric",
+        "explicitUnitWording": "× BW",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.003",
@@ -1142,7 +2654,19 @@
       "sourceLabel": "VALD ForceDecks · Countermovement Jump",
       "expectedDefinitionId": "atd.v4-vald.003",
       "expectedSourceSystemId": "vald_forcedecks",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.003",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceDecks · Countermovement Jump",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forcedecks",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "W/kg",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.004",
@@ -1151,7 +2675,19 @@
       "sourceLabel": "VALD ForceDecks · Drop Jump",
       "expectedDefinitionId": "atd.v4-vald.004",
       "expectedSourceSystemId": "vald_forcedecks",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.004",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceDecks · Drop Jump",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forcedecks",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "m/s",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.005",
@@ -1160,7 +2696,19 @@
       "sourceLabel": "VALD ForceFrame · Belt Squat Isometric",
       "expectedDefinitionId": "atd.v4-vald.005",
       "expectedSourceSystemId": "vald_forceframe",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.005",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceFrame · Belt Squat Isometric",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forceframe",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": "Isometric",
+        "explicitUnitWording": "× BW",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.006",
@@ -1169,7 +2717,19 @@
       "sourceLabel": "VALD ForceDecks · Broad Jump",
       "expectedDefinitionId": "atd.v4-vald.006",
       "expectedSourceSystemId": "vald_forcedecks",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.006",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceDecks · Broad Jump",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forcedecks",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "cm",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.007",
@@ -1178,7 +2738,19 @@
       "sourceLabel": "VALD ForceFrame · Knee Flexion Isometric",
       "expectedDefinitionId": "atd.v4-vald.007",
       "expectedSourceSystemId": "vald_forceframe",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.007",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceFrame · Knee Flexion Isometric",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forceframe",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": "Isometric",
+        "explicitUnitWording": "× BW",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.008",
@@ -1187,7 +2759,19 @@
       "sourceLabel": "VALD ForceDecks · Single-Leg Vertical Jump",
       "expectedDefinitionId": "atd.v4-vald.008",
       "expectedSourceSystemId": "vald_forcedecks",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.008",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceDecks · Single-Leg Vertical Jump",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forcedecks",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "cm",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.009",
@@ -1196,7 +2780,19 @@
       "sourceLabel": "VALD ForceFrame · Hip Abduction Isometric",
       "expectedDefinitionId": "atd.v4-vald.009",
       "expectedSourceSystemId": "vald_forceframe",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.009",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceFrame · Hip Abduction Isometric",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forceframe",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": "Isometric",
+        "explicitUnitWording": "× BW",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.010",
@@ -1205,7 +2801,19 @@
       "sourceLabel": "VALD ForceFrame · Hip Adduction Isometric",
       "expectedDefinitionId": "atd.v4-vald.010",
       "expectedSourceSystemId": "vald_forceframe",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.010",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceFrame · Hip Adduction Isometric",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forceframe",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": "Isometric",
+        "explicitUnitWording": "× BW",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.011",
@@ -1214,7 +2822,19 @@
       "sourceLabel": "VALD ForceFrame · Knee Extension Isometric",
       "expectedDefinitionId": "atd.v4-vald.011",
       "expectedSourceSystemId": "vald_forceframe",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.011",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceFrame · Knee Extension Isometric",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forceframe",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": "Isometric",
+        "explicitUnitWording": "× BW",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.012",
@@ -1223,7 +2843,19 @@
       "sourceLabel": "VALD ForceFrame · Bench Press Isometric",
       "expectedDefinitionId": "atd.v4-vald.012",
       "expectedSourceSystemId": "vald_forceframe",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.012",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceFrame · Bench Press Isometric",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forceframe",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": "Isometric",
+        "explicitUnitWording": "× BW",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.013",
@@ -1232,7 +2864,19 @@
       "sourceLabel": "VALD DynaMo · Grip Strength",
       "expectedDefinitionId": "atd.v4-vald.013",
       "expectedSourceSystemId": "vald_dynamo",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.013",
+      "sourceMetadata": {
+        "originalLabel": "VALD DynaMo · Grip Strength",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_dynamo",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "lb",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_vald.014",
@@ -1241,7 +2885,19 @@
       "sourceLabel": "VALD ForceFrame · Shoulder External Rotation Isometric",
       "expectedDefinitionId": "atd.v4-vald.014",
       "expectedSourceSystemId": "vald_forceframe",
-      "lateralityRequired": false
+      "lateralityRequired": false,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_vald.014",
+      "sourceMetadata": {
+        "originalLabel": "VALD ForceFrame · Shoulder External Rotation Isometric",
+        "sourceSurface": "v4_vald",
+        "sourceSystemId": "vald_forceframe",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 VALD mappings",
+        "explicitMotionWording": "Isometric",
+        "explicitUnitWording": "Nm/kg",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_timed_stance.001",
@@ -1250,7 +2906,19 @@
       "sourceLabel": "Timed single-leg stance · firm surface · arms at sides · eyes open · 60 s cap · best of 2/side, enter weaker side · SOP approval pending",
       "expectedDefinitionId": "atd.v4-stance.001",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_timed_stance.001",
+      "sourceMetadata": {
+        "originalLabel": "Timed single-leg stance · firm surface · arms at sides · eyes open · 60 s cap · best of 2/side, enter weaker side · SOP approval pending",
+        "sourceSurface": "v4_timed_stance",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 timed-stance protocols",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "s",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     },
     {
       "id": "source-row.v4_timed_stance.002",
@@ -1259,7 +2927,19 @@
       "sourceLabel": "Timed single-leg stance · firm surface · arms at sides · eyes closed · 60 s cap · best of 2/side, enter weaker side · SOP approval pending",
       "expectedDefinitionId": "atd.v4-stance.002",
       "expectedSourceSystemId": "pca_field",
-      "lateralityRequired": true
+      "lateralityRequired": true,
+      "sourceInventoryRecordId": "source-inventory.source-row.v4_timed_stance.002",
+      "sourceMetadata": {
+        "originalLabel": "Timed single-leg stance · firm surface · arms at sides · eyes closed · 60 s cap · best of 2/side, enter weaker side · SOP approval pending",
+        "sourceSurface": "v4_timed_stance",
+        "sourceSystemId": "pca_field",
+        "positionLabel": null,
+        "categoryLabel": "Current V4 timed-stance protocols",
+        "explicitMotionWording": null,
+        "explicitUnitWording": "s",
+        "originalRowIdentifier": null,
+        "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1"
+      }
     }
   ],
   "definitions": [
@@ -1992,7 +3672,7 @@
       "resultType": "performance_task",
       "canonicalUnitId": null,
       "lateralityModel": "none",
-      "motionMode": "dynamic",
+      "motionMode": "passive",
       "position": "other",
       "positionDetail": null,
       "protocolId": "protocol.atd.pca.041",
@@ -2263,7 +3943,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "active_and_passive",
-      "position": "other",
+      "position": "prone",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.007",
       "protocolVersion": "pending-1",
@@ -2335,7 +4015,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "passive",
-      "position": "supine",
+      "position": "prone",
       "positionDetail": "hip_at_0_degrees",
       "protocolId": "protocol.atd.prom.011",
       "protocolVersion": "pending-1",
@@ -2353,7 +4033,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "passive",
-      "position": "supine",
+      "position": "prone",
       "positionDetail": "hip_at_0_degrees",
       "protocolId": "protocol.atd.prom.012",
       "protocolVersion": "pending-1",
@@ -2407,7 +4087,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "passive",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.015",
       "protocolVersion": "pending-1",
@@ -2425,7 +4105,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "passive",
-      "position": "other",
+      "position": "prone",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.016",
       "protocolVersion": "pending-1",
@@ -2467,7 +4147,15 @@
       "protocolVersion": "pending-1",
       "inventoryRowIds": [
         "source-row.prom_orthopedic.018"
-      ]
+      ],
+      "canonicalization": {
+        "position": {
+          "sourceValue": "Other Table",
+          "canonicalValue": "supine",
+          "note": "The source uses the non-physical grouping Other Table; the canonical supine position remains pending protocol-owner approval.",
+          "approvalState": "pending"
+        }
+      }
     },
     {
       "id": "atd.prom.019",
@@ -2480,7 +4168,7 @@
       "lateralityModel": "left_right",
       "motionMode": "passive",
       "position": "other",
-      "positionDetail": null,
+      "positionDetail": "side_lying",
       "protocolId": "protocol.atd.prom.019",
       "protocolVersion": "pending-1",
       "inventoryRowIds": [
@@ -2497,7 +4185,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "passive",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.020",
       "protocolVersion": "pending-1",
@@ -2515,7 +4203,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "passive",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.021",
       "protocolVersion": "pending-1",
@@ -2533,7 +4221,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "passive",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.022",
       "protocolVersion": "pending-1",
@@ -2551,7 +4239,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "active",
-      "position": "other",
+      "position": "seated",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.023",
       "protocolVersion": "pending-1",
@@ -2568,8 +4256,8 @@
       "resultType": "bilateral_scalar",
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
-      "motionMode": "passive",
-      "position": "other",
+      "motionMode": "active",
+      "position": "standing",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.024",
       "protocolVersion": "pending-1",
@@ -2586,8 +4274,8 @@
       "resultType": "bilateral_scalar",
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
-      "motionMode": "passive",
-      "position": "other",
+      "motionMode": "active",
+      "position": "seated",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.025",
       "protocolVersion": "pending-1",
@@ -2605,7 +4293,7 @@
       "canonicalUnitId": "qualitative",
       "lateralityModel": "left_right",
       "motionMode": "not_applicable",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.026",
       "protocolVersion": "pending-1",
@@ -2623,7 +4311,7 @@
       "canonicalUnitId": "qualitative",
       "lateralityModel": "left_right",
       "motionMode": "not_applicable",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.027",
       "protocolVersion": "pending-1",
@@ -2641,7 +4329,7 @@
       "canonicalUnitId": "qualitative",
       "lateralityModel": "left_right",
       "motionMode": "not_applicable",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.028",
       "protocolVersion": "pending-1",
@@ -2659,7 +4347,7 @@
       "canonicalUnitId": "qualitative",
       "lateralityModel": "left_right",
       "motionMode": "not_applicable",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.029",
       "protocolVersion": "pending-1",
@@ -2677,7 +4365,7 @@
       "canonicalUnitId": "qualitative",
       "lateralityModel": "left_right",
       "motionMode": "not_applicable",
-      "position": "other",
+      "position": "supine",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.030",
       "protocolVersion": "pending-1",
@@ -2713,7 +4401,7 @@
       "canonicalUnitId": "degree",
       "lateralityModel": "left_right",
       "motionMode": "active_and_passive",
-      "position": "other",
+      "position": "prone",
       "positionDetail": null,
       "protocolId": "protocol.atd.prom.032",
       "protocolVersion": "pending-1",
@@ -2737,7 +4425,15 @@
       "protocolVersion": "pending-1",
       "inventoryRowIds": [
         "source-row.prom_orthopedic.033"
-      ]
+      ],
+      "canonicalization": {
+        "position": {
+          "sourceValue": "Prone",
+          "canonicalValue": "quadruped",
+          "note": "The tracker groups this row under Prone, while the original test label explicitly identifies a quadruped test position.",
+          "approvalState": "pending"
+        }
+      }
     },
     {
       "id": "atd.prom.034",
@@ -2827,7 +4523,15 @@
       "protocolVersion": "pending-1",
       "inventoryRowIds": [
         "source-row.prom_orthopedic.038"
-      ]
+      ],
+      "canonicalization": {
+        "position": {
+          "sourceValue": "Standing",
+          "canonicalValue": "half_kneeling",
+          "note": "The tracker groups this row under Standing, while the original test label explicitly identifies a half-kneeling test position.",
+          "approvalState": "pending"
+        }
+      }
     },
     {
       "id": "atd.prom.039",
