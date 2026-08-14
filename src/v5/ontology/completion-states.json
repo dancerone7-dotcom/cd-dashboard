@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "5.0.0-ontology-1",
+  "completionStates": [
+    {
+      "id": "measured",
+      "description": "A result was measured and may be stored in the definition’s declared result field.",
+      "impliesNumericZero": false
+    },
+    {
+      "id": "not_measured",
+      "description": "No measurement was taken or supplied.",
+      "impliesNumericZero": false
+    },
+    {
+      "id": "skipped",
+      "description": "The assessment was intentionally skipped.",
+      "impliesNumericZero": false
+    },
+    {
+      "id": "contraindicated",
+      "description": "The assessment was not performed because it was contraindicated.",
+      "impliesNumericZero": false
+    },
+    {
+      "id": "pain_limited",
+      "description": "Pain prevented or limited completion; this is a clinical-review state, not a performance value.",
+      "impliesNumericZero": false
+    },
+    {
+      "id": "unable",
+      "description": "The person could not complete the assessment protocol.",
+      "impliesNumericZero": false
+    },
+    {
+      "id": "redundant",
+      "description": "The source marked the assessment redundant or omitted it in favor of another observation.",
+      "impliesNumericZero": false
+    }
+  ]
+}

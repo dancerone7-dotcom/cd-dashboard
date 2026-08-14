@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "5.0.0-ontology-1",
+  "aliases": [
+    {
+      "sourceSystemId": "pca_field",
+      "sourceLabel": "PRI Functional Sqaut",
+      "definitionId": "atd.pca.001",
+      "matchType": "exact"
+    },
+    {
+      "sourceSystemId": "pca_field",
+      "sourceLabel": "Prone T",
+      "definitionId": "atd.pca.038",
+      "matchType": "exact"
+    },
+    {
+      "sourceSystemId": "pca_field",
+      "sourceLabel": "Prone Isometric T",
+      "definitionId": "atd.pca.038",
+      "matchType": "exact"
+    },
+    {
+      "sourceSystemId": "pca_field",
+      "sourceLabel": "Prone Isometric \"T\"",
+      "definitionId": "atd.pca.038",
+      "matchType": "exact"
+    },
+    {
+      "sourceSystemId": "pca_field",
+      "sourceLabel": "Prone Isometric “T”",
+      "definitionId": "atd.pca.038",
+      "matchType": "exact"
+    }
+  ]
+}

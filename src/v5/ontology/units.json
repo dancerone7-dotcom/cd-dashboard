@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "5.0.0-ontology-1",
+  "units": [
+    {
+      "id": "degree",
+      "symbol": "°",
+      "quantity": "angle",
+      "numeric": true
+    },
+    {
+      "id": "second",
+      "symbol": "s",
+      "quantity": "time",
+      "numeric": true
+    },
+    {
+      "id": "repetition",
+      "symbol": "reps",
+      "quantity": "count",
+      "numeric": true
+    },
+    {
+      "id": "pound",
+      "symbol": "lb",
+      "quantity": "mass_or_force_as_reported",
+      "numeric": true
+    },
+    {
+      "id": "kilogram",
+      "symbol": "kg",
+      "quantity": "mass",
+      "numeric": true
+    },
+    {
+      "id": "percent_bodyweight",
+      "symbol": "% BW",
+      "quantity": "relative_force",
+      "numeric": true
+    },
+    {
+      "id": "multiple_bodyweight",
+      "symbol": "× BW",
+      "quantity": "relative_force",
+      "numeric": true
+    },
+    {
+      "id": "watt",
+      "symbol": "W",
+      "quantity": "power",
+      "numeric": true
+    },
+    {
+      "id": "watt_per_kilogram",
+      "symbol": "W/kg",
+      "quantity": "relative_power",
+      "numeric": true
+    },
+    {
+      "id": "milliliter_per_kilogram_minute",
+      "symbol": "mL/kg/min",
+      "quantity": "relative_oxygen_consumption",
+      "numeric": true
+    },
+    {
+      "id": "liter_per_minute",
+      "symbol": "L/min",
+      "quantity": "absolute_oxygen_consumption",
+      "numeric": true
+    },
+    {
+      "id": "met",
+      "symbol": "MET",
+      "quantity": "metabolic_equivalent",
+      "numeric": true
+    },
+    {
+      "id": "beat_per_minute",
+      "symbol": "bpm",
+      "quantity": "heart_rate",
+      "numeric": true
+    },
+    {
+      "id": "treadmill_speed",
+      "symbol": "source speed unit",
+      "quantity": "treadmill_speed",
+      "numeric": true,
+      "requiresSourceUnitAtIngestion": true
+    },
+    {
+      "id": "treadmill_incline_percent",
+      "symbol": "% grade",
+      "quantity": "treadmill_incline",
+      "numeric": true
+    },
+    {
+      "id": "t_score",
+      "symbol": "T-score",
+      "quantity": "standard_score",
+      "numeric": true
+    },
+    {
+      "id": "z_score",
+      "symbol": "Z-score",
+      "quantity": "standard_score",
+      "numeric": true
+    },
+    {
+      "id": "percentile",
+      "symbol": "percentile",
+      "quantity": "rank_context",
+      "numeric": true
+    },
+    {
+      "id": "qualitative",
+      "symbol": null,
+      "quantity": "qualitative_result",
+      "numeric": false
+    },
+    {
+      "id": "ordinal",
+      "symbol": null,
+      "quantity": "ordinal_result",
+      "numeric": false
+    },
+    {
+      "id": "percent",
+      "symbol": "%",
+      "quantity": "proportion",
+      "numeric": true
+    },
+    {
+      "id": "kilogram_per_square_meter",
+      "symbol": "kg/m²",
+      "quantity": "mass_index",
+      "numeric": true
+    },
+    {
+      "id": "centimeter",
+      "symbol": "cm",
+      "quantity": "distance",
+      "numeric": true
+    },
+    {
+      "id": "meter_per_second",
+      "symbol": "m/s",
+      "quantity": "reactive_strength_index",
+      "numeric": true
+    },
+    {
+      "id": "newton_meter_per_kilogram",
+      "symbol": "Nm/kg",
+      "quantity": "relative_torque",
+      "numeric": true
+    }
+  ]
+}

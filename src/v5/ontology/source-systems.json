@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "5.0.0-ontology-1",
+  "sourceSystems": [
+    {
+      "id": "pca_field",
+      "displayName": "PCA / field assessment",
+      "kind": "field_assessment",
+      "provenanceSpecificity": "source_system"
+    },
+    {
+      "id": "manual_orthopedic_exam",
+      "displayName": "Manual orthopedic exam",
+      "kind": "manual_exam",
+      "provenanceSpecificity": "source_system"
+    },
+    {
+      "id": "cpet",
+      "displayName": "CPET",
+      "kind": "metabolic_cart",
+      "provenanceSpecificity": "source_system"
+    },
+    {
+      "id": "dexa",
+      "displayName": "DEXA",
+      "kind": "body_composition_imaging",
+      "provenanceSpecificity": "source_system"
+    },
+    {
+      "id": "vald_forcedecks",
+      "displayName": "VALD ForceDecks",
+      "kind": "vald_product",
+      "provenanceSpecificity": "product"
+    },
+    {
+      "id": "vald_forceframe",
+      "displayName": "VALD ForceFrame",
+      "kind": "vald_product",
+      "provenanceSpecificity": "product"
+    },
+    {
+      "id": "vald_dynamo",
+      "displayName": "VALD DynaMo",
+      "kind": "vald_product",
+      "provenanceSpecificity": "product"
+    },
+    {
+      "id": "dari",
+      "displayName": "DARI",
+      "kind": "movement_analysis",
+      "provenanceSpecificity": "source_system"
+    }
+  ]
+}
