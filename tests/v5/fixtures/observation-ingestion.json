@@ -144,7 +144,7 @@
         "status": "normalized",
         "definitionId": "atd.pca.020",
         "observations": [
-          { "side": null, "motionMode": "dynamic", "numericValue": null, "unit": null, "ordinalValue": "DARI reference synthetic-dari-session-01", "completionState": "measured" }
+          { "side": "none", "motionMode": "dynamic", "numericValue": null, "unit": null, "ordinalValue": "DARI reference synthetic-dari-session-01", "completionState": "measured" }
         ]
       }
     },
@@ -175,7 +175,7 @@
         "status": "normalized",
         "definitionId": "atd.cpet.001",
         "observations": [
-          { "side": null, "motionMode": "not_applicable", "numericValue": 42.6, "unit": "milliliter_per_kilogram_minute", "completionState": "measured" }
+          { "side": "none", "motionMode": "not_applicable", "numericValue": 42.6, "unit": "milliliter_per_kilogram_minute", "completionState": "measured" }
         ]
       }
     },

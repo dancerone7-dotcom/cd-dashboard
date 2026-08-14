@@ -1,8 +1,8 @@
 import { convertUnit, resolveUnitToken } from './unit-conversion.mjs';
 
 const INGESTION_SCHEMA_VERSION = '5.0.0-observation-ingestion-1';
-const MOTION_MODES = new Set(['not_applicable', 'active', 'passive', 'active_and_passive', 'isometric', 'dynamic']);
-const SIDES = new Set(['left', 'right', 'bilateral', null]);
+const OBSERVATION_MOTION_MODES = new Set(['not_applicable', 'active', 'passive', 'isometric', 'dynamic']);
+const SIDES = new Set(['left', 'right', 'bilateral', 'none']);
 
 const REVIEW_MESSAGES = Object.freeze({
   missing_trace_identifier: 'Patient, assessment and observation identifiers are required before an observation can be accepted.',
@@ -45,6 +45,10 @@ export function ingestObservation(input, { ontology } = {}) {
   const rawText = rawTextFor(input.rawValue);
   const completion = completionFromRawText(rawText);
   if (completion) {
+    const motionMode = explicitMotionFor(input, definition);
+    if (!OBSERVATION_MOTION_MODES.has(motionMode)) {
+      return reviewResult('parse_review', 'missing_motion_mode', rawInput, definition.id);
+    }
     return normalizedResult(rawInput, definition, [buildObservation({
       input,
       definition,
@@ -52,7 +56,7 @@ export function ingestObservation(input, { ontology } = {}) {
       protocolVersion,
       rawText,
       side: explicitSideFor(input, sourceRecord),
-      motionMode: explicitMotionFor(input, definition),
+      motionMode,
       numericValue: null,
       unit: definition.canonicalUnitId,
       ordinalValue: null,
@@ -65,6 +69,10 @@ export function ingestObservation(input, { ontology } = {}) {
   }
 
   if (rawText === null || rawText.trim() === '') {
+    const motionMode = explicitMotionFor(input, definition);
+    if (!OBSERVATION_MOTION_MODES.has(motionMode)) {
+      return reviewResult('parse_review', 'missing_motion_mode', rawInput, definition.id);
+    }
     return normalizedResult(rawInput, definition, [buildObservation({
       input,
       definition,
@@ -72,7 +80,7 @@ export function ingestObservation(input, { ontology } = {}) {
       protocolVersion,
       rawText,
       side: explicitSideFor(input, sourceRecord),
-      motionMode: explicitMotionFor(input, definition),
+      motionMode,
       numericValue: null,
       unit: definition.canonicalUnitId,
       ordinalValue: null,
@@ -182,14 +190,14 @@ function parseNumericResults(rawText, input, definition, sourceRecord) {
 
     const side = labeled?.[1]?.toLowerCase() ?? explicitSideFor(input, sourceRecord);
     if (!SIDES.has(side)) return { reviewCode: 'unsupported_result_shape' };
-    if (definition.resultType === 'bilateral_scalar' && side === null) return { reviewCode: 'missing_bilateral_side' };
+    if (definition.resultType === 'bilateral_scalar' && side === 'none') return { reviewCode: 'missing_bilateral_side' };
 
     const labeledMotion = labeled?.[2]?.toLowerCase() ?? null;
     const motionMode = labeledMotion ?? explicitMotionFor(input, definition);
-    if (!MOTION_MODES.has(motionMode)) return { reviewCode: 'unsupported_result_shape' };
     if (definition.motionMode === 'active_and_passive' && !labeledMotion && !hasText(input.motionMode)) {
       return { reviewCode: 'missing_motion_mode' };
     }
+    if (!OBSERVATION_MOTION_MODES.has(motionMode)) return { reviewCode: 'unsupported_result_shape' };
 
     results.push({
       side,
@@ -207,13 +215,13 @@ function parseQualitative(rawText, input, definition, sourceRecord) {
   const match = /^(left|right)(?:\s+(active|passive))?\s*:\s*(.+)$/i.exec(rawText);
   const side = match?.[1]?.toLowerCase() ?? explicitSideFor(input, sourceRecord);
   if (!SIDES.has(side)) return { reviewCode: 'unsupported_result_shape' };
-  if (definition.lateralityModel === 'left_right' && side === null) return { reviewCode: 'missing_bilateral_side' };
+  if (definition.lateralityModel === 'left_right' && side === 'none') return { reviewCode: 'missing_bilateral_side' };
   const labeledMotion = match?.[2]?.toLowerCase() ?? null;
   const motionMode = labeledMotion ?? explicitMotionFor(input, definition);
-  if (!MOTION_MODES.has(motionMode)) return { reviewCode: 'unsupported_result_shape' };
   if (definition.motionMode === 'active_and_passive' && !labeledMotion && !hasText(input.motionMode)) {
     return { reviewCode: 'missing_motion_mode' };
   }
+  if (!OBSERVATION_MOTION_MODES.has(motionMode)) return { reviewCode: 'unsupported_result_shape' };
   const value = (match?.[3] ?? rawText).trim();
   if (!value) return { reviewCode: 'unsupported_result_shape' };
   const painAtEndRange = /(?:^|[;,]\s*)pain at end range$/i.test(value);
@@ -250,12 +258,12 @@ function explicitSideFor(input, sourceRecord) {
   if (hasText(input.side)) return input.side.toLowerCase();
   if (/^left(?:-|\b)/i.test(sourceRecord.originalLabel)) return 'left';
   if (/^right(?:-|\b)/i.test(sourceRecord.originalLabel)) return 'right';
-  return null;
+  return 'none';
 }
 
 function explicitMotionFor(input, definition) {
   if (hasText(input.motionMode)) return input.motionMode.toLowerCase();
-  return definition.motionMode;
+  return definition.motionMode === 'active_and_passive' ? null : definition.motionMode;
 }
 
 function completionFromRawText(rawText) {

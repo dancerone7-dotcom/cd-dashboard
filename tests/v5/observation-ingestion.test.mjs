@@ -49,6 +49,8 @@ test('all required V5-01 fixtures preserve raw input and normalize or review det
         assert.equal(observation.patientId, fixture.input.patientId);
         assert.equal(observation.assessmentId, fixture.input.assessmentId);
         assert.equal(observation.testDefinitionId, fixture.expected.definitionId);
+        assert.ok(['left', 'right', 'bilateral', 'none'].includes(observation.side));
+        assert.ok(['active', 'passive', 'isometric', 'dynamic', 'not_applicable'].includes(observation.motionMode));
         assert.deepEqual(observation.rawValue, fixture.input.rawValue);
         assert.equal(observation.rawText, typeof fixture.input.rawValue === 'string' ? fixture.input.rawValue : String(fixture.input.rawValue));
         assert.equal(observation.sourceProvenance.sourceSystemId, fixture.input.sourceSystemId);
