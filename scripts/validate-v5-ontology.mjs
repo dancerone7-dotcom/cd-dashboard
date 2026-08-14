@@ -94,6 +94,18 @@ const SOURCE_METADATA_FIELDS = Object.freeze([
   'originalRowIdentifier',
   'sourceSnapshotId',
 ]);
+const SOURCE_PROTOCOL_FIELDS = Object.freeze([
+  'position',
+  'motionMode',
+  'equipment',
+  'trialCount',
+  'lateralityConvention',
+  'selectedOutput',
+  'aggregationRule',
+  'setupDetails',
+  'timeCapSeconds',
+  'captureSopApprovalState',
+]);
 const SOURCE_POSITION_TO_CANONICAL = new Map([
   ['Supine', 'supine'],
   ['Prone', 'prone'],
@@ -268,9 +280,17 @@ export function validateOntology(ontology) {
   const protocolIds = new Set(protocols.map((protocol) => protocol.id));
   const versionKeys = new Set(protocolVersions.map((version) => protocolKey(version.protocolId, version.version)));
   const sourceSnapshotIds = new Set(sourceSnapshots.map((snapshot) => snapshot.id));
+  for (const source of sourceSystems) {
+    if (source.provenanceKind !== 'measurement_source') {
+      addError(errors, 'INVALID_MEASUREMENT_PROVENANCE_KIND', `${source.id} is not typed as measurement-source provenance`);
+    }
+  }
   for (const snapshot of sourceSnapshots) {
     if (!snapshot.id || !snapshot.displayName || !snapshot.scope || !snapshot.captureState) {
       addError(errors, 'INCOMPLETE_SOURCE_SNAPSHOT', `${snapshot.id || '<source snapshot>'} lacks required capture metadata`);
+    }
+    if (snapshot.provenanceKind !== 'measurement_source_snapshot') {
+      addError(errors, 'INVALID_MEASUREMENT_PROVENANCE_KIND', `${snapshot.id} is not typed as a measurement-source snapshot`);
     }
   }
 
@@ -350,6 +370,21 @@ export function validateOntology(ontology) {
     if (!version.provenance) {
       addError(errors, 'MISSING_PROTOCOL_PROVENANCE', `${protocolKey(version.protocolId, version.version)} lacks provenance`);
     }
+    if (version.provenanceKind !== 'measurement_protocol') {
+      addError(errors, 'INVALID_MEASUREMENT_PROVENANCE_KIND', `${protocolKey(version.protocolId, version.version)} is not typed as a measurement protocol`);
+    }
+    for (const field of ['protocolOwner', 'approvalDate']) {
+      if (!Object.hasOwn(version, field) || version[field] !== null || !(version.pendingFields ?? []).includes(field)) {
+        addError(errors, 'PROTOCOL_OWNER_FIELD_NOT_PENDING', `${protocolKey(version.protocolId, version.version)} must keep ${field} explicitly null and pending`);
+      }
+    }
+    for (const field of version.pendingFields ?? []) {
+      if (!Object.hasOwn(version, field)) {
+        addError(errors, 'PENDING_PROTOCOL_FIELD_DROPPED', `${protocolKey(version.protocolId, version.version)} lists missing pending field ${field}`);
+      } else if (version[field] !== null && version[field] !== 'pending') {
+        addError(errors, 'PENDING_PROTOCOL_FIELD_RESOLVED_SILENTLY', `${protocolKey(version.protocolId, version.version)} marks non-pending ${field} as pending`);
+      }
+    }
   }
 
   const protocolsById = new Map(protocols.map((protocol) => [protocol.id, protocol]));
@@ -420,37 +455,92 @@ export function validateOntology(ontology) {
       }
     }
 
+    if (!record.sourceProtocolMetadata || typeof record.sourceProtocolMetadata !== 'object') {
+      addError(errors, 'SOURCE_PROTOCOL_METADATA_DROPPED', `${record.id} lacks independent source protocol metadata`);
+    } else {
+      const sourceProtocolKeys = Object.keys(record.sourceProtocolMetadata).sort();
+      const expectedProtocolKeys = [...SOURCE_PROTOCOL_FIELDS].sort();
+      if (JSON.stringify(sourceProtocolKeys) !== JSON.stringify(expectedProtocolKeys)) {
+        addError(errors, 'SOURCE_PROTOCOL_METADATA_DROPPED', `${record.id} does not preserve the complete source protocol field set`);
+      }
+    }
+    if (!Object.hasOwn(record, 'unambiguousLateralityModel')) {
+      addError(errors, 'SOURCE_LATERALITY_METADATA_DROPPED', `${record.id} lacks explicit source laterality interpretation state`);
+    }
+
     const definition = definitions.find((candidate) => candidate.id === row.expectedDefinitionId);
     if (!definition) continue;
+    const protocolVersion = protocolVersions.find(
+      (version) => version.protocolId === definition.protocolId && version.version === definition.protocolVersion,
+    );
+    if (record.sourceProtocolMetadata && protocolVersion) {
+      for (const field of SOURCE_PROTOCOL_FIELDS) {
+        if (!Object.hasOwn(protocolVersion, field)) {
+          addError(errors, 'SOURCE_PROTOCOL_FIELD_DROPPED', `${definition.id} protocol drops source field ${field}`);
+        } else if (protocolVersion[field] !== record.sourceProtocolMetadata[field]) {
+          addError(errors, 'SOURCE_PROTOCOL_FIELD_REWRITTEN', `${definition.id} rewrites source protocol field ${field}`);
+        }
+        if (record.sourceProtocolMetadata[field] === null && !(protocolVersion.pendingFields ?? []).includes(field)) {
+          addError(errors, 'UNRESOLVED_PROTOCOL_FIELD_NOT_PENDING', `${definition.id} must keep unresolved ${field} pending`);
+        }
+      }
+      if (protocolVersion.provenance !== record.originalLabel || protocolVersion.sourceSystemId !== record.sourceSystemId) {
+        addError(errors, 'MEASUREMENT_PROVENANCE_REWRITTEN', `${definition.id} protocol provenance does not match its raw measurement source`);
+      }
+    }
     if (record.unambiguousCanonicalUnitId !== null) {
       if (!unitIds.has(record.unambiguousCanonicalUnitId)) {
         addError(errors, 'UNKNOWN_UNIT', `${record.id} maps explicit unit wording to unknown unit ${record.unambiguousCanonicalUnitId}`);
       } else if (definition.canonicalUnitId !== record.unambiguousCanonicalUnitId) {
         addError(errors, 'EXPLICIT_UNIT_MISMATCH', `${definition.id} does not preserve explicit source unit ${record.explicitUnitWording}`);
       }
+    } else if (definition.canonicalUnitId !== null) {
+      const mapping = definition.canonicalization?.unit;
+      if (
+        !mapping
+        || mapping.sourceValue !== null
+        || mapping.canonicalValue !== definition.canonicalUnitId
+        || mapping.approvalState !== 'pending'
+        || typeof mapping.note !== 'string'
+        || mapping.note.trim().length === 0
+      ) {
+        addError(errors, 'UNDOCUMENTED_UNIT_CANONICALIZATION', `${definition.id} assigns an unstated canonical unit without a pending mapping`);
+      }
     }
     const sourceMotion = canonicalMotionFromSourceWording(record.explicitMotionWording);
     if (sourceMotion && definition.motionMode !== sourceMotion) {
       addError(errors, 'EXPLICIT_MOTION_MISMATCH', `${definition.id} does not preserve explicit source motion ${record.explicitMotionWording}`);
+    } else if (!sourceMotion && definition.motionMode !== 'not_applicable') {
+      const mapping = definition.canonicalization?.motionMode;
+      if (
+        !mapping
+        || mapping.sourceValue !== null
+        || mapping.canonicalValue !== definition.motionMode
+        || mapping.approvalState !== 'pending'
+        || typeof mapping.note !== 'string'
+        || mapping.note.trim().length === 0
+      ) {
+        addError(errors, 'UNDOCUMENTED_MOTION_CANONICALIZATION', `${definition.id} assigns an unstated motion mode without a pending mapping`);
+      }
     }
-    if (record.positionLabel !== null) {
-      const directCanonicalPosition = SOURCE_POSITION_TO_CANONICAL.get(record.positionLabel);
+    if (record.positionLabel !== null || record.sourceProtocolMetadata?.position !== null) {
+      const directCanonicalPosition = record.positionLabel !== null
+        ? SOURCE_POSITION_TO_CANONICAL.get(record.positionLabel)
+        : record.sourceProtocolMetadata.position;
+      const mappingSourceValue = record.positionLabel ?? record.sourceProtocolMetadata.position;
       if (!directCanonicalPosition) {
-        addError(errors, 'UNKNOWN_SOURCE_POSITION', `${record.id} has unsupported source position ${record.positionLabel}`);
+        addError(errors, 'UNKNOWN_SOURCE_POSITION', `${record.id} has unsupported source position ${mappingSourceValue}`);
       } else if (definition.position !== directCanonicalPosition) {
         const mapping = definition.canonicalization?.position;
         const mappingValid = mapping
-          && mapping.sourceValue === record.positionLabel
+          && mapping.sourceValue === mappingSourceValue
           && mapping.canonicalValue === definition.position
           && typeof mapping.note === 'string'
           && mapping.note.trim().length > 0
           && ['pending', 'approved'].includes(mapping.approvalState);
         if (!mappingValid) {
-          addError(errors, 'UNDOCUMENTED_POSITION_CANONICALIZATION', `${definition.id} changes ${record.positionLabel} to ${definition.position} without a valid mapping`);
+          addError(errors, 'UNDOCUMENTED_POSITION_CANONICALIZATION', `${definition.id} changes ${mappingSourceValue} to ${definition.position} without a valid mapping`);
         } else {
-          const protocolVersion = protocolVersions.find(
-            (version) => version.protocolId === definition.protocolId && version.version === definition.protocolVersion,
-          );
           if (mapping.approvalState === 'approved' && protocolVersion?.approvalState !== 'approved') {
             addError(errors, 'UNSUPPORTED_CANONICALIZATION_APPROVAL', `${definition.id} position mapping is approved without an approved protocol`);
           }
@@ -458,6 +548,35 @@ export function validateOntology(ontology) {
             addError(errors, 'CANONICALIZATION_MUST_BE_PENDING', `${definition.id} position mapping must remain pending`);
           }
         }
+      }
+    } else if (!['not_applicable', 'other'].includes(definition.position)) {
+      const mapping = definition.canonicalization?.position;
+      if (
+        !mapping
+        || mapping.sourceValue !== null
+        || mapping.canonicalValue !== definition.position
+        || mapping.approvalState !== 'pending'
+        || typeof mapping.note !== 'string'
+        || mapping.note.trim().length === 0
+      ) {
+        addError(errors, 'UNDOCUMENTED_POSITION_CANONICALIZATION', `${definition.id} assigns an unstated position without a pending mapping`);
+      }
+    }
+    if (record.unambiguousLateralityModel !== null) {
+      if (record.unambiguousLateralityModel !== definition.lateralityModel) {
+        addError(errors, 'EXPLICIT_LATERALITY_MISMATCH', `${definition.id} does not preserve source-established laterality`);
+      }
+    } else if (definition.lateralityModel !== 'none') {
+      const mapping = definition.canonicalization?.lateralityModel;
+      if (
+        !mapping
+        || mapping.sourceValue !== null
+        || mapping.canonicalValue !== definition.lateralityModel
+        || mapping.approvalState !== 'pending'
+        || typeof mapping.note !== 'string'
+        || mapping.note.trim().length === 0
+      ) {
+        addError(errors, 'UNDOCUMENTED_LATERALITY_CANONICALIZATION', `${definition.id} assigns unstated laterality without a pending mapping`);
       }
     }
   }
@@ -570,7 +689,13 @@ export function validateOntology(ontology) {
       protocolVersionCount: protocolVersions.length,
       pendingProtocolFieldCount: pendingProtocolFields.length,
       sourceInventoryRecordCount: sourceInventoryRecords.length,
-      positionCanonicalizationCount: definitions.filter((definition) => definition.canonicalization?.position).length,
+      positionCanonicalizationCount: definitions.filter(
+        (definition) => definition.canonicalization?.position?.sourceValue !== null
+          && definition.canonicalization?.position?.sourceValue !== undefined,
+      ).length,
+      pendingPositionInterpretationCount: definitions.filter(
+        (definition) => definition.canonicalization?.position?.sourceValue === null,
+      ).length,
     },
     pendingProtocolFields,
   };
@@ -612,7 +737,10 @@ export function renderCoverageReport(ontology) {
   const sourceRecordsByDefinition = new Map(ontology.sourceInventoryRecords.map((record) => [record.definitionId, record]));
   const promSourceRecords = ontology.sourceInventoryRecords.filter((record) => record.sourceSurface === 'prom_orthopedic');
   const promPositionCounts = countBy(promSourceRecords, 'positionLabel');
-  const positionCanonicalizations = ontology.definitions.filter((definition) => definition.canonicalization?.position);
+  const positionCanonicalizations = ontology.definitions.filter(
+    (definition) => definition.canonicalization?.position?.sourceValue !== null
+      && definition.canonicalization?.position?.sourceValue !== undefined,
+  );
   lines.push(
     '',
     '## Independent source fidelity',
@@ -621,7 +749,9 @@ export function renderCoverageReport(ontology) {
     `- pROM/orthopedic source rows audited: ${promSourceRecords.length}`,
     `- pROM source Position values: Supine ${promPositionCounts.Supine ?? 0}; Prone ${promPositionCounts.Prone ?? 0}; Seated ${promPositionCounts.Seated ?? 0}; Standing ${promPositionCounts.Standing ?? 0}; Other Table ${promPositionCounts['Other Table'] ?? 0}`,
     `- Documented source-to-canonical position mappings: ${result.summary.positionCanonicalizationCount}`,
-    '- The raw source label, source Position value, category, explicit motion wording, explicit unit wording and original row identifier are stored separately from the canonical definition.',
+    `- Pending canonical positions where the captured source does not establish position: ${result.summary.pendingPositionInterpretationCount}`,
+    '- The raw source label, source Position value, category, explicit motion wording, explicit unit wording, original row identifier and source-established protocol fields are stored separately from the canonical definition.',
+    '- Measurement-source, measurement-snapshot and measurement-protocol provenance are explicitly typed and remain separate from research or forecast provenance.',
     '',
     '| Original source label | Source position | Canonical position | Approval | Canonicalization note |',
     '|---|---|---|---|---|',
@@ -688,15 +818,15 @@ export function renderSourceCrosswalk(ontology) {
     '',
     'This crosswalk audits source-label coverage. A row here establishes identity and provenance only; it does not establish capacity meaning, task relevance, or clinical interpretation.',
     '',
-    '| Source | Inventory label | Original source label | Original row ID | Category | Source position | Canonical test ID | Source system | Explicit motion | Canonical motion | Explicit unit | Canonical unit | Laterality | Canonical position | Position mapping | Protocol/version |',
-    '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|',
+    '| Source | Inventory label | Original source label | Original row ID | Category | Source position label | Source protocol position | Canonical test ID | Source system | Explicit motion | Source protocol motion | Canonical motion | Explicit unit | Canonical unit | Laterality | Source selected output | Canonical position | Position mapping | Protocol/version |',
+    '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|',
   ];
   for (const row of ontology.knownSourceRows) {
     const definition = definitionsById.get(row.expectedDefinitionId);
     const sourceRecord = sourceRecordsById.get(row.sourceInventoryRecordId);
     const mapping = definition?.canonicalization?.position;
     lines.push(
-      `| ${md(row.surface)} | ${md(row.sourceLabel)} | ${md(sourceRecord?.originalLabel)} | ${md(sourceRecord?.originalRowIdentifier)} | ${md(sourceRecord?.categoryLabel)} | ${md(sourceRecord?.positionLabel)} | ${md(definition?.id)} | ${md(definition?.sourceSystemId)} | ${md(sourceRecord?.explicitMotionWording)} | ${md(definition?.motionMode)} | ${md(sourceRecord?.explicitUnitWording)} | ${md(definition?.canonicalUnitId)} | ${md(definition?.lateralityModel)} | ${md([definition?.position, definition?.positionDetail].filter(Boolean).join(' · '))} | ${md(mapping ? `${mapping.approvalState}: ${mapping.note}` : null)} | ${md(definition ? protocolKey(definition.protocolId, definition.protocolVersion) : null)} |`,
+      `| ${md(row.surface)} | ${md(row.sourceLabel)} | ${md(sourceRecord?.originalLabel)} | ${md(sourceRecord?.originalRowIdentifier)} | ${md(sourceRecord?.categoryLabel)} | ${md(sourceRecord?.positionLabel)} | ${md(sourceRecord?.sourceProtocolMetadata?.position)} | ${md(definition?.id)} | ${md(definition?.sourceSystemId)} | ${md(sourceRecord?.explicitMotionWording)} | ${md(sourceRecord?.sourceProtocolMetadata?.motionMode)} | ${md(definition?.motionMode)} | ${md(sourceRecord?.explicitUnitWording)} | ${md(definition?.canonicalUnitId)} | ${md(definition?.lateralityModel)} | ${md(sourceRecord?.sourceProtocolMetadata?.selectedOutput)} | ${md([definition?.position, definition?.positionDetail].filter(Boolean).join(' · '))} | ${md(mapping ? `${mapping.approvalState}: ${mapping.note}` : null)} | ${md(definition ? protocolKey(definition.protocolId, definition.protocolVersion) : null)} |`,
     );
   }
   lines.push('');

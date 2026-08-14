@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
@@ -29,6 +30,15 @@ const REQUIRED_COMPLETION_STATES = Object.freeze([
   'pain_limited',
   'unable',
   'redundant',
+]);
+const REQUIRED_SOURCE_PROTOCOL_FIELDS = Object.freeze([
+  'position',
+  'motionMode',
+  'equipment',
+  'trialCount',
+  'lateralityConvention',
+  'selectedOutput',
+  'aggregationRule',
 ]);
 const PROM_SOURCE_ROWS = Object.freeze([
   ['prom-shoulder-er-supine', 'Shoulder ER', 'Supine', 'Shoulder'],
@@ -82,6 +92,13 @@ function expectErrorCode(ontology, code) {
     result.errors.some((error) => error.code === code),
     `Expected ${code}; received ${result.errors.map((error) => error.code).join(', ') || 'no errors'}`,
   );
+}
+
+function gitBlobHash(bytes) {
+  return createHash('sha1')
+    .update(`blob ${bytes.length}\0`)
+    .update(bytes)
+    .digest('hex');
 }
 
 test('the complete V5-00 ontology validates with the required known-source coverage', async () => {
@@ -265,6 +282,109 @@ test('validator detects rewritten source position, motion wording, label, and ex
     (candidate) => candidate.expectedDefinitionId === 'atd.v4-vald.003',
   ).sourceMetadata.explicitUnitWording = null;
   expectErrorCode(unitMutated, 'SOURCE_METADATA_MISMATCH');
+
+  const sourceProtocolPositionMutated = clone(ontology);
+  sourceProtocolPositionMutated.sourceInventoryRecords.find(
+    (record) => record.definitionId === hipIr0.id,
+  ).sourceProtocolMetadata.position = 'supine';
+  expectErrorCode(sourceProtocolPositionMutated, 'SOURCE_PROTOCOL_FIELD_REWRITTEN');
+
+  const inventedProtocolDetail = clone(ontology);
+  inventedProtocolDetail.protocolVersions.find(
+    (version) => version.protocolId === hipIr0.protocolId && version.version === hipIr0.protocolVersion,
+  ).equipment = 'goniometer';
+  expectErrorCode(inventedProtocolDetail, 'SOURCE_PROTOCOL_FIELD_REWRITTEN');
+
+  const provenanceMutated = clone(ontology);
+  provenanceMutated.protocolVersions.find(
+    (version) => version.protocolId === hipIr0.protocolId && version.version === hipIr0.protocolVersion,
+  ).provenance = 'research paper';
+  expectErrorCode(provenanceMutated, 'MEASUREMENT_PROVENANCE_REWRITTEN');
+});
+
+test('source-established protocol fields survive and unresolved protocol-owner fields are never invented', async () => {
+  const ontology = await loadOntology(ROOT);
+  const recordsByDefinition = new Map(ontology.sourceInventoryRecords.map((record) => [record.definitionId, record]));
+  const versionsByKey = new Map(
+    ontology.protocolVersions.map((version) => [`${version.protocolId}@${version.version}`, version]),
+  );
+
+  for (const definition of ontology.definitions) {
+    const record = recordsByDefinition.get(definition.id);
+    const version = versionsByKey.get(`${definition.protocolId}@${definition.protocolVersion}`);
+    assert.ok(record.sourceProtocolMetadata, `${definition.id} source protocol metadata`);
+    for (const field of REQUIRED_SOURCE_PROTOCOL_FIELDS) {
+      assert.ok(Object.hasOwn(record.sourceProtocolMetadata, field), `${definition.id} source protocol field ${field}`);
+      assert.ok(Object.hasOwn(version, field), `${definition.id} protocol field ${field}`);
+      assert.equal(version[field], record.sourceProtocolMetadata[field], `${definition.id} protocol field ${field}`);
+      if (version[field] === null) assert.ok(version.pendingFields.includes(field), `${definition.id} pending ${field}`);
+    }
+    for (const field of ['protocolOwner', 'approvalDate']) {
+      assert.ok(Object.hasOwn(version, field), `${definition.id} ${field}`);
+      assert.equal(version[field], null, `${definition.id} ${field}`);
+      assert.ok(version.pendingFields.includes(field), `${definition.id} pending ${field}`);
+    }
+
+    if (record.unambiguousCanonicalUnitId === null && definition.canonicalUnitId !== null) {
+      assert.deepEqual(definition.canonicalization?.unit, {
+        sourceValue: null,
+        canonicalValue: definition.canonicalUnitId,
+        note: 'Canonical unit interpretation is not explicit in the captured source metadata and remains pending protocol-owner confirmation.',
+        approvalState: 'pending',
+      });
+    }
+    if (record.sourceProtocolMetadata.position === null && !['not_applicable', 'other'].includes(definition.position)) {
+      assert.equal(definition.canonicalization?.position?.sourceValue, null, `${definition.id} pending position source`);
+      assert.equal(definition.canonicalization?.position?.canonicalValue, definition.position, `${definition.id} pending position value`);
+      assert.equal(definition.canonicalization?.position?.approvalState, 'pending', `${definition.id} pending position approval`);
+    }
+    if (record.sourceProtocolMetadata.motionMode === null && definition.motionMode !== 'not_applicable') {
+      assert.equal(definition.canonicalization?.motionMode?.sourceValue, null, `${definition.id} pending motion source`);
+      assert.equal(definition.canonicalization?.motionMode?.canonicalValue, definition.motionMode, `${definition.id} pending motion value`);
+      assert.equal(definition.canonicalization?.motionMode?.approvalState, 'pending', `${definition.id} pending motion approval`);
+    }
+    if (record.unambiguousLateralityModel === null && definition.lateralityModel !== 'none') {
+      assert.equal(definition.canonicalization?.lateralityModel?.sourceValue, null, `${definition.id} pending laterality source`);
+      assert.equal(definition.canonicalization?.lateralityModel?.canonicalValue, definition.lateralityModel, `${definition.id} pending laterality value`);
+      assert.equal(definition.canonicalization?.lateralityModel?.approvalState, 'pending', `${definition.id} pending laterality approval`);
+    }
+  }
+});
+
+test('measurement provenance stays source-specific and separate from research or forecast provenance', async () => {
+  const ontology = await loadOntology(ROOT);
+  assert.ok(ontology.sourceSystems.every((source) => source.provenanceKind === 'measurement_source'));
+  assert.ok(ontology.sourceSnapshots.every((snapshot) => snapshot.provenanceKind === 'measurement_source_snapshot'));
+  assert.ok(ontology.protocolVersions.every((version) => version.provenanceKind === 'measurement_protocol'));
+
+  const definitionsById = new Map(ontology.definitions.map((definition) => [definition.id, definition]));
+  for (const row of ontology.knownSourceRows.filter((candidate) => candidate.surface === 'v4_vald')) {
+    const definition = definitionsById.get(row.expectedDefinitionId);
+    const originalLabel = row.sourceMetadata.originalLabel;
+    if (originalLabel.includes('ForceDecks')) assert.equal(definition.sourceSystemId, 'vald_forcedecks');
+    if (originalLabel.includes('ForceFrame')) assert.equal(definition.sourceSystemId, 'vald_forceframe');
+    if (originalLabel.includes('DynaMo')) assert.equal(definition.sourceSystemId, 'vald_dynamo');
+    assert.notEqual(definition.sourceSystemId, 'vald');
+  }
+  for (const row of ontology.knownSourceRows.filter((candidate) => candidate.surface === 'v4_timed_stance')) {
+    assert.equal(definitionsById.get(row.expectedDefinitionId).sourceSystemId, 'pca_field');
+  }
+
+  const serialized = JSON.stringify({
+    sourceSystems: ontology.sourceSystems,
+    sourceSnapshots: ontology.sourceSnapshots,
+    sourceInventoryRecords: ontology.sourceInventoryRecords,
+    protocolVersions: ontology.protocolVersions,
+  });
+  assert.equal(/research|forecast|declineModel/i.test(serialized), false);
+  assert.deepEqual(JSON.parse(JSON.stringify(ontology.sourceInventoryRecords)), ontology.sourceInventoryRecords);
+});
+
+test('frozen V3 and V4 review files remain byte-identical', async () => {
+  const rootIndex = await readFile(path.join(ROOT, 'index.html'));
+  const reviewIndex = await readFile(path.join(ROOT, 'v4-review/index.html'));
+  assert.equal(gitBlobHash(rootIndex), '25bd28dec25850295691585aba6a3b2e3d09d351');
+  assert.equal(gitBlobHash(reviewIndex), '4be9b4f9a671b91abbfe98e69386cacdcb27cc78');
 });
 
 test('completion states preserve missing and clinical non-completion without numeric zero', async () => {

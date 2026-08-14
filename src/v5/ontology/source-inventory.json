@@ -6,21 +6,24 @@
       "displayName": "V5 Assessment Source Inventory v1",
       "sourceReference": "docs/v5/V5_ASSESSMENT_SOURCE_INVENTORY.md",
       "scope": "Approved minimum known-source surface outside the raw pROM position audit.",
-      "captureState": "verified"
+      "captureState": "verified",
+      "provenanceKind": "measurement_source_snapshot"
     },
     {
       "id": "source-snapshot.prom-master-2025-12-03",
       "displayName": "pROM and Orthopedic Tracker (MASTER)",
       "sourceReference": "notion-database:2bd7b1f2-1c4e-801a-ac07-f3dc27e1703d",
       "scope": "36 raw master rows: original test label, Position value and original row identifier only.",
-      "captureState": "verified"
+      "captureState": "verified",
+      "provenanceKind": "measurement_source_snapshot"
     },
     {
       "id": "source-snapshot.prom-current-supplement-2026-08-13",
       "displayName": "Current pROM tracker shoulder supplement",
       "sourceReference": null,
       "scope": "Three supine shoulder rows present in the approved 39-row inventory and current tracker copies but absent from the 36-row master snapshot; no patient-linked row identifier retained.",
-      "captureState": "pending_master_reconciliation"
+      "captureState": "pending_master_reconciliation",
+      "provenanceKind": "measurement_source_snapshot"
     }
   ],
   "sourceInventoryRecords": [
@@ -37,7 +40,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.002",
@@ -52,7 +68,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.003",
@@ -67,7 +96,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.004",
@@ -82,7 +124,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.005",
@@ -97,7 +152,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.006",
@@ -112,7 +180,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.007",
@@ -127,7 +208,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.008",
@@ -142,7 +236,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.009",
@@ -157,7 +264,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.010",
@@ -172,7 +292,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.011",
@@ -187,7 +320,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.012",
@@ -202,7 +348,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.013",
@@ -217,7 +376,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.014",
@@ -232,7 +404,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.015",
@@ -247,7 +432,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.016",
@@ -262,7 +460,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.017",
@@ -277,7 +488,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.018",
@@ -292,7 +516,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.019",
@@ -307,7 +544,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.020",
@@ -322,7 +572,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.021",
@@ -337,7 +600,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.022",
@@ -352,7 +628,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.023",
@@ -367,7 +656,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.024",
@@ -382,7 +684,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.025",
@@ -397,7 +712,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.026",
@@ -412,7 +740,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.027",
@@ -427,7 +768,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.028",
@@ -442,7 +796,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.029",
@@ -457,7 +824,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.030",
@@ -472,7 +852,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.031",
@@ -487,7 +880,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.032",
@@ -502,7 +908,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.033",
@@ -517,7 +936,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.034",
@@ -532,7 +964,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.035",
@@ -547,7 +992,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.036",
@@ -562,7 +1020,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.037",
@@ -577,7 +1048,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.038",
@@ -592,7 +1076,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.039",
@@ -607,7 +1104,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.040",
@@ -622,7 +1132,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.041",
@@ -637,7 +1160,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "passive",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.042",
@@ -652,7 +1188,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.043",
@@ -667,7 +1216,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.044",
@@ -682,7 +1244,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.045",
@@ -697,7 +1272,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.046",
@@ -712,7 +1300,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.047",
@@ -727,7 +1328,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.pca_master.048",
@@ -742,7 +1356,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.pca_master.049",
@@ -757,7 +1384,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.001",
@@ -772,7 +1412,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.prom-current-supplement-2026-08-13",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.002",
@@ -787,7 +1440,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.prom-current-supplement-2026-08-13",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.003",
@@ -802,7 +1468,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.prom-current-supplement-2026-08-13",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.004",
@@ -817,7 +1496,20 @@
       "originalRowIdentifier": "2be7b1f21c4e800d8980dc89182327cf",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": "The degree value in the source label identifies joint test position; it is not an output-unit declaration.",
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.005",
@@ -832,7 +1524,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80269031e592dd03f4f2",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": "The degree value in the source label identifies joint test position; it is not an output-unit declaration.",
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.006",
@@ -847,7 +1552,20 @@
       "originalRowIdentifier": "2be7b1f21c4e808783c2f789239f7878",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.007",
@@ -862,7 +1580,20 @@
       "originalRowIdentifier": "2be7b1f21c4e803ab5a6e1c183b1c237",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": "active_and_passive",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.008",
@@ -877,7 +1608,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e802cabf9e9f4820e2dd6",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.009",
@@ -892,7 +1636,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e80c894bfc4b980ecd330",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": "The degree value in the source label identifies joint test position; it is not an output-unit declaration.",
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.010",
@@ -907,7 +1664,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e8006be25e0b46a4f0e18",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": "The degree value in the source label identifies joint test position; it is not an output-unit declaration.",
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.011",
@@ -922,7 +1692,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80d1a254cdf1423fa030",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": "The degree value in the source label identifies joint test position; it is not an output-unit declaration.",
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.012",
@@ -937,7 +1720,20 @@
       "originalRowIdentifier": "2be7b1f21c4e801991affac62c531fdf",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": "The degree value in the source label identifies joint test position; it is not an output-unit declaration.",
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.013",
@@ -952,7 +1748,20 @@
       "originalRowIdentifier": "2be7b1f21c4e8071a5e1c63a4d2c60e3",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "seated",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.014",
@@ -967,7 +1776,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80379692c52f6a78005b",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "seated",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.015",
@@ -982,7 +1804,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e80bf8fc8eb8cbdcd802e",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.016",
@@ -997,7 +1832,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80d5af4dda87f735cfff",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.017",
@@ -1012,7 +1860,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e809f89d6f6494bcea77f",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.018",
@@ -1027,7 +1888,20 @@
       "originalRowIdentifier": "2be7b1f21c4e809e9a0ef3cbcc051be0",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "other",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.019",
@@ -1042,7 +1916,20 @@
       "originalRowIdentifier": "2be7b1f21c4e803fa2b9f6f431cfcf13",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "other",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.020",
@@ -1057,7 +1944,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e807aae51e93464f54e19",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.021",
@@ -1072,7 +1972,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e80259f8bf94679e15e7a",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.022",
@@ -1087,7 +2000,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e805da6dce3fb7c9a45e6",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.023",
@@ -1102,7 +2028,20 @@
       "originalRowIdentifier": "2be7b1f21c4e806b8d97c1855dfef75b",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "seated",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.024",
@@ -1117,7 +2056,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80a9bafff513b1d32a6d",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "standing",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.025",
@@ -1132,7 +2084,20 @@
       "originalRowIdentifier": "2be7b1f21c4e803685a3ffc57b0d8e38",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "seated",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.026",
@@ -1147,7 +2112,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e80a5baedd3a2ea958a82",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.027",
@@ -1162,7 +2140,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e80d3bdd6e41c1e6e23a7",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.028",
@@ -1177,7 +2168,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e80c3b9f3d07536fc7832",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.029",
@@ -1192,7 +2196,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e80329646c45eec4dc433",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.030",
@@ -1207,7 +2224,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e80fbaa34cdef469c3e62",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.031",
@@ -1222,7 +2252,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80eaa903ec2e5fb97b7b",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "standing",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.032",
@@ -1237,7 +2280,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80aba8e9cb42f1fd350a",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.033",
@@ -1252,7 +2308,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80a58ee2c68877ad37c7",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.034",
@@ -1267,7 +2336,20 @@
       "originalRowIdentifier": "2be7b1f21c4e802cbf74d624e0748ae9",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.035",
@@ -1282,7 +2364,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80c7a89af6a1afdee1d6",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "prone",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.036",
@@ -1297,7 +2392,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e805f8fd5f51510becef4",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.037",
@@ -1312,7 +2420,20 @@
       "originalRowIdentifier": "2bd7b1f21c4e803fab7fedcaa3d684fd",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "supine",
+        "motionMode": "active",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.038",
@@ -1327,7 +2448,20 @@
       "originalRowIdentifier": "2be7b1f21c4e80c8895ee90e7ced0275",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "standing",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.prom_orthopedic.039",
@@ -1342,7 +2476,20 @@
       "originalRowIdentifier": "2be7b1f21c4e8072bce9d8ded8105683",
       "sourceSnapshotId": "source-snapshot.prom-master-2025-12-03",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": "other",
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.001",
@@ -1357,7 +2504,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.002",
@@ -1372,7 +2532,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.003",
@@ -1387,7 +2560,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.004",
@@ -1402,7 +2588,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "percent"
+      "unambiguousCanonicalUnitId": "percent",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.005",
@@ -1417,7 +2616,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.006",
@@ -1432,7 +2644,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.007",
@@ -1447,7 +2672,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.008",
@@ -1462,7 +2700,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.009",
@@ -1477,7 +2728,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "met"
+      "unambiguousCanonicalUnitId": "met",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.010",
@@ -1492,7 +2756,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "met"
+      "unambiguousCanonicalUnitId": "met",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.011",
@@ -1507,7 +2784,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "met"
+      "unambiguousCanonicalUnitId": "met",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.012",
@@ -1522,7 +2812,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "met"
+      "unambiguousCanonicalUnitId": "met",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.013",
@@ -1537,7 +2840,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "met"
+      "unambiguousCanonicalUnitId": "met",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.014",
@@ -1552,7 +2868,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "watt_per_kilogram"
+      "unambiguousCanonicalUnitId": "watt_per_kilogram",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.015",
@@ -1567,7 +2896,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.016",
@@ -1582,7 +2924,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.017",
@@ -1597,7 +2952,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.cpet_tracker.018",
@@ -1612,7 +2980,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.001",
@@ -1627,7 +3008,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.002",
@@ -1642,7 +3036,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "percent"
+      "unambiguousCanonicalUnitId": "percent",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.003",
@@ -1657,7 +3064,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.004",
@@ -1672,7 +3092,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.005",
@@ -1687,7 +3120,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.006",
@@ -1702,7 +3148,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.007",
@@ -1717,7 +3176,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.008",
@@ -1732,7 +3204,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.009",
@@ -1747,7 +3232,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.010",
@@ -1762,7 +3260,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": null
+      "unambiguousCanonicalUnitId": null,
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.011",
@@ -1777,7 +3288,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "t_score"
+      "unambiguousCanonicalUnitId": "t_score",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.012",
@@ -1792,7 +3316,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "z_score"
+      "unambiguousCanonicalUnitId": "z_score",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.013",
@@ -1807,7 +3344,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "t_score"
+      "unambiguousCanonicalUnitId": "t_score",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.014",
@@ -1822,7 +3372,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "z_score"
+      "unambiguousCanonicalUnitId": "z_score",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.015",
@@ -1837,7 +3400,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "t_score"
+      "unambiguousCanonicalUnitId": "t_score",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.016",
@@ -1852,7 +3428,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "z_score"
+      "unambiguousCanonicalUnitId": "z_score",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.017",
@@ -1867,7 +3456,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "t_score"
+      "unambiguousCanonicalUnitId": "t_score",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.dexa_tracker.018",
@@ -1882,7 +3484,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "z_score"
+      "unambiguousCanonicalUnitId": "z_score",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": null,
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.001",
@@ -1897,7 +3512,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "meter_per_second"
+      "unambiguousCanonicalUnitId": "meter_per_second",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "hopRSI",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.002",
@@ -1912,7 +3540,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "multiple_bodyweight"
+      "unambiguousCanonicalUnitId": "multiple_bodyweight",
+      "sourceProtocolMetadata": {
+        "position": "seated",
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "anklePF_xBW",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.003",
@@ -1927,7 +3568,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "watt_per_kilogram"
+      "unambiguousCanonicalUnitId": "watt_per_kilogram",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "cmjPower_WkG",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.004",
@@ -1942,7 +3596,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "meter_per_second"
+      "unambiguousCanonicalUnitId": "meter_per_second",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "dropJump_RSI",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.005",
@@ -1957,7 +3624,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "multiple_bodyweight"
+      "unambiguousCanonicalUnitId": "multiple_bodyweight",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "beltSquatIso_xBW",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.006",
@@ -1972,7 +3652,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "centimeter"
+      "unambiguousCanonicalUnitId": "centimeter",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "broadJump_cm",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.007",
@@ -1987,7 +3680,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "multiple_bodyweight"
+      "unambiguousCanonicalUnitId": "multiple_bodyweight",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "kneeFlex_xBW",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.008",
@@ -2002,7 +3708,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "centimeter"
+      "unambiguousCanonicalUnitId": "centimeter",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "slVertJump_cm",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.009",
@@ -2017,7 +3736,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "multiple_bodyweight"
+      "unambiguousCanonicalUnitId": "multiple_bodyweight",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "hipAbd_xBW",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.010",
@@ -2032,7 +3764,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "multiple_bodyweight"
+      "unambiguousCanonicalUnitId": "multiple_bodyweight",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "hipAdd_xBW",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.011",
@@ -2047,7 +3792,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "multiple_bodyweight"
+      "unambiguousCanonicalUnitId": "multiple_bodyweight",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "kneeExt_xBW",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.012",
@@ -2062,7 +3820,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "multiple_bodyweight"
+      "unambiguousCanonicalUnitId": "multiple_bodyweight",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "benchIso_xBW",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.013",
@@ -2077,7 +3848,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "pound"
+      "unambiguousCanonicalUnitId": "pound",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "grip_lb",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_vald.014",
@@ -2092,7 +3876,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "newton_meter_per_kilogram"
+      "unambiguousCanonicalUnitId": "newton_meter_per_kilogram",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": "isometric",
+        "equipment": null,
+        "trialCount": null,
+        "lateralityConvention": null,
+        "selectedOutput": "shoulderER_NmKg",
+        "aggregationRule": null,
+        "setupDetails": null,
+        "timeCapSeconds": null,
+        "captureSopApprovalState": null
+      },
+      "unambiguousLateralityModel": null
     },
     {
       "id": "source-inventory.source-row.v4_timed_stance.001",
@@ -2107,7 +3904,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "second"
+      "unambiguousCanonicalUnitId": "second",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": "firm surface",
+        "trialCount": 2,
+        "lateralityConvention": "2/side, enter weaker side",
+        "selectedOutput": "balanceSL_EO_s",
+        "aggregationRule": "best of 2/side, enter weaker side",
+        "setupDetails": "arms at sides; eyes open",
+        "timeCapSeconds": 60,
+        "captureSopApprovalState": "pending"
+      },
+      "unambiguousLateralityModel": "left_right"
     },
     {
       "id": "source-inventory.source-row.v4_timed_stance.002",
@@ -2122,7 +3932,20 @@
       "originalRowIdentifier": null,
       "sourceSnapshotId": "source-snapshot.approved-v5-inventory-v1",
       "sourceNotes": null,
-      "unambiguousCanonicalUnitId": "second"
+      "unambiguousCanonicalUnitId": "second",
+      "sourceProtocolMetadata": {
+        "position": null,
+        "motionMode": null,
+        "equipment": "firm surface",
+        "trialCount": 2,
+        "lateralityConvention": "2/side, enter weaker side",
+        "selectedOutput": "balanceSL_EC_s",
+        "aggregationRule": "best of 2/side, enter weaker side",
+        "setupDetails": "arms at sides; eyes closed",
+        "timeCapSeconds": 60,
+        "captureSopApprovalState": "pending"
+      },
+      "unambiguousLateralityModel": "left_right"
     }
   ]
 }

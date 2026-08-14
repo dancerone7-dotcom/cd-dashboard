@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "5.0.0-ingestion-fixtures-1",
+  "fixtures": [
+    {
+      "id": "bilateral-numeric",
+      "input": {
+        "observationId": "obs-bilateral",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "sourceLabel": "Shoulder ER, supine",
+        "rawValue": "Left: 72°, Right: 68°"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.prom.001",
+        "observations": [
+          { "side": "left", "motionMode": "passive", "numericValue": 72, "unit": "degree", "completionState": "measured" },
+          { "side": "right", "motionMode": "passive", "numericValue": 68, "unit": "degree", "completionState": "measured" }
+        ]
+      }
+    },
+    {
+      "id": "active-passive-rom",
+      "input": {
+        "observationId": "obs-active-passive",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "sourceLabel": "Shoulder extension, active/passive",
+        "rawValue": "Left active: 45°; Left passive: 55°"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.prom.007",
+        "observations": [
+          { "side": "left", "motionMode": "active", "numericValue": 45, "unit": "degree", "completionState": "measured" },
+          { "side": "left", "motionMode": "passive", "numericValue": 55, "unit": "degree", "completionState": "measured" }
+        ]
+      }
+    },
+    {
+      "id": "pain-at-end-range",
+      "input": {
+        "observationId": "obs-pain",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "sourceLabel": "Hip flexion",
+        "rawValue": "Left: 112°; pain at end range"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.prom.008",
+        "observations": [
+          { "side": "left", "motionMode": "passive", "numericValue": 112, "unit": "degree", "painPresent": true, "painContext": "end_range", "completionState": "pain_limited" }
+        ]
+      }
+    },
+    {
+      "id": "qualitative-orthopedic-restriction",
+      "input": {
+        "observationId": "obs-qualitative",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "sourceLabel": "Talocrural assessment",
+        "rawValue": "Right: restricted posterior glide"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.prom.026",
+        "observations": [
+          { "side": "right", "motionMode": "not_applicable", "numericValue": null, "unit": "qualitative", "ordinalValue": "restricted posterior glide", "completionState": "measured" }
+        ]
+      }
+    },
+    {
+      "id": "skip-state",
+      "input": {
+        "observationId": "obs-skip",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "pca_field",
+        "sourceLabel": "Bodyweight Squat",
+        "rawValue": "Skip"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.pca.002",
+        "observations": [
+          { "numericValue": null, "unit": null, "completionState": "skipped", "sourceCompletionLabel": "Skip" }
+        ]
+      }
+    },
+    {
+      "id": "omit-state",
+      "input": {
+        "observationId": "obs-omit",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "pca_field",
+        "sourceLabel": "Wall Sit",
+        "rawValue": "Omit"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.pca.003",
+        "observations": [
+          { "numericValue": null, "unit": null, "completionState": "skipped", "sourceCompletionLabel": "Omit" }
+        ]
+      }
+    },
+    {
+      "id": "redundant-state",
+      "input": {
+        "observationId": "obs-redundant",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "pca_field",
+        "sourceLabel": "Goblet Squat",
+        "rawValue": "Redundant"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.pca.004",
+        "observations": [
+          { "numericValue": null, "unit": null, "completionState": "redundant", "sourceCompletionLabel": "Redundant" }
+        ]
+      }
+    },
+    {
+      "id": "dari-device-reference",
+      "input": {
+        "observationId": "obs-dari-reference",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "pca_field",
+        "sourceLabel": "Gait Analysis",
+        "rawValue": "DARI reference synthetic-dari-session-01",
+        "deviceReference": { "system": "DARI", "referenceId": "synthetic-dari-session-01" }
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.pca.020",
+        "observations": [
+          { "side": null, "motionMode": "dynamic", "numericValue": null, "unit": null, "ordinalValue": "DARI reference synthetic-dari-session-01", "completionState": "measured" }
+        ]
+      }
+    },
+    {
+      "id": "dari-device-reference-review",
+      "input": {
+        "observationId": "obs-dari",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "dari",
+        "sourceLabel": "DARI gait capture",
+        "rawValue": "Device result available",
+        "deviceReference": { "system": "DARI", "referenceId": "synthetic-dari-session-01" }
+      },
+      "expected": { "status": "import_review", "reviewCode": "unknown_source_label" }
+    },
+    {
+      "id": "scalar-cpet",
+      "input": {
+        "observationId": "obs-cpet",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "cpet",
+        "sourceLabel": "VO2max relative",
+        "rawValue": "42.6 mL/kg/min"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.cpet.001",
+        "observations": [
+          { "side": null, "motionMode": "not_applicable", "numericValue": 42.6, "unit": "milliliter_per_kilogram_minute", "completionState": "measured" }
+        ]
+      }
+    },
+    {
+      "id": "dexa-site-specific",
+      "input": {
+        "observationId": "obs-dexa",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "dexa",
+        "sourceLabel": "Left-femur T-score",
+        "rawValue": -1.2,
+        "unit": "T-score"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.dexa.013",
+        "observations": [
+          { "side": "left", "motionMode": "not_applicable", "numericValue": -1.2, "unit": "t_score", "completionState": "measured" }
+        ]
+      }
+    },
+    {
+      "id": "ambiguous-human-text",
+      "input": {
+        "observationId": "obs-ambiguous",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "manual_orthopedic_exam",
+        "sourceLabel": "Shoulder ER, supine",
+        "rawValue": "72° / 68°"
+      },
+      "expected": { "status": "parse_review", "reviewCode": "ambiguous_bilateral_order" }
+    },
+    {
+      "id": "unknown-test-label",
+      "input": {
+        "observationId": "obs-unknown",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "pca_field",
+        "sourceLabel": "Single Arm Mystery Test",
+        "rawValue": "12"
+      },
+      "expected": { "status": "import_review", "reviewCode": "unknown_source_label" }
+    },
+    {
+      "id": "blank-is-missing",
+      "input": {
+        "observationId": "obs-blank",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "cpet",
+        "sourceLabel": "VO2max absolute",
+        "rawValue": ""
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.cpet.002",
+        "observations": [
+          { "numericValue": null, "unit": "liter_per_minute", "completionState": "not_measured" }
+        ]
+      }
+    },
+    {
+      "id": "central-unit-conversion",
+      "input": {
+        "observationId": "obs-unit-conversion",
+        "patientId": "synthetic-patient-01",
+        "assessmentId": "synthetic-assessment-01",
+        "sourceSystemId": "vald_dynamo",
+        "sourceLabel": "VALD DynaMo · Grip Strength",
+        "rawValue": "40 kg"
+      },
+      "expected": {
+        "status": "normalized",
+        "definitionId": "atd.v4-vald.013",
+        "observations": [
+          { "numericValue": 88.184904874, "unit": "pound", "completionState": "measured" }
+        ]
+      }
+    }
+  ]
+}
