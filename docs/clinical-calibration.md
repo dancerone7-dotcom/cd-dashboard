@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.5, 2026-09-24)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,67 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.5: decline calibrated to the PCA standards (2026-09-24)
+
+**Dan's rule:** someone who scores Proficient on every PCA test for their age today should have the strength to meet the strength-based targets of their CD goals at 90, unless strong evidence shows a task needs more than Proficient.
+
+- **Decline.** Each PCA test now declines along its own Proficient standard, band to band. A band's value sits at its first year and the 80–90 value lands at 90, so a Proficient result today meets the 80–90 Proficient standard at 90.
+  - **Source:** the live PCA Standards database. All 744 rows were checked on 2026-09-24, and all 648 load-rate values match the standards.
+  - **Proxies for tests without numeric PCA bands:**
+    - hip abduction/adduction and knee flexion follow the knee-extension bands;
+    - shoulder ER follows the cuff DB external rotation bands;
+    - jumps, throws and pogos follow sit-to-stand power;
+    - the chin-over-bar hold follows the dead hang;
+    - the single-leg bridge and contralateral hold follow the plank;
+    - eyes-closed balance follows eyes-open balance.
+  - **Grip** tracks the Dodds 2014 75th centile (PMID 25474696).
+  - **VO₂max and LT1** keep longitudinal decline (Fleg 2005). The 2026-09-24 literature review judged it about right: 60→90 retention 0.53 in the model vs 0.50 (0.44–0.60) in the evidence, for men.
+- **Calibration check.** A synthetic patient exactly Proficient on every PCA test clears every strength target except the exceptions below. The check covered ages 35–75, both sexes and three body weights per sex (3,300 checks).
+- **Targets capped at the 80–90 Proficient standard.** In each case the evidence wasn't strong enough to require more than Proficient.
+  - Knee extension:
+    - 0.50 × BW (floor rise, stairs, tennis, kicking, 5 km) and 0.55 (skiing) became 0.45 for men and 0.35 for women.
+    - 0.40 for walking-type goals became 0.35 for women.
+    - Katayama & Yamasaki 2017 report 0.40 and 0.50 as the levels above which every hospital-rehab patient walked or climbed stairs independently. They are not minimums.
+  - Grip for the dog walk and weapon handling: 70 / 45 lb (clinical estimate) became 63 / 37 lb, the Dodds 75th percentile at 90.
+  - The planning reserve on fixed loads (×1.25–1.5) can no longer push a target above the 80–90 Proficient standard. The bare external load stays the floor.
+- **Exceptions kept, because the evidence is strong.**
+  - The 30-second balance goal: 30 s is the task itself, while Proficient at 80–90 is 15 s.
+  - A fixed external load above the Proficient standard for a light patient: that is physics. For example, 40 lb of dive gear is 32% of a 125-lb patient's body weight.
+- **Toe flexion:** the live PCA standard is now the same at every age. 1st toe is 4 / 7 / 10% BW; toes 2–5 are 2 / 3.5 / 5% BW.
+- **Aerobic targets.** Each goal now stores the task's absolute oxygen cost for an older adult: 2024 Older Adult Compendium MET60+ × 2.7, or measured older-adult data, rather than adult MET × 3.5.
+  - **Sustainable fraction by duration:**
+
+    | Duration or pattern | Fraction |
+    |---|---|
+    | 2+ h, mostly standing | 0.45 |
+    | 2–4 h | 0.50–0.55 |
+    | 90 min of play | 0.60 |
+    | 1 h | 0.65 |
+    | ≤45 min | 0.72–0.75 |
+    | 40-min race effort | 0.85 |
+
+  - **Mode factors:** swimming 0.85, fins 0.9, arm paddling 0.75, surfing 0.8.
+  - **LT1 margin:** 1.10 for tasks of 2 h or more.
+  - **Code fixes:**
+    - racquet: measured doubles pickleball;
+    - horseback: riding at a walk;
+    - rowing: 60 W;
+    - snorkeling: 5.0;
+    - cycling: about 60 W at 10 mph.
+  - **VO₂max targets at 90:**
+
+    | Direction | Goal: old → new |
+    |---|---|
+    | Down | 5 km run 35 → 33.5; gardening 20.5 → 20; dance 29 → 22.5; tennis/padel/pickleball 30 → 25; cycling 33 → 26; chores 21 → 17.7; horseback 18.5 → 16.7; skiing 27 → 23 |
+    | Up | 3-mile walk 19.6 → 23.8; golf 23 → 27; hike 30 → 34; rowing 23 → 27; soft sand 23 → 26; ocean swim 30 → 32; surfing 25 → 29; sexual activity 15 → 16.7; festival 15 → 18.9; snorkeling 25 → 27.8; kayak 25.7 → 27.3; dog walk 22.5 → 23.8 |
+
+  - **Full sources:** `research_aerobic_demands` (2026-09-24 audit).
+- **Evidence caveat (documented, not modeled).** Longitudinal studies show untrained people lose rep counts, holds and balance faster than the PCA age bands imply: roughly 2× for push-ups and trunk holds, and 2–3× for single-leg stance. So for strength and movement tests the red line means "keeps the current level for age", which is what training aims for. Aerobic fitness follows typical decline.
+- **Also in 4.5:**
+  - stand-in tests count toward the goals they stand in for;
+  - exact ties clear;
+  - the tool reads 4.4 exports.
 
 ## Model 4.2 decline changes
 
