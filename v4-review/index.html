@@ -678,6 +678,8 @@ body{background:#eceff3}
 .radarread{background:#fff;border-radius:0 10px 10px 0;padding:10px 14px}
 .btitle{color:#bc2a2a;letter-spacing:1.4px;font-weight:600}
 @media(max-width:760px){.slide-head{padding:34px 18px 14px}.pv{padding-left:14px;padding-right:14px}.slide-title{font-size:28px}.tagline{font-size:13px}}
+.radar .rgap.watch{stroke:#b7791f}.radar .rgapdot.watch{fill:#b7791f}.radar .rl.watchl{fill:#8a5a00;font-weight:700}
+.rtable tr.watch .rtest,.rtable tr.watch .rres{color:#8a5a00}.ptbl .pts.z-watch{color:#8a5a00}.minisvg .mgap.watch{fill:#b7791f}
 </style>
 </head>
 <body class="tab-reference">
@@ -5564,7 +5566,8 @@ const ACTIVITIES = {
     "reqArgs": {},
     "critical": true,
     "confidence": "direct",
-    "demandUncertainty": 0.1
+    "demandUncertainty": 0.1,
+    "taskTest": true
    },
    {
     "cat": "Strength",
@@ -5991,12 +5994,17 @@ function goalEvaluation(act,C){
   const gs=Object.values(groups).map(g=>({score:g.sum/g.w,w:g.maxW,items:g.items}));
   let logSum=0,wSum=0;gs.forEach(g=>{logSum+=Math.log(clamp(g.score,20,175)/100)*g.w;wSum+=g.w;});const score=wSum?Math.exp(logSum/wSum)*100:null;
   const worst=C.length?C.slice().sort((a,b)=>a.projPct-b.projPct)[0]:null;
-  /* Any projected miss means the goal won't clear, whatever else is missing. */
-  const misses=C.filter(c=>!c.meets).sort((a,b)=>a.projPct-b.projPct);let zone,cap;
+  /* A goal's own task test decides it: when the patient passes the task itself at TGT, other
+     tests below target are flagged to watch instead of failing the goal. Otherwise any projected
+     miss means the goal won't clear, whatever else is missing. */
+  const task=C.filter(c=>c.r.taskTest),taskPasses=task.length>0&&task.every(c=>c.meets);
+  const below=C.filter(c=>!c.meets).sort((a,b)=>a.projPct-b.projPct),misses=taskPasses?[]:below,watch=taskPasses?below:[];
+  C.forEach(c=>{c.watch=watch.includes(c);});let zone,cap;
   if(misses.length){zone='gap';cap=`Held back by ${nameList(misses.map(c=>inSentence(c.short)))}`;}
-  else if(missing.length){zone='incomplete';cap=`Still need ${nameList(missing.map(r=>inSentence(missingTestName(r))))}`;}
+  else if(missing.length&&!taskPasses){zone='incomplete';cap=`Still need ${nameList(missing.map(r=>inSentence(missingTestName(r))))}`;}
+  else if(watch.length){zone='clear';cap=`${task[0].short} test clears; watch ${nameList(watch.map(c=>inSentence(c.short)))}`;}
   else{zone='clear';cap=`All ${C.length} tests clear at ${TGT}`;}
-  return {zone,word:GOAL_STATUS[zone],cap,score,coverage,supportCoverage,missing,missingGate,misses,worst,nClear:C.filter(c=>c.zone==='clear').length,nGap:misses.length,total:C.length,requiredBreadth,calibratedDimensions:eligibleObservedGroups.length,observedDimensions:observedGroups.length,eligibleObservedDimensions:eligibleObservedGroups,ineligibleObservedDimensions:ineligibleObservedGroups,calibrationStatus};
+  return {zone,word:GOAL_STATUS[zone],cap,score,coverage,supportCoverage,missing,missingGate,misses,watch,worst,nClear:C.filter(c=>c.zone==='clear').length,nGap:misses.length,total:C.length,requiredBreadth,calibratedDimensions:eligibleObservedGroups.length,observedDimensions:observedGroups.length,eligibleObservedDimensions:eligibleObservedGroups,ineligibleObservedDimensions:ineligibleObservedGroups,calibrationStatus};
 }
 
 const DEPENDENCY_MAP={};
@@ -6030,18 +6038,19 @@ function radarSVG(C,{animate=true}={}){
   const f=n=>n.toFixed(1),shape=vals=>vals.map((p,i)=>at(i,p).map(f).join(',')).join(' ');
   const rings=[50,MAX].map(p=>`<polygon class="rg" points="${shape(C.map(()=>p))}"/>`).join('');
   const axes=C.map((c,i)=>{const [x,y]=at(i,MAX);return `<line class="ra" x1="${cx}" y1="${cy}" x2="${f(x)}" y2="${f(y)}"/>`;}).join('');
-  const gaps=C.map((c,i)=>{if(c.meets)return '';const [x1,y1]=at(i,c.projPct),[x2,y2]=at(i,100);return `<line class="rgap" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/><circle class="rgapdot" cx="${f(x1)}" cy="${f(y1)}" r="4.5"/>`;}).join('');
+  const gaps=C.map((c,i)=>{if(c.meets)return '';const [x1,y1]=at(i,c.projPct),[x2,y2]=at(i,100),w=c.watch?' watch':'';return `<line class="rgap${w}" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/><circle class="rgapdot${w}" cx="${f(x1)}" cy="${f(y1)}" r="4.5"/>`;}).join('');
   const labels=C.map((c,i)=>{const a=ang(i),co=Math.cos(a),si=Math.sin(a),lx=f(cx+co*(R+16)),ly=cy+si*(R+16),anchor=Math.abs(co)<.25?'middle':co>0?'start':'end';
     const w=c.short.split(' '),half=Math.ceil(w.length/2),lines=c.short.length>13&&w.length>1?[w.slice(0,half).join(' '),w.slice(half).join(' ')]:[c.short];
-    if(!c.meets)lines.push(`${c.shortBy}% short`);
+    if(!c.meets)lines.push(c.watch?`watch · ${c.shortBy}% below`:`${c.shortBy}% short`);
     const lh=14,y0=si<-.3?ly-(lines.length-1)*lh:si>.3?ly+10:ly-(lines.length-1)*lh/2+4;
-    return `<text class="rl${c.meets?'':' miss'}" x="${lx}" y="${f(y0)}" text-anchor="${anchor}">${lines.map((t,j)=>`<tspan x="${lx}" dy="${j?lh:0}"${!c.meets&&j===lines.length-1?' class="rlv"':''}>${t}</tspan>`).join('')}</text>`;}).join('');
-  const misses=C.filter(c=>!c.meets),label=`Radar of ${N} tests. ${misses.length?`Projected to fall short at ${TGT}: ${nameList(misses.map(c=>c.short),N)}.`:`All ${N} clear at ${TGT}.`}`,o=`style="transform-origin:${cx}px ${cy}px"`;
+    return `<text class="rl${c.meets?'':c.watch?' watchl':' miss'}" x="${lx}" y="${f(y0)}" text-anchor="${anchor}">${lines.map((t,j)=>`<tspan x="${lx}" dy="${j?lh:0}"${!c.meets&&j===lines.length-1?' class="rlv"':''}>${t}</tspan>`).join('')}</text>`;}).join('');
+  const misses=C.filter(c=>!c.meets&&!c.watch),watch=C.filter(c=>c.watch),label=`Radar of ${N} tests. ${misses.length?`Projected to fall short at ${TGT}: ${nameList(misses.map(c=>c.short),N)}.`:`All ${N} clear or pass the task test at ${TGT}.`}${watch.length?` Watch: ${nameList(watch.map(c=>c.short),N)}.`:''}`,o=`style="transform-origin:${cx}px ${cy}px"`;
   return `<svg class="radar${animate?' play':''}" viewBox="0 0 540 400" role="img" aria-label="${label}">${rings}${axes}<polygon class="rz rneed" ${o} points="${shape(C.map(()=>100))}"/><polygon class="rz rnow" ${o} points="${shape(C.map(c=>c.curPct))}"/><polygon class="rz r90" ${o} points="${shape(C.map(c=>c.projPct))}"/><g class="rz rmiss">${gaps}</g>${labels}</svg>`;
 }
 function radarLegendHTML(){return `<div class="rlegend"><span class="lg need"><i></i>Needed at ${TGT}</span><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>You at ${TGT}, projected</span></div>`;}
 function radarReadHTML(C,ev){
-  const misses=C.filter(c=>!c.meets),rest=C.length-misses.length,tight=C.filter(c=>c.meets).sort((a,b)=>a.projPct-b.projPct)[0];
+  const misses=C.filter(c=>!c.meets&&!c.watch),rest=C.length-misses.length,tight=C.filter(c=>c.meets).sort((a,b)=>a.projPct-b.projPct)[0];
+  if(ev.zone==='clear'&&ev.watch?.length){const t=C.find(c=>c.r.taskTest);return `The <b>${inSentence(t.short)}</b> test is this goal itself, and it clears at ${TGT}, so the goal is on track. <b>${capFirst(nameList(ev.watch.map(c=>inSentence(c.short)),4))}</b> ${ev.watch.length===1?'is':'are'} projected below target and worth watching.`;}
   if(ev.zone==='gap')return `<b>${capFirst(nameList(misses.map(c=>inSentence(c.short)),4))}</b> ${misses.length>1?'are':'is'} projected to fall short by ${TGT}.${rest?` ${rest===1?'The other test clears':`The other ${rest} tests clear`}.`:''}`;
   if(ev.zone==='incomplete')return ev.missing.length?`Still need <b>${nameList(ev.missing.map(r=>inSentence(missingTestName(r))),4)}</b> to judge this goal.${C.length?` The ${C.length} ${C.length===1?'test':'tests'} entered so far all clear.`:''}`:ev.cap;
   const margin=tight?tight.projPct-100:0;
@@ -6051,7 +6060,7 @@ function radarFigureHTML(C,ev,{animate=true}={}){
   return `<div class="radarfig"><div class="radarplot">${radarSVG(C,{animate})}${animate&&C.length>=3?'<button type="button" class="rreplay" aria-label="Replay the radar animation">Replay</button>':''}</div><div class="radarside"><div class="radarread z-${ev.zone}">${radarReadHTML(C,ev)}</div>${radarLegendHTML()}<p class="radarnote">Each spoke is one test, scaled so the green ring is exactly what this goal needs at ${TGT}. Red carries today’s result forward with typical age-related decline. Where red falls inside green, that test won’t clear. Training can move the red line.</p></div></div>`;
 }
 function radarTableHTML(C){
-  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>Test</th><th>Today</th><th>At ${TGT}, projected</th><th>Needed</th><th>Result at ${TGT}</th><th>Target</th></tr></thead><tbody>${C.map(c=>`<tr class="${c.meets?'ok':'miss'}"><td class="rtest">${c.short}</td><td>${fmtU(c.raw,c.unit)}</td><td>${c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="rres">${c.meets?'✓ Clears':`Short by ${c.shortBy}%`}${c.meetsNow?'':'<small>Already short today</small>'}</td><td><span class="tg tg-${c.grade}">${c.grade}</span> ${TARGET_GRADES[c.grade]}</td></tr>`).join('')}</tbody></table></div><div class="rtablenote">Target grades: A is set by the task itself. B comes from research or a closely related task. C is a clinical estimate that is still being validated.</div>`;
+  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>Test</th><th>Today</th><th>At ${TGT}, projected</th><th>Needed</th><th>Result at ${TGT}</th><th>Target</th></tr></thead><tbody>${C.map(c=>`<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest">${c.short}</td><td>${fmtU(c.raw,c.unit)}</td><td>${c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="rres">${c.meets?'✓ Clears':c.watch?`Watch · ${c.shortBy}% below`:`Short by ${c.shortBy}%`}${c.meetsNow?'':'<small>Already short today</small>'}</td><td><span class="tg tg-${c.grade}">${c.grade}</span> ${TARGET_GRADES[c.grade]}</td></tr>`).join('')}</tbody></table></div><div class="rtablenote">Target grades: A is set by the task itself. B comes from research or a closely related task. C is a clinical estimate that is still being validated.</div>`;
 }
 
 function barChart(C){
@@ -6163,7 +6172,7 @@ function miniRadar(C){
   const at=(i,p)=>{const k=R*clamp(p,0,MAX)/MAX;return [cx+Math.cos(ang(i))*k,cy+Math.sin(ang(i))*k];};
   const f=n=>n.toFixed(1),shape=vals=>vals.map((p,i)=>at(i,p).map(f).join(',')).join(' ');
   const spokes=C.map((c,i)=>{const [x,y]=at(i,MAX);return `<line x1="${cx}" y1="${cy}" x2="${f(x)}" y2="${f(y)}"/>`;}).join('');
-  const dots=C.map((c,i)=>{if(c.meets)return '';const [x,y]=at(i,c.projPct);return `<circle class="mgap" cx="${f(x)}" cy="${f(y)}" r="2.8"/>`;}).join('');
+  const dots=C.map((c,i)=>{if(c.meets)return '';const [x,y]=at(i,c.projPct);return `<circle class="mgap${c.watch?' watch':''}" cx="${f(x)}" cy="${f(y)}" r="2.8"/>`;}).join('');
   return `<svg viewBox="0 0 120 104" class="minisvg" aria-hidden="true"><g class="mspokes">${spokes}</g><polygon class="mneed" points="${shape(C.map(()=>100))}"/><polygon class="mnow" points="${shape(C.map(c=>c.curPct))}"/><polygon class="m90" points="${shape(C.map(c=>c.projPct))}"/>${dots}</svg>`;
 }
 function limiterSynthesis(goals){const agg={};goals.forEach(g=>{const act=ACTIVITIES[g.profileId],C=components(act.reqs),ev=goalEvaluation(act,C);if(ev.zone==='incomplete')return;C.filter(c=>c.zone==='gap').forEach(c=>{const k=c.r.group||c.short,evidence=FORECAST_EVIDENCE[c.family]||FORECAST_EVIDENCE.none,evidenceWeight={A:1,B:.85,C:.65,'—':.45}[evidence.grade]||.65,taskWeight=({A:1,B:.85,C:.65}[c.taskEvidenceGrade]??(c.r.basis==='task'?1:.85)),vulnerability=c.static?0:Math.max(0,(1-c.projRaw/c.raw)*100);const a=agg[k]||(agg[k]={metric:c.r.metric,meta:METRICS[c.r.metric],short:c.short,cat:c.r.cat,ids:[],names:[],sev:0,priority:0});if(!a.ids.includes(g.id)){a.ids.push(g.id);a.names.push(g.name);}a.sev+=c.shortBy;a.priority+=(c.shortBy+vulnerability*.35)*evidenceWeight*taskWeight;});});return Object.values(agg).sort((a,b)=>b.priority-a.priority||b.sev-a.sev||b.ids.length-a.ids.length);}
@@ -6252,7 +6261,7 @@ function patientShortLabel(s){return String(s||'').replace(/knee extension/i,'le
 function patientGoalOutlook(g,ev){
   const n=ev.total,expected=n+ev.missing.length;
   const detail=ev.zone==='gap'?`${n-ev.misses.length} of ${n}${n===1?'':' tests'} clear at ${TGT}`:ev.zone==='incomplete'?(ev.missing.length?`${n} of ${expected} tests entered`:ev.cap):`All ${n} tests clear at ${TGT}`;
-  const note=ev.zone==='incomplete'&&!ev.missing.length?`${ev.cap}.`:ev.zone==='clear'?`All ${n} tests clear at ${TGT}.`:`${ev.cap}.`;
+  const note=ev.zone==='incomplete'&&!ev.missing.length?`${ev.cap}.`:ev.zone==='clear'&&!ev.watch?.length?`All ${n} tests clear at ${TGT}.`:`${ev.cap}.`;
   return {goalId:g.id,goalName:g.name,status:ev.zone,label:ev.word,visualZone:ev.zone,note,detail,evidenceReady:ev.zone!=='incomplete',assessmentIncomplete:ev.missing.length>0,sortScore:{gap:0,incomplete:1,clear:2}[ev.zone]};
 }
 function patientStory(goals,traj=capacityTrajectories(goals),options={}){
@@ -6285,7 +6294,7 @@ function clinicianGoalCardsHTML(gs,ordered=false){
   const rows=ordered?gs.slice().sort((a,b)=>(a.ev.worst?.projPct??999)-(b.ev.worst?.projPct??999)):gs;
   return `<div class="ovgrid">${rows.map(s=>`<button class="ovcard z-${s.ev.zone}" data-id="${s.g.id}"><div class="ovname">${s.g.name}</div>${miniRadar(s.C)}<div class="ovword z-${s.ev.zone}"><i class="sdot"></i>${s.ev.word}</div><div class="ovcap">${s.ev.cap}</div></button>`).join('')}</div>`;
 }
-function patientGoalCardsHTML(outlooks,ordered=false){const rows=ordered?outlooks.slice().sort((a,b)=>a.sortScore-b.sortScore||a.goalName.localeCompare(b.goalName)):outlooks;return `<div class="ovgrid">${rows.map(outlook=>`<button class="ovcard z-${outlook.visualZone}" data-id="${outlook.goalId}" data-goal-outlook="${outlook.status}"><div class="ovname">${outlook.goalName}</div>${miniRadar(components(ACTIVITIES[goalById(outlook.goalId).profileId].reqs))}<div class="ovword z-${outlook.visualZone}"><i class="sdot"></i>${outlook.label}</div><div class="ovcap">${outlook.note}</div></button>`).join('')}</div>`;}
+function patientGoalCardsHTML(outlooks,ordered=false){const rows=ordered?outlooks.slice().sort((a,b)=>a.sortScore-b.sortScore||a.goalName.localeCompare(b.goalName)):outlooks;return `<div class="ovgrid">${rows.map(outlook=>`<button class="ovcard z-${outlook.visualZone}" data-id="${outlook.goalId}" data-goal-outlook="${outlook.status}"><div class="ovname">${outlook.goalName}</div>${(()=>{const act=ACTIVITIES[goalById(outlook.goalId).profileId],C=components(act.reqs);goalEvaluation(act,C);return miniRadar(C);})()}<div class="ovword z-${outlook.visualZone}"><i class="sdot"></i>${outlook.label}</div><div class="ovcap">${outlook.note}</div></button>`).join('')}</div>`;}
 /* Overview headline: how many goals are on track, and a key for the mini radars. */
 function goalHeadlineHTML(story){
   const n={clear:0,gap:0,incomplete:0};story.goalOutlooks.forEach(o=>n[o.status]++);
@@ -6497,7 +6506,7 @@ function printFrame(pageNum,total,cls,inner){
 }
 function printCompTable(C){
   return `<table class="ptbl"><thead><tr><th>Test</th><th>Now → ${TGT}</th><th>Needs</th><th>At ${TGT}</th><th>Target</th></tr></thead><tbody>`+
-    C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.zone}">${c.meets?'clears':'short '+c.shortBy+'%'}</td><td class="ptg">${c.grade}</td></tr>`).join('')+
+    C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.watch?'watch':c.zone}">${c.meets?'clears':c.watch?'watch':'short '+c.shortBy+'%'}</td><td class="ptg">${c.grade}</td></tr>`).join('')+
     `</tbody></table>`;
 }
 function printGoalPage(g,pageNum,total,goalNum,goalTotal){
