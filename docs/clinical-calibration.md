@@ -83,6 +83,14 @@ Targets from sex-specific cut-offs carry separate values for men and women. Task
     | Up | 3-mile walk 19.6 → 23.8; golf 23 → 27; hike 30 → 34; rowing 23 → 27; soft sand 23 → 26; ocean swim 30 → 32; surfing 25 → 29; sexual activity 15 → 16.7; festival 15 → 18.9; snorkeling 25 → 27.8; kayak 25.7 → 27.3; dog walk 22.5 → 23.8 |
 
   - **Full sources:** `research_aerobic_demands` (2026-09-24 audit).
+- **Range-of-motion and balance targets (task data from motion-analysis studies):**
+  - Knee flexion: floor rise 115 → 120° and gardening 115 → 120°. Kneeling reaches ≥120° (Galvin 2019); kneeling and crouching use 120–149° (Rowe 2000).
+  - Hip flexion: chair or toilet rise 100 → 110° (toilet 112.6°, Sah 2022) and gardening 105 → 110° (Hyodo 2017 crouching, plus pelvic tilt in a clinic measure).
+  - Ankle dorsiflexion for tying shoes: 7 → 4 cm knee-to-wall. Dressing uses 3–13° (Hyodo 2017).
+  - Thoracic rotation for driving: 35 → 30°. Blind-spot checks use 10–18° of trunk rotation (Chen 2015).
+  - Single-leg balance for stairs with 25 lb: 6 → 10 s (Araujo 2022 10-s test; PCA 80–90 Developing).
+  - Demanding balance targets stay at 15 s, the 80–90 Proficient standard. The 20-s figures in the literature are health-risk cut-offs, not task demands.
+- **Range of motion is still held flat to 90.** The literature shows decline: about 1–2° per decade before 70, then faster for hip flexion (−6°/decade), shoulder flexion (−7°) and ankle dorsiflexion (−1.25 cm). Straight-leg raise holds steady. Whether to model this, and on which track (typical, or maintained for patients who do mobility work), is an open decision for Dan.
 - **Evidence caveat (documented, not modeled).** Longitudinal studies show untrained people lose rep counts, holds and balance faster than the PCA age bands imply: roughly 2× for push-ups and trunk holds, and 2–3× for single-leg stance. So for strength and movement tests the red line means "keeps the current level for age", which is what training aims for. Aerobic fitness follows typical decline.
 - **Also in 4.5:**
   - stand-in tests count toward the goals they stand in for;
