@@ -34,6 +34,24 @@ Targets from sex-specific cut-offs carry separate values for men and women. Task
 - LT1 runs at 0.75× the VO₂max rates and is capped at 85% of projected VO₂max. Before this fix, projected LT1 exceeded VO₂max by age 90.
 - Power runs at 1.2× and reactive capacity at 1.35× the leg-strength rates, and muscular endurance at 0.8×.
 
+## Model 4.3 goal inputs
+
+Tests were swapped or dropped so each goal uses the highest-impact tests Early Medical already measures (PCA, pROM tracker, VALD), with one test per capacity:
+- **Added from the PCA and pROM tracker:** 30-second chair stand (chair rise), knee flexion range (floor rise, gardening), hip extension range (walking), hip external rotation (sexual expression), hip abduction range (horseback).
+- **Swapped in:**
+  - Sorensen hold: lifting a child, car seat, rowing.
+  - Split squat: floor rise, bowling.
+  - Dead hang: jars.
+  - Inverted row: swimming, paddling, yacht, surf.
+  - Wall sit: skiing.
+  - Single-leg pogos: tennis. The drop jump is not in the PCA battery.
+  - Seated calf strength: dance.
+- **Dropped:**
+  - Duplicate tests: a second calf test (beach, dog walk, 5 km, walking) and CMJ where a single-leg jump is used (kicking).
+  - Tests that don't limit the task: planks in chores, cycling, swimming and rowing; balance on flat ground or two feet; grip for rowing and kayaking; Pallof hold for jars.
+  - LT1 for efforts under about 45 minutes (5 km, 500 m swim) and at 3 METs.
+- A goal whose own test is the task (the timed 30-second stance) is on track when that test clears; other tests below target show as "watch".
+
 ## Task-demand evidence grades
 
 - **A — close operational match:** the Compendium activity, speed, load, or duration closely matches the stated task.
