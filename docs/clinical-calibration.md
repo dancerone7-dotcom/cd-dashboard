@@ -28,6 +28,27 @@ Each target is the level at which that capacity stops limiting the task at the m
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
 
+## Model 4.6: range of motion declines at half the typical rate (2026-09-24)
+
+Dan approved modeling ROM decline at half the typical rate.
+- **Typical loss per decade** (Soucie 2011; Roach & Miles 1991; Stathokostas 2013; McBride 2026; thoracic values are expert estimates):
+
+  | Measure | Before 70 | After 70 |
+  |---|---|---|
+  | Hip flexion | 1.5° | 6° |
+  | Knee flexion | 1.5° | 3° |
+  | Hip extension | 1° | 2° |
+  | Hip IR, ER, abduction | 1.5° | 3° |
+  | Shoulder flexion | 2° | 7° |
+  | Thoracic rotation | 2° | 3° |
+  | Thoracic extension | 1° | 2° |
+  | Knee-to-wall | 0.5 cm (before 60) | 1.25 cm (after 60) |
+  | Straight-leg raise | 0 | 0 |
+
+- **The tool uses half these rates**, in degrees (cm for knee-to-wall), not percent. That is the assumption for a patient who keeps doing mobility work. The evidence doesn't back general activity here: it explains almost none of the variation in ROM loss, and targeted mobility work regains about 2–4° in trials of people aged 60–88. Grade C.
+- **Consequence:** ROM that sits exactly at a target today now falls a few degrees short at 90. A patient needs that margin now to clear.
+- **Measurement caveat:** clinic hip-flexion readings include about 15° of pelvic tilt compared with motion-capture task angles (Beneck 2018). ROM targets stay grade C until the protocol is matched.
+
 ## Model 4.5: decline calibrated to the PCA standards (2026-09-24)
 
 **Dan's rule:** someone who scores Proficient on every PCA test for their age today should have the strength to meet the strength-based targets of their CD goals at 90, unless strong evidence shows a task needs more than Proficient.
@@ -90,7 +111,6 @@ Targets from sex-specific cut-offs carry separate values for men and women. Task
   - Thoracic rotation for driving: 35 → 30°. Blind-spot checks use 10–18° of trunk rotation (Chen 2015).
   - Single-leg balance for stairs with 25 lb: 6 → 10 s (Araujo 2022 10-s test; PCA 80–90 Developing).
   - Demanding balance targets stay at 15 s, the 80–90 Proficient standard. The 20-s figures in the literature are health-risk cut-offs, not task demands.
-- **Range of motion is still held flat to 90.** The literature shows decline: about 1–2° per decade before 70, then faster for hip flexion (−6°/decade), shoulder flexion (−7°) and ankle dorsiflexion (−1.25 cm). Straight-leg raise holds steady. Whether to model this, and on which track (typical, or maintained for patients who do mobility work), is an open decision for Dan.
 - **Evidence caveat (documented, not modeled).** Longitudinal studies show untrained people lose rep counts, holds and balance faster than the PCA age bands imply: roughly 2× for push-ups and trunk holds, and 2–3× for single-leg stance. So for strength and movement tests the red line means "keeps the current level for age", which is what training aims for. Aerobic fitness follows typical decline.
 - **Also in 4.5:**
   - stand-in tests count toward the goals they stand in for;

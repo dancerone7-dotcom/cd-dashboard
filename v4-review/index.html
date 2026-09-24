@@ -759,9 +759,9 @@ body{background:#eceff3}
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
-const MODEL_VERSION='4.5';
+const MODEL_VERSION='4.6';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['A','B','C','R','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -5750,9 +5750,23 @@ function anchoredDeclinePoints(ages,values){const pts=[];for(let a=18;a<=110;a++
     register(metric,PCA_BAND_AGES,PCA_PROFICIENT[proxy],METRICS[metric].family,{grade:'C',label:`Borrows the ${METRICS[proxy].label} PCA age bands`,src:`No numeric PCA age bands for this test yet; declines like ${METRICS[proxy].label} (PCA Standards, EM_PCA_02) until VALD age norms are added`});}
   register('grip_lb',GRIP_P75.ages,GRIP_P75,'upper_strength',{grade:'B',label:'Stays at the 75th percentile for age',src:'Dodds 2014 grip norms (PLoS One, PMID 25474696), 75th centile: Proficient grip today tracks the 75th centile to 90'});
 })();
+/* Model 4.6: range of motion declines in degrees (cm for knee-to-wall), not percent. Typical loss per
+   decade before and after a breakpoint comes from Soucie 2011, Roach & Miles 1991, Stathokostas 2013
+   and McBride 2026 (ROM review 2026-09-24); thoracic values are expert estimates. The tool uses half
+   that rate: the assumption for a patient who keeps doing mobility work. General activity barely
+   slows ROM loss; targeted mobility work regains about 2–4°. Straight-leg raise holds steady. */
+const ROM_DECLINE={hipFlexion_deg:{pre:1.5,post:6,brk:70},kneeFlexROM_deg:{pre:1.5,post:3,brk:70},hipExt_deg:{pre:1,post:2,brk:70},
+  hipIR_deg:{pre:1.5,post:3,brk:70},hipER_deg:{pre:1.5,post:3,brk:70},hipAbdROM_deg:{pre:1.5,post:3,brk:70},
+  ankleDF_cm:{pre:.5,post:1.25,brk:60},shoulderFlexion_deg:{pre:2,post:7,brk:70},thoracicRot_deg:{pre:2,post:3,brk:70},
+  thoracicExt_deg:{pre:1,post:2,brk:70},hamstringSLR_deg:{pre:0,post:0,brk:70}};
+const ROM_TRACK=.5;
+(function registerRomDecline(){for(const [metric,r] of Object.entries(ROM_DECLINE)){if(!METRICS[metric])continue;const fam='rom:'+metric,u=metric==='ankleDF_cm'?' cm':'°';
+  DECLINE_CURVES[fam]=DECLINE_CURVES.none;FAMILY_BAND[fam]=.5;EVIDENCE_HORIZONS[fam]={...EVIDENCE_HORIZONS.mobility,extrapolationStartAge:90,uncertaintyMultiplier:1,forecastConfidence:'low'};
+  FORECAST_EVIDENCE[fam]={grade:'C',label:'Half the typical range-of-motion loss (keeps doing mobility work)',src:`Typical loss ${r.pre}${u} per decade before ${r.brk}, ${r.post}${u} after (Soucie 2011; Roach & Miles 1991; Stathokostas 2013; McBride 2026), halved on the assumption the patient keeps doing mobility work`};
+  METRICS[metric].family=fam;}})();
 /* Follow each decline curve through the target age. Evidence thins out past each family's
    horizon; that widens the range in projectBandAt, it does not slow the central decline. */
-function projectCapacity(raw,family,sex,ageNow,target,mult=1){let v=raw;for(let a=ageNow;a<target;a++){const d=clamp(annualDecline(family,sex,a)*mult,0,.12);v*=1-d;}return v;}
+function projectCapacity(raw,family,sex,ageNow,target,mult=1){const rom=typeof family==='string'&&family.startsWith('rom:')?ROM_DECLINE[family.slice(4)]:null;if(rom){let v=raw;for(let a=ageNow;a<target;a++)v-=(a<rom.brk?rom.pre:rom.post)/10*ROM_TRACK*mult;return v;}let v=raw;for(let a=ageNow;a<target;a++){const d=clamp(annualDecline(family,sex,a)*mult,0,.12);v*=1-d;}return v;}
 function projectBandAt(raw,family,sex,ageNow,target){if(family==='none')return [raw,raw];const horizon=EVIDENCE_HORIZONS[family]||EVIDENCE_HORIZONS.none,base=FAMILY_BAND[family]??.45,yearsBeyond=Math.max(0,target-horizon.extrapolationStartAge),progress=clamp(yearsBeyond/20,0,1),widen=1+(horizon.uncertaintyMultiplier-1)*progress,b=base*widen;return [projectCapacity(raw,family,sex,ageNow,target,1+b),projectCapacity(raw,family,sex,ageNow,target,Math.max(.15,1-b))];}
 function projectBand(raw,family){return projectBandAt(raw,family,PATIENT.sex,AGE,TGT);}
 /* LT1 always sits below VO2max. Its share rises with age, so cap it at 85% of projected VO2max. */
