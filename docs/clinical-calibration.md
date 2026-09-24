@@ -1,10 +1,18 @@
 # Clinical calibration and protocol register
 
-Status: **pending independent clinician approval**. This file records candidate values and operational definitions; it does not approve them for clinical scoring.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
-## Release rule
+## Status rule (model 4.1)
 
-A candidate threshold may become scoreable only when a named clinician documents the task definition, measurement protocol, population, source or validation cohort, accepted uncertainty, and approval date. Until then the dashboard keeps it as a supporting trajectory and cannot produce a pass/fail result from it.
+Every target counts. A goal is **On track** only when every one of its tests is projected to clear its target at the marginal-decade age. Any projected miss means **Won’t clear**, and the report names the tests that fall short. A goal with missing tests and no projected miss shows **Needs more data**, naming what is missing.
+
+Each target carries a grade for how firm the number is:
+
+- **A — task standard:** set by the task itself or a close published match (for example, 30 seconds for the 30-second balance goal, or a Compendium grade-A aerobic demand).
+- **B — research-based:** adapted from published research or a closely related task, including fixed external loads converted with a planning reserve.
+- **C — clinical estimate:** the team’s best current number, still being validated. This includes the 22 targets listed below whose test protocol is not yet validated.
+
+Grades are shown on every target in the report’s test table and in the clinician audit. A target moves up a grade when a named clinician documents the task definition, measurement protocol, population, source or validation cohort, accepted uncertainty, and approval date.
 
 ## Task-demand evidence grades
 
@@ -37,9 +45,9 @@ A candidate threshold may become scoreable only when a named clinician documents
 
 Source convention: the [2024 Adult Compendium](https://pacompendium.com/adult-compendium/) uses a standard adult MET; its terms page defines 1 MET as approximately 3.5 mL/kg/min. These are task-demand conventions, not age-adjusted patient values.
 
-## Candidate thresholds kept out of readiness scoring
+## Targets graded C pending protocol validation
 
-These 22 values are preserved for review so the team does not lose prior work. Every row remains **supporting trajectory only**.
+These 22 values were held out of scoring before model 4.1. They now count toward goal status like every other target and are graded **C (clinical estimate)** until the protocol validation in the last column is done.
 
 | Goal | Metric | Candidate | Why it was proposed | Approval evidence required |
 |---|---|---:|---|---|
@@ -81,6 +89,6 @@ VALD ForceDecks supports Quiet Stand, Single Leg Stand, and Single Leg Range of 
 | Role | Name | Decision | Date |
 |---|---|---|---|
 | Project owner | dancerone7-dotcom | Approved for team review and demo deployment only; not clinical-use approval | 2026-08-11 |
-| Clinical owner | _required_ | _pending_ | _pending_ |
+| Clinical owner | Dan (dancerone7-dotcom) | Approved every target counting toward goal status for team review and demo use, each graded A/B/C (most are C, clinical estimates). Not clinical-use approval | 2026-09-24 |
 | Assessment/VALD protocol owner | _required_ | _pending_ | _pending_ |
 | Technical reviewer | _required_ | _pending_ | _pending_ |
