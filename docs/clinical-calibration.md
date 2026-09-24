@@ -34,6 +34,12 @@ Targets from sex-specific cut-offs carry separate values for men and women. Task
 - LT1 runs at 0.75× the VO₂max rates and is capped at 85% of projected VO₂max. Before this fix, projected LT1 exceeded VO₂max by age 90.
 - Power runs at 1.2× and reactive capacity at 1.35× the leg-strength rates, and muscular endurance at 0.8×.
 
+## Model 4.4 stand-in tests, capped holds and not-tested codes
+
+- **Stand-ins:** when a goal's ideal test was not done, the next test the patient has stands in, best first (capacity map draft 1). Example: knee extension → belt squat → 30-s chair stand → squat chain. A stand-in's target is the PCA 80–90 standard for the patient's sex: the start of Developing for everyday goals, Proficient for demanding goals. The report says which test stood in.
+- **NT codes (PCA):** NT-UNABLE is a result and reads below target ("unable today"). NT-PAIN, NT-CONTRA, NT-ELIG, NT-TIME and NT-EQUIP mean no result, so a stand-in is used. Codes travel in the exported JSON as `notTested`.
+- **Capped holds:** wall sit, heel-to-wall plank, Sorensen, side plank and calf raises stop at the band bar, and single-leg balance at 45 s. A result at the bar is a lower bound. If even the capped value clears the target at 90, it clears. If not, a stand-in is tried; if none settles it, the test shows "at the test limit, re-test longer to confirm" as a watch item, not a miss.
+
 ## Model 4.3 goal inputs
 
 Tests were swapped or dropped so each goal uses the highest-impact tests Early Medical already measures (PCA, pROM tracker, VALD), with one test per capacity:
