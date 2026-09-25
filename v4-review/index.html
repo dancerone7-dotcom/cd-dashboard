@@ -6963,51 +6963,65 @@ function startBuilder(editId){
    judged exactly like the built-in ones (same target rule, evidence and grade). Aerobic targets come
    from the activity's energy cost (Compendium of Physical Activities) and duration. ── */
 const DEMANDS=[
-  ['Getting around',[['walk','Walking or standing for a long time'],['terrain','Uneven ground, sand or trails'],['stairs','Climbing stairs, hills or stepping up'],['descend','Going downhill or down steps'],['rise','Getting up from the floor or a low seat'],['squat','Deep squatting or kneeling']]],
+  ['Getting around',[['walk','Walking or standing for a long time'],['run','Running or jogging'],['terrain','Uneven ground or trails'],['soft','Sand, grass or a moving surface (boat, dock)'],['stairs','Climbing stairs, hills or stepping up'],['descend','Going downhill or down steps'],['balance','Standing on one leg (dressing, stepping over things)'],['rise','Getting up from the floor or a low seat'],['squat','Deep squatting or kneeling'],['bend','Bending to the floor (tying shoes, picking things up)']]],
   ['Quick and athletic',[['sprint','Sprinting or quick starts'],['cut','Cutting, lateral moves or quick direction changes'],['jump','Jumping or landing'],['kick','Kicking a ball']]],
-  ['Upper body',[['throw','Throwing'],['strike','Swinging or striking (bat, club, racquet)'],['overhead','Reaching or lifting overhead'],['pull','Pulling, rowing or paddling'],['push','Pushing up from the ground or pressing'],['grip','Holding an implement or a pulling load (leash, reins, rope)'],['antirot','Resisting a twist (leash, recoil, off-center load)']]],
+  ['Upper body',[['throw','Throwing'],['strike','Swinging or striking (bat, club, racquet)'],['overhead','Reaching or lifting overhead'],['twist','Turning the trunk (reaching behind, looking back)'],['pull','Pulling (ropes, lines, heavy doors)'],['paddle','Paddling (kayak, canoe, paddleboard)'],['row','Rowing (legs drive, arms pull)'],['push','Pushing up from the ground or pressing'],['grip','Holding an implement or a pulling load (leash, reins, rope)'],['antirot','Resisting a twist (leash, recoil, off-center load)']]],
   ['Loads, water and riding',[['carry','Carrying a load'],['lift','Lifting a load from the floor'],['water','Swimming or moving in water'],['horse','Riding a horse'],['bike','Riding a bike']]]
 ];
 const DEMAND_LABEL=Object.fromEntries(DEMANDS.flatMap(([,items])=>items));
 /* [demand, built-in goal to copy from, metric]; loads and aerobic targets are set from the builder inputs. */
 const DEMAND_RULES={
   walk:[['walk-3mi','kneeExt_xBW'],['walk-3mi','anklePF_xBW'],['walk-3mi','hipExt_deg']],
-  terrain:[['beach-sand','balanceSL_EO_s'],['beach-sand','anklePF_xBW'],['ski-green','hipAbd_xBW']],
-  stairs:[['stairs-load','kneeExt_xBW'],['dog-walk','loadedStepup_pctBW']],
-  descend:[['hike-pack','stepDown_in']],
+  run:[['sprint-triathlon','kneeExt_xBW'],['sprint-triathlon','anklePF_xBW'],['sprint-triathlon','hopRSI']],
+  terrain:[['hike-pack','balanceSL_EO_s'],['hike-pack','anklePF_xBW'],['hike-pack','ankleDF_cm']],
+  soft:[['beach-sand','balanceSL_EO_s'],['beach-sand','anklePF_xBW'],['beach-sand','ankleDF_cm']],
+  stairs:[['stairs-load','kneeExt_xBW'],['dog-walk','loadedStepup_pctBW'],['stairs-load','ankleDF_cm']],
+  descend:[['stairs-load','stepDown_in']],
+  balance:[['dance','balanceSL_EO_s'],['balance-30s','hipAbd_xBW'],['balance-30s','anklePF_xBW']],
   rise:[['floor-rise','stsPower_Wkg'],['floor-rise','kneeExt_xBW'],['floor-rise','hipFlexion_deg'],['floor-rise','ankleDF_cm']],
   squat:[['garden-2h','hipFlexion_deg'],['garden-2h','kneeFlexROM_deg'],['floor-rise','ankleDF_cm']],
+  bend:[['touch-toes','hipFlexion_deg'],['touch-toes','hamstringSLR_deg'],['touch-toes','ankleDF_cm']],
   sprint:[['tennis','kneeExt_xBW'],['tennis','hopRSI'],['cycle-10mi','kneeFlex_xBW'],['walk-3mi','anklePF_xBW']],
   cut:[['football-kick','hipAbd_xBW'],['tennis','balanceSL_EO_s'],['tennis','kneeExt_xBW']],
   jump:[['surf','cmjPower_WkG'],['tennis','hopRSI']],
-  kick:[['football-kick','slVertJump_cm'],['football-kick','hipAbd_xBW'],['football-kick','rotMBThrow_m'],['football-kick','balanceSL_EO_s']],
+  kick:[['football-kick','slVertJump_cm'],['football-kick','kneeExt_xBW'],['football-kick','hipAbd_xBW'],['football-kick','rotMBThrow_m'],['football-kick','balanceSL_EO_s']],
   throw:[['tennis','shoulderER_NmKg'],['tennis','rotMBThrow_m'],['golf-18','thoracicRot_deg']],
   strike:[['golf-18','rotMBThrow_m'],['tennis','shoulderER_NmKg'],['golf-18','thoracicRot_deg'],['golf-18','grip_lb']],
   overhead:[['overhead-bin','shoulderFlexion_deg'],['overhead-bin','shoulderER_NmKg'],['overhead-bin','thoracicExt_deg']],
-  pull:[['kayak','loadedRow_pctBW'],['yacht','grip_lb']],
+  twist:[['car-seat-child','thoracicRot_deg']],
+  pull:[['yacht','loadedRow_pctBW'],['yacht','grip_lb']],
+  paddle:[['kayak','loadedRow_pctBW'],['kayak','thoracicRot_deg'],['yacht','grip_lb']],
+  row:[['row-10k','kneeExt_xBW'],['row-10k','loadedRow_pctBW']],
   push:[['surf','benchIso_xBW']],
   grip:[['golf-18','grip_lb']],
   antirot:[['weapon','pallof_pctBW']],
   carry:[['carry-grandkids','grip_lb']],
   lift:[['carry-grandkids','kneeExt_xBW']],
   water:[['swim-500m','shoulderFlexion_deg'],['swim-500m','loadedRow_pctBW'],['swim-500m','shoulderER_NmKg']],
-  horse:[['horseback','hipAdd_xBW'],['horseback','balanceSL_EO_s'],['horseback','hipAbdROM_deg'],['horseback','grip_lb']],
+  horse:[['horseback','hipAdd_xBW'],['horseback','hipAbd_xBW'],['horseback','balanceSL_EO_s'],['horseback','hipAbdROM_deg'],['horseback','grip_lb']],
   bike:[['cycle-10mi','kneeExt_xBW'],['cycle-10mi','kneeFlex_xBW']]
 };
 /* Built-in requirements to copy from: the first built-in goal's requirement for that metric. */
 function ruleTemplate(goalId,metric){const r=(ACTIVITIES[goalId]?.reqs||[]).find(x=>x.metric===metric);if(!r)return null;const c=JSON.parse(JSON.stringify(r));
   delete c.measurementSource;delete c.taskDemandSource;if(c.reserveAssumption){c.reqArgs={...(c.reqArgs||{}),reserve:c.reserveAssumption.multiplier};delete c.reserveAssumption;}delete c.sustainableFractionAssumption;return c;}
-/* Aerobic targets from the energy cost: the sustainable share of VO2max falls with duration
-   (0.72 up to 45 min, 0.70 to 90, 0.67 to 120, then 0.65; the same shares as the built-in goals). */
-const aeroFraction=min=>min<=45?.72:min<=90?.70:min<=120?.67:.65;
-function aerobicReqs(met,minutes){if(!(met>0))return [];const fraction=aeroFraction(minutes||60),src='CPET + Compendium of Physical Activities 2024',why=`The activity costs about ${met} METs for ${minutes||60} minutes.`;
-  const out=[{cat:'Aerobic',label:'VO₂max',metric:'vo2',unit:'mL/kg/min',dir:'higher_better',req:null,role:'capacity',weight:1.15,group:'aerobic',basis:'research',why:`${why} VO₂max has to sit well above that cost to sustain it.`,evi:`Energy cost from the Compendium of Physical Activities (${met} METs), sustained at about ${Math.round(fraction*100)}% of VO₂max.`,src,reqKind:'aerobic_vo2',reqArgs:{met,fraction},confidence:'direct',demandUncertainty:.18}];
-  if((minutes||0)>=40)out.push({cat:'Aerobic',label:'Aerobic base (LT1)',metric:'lt1_vo2',unit:'mL/kg/min',dir:'higher_better',req:null,role:'capacity',weight:1.15,group:'aerobic',basis:'research',why:'Long bouts run on the aerobic base, not peak capacity.',evi:'LT1 is set just above the activity’s energy cost (×1.05), as for the built-in goals.',src:'CPET LT1/VT1',reqKind:'aerobic_lt1',reqArgs:{met,reserve:1.05},confidence:'direct',demandUncertainty:.2});
+/* Aerobic targets use the built-in goals' rule (TASK_DEMAND_EVIDENCE): the task's oxygen cost (older-adult
+   Compendium MET60+ × 2.7 mL/kg/min where it exists, otherwise adult MET × 3.5), sustained at a share of
+   VO2max that falls with duration (75% at 30 min, 65% at 60, 60% at 90, 55% at 120, 50% from 3 hours),
+   with a lower VO2max ceiling for arm and water work (mode), and LT1 just above the cost. */
+const AERO_SHARE=[[30,.75],[45,.72],[60,.65],[90,.60],[120,.55],[180,.50]];
+function aerobicReqs(spec){const minutes=+spec.minutes||60,cost=+spec.met60>0?+spec.met60*2.7:+spec.met>0?+spec.met*3.5:0;if(!(cost>0))return [];
+  const fraction=+lerp(minutes,AERO_SHARE).toFixed(2),mode=+spec.mode>0&&+spec.mode<=1?+spec.mode:1,src='CPET + Compendium of Physical Activities 2024',costTxt=`${cost.toFixed(1)} mL/kg/min`;
+  const why=`The activity costs about ${costTxt} of oxygen for ${minutes} minutes.`;
+  const out=[{cat:'Aerobic',label:'VO₂max',metric:'vo2',unit:'mL/kg/min',dir:'higher_better',req:null,role:'capacity',weight:1.15,group:'aerobic',basis:'research',why:`${why} VO₂max has to sit well above that cost to sustain it.`,evi:`Oxygen cost ${costTxt}${+spec.met60>0?` (older-adult Compendium, ${spec.met60} METs60+)`:` (Compendium, ${spec.met} METs)`}, sustained at about ${Math.round(fraction*100)}% of VO₂max for ${minutes} minutes${mode<1?`, with a ${Math.round(mode*100)}% ceiling for arm or water work`:''}.`,src,reqKind:'aerobic_vo2',reqArgs:{costMlKgMin:+cost.toFixed(1),met:+(cost/3.5).toFixed(2),fraction,mode},confidence:'direct',demandUncertainty:.25}];
+  if(minutes>=40)out.push({cat:'Aerobic',label:'Aerobic base (LT1)',metric:'lt1_vo2',unit:'mL/kg/min',dir:'higher_better',req:null,role:'capacity',weight:1.15,group:'aerobic',basis:'research',why:'Long bouts run on the aerobic base, not peak capacity.',evi:`LT1 just above the activity’s oxygen cost (×${minutes>=120?'1.10':'1.04'}), as for the built-in goals.`,src:'CPET LT1/VT1',reqKind:'aerobic_lt1',reqArgs:{costMlKgMin:+cost.toFixed(1),met:+(cost/3.5).toFixed(2),reserve:minutes>=120?1.10:1.04,mode},confidence:'direct',demandUncertainty:.25});
   return out;}
-function loadReqs(demands,loads){const out=[];
-  if(demands.carry&&loads.carry>0){const t=ruleTemplate('carry-grandkids','suitcaseCarry_pctBW');t.reqArgs={loadLb:+loads.carry,reserve:1.25};t.why=`Carrying about ${loads.carry} lb while walking.`;t.role='capacity';t.critical=false;out.push(t);}
-  if(demands.lift&&loads.lift>0){const t=ruleTemplate('carry-grandkids','relDeadlift_pctBW');t.reqArgs={loadLb:+loads.lift,reserve:1.25};t.why=`Lifting about ${loads.lift} lb from the floor.`;t.role='capacity';t.critical=false;out.push(t);}
-  if(demands.overhead&&loads.overhead>0){const t=ruleTemplate('overhead-bin','ohPress_pctBW');t.reqArgs={loadLb:+loads.overhead,reserve:1.25};t.why=`Lifting about ${loads.overhead} lb overhead.`;t.role='capacity';t.critical=false;out.push(t);}
+/* Loads keep the built-in reserve for each test (carry ×1.25, lift from the floor ×1.5, overhead ×1.25);
+   stairs with a carried load use the load-based step-up from the stairs goal. */
+function loadReqs(demands,loads){const out=[],mk=(goal,metric,lb,why)=>{const t=ruleTemplate(goal,metric);if(!t)return;t.reqArgs={...(t.reqArgs||{}),loadLb:+lb};t.why=why;t.role='capacity';t.critical=false;out.push(t);};
+  if(demands.carry&&loads.carry>0)mk('carry-grandkids','suitcaseCarry_pctBW',loads.carry,`Carrying about ${loads.carry} lb while walking.`);
+  if(demands.lift&&loads.lift>0)mk('carry-grandkids','relDeadlift_pctBW',loads.lift,`Lifting about ${loads.lift} lb from the floor.`);
+  if(demands.overhead&&loads.overhead>0)mk('overhead-bin','ohPress_pctBW',loads.overhead,`Lifting about ${loads.overhead} lb overhead.`);
+  if(demands.stairs&&loads.carry>0)mk('stairs-load','loadedStepup_pctBW',loads.carry,`Stepping up while carrying about ${loads.carry} lb.`);
   return out;}
 /* Any built-in requirement for a test, for library activities whose listed tests no ticked demand names. */
 function anyTemplate(metric){for(const [id,a] of Object.entries(ACTIVITIES)){if(a.custom)continue;const r=(a.reqs||[]).find(x=>x.metric===metric&&(x.role==='capacity'||x.role==='gate'));if(r)return ruleTemplate(id,metric);}return null;}
@@ -7017,13 +7031,15 @@ function anyTemplate(metric){for(const [id,a] of Object.entries(ACTIVITIES)){if(
 const AERO_METRICS=new Set(['vo2','lt1_vo2']);
 function generateGoalReqs(spec){const demands=spec.demands||{},loads=spec.loads||{},seen=new Set(),out=[];
   const add=r=>{if(!r||seen.has(r.metric))return false;seen.add(r.metric);out.push(r);return true;};
-  aerobicReqs(+spec.met,+spec.minutes).forEach(r=>add({...r,generatedBy:'energy'}));
+  aerobicReqs(spec).forEach(r=>add({...r,generatedBy:'energy'}));
   loadReqs(demands,loads).forEach(r=>add({...r,generatedBy:'load'}));
   const ticked=DEMANDS.flatMap(([,items])=>items).map(([d])=>d).filter(d=>demands[d]),rules=ticked.map(d=>(DEMAND_RULES[d]||[]).map(([g,m])=>({d,g,m})));
   if(spec.tests?.length){for(const m of spec.tests){if(seen.has(m))continue;const src=rules.flat().find(x=>x.m===m),t=src?ruleTemplate(src.g,m):anyTemplate(m);if(t)add({...t,generatedBy:src?src.d:'library'});}}
   else{let n=0;for(let i=0;n<MAX_RULE_TESTS&&rules.some(l=>l[i]);i++)for(const l of rules){if(n>=MAX_RULE_TESTS)break;const x=l[i];if(!x)continue;const t=ruleTemplate(x.g,x.m);if(t&&add({...t,generatedBy:x.d}))n++;}}
   /* Sport-level balance (11 s) when the activity is quick or athletic; everyday (10 s) otherwise. */
-  const bi=out.findIndex(r=>r.metric==='balanceSL_EO_s');if(bi>=0&&['sprint','cut','jump','kick','throw','strike'].some(d=>demands[d])&&out[bi].req<11)out[bi]={...ruleTemplate('tennis','balanceSL_EO_s'),generatedBy:out[bi].generatedBy};
+  /* Trails and hills need the deeper step-down of the hike goal (9 in); stairs use a standard step (7 in). */
+  const di=out.findIndex(r=>r.metric==='stepDown_in');if(di>=0&&demands.terrain)out[di]={...ruleTemplate('hike-pack','stepDown_in'),generatedBy:out[di].generatedBy};
+  const bi=out.findIndex(r=>r.metric==='balanceSL_EO_s');if(bi>=0&&['sprint','cut','jump','kick','throw','strike','terrain'].some(d=>demands[d])&&out[bi].req<11)out[bi]={...ruleTemplate('tennis','balanceSL_EO_s'),generatedBy:out[bi].generatedBy};
   return out;}
 
 /* Activity library: researched energy cost (Compendium of Physical Activities 2024) and demands.
@@ -7038,7 +7054,7 @@ function cleanSpec(sp){const s=sp&&typeof sp==='object'?sp:{},num=v=>{const n=Nu
   const overrides={};for(const [m,v] of Object.entries(s.overrides||{})){const n=num(v);if(METRICS[m]&&METRICS[m].kind!=='grade'&&n)overrides[m]=n;}
   const manual=(Array.isArray(s.manual)?s.manual:[]).map(c=>({metric:METRICS[c?.metric]&&METRICS[c.metric].kind!=='grade'?c.metric:null,req:num(c?.req),why:cleanText(c?.why||'')})).filter(c=>c.metric&&c.req).slice(0,8);
   const tests=(Array.isArray(s.tests)?s.tests:[]).filter(m=>METRICS[m]).slice(0,10);
-  return {libId:ACTIVITY_LIBRARY.some(a=>a.id===s.libId)?s.libId:'',demands,loads,met:num(s.met)&&num(s.met)<=20?num(s.met):null,minutes:num(s.minutes)&&num(s.minutes)<=600?num(s.minutes):null,
+  return {libId:ACTIVITY_LIBRARY.some(a=>a.id===s.libId)?s.libId:'',demands,loads,met60:num(s.met60)&&num(s.met60)<=20?num(s.met60):null,mode:num(s.mode)&&num(s.mode)<=1?num(s.mode):null,met:num(s.met)&&num(s.met)<=20?num(s.met):null,minutes:num(s.minutes)&&num(s.minutes)<=600?num(s.minutes):null,
     removed:(Array.isArray(s.removed)?s.removed:[]).filter(m=>METRICS[m]),overrides,manual,tests};}
 function goalReqsFromSpec(sp){const s=cleanSpec(sp);let reqs=generateGoalReqs(s).filter(r=>!s.removed.includes(r.metric));
   reqs=reqs.map(r=>{const v=s.overrides[r.metric];if(!v)return r;const rule=describeTarget(r);return {...r,req:v,reqKind:null,reqArgs:{},basis:'coach',coachSet:true,evi:`Coach-set target. Rule default: ${rule}. ${r.evi||''}`.trim()};});
@@ -7047,8 +7063,8 @@ function goalReqsFromSpec(sp){const s=cleanSpec(sp);let reqs=generateGoalReqs(s)
 /* How a target is set, in words, with this patient's number where one can be worked out. */
 function describeTarget(r){const rr=resolveRequirement(r),val=rr.req!=null?fmtU(rr.req,rr.unit):'';
   if(r.reqKind==='p75_force')return `top-quarter strength kept up to ${TGT}${val?`: ${val} for this patient`:''}`;
-  if(r.reqKind==='aerobic_vo2')return `${r.reqArgs.met} METs at ${Math.round(r.reqArgs.fraction*100)}% of VO₂max${val?`: ${val}`:''}`;
-  if(r.reqKind==='aerobic_lt1')return `just above ${r.reqArgs.met} METs${val?`: ${val}`:''}`;
+  if(r.reqKind==='aerobic_vo2')return `${r.reqArgs.costMlKgMin||(r.reqArgs.met*3.5).toFixed(1)} mL/kg/min at ${Math.round(r.reqArgs.fraction*100)}% of VO₂max${val?`: ${val}`:''}`;
+  if(r.reqKind==='aerobic_lt1')return `just above ${r.reqArgs.costMlKgMin||(r.reqArgs.met*3.5).toFixed(1)} mL/kg/min${val?`: ${val}`:''}`;
   if(r.reqKind==='fixed_load_pctBW')return `${r.reqArgs.loadLb} lb × ${r.reserveAssumption?.multiplier||r.reqArgs.reserve||1.25}${val?`: ${val} for this patient`:''}`;
   return val||'—';}
 function goalActivityFromSpec(base,spec){return {...base,spec:cleanSpec(spec),reqs:goalReqsFromSpec(spec)};}
@@ -7056,7 +7072,7 @@ function goalActivityFromSpec(base,spec){return {...base,spec:cleanSpec(spec),re
 let gbQuery='';
 function libMatches(q){const t=q.trim().toLowerCase();if(!t)return ACTIVITY_LIBRARY.slice(0,12);return ACTIVITY_LIBRARY.filter(a=>(a.name+' '+(a.aka||'')).toLowerCase().includes(t)).slice(0,12);}
 function applyLibraryActivity(id){const a=ACTIVITY_LIBRARY.find(x=>x.id===id);if(!a)return;const s=draft.spec;
-  s.libId=a.id;s.demands=Object.fromEntries((a.demands||[]).map(d=>[d,true]));s.loads={...(a.loads||{})};s.met=a.met;s.minutes=a.minutes;s.tests=[...(a.tests||[])];s.removed=[];s.overrides={};
+  s.libId=a.id;s.demands=Object.fromEntries((a.demands||[]).map(d=>[d,true]));s.loads={...(a.loads||{})};s.met=a.met;s.met60=a.met60||null;s.mode=a.mode||null;s.minutes=a.minutes;s.tests=[...(a.tests||[])];s.removed=[];s.overrides={};
   if(!draft.name)draft.name=a.goal||a.name;if(!draft.sub)draft.sub=a.sub||'';markDraftDirty();renderBuilder();}
 function renderBuilder(){
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'),s=draft.spec,lib=s.libId?ACTIVITY_LIBRARY.find(a=>a.id===s.libId):null;
@@ -7088,7 +7104,7 @@ function renderBuilder(){
   root.querySelectorAll('[data-lib]').forEach(b=>b.onclick=()=>applyLibraryActivity(b.dataset.lib));
   root.querySelectorAll('[data-demand]').forEach(c=>c.onchange=()=>{c.checked?s.demands[c.dataset.demand]=true:delete s.demands[c.dataset.demand];s.tests=[];markDraftDirty();renderBuilder();});
   root.querySelectorAll('[data-load]').forEach(i=>i.onchange=()=>{s.loads[i.dataset.load]=+i.value||null;markDraftDirty();renderBuilder();});
-  root.querySelectorAll('[data-spec]').forEach(i=>i.onchange=()=>{s[i.dataset.spec]=+i.value||null;markDraftDirty();renderBuilder();});
+  root.querySelectorAll('[data-spec]').forEach(i=>i.onchange=()=>{s[i.dataset.spec]=+i.value||null;if(i.dataset.spec==='met')s.met60=null;markDraftDirty();renderBuilder();});
   root.querySelectorAll('[data-override]').forEach(i=>i.onchange=()=>{const m=i.dataset.override,v=+i.value;const man=s.manual.find(c=>c.metric===m);if(man){if(v>0)man.req=v;}else if(v>0)s.overrides[m]=v;else delete s.overrides[m];markDraftDirty();renderBuilder();});
   root.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{const m=b.dataset.remove;s.manual=s.manual.filter(c=>c.metric!==m);if(!s.removed.includes(m))s.removed.push(m);delete s.overrides[m];markDraftDirty();renderBuilder();});
   root.querySelectorAll('[data-restore]').forEach(b=>b.onclick=()=>{s.removed=s.removed.filter(m=>m!==b.dataset.restore);markDraftDirty();renderBuilder();});
