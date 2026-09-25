@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.5, 2026-09-24)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,73 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.7: projections assume the patient keeps training (2026-09-24)
+
+Dan replaced the 4.5 rule. Strength shouldn't assume people keep their level for age; it should decline from where they are now at the rate of someone who stays active, not sedentary. He approved four decisions.
+
+1. **Red line: "if you keep training."** Training mostly sets the level, not the yearly rate. Masters lifters and trained groups lose about the same % per year as untrained people, from a higher start (Pearson 2002; Kennis 2013; Ireland 2022).
+   - Strength: healthy-cohort slopes through the 60s (Alcazar 2023; Hughes 2001; Rantanen 1998), then about 2/3 of the general rate from 70 (Health ABC; active men in Newcastle 85+, Granic 2016).
+   - Power: about twice the strength rate (Pearson 2002; Alcazar 2023). Reactive tests run at 1.2× power; there is no long-term data for them.
+   - Sit-to-stand power and the 30-s chair stand: the 8-year cohort rate, about 1%/yr in the late 60s and 2%/yr from 75 (Baltasar-Fernandez 2026).
+   - VO₂max: 0.7× the typical longitudinal rate (Fleg 2005). In HUNT, active adults lost 9% per decade and inactive adults 16% (Letnes 2020). LT1 runs at 0.75× the VO₂max rate.
+   - Unchanged: balance follows published age norms (the PCA balance standards), and range of motion declines at half the typical rate (4.6).
+
+   | Share kept from 55 to 90 | Keep training, men / women | Stop training, men / women | Model 4.4, men / women |
+   |---|---|---|---|
+   | Leg strength | 0.52 / 0.56 | 0.33 / 0.38 | 0.39 / 0.45 |
+   | Grip and upper body | 0.57 / 0.55 | 0.40 / 0.45 | 0.47 / 0.54 |
+   | Power | 0.41 / 0.44 | 0.28 / 0.33 | 0.33 / 0.39 |
+   | Sit-to-stand power | 0.57 / 0.59 | 0.49 / 0.50 | n/a |
+   | VO₂max | 0.62 / 0.66 | 0.43 / 0.46 | 0.50 / 0.55 |
+   | LT1 | 0.70 / 0.73 | 0.51 / 0.54 | 0.60 / 0.64 |
+
+2. **Knee-extension targets are set by the task, the same for men and women.** Body weight is already in the measure.
+   - 0.35 × BW for everyday goals: chair rise, carrying a child, festival, chores, soft sand, gardening, bowling, cycling, 3-mile walk.
+   - 0.45 × BW for stairs, getting up from the floor and demanding goals: floor rise, stairs with 25 lb, tennis, kicking, 5 km run, skiing.
+   - Source: Katayama & Yamasaki 2017, Fig. 3. Among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40. Healthy people in their 80s average 0.49 (men) and 0.39 (women) (Table 1).
+   - **Consequence: Proficient is the floor, not the finish line.** A Proficient 55-year-old man goes from 0.65 to 0.34 × BW at 90; a woman goes from 0.55 to 0.31. To clear everyday goals at 90, a 55-year-old needs about 0.67 (men) or 0.62 (women) now; demanding goals need about 0.86 and 0.80.
+   - **Stand-in targets follow the knee target.** A stand-in (belt squat, chair stand, squats) now sits at the same point between the PCA 80–90 Developing start and Proficient as the target it stands in for. For men that is a third of the way for everyday goals and Proficient for demanding goals. For women it is Proficient for everyday goals and twice the Developing-to-Proficient step for demanding goals. Other stand-ins keep the old rule: Developing start for everyday goals, Proficient for demanding ones.
+
+3. **Rep and hold tests are tracked, not scored.** Push-ups, inverted rows, chin-ups, split squats, calf raises, planks, side planks, Sorensen, wall sit, dead hang, Copenhagen and similar tests no longer decide goals or stand in for other tests. Against a fixed body-weight load, reps and hold times fall much faster than strength, by amounts that differ by muscle (Nuzzo 2024). So they can't be projected to 90 reliably. They stay on each goal as supporting measures, compared with the PCA standard for age at each re-test.
+   - Where a goal had no strength test for that capacity, one was added at the same PCA 80–90 level as the rep test it replaces:
+     - calf strength (isometric plantarflexion): festival, soft sand and 3-mile walk at 0.75 / 0.60 × BW (Developing start); 5 km run at 1.05 / 0.85 (Proficient);
+     - loaded row: yacht, 500 m swim, 10 km row and kayak at 10 / 7% BW per hand (Developing start); ocean swim and surfing at 16 / 13% (Proficient);
+     - isometric bench press: surfing at 1.65 / 1.20 × BW (Proficient).
+   - Where the goal already had a strength test for that capacity, the rep or hold test now only supports it:
+     - split squat for floor rise and bowling (knee strength decides);
+     - Sorensen for carrying a child and the car seat (the deadlift decides);
+     - dead hang for jars (grip decides);
+     - side plank for horseback riding (hip strength decides);
+     - wall sit for skiing (knee strength decides);
+     - calf raise for dancing (calf strength decides).
+   - Trunk holds (sexual expression, yacht, kayak, yoga, 10 km row) now only support. No strength test replaces them.
+   - The 30-s chair stand still counts. It is a timed test that tracks sit-to-stand power.
+
+4. **Grey line: "if you stop."** Each goal radar, test table and printed page now shows the same person at 90 if they stop training. The grey line does not change goal status.
+   - About 15% of strength, power and aerobic fitness fades in the first year:
+     - older adults lose 14–18% of strength by 5–7 months (Lemmer 2000; Henwood & Taaffe 2008);
+     - trained men near 60 lose about 16% of VO₂max in 3 months, and the loss then levels off (Schulman 1996; Coyle 1984);
+     - power is lost no faster than strength (Bosquet 2013 meta-analysis).
+   - After that first year, decline follows the general-population rates of model 4.4, and never runs slower than the keep-training line.
+   - Range of motion falls at the full typical rate.
+   - Sit-to-stand keeps its cohort rate, since that cohort is already a general population.
+   - Balance has no stop model, so the grey and red lines match.
+   - Caveat: the detraining studies are small (7–38 people) and mostly newly trained. Long-term trainees probably keep more.
+
+**Also in 4.7:**
+- **Fixed-load reserve cap removed.** The 4.5 cap existed only for Dan's old rule. Targets are load × reserve ÷ body weight again. The change only matters for light patients: a 30-lb child with a 1.25 reserve is 31% of a 120-lb woman's body weight.
+- **Grip for the dog walk and weapon handling stays 63 / 37 lb.** It is now justified as the 75th percentile at 90 rather than as a cap.
+- **LT1 cap.** LT1 is capped at 85% of VO₂max projected on the same line; before, the cap used the typical VO₂max line.
+- **Calibration check.** A synthetic patient exactly Proficient on every PCA test (ages 45, 55 and 65, both sexes) fails 180 of 552 strength checks:
+  - knee extension: 81;
+  - demanding-goal targets set at the 80–90 Proficient standard: calf, row, bench, step-up, step-down, the rotator-cuff stand-in, and the Pallof hold for the dog walk;
+  - fixed loads for the lighter patient.
+- **Demo patients.** They now read 0–3 of 10 goals on track, mostly limited by knee extension.
+- **Open for Dan:**
+  - Rotator-cuff targets (0.15–0.16 Nm/kg) have no published source and now fail most patients.
+  - Grip targets for fixed external loads, such as the dog walk, differ by sex although the load doesn't.
+- The tool reads 4.4–4.6 exports and recomputes them on 4.7.
 
 ## Model 4.6: range of motion declines at half the typical rate (2026-09-24)
 
@@ -111,7 +178,7 @@ Dan approved modeling ROM decline at half the typical rate.
   - Thoracic rotation for driving: 35 → 30°. Blind-spot checks use 10–18° of trunk rotation (Chen 2015).
   - Single-leg balance for stairs with 25 lb: 6 → 10 s (Araujo 2022 10-s test; PCA 80–90 Developing).
   - Demanding balance targets stay at 15 s, the 80–90 Proficient standard. The 20-s figures in the literature are health-risk cut-offs, not task demands.
-- **Evidence caveat (documented, not modeled).** Longitudinal studies show untrained people lose rep counts, holds and balance faster than the PCA age bands imply: roughly 2× for push-ups and trunk holds, and 2–3× for single-leg stance. So for strength and movement tests the red line means "keeps the current level for age", which is what training aims for. Aerobic fitness follows typical decline.
+- **Evidence caveat (documented, not modeled).** Longitudinal studies show untrained people lose rep counts, holds and balance faster than the PCA age bands imply: roughly 2× for push-ups and trunk holds, and 2–3× for single-leg stance. So for strength and movement tests the red line means "keeps the current level for age", which is what training aims for. Aerobic fitness follows typical decline. (Superseded by model 4.7.)
 - **Also in 4.5:**
   - stand-in tests count toward the goals they stand in for;
   - exact ties clear;
