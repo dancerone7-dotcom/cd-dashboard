@@ -28,6 +28,33 @@ Each target is the level at which that capacity stops limiting the task at the m
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
 
+## Data coverage: every test Early Medical collects (2026-09-25, redesign)
+
+Dan's request: make sure nothing EM collects that matters for a CD is missed. Checked against the EM Notion templates (PCA Standards, 62 tests; pROM tracker, 36 rows; DEXA tracker, 19 rows; CPET tracker, 18 rows), the report generator's parsers (CPET, DEXA, DARI CSV and JSON, PT intake, Injury Resilience Assessment workbook), the VALD tests EM runs, and the one-day assessment schedule.
+
+| Source | Already an input | Added | Left out, and why |
+|---|---|---|---|
+| PCA (62 tests) | All but one | | Plyo push-up: the PCA records it without a standard, and no study ties it to a daily task. The chest pass covers upper-body power |
+| pROM tracker (36 rows) | Hip flexion, hip IR and ER at 90°, hip abduction, hip extension, knee flexion, straight-leg raise, knee-to-wall, shoulder flexion, T-spine rotation | Shoulder IR and ER at 90° (typical range by age and sex, and decline, from Fleisig 2023: DARI capture of 6,635 people). Knee extension range (full = within 5° of straight) | Provocation and joint-play tests (SI cluster, FABER, Ober, Thomas, prone press-up, spring test, active SLR, foot and ankle joint mobility, tibial rotation, hip rotation at 0°, lumbar rotation, shoulder extension): no age norm tied to a task. A positive one is logged as a finding |
+| DEXA tracker (19 rows) | ALMI, FFMI, lowest central T-score | Body fat % (healthy range by age and sex: Gallagher 2000, Table 4). Lowest central Z-score, which is the one read under 50 or before menopause (ISCD 2019); the T-score loses its low-bone-mass label under 50 | Visceral fat: no settled cut-point for DXA VAT mass, and it stays on the DEXA report. Regional lean mass and symmetry: strength tests already use the weaker side. Forearm (33% radius): not a central site; ISCD uses it only when hip or spine can't be read |
+| CPET tracker (18 rows) | VO₂max, VO₂ at zone 2 (LT1); zone 2 as a share of VO₂max is shown | Heart rate recovery at 1 minute: 12 beats or less carries higher risk (Cole 1999, walking cool-down; 18 if recovery was lying down, Watanabe 2001) | HRmax, max fat oxidation, resting lactate: health context with no task link. METs, W/kg and absolute VO₂max: derived from VO₂max. Zone 2 heart rate, power, speed and incline: training zones, not capacity |
+| DARI | | Shoulder rotation (the Fleisig norms are DARI data). Asymmetries and compensations are logged as findings | Motion age and the quality, performance, athleticism and vulnerability scores: proprietary composites not tied to a task. DARI and goniometer angles are not interchangeable, so note the source |
+| Ortho exam (Injury Resilience Assessment) | | Highlights, reporting, injury history, key performance inhibitors, posture and treadmill notes are logged as findings | The output and capacity table repeats the VALD inputs |
+| VALD | CMJ power, single-leg jump, pogo and drop-jump RSI, sit-to-stand power, belt squat, ForceFrame hip, knee and shoulder ER, calf, grip | | Single-leg and quiet-stance sway: the plate logs fixed 30-s trials, so the stopwatch hold stays the input. Shoulder IR strength and the ER:IR ratio: a throwing-athlete marker, to revisit with the throwing goals. CMJ height and eccentric metrics: power is the input. DynaMo shoulder and hip: not comparable to ForceFrame |
+| SFMA, gait, respiration | Squat, toe touch, rotation and gait grades; DNS 3-month | Painful or dysfunctional patterns are logged as findings | |
+
+**Findings to keep in mind.** Test results ends with a findings list: body area, side, type (pain or symptoms, past injury or surgery, limited motion, movement pattern), source and a short note. A finding never changes a result. Every goal whose tests load that area lists it, on the patient page (with a "Things to keep in mind" panel under today's results) and in the clinician view. Findings travel with the exported file.
+
+**Test results step.** Body composition and heart rate recovery stay visible when "Only show tests these goals use" is on, and any entered result stays visible (dimmed if no selected goal uses it).
+
+**Goal results are unchanged.** The new inputs are context, or not yet used by a goal. Test members: A 3 / 7 / 0; B 1 / 1 / 8. All-Proficient check: 110 of 594 short. All demo patients match.
+
+**Open for Dan:**
+- The PCA broad jump is single-leg; the tool's input is labeled "Broad jump". Confirm which one the team enters.
+- Shoulder IR and ER range will join the throwing, striking and overhead goals when the activity library lands.
+- Knee extension range is context only for now. It could join the walking and stair goals: standing on a bent knee raises the quadriceps demand steeply as the angle grows (Perry 1975), and more than 5° short of straight is the usual clinical cut for a flexion contracture.
+- Visceral fat stays off the CD page unless you want it shown without a cut-point.
+
 ## Model 4.11: the "if you stop" line follows the detraining literature (2026-09-25)
 
 Dan's direction: match the literature as closely as possible, but keep it realistic for Early Medical's population (coached, mostly training a year or more, tested on VALD isometric devices). The grey line shows the same patient if they stop training today: a first-year drop, then the general-population decline, never more slowly than the keep-training line.
