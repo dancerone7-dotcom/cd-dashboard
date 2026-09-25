@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,35 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.13: Dan's decisions on the 4.12 open items (2026-09-25)
+
+**Aerobic targets follow the activity-demand review.** Built-in goals with a matching activity take the review's oxygen cost, share of VO₂max, mode ceiling and LT1 margin, with the share set by each goal's own duration. The LT1 margin is 1.05 (1.10 past 2 hours) for every goal. Surf's LT1 uses the session-average cost (11.1), not the paddling bouts.
+
+| Goal | VO₂max before → after | LT1 before → after | What changed |
+|---|---|---|---|
+| Walk 3 miles in an hour | 23.8 → 22.0 | 16.1 → 15.0 | The Older Adult Compendium cost (14.3) is already an older-adult cost; the extra +8% for age double-counted |
+| 60-minute hike with a 60-lb dog | 23.8 → 21.5 | 16.1 → 14.7 | Older-adult walking × 1.15 for the trail (14.0) |
+| 60-minute mountain hike | 33.8 → 30.3 | 22.9 → 20.7 | Hilly trail with a 10–20 lb pack (19.7) |
+| Tennis, padel or pickleball, 90 min | 25.0 → 25.9 | 15.6 → 15.8 | 58% of VO₂max for 75–150 minutes of stop-and-go play |
+| Open-water swim | 31.9 → 35.3 | 19.8 → 22.1 | Cost 21.0: no self-paced discount, since waves and current set the pace |
+| Swim 500 m in 25 minutes | 28.2 → 31.3 | — | Cost 18.6; 70% for a 20–45 minute bout |
+| Snorkel or scuba, 45 min | 27.8 → 27.2 | 18.2 → 18.4 | Fin ceiling 0.92 |
+| Kayak 90 minutes | 27.3 → 29.6 | 12.8 → 14.0 | Cost 13.3 (moderate paddling × 0.76) |
+| Surf | 29.2 → 32.2 | 14.6 → 11.7 | Paddling bouts at 75% with a 75% arm ceiling; LT1 on the session average |
+| Ski green runs for 3 hours | 23 → 26 | 13.2 → 15.0 | Older Adult Compendium active-time cost 14.3 at 55% for 2–3.5 hours (grade A) |
+| Horseback, 40 minutes | 16.7 → 14.4 | 12.5 → 10.6 | Cost 10.1, matching about 10 measured at a walk; 70% for 40 minutes |
+| Garden for 2 hours | 20.0 → 22.0 | 12.1 → 13.3 | Cost 12.1, the mean of the older-adult gardening codes (grade A) |
+| Golf, 18 holes carrying | 27.0 → 26.8 | 14.9 → 14.7 | Cost 13.4 |
+| Row 10 km in an hour | 26.9 → 27.1 | 18.2 → 18.5 | Cost 17.6 |
+
+Dance, cycling, chores, beach sand, the festival and sexual expression keep their cost and share. The 5 km run keeps 85% of VO₂max, since its pace question from the earlier audit is still open.
+
+**Knee extension counts for walking and stairs.** The input is now degrees short of straight (0 = fully straight; hyperextension counts as 0), and the target is 5° or less. It applies to walk 3 miles, stairs with 25 lb, the dog walk, the mountain hike, beach sand, the festival and walking golf, and to library activities that involve walking or stairs. It is judged today, not projected, grade C: standing and walking on a bent knee raises the quadriceps demand steeply as the angle grows (Perry 1975), and more than 5° short of straight is the usual clinical cut for a flexion contracture. Files saved in 4.12 convert (−8 becomes 8).
+
+**Other decisions.** The broad jump is two-footed; the input now says "both feet". The Notion PCA Standards row reads "SL Broad Jump" and should be renamed there, with Chris Hart's sign-off. Visceral fat stays off the CD page. No new tests.
+
+**Results.** Test member A: 3 / 7 / 0, unchanged; the short-term VO₂max goals are now 58 for the hike (was 65), 42 for the walk (46) and 50 for tennis (48). Test member B: 1 / 1 / 8 → 1 / 2 / 7. Tennis becomes an opportunity: VO₂max 54.9 projects to 25.8 at 90 against 25.9, so the goal is 55 (+1%, within a year). Demo patient counts are unchanged. All-Proficient check: 110 of 594 short.
 
 ## Model 4.12: one patient page, a clinician view and a three-step build (2026-09-25)
 
@@ -59,11 +88,7 @@ Dan's request: make sure nothing EM collects that matters for a CD is missed. Ch
 
 **Goal results are unchanged.** The new inputs are context, or not yet used by a goal. Test members: A 3 / 7 / 0; B 1 / 1 / 8. All-Proficient check: 110 of 594 short. All demo patients match.
 
-**Open for Dan:**
-- The PCA broad jump is single-leg; the tool's input is labeled "Broad jump". Confirm which one the team enters.
-- Shoulder IR and ER range will join the throwing, striking and overhead goals when the activity library lands.
-- Knee extension range is context only for now. It could join the walking and stair goals: standing on a bent knee raises the quadriceps demand steeply as the angle grows (Perry 1975), and more than 5° short of straight is the usual clinical cut for a flexion contracture.
-- Visceral fat stays off the CD page unless you want it shown without a cut-point.
+**Decided in 4.13:** the broad jump is two-footed; knee extension counts for the walking and stair goals; visceral fat stays off the CD page. Shoulder rotation joined the throwing goals with the goal library.
 
 ## Model 4.12: goal library, 55 activities from the activity-demand review (2026-09-25)
 
@@ -89,10 +114,7 @@ Shoulder rotation falls about 4° a decade each after 55 (total arc about 8°; F
 
 **Built-in goals against the review.** Built-in VO₂max targets sit close to the review's matching activities. Tennis/padel/pickleball is 25 against doubles 26, pickleball 25 and padel 27, but singles tennis needs 37. Golf carrying is 27 (review 27), dance 22.5 (23 to 24), horseback 17 (18), open-water swim 32 (35), laps 28 (31), kayak 27 (30), surf 29 (32) and downhill ski 23 (26). The built-in dog walk is a 60-minute trail walk with a 60-lb dog (24); the review's 30–40 minute walk needs 17.
 
-**Open for Dan:**
-- Align the built-in goals with the review's aerobic numbers? Open-water swim, laps, kayak, surf and downhill ski would rise by 2 to 3.5 mL/kg/min. Tennis stays about the same unless it is split into singles and doubles.
-- Tests the review would add: a water-competency pass (swim, tread, exit), a sitting-rising or timed floor-transfer test, a cardiac-clearance flag for scuba, snorkeling, open water, skiing, hunting and singles tennis (most deaths of older participants there are cardiac), the shoulder ER:IR strength ratio from the ForceFrame test (≥ 0.80), a 10-m sprint, NordBord eccentric hamstring, and choice stepping reaction time.
-- Source files: the full review (report and JSON) is kept locally with the other 2026-09-25 literature reviews, not in this repository.
+**Decided in 4.13:** the built-in goals take the review's aerobic numbers. No new tests: the review also suggested a water-competency pass, a sitting-rising test, a cardiac-clearance flag, the shoulder ER:IR ratio, a 10-m sprint, NordBord and choice stepping reaction time, and Dan declined them. The full review (report and JSON) is kept locally with the other 2026-09-25 literature reviews, not in this repository.
 
 ## Model 4.11: the "if you stop" line follows the detraining literature (2026-09-25)
 
