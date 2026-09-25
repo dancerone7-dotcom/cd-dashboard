@@ -702,7 +702,8 @@ body{background:#eceff3}
 .bproj.z-gap,.obfill.z-gap{background:#e0a24a}.pcard.z-gap{border-color:rgba(217,119,6,.35)}.srow.z-gap{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.28)}
 .radar .rl.miss{fill:#b45309}
 .rtable td.rstg small{color:var(--muted)}
-.rtable th,.rtable td{padding-left:8px;padding-right:8px}.rtable td.rstg{white-space:normal;min-width:118px}
+.rtable .rnum{display:inline-block;min-width:16px;color:var(--muted);font-weight:700}.rtable tr.untested td{color:var(--muted)}.rtable tr.untested .rtest{color:var(--ink)}
+.rtable th,.rtable td{padding-left:7px;padding-right:7px}.rtable td.rstg{white-space:normal;min-width:118px}.rtable td.rtest{white-space:normal;min-width:150px;max-width:210px}
 .glidewrap{margin:16px 0 8px}.glidehead{font-size:13.5px;color:var(--ink);margin:0 2px 8px}.glidehead span{color:var(--muted);margin-left:6px;font-size:12px}
 .glidegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
 .glidecard{border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px 12px 12px}
@@ -710,7 +711,7 @@ body{background:#eceff3}
 .glidecap{font-size:11.5px;line-height:1.45;color:var(--ink);margin-top:4px}
 svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
 .glide .gaxis{stroke:rgba(15,23,42,.18)}.glide .gtick{font:600 9px var(--sans);fill:#64748b}
-.glide .gkeep{fill:none;stroke:#bc2a2a;stroke-width:2;stroke-dasharray:6 4}.glide .graise{fill:none;stroke:#3f9a6b;stroke-width:2.4}
+.glide .gkeep{fill:none;stroke:#bc2a2a;stroke-width:2;stroke-dasharray:6 4}.glide .gstop{fill:none;stroke:#8e949b;stroke-width:1.6}.glide .graise{fill:none;stroke:#3f9a6b;stroke-width:2.4}
 .glide .gneed{stroke:#3f9a6b;stroke-width:2;stroke-dasharray:2 3}.glide .gnow{fill:#2a7cfb}.glide .ggoal{fill:#3f9a6b;stroke:#fff;stroke-width:1.5}
 .glide .glbl{font:700 9.5px var(--sans)}.glide .glbl.k{fill:#bc2a2a}.glide .glbl.n{fill:#2f7d4f}.glide .glbl.t{fill:#2a7cfb}
 .rlegend .raise i{border-top:3px solid #3f9a6b}
@@ -781,9 +782,9 @@ svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
-const MODEL_VERSION='4.8';
+const MODEL_VERSION='4.9';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['A','B','C','R','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -3761,6 +3762,24 @@ const ACTIVITIES = {
     "demandUncertainty": 0.22
    },
    {
+    "cat": "Strength",
+    "label": "Hip adduction isometric",
+    "metric": "hipAdd_xBW",
+    "unit": "× BW",
+    "dir": "higher_better",
+    "role": "capacity",
+    "weight": 0.9,
+    "group": "hip-adductors",
+    "basis": "research",
+    "why": "The inner thighs grip the horse. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame hip adduction, 75th percentile at ages 50–60 (384 N men, 270 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "src": "VALD ForceFrame",
+    "critical": false,
+    "confidence": "direct",
+    "demandUncertainty": 0.25,
+    "reqKind": "p75_force"
+   },
+   {
     "cat": "Balance",
     "label": "Single-leg balance, eyes open",
     "metric": "balanceSL_EO_s",
@@ -4642,6 +4661,24 @@ const ACTIVITIES = {
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.2
+   },
+   {
+    "cat": "Strength",
+    "label": "Knee extension isometric",
+    "metric": "kneeExt_xBW",
+    "unit": "× BW",
+    "dir": "higher_better",
+    "role": "capacity",
+    "weight": 1.1,
+    "group": "lower-strength",
+    "basis": "research",
+    "why": "Most of each stroke’s power comes from the leg drive. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "src": "VALD ForceFrame",
+    "critical": false,
+    "confidence": "direct",
+    "demandUncertainty": 0.25,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Strength",
@@ -5891,7 +5928,7 @@ function resolveRequirement(r){
   /* Targets taken from sex-specific cut-offs (grip, PCA bands) carry both values. */
   const req=+(r.reqBySex?r.reqBySex[PATIENT.sex==='female'?'female':'male']:r.req);return {req:Number.isFinite(req)&&req>0?req:null,unit:METRICS[r.metric]?.unit||r.unit,why:Number.isFinite(req)&&req>0?'':'A positive calibrated threshold is required.'};
 }
-const fmtU=(v,u)=>{if(v==null||v==='')return '—';if(typeof v==='string')return v;const dec=(u==='Nm/kg'||u==='m/s'||u==='W/kg'||u==='× BW'||u==='kg/m²')?2:((u==='lb'||u==='% BW'||u==='% BW/hand'||u==='cm'||u==='m'||u==='T-score')?1:0);const n=parseFloat((+v).toFixed(dec));return u==='°'?`${n}°`:`${n} ${u}`.trim();};
+const fmtU=(v,u)=>{if(v==null||v==='')return '—';if(typeof v==='string')return v;if(u==='grade')return ['—','Deficient','Developing','Proficient'][Math.round(v)]||'—';const dec=(u==='Nm/kg'||u==='m/s'||u==='W/kg'||u==='× BW'||u==='kg/m²')?2:((u==='lb'||u==='% BW'||u==='% BW/hand'||u==='cm'||u==='m'||u==='T-score')?1:0);const n=parseFloat((+v).toFixed(dec));return u==='°'?`${n}°`:`${n} ${u}`.trim();};
 function shortLabel(label){let s=(label||'').replace(/relative /ig,'').replace(/isometric/ig,'').replace(/Countermovement jump peak power/i,'CMJ power').replace(/Single-leg balance, eyes open/i,'SL balance').replace(/Half-kneeling dorsiflexion/i,'Ankle DF').replace(/Shoulder ER /i,'Shoulder ER ').trim();const w=s.split(/\s+/);return w.length>3?w.slice(0,3).join(' '):s;}
 const CONF_META={direct:{dot:'●',label:'direct measure'},proxy:{dot:'◐',label:'proxy measure'},modifier:{dot:'◇',label:'movement/context modifier'},context:{dot:'◇',label:'context only'}};
 const basisBadge=r=>`<span class="badge ${r.basis==='task'||r.basis==='research'?'confirmed':'modeled'}">${r.basis==='task'?'◆ fixed task':r.basis==='research'?'✔ research':'~ '+(r.basis||'modeled')}</span>`;
@@ -5901,7 +5938,7 @@ const ZICON={clear:'✓',gap:'⚠',incomplete:'?',watch:'◐'};
    short-term goal that raises its starting point enough for the glide path to clear. Missing tests
    are a data state. */
 const GOAL_STATUS={clear:'On track',gap:'Opportunity',incomplete:'Needs more data'};
-const STATUS_RULE='A goal is on track when every one of its targets still clears at the target age. If a test is projected short, the goal is an opportunity: that test gets a short-term goal for the next 1–3 years that puts it back on track. Missing tests with no shortfall mean it needs more data.';
+const STATUS_RULE='A goal is on track when every one of its targets still clears at the target age. If a test is projected short, the goal is an opportunity: that test gets a short-term goal, with a time frame, that puts it back on track. Missing tests with no shortfall mean it needs more data.';
 /* How firm each target number is. A: set by the task itself or a close
    published match. B: adapted from research or a related task. C: clinical
    estimate, pending validation. */
@@ -5912,7 +5949,7 @@ function targetGrade(r){
   if(r.reqKind==='fixed_load_pctBW'||r.reqKind==='p75_force')return 'B';
   return r.basis==='task'?'A':r.basis==='research'?'B':'C';
 }
-const TEST_NAMES={vo2:'VO₂max',lt1_vo2:'Aerobic base (LT1)',ankleDF_cm:'Ankle dorsiflexion',anklePF_xBW:'Calf strength',backSquat_pctBW:'Back squat',balanceSL_EO_s:'Single-leg balance',calfRaise_reps:'Calf raises',cmjPower_WkG:'Jump power',dropJump_RSI:'Drop jump',grip_lb:'Grip strength',hamstringSLR_deg:'Straight-leg raise',hipAbd_xBW:'Hip abduction',hipFlexion_deg:'Hip flexion',hipIR_deg:'Hip rotation',hopRSI:'Pogo hops',kneeExt_xBW:'Knee extension',kneeFlex_xBW:'Knee flexion',loadedRow_pctBW:'Loaded row',loadedStepup_pctBW:'Loaded step-up',ohPress_pctBW:'Seated overhead press',pallof_pctBW:'Pallof hold',plankHeelWall_s:'Plank',pushup_reps:'Push-ups',relDeadlift_pctBW:'Deadlift',rotMBThrow_m:'Rotational throw',shoulderER_NmKg:'Rotator cuff',shoulderFlexion_deg:'Shoulder flexion',sidePlank_s:'Side plank',slVertJump_cm:'Single-leg jump',stepDown_in:'Step-down',stsPower_Wkg:'Sit-to-stand power',suitcaseCarry_pctBW:'Suitcase carry',thoracicExt_deg:'Upper-back extension',thoracicRot_deg:'Trunk rotation',chairStand_reps:'30-s chair stand',kneeFlexROM_deg:'Knee flexion range',hipExt_deg:'Hip extension range',hipER_deg:'Hip external rotation',hipAbdROM_deg:'Hip abduction range',sorensen_s:'Sorensen hold',splitSquat_reps:'Split squat',deadHang_s:'Dead hang',wallSit_s:'Wall sit',invertedRow_reps:'Inverted row',cuffExtRot_lb:'Dumbbell external rotation',gobletSquat_pctBW:'Goblet squat',frontSquat_pctBW:'Front squat',kbDeadlift_pctBW:'Kettlebell deadlift',beltSquatIso_xBW:'Belt squat',landmine_pctBW:'Landmine press'};
+const TEST_NAMES={bwSquat_grade:'Bodyweight squat quality',slControl_grade:'Single-leg step-down quality',hinge_grade:'Hip hinge quality',toeTouch_grade:'Toe touch',priSquat_grade:'PRI squat',trendelenburg_grade:'Pelvic control on one leg',standingRotation_grade:'Standing rotation quality',gait_grade:'Gait quality',copenhagen_s:'Copenhagen hold',proneT_s:'Prone T hold',chinup_reps:'Chin-ups',rfeSplitSquat_pctBW:'Rear-foot-elevated split squat',vo2:'VO₂max',lt1_vo2:'Aerobic base (LT1)',ankleDF_cm:'Ankle dorsiflexion',anklePF_xBW:'Calf strength',backSquat_pctBW:'Back squat',balanceSL_EO_s:'Single-leg balance',calfRaise_reps:'Calf raises',cmjPower_WkG:'Jump power',dropJump_RSI:'Drop jump',grip_lb:'Grip strength',hamstringSLR_deg:'Straight-leg raise',hipAbd_xBW:'Hip abduction',hipFlexion_deg:'Hip flexion',hipIR_deg:'Hip rotation',hopRSI:'Pogo hops',kneeExt_xBW:'Knee extension',kneeFlex_xBW:'Knee flexion',loadedRow_pctBW:'Loaded row',loadedStepup_pctBW:'Loaded step-up',ohPress_pctBW:'Seated overhead press',pallof_pctBW:'Pallof hold',plankHeelWall_s:'Plank',pushup_reps:'Push-ups',relDeadlift_pctBW:'Deadlift',rotMBThrow_m:'Rotational throw',shoulderER_NmKg:'Rotator cuff',shoulderFlexion_deg:'Shoulder flexion',sidePlank_s:'Side plank',slVertJump_cm:'Single-leg jump',stepDown_in:'Step-down',stsPower_Wkg:'Sit-to-stand power',suitcaseCarry_pctBW:'Suitcase carry',thoracicExt_deg:'Upper-back extension',thoracicRot_deg:'Trunk rotation',chairStand_reps:'30-s chair stand',kneeFlexROM_deg:'Knee flexion range',hipExt_deg:'Hip extension range',hipER_deg:'Hip external rotation',hipAbdROM_deg:'Hip abduction range',sorensen_s:'Sorensen hold',splitSquat_reps:'Split squat',deadHang_s:'Dead hang',wallSit_s:'Wall sit',invertedRow_reps:'Inverted row',cuffExtRot_lb:'Dumbbell external rotation',gobletSquat_pctBW:'Goblet squat',frontSquat_pctBW:'Front squat',kbDeadlift_pctBW:'Kettlebell deadlift',beltSquatIso_xBW:'Belt squat',landmine_pctBW:'Landmine press'};
 const testName=r=>TEST_NAMES[r.metric]||shortLabel(r.label);
 /* Goals that are demanding for most capacities: stand-in tests use the PCA Proficient level for
    these, and the start of the PCA Developing band for everyday goals. */
@@ -5939,6 +5976,61 @@ function backupReq(r0,b){const band=PCA80[b],meta=METRICS[b];if(!band||!meta)ret
   const m=at('male'),f=at('female'),t=pos(PATIENT.sex==='female'?'female':'male'),ideal=inSentence(testName(r0));
   const level=Math.abs(t)<1e-9?'the start of the PCA Developing band':Math.abs(t-1)<1e-9?'the PCA Proficient level':t>1?`above the PCA Proficient level, to match the ${ideal} target`:`between the PCA Developing start and Proficient, to match the ${ideal} target`;
   return {cat:meta.cat,label:meta.label,metric:b,unit:meta.unit,dir:'higher_better',req:m,reqBySex:{male:m,female:f},role:'capacity',weight:r0.weight||1,group:r0.group,basis:PCA80_PUBLISHED.has(b)?'research':'practice',why:`Stands in for ${ideal}, which was not tested. Target: ${level} for 80–90.`,evi:'PCA Standards, ages 80–90 (PCA-2026-09-03).',src:meta.src,confidence:meta.confidence||'direct',demandUncertainty:.25,demanding:r0.demanding,backupFor:r0.metric};}
+/* Model 4.9 (Dan, 2026-09-25): no goal should show a missing variable when a related test was done.
+   After the component's own test and the projected stand-ins (BACKUPS), each component falls back to:
+   'today' — a rep or hold test judged against the PCA Proficient standard for the patient's age
+   today (these can't be projected to 90 reliably, and Proficient is the same "strong for your age"
+   level the 75th-percentile targets are built on); 'grade' — a movement screen, Proficient or not;
+   'lt1' — aerobic base estimated as 60% of VO2max (a conservative share for active adults). */
+const SUB_ITEMS={
+  kneeExt_xBW:[['today','splitSquat_reps'],['today','wallSit_s'],['grade','bwSquat_grade']],
+  kneeFlex_xBW:[['today','relDeadlift_pctBW']],
+  hipAbd_xBW:[['today','sidePlank_s'],['today','copenhagen_s'],['grade','trendelenburg_grade']],
+  hipAdd_xBW:[['today','copenhagen_s']],
+  anklePF_xBW:[['today','calfRaise_reps']],
+  grip_lb:[['today','deadHang_s']],
+  shoulderER_NmKg:[['today','proneT_s']],
+  relDeadlift_pctBW:[['today','sorensen_s'],['grade','hinge_grade']],
+  suitcaseCarry_pctBW:[['today','sidePlank_s'],['today','deadHang_s']],
+  loadedStepup_pctBW:[['today','rfeSplitSquat_pctBW'],['today','splitSquat_reps'],['grade','slControl_grade']],
+  stepDown_in:[['grade','slControl_grade'],['today','splitSquat_reps']],
+  stsPower_Wkg:[['grade','bwSquat_grade']],
+  chairStand_reps:[['grade','bwSquat_grade']],
+  ohPress_pctBW:[['today','pushup_reps']],
+  loadedRow_pctBW:[['today','invertedRow_reps'],['today','chinup_reps']],
+  benchIso_xBW:[['today','pushup_reps']],
+  pallof_pctBW:[['today','sidePlank_s'],['grade','standingRotation_grade']],
+  hipFlexion_deg:[['grade','bwSquat_grade'],['grade','priSquat_grade'],['grade','toeTouch_grade']],
+  ankleDF_cm:[['grade','bwSquat_grade'],['grade','priSquat_grade']],
+  kneeFlexROM_deg:[['grade','bwSquat_grade']],
+  hamstringSLR_deg:[['grade','toeTouch_grade']],
+  thoracicRot_deg:[['grade','standingRotation_grade']],
+  hipExt_deg:[['grade','gait_grade']],
+  lt1_vo2:[['lt1','vo2']]
+};
+/* PCA Proficient by age band (30–40 … 80–90) for tests that aren't in EM_ASSESSMENT_BANDS
+   (live Notion PCA Standards, checked 2026-09-24). */
+const PCA_PROFICIENT_BY_AGE={splitSquat_reps:[10,10,9,8,7,6],invertedRow_reps:[10,10,9,8,7,7],chinup_reps:{male:[3,3,3,3,2,2],female:[2,2,2,2,1,1]},
+  plankHeelWall_s:[60,60,55,50,45,40],wallSit_s:[60,60,55,50,45,40],copenhagen_s:[30,30,30,25,20,20],proneT_s:[60,60,55,50,45,40],
+  rfeSplitSquat_pctBW:{male:[30,30,25,25,20,18],female:[25,25,20,20,17,15]}};
+function proficientForAge(metric){const sex=PATIENT.sex==='female'?'female':'male',a=+PATIENT.age||0,i=a<40?0:a>=80?5:Math.floor(a/10)-3;
+  const band=['30-40','40-50','50-60','60-70','70-80','80-90'][i],em=EM_ASSESSMENT_BANDS[metric]?.[sex]?.[band];if(em)return +em[2];
+  const t=PCA_PROFICIENT_BY_AGE[metric];if(!t)return null;return +(Array.isArray(t)?t:t[sex])[i];}
+const GRADE_SCORE={Proficient:3,Developing:2,Deficient:1};
+const LT1_FROM_VO2=.6;
+function subItemComponent(r0,mode,b,reason){
+  const meta=METRICS[b];if(!meta)return null;const nt=PATIENT.notTested?.[b],v=PATIENT.metrics[b];if(nt&&nt!=='NT-UNABLE')return null;
+  const base={cat:meta.cat,label:meta.label,metric:b,dir:'higher_better',role:'capacity',weight:r0.weight||1,group:r0.group,confidence:'proxy',demandUncertainty:.25,backupFor:r0.metric,demanding:r0.demanding};
+  if(mode==='lt1'){const vo2=+v;if(nt||!Number.isFinite(vo2)||vo2<=0)return null;return makeComponent(r0,LT1_FROM_VO2*vo2,{estFrom:'vo2'});}
+  if(mode==='today'){const pv=proficientForAge(b);if(!Number.isFinite(pv)||pv<=0)return null;const ideal=inSentence(testName(r0));
+    const r={...base,unit:meta.unit,req:pv,basis:'practice',why:`Stands in for ${ideal}, which was not tested. Rep and hold tests can’t be projected to 90, so this one is judged today against the PCA Proficient standard for your age.`,evi:'PCA Standards by age and sex (EM_PCA_02).',src:meta.src};
+    if(nt==='NT-UNABLE')return makeComponent(r,0,{unable:true,via:r0.metric,viaReason:reason,today:true});
+    if(v==null||v===''||!Number.isFinite(+v))return null;return makeComponent(r,+v,{via:r0.metric,viaReason:reason,today:true});}
+  if(mode==='grade'){const g=GRADE_SCORE[v];if(!g)return null;const ideal=inSentence(testName(r0));
+    const r={...base,unit:'grade',req:3,basis:'practice',why:`Stands in for ${ideal}, which was not measured. A movement screen can’t be projected, so the goal is Proficient on the screen.`,evi:'Early Medical movement screen.',src:meta.src};
+    return makeComponent(r,g,{via:r0.metric,viaReason:reason,today:true,gradeScreen:true});}
+  return null;
+}
 /* PCA holds stop at the patient's band bar, and single-leg balance at the 45-s test ceiling, so a
    result at the bar means "at least this much". Bars by band 30-40 … 80-90 (Gate bars sheet). */
 const CAP_BARS={wallSit_s:[60,60,55,50,45,40],plankHeelWall_s:[60,60,55,50,45,40],sorensen_s:[60,60,55,50,45,40],sidePlank_s:[30,30,30,25,25,20],calfRaise_reps:{male:[32,32,27,22,17,12],female:[30,30,27,24,21,18]},balanceSL_EO_s:[45,45,45,45,45,45]};
@@ -5960,10 +6052,10 @@ function shortTermGoal(r,family,req){if(family==='none'||r.dir==='lower_better')
   return /reps/.test(METRICS[r.metric]?.unit||'')?Math.ceil(v-1e-9):v;}
 /* One radar component: requirement r measured at raw (the ideal test or a stand-in). */
 function makeComponent(r,raw,extra={}){
-    const meta=METRICS[r.metric];if(!meta||meta.kind==='grade')return null;
+    const meta=METRICS[r.metric];if(!meta||(meta.kind==='grade'&&!extra.gradeScreen))return null;
     const rr=resolveRequirement(r);if(rr.req==null||!Number.isFinite(+rr.req)||+rr.req<=0)return null;const req=+rr.req,unit=rr.unit||r.unit;
     const du=clamp(+r.demandUncertainty||0,0,.60),reqLo=req*(1-du),reqHi=req*(1+du);
-    const family=meta.family||'none';const projRaw=capToVO2(r.metric,projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)),stopRaw=capToVO2(r.metric,projectIfStopped(+raw,family,PATIENT.sex,AGE,TGT),true);const [projLo,projHi]=projectBand(+raw,family).map(v=>capToVO2(r.metric,v));
+    const family=extra.today?'none':(meta.family||'none');const projRaw=capToVO2(r.metric,projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)),stopRaw=capToVO2(r.metric,projectIfStopped(+raw,family,PATIENT.sex,AGE,TGT),true);const [projLo,projHi]=projectBand(+raw,family).map(v=>capToVO2(r.metric,v));
     const lower=r.dir==='lower_better';const pct=v=>clamp(Math.floor((lower?req/v:v/req)*100),0,175);const curPct=pct(+raw),projPct=pct(projRaw);
     const reserveLo=lower?reqLo/projHi*100:projLo/reqHi*100,reserveHi=lower?reqHi/projLo*100:projHi/reqLo*100;
     const horizon=EVIDENCE_HORIZONS[family]||EVIDENCE_HORIZONS.none;
@@ -5988,6 +6080,7 @@ function components(reqs){
       const c=makeComponent(br,+bv,{via:r.metric,viaReason:reason,capped:isCapped(b,+bv)});
       if(c&&(!c.capped||c.meets))return c;
     }
+    for(const [mode,b] of SUB_ITEMS[r.metric]||[]){const c=subItemComponent(r,mode,b,reason);if(c)return c;}
     if(first){first.cappedUnknown=true;first.zone='watch';return first;}
     return null;
   }).filter(Boolean);
@@ -6078,7 +6171,7 @@ function radarReadHTML(C,ev){
     if(capped.length)parts.push(`<b>${capFirst(nameList(capped.map(c=>inSentence(c.short)),4))}</b> stopped at the test limit, so re-test ${capped.length===1?'it':'them'} longer to confirm.`);
     return parts.join(' ');}
   if(ev.zone==='gap'){const proj=misses.filter(c=>!c.unable),unable=misses.filter(c=>c.unable),parts=[];
-    if(proj.length)parts.push(`<b>${capFirst(nameList(proj.map(c=>inSentence(c.short)),4))}</b> ${isAre(proj.map(c=>c.short))} projected short of what this goal needs at ${TGT}. Build ${proj.length===1?'it':'them'} to the short-term goal${proj.length===1?'':'s'} below and the glide path clears.`);
+    if(proj.length){const stretch=proj.filter(c=>!stgReachable(c));parts.push(`<b>${capFirst(nameList(proj.map(c=>inSentence(c.short)),4))}</b> ${isAre(proj.map(c=>c.short))} short of what this goal needs at ${TGT}. ${stretch.length?`Reaching the short-term goals gets most of the way; <b>${nameList(stretch.map(c=>inSentence(c.short)),3)}</b> ${isAre(stretch.map(c=>c.short))} a long-term stretch.`:`Reach the short-term goal${proj.length===1?'':'s'} below and this goal is on track.`}`);}
     if(unable.length)parts.push(`<b>${capFirst(nameList(unable.map(c=>inSentence(c.short)),4))}</b> could not be done today.`);
     const capped=C.filter(c=>c.cappedUnknown),ok=C.filter(c=>c.meets);
     if(capped.length)parts.push(`<b>${capFirst(nameList(capped.map(c=>inSentence(c.short)),4))}</b> stopped at the test limit, so re-test ${capped.length===1?'it':'them'} longer to confirm.`);
@@ -6091,21 +6184,45 @@ function radarReadHTML(C,ev){
   return `Every test clears at ${TGT}.${tight?` Smallest margin: <b>${inSentence(tight.short)}</b>, ${margin?`${margin}% above`:'right at'} what’s needed.`:''}`;
 }
 function radarFigureHTML(C,ev,{animate=true}={}){
-  return `<div class="radarfig"><div class="radarplot">${radarSVG(C,{animate})}${animate&&C.length>=3?'<button type="button" class="rreplay" aria-label="Replay the radar animation">Replay</button>':''}</div><div class="radarside"><div class="radarread z-${ev.zone}">${radarReadHTML(C,ev)}</div>${radarLegendHTML({stop:true})}<p class="radarnote">Each spoke is one test. Green is what this goal needs at ${TGT}, blue is you today, red is you at ${TGT} if you keep training, and grey is you at ${TGT} if you stop. Where red falls inside green, that test needs a higher starting point; its goal for the next 1–3 years is in the table. The gap between red and grey is what keeping up your training is worth.</p></div></div>`;
+  return `<div class="radarfig"><div class="radarplot">${radarSVG(C,{animate})}${animate&&C.length>=3?'<button type="button" class="rreplay" aria-label="Replay the radar animation">Replay</button>':''}</div><div class="radarside"><div class="radarread z-${ev.zone}">${radarReadHTML(C,ev)}</div>${radarLegendHTML({stop:true})}<p class="radarnote">Each spoke is one test. Green is what this goal needs at ${TGT}, blue is you today, red is you at ${TGT} if you keep training, and grey is you at ${TGT} if you stop. Where red falls inside green, that test needs a higher starting point; its short-term goal and time frame are in the table. The gap between red and grey is what keeping up your training is worth.</p></div></div>`;
 }
-/* Short-term goal cell: build to it if today is below, otherwise hold at least it. */
-function stgText(c){const v=fmtU(c.stg,c.unit);if(c.unable)return {up:true,txt:`Build to ${v}`,sub:''};const up=c.raw<c.stg*(1-1e-9),lift=c.raw>0?Math.round((c.stg/c.raw-1)*100):null;
-  return up?{up,txt:`Build to ${v}`,sub:lift!=null?`+${Math.max(1,lift)}% from today`:''}:{up,txt:`Hold ≥ ${v}`,sub:'you’re above it'};}
-function radarTableHTML(C){
-  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>Test</th><th>Today</th><th>At ${TGT}, keep training</th><th>At ${TGT}, if you stop</th><th>Needed at ${TGT}</th><th>Result at ${TGT}</th><th>Goal, next 1–3 yrs</th><th>Target</th></tr></thead><tbody>${C.map(c=>{const g=stgText(c);return `<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest">${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${c.unable?'Unable':fmtU(c.raw,c.unit)}${c.capped?'<small>stopped at the test limit</small>':''}</td><td>${c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td class="rstopv">${c.unable?'—':c.static?fmtU(c.stopRaw,c.unit):`${fmtU(c.stopRaw,c.unit)}${c.stopPct<100?`<small>short by ${100-c.stopPct}%</small>`:''}`}</td><td>${fmtU(c.req,c.unit)}</td><td class="rres">${c.unable?'Unable today':c.meets?'✓ Clears':c.cappedUnknown?'At the test limit<small>re-test longer to confirm</small>':c.watch?`Watch · ${c.shortBy}% below`:`Short by ${c.shortBy}%`}${c.meetsNow||c.unable?'':'<small>Already short today</small>'}</td><td class="rstg">${g.txt}${g.sub?`<small>${g.sub}</small>`:''}</td><td><span class="tg tg-${c.grade}">${c.grade}</span> ${TARGET_GRADES[c.grade]}</td></tr>`;}).join('')}</tbody></table></div><div class="rtablenote">Goal, next 1–3 yrs: the level to build to now so that, if you keep training, the glide path still reaches what the goal needs at ${TGT}. Target grades: A is set by the task itself. B comes from research or a closely related task. C is a clinical estimate that is still being validated.</div>`;
+/* Short-term goal: build to it if today is below, otherwise hold at least it. The time frame is
+   sized by the lift, since training gains taper: up to 10% within a year, up to 25% over 1–3
+   years, up to 50% over 3–5 years; beyond that it is a long-term stretch rather than a short-term
+   goal. Rep, hold and screen stand-ins are judged against today's standard, so 1–3 years. */
+function stgText(c){const screen=c.r.unit==='grade',v=fmtU(c.stg,c.unit);if(c.unable)return {up:true,txt:screen?'Reach Proficient':`Build to ${v}`,sub:'1–3 years',when:'1–3 years',lift:null};
+  const up=c.raw<c.stg*(1-1e-9),lift=c.raw>0?c.stg/c.raw-1:null;
+  if(!up)return {up,txt:screen?'Stay Proficient':`Hold ≥ ${v}`,sub:'you’re above it',when:'',lift};
+  const when=c.today?'1–3 years':lift==null?'1–3 years':lift<=.10?'within a year':lift<=.25?'1–3 years':lift<=.50?'3–5 years':'long-term stretch';
+  /* Rep and hold stand-ins read as the gap in their own units; percentages of small counts mislead. */
+  const gap=c.today&&!screen?`+${fmtU(c.stg-c.raw,c.unit)}`:lift!=null&&!screen?`+${Math.max(1,Math.round(lift*100))}%`:'';
+  return {up,txt:screen?'Reach Proficient':`Build to ${v}`,sub:[gap,when].filter(Boolean).join(' · '),when,lift};}
+/* A short test is reachable in the short term unless its lift is a long-term stretch. */
+const stgReachable=c=>c.meets||c.cappedUnknown||stgText(c).when!=='long-term stretch';
+/* VO2max performance groups by age and sex (Mandsager 2018 cut points, as in the patient report). */
+/* Each band: [first age, [25th, 50th, 75th, 97.7th percentile]]. */
+const VO2_GROUPS={male:[[0,[36,43,49,56]],[30,[35,40,46,53]],[40,[34,39,44,52]],[50,[29,36,41,50]],[60,[25,30,36,46]],[70,[21,25,30,41]],[80,[18,23,26,36]]],female:[[0,[31,38,44,52]],[30,[27,34,39,49]],[40,[25,32,37,47]],[50,[25,29,36,46]],[60,[22,26,32,41]],[70,[18,22,25,36]],[80,[15,19,22,31]]]};
+function vo2Group(v,age){const t=(VO2_GROUPS[PATIENT.sex==='female'?'female':'male'].filter(([lo])=>age>=lo).pop()||[])[1];if(!t||!Number.isFinite(+v))return '';const [p25,p50,p75,el]=t;return v>=el?'elite':v>=p75?'high':v>=p50?'above average':v>=p25?'below average':'low';}
+/* Component order within a goal: hard prerequisites first, then by weight. */
+function reqsInPriority(act){return scoreableReqs(act).map((r,i)=>({r,i})).sort((a,b)=>((b.r.role==='gate'||b.r.critical)-(a.r.role==='gate'||a.r.critical))||((+b.r.weight||1)-(+a.r.weight||1))||a.i-b.i).map(x=>x.r);}
+function altTestNames(metric){return [...new Set([metric,...(BACKUPS[metric]||[]),...(SUB_ITEMS[metric]||[]).map(([m,b])=>m==='lt1'?null:b)].filter(Boolean).map(m=>testName({metric:m,label:METRICS[m]?.label})))];}
+function radarTableHTML(C,act){
+  const byMetric=new Map(C.map(c=>[c.via||c.r.metric,c])),order=act?reqsInPriority(act):C.map(c=>c.r),rows=[];let n=0;
+  for(const r of order){const c=byMetric.get(r.metric);n++;
+    if(!c){rows.push(`<tr class="untested"><td class="rtest"><span class="rnum">${n}</span>${testName(r)}<small>Not tested yet. Any of these counts: ${nameList(altTestNames(r.metric).map(inSentence),8)}.</small></td><td>—</td><td>—</td><td class="rstopv">—</td><td>${resolveRequirement(r).req==null?'—':fmtU(resolveRequirement(r).req,resolveRequirement(r).unit)}</td><td class="rres">Not tested</td><td class="rstg">Test it</td><td><span class="tg tg-${targetGrade(r)}" title="${TARGET_GRADES[targetGrade(r)]}">${targetGrade(r)}</span></td></tr>`);continue;}
+    const g=stgText(c),judgedToday=c.today;
+    const vo2Ctx=c.r.metric==='vo2'&&!c.estFrom?`<small>${vo2Group(c.raw,AGE)} for your age</small>`:'';
+    rows.push(`<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest"><span class="rnum">${n}</span>${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}${c.estFrom?`<small>estimated as ${Math.round(LT1_FROM_VO2*100)}% of VO₂max</small>`:''}</td><td>${c.unable?'Unable':fmtU(c.raw,c.unit)}${c.capped?'<small>stopped at the test limit</small>':''}${vo2Ctx}</td><td>${judgedToday?'<small>judged today</small>':c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td class="rstopv">${c.unable||judgedToday?'—':c.static?fmtU(c.stopRaw,c.unit):`${fmtU(c.stopRaw,c.unit)}${c.stopPct<100?`<small>short by ${100-c.stopPct}%</small>`:''}`}</td><td>${fmtU(c.req,c.unit)}${judgedToday?'<small>Proficient for your age</small>':''}</td><td class="rres">${c.unable?'Unable today':c.meets?'✓ Clears':c.cappedUnknown?'At the test limit<small>re-test longer to confirm</small>':c.watch?`Watch · ${c.shortBy}% below`:judgedToday?'Below the standard':`Short by ${c.shortBy}%`}${c.meetsNow||c.unable||judgedToday?'':'<small>Already short today</small>'}</td><td class="rstg">${g.txt}${g.sub?`<small>${g.sub}${c.r.metric==='vo2'&&g.up?` · ${vo2Group(c.stg,AGE)} for your age`:''}</small>`:''}</td><td><span class="tg tg-${c.grade}" title="${TARGET_GRADES[c.grade]}">${c.grade}</span></td></tr>`);}
+  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>What this goal needs</th><th>Today</th><th>At ${TGT}, keep training</th><th>At ${TGT}, if you stop</th><th>Needed at ${TGT}</th><th>Result at ${TGT}</th><th>Goal, and when</th><th>Grade</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><div class="rtablenote">Listed most important first. When a test wasn’t done, a related test stands in; rep and hold tests and movement screens are judged against today’s standard for your age because they can’t be projected. Goal, and when: the level to build to so that, if you keep training, the glide path still reaches what the goal needs at ${TGT}; the time frame grows with the size of the lift. Grade (how firm the target is): A is set by the task itself, B comes from research or a closely related task, C is a clinical estimate still being validated.</div>`;
 }
 /* Glide path (Dan, 2026-09-25): for a test projected short at TGT, raise the starting point now so
    the same keep-training decline still clears. Red dashed: from today. Green: build to the
    short-term goal over about two years, then glide. */
 function glideChartSVG(c){
   const fam=c.family,sex=PATIENT.sex,a0=AGE,a1=Math.max(TGT,AGE+1),aG=Math.min(a1,a0+2),W=340,H=150,l=8,rt=86,t=14,b=24;
-  const keep=a=>a>=a1?c.projRaw:projectCapacity(c.raw,fam,sex,a0,a,1),raise=a=>a<=aG?c.raw+(c.stg-c.raw)*(a-a0)/Math.max(1,aG-a0):projectCapacity(c.stg,fam,sex,aG,a,1);
-  const ages=[];for(let a=a0;a<=a1;a++)ages.push(a);const kv=ages.map(keep),rv=ages.map(raise),all=[c.req,...kv,...rv],top=Math.max(...all)*1.06||1,lo=Math.max(0,Math.min(...all)*.8);
+  const keep=a=>a>=a1?c.projRaw:projectCapacity(c.raw,fam,sex,a0,a,1),raise=a=>a<=aG?c.raw+(c.stg-c.raw)*(a-a0)/Math.max(1,aG-a0):projectCapacity(c.stg,fam,sex,aG,a,1),
+    lapse=a=>a<=aG?raise(a):projectIfStopped(c.stg,fam,sex,aG,a);
+  const ages=[];for(let a=a0;a<=a1;a++)ages.push(a);const kv=ages.map(keep),rv=ages.map(raise),sv=ages.map(lapse),all=[c.req,...kv,...rv,...sv],top=Math.max(...all)*1.06||1,lo=Math.max(0,Math.min(...all)*.8);
   /* Not zero-based: the chart is about the gap between the two paths at the end. */
   const x=a=>l+(a-a0)/(a1-a0)*(W-l-rt),y=v=>t+(1-(clamp(v,lo,top)-lo)/Math.max(1e-9,top-lo))*(H-t-b),f=n=>n.toFixed(1),pl=vs=>ages.map((a,i)=>`${f(x(a))},${f(y(vs[i]))}`).join(' ');
   const endR=rv[rv.length-1],yK=y(c.projRaw),yN=y(c.req),yR=y(endR),sep=(ya,yb)=>Math.abs(ya-yb)<12;
@@ -6113,15 +6230,16 @@ function glideChartSVG(c){
   return `<svg class="glide" viewBox="0 0 ${W} ${H}" role="img" aria-label="${c.short}: today ${fmtU(c.raw,c.unit)}, at ${TGT} ${fmtU(c.projRaw,c.unit)} if you keep training, needs ${fmtU(c.req,c.unit)}. Building to ${fmtU(c.stg,c.unit)} first reaches about ${fmtU(endR,c.unit)}.">
     <line class="gaxis" x1="${l}" y1="${H-b}" x2="${W-rt}" y2="${H-b}"/><text class="gtick" x="${l}" y="${H-8}">Today (${a0})</text><text class="gtick" x="${f(x(a1))}" y="${H-8}" text-anchor="end">${a1}</text>
     <line class="gneed" x1="${f(x(Math.max(a0,a1-8)))}" y1="${f(yN)}" x2="${f(x(a1))}" y2="${f(yN)}"/>
-    <polyline class="gkeep" points="${pl(kv)}"/><polyline class="graise" points="${pl(rv)}"/>
+    <polyline class="gstop" points="${pl(sv)}"/><polyline class="gkeep" points="${pl(kv)}"/><polyline class="graise" points="${pl(rv)}"/>
     <circle class="gnow" cx="${f(x(a0))}" cy="${f(y(c.raw))}" r="4"/><circle class="ggoal" cx="${f(x(aG))}" cy="${f(y(c.stg))}" r="4.5"/>
     <text class="glbl n" x="${f(x(a1)+6)}" y="${f(lblN)}">Needs ${fmtU(c.req,c.unit)}</text><text class="glbl k" x="${f(x(a1)+6)}" y="${f(lblK)}">${fmtU(c.projRaw,c.unit)}</text>
   </svg>`;
 }
 function glidePathsHTML(C){
-  const opp=C.filter(c=>!c.meets&&!c.cappedUnknown);if(!opp.length)return '';
-  return `<div class="glidewrap"><div class="glidehead"><b>Raise the starting point</b><span>Where to build in the next 1–3 years so the glide path clears at ${TGT}.</span></div><div class="rlegend" style="margin:0 2px 8px"><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>If you keep training from today</span><span class="lg raise"><i></i>If you build to the goal first</span></div><div class="glidegrid">${opp.map(c=>{const endR=projectCapacity(c.stg,c.family,PATIENT.sex,Math.min(Math.max(TGT,AGE+1),AGE+2),Math.max(TGT,AGE+1),1),g=stgText(c);
-    return `<div class="glidecard"><div class="glidettl">${c.short}${c.via?` <small style="font-weight:600;color:var(--muted)">in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</div>${glideChartSVG(c)}<div class="glidecap">${g.txt} (${c.unable?'from unable today':g.sub||'from today'}) in the next 1–3 years. Keep training from there and you reach about <b>${fmtU(endR,c.unit)}</b> at ${TGT}; this goal needs ${fmtU(c.req,c.unit)}.</div></div>`;}).join('')}</div></div>`;
+  const opp=C.filter(c=>!c.meets&&!c.cappedUnknown&&!c.today);if(!opp.length)return '';
+  return `<div class="glidewrap"><div class="glidehead"><b>Raise the starting point</b><span>Where to build, and by when, so the glide path clears at ${TGT}.</span></div><div class="rlegend" style="margin:0 2px 8px"><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>If you keep training from today</span><span class="lg raise"><i></i>If you build to the goal first</span><span class="lg stop"><i></i>If training stops after that</span></div><div class="glidegrid">${opp.map(c=>{const endR=projectCapacity(c.stg,c.family,PATIENT.sex,Math.min(Math.max(TGT,AGE+1),AGE+2),Math.max(TGT,AGE+1),1),g=stgText(c);
+    const aG=Math.min(Math.max(TGT,AGE+1),AGE+2),endS=projectIfStopped(c.stg,c.family,PATIENT.sex,aG,Math.max(TGT,AGE+1));
+    return `<div class="glidecard"><div class="glidettl">${c.short}${c.via?` <small style="font-weight:600;color:var(--muted)">in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</div>${glideChartSVG(c)}<div class="glidecap">${g.txt}${g.sub?` (${g.sub})`:''}. Keep training from there and you reach about <b>${fmtU(endR,c.unit)}</b> at ${TGT}; this goal needs ${fmtU(c.req,c.unit)}. If training stopped after that, you’d be near ${fmtU(endS,c.unit)}.</div></div>`;}).join('')}</div></div>`;
 }
 
 function barChart(C){
@@ -6152,7 +6270,7 @@ function cardsHTML(C){
       <div class="ct qcat ${c.r.cat}">${c.short}</div>
       <div class="big"><span class="n">${fmtU(c.raw,c.unit)}</span> now → <span class="p">${fmtU(c.projRaw,c.unit)}</span>${c.static?' (held)':' proj.'}</div>
       <div class="pbar"><div class="f" style="width:${clamp(c.projPct/160*100,0,100).toFixed(0)}%"></div><div class="t" style="left:${(100/160*100).toFixed(0)}%"></div></div>
-      <div class="cap">Need ${fmtU(c.req,c.unit)} · projected ${c.projPct}% of it · goal, next 1–3 yrs: ${stgText(c).txt.replace('Build to','build to').replace('Hold','hold')}</div>${c.static?'':`<div class="rng">illustrative range ${fmtU(c.projLo,c.unit)}–${fmtU(c.projHi,c.unit)} at ${TGT}</div>`}${flag}
+      <div class="cap">Need ${fmtU(c.req,c.unit)} · projected ${c.projPct}% of it · goal: ${stgText(c).txt.replace('Build to','build to').replace('Hold','hold')}${stgText(c).sub&&stgText(c).up?` (${stgText(c).sub})`:''}</div>${c.static?'':`<div class="rng">illustrative range ${fmtU(c.projLo,c.unit)}–${fmtU(c.projHi,c.unit)} at ${TGT}</div>`}${flag}
       <div class="raw"><span class="cdot ${c.conf}" title="${CONF_META[c.conf].label}">${CONF_META[c.conf].dot}</span> ${CONF_META[c.conf].label} · measurement: ${c.measurementSource||''}</div>
       <div class="cardwhy">${basisBadge(c.r)} ${c.r.why} <span class="evi">Target grade ${c.grade} (${TARGET_GRADES[c.grade].toLowerCase()})${c.r.protocolPending?', test protocol still being validated':''}. Task: ${c.taskSource||'clinical mapping pending'} · Forecast: ${c.forecastSource||'no numerical forecast'}</span></div>
     </div>`;
@@ -6191,8 +6309,8 @@ function renderSlide(){
   else if(HERO==='A')main=`<div class="actionlead"><div class="allbl">${Csort[0].meets?'Protect':'Train first'}</div><div class="atxt"><b class="tk">${Csort[0].short}</b> ${Csort[0].meets?`has the smallest margin for this goal.`:`is the biggest shortfall for this goal, short by ${Csort[0].shortBy}% at ${TGT}.`} ${Csort[0].r.why||''}</div></div>${barChart(Csort)}`;
   else if(HERO==='B')main=`<div class="modepanel"><div class="btitle">Current → projected → fixed task demand</div>${barChart(Csort)}<div class="modelede">Forecast bands widen after each evidence family's observed age horizon.</div></div>`;
   else if(HERO==='D')main=`${radarFigureHTML(C,ev)}${glidePathsHTML(Csort)}<div class="modepanel">${cardsHTML(Csort)}</div>`;
-  else main=`${radarFigureHTML(C,ev)}${radarTableHTML(C)}${glidePathsHTML(Csort)}`;
-  const supportHTML=S.length?`<details class="dtl"><summary class="dtlsum">Other useful measures <span class="dtlhint">clinician detail</span></summary><div class="supportgrid">${S.map(x=>`<div class="supportcard"><div><b>${x.metric==='lt1_vo2'?'Aerobic base (LT1)':patientShortLabel(x.short)}</b><span>${x.measurementSource||x.meta?.src||''}</span></div><div class="supportval">${x.retention!=null?Math.round(x.retention)+'% retained':assessmentContext(x.r.metric)?.level?`${assessmentContext(x.r.metric).level} for age`:'Tracked'}</div>${x.retention==null?'':`<div class="supportbar"><i style="width:${clamp(x.retention,0,100)}%"></i></div>`}<div class="supportnote">${x.r.why||''}${(()=>{const pv=+assessmentContext(x.r.metric)?.values?.[2];return TRACKED_TESTS.includes(x.r.metric)&&Number.isFinite(pv)?`<br><b>Goal, next 1–3 yrs:</b> ${x.raw>=pv?'hold at least':'build to'} ${fmtU(pv,x.meta?.unit)} (Proficient for your age)`:'';})()}<br><small>${TRACKED_TESTS.includes(x.r.metric)?`Not projected to ${TGT}: compared with the PCA standard for your age at each re-test.`:x.forecastSource?`Forecast: ${x.forecastSource}`:''}</small></div></div>`).join('')}</div></details>`:'';
+  else main=`${radarFigureHTML(C,ev)}${radarTableHTML(C,act)}${glidePathsHTML(Csort)}`;
+  const supportHTML=S.length?`<details class="dtl"><summary class="dtlsum">Other useful measures <span class="dtlhint">clinician detail</span></summary><div class="supportgrid">${S.map(x=>`<div class="supportcard"><div><b>${x.metric==='lt1_vo2'?'Aerobic base (LT1)':patientShortLabel(x.short)}</b><span>${x.measurementSource||x.meta?.src||''}</span></div><div class="supportval">${x.retention!=null?Math.round(x.retention)+'% retained':assessmentContext(x.r.metric)?.level?`${assessmentContext(x.r.metric).level} for age`:'Tracked'}</div>${x.retention==null?'':`<div class="supportbar"><i style="width:${clamp(x.retention,0,100)}%"></i></div>`}<div class="supportnote">${x.r.why||''}${(()=>{const pv=+assessmentContext(x.r.metric)?.values?.[2];return TRACKED_TESTS.includes(x.r.metric)&&Number.isFinite(pv)?`<br><b>Goal, 1–3 years:</b> ${x.raw>=pv?'hold at least':'build to'} ${fmtU(pv,x.meta?.unit)} (Proficient for your age)`:'';})()}<br><small>${TRACKED_TESTS.includes(x.r.metric)?`Not projected to ${TGT}: compared with the PCA standard for your age at each re-test.`:x.forecastSource?`Forecast: ${x.forecastSource}`:''}</small></div></div>`).join('')}</div></details>`:'';
   const modHTML=mods.length?`<details class="dtl"><summary class="dtlsum">Movement findings <span class="dtlhint">clinician detail</span></summary><div class="pcards">${mods.map(x=>`<div class="pcard"><div class="ct qcat ${x.r.cat}">${patientShortLabel(shortLabel(x.r.label))}</div><div class="big"><span class="n">${x.value==null?'—':x.value}</span></div><div class="cap">${x.r.why||''}</div></div>`).join('')}</div></details>`:'';
   const numbersHTML=C.length?`<details class="dtl"><summary class="dtlsum">Test details and sources <span class="dtlhint">clinician detail</span></summary>${cardsHTML(C)}</details>`:'';
   const detailBlocks=HERO==='D'?`${supportHTML}${modHTML}`:`${numbersHTML}${supportHTML}${modHTML}`;
@@ -6355,7 +6473,7 @@ function capacitySummaryHTML(story){return `<div class="caprank"><div class="cap
 function capacityTableHTML(traj){
   const order={opportunity:0,watch:1,strength:2,support:3,trajectory:4,context:5};const rows=traj.slice().sort((a,b)=>order[a.status]-order[b.status]||b.goalsN-a.goalsN||(a.reservePct??999)-(b.reservePct??999));
   const body=rows.map(x=>`<tr class="ctrow ${x.status}"><td><b>${x.meta.label}</b><span>${x.meta.measurementSource||x.meta.src||''}</span></td><td>${fmtU(x.raw,x.meta.unit)}</td><td>${x.stg==null?'—':`${x.raw>=x.stg?'hold':'build to'} ${fmtU(x.stg,x.meta.unit)}`}</td><td>${x.evidence.grade==='—'?'—':`${fmtU(x.proj,x.meta.unit)}<span>${fmtU(x.lo,x.meta.unit)}–${fmtU(x.hi,x.meta.unit)}</span>`}</td><td>${x.retention==null?'—':Math.round(x.retention)+'%'}</td><td>${x.avgDec==null?'—':x.avgDec.toFixed(1)+'%/dec'}</td><td>${x.reservePct==null?'—':`${Math.round(x.reservePct)}%${x.reserveLo!=null?`<span>${Math.round(x.reserveLo)}–${Math.round(x.reserveHi)}%</span>`:''}`}</td><td>${x.goalsN||'—'}</td><td><span class="ctbadge ${x.status}">${capStatusLabel(x)}</span><small>${x.evidence.grade==='—'?'':`evidence ${x.evidence.grade}`}</small></td></tr>`).join('');
-  return `<details class="dtl capacitydetails"><summary class="dtlsum">Clinician detail: all measured capacities <span class="dtlhint">${rows.length} numeric measures entered · clinician/deep dive</span></summary><div class="ctablewrap"><table class="ctable"><thead><tr><th>Capacity</th><th>Today</th><th>Goal, 1–3 yrs</th><th>Projected ${TGT}</th><th>Retained</th><th>Avg decline</th><th>Goal reserve*</th><th>Goals</th><th>Read</th></tr></thead><tbody>${body}</tbody></table></div><div class="model-note"><b>*Goal reserve</b> is shown only where a selected goal has a defensible task-specific threshold in the same test units. Rep and hold tests are tracked against the PCA standard for age and not projected; other supporting measures show their trajectory and goal leverage but no reserve percentage. Ranges combine longitudinal and task-demand uncertainty. Evidence A/B/C grades the decline model, not the quality of the patient’s test. Qualitative movement screens are intentionally not assigned numerical decline rates.</div></details>`;
+  return `<details class="dtl capacitydetails"><summary class="dtlsum">Clinician detail: all measured capacities <span class="dtlhint">${rows.length} numeric measures entered · clinician/deep dive</span></summary><div class="ctablewrap"><table class="ctable"><thead><tr><th>Capacity</th><th>Today</th><th>Goal, and when</th><th>Projected ${TGT}</th><th>Retained</th><th>Avg decline</th><th>Goal reserve*</th><th>Goals</th><th>Read</th></tr></thead><tbody>${body}</tbody></table></div><div class="model-note"><b>*Goal reserve</b> is shown only where a selected goal has a defensible task-specific threshold in the same test units. Rep and hold tests are tracked against the PCA standard for age and not projected; other supporting measures show their trajectory and goal leverage but no reserve percentage. Ranges combine longitudinal and task-demand uncertainty. Evidence A/B/C grades the decline model, not the quality of the patient’s test. Qualitative movement screens are intentionally not assigned numerical decline rates.</div></details>`;
 }
 function clinicianGoalCardsHTML(gs,ordered=false){
   const rows=ordered?gs.slice().sort((a,b)=>(a.ev.worst?.projPct??999)-(b.ev.worst?.projPct??999)):gs;
@@ -6368,7 +6486,8 @@ function goalHeadlineHTML(story){
   const sub=[n.gap?`${n.gap} ${n.gap===1?'is an opportunity':'are opportunities'}`:'',n.incomplete?`${n.incomplete} ${n.incomplete===1?'needs':'need'} more data`:''].filter(Boolean).join(' · ');
   const limits={};story.goalOutlooks.forEach(o=>{const g=goalById(o.goalId),act=ACTIVITIES[g.profileId];goalEvaluation(act,components(act.reqs)).misses.forEach(c=>{limits[c.short]=(limits[c.short]||0)+1;});});
   const top=Object.entries(limits).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([name,k])=>`${inSentence(name)} (${k} ${k===1?'goal':'goals'})`);
-  return `<div class="goalheadline"><div class="gh-main">On track for <b>${n.clear} of ${story.goalOutlooks.length}</b> goals at ${TGT}.</div>${sub?`<div class="gh-sub">${sub}${top.length?`. Biggest opportunities: ${nameList(top,3)}.`:''}</div>`:''}<div class="gh-read">A goal is on track when every one of its tests still reaches what it needs at ${TGT}, as long as you keep training. A test projected short is an opportunity: it gets a goal for the next 1–3 years that raises its starting point. Each goal page also shows where you’d be if you stopped.</div>${radarLegendHTML()}</div>`;
+  let reach=0;story.goalOutlooks.forEach(o=>{if(o.status!=='gap')return;const g=goalById(o.goalId),act=ACTIVITIES[g.profileId],ev=goalEvaluation(act,components(act.reqs));if(!ev.missing.length&&ev.misses.every(stgReachable))reach++;});
+  return `<div class="goalheadline"><div class="gh-main">On track for <b>${n.clear} of ${story.goalOutlooks.length}</b> goals at ${TGT}.${reach?` Reaching your short-term goals makes it <b>${n.clear+reach}</b>.`:''}</div>${sub?`<div class="gh-sub">${sub}${top.length?`. Biggest opportunities: ${nameList(top,3)}.`:''}</div>`:''}<div class="gh-read">A goal is on track when every one of its tests still reaches what it needs at ${TGT}, as long as you keep training. A test projected short is an opportunity: it gets a short-term goal, sized to what training can realistically add, that raises its starting point. Each goal page also shows where you’d be if you stopped.</div>${radarLegendHTML()}</div>`;
 }
 function modelConfidenceHTML(story){if(story.modelConfidence.demoAssessmentComplete)return `<div class="story-confidence" data-model-confidence="${story.modelConfidence.level}" data-demo-completeness="complete"><div><b>Complete illustrative example</b><span>Full sample assessment data are loaded for all 10 selected CD goals.</span></div><span class="story-confidence-label">10 CD goals · full sample data</span></div>`;return `<div class="story-confidence" data-model-confidence="${story.modelConfidence.level}"><div><b>How complete is the picture?</b><span>${story.modelConfidence.detail}</span></div><span class="story-confidence-label">${story.modelConfidence.label}</span></div>`;}
 function goalPrioritiesHTML(story,{limit=12,tiered=true}={}){
@@ -6456,7 +6575,7 @@ function refRadarSVG(act){
 function renderReference(){
   const list=GOALS.filter(g=>g.profileId);if(!list.some(g=>g.id===refId))refId=list[0].id;const byName={};list.forEach(g=>byName[g.name]=g);const used=new Set();const isOneOff=g=>g.custom&&ACTIVITIES[g.profileId]?.oneOff;const btn=g=>`<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?`<span class="ctag">${isOneOff(g)?'one-off':'custom'}</span>`:''}</button>`;let rl='';DOMAIN_GROUPS.forEach(([dom,names])=>{const items=names.map(n=>byName[n]).filter(Boolean),customInDom=list.filter(g=>g.custom&&!isOneOff(g)&&ACTIVITIES[g.profileId]?.domain===dom),all=items.concat(customInDom);if(!all.length)return;all.forEach(g=>used.add(g.id));rl+=`<div class="refgroup"><div class="refghead">${dom}</div>${all.map(btn).join('')}</div>`;});const left=list.filter(g=>!used.has(g.id)&&!isOneOff(g));if(left.length)rl+=`<div class="refgroup"><div class="refghead">Added by you</div>${left.map(btn).join('')}</div>`;const one=list.filter(isOneOff);if(one.length)rl+=`<div class="refgroup oneoffgrp"><div class="refghead">One-off · this report</div>${one.map(btn).join('')}</div>`;$("#refList").innerHTML=rl+`<button class="addgoal ${building?'on':''}" id="newAct">+ Build a custom activity</button>`;document.querySelectorAll('#refList [data-ref]').forEach(b=>b.onclick=()=>{building=false;refId=b.dataset.ref;renderReference();});$("#newAct").onclick=()=>startBuilder();const rs=$("#refSearch");if(rs){rs.oninput=filterRefList;filterRefList();}if(building){renderBuilder();return;}
   const g=goalById(refId),act=ACTIVITIES[g.profileId];const cards=(act.reqs||[]).map(r=>{const meta=METRICS[r.metric]||{};if(r.role==='modifier')return `<div class="pcard"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig"><b>Context / modifier</b></div><div class="cap">${r.why||''}</div><div class="raw">◇ not included in readiness score · measurement: ${meta.measurementSource||r.src||''}</div></div>`;if(r.role==='support')return `<div class="pcard supportref"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig"><b>${TRACKED_TESTS.includes(r.metric)?'Tracked, doesn’t decide the goal':'Supporting trajectory'}</b></div><div class="cap">${TRACKED_TESTS.includes(r.metric)?`Compared with the PCA standard for age at each re-test. Rep and hold results aren’t projected to ${TGT}.`:'Feeds prioritization and decline modeling; no fabricated pass/fail threshold.'}</div><div class="raw">◐ measurement: ${meta.measurementSource||r.src||''}</div><div class="cardwhy">${r.why||''} <span class="evi">${r.calibrationNote||''} Forecast: ${(FORECAST_EVIDENCE[meta.family]||FORECAST_EVIDENCE.none).src}</span></div></div>`;const rr=resolveRequirement(r),req=rr.req,unit=rr.unit||r.unit;return `<div class="pcard"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig">Requires <b>${r.reqBySex?`${fmtU(r.reqBySex.male,unit)} men · ${fmtU(r.reqBySex.female,unit)} women`:req==null?'patient-specific input':fmtU(req,unit)}</b></div><div class="cap">${r.role==='gate'?'Hard prerequisite':'Counts toward the goal'} · target grade ${targetGrade(r)}, ${TARGET_GRADES[targetGrade(r)].toLowerCase()}</div><div class="raw"><span class="cdot ${r.confidence||meta.confidence||'proxy'}">${CONF_META[r.confidence||meta.confidence||'proxy']?.dot||'◐'}</span> measurement: ${meta.measurementSource||r.src||''}</div><div class="cardwhy">${basisBadge(r)} ${r.why||''} <span class="evi">Target source: ${r.taskSource||r.evi||'clinical estimate, no published threshold'} · Decline model: ${(FORECAST_EVIDENCE[meta.family]||FORECAST_EVIDENCE.none).src}</span></div></div>`;}).join('');
-  const cats=[...new Set((act.reqs||[]).map(r=>r.cat).filter(Boolean))];const actions=act.custom?`<div class="buildactions" style="margin-bottom:12px"><button class="btn" id="editAct">Edit</button><button class="btn" id="delAct">Delete activity</button></div>`:'';$("#refDetail").innerHTML=`<div class="slide-head">${TAGLINE}<div class="eyebrow">Centenarian Decathlon · Activity model</div><h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div><div class="dchips"><span class="dchip"><span class="dd"></span>Complexity ${act.complexity||'?'} / 5</span><span class="dchip"><span class="dd"></span>${scoreableReqs(act).length} tests on the radar</span>${cats.map(c=>`<span class="dchip qcat ${c}"><span class="dd"></span>${c}</span>`).join('')}</div></div><div class="pv">${actions}<div class="refradarwrap">${refRadarSVG(act)}</div><div class="refgrid">${cards}</div><div class="refnote"><b>Model rule:</b> task demand stays fixed with age. Age and sex change projected capacity, not the suitcase, stair, distance or duration. Projections assume the patient keeps training: strength, power and aerobic fitness decline at the rates seen in people who stay active, range of motion at half the typical rate, and balance along published age norms. Isolated strength tests (VALD) aim for the 75th percentile at ${TGT}. Rep and hold tests are tracked but don’t decide goals; a strength test does. Every test on the radar counts: if one is projected short at ${TGT}, the goal is an opportunity and that test gets a goal for the next 1–3 years. Movement findings add context but don’t change the result. Target grades: A is set by the task itself, B comes from research or a closely related task, C is a clinical estimate still being validated.</div></div>`+FOOT;if(act.custom){$("#editAct").onclick=()=>startBuilder(g.id);$("#delAct").onclick=()=>deleteActivity(g.id);}
+  const cats=[...new Set((act.reqs||[]).map(r=>r.cat).filter(Boolean))];const actions=act.custom?`<div class="buildactions" style="margin-bottom:12px"><button class="btn" id="editAct">Edit</button><button class="btn" id="delAct">Delete activity</button></div>`:'';$("#refDetail").innerHTML=`<div class="slide-head">${TAGLINE}<div class="eyebrow">Centenarian Decathlon · Activity model</div><h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div><div class="dchips"><span class="dchip"><span class="dd"></span>Complexity ${act.complexity||'?'} / 5</span><span class="dchip"><span class="dd"></span>${scoreableReqs(act).length} tests on the radar</span>${cats.map(c=>`<span class="dchip qcat ${c}"><span class="dd"></span>${c}</span>`).join('')}</div></div><div class="pv">${actions}<div class="refradarwrap">${refRadarSVG(act)}</div><div class="refgrid">${cards}</div><div class="refnote"><b>Model rule:</b> task demand stays fixed with age. Age and sex change projected capacity, not the suitcase, stair, distance or duration. Projections assume the patient keeps training: strength, power and aerobic fitness decline at the rates seen in people who stay active, range of motion at half the typical rate, and balance along published age norms. Isolated strength tests (VALD) aim for the 75th percentile at ${TGT}. Rep and hold tests are tracked but don’t decide goals; a strength test does. Every test on the radar counts: if one is projected short at ${TGT}, the goal is an opportunity and that test gets a short-term goal and time frame. If a test wasn’t done, a related test stands in. Movement findings add context but don’t change the result. Target grades: A is set by the task itself, B comes from research or a closely related task, C is a clinical estimate still being validated.</div></div>`+FOOT;if(act.custom){$("#editAct").onclick=()=>startBuilder(g.id);$("#delAct").onclick=()=>deleteActivity(g.id);}
 }
 function metricOptions(sel){const byCat={};for(const [k,m] of Object.entries(METRIC_REGISTRY)){if(m.kind==='grade'||m.confidence==='context')continue;(byCat[m.cat]=byCat[m.cat]||[]).push(k);}return `<option value="">choose a test…</option>`+Object.keys(byCat).sort().map(cat=>`<optgroup label="${cat}">${byCat[cat].map(k=>`<option value="${k}" ${k===sel?'selected':''}>${METRIC_REGISTRY[k].label} (${METRIC_REGISTRY[k].unit})</option>`).join('')}</optgroup>`).join('');}
 
@@ -6574,8 +6693,8 @@ function printFrame(pageNum,total,cls,inner){
   </section>`;
 }
 function printCompTable(C){
-  return `<table class="ptbl"><thead><tr><th>Test</th><th>Now → ${TGT}</th><th>If you stop</th><th>Needs</th><th>At ${TGT}</th><th>Goal, 1–3 yrs</th><th>Target</th></tr></thead><tbody>`+
-    C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td class="pstop">${c.unable?'—':fmtU(c.stopRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.watch?'watch':c.zone}">${c.meets?'clears':c.cappedUnknown?'test limit':c.watch?'watch':'short '+c.shortBy+'%'}</td><td>${stgText(c).txt.replace('Build to','build to').replace('Hold','hold')}</td><td class="ptg">${c.grade}</td></tr>`).join('')+
+  return `<table class="ptbl"><thead><tr><th>Test</th><th>Now → ${TGT}</th><th>If you stop</th><th>Needs</th><th>At ${TGT}</th><th>Goal, and when</th><th>Target</th></tr></thead><tbody>`+
+    C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td class="pstop">${c.unable?'—':fmtU(c.stopRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.watch?'watch':c.zone}">${c.meets?'clears':c.cappedUnknown?'test limit':c.watch?'watch':'short '+c.shortBy+'%'}</td><td>${stgText(c).txt.replace('Build to','build to').replace('Hold','hold')}${stgText(c).sub&&stgText(c).up?` <small>${stgText(c).sub}</small>`:''}</td><td class="ptg">${c.grade}</td></tr>`).join('')+
     `</tbody></table>`;
 }
 function printGoalPage(g,pageNum,total,goalNum,goalTotal){
@@ -6590,7 +6709,7 @@ function printGoalPage(g,pageNum,total,goalNum,goalTotal){
   if(!C.length){
     pmain=`<div class="supportonly">No results entered for this goal yet.</div>`;
   } else if(HERO!=='A'&&HERO!=='B'){
-    pmain=`<div class="pgmain pgradarmain"><div class="pgcharts">${radarSVG(C,{animate:false})}${radarLegendHTML({stop:true})}</div><div class="pgright">${printCompTable(C)}<div class="pgqnote">Target grades: A set by the task, B research-based, C clinical estimate still being validated. Red: you at ${TGT} if you keep training. Grey: if you stop. Goal, 1–3 yrs: the level to build to now so the glide path still clears at ${TGT}.</div>${qn}</div></div>`;
+    pmain=`<div class="pgmain pgradarmain"><div class="pgcharts">${radarSVG(C,{animate:false})}${radarLegendHTML({stop:true})}</div><div class="pgright">${printCompTable(C)}<div class="pgqnote">Target grades: A set by the task, B research-based, C clinical estimate still being validated. Red: you at ${TGT} if you keep training. Grey: if you stop. Goal, and when: the level to build to so the glide path still clears at ${TGT}.</div>${qn}</div></div>`;
   } else {
     const lead = (HERO==='A' && v.nGap) ? `<div class="actionlead" style="margin:8px 0 4px"><div class="allbl">Train first</div><div class="atxt"><b class="tk">${worst.short}</b>, about <b>${worst.shortBy}% short</b> at ${TGT}. ${worst.r.why||''}</div></div>` : '';
     const useC = (HERO==='A'||HERO==='B') ? Csort : C;
@@ -6613,7 +6732,7 @@ function printModeSummaryHTML(mode,goals){
   if(mode==='R')return `<div data-pdf-report-mode="capacity-wheel">${modelConfidenceHTML(story)}<div class="modepanel"><h2>Your capacity wheel</h2><div class="modelede">Every axis uses the same normalization: 100% is a defensible fixed goal demand.</div><div class="wheelwrap">${overviewWheelSVG(story)}<div class="wheellegend">${wheelKeyHTML(story)}<span>Support-only capacities are excluded. Polygon area is not a score.</span></div></div></div>${wholeBodyOpportunitiesHTML(story)}</div>`;
   if(mode==='D'){
     const gradeCounts=currentGoalAuditRegister().flatMap(r=>r.targetGrades).reduce((a,t)=>(a[t.grade]=(a[t.grade]||0)+1,a),{}),families=Object.entries(EVIDENCE_HORIZONS).filter(([f])=>f!=='none'&&f!=='mobility');
-    return `<div data-pdf-report-mode="clinician-detail">${foundationalSummaryHTML()}<div class="modepanel"><h2>Clinician model audit</h2><div class="modelede">${STATUS_RULE} Every target is graded A, B or C for how firm it is.</div><div class="scorecard"><div class="sccol up"><div class="schd"><span class="scttl">Target grades, all 36 goals</span></div><div class="scqs">${['A','B','C'].map(k=>`<span class="scq">${gradeCounts[k]||0} ${k} · ${TARGET_GRADES[k].toLowerCase()}</span>`).join('')}</div></div><div class="sccol dn"><div class="schd"><span class="scttl">Model safeguards</span></div><div class="scqs"><span class="scq">any projected miss = opportunity with a 1–3-year goal</span><span class="scq">missing tests cannot clear</span><span class="scq">every target graded</span><span class="scq">wider range past the evidence</span></div></div></div><table class="ptbl"><thead><tr><th>Forecast family</th><th>Observed age range / evidence horizon</th><th>Confidence</th></tr></thead><tbody>${families.map(([f,h])=>`<tr><td>${f}</td><td>${h.observedAgeRange}; modeling extrapolation starts ${h.extrapolationStartAge}${h.extrapolationStartBasis?` (${h.extrapolationStartBasis})`:''}</td><td>${h.forecastConfidence}</td></tr>`).join('')}</tbody></table></div></div>`;
+    return `<div data-pdf-report-mode="clinician-detail">${foundationalSummaryHTML()}<div class="modepanel"><h2>Clinician model audit</h2><div class="modelede">${STATUS_RULE} Every target is graded A, B or C for how firm it is.</div><div class="scorecard"><div class="sccol up"><div class="schd"><span class="scttl">Target grades, all 36 goals</span></div><div class="scqs">${['A','B','C'].map(k=>`<span class="scq">${gradeCounts[k]||0} ${k} · ${TARGET_GRADES[k].toLowerCase()}</span>`).join('')}</div></div><div class="sccol dn"><div class="schd"><span class="scttl">Model safeguards</span></div><div class="scqs"><span class="scq">any projected miss = opportunity with a short-term goal</span><span class="scq">missing tests cannot clear</span><span class="scq">every target graded</span><span class="scq">wider range past the evidence</span></div></div></div><table class="ptbl"><thead><tr><th>Forecast family</th><th>Observed age range / evidence horizon</th><th>Confidence</th></tr></thead><tbody>${families.map(([f,h])=>`<tr><td>${f}</td><td>${h.observedAgeRange}; modeling extrapolation starts ${h.extrapolationStartAge}${h.extrapolationStartBasis?` (${h.extrapolationStartBasis})`:''}</td><td>${h.forecastConfidence}</td></tr>`).join('')}</tbody></table></div></div>`;
   }
   return `<div data-pdf-report-mode="simple">${goalHeadlineHTML(story)}${patientGoalCardsHTML(story.goalOutlooks,true)}<div class="btitle">Your capacity story</div>${capacitySummaryHTML(story)}<div class="scope"><b>Next pages:</b> each goal has its own radar and test-by-test results.</div></div>`;
 }
@@ -6736,7 +6855,7 @@ $("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); i
 const COPY={
   scope:()=>`This model uses measured physical capacities from the Early Medical assessment, CPET, and selected context from DEXA. Each goal is judged on every one of its tests. Qualitative movement screens and DEXA context are shown separately and do not change a goal’s status.`,
   disclaimerLead:'How to read this.',
-  disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization; strength, power and aerobic capacity follow the decline of people who keep training (healthy-cohort rates through the 60s, about two-thirds of the general rate from 70, aerobic fitness at 0.7× the typical rate), range of motion declines at half the typical rate, balance follows published age norms, rep and hold tests are tracked but not projected, and isolated strength tests aim for the VALD 75th percentile carried to the target age, each with a deliberately broad uncertainty range. A test projected short gets a goal for the next 1–3 years: the level that keeps the glide path above what the goal needs. A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. Training, disease, injury, body-weight change, and survivor effects can materially alter the trajectory.`
+  disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization; strength, power and aerobic capacity follow the decline of people who keep training (healthy-cohort rates through the 60s, about two-thirds of the general rate from 70, aerobic fitness at 0.7× the typical rate), range of motion declines at half the typical rate, balance follows published age norms, rep and hold tests are tracked but not projected, and isolated strength tests aim for the VALD 75th percentile carried to the target age, each with a deliberately broad uncertainty range. A test projected short gets a short-term goal: the level that keeps the glide path above what the goal needs, with a time frame sized to the lift (within a year up to +10%, 1–3 years up to +25%, 3–5 years up to +50%, beyond that a long-term stretch). A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. Training, disease, injury, body-weight change, and survivor effects can materially alter the trajectory.`
 };
 const DEMO_ARCHETYPES={
   balanced:{label:'Balanced all-rounder',sex:'male',age:54,bodyWeight_lb:175,metrics:BASELINE_METRICS,assessmentPercentiles:{hopRSI:58,anklePF_xBW:54,cmjPower_WkG:52,dropJump_RSI:48,beltSquatIso_xBW:61,broadJump_cm:55,kneeFlex_xBW:46,slVertJump_cm:50,hipAbd_xBW:43,hipAdd_xBW:41,kneeExt_xBW:38,grip_lb:57,shoulderER_NmKg:40}},

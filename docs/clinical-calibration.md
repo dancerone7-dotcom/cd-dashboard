@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,81 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.9: sub-items, time-framed short-term goals and component audit (2026-09-25)
+
+Dan's direction:
+- The model should illustrate how training now protects quality of life later.
+- Declines should be realistic by age, by current level and by the CD target age (80, 85 or 90).
+- Short-term targets should be based on age and sex, with a sensible time frame, and should show their effect on the goals.
+- Every component needs sub-items, so a goal never shows a missing variable when a related test was done.
+- Each goal should be an itemized list, most important component first.
+
+1. **Sub-items for every component.** After the component's own test and the projected stand-ins, each component falls back in order to:
+   - **Rep and hold tests,** judged against the PCA Proficient standard for the patient's age today. They can't be projected to 90 reliably. Proficient is the same "strong for your age" level that the 75th-percentile targets build on: a 75th-percentile patient who keeps training lands on the target.
+   - **Movement screens:** the goal is Proficient on the screen.
+   - **Aerobic base estimated as 60% of VO₂max.** That is a conservative share: Chad's measured LT1 is 71% of his VO₂max.
+
+   | Component | Sub-items, in order |
+   |---|---|
+   | Knee extension | belt squat, chair stand, back squat, front squat, goblet squat; split squat, wall sit; squat quality |
+   | Knee flexion | deadlift |
+   | Hip abduction | side plank, Copenhagen; pelvic control on one leg |
+   | Hip adduction | Copenhagen |
+   | Calf strength | calf raises |
+   | Grip | dead hang |
+   | Rotator cuff | dumbbell external rotation; prone T |
+   | Deadlift | kettlebell deadlift; Sorensen; hinge quality |
+   | Suitcase carry | side plank, dead hang |
+   | Loaded step-up | rear-foot-elevated split squat, split squat; single-leg step-down quality |
+   | Step-down | single-leg step-down quality, split squat |
+   | Sit-to-stand power and chair stand | each other; squat quality |
+   | Overhead press | landmine press; push-ups |
+   | Loaded row | inverted row, chin-ups |
+   | Isometric bench | push-ups |
+   | Pallof hold | side plank; standing rotation quality |
+   | Hip flexion | squat quality, PRI squat, toe touch |
+   | Ankle dorsiflexion | squat quality, PRI squat |
+   | Knee flexion range | squat quality |
+   | Straight-leg raise | toe touch |
+   | Trunk rotation | standing rotation quality |
+   | Hip extension range | gait quality |
+   | Aerobic base | VO₂max estimate |
+
+   - These components have no related test and still show as untested: shoulder flexion, upper-back extension, hip rotation and abduction range, pogo hops, rotational throw, jumps and VO₂max itself.
+   - The PCA Proficient-by-age values not already in the tool come from the live Notion PCA Standards (checked 2026-09-24): split squat, inverted row, chin-ups, plank, wall sit, Copenhagen, prone T and rear-foot-elevated split squat.
+2. **Each goal is an itemized list, most important first:** hard prerequisites first, then by weight.
+   - Stand-ins say what they replace.
+   - Untested components list every test that would count.
+3. **Short-term goals have a time frame sized to the lift,** because training gains taper:
+   - up to +10%: within a year;
+   - up to +25%: 1–3 years;
+   - up to +50%: 3–5 years;
+   - beyond that: a long-term stretch.
+   - Rep, hold and screen stand-ins get 1–3 years and show the gap in their own units (+21 reps), not a percentage.
+4. **Age and sex context for aerobic goals:** VO₂max today and the goal are placed in EM's performance groups (Mandsager 2018 cut points by decade and sex, as in the patient report).
+5. **Effect of the short-term goals.**
+   - The overview says how many goals would be on track if the short-term goals are reached. A goal counts only when nothing is untested and no lift is a long-term stretch.
+   - Each goal page says whether reaching the goals puts it on track, or which test remains a long-term stretch.
+6. **Glide charts** add a grey line for "if training stops after reaching the goal": the general decline plus the first-year loss.
+7. **Component audit (all 36 goals):**
+   - Horseback riding adds hip adduction, since the inner thighs grip the horse.
+   - The 10 km row adds knee extension, since most stroke power comes from the leg drive.
+   - The other goals' components were judged relevant as set.
+8. **Decline check (unchanged in this version).**
+   - Rates rise with age and apply from the patient's current age to their own CD target age.
+   - The rate doesn't depend on how strong the patient is today. Relative decline is broadly similar across baseline levels, so a higher level mostly buys a 10–20-year head start (research review, 2026-09-24).
+   - Men's leg strength kept from 45 / 55 / 65 / 75 to age 90: 48 / 52 / 58 / 68% if they keep training, 30 / 33 / 39 / 50% if they stop. To age 80: 63 / 68 / 76 / 90% and 44 / 48 / 56 / 72%.
+
+**Sniff test:**
+- **Chad Sweet:** 3 on track (floor rise, chair rise, carrying a child), 7 opportunities, 0 need more data. Reaching the short-term goals makes it 6.
+  - VO₂max: 38 for the walk (+14%, 1–3 years), 40 for tennis (+19%, 1–3 years), 54 for the hike (+62%, a long-term stretch).
+  - Aerobic base for the hike: +37%, 3–5 years.
+  - Left calf raises: 6 now, 27 needed (Proficient for 50–59).
+  - Single-leg step-down quality: Deficient now; the goal is Proficient.
+  - Rotator cuff: dumbbell external rotation 13 lb (+4%, within a year).
+- **Peter Wallach:** 1 on track, 1 opportunity (the hike: VO₂max +7% and aerobic base +5%, both within a year), 8 need more data. His range of motion, loaded lifts, balance and hops aren't recorded anywhere.
+- **Demo patients:** 0–7 on track today, 3–9 once the short-term goals are reached.
 
 ## Model 4.8: 75th-percentile strength targets, opportunities and short-term goals (2026-09-25)
 
