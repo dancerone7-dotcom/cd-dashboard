@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -28,6 +28,79 @@ Each target is the level at which that capacity stops limiting the task at the m
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
 
+## Model 4.10: decline rates rebuilt from a six-part literature review (2026-09-25)
+
+Dan's direction: keep the PCA Proficient standards where they sit above the 75th percentile; for 60 and older, set the equivalent standard from the best evidence on decline by age and sex; make every rate of decline realistic and a good target. Six reviews were run in parallel (lower-limb strength by muscle, grip and upper body, power and endurance, aerobic fitness, balance / range of motion / body composition, and training status). Each is kept with its study tables, PMIDs and arithmetic.
+
+**Two curves, never mixed**
+- **Projections** follow within-person (longitudinal) studies, because people followed over time decline faster after 70 than age-group comparisons suggest: the people still tested at 90 are the survivors.
+- **Age standards** ("75th percentile for your age") past VALD's last age band follow cross-sectional 75th-percentile curves. The 75th percentile falls about 5% more slowly than the median (48 lower-limb comparisons; 2.4 million grip tests).
+- Extending norms with longitudinal rates, or projecting patients on cross-sectional slopes, is off by up to 2x after 85.
+
+**Strength, projections (% lost per year at 45 / 55 / 65 / 75 / 85 / 95)**
+
+| Curve | Men | Women | Basis |
+|---|---|---|---|
+| Legs, keeps training | 0.65 / 0.9 / 1.3 / 2.0 / **3.4 / 3.8** | 0.9 / 1.0 / **1.3 / 1.9 / 3.1 / 3.4** | Healthy-volunteer cohorts to 84 (Leuven, BLSA, Winegard); from 85, 0.85x the general rate (active men in Newcastle 85+) |
+| Legs, general | 0.85 / 1.25 / 1.8 / 3.2 / **4.0 / 4.5** | 0.75 / 1.1 / 1.65 / 2.65 / **3.6 / 4.0** | Health ABC to 80; past 85 from grip (Newcastle 85+, Leiden 85-plus) |
+| Grip and upper body, keeps training | 0.3 / 0.65 / 1.05 / 1.7 / **3.4 / 4.25** | 0.4 / 0.7 / 0.9 / 1.85 / **3.2 / 3.8** | 0.8x the general rate (SHARE vigorous exercisers; Newcastle 85+) |
+| Grip and upper body, general | **0.4 / 0.8 / 1.3 / 2.1 / 4.0 / 5.0** | **0.5 / 0.9 / 1.1 / 2.3 / 3.8 / 4.5** | Median of 11+ cohorts; the old curve was too steep before 75 and too gentle after 80 |
+
+- **Muscle-specific rates** (both lines, as a multiple of the knee rate): knee flexion 0.95, hip abduction 0.9, hip adduction 1.1, calf 1.0 (grade C; no long-term hip studies exist).
+- **Rotator cuff:** men at the grip rate; women 0.6x the grip rate to 75, reaching it by 85 (women's arm strength barely changed over 5–10 years in Hughes 2001 and BLSA; no age trend in women's external rotation once cuff tears were excluded, Kim 2009).
+- **Share kept from 60 to 90, keeps training:** legs 0.51 (men) / 0.53 (women); grip 0.54 / 0.55. General: legs 0.41 / 0.46; grip 0.48 / 0.49.
+- **Training mostly buys level, not slope:** elite master lifters lose the same % per year as controls with a ~20-year head start (Pearson 2002); a year of training lifted strength for 7 years without changing the later slope (Kennis 2013).
+
+**Power**
+- Keeps training (masters athletes keep their age-norm percentile): men 1.2 / 1.4 / 1.7 / 2.2 / **3.7 / 4.2**, women 1.1 / 1.3 / 1.6 / 2.0 / **3.4 / 3.8** at 45–95. From 85 it is 1.1x the leg-strength rate, because power falls faster than strength wherever both are measured and no power data run past ~80.
+- General: 2.2 / 2.4 (men / women) at 65, 3.5 / 3.1 at 75, 4.4 / 4.0 at 85.
+- Reactive (hops, drop jumps) 1.5x power; women's medicine-ball throws 0.8x power; sit-to-stand power from the Baltasar-Fernandez 8-year cohort.
+
+**Aerobic fitness**
+- General VO₂max rates pool BLSA (Fleg 2005, weighted double), HUNT, ACLS, SHIP, Hollenberg, Stathokostas and Generation 100: men 0.95 / 1.4 / 1.75 / 2.55 / 2.85 / 3.2 and women 0.9 / 1.25 / 1.45 / 1.85 / 2.1 / 2.5 %/yr at 45–95.
+- Keeps training: 0.65x the general rate to 65, 0.9x at 75, 1.0x from 85. After about 70, training buys a higher level, not a slower decline (Generation 100 consistent trainers lost 1.8–2.8%/yr at 71–82).
+- LT1 falls at 0.6x the VO₂max rate and stays at or below 85% of projected VO₂max. When that cap binds, the LT1 row now names the VO₂max it takes.
+- If training stops: year one loses half the surplus above the median for age (5–20%), then 1.2x the general rate.
+- **Short-term time frames for aerobic tests:** VO₂max trains less than strength (previously inactive adults gain ~15–25% over 5–12 months, HERITAGE and Kohrt 1991; people already training 5–10%). VO₂max and LT1 goals use +10% within a year, +20% in 1–3 years and +30% in 3–5 years, halved when VO₂max is already at or above the 75th percentile for age. Other tests keep +10 / +25 / +50%.
+
+**Balance, range of motion, body composition**
+- **Single-leg balance, eyes open:** PCA standards to 70 (45 / 35 / 20 s), then about 10 s in the 80s and 7 s at 90 (Springer 2007; PRIMOS; TMIG). The old 15-s value for the 80s sits near the 75th percentile, the others near the median. From 60 to 90 people keep about 15–20% of their time; training raises the level (about +5 s) but not the slope. Floor 1 s.
+- **Eyes closed** has its own curve: about 4.5%/yr from 40 to 70, then 3%/yr, floor 2 s.
+- **Goals past the test limit:** EM times single-leg balance to 60 s. When a balance goal would need more than that today (often 80+ s for a 15-s target at 90), it reads "past the 60 s test limit" with a plain explanation, not a number to build to.
+- **Range of motion:** half the typical rate stays for patients who keep up mobility work (Dan, 4.6). The review found no study longer than a year showing that mobility work slows the slope, only that it raises the level, so this remains a grade-C "keeps up mobility work" scenario. Typical rates after 70 were corrected: hip flexion 4° per decade (was 6°, which came from a standing trunk-plus-hip arc), shoulder flexion 5° (was 7°; survivors followed 8 years lost little, Bassey 1998). If training stops, the typical rate applies and the training gain (about 4°, 1.5 cm knee-to-wall) is lost.
+- **Lean mass:** ALMI falls about 0.3%/yr at 40–60, 0.5 in the 60s, 0.75 (men) / 0.6 (women) in the 70s and about 0.95 / 0.8 in the 80s (Health ABC; Gallagher 2000). FFMI about 0.2 / 0.3 / 0.4 %/yr in the 60s / 70s / 80s (Hughes 2002).
+
+**Age standards past VALD's bands (75th percentile for age, absolute force)**
+
+| Test (anchor age) | 60 | 70 | 80 | 90 |
+|---|---|---|---|---|
+| Knee extension and calf (50), men / women | 0.90 / 0.90 | 0.79 / 0.79 | 0.68 / 0.66 | 0.56 / 0.52 |
+| Knee flexion (50) | 0.91 / 0.91 | 0.80 / 0.80 | 0.69 / 0.67 | 0.57 / 0.54 |
+| Hip abduction (55) | 0.95 / 0.95 | 0.85 / 0.84 | 0.74 / 0.71 | 0.62 / 0.58 |
+| Hip adduction (55) | 0.94 / 0.94 | 0.82 / 0.81 | 0.69 / 0.66 | 0.55 / 0.52 |
+| Shoulder rotation (55) | 0.97 / 0.98 | 0.86 / 0.90 | 0.72 / 0.76 | 0.57 / 0.58 |
+| Grip (70) | 1.14 / 1.12 | 1.00 / 1.00 | 0.83 / 0.82 | 0.66 / 0.63 |
+
+- Legs: a cross-sectional knee curve (McKay 2017; Mizuno 2021; Danneskiold-Samsøe 2009; Harbo 2012) x each muscle's ratio x 0.95. Grip: Dodds 2014 British centiles (12 studies, ~50,000 people). Shoulder: grip's decline to the power 0.9 (men), 0.7 to 75 then 1.0 (women).
+- **VALD's DynaMo "60+" grip band** pools ages; a pooled 60–79 sample's 75th percentile equals the age-specific one at about 70 (Dodds). It is now read as the level at 70, so a 62-year-old's standard is 12% higher than the band value and an 85-year-old's 25% lower. Worth asking VALD for the band's age mix.
+
+**Targets**
+- Isolated strength targets stay the VALD 75th percentile carried to the target age on the keep-training line, relabeled in plain words: "top-quarter strength, kept up by training to 90." A person at the 75th percentile at 70 who declines at the typical rate lands near the median for 90-year-olds, so staying in the top quarter is a better-than-typical outcome, not the expected course.
+- New values at 90 (180-lb man / 145-lb woman): knee extension 0.20 / 0.19 × BW (was 0.22 / 0.21); knee flexion 0.13 / 0.12; calf 0.65 / 0.62 (was 0.70 / 0.69); hip abduction 0.25 / 0.22; hip adduction 0.22 / 0.20; shoulder external rotation 0.10 / 0.09; grip 62 / 38 lb (was 63 / 37; men's value also used for fixed loads).
+- The range around each projection widens with age, by up to 1.6x for target ages 75–85 and beyond: at 85–90, individual 4–5-year changes run from gains to twice the average loss.
+
+**Results**
+- **Test member A:** 3 on track / 7 opportunities / 0 need data (unchanged); 5 with short-term goals (was 6). The walk now needs VO₂max 46 (was 38) because trained people's VO₂max after 70 falls at close to the typical rate.
+- **Test member B:** 1 / 1 / 8 (unchanged). The hike needs VO₂max 72 (was 59), now labeled a long-term stretch.
+- **Demo patients:** balanced 2/8, aerobic-strength-limited 0/10, strength-aerobic-limited 2/8, power-balance-limited 0/10, female-mixed 5/5 (was 6/4), older-resilient 5/5 (was 7/3), older-deconditioned 0/10. The new misses are near misses (loaded step-up at 95–98% of its target) and the 30-s balance goal.
+- **All-Proficient check:** 147 of 594 checks short (4.9.2: 111). The extra misses are 30 balance checks for 65-year-olds at the PCA 35-s standard (they project to about 7 s at 90, below the 10- and 15-s task targets), 3 step-down and 3 suitcase carry. Grip passes once "Proficient" uses VALD's 75th percentile for age.
+
+**Open for Dan**
+- **Balance targets at 90:** 15 s (hike, tennis) and 30 s (the balance goal) at 90 need 80+ s and 160+ s today under realistic decline, past what the 60-s test can time. Options: lower the 15-s target, time the test to 120 s, or track eyes-closed balance for people at the limit.
+- **PCA 80–90 standards used as stand-in targets are cross-sectional.** They are applied at exactly 90, not at the band's middle (85), and paired with a longitudinal projection. For example, test member A's dumbbell external rotation stand-in needs 18.9 lb now, above PCA Proficient for that age (15 lb). Reading the band value as the level at 85 and carrying it on the same curve (as the VALD targets are) would lower stand-in targets at 90 by about 15%.
+- **Stopping training:** the 15% first-year strength loss may be large for long-term trainers, whose advantage lasts for years after stopping (Kennis 2013).
+- **Terminal decline** (the last 1–2 years of life) is left out of the lines and named in the "how to read this" text.
+
 ## Model 4.9.2: Proficient on ForceFrame tests is the VALD 75th percentile (2026-09-25)
 
 Dan's rule: on ForceFrame tests, Proficient is the VALD 75th percentile. There are two exceptions: a selected goal whose task needs more, or higher house norms for EM patients from Chris Hart, who is driving the ForceFrame integration.
@@ -36,7 +109,7 @@ Dan's rule: on ForceFrame tests, Proficient is the VALD 75th percentile. There a
   - The 75th percentile at 40–59 (pooled by VALD) is 1,116 N for men and 830 N for women.
   - Carried to 90 on the keep-training decline, that is about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.
   - Full distribution at 40–59 (25th / 50th / 75th / 90th): men 678 / 900 / 1,116 / 1,343 N; women 438 / 631 / 830 / 1,019 N. At 25 the 75th percentile is 1,333 N (men) and 1,080 N (women).
-- **Stand-ins:** a stand-in for a 75th-percentile strength target now aims for its own PCA Proficient level for 80–90 on every goal. Chad's goblet squat, for example, now aims for 15% BW; before, the position mapping put it at 9%.
+- **Stand-ins:** a stand-in for a 75th-percentile strength target now aims for its own PCA Proficient level for 80–90 on every goal. Test member A's goblet squat, for example, now aims for 15% BW; before, the position mapping put it at 9%.
 - **VALD Hub norms are absolute force only.** No body-weight-relative norms exist; every other metric name was rejected.
 - **Current PCA standards on the ForceFrame scale:**
 
@@ -54,7 +127,7 @@ Dan's rule: on ForceFrame tests, Proficient is the VALD 75th percentile. There a
   - Developing from the 25th to the 75th;
   - Deficient below the 25th.
   - VALD's ForceFrame norms stop at 59, so patients 60 and older need an age slope, as the report generator already uses for hip and shoulder.
-- **Goal counts** for Chad, Peter and the demo patients are unchanged.
+- **Goal counts** for both test members and the demo patients are unchanged.
 
 ## Model 4.9.1: ForceFrame knee norms from the VALD Hub (2026-09-25)
 
@@ -72,13 +145,13 @@ The knee targets now anchor on VALD's own ForceFrame norms. They were pulled liv
 - **New targets at 90:**
   - knee extension: 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman (was 0.29 / 0.26);
   - knee flexion: 0.13 (was 0.14 / 0.12).
-- **ForceFrame reads well below DynaMo.** The DynaMo 60+ 75th percentile (396 N men) is higher than ForceFrame's 40–59 value (349 N). On the right device, Peter Wallach's 491–551 N is above the 90th percentile, not the 60th–70th estimated from DynaMo. His knee now clears at 90 with a 37% margin.
+- **ForceFrame reads well below DynaMo.** The DynaMo 60+ 75th percentile (396 N men) is higher than ForceFrame's 40–59 value (349 N). On the right device, test member B's knee extension is above the 90th percentile, not the 60th–70th estimated from DynaMo. That knee now clears at 90 with a 37% margin.
 - **Katayama & Yamasaki's belt-fixed dynamometer reads about 2.5× ForceFrame.** Healthy men in their 40s–50s average 0.77 × BW there, against a ForceFrame median of about 0.31. Their stairs threshold (0.50) lands near 0.20 on ForceFrame, close to the new target.
 - **The PCA knee standards look like they were set on a higher-reading device.**
   - On ForceFrame, PCA Proficient for men (0.65 × BW at 50–60 and 0.73 at 40–50, for an 84-kg man) sits at the 96th–97th percentile.
   - For women (0.55 and 0.61 at 68 kg) it sits at the 94th–95th.
   - If EM tests knee extension on ForceFrame, PCA "Proficient" currently means the top 5% of VALD's Health population.
-- **Results:** Chad (knee judged via the goblet squat) and the demo patients' goal counts are unchanged.
+- **Results:** test member A (knee judged via the goblet squat) and the demo patients' goal counts are unchanged.
 
 ## Model 4.9: sub-items, time-framed short-term goals and component audit (2026-09-25)
 
@@ -92,7 +165,7 @@ Dan's direction:
 1. **Sub-items for every component.** After the component's own test and the projected stand-ins, each component falls back in order to:
    - **Rep and hold tests,** judged against the PCA Proficient standard for the patient's age today. They can't be projected to 90 reliably. Proficient is the same "strong for your age" level that the 75th-percentile targets build on: a 75th-percentile patient who keeps training lands on the target.
    - **Movement screens:** the goal is Proficient on the screen.
-   - **Aerobic base estimated as 60% of VO₂max.** That is a conservative share: Chad's measured LT1 is 71% of his VO₂max.
+   - **Aerobic base estimated as 60% of VO₂max.** That is a conservative share: test member A's measured LT1 is 71% of VO₂max.
 
    | Component | Sub-items, in order |
    |---|---|
@@ -146,13 +219,13 @@ Dan's direction:
    - Men's leg strength kept from 45 / 55 / 65 / 75 to age 90: 48 / 52 / 58 / 68% if they keep training, 30 / 33 / 39 / 50% if they stop. To age 80: 63 / 68 / 76 / 90% and 44 / 48 / 56 / 72%.
 
 **Sniff test:**
-- **Chad Sweet:** 3 on track (floor rise, chair rise, carrying a child), 7 opportunities, 0 need more data. Reaching the short-term goals makes it 6.
+- **Test member A:** 3 on track (floor rise, chair rise, carrying a child), 7 opportunities, 0 need more data. Reaching the short-term goals makes it 6.
   - VO₂max: 38 for the walk (+14%, 1–3 years), 40 for tennis (+19%, 1–3 years), 54 for the hike (+62%, a long-term stretch).
   - Aerobic base for the hike: +37%, 3–5 years.
   - Left calf raises: 6 now, 27 needed (Proficient for 50–59).
   - Single-leg step-down quality: Deficient now; the goal is Proficient.
   - Rotator cuff: dumbbell external rotation 13 lb (+4%, within a year).
-- **Peter Wallach:** 1 on track, 1 opportunity (the hike: VO₂max +7% and aerobic base +5%, both within a year), 8 need more data. His range of motion, loaded lifts, balance and hops aren't recorded anywhere.
+- **Test member B:** 1 on track, 1 opportunity (the hike: VO₂max +7% and aerobic base +5%, both within a year), 8 need more data. Range of motion, loaded lifts, balance and hops aren't recorded.
 - **Demo patients:** 0–7 on track today, 3–9 once the short-term goals are reached.
 
 ## Model 4.8: 75th-percentile strength targets, opportunities and short-term goals (2026-09-25)
@@ -160,7 +233,7 @@ Dan's direction:
 Dan's direction, 2026-09-25:
 - Grip targets for fixed loads are the same for men and women.
 - Isolated muscle force tests use the VALD resources and age-projected decline for 75th-percentile targets.
-- Targets should be a stretch but realistic. Sniff-test with Chad Sweet (two years in the program) and Peter Wallach (did very well across the board).
+- Targets should be a stretch but realistic. Sniff-test with two real members, kept local: a long-term member (test member A) and a top performer (test member B).
 - Falling short on one test shouldn't read as "unable at 90". Show the glide path, and give every metric a short-term goal for the next 1–3 years.
 
 1. **Isolated muscle force tests aim for the 75th percentile at 90.**
@@ -178,7 +251,7 @@ Dan's direction, 2026-09-25:
    - **Calf:** VALD's seated calf norms stop at 59, so calf uses the report generator's fallback. That is Kanayama 2023, ages 75+, mean + 0.674 SD: 1.08 × BW for men and 1.00 for women.
    - **Carried to 90 on the keep-training decline,** the same curve the patient is projected on. A patient at the 75th percentile in that band who keeps training lands exactly on the target.
      - The report generator carries the same anchors forward with Stoll 2000's cross-sectional slopes. Those are gentler than within-person decline.
-     - Pairing them with a longitudinal patient projection would put the target above what even a 99th-percentile patient reaches. Peter's hip abduction is an example: 491 N at 44, about the VALD 99th percentile.
+     - Pairing them with a longitudinal patient projection would put the target above what even a 99th-percentile patient reaches. Test member B's hip abduction is an example: about the VALD 99th percentile.
    - **Divided by the patient's body weight,** because VALD norms are absolute force.
    - **One target per test for every goal.** There is no longer an everyday/demanding split.
 
@@ -214,15 +287,15 @@ Dan's direction, 2026-09-25:
    - what the goal needs at 90.
 
 **Sniff test (the default 10 goals):**
-- **Chad Sweet** (57, two years in the program):
+- **Test member A** (long-term member):
   - Model 4.7: 0 on track, 5 won't clear, 5 need data. Model 4.8: 0 on track, 5 opportunities, 5 need data.
-  - His strength clears: deadlift, grip, and the goblet squat standing in for knee strength.
+  - Strength clears: deadlift, grip, and the goblet squat standing in for knee strength.
   - VO₂max is an opportunity. Short-term goals: 38 for the walk (+14%), 40 for tennis (+20%), 54 for the hike (+62%).
   - The other opportunities are aerobic base for the hike (32) and the dumbbell external rotation stand-in (13 lb, +5%).
-- **Peter Wallach** (44; VO₂max 54.9, ALMI 10.5, VALD January 2026):
+- **Test member B** (top performer):
   - Model 4.7: 0 on track, 9 won't clear, 1 needs data. Model 4.8: 1 on track, 1 opportunity, 8 need data.
-  - Every strength test he has clears at 90. The one shortfall is VO₂max for the mountain hike: short-term goal 59 (+7%).
-  - The goals that need data are missing range of motion, loaded lifts, LT1, balance and hop RSI. None of these are in his VALD, CPET, DEXA or Notion records.
+  - Every strength test on record clears at 90. The one shortfall is VO₂max for the mountain hike: short-term goal 59 (+7%).
+  - The goals that need data are missing range of motion, loaded lifts, LT1, balance and hop RSI. None of these are in the member's records.
 - **Demo patients:** 0–7 of 10 on track (model 4.7: 0–3).
 - **All-Proficient synthetic patient:** 99 of 552 strength checks short (model 4.7: 180). Knee extension accounts for none of them (model 4.7: 81). The rest:
   - demanding-goal loaded tests set at the 80–90 Proficient standard;

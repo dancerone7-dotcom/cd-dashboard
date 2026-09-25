@@ -620,7 +620,7 @@ body:not(.tab-build) .datactl{display:none}
 .rtable .rres{font-weight:700}
 .rtable tr.miss .rtest,.rtable tr.miss .rres{color:#bc2a2a}
 .rtable tr.ok .rres{color:#047857}
-.rtable small{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:2px}
+.rtable small{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:2px;white-space:normal;min-width:88px}
 .tg{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;font-size:10.5px;font-weight:800;margin-right:4px}
 .tg-A{background:#d1fae5;color:#065f46}.tg-B{background:#dbeafe;color:#1e40af}.tg-C{background:#f1f5f9;color:#475569}
 .rtablenote{font-size:10.5px;color:var(--muted);line-height:1.45;margin:6px 2px 10px}
@@ -782,9 +782,9 @@ svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
-const MODEL_VERSION='4.9.2';
+const MODEL_VERSION='4.10';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['A','B','C','R','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -823,8 +823,8 @@ const ACTIVITIES = {
     "weight": 1.4,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Strength to take stairs, get up from the floor and move quickly without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Strength to take stairs, get up from the floor and move quickly without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -1006,8 +1006,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "grip",
     "basis": "research",
-    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
+    "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -1024,8 +1024,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Walking while carrying needs leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Walking while carrying needs leg strength in reserve. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -1247,8 +1247,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "calf",
     "basis": "research",
-    "why": "Hours on your feet push off the balls of the feet. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.",
+    "why": "Hours on your feet push off the balls of the feet. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.65 × BW for a 180-lb man and 0.62 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -1282,8 +1282,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Hours of walking and standing need leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Hours of walking and standing need leg strength in reserve. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -1405,8 +1405,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "grip",
     "basis": "research",
-    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
+    "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -1509,8 +1509,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "calf",
     "basis": "research",
-    "why": "Dancing is on the balls of the feet. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.",
+    "why": "Dancing is on the balls of the feet. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.65 × BW for a 180-lb man and 0.62 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -1604,8 +1604,8 @@ const ACTIVITIES = {
     "weight": 1.5,
     "group": "grip",
     "basis": "research",
-    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
+    "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -1622,8 +1622,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "shoulder",
     "basis": "research",
-    "why": "Rotator-cuff capacity stabilizes the shoulder while force is transmitted through the hand. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Rotator-cuff capacity stabilizes the shoulder while force is transmitted through the hand. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.10 × BW for a 180-lb man and 0.09 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -1987,8 +1987,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Moving around the house and getting up and down need leg strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Moving around the house and getting up and down need leg strength. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2049,8 +2049,8 @@ const ACTIVITIES = {
     "weight": 1.3,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Rising from a standard seat without the hands depends on knee strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Rising from a standard seat without the hands depends on knee strength. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2197,8 +2197,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "calf",
     "basis": "research",
-    "why": "Soft sand makes every step a push-off. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.",
+    "why": "Soft sand makes every step a push-off. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.65 × BW for a 180-lb man and 0.62 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2232,8 +2232,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Walking in sand needs leg strength; sand adds effort. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Walking in sand needs leg strength; sand adds effort. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2379,8 +2379,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Kneeling, getting up and walking the garden need leg strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Kneeling, getting up and walking the garden need leg strength. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2527,7 +2527,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Holding a pulling 60-lb dog takes the same grip from anyone. Target: the same for men and women, because the load is.",
-    "evi": "The dog pulls the same on anyone, so men and women share one target: the men’s 75th percentile at 90 from VALD DynaMo grip norms (460 N at 60+, carried to 90 on the keep-training decline), about 63 lb. That also covers a 60-lb dog’s pull with a small margin.",
+    "evi": "The dog pulls the same on anyone, so men and women share one target: the men’s 75th percentile at 90 from VALD DynaMo grip norms (460 N for 60 and over, read as the level at about 70 and carried to 90 on the keep-training decline), about 62 lb. That also covers a 60-lb dog’s pull with a small margin.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -2664,8 +2664,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "shoulder",
     "basis": "research",
-    "why": "Cuff force stabilizes the humeral head during elevation and load. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Cuff force stabilizes the humeral head during elevation and load. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.10 × BW for a 180-lb man and 0.09 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -2683,8 +2683,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "grip",
     "basis": "research",
-    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
+    "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -2766,8 +2766,8 @@ const ACTIVITIES = {
     "weight": 1.1,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Strength to take stairs, get up from the floor and move quickly without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Strength to take stairs, get up from the floor and move quickly without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2906,8 +2906,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "grip",
     "basis": "research",
-    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
+    "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -2924,8 +2924,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "lower-strength",
     "basis": "research",
-    "why": "The approach and lunge need leg strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "The approach and lunge need leg strength. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2965,7 +2965,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Controlling recoil takes the same grip from anyone. Target: the same for men and women, because the load is.",
-    "evi": "Recoil is the same for anyone, so men and women share one target: the men’s 75th percentile at 90 from VALD DynaMo grip norms (460 N at 60+, carried to 90 on the keep-training decline), about 63 lb.",
+    "evi": "Recoil is the same for anyone, so men and women share one target: the men’s 75th percentile at 90 from VALD DynaMo grip norms (460 N for 60 and over, read as the level at about 70 and carried to 90 on the keep-training decline), about 62 lb.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -2983,8 +2983,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "shoulder",
     "basis": "research",
-    "why": "Cuff strength stabilizes the upper extremity. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Cuff strength stabilizes the upper extremity. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.10 × BW for a 180-lb man and 0.09 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -3046,8 +3046,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "grip",
     "basis": "research",
-    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
+    "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -3182,8 +3182,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Knee strength for fast starts, stops and single-leg loading. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -3200,8 +3200,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "hip",
     "basis": "research",
-    "why": "Frontal-plane hip force stabilizes the plant leg. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Frontal-plane hip force stabilizes the plant leg. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.25 × BW for a 180-lb man and 0.22 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -3343,8 +3343,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Knee strength for fast starts, stops and single-leg loading. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -3399,8 +3399,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "shoulder",
     "basis": "research",
-    "why": "Cuff strength supports repeated racquet acceleration/deceleration. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Cuff strength supports repeated racquet acceleration/deceleration. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.10 × BW for a 180-lb man and 0.09 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -3545,8 +3545,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "shoulder",
     "basis": "research",
-    "why": "Cuff capacity supports repetitive overhead stroke mechanics. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Cuff capacity supports repetitive overhead stroke mechanics. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.10 × BW for a 180-lb man and 0.09 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -3632,8 +3632,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "plantarflexor-force",
     "basis": "research",
-    "why": "Finning and climbing out of the water load the calves. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.",
+    "why": "Finning and climbing out of the water load the calves. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.65 × BW for a 180-lb man and 0.62 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -3752,8 +3752,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "hip",
     "basis": "research",
-    "why": "Hip force helps maintain pelvic control. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Hip force helps maintain pelvic control. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.25 × BW for a 180-lb man and 0.22 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -3771,8 +3771,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "hip-adductors",
     "basis": "research",
-    "why": "The inner thighs grip the horse. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame hip adduction, 75th percentile at ages 50–60 (384 N men, 270 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "The inner thighs grip the horse. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame hip adduction, 75th percentile at ages 50–60 (384 N men, 270 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.20 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -3807,8 +3807,8 @@ const ACTIVITIES = {
     "weight": 0.7,
     "group": "grip",
     "basis": "research",
-    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
+    "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -3999,8 +3999,8 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "plantarflexor-force",
     "basis": "research",
-    "why": "Climbing with a pack loads the calves. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.",
+    "why": "Climbing with a pack loads the calves. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.65 × BW for a 180-lb man and 0.62 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4117,8 +4117,8 @@ const ACTIVITIES = {
     "weight": 1.2,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Knee strength for fast starts, stops and single-leg loading. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -4193,8 +4193,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "hip",
     "basis": "research",
-    "why": "Frontal-plane hip force supports edge control. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Frontal-plane hip force supports edge control. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.25 × BW for a 180-lb man and 0.22 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -4316,8 +4316,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "shoulder",
     "basis": "research",
-    "why": "Cuff reserve supports repetitive stroke control. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Cuff reserve supports repetitive stroke control. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.10 × BW for a 180-lb man and 0.09 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -4470,8 +4470,8 @@ const ACTIVITIES = {
     "weight": 0.7,
     "group": "grip",
     "basis": "research",
-    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
+    "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -4551,8 +4551,8 @@ const ACTIVITIES = {
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Knee strength for fast starts, stops and single-leg loading. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4569,8 +4569,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "calf",
     "basis": "research",
-    "why": "Running loads the calf at several times body weight. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.",
+    "why": "Running loads the calf at several times body weight. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.65 × BW for a 180-lb man and 0.62 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4672,8 +4672,8 @@ const ACTIVITIES = {
     "weight": 1.1,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Most of each stroke’s power comes from the leg drive. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Most of each stroke’s power comes from the leg drive. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4800,8 +4800,8 @@ const ACTIVITIES = {
     "weight": 1.1,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Riding and getting on and off the bike need leg strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "Riding and getting on and off the bike need leg strength. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4818,8 +4818,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Pulling through the pedal stroke uses the hamstrings. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame prone knee flexion, 75th percentile at ages 50–59 for men (198 N) and 40–59 for women (150 N; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Pulling through the pedal stroke uses the hamstrings. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame prone knee flexion, 75th percentile at ages 50–59 for men (198 N) and 40–59 for women (150 N; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.13 × BW for a 180-lb man and 0.12 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4890,8 +4890,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "calf",
     "basis": "research",
-    "why": "Each step ends with a calf push-off. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.",
+    "why": "Each step ends with a calf push-off. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.65 × BW for a 180-lb man and 0.62 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4925,8 +4925,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "lower-strength",
     "basis": "research",
-    "why": "An hour of walking needs leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
+    "why": "An hour of walking needs leg strength in reserve. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.20 × BW for a 180-lb man and 0.19 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -5469,8 +5469,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "hip",
     "basis": "research",
-    "why": "Frontal-plane hip force contributes to pelvic control. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "why": "Frontal-plane hip force contributes to pelvic control. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.25 × BW for a 180-lb man and 0.22 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -5488,8 +5488,8 @@ const ACTIVITIES = {
     "weight": 0.8,
     "group": "ankle",
     "basis": "research",
-    "why": "The calf steadies the ankle on one leg. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.",
+    "why": "The calf steadies the ankle on one leg. Target: top-quarter strength, kept up by training to 90.",
+    "evi": "VALD ForceFrame seated plantarflexion, 75th percentile at ages 40–59 (1,116 N men, 830 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.65 × BW for a 180-lb man and 0.62 for a 145-lb woman.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -5752,12 +5752,22 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const lerp=(x,pts)=>{if(x<=pts[0][0])return pts[0][1];for(let i=1;i<pts.length;i++){if(x<=pts[i][0]){const a=pts[i-1],b=pts[i];return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]);}}return pts[pts.length-1][1];};
 /* annual proportional loss by age. 80+ values are scenario extrapolations and therefore get wider bands. */
 const DECLINE_CURVES={
- aero:{male:[[25,.35],[35,.50],[45,.80],[55,1.10],[65,1.55],[75,2.25],[85,2.55],[95,2.75]],female:[[25,.35],[35,.50],[45,.70],[55,.95],[65,1.35],[75,1.95],[85,2.25],[95,2.45]]},
+ /* VO2max, 4.10 (lit review 2026-09-25): pooled within-person rates from BLSA (Fleg 2005, weighted
+    double), HUNT, ACLS, SHIP, Hollenberg, Stathokostas and Generation 100, compounded yearly. The old
+    curve was gentler than BLSA for men in every decade. Rates past 80 are extrapolated. */
+ aero:{male:[[25,.35],[35,.50],[45,.95],[55,1.40],[65,1.75],[75,2.55],[85,2.85],[95,3.2]],female:[[25,.35],[35,.50],[45,.90],[55,1.25],[65,1.45],[75,1.85],[85,2.10],[95,2.5]]},
  /* LT1 runs at 0.75x the VO2max rates: it falls more slowly than VO2max, so its share of
     VO2max rises with age, but it still falls with it. */
- aero_threshold:{male:[[25,.26],[35,.38],[45,.60],[55,.83],[65,1.16],[75,1.69],[85,1.91],[95,2.06]],female:[[25,.26],[35,.38],[45,.53],[55,.71],[65,1.01],[75,1.46],[85,1.69],[95,1.84]]},
- lower_strength:{male:[[25,.45],[35,.60],[45,.85],[55,1.25],[65,1.80],[75,3.20],[85,3.65],[95,3.90]],female:[[25,.40],[35,.55],[45,.75],[55,1.10],[65,1.65],[75,2.65],[85,3.05],[95,3.30]]},
- upper_strength:{male:[[25,.35],[35,.50],[45,.75],[55,1.05],[65,1.55],[75,2.55],[85,3.00],[95,3.25]],female:[[25,.25],[35,.35],[45,.50],[55,.75],[65,1.20],[75,2.10],[85,2.55],[95,2.80]]},
+ aero_threshold:{male:[],female:[]},
+ /* Leg strength, general population: matches population cohorts to 80 (Health ABC, Goodpaster 2006,
+    Delmonico 2009; Frontera 2008). 4.10 (lit review 2026-09-25): 4.0 / 3.6 %/yr at 85 and 4.5 / 4.0 at
+    95, from grip in Newcastle 85+ and Leiden 85-plus, since no leg-strength cohort runs past ~84. */
+ lower_strength:{male:[[25,.45],[35,.60],[45,.85],[55,1.25],[65,1.80],[75,3.20],[85,4.0],[95,4.5]],female:[[25,.40],[35,.55],[45,.75],[55,1.10],[65,1.65],[75,2.65],[85,3.6],[95,4.0]]},
+ /* Grip and upper body, 4.10 (lit review 2026-09-25): within-person grip decline in survivors, the median
+    across cohorts: men 1.3%/yr in the 60s, 2.1 in the 70s, 3.0 at 80-85 and 4.4-5.2 at 85-90 (NILS-LSA,
+    Fels, NSHD, Berlin; Newcastle 85+, Leiden 85-plus; Danish 1905 cohort past 90); women 1.05 / 2.4 /
+    2.8 / 4.4. The old curve was too steep before 75 and too gentle after 80. Held near peak before 45. */
+ upper_strength:{male:[[45,.4],[55,.8],[65,1.3],[75,2.1],[85,4.0],[95,5.0]],female:[[45,.5],[55,.9],[65,1.1],[75,2.3],[85,3.8],[95,4.5]]},
  /* Power falls faster than strength with age and reactive capacity faster still: power runs at
     1.2x and reactive at 1.35x the leg-strength rates; muscular endurance at 0.8x. */
  power:{male:[[25,.54],[35,.72],[45,1.02],[55,1.50],[65,2.16],[75,3.84],[85,4.38],[95,4.68]],female:[[25,.48],[35,.66],[45,.90],[55,1.32],[65,1.98],[75,3.18],[85,3.66],[95,3.96]]},
@@ -5765,6 +5775,7 @@ const DECLINE_CURVES={
  endurance:{male:[[25,.36],[35,.48],[45,.68],[55,1.00],[65,1.44],[75,2.56],[85,2.92],[95,3.12]],female:[[25,.32],[35,.44],[45,.60],[55,.88],[65,1.32],[75,2.12],[85,2.44],[95,2.64]]},
  mobility:{male:[[25,.10],[35,.18],[45,.28],[55,.38],[65,.55],[75,.75],[85,.95],[95,1.10]],female:[[25,.10],[35,.18],[45,.28],[55,.38],[65,.55],[75,.75],[85,.95],[95,1.10]]},
  balance:{male:[[25,.25],[35,.40],[45,.65],[55,1.00],[65,1.65],[75,2.60],[85,3.50],[95,4.20]],female:[[25,.25],[35,.40],[45,.65],[55,1.00],[65,1.55],[75,2.40],[85,3.25],[95,3.90]]},
+ /* 4.10 (lit review 2026-09-25): ALMI and FFMI get their own curves below; this family stays for reference. */
  muscle_mass:{male:[[25,.20],[35,.30],[45,.45],[55,.65],[65,.90],[75,1.15],[85,1.35],[95,1.50]],female:[[25,.20],[35,.30],[45,.45],[55,.70],[65,.95],[75,1.20],[85,1.40],[95,1.55]]},
  none:{male:[[25,0],[95,0]],female:[[25,0],[95,0]]}
 };
@@ -5775,8 +5786,8 @@ const FAMILY_BAND={aero:.35,aero_threshold:.60,lower_strength:.35,upper_strength
 const FORECAST_EVIDENCE={
   aero:{grade:'A',label:'Longitudinal aerobic-capacity model',src:'Fleg 2005 · PMID 16043637'},
   aero_threshold:{grade:'B',label:'Longitudinal LT1 / ventilatory-threshold scenario',src:'Stathokostas 2004 · PMID 15047671; Stubbe 2021 · PMID 33778050'},
-  lower_strength:{grade:'A',label:'Longitudinal lower-extremity strength model',src:'Hughes 2001 · PMID 11320101; Goodpaster 2006 · PMID 17077199'},
-  upper_strength:{grade:'B',label:'Upper-body / grip strength family model',src:'Stenholm 2012 · PMID 22421705; Bassey 1998 · PMID 10408678'},
+  lower_strength:{grade:'A',label:'Longitudinal lower-extremity strength model',src:'Hughes 2001 · PMID 11320101; Goodpaster 2006 · PMID 17077199; Frontera 2008; Delmonico 2009; past 85 from grip (Granic 2016 · PMID 27637107)'},
+  upper_strength:{grade:'B',label:'Upper-body / grip strength family model',src:'Grip in survivors followed 5-27 years: NILS-LSA, Fels (Nahhas 2010), NSHD (Kuh 2019), Newcastle 85+ (Granic 2016 · PMID 27637107), Leiden 85-plus (Ling 2021 · PMID 32607865), Danish 1905 cohort (Oksuzyan 2010)'},
   power:{grade:'B',label:'Muscle-power family model',src:'Reid 2014 · PMID 24122149; Alcazar 2023 · PMID 36788413'},
   reactive:{grade:'C',label:'Reactive / rapid-force family scenario',src:'Reid 2014 · PMID 24122149; Alcazar 2023 · PMID 36788413; reactive-test extrapolation'},
   endurance:{grade:'C',label:'Muscular-endurance family scenario',src:'Limited test-specific longitudinal evidence; broad uncertainty applied'},
@@ -5786,10 +5797,10 @@ const FORECAST_EVIDENCE={
   none:{grade:'—',label:'No numerical decline model',src:'Shown as context only'}
 };
 const EVIDENCE_HORIZONS={
-  aero:{observedAgeRange:'21–87 years',sourcePopulation:'Baltimore Longitudinal Study of Aging; healthy community-dwelling adults',sexSupport:'men and women analyzed separately',supportedAgeBands:'young through late older adulthood',extrapolationStartAge:88,uncertaintyMultiplier:1.6,forecastConfidence:'moderate'},
+  aero:{observedAgeRange:'21–87 years',sourcePopulation:'Baltimore Longitudinal Study of Aging; healthy community-dwelling adults',sexSupport:'men and women analyzed separately',supportedAgeBands:'young through late older adulthood',extrapolationStartAge:80,uncertaintyMultiplier:1.6,forecastConfidence:'moderate'},
   aero_threshold:{observedAgeRange:'55–86 years',sourcePopulation:'older adults; threshold behavior transferred across CPET protocols',sexSupport:'limited sex-specific longitudinal resolution',supportedAgeBands:'midlife through older adulthood',extrapolationStartAge:82,uncertaintyMultiplier:2.0,forecastConfidence:'low'},
-  lower_strength:{observedAgeRange:'70–79 years in Health ABC; broader adult cohorts in Hughes',sourcePopulation:'community-dwelling older adults; lower-extremity dynamometry',sexSupport:'men and women included',supportedAgeBands:'midlife through late 70s',extrapolationStartAge:80,uncertaintyMultiplier:1.8,forecastConfidence:'moderate'},
-  upper_strength:{observedAgeRange:'adult to older-adult grip cohorts',sourcePopulation:'grip and upper-body capacity transferred to multiple tests',sexSupport:'sex-specific slopes are limited by test',supportedAgeBands:'adult through older adulthood',extrapolationStartAge:80,uncertaintyMultiplier:2.0,forecastConfidence:'low'},
+  lower_strength:{observedAgeRange:'40–84 years (Leuven, BLSA, Health ABC, Winegard plantarflexors)',sourcePopulation:'community-dwelling adults; lower-extremity dynamometry',sexSupport:'men and women included',supportedAgeBands:'midlife through early 80s',extrapolationStartAge:84,uncertaintyMultiplier:1.8,forecastConfidence:'moderate'},
+  upper_strength:{observedAgeRange:'40–100 years (grip)',sourcePopulation:'grip cohorts followed to 90 (Newcastle 85+, Leiden 85-plus) and past 90 (Danish 1905 cohort); other upper-body tests transferred from grip',sexSupport:'men and women analyzed separately',supportedAgeBands:'midlife through 90',extrapolationStartAge:90,uncertaintyMultiplier:2.0,forecastConfidence:'low'},
   power:{observedAgeRange:'Baseline ages 19–68 years; reassessed after median 9.6 years',baselineAgeRange:'19–68 years',followUpDuration:'median 9.6 years (IQR 9.3–10.4)',oldestFollowUpAge:'not reported as an individual maximum',sourcePopulation:'healthy adults; longitudinal knee-extensor torque-velocity power',sexSupport:'311 men and 178 women',supportedAgeBands:'longitudinal change from young through older baseline groups over approximately 10 years',extrapolationStartAge:79,extrapolationStartBasis:'conservative modeling boundary from baseline maximum age plus approximately 10 years; not an exact oldest observed age',uncertaintyMultiplier:2.2,forecastConfidence:'low'},
   reactive:{observedAgeRange:'Indirect transfer from power evidence with baseline ages 19–68 years and median 9.6-year follow-up',baselineAgeRange:'19–68 years',followUpDuration:'median 9.6 years (IQR 9.3–10.4)',oldestFollowUpAge:'not reported as an individual maximum',sourcePopulation:'longitudinal power cohort transferred to reactive tests',sexSupport:'limited reactive-test-specific sex support',supportedAgeBands:'scenario only; no reactive-test-specific longitudinal horizon established',extrapolationStartAge:79,extrapolationStartBasis:'conservative modeling boundary from the source power cohort; not an exact oldest observed age',uncertaintyMultiplier:2.4,forecastConfidence:'low'},
   endurance:{observedAgeRange:'test-specific longitudinal range not established',sourcePopulation:'family-level muscular-endurance transfer',sexSupport:'not established by test',supportedAgeBands:'scenario only',extrapolationStartAge:65,uncertaintyMultiplier:2.4,forecastConfidence:'low'},
@@ -5802,47 +5813,102 @@ function annualDecline(family,sex,age){const f=DECLINE_CURVES[family]||DECLINE_C
 /* Model 4.7 (Dan, 2026-09-24): the red line assumes the patient keeps training, the grey line
    that they stop. Training mostly sets the level, not the yearly rate: masters lifters and
    trained groups lose about the same % per year as untrained people from a higher start
-   (Pearson 2002; Kennis 2013; Ireland 2022). So "keeps training" uses healthy-cohort slopes
-   through the 60s (Alcazar 2023; Hughes 2001; Rantanen 1998), then about 2/3 of the general rate
-   from 70 (Health ABC; active men in Newcastle 85+, Granic 2016). Power falls about twice as fast
-   as strength (Pearson 2002; Alcazar 2023). Sit-to-stand power follows Baltasar-Fernandez 2026.
-   Aerobic fitness declines at 0.7x the typical rate (HUNT: 9% per decade if active, 16% if not,
-   Letnes 2020); LT1 at 0.75x the VO2max rate, as before. Values are % lost per year by age. */
+   (Pearson 2002; Kennis 2013; Ireland 2022). So "keeps training" follows healthy, active cohorts
+   rather than the general population. Model 4.10 (lit review 2026-09-25, six parts) set each family
+   from within-person studies; the notes on each curve give the sources. Values are % lost per year
+   by age; the tool interpolates between anchor ages. */
 const KEEP_TRAINING_CURVES={
-  'act:lower':{male:[[25,.4],[35,.5],[45,.65],[55,.9],[65,1.3],[75,2.0],[85,2.75],[95,3.0]],female:[[25,.4],[35,.6],[45,.9],[55,1.0],[65,1.1],[75,1.7],[85,2.4],[95,2.7]]},
-  'act:upper':{male:[[25,.2],[35,.25],[45,.3],[55,.6],[65,1.0],[75,1.6],[85,2.8],[95,3.0]],female:[[25,.25],[35,.3],[45,.4],[55,.7],[65,.9],[75,1.9],[85,2.8],[95,3.0]]},
-  'act:power':{male:[[25,.8],[35,1.0],[45,1.1],[55,1.4],[65,1.9],[75,2.8],[85,3.4],[95,3.6]],female:[[25,.7],[35,.9],[45,1.0],[55,1.3],[65,1.8],[75,2.5],[85,3.2],[95,3.4]]},
-  'act:sts':{male:[[45,.8],[55,.9],[65,1.0],[75,1.8],[85,2.3],[95,2.5]],female:[[45,.6],[55,.7],[65,.8],[75,1.8],[85,2.3],[95,2.5]]}
+  /* Leg strength, 4.10: matches healthy-volunteer cohorts to 84 (Leuven, Alcazar 2023; BLSA; Winegard
+     plantarflexors). Women slightly steeper at 65-85 (BLSA). From 85, 0.85x the general rate, as for
+     highly active men in Newcastle 85+ (Granic 2016); no leg data exist past ~84. */
+  'act:lower':{male:[[25,.4],[35,.5],[45,.65],[55,.9],[65,1.3],[75,2.0],[85,3.4],[95,3.8]],female:[[25,.4],[35,.6],[45,.9],[55,1.0],[65,1.3],[75,1.9],[85,3.1],[95,3.4]]},
+  /* Grip and upper body, 4.10: about 0.8x the general rate to 80 and 0.85x from 85 (vigorously active
+     adults in SHARE, Huebner 2022; highly active men in Newcastle 85+, Granic 2016). Unchanged to 75. */
+  'act:upper':{male:[[25,.2],[35,.25],[45,.3],[55,.65],[65,1.05],[75,1.7],[85,3.4],[95,4.25]],female:[[25,.25],[35,.3],[45,.4],[55,.7],[65,.9],[75,1.85],[85,3.2],[95,3.8]]},
+  /* Power, 4.10: masters athletes keep their age-norm percentile, so trained people follow about the
+     cross-sectional slope (lit review 2026-09-25: Esslingen/MrOS jump norms, Ireland 2022, Leuven). */
+  /* From 85, 1.1x the keep-training leg-strength rate: power falls faster than strength wherever both
+     are measured (Pearson 2002; Alcazar 2023), and no power data run past ~80. */
+  'act:power':{male:[[25,.8],[35,1.0],[45,1.2],[55,1.4],[65,1.7],[75,2.2],[85,3.7],[95,4.2]],female:[[25,.7],[35,.9],[45,1.1],[55,1.3],[65,1.6],[75,2.0],[85,3.4],[95,3.8]]},
+  'act:sts':{male:[[45,.8],[55,.9],[65,1.0],[75,1.8],[85,2.3],[95,3.0]],female:[[45,.6],[55,.7],[65,.8],[75,1.8],[85,2.3],[95,3.0]]}
 };
+/* General-population (stop-training) curves from the 2026-09-25 review where the old families were off:
+   power in healthy general cohorts (Berlin, Leuven, Reid: 1.6–3.0%/yr, 1.1–2x the cross-sectional
+   rate) and sit-to-stand (British 1946 cohort 1.9%/yr at 53–63; Berlin chair-rise power 2.1–2.8%/yr). */
+/* From 75, general power is kept at or above 1.1x general leg strength (Reid and Berlin, 2.9-3.5%/yr at 75). */
+DECLINE_CURVES['gen:power']={male:[[25,.8],[35,1.1],[45,1.5],[55,1.8],[65,2.2],[75,3.5],[85,4.4],[95,5.0]],female:[[25,.7],[35,1.0],[45,1.5],[55,1.9],[65,2.4],[75,3.1],[85,4.0],[95,4.4]]};
+DECLINE_CURVES['gen:sts']={male:[[45,1.4],[55,1.9],[65,2.1],[75,2.5],[85,3.0],[95,3.5]],female:[[45,1.3],[55,1.7],[65,1.8],[75,2.2],[85,3.0],[95,3.5]]};
 const scaleCurve=(c,k)=>({male:c.male.map(([a,v])=>[a,v*k]),female:c.female.map(([a,v])=>[a,v*k])});
-KEEP_TRAINING_CURVES['act:reactive']=scaleCurve(KEEP_TRAINING_CURVES['act:power'],1.2);
-KEEP_TRAINING_CURVES['act:aero']=scaleCurve(DECLINE_CURVES.aero,.7);
-KEEP_TRAINING_CURVES['act:lt1']=scaleCurve(DECLINE_CURVES.aero,.7*.75);
+/* Reactive (hop, drop-jump RSI) falls 1.45–2.4x as fast as power in cross-sectional data: 1.5x.
+   Women's chest and overhead throws decline at about 0.8x the power rate. */
+KEEP_TRAINING_CURVES['act:reactive']=scaleCurve(KEEP_TRAINING_CURVES['act:power'],1.5);
+DECLINE_CURVES['gen:reactive']=scaleCurve(DECLINE_CURVES['gen:power'],1.5);
+KEEP_TRAINING_CURVES['act:throw']={male:KEEP_TRAINING_CURVES['act:power'].male,female:KEEP_TRAINING_CURVES['act:power'].female.map(([a,v])=>[a,v*.8])};
+DECLINE_CURVES['gen:throw']={male:DECLINE_CURVES['gen:power'].male,female:DECLINE_CURVES['gen:power'].female.map(([a,v])=>[a,v*.8])};
+/* Rotator cuff (4.10): men's shoulder rotation falls at about the grip rate. Women's falls more slowly
+   than grip before 75 (elbow 2% per decade in women vs 12% in men, Hughes 2001; no change in women's
+   arm strength over 4-5 years in BLSA, Metter 1997; no age trend in women's external rotation once
+   cuff tears were excluded, Kim 2009), so 0.6x the grip rate to 75, reaching the grip rate by 85. */
+const cuffCurve=c=>({male:c.male,female:c.female.map(([a,v])=>[a,a<=75?v*.6:v])});
+KEEP_TRAINING_CURVES['act:cuff']=cuffCurve(KEEP_TRAINING_CURVES['act:upper']);
+DECLINE_CURVES['gen:cuff']=cuffCurve(DECLINE_CURVES.upper_strength);
+/* Leg muscles relative to knee extension (median of within-study ratios, lit review 2026-09-25):
+   knee flexion 0.95, hip abduction 0.9, hip adduction 1.1; the calf matches the knee. No long-term
+   studies of hip strength exist, so the hip ratios come from cross-sectional studies. */
+const LEG_MUSCLE_RATE={kneeFlex:.95,hipAbd:.9,hipAdd:1.1};
+for(const [m,k] of Object.entries(LEG_MUSCLE_RATE)){KEEP_TRAINING_CURVES['act:'+m]=scaleCurve(KEEP_TRAINING_CURVES['act:lower'],k);DECLINE_CURVES['gen:'+m]=scaleCurve(DECLINE_CURVES.lower_strength,k);}
+/* VO2max if they keep training: about 0.65x the general rate to 65, rising to 0.9x at 75 and 1.0x from
+   85; after about 70, training buys a higher level rather than a slower decline (Generation 100
+   consistent trainers lost 1.8–2.8%/yr at 71–82; Hawkins & Wiswell). LT1 falls at about 0.6x the
+   VO2max rate (SHIP 10-yr, Paterson, FRIEND VT; range 0.4–0.75). */
+const AERO_KEEP_FACTOR=a=>a<=65?.65:a>=85?1:a<=75?.65+(a-65)*.025:.9+(a-75)*.01;
+KEEP_TRAINING_CURVES['act:aero']={male:DECLINE_CURVES.aero.male.map(([a,v])=>[a,v*AERO_KEEP_FACTOR(a)]),female:DECLINE_CURVES.aero.female.map(([a,v])=>[a,v*AERO_KEEP_FACTOR(a)])};
+KEEP_TRAINING_CURVES['act:lt1']=scaleCurve(KEEP_TRAINING_CURVES['act:aero'],.6);
+DECLINE_CURVES.aero_threshold=scaleCurve(DECLINE_CURVES.aero,.6);
 /* Which tests follow which curve, and the general-population family the grey "stop" line uses. */
 const KEEP_TRAINING={
-  'act:lower':{stop:'lower_strength',metrics:['kneeExt_xBW','anklePF_xBW','beltSquatIso_xBW','gobletSquat_pctBW','frontSquat_pctBW','backSquat_pctBW','kbDeadlift_pctBW','relDeadlift_pctBW','hipAbd_xBW','hipAdd_xBW','kneeFlex_xBW','stepDown_in','loadedStepup_pctBW','rfeSplitSquat_pctBW','toe1_pctBW','toe25_pctBW'],
-    evidence:{grade:'B',label:'Keeps training: leg strength',src:'Healthy-cohort decline through the 60s (Alcazar 2023; Hughes 2001), then about 2/3 of the general rate from 70 (Health ABC; Granic 2016). Trained people decline at about the same yearly rate from a higher level (Pearson 2002; Kennis 2013)'}},
-  'act:upper':{stop:'upper_strength',metrics:['grip_lb','shoulderER_NmKg','cuffExtRot_lb','powellRaise_lb','ohPress_pctBW','landmine_pctBW','unilatPush_pctBW','closeBench_pctBW','bench_pctBW','benchIso_xBW','weightedChin_pctBW','loadedRow_pctBW','pallof_pctBW','suitcaseCarry_pctBW','weightedPlank_lb'],
-    evidence:{grade:'B',label:'Keeps training: grip and upper-body strength',src:'Healthy survivors lose about 1% of grip a year (Rantanen 1998), faster after 85 (Granic 2016); about 2/3 of the general rate from 70, where active men declined more slowly'}},
-  'act:power':{stop:'power',metrics:['cmjPower_WkG','broadJump_cm','mbBackThrow_m','mbChestPass_m','mbSlam_m','rotMBThrow_m','slVertJump_cm'],
-    evidence:{grade:'B',label:'Keeps training: power',src:'Power falls about twice as fast as strength, in lifters and non-lifters alike (Pearson 2002; Alcazar 2023; Ireland 2022)'}},
+  'act:lower':{stop:'lower_strength',metrics:['kneeExt_xBW','anklePF_xBW','beltSquatIso_xBW','gobletSquat_pctBW','frontSquat_pctBW','backSquat_pctBW','kbDeadlift_pctBW','relDeadlift_pctBW','stepDown_in','loadedStepup_pctBW','rfeSplitSquat_pctBW','toe1_pctBW','toe25_pctBW'],
+    evidence:{grade:'B',label:'Keeps training: leg strength',src:'Matches healthy-volunteer cohorts to 84: about 1.3%/yr in the 60s and 2% in the 70s (Leuven, Alcazar 2023; BLSA; Winegard plantarflexors). From 85, 0.85x the general rate, as in highly active men in Newcastle 85+ (Granic 2016). Training mostly keeps a higher level, not a slower rate (Pearson 2002; Kennis 2013; Hendrickse 2025)'}},
+  'act:kneeFlex':{stop:'gen:kneeFlex',base:'lower_strength',metrics:['kneeFlex_xBW'],
+    evidence:{grade:'C',label:'Keeps training: knee flexion',src:'0.95x the knee-extension rate (median of within-study ratios: McKay 2017, Danneskiold-Samsøe 2009, Harbo 2012; Hughes 2001 follow-up)'}},
+  'act:hipAbd':{stop:'gen:hipAbd',base:'lower_strength',metrics:['hipAbd_xBW'],
+    evidence:{grade:'C',label:'Keeps training: hip abduction',src:'0.9x the knee-extension rate (McKay 2017, Pasco 2020, Danneskiold-Samsøe 2009). No long-term studies of hip strength exist'}},
+  'act:hipAdd':{stop:'gen:hipAdd',base:'lower_strength',metrics:['hipAdd_xBW'],
+    evidence:{grade:'C',label:'Keeps training: hip adduction',src:'1.1x the knee-extension rate (Danneskiold-Samsøe 2009 and two small comparisons; range 0.8-1.5). No long-term studies of hip strength exist'}},
+  'act:upper':{stop:'upper_strength',metrics:['grip_lb','powellRaise_lb','ohPress_pctBW','landmine_pctBW','unilatPush_pctBW','closeBench_pctBW','bench_pctBW','benchIso_xBW','weightedChin_pctBW','loadedRow_pctBW','pallof_pctBW','suitcaseCarry_pctBW','weightedPlank_lb'],
+    evidence:{grade:'B',label:'Keeps training: grip and upper-body strength',src:'Healthy survivors lose about 1.3% of grip a year in their 60s, 2% in their 70s and 3-5% in their late 80s (NILS-LSA, Fels, NSHD; Newcastle 85+, Granic 2016; Leiden 85-plus, Ling 2021). People who keep training decline at about 0.8x that rate; most of their advantage is a higher level (SHARE, Huebner 2022; Granic 2016)'}},
+  'act:cuff':{stop:'gen:cuff',base:'upper_strength',metrics:['shoulderER_NmKg','cuffExtRot_lb'],
+    evidence:{grade:'C',label:'Keeps training: rotator cuff',src:'No long-term studies of shoulder rotation strength exist. Men follow the grip rate; women 0.6x the grip rate to 75 (Hughes 2001; Metter 1997; Kim 2009), reaching it by 85'}},
+  'act:power':{stop:'gen:power',base:'power',metrics:['cmjPower_WkG','broadJump_cm','mbSlam_m','rotMBThrow_m','slVertJump_cm'],
+    evidence:{grade:'B',label:'Keeps training: power',src:'Masters athletes keep their age-norm percentile, so the trained slope is about the cross-sectional one: 1.2–1.4%/yr before 60, 1.7 in the 60s, 2.2 in the 70s (Esslingen and MrOS jump norms; Ireland 2022; Pearson 2002). Power falls about twice as fast as strength'}},
+  'act:throw':{stop:'gen:throw',base:'power',metrics:['mbBackThrow_m','mbChestPass_m'],
+    evidence:{grade:'C',label:'Keeps training: medicine-ball throws',src:'Masters throwers decline at about the jump-power rate; women’s chest and overhead throws at about 0.8x. No throw norms past 60'}},
   /* The sit-to-stand cohort is already a general older population, and the old power curve is
      2–2.7x too steep for it, so the grey line only adds the first-year loss. */
-  'act:sts':{stop:'act:sts',base:'power',metrics:['stsPower_Wkg','chairStand_reps'],
+  'act:sts':{stop:'gen:sts',base:'power',metrics:['stsPower_Wkg','chairStand_reps'],
     evidence:{grade:'B',label:'Sit-to-stand power',src:'8-year sit-to-stand power cohort: about 1%/yr in the late 60s, 2%/yr from 75 (Baltasar-Fernandez 2026); 30-s chair stand norms agree (Rikli & Jones)'}},
-  'act:reactive':{stop:'reactive',metrics:['hopRSI','dropJump_RSI'],
-    evidence:{grade:'C',label:'Keeps training: reactive power',src:'No long-term data for hop and drop-jump tests; 1.2x the power rate'}},
+  'act:reactive':{stop:'gen:reactive',base:'reactive',metrics:['hopRSI','dropJump_RSI'],
+    evidence:{grade:'C',label:'Keeps training: reactive power',src:'No long-term data for hop and drop-jump tests; cross-sectional studies put them at 1.45–2.4x the power rate, so 1.5x'}},
   'act:aero':{stop:'aero',metrics:['vo2'],
-    evidence:{grade:'A',label:'Keeps training: aerobic fitness',src:'0.7x the typical longitudinal decline (Fleg 2005): active adults lost 9% per decade vs 16% if inactive (HUNT, Letnes 2020)'}},
+    evidence:{grade:'B',label:'Keeps training: aerobic fitness',src:'0.65x the typical decline to 65 (HUNT: 9% vs 16% per decade active vs inactive), rising to 0.9x at 75 and 1.0x from 85 (Generation 100; Hawkins & Wiswell): after 70 training buys a higher level, not a slower decline. General rates pool BLSA (Fleg 2005), HUNT, ACLS and SHIP'}},
   'act:lt1':{stop:'aero_threshold',metrics:['lt1_vo2'],
-    evidence:{grade:'B',label:'Keeps training: aerobic base',src:'0.75x the VO2max rate, so its share of VO2max rises with age (Stathokostas 2004; Stubbe 2021)'}}
+    evidence:{grade:'B',label:'Keeps training: aerobic base',src:'0.6x the VO2max rate, so its share of VO2max rises with age (SHIP 10-yr follow-up, Stubbe 2021; Paterson; FRIEND ventilatory threshold; range 0.4–0.75)'}}
 };
 /* If they stop: what training added fades over the first year, about 15% of strength, power and
    aerobic fitness (older adults lose 14–18% of strength by 5–7 months, Lemmer 2000 and Henwood &
    Taaffe 2008; trained men near 60 lose ~16% of VO2max in 3 months, then it levels off, Schulman
    1996 and Coyle 1984; power falls no faster than strength, Bosquet 2013). Then decline follows the
    general population. Stopping never declines more slowly than training. */
+/* VO2max performance groups by age and sex (Mandsager 2018 cut points, as in the patient report). */
+/* Each band: [first age, [25th, 50th, 75th, 97.7th percentile]]. */
+const VO2_GROUPS={male:[[0,[36,43,49,56]],[30,[35,40,46,53]],[40,[34,39,44,52]],[50,[29,36,41,50]],[60,[25,30,36,46]],[70,[21,25,30,41]],[80,[18,23,26,36]]],female:[[0,[31,38,44,52]],[30,[27,34,39,49]],[40,[25,32,37,47]],[50,[25,29,36,46]],[60,[22,26,32,41]],[70,[18,22,25,36]],[80,[15,19,22,31]]]};
 const STOP_FIRST_YEAR=.15;
+/* Aerobic stop line (lit review 2026-09-25): year 1 loses half of the surplus above the median VO2max
+   for age and sex (floor 5%, cap 20%; trained men near 60 lost 16% in 12 weeks), then 1.2x the general
+   rate, since detrained athletes keep losing faster for years. */
+function stopFirstYear(family,raw){if(family!=='act:aero'&&family!=='act:lt1')return STOP_FIRST_YEAR;const vo2=family==='act:aero'?+raw:+PATIENT.metrics.vo2,t=(VO2_GROUPS[PATIENT.sex==='female'?'female':'male'].filter(([lo])=>AGE>=lo).pop()||[])[1];
+  if(!Number.isFinite(vo2)||vo2<=0||!t)return STOP_FIRST_YEAR;return clamp(.5*(vo2-t[1])/vo2,.05,.20);}
+const STOP_RATE_MULT={'act:aero':1.2,'act:lt1':1.2};
 (function registerKeepTraining(){for(const [fam,{stop,base=stop,metrics,evidence}] of Object.entries(KEEP_TRAINING)){DECLINE_CURVES[fam]=KEEP_TRAINING_CURVES[fam];FAMILY_BAND[fam]=FAMILY_BAND[base];
   EVIDENCE_HORIZONS[fam]=EVIDENCE_HORIZONS[base];FORECAST_EVIDENCE[fam]=evidence;for(const m of metrics)if(METRICS[m])METRICS[m].family=fam;}})();
 /* Rep and hold tests are tracked, not projected: reps and hold times fall much faster than
@@ -5850,38 +5916,61 @@ const STOP_FIRST_YEAR=.15;
    muscle (Nuzzo 2024), so a strength test decides each goal instead. */
 const TRACKED_TESTS=['plankHeelWall_s','sidePlank_s','sorensen_s','wallSit_s','copenhagen_s','slBridge_s','contralatHold_s','deadHang_s','chinHold_s','proneT_s','splitSquat_reps','calfRaise_reps','kneeToElbow_reps','pushup_reps','elevPushup_reps','invertedRow_reps','chinup_reps'];
 TRACKED_TESTS.forEach(m=>{if(METRICS[m])METRICS[m].family='none';});
-/* Balance follows published age norms (the PCA balance standards), a constant rate between
-   bands; eyes-closed borrows the eyes-open shape. The same line is used whether or not the
-   patient keeps training: there is no good data on how stopping changes it. */
-const BALANCE_NORM={ages:[30,40,50,60,70,90],values:[45,45,45,35,20,15]};
+/* Lean mass (4.10, lit review 2026-09-25): appendicular lean mass falls about 0.3%/yr at 40–60,
+   0.5 in the 60s, 0.8 in the 70s and 1.0 in the 80s (men ~0.15 faster after 70; Health ABC Koster
+   2011, Goodpaster 2006, Gallagher 2000, Wiegmann 2021). Height loss after 70 slows ALMI by about
+   0.2%/yr. FFMI falls about 0.2 / 0.3 / 0.4 %/yr in the 60s / 70s / 80s (Hughes 2002). */
+DECLINE_CURVES['lean:almi']={male:[[25,.1],[45,.3],[59,.3],[65,.5],[75,.75],[85,.95],[95,1.0]],female:[[25,.1],[45,.3],[59,.3],[65,.5],[75,.6],[85,.8],[95,.85]]};
+DECLINE_CURVES['lean:ffmi']={male:[[25,.05],[45,.1],[59,.1],[65,.2],[75,.3],[85,.4],[95,.45]],female:[[25,.05],[45,.1],[59,.1],[65,.2],[75,.3],[85,.4],[95,.45]]};
+for(const [fam,m,label] of [['lean:almi','almi','Appendicular lean mass index'],['lean:ffmi','ffmi','Fat-free mass index']]){FAMILY_BAND[fam]=FAMILY_BAND.muscle_mass;EVIDENCE_HORIZONS[fam]=EVIDENCE_HORIZONS.muscle_mass;
+  FORECAST_EVIDENCE[fam]={grade:'B',label,src:'Health ABC (Koster 2011, Goodpaster 2006), Gallagher 2000, Hughes 2002, Wiegmann 2021 (lit review 2026-09-25)'};if(METRICS[m])METRICS[m].family=fam;}
+/* Balance (4.10, lit review 2026-09-25): eyes open keeps the PCA standards to 70 (45/35/20 s) but
+   the 80s fall faster than the old 15-s standard implied (that value sits near the 75th percentile
+   for 80–99, the others near the median): 10 s in the 80s and about 7 s at 90 (Springer 2007;
+   PRIMOS). Eyes closed falls early, about 4.5%/yr from 40 to 70, then about 3%/yr. Floors: 1 s eyes
+   open, 2 s eyes closed. Training raises the level (about +5 s) but not the slope, so both lines match. */
+const BALANCE_NORM={ages:[30,40,50,60,70,80,90],values:[45,45,45,35,20,10,7]};
 function anchoredDeclinePoints(ages,values){const pts=[];for(let a=18;a<=110;a++){let i=ages.findIndex((x,k)=>k<ages.length-1&&a>=x&&a<ages[k+1]);if(a<ages[0])i=-1;if(a>=ages[ages.length-1])i=ages.length-2;
   const rate=i<0?0:1-Math.pow(values[i+1]/values[i],1/(ages[i+1]-ages[i]));pts.push([a,Math.max(0,rate)*100]);}return pts;}
 (function registerBalance(){const pts=anchoredDeclinePoints(BALANCE_NORM.ages,BALANCE_NORM.values);DECLINE_CURVES['norm:balance']={male:pts,female:pts};
   FAMILY_BAND['norm:balance']=FAMILY_BAND.balance;EVIDENCE_HORIZONS['norm:balance']={...EVIDENCE_HORIZONS.balance,extrapolationStartAge:90};
-  FORECAST_EVIDENCE['norm:balance']={grade:'B',label:'Published balance norms by age',src:'PCA single-leg balance standards, built from published norms (EM_PCA_02, PCA-2026-09-03)'};
-  for(const m of ['balanceSL_EO_s','balanceSL_EC_s'])if(METRICS[m])METRICS[m].family='norm:balance';})();
-/* Model 4.6: range of motion declines in degrees (cm for knee-to-wall), not percent. Typical loss per
-   decade before and after a breakpoint comes from Soucie 2011, Roach & Miles 1991, Stathokostas 2013
-   and McBride 2026 (ROM review 2026-09-24); thoracic values are expert estimates. The tool uses half
-   that rate: the assumption for a patient who keeps doing mobility work. General activity barely
-   slows ROM loss; targeted mobility work regains about 2–4°. Straight-leg raise holds steady. */
-const ROM_DECLINE={hipFlexion_deg:{pre:1.5,post:6,brk:70},kneeFlexROM_deg:{pre:1.5,post:3,brk:70},hipExt_deg:{pre:1,post:2,brk:70},
+  FORECAST_EVIDENCE['norm:balance']={grade:'B',label:'Balance norms by age',src:'PCA single-leg balance standards to 70 (45/35/20 s); 10 s in the 80s and about 7 s at 90 from Springer 2007 and PRIMOS (lit review 2026-09-25)'};
+  if(METRICS.balanceSL_EO_s)METRICS.balanceSL_EO_s.family='norm:balance';
+  const ec={male:[[18,1],[39,1],[40,4.5],[69,4.5],[70,3],[110,3]],female:[[18,1],[39,1],[40,4.5],[69,4.5],[70,3],[110,3]]};DECLINE_CURVES['norm:balanceEC']=ec;
+  FAMILY_BAND['norm:balanceEC']=FAMILY_BAND.balance;EVIDENCE_HORIZONS['norm:balanceEC']={...EVIDENCE_HORIZONS.balance,extrapolationStartAge:85};
+  FORECAST_EVIDENCE['norm:balanceEC']={grade:'B',label:'Eyes-closed balance by age',src:'About 4.5%/yr from 40 to 70, then about 3%/yr, floor 2 s (Springer 2007; lit review 2026-09-25)'};
+  if(METRICS.balanceSL_EC_s)METRICS.balanceSL_EC_s.family='norm:balanceEC';})();
+const FAMILY_FLOOR={'norm:balance':1,'norm:balanceEC':2};
+/* Range of motion declines in degrees (cm for knee-to-wall), not percent. Typical loss per decade
+   before and after a breakpoint (Soucie 2011; Roach & Miles 1991; Stathokostas 2013; McBride 2026;
+   thoracic values are expert estimates). 4.10 (lit review 2026-09-25): hip flexion after 70 is 4°,
+   not 6° (the 6° came from a standing bending arc, not hip flexion), and shoulder flexion 5°, not 7°
+   (survivors followed 8 years lost little, Bassey 1998). Patients who keep doing mobility work lose
+   half the typical amount (Dan, model 4.6). The review found no study longer than a year showing that
+   mobility work slows the slope, only that it raises the level, so this stays a grade-C "keeps up
+   mobility work" scenario. The stop line uses the typical rate and also loses the training gain
+   (about 4°, 1.5 cm knee-to-wall; ~40% of a gain goes within weeks of stopping). Straight-leg raise holds. */
+const ROM_DECLINE={hipFlexion_deg:{pre:1.5,post:4,brk:70},kneeFlexROM_deg:{pre:1.5,post:3,brk:70},hipExt_deg:{pre:1,post:2,brk:70},
   hipIR_deg:{pre:1.5,post:3,brk:70},hipER_deg:{pre:1.5,post:3,brk:70},hipAbdROM_deg:{pre:1.5,post:3,brk:70},
-  ankleDF_cm:{pre:.5,post:1.25,brk:60},shoulderFlexion_deg:{pre:2,post:7,brk:70},thoracicRot_deg:{pre:2,post:3,brk:70},
+  ankleDF_cm:{pre:.5,post:1.25,brk:60},shoulderFlexion_deg:{pre:2,post:5,brk:70},thoracicRot_deg:{pre:2,post:3,brk:70},
   thoracicExt_deg:{pre:1,post:2,brk:70},hamstringSLR_deg:{pre:0,post:0,brk:70}};
-const ROM_TRACK=.5;
+const ROM_TRACK=.5,ROM_TRAINING_CREDIT={deg:4,cm:1.5};
 (function registerRomDecline(){for(const [metric,r] of Object.entries(ROM_DECLINE)){if(!METRICS[metric])continue;const fam='rom:'+metric,u=metric==='ankleDF_cm'?' cm':'°';
   DECLINE_CURVES[fam]=DECLINE_CURVES.none;FAMILY_BAND[fam]=.5;EVIDENCE_HORIZONS[fam]={...EVIDENCE_HORIZONS.mobility,extrapolationStartAge:90,uncertaintyMultiplier:1,forecastConfidence:'low'};
-  FORECAST_EVIDENCE[fam]={grade:'C',label:'Half the typical range-of-motion loss (keeps doing mobility work)',src:`Typical loss ${r.pre}${u} per decade before ${r.brk}, ${r.post}${u} after (Soucie 2011; Roach & Miles 1991; Stathokostas 2013; McBride 2026), halved on the assumption the patient keeps doing mobility work`};
+  FORECAST_EVIDENCE[fam]={grade:'C',label:'Range-of-motion loss, keeping up mobility work',src:`Half the typical loss of ${r.pre}${u} per decade before ${r.brk} and ${r.post}${u} after (Soucie 2011; Roach & Miles 1991; Stathokostas 2013; McBride 2026; lit review 2026-09-25). If training stops, the typical rate applies and the training gain (about ${metric==='ankleDF_cm'?'1.5 cm':'4°'}) is lost too`};
   METRICS[metric].family=fam;}})();
 /* Follow each decline curve through the target age. Evidence thins out past each family's
    horizon; that widens the range in projectBandAt, it does not slow the central decline. */
-function projectCapacity(raw,family,sex,ageNow,target,mult=1){const rom=typeof family==='string'&&family.startsWith('rom:')?ROM_DECLINE[family.slice(4)]:null;if(rom){let v=raw;for(let a=ageNow;a<target;a++)v-=(a<rom.brk?rom.pre:rom.post)/10*ROM_TRACK*mult;return v;}let v=raw;for(let a=ageNow;a<target;a++){const d=clamp(annualDecline(family,sex,a)*mult,0,.12);v*=1-d;}return v;}
-/* The grey line: the patient stops training after this test. Range of motion then declines at
-   the full typical rate; balance and untracked families keep the red line. */
-function projectIfStopped(raw,family,sex,ageNow,target){const rom=typeof family==='string'&&family.startsWith('rom:')?ROM_DECLINE[family.slice(4)]:null;if(rom){let v=raw;for(let a=ageNow;a<target;a++)v-=(a<rom.brk?rom.pre:rom.post)/10;return v;}
-  const k=KEEP_TRAINING[family];if(!k)return projectCapacity(raw,family,sex,ageNow,target,1);let v=raw*(1-STOP_FIRST_YEAR);for(let a=ageNow;a<target;a++){const d=clamp(Math.max(annualDecline(k.stop,sex,a),annualDecline(family,sex,a)),0,.12);v*=1-d;}return v;}
-function projectBandAt(raw,family,sex,ageNow,target){if(family==='none')return [raw,raw];const horizon=EVIDENCE_HORIZONS[family]||EVIDENCE_HORIZONS.none,base=FAMILY_BAND[family]??.45,yearsBeyond=Math.max(0,target-horizon.extrapolationStartAge),progress=clamp(yearsBeyond/20,0,1),widen=1+(horizon.uncertaintyMultiplier-1)*progress,b=base*widen;return [projectCapacity(raw,family,sex,ageNow,target,1+b),projectCapacity(raw,family,sex,ageNow,target,Math.max(.15,1-b))];}
+function projectCapacity(raw,family,sex,ageNow,target,mult=1){const rom=typeof family==='string'&&family.startsWith('rom:')?ROM_DECLINE[family.slice(4)]:null;if(rom){let v=raw;for(let a=ageNow;a<target;a++)v-=(a<rom.brk?rom.pre:rom.post)/10*ROM_TRACK*mult;return v;}let v=raw;for(let a=ageNow;a<target;a++){const d=clamp(annualDecline(family,sex,a)*mult,0,.12);v*=1-d;}
+  const fl=FAMILY_FLOOR[family];return fl!=null&&raw>fl?Math.max(v,fl):v;}
+/* The grey line: the patient stops training after this test. Range of motion also loses its
+   training gain; balance and untracked families keep the red line. */
+function projectIfStopped(raw,family,sex,ageNow,target){const romKey=typeof family==='string'&&family.startsWith('rom:')?family.slice(4):null;if(romKey)return projectCapacity(raw,family,sex,ageNow,target,1/ROM_TRACK)-(ROM_DECLINE[romKey].pre||ROM_DECLINE[romKey].post?(romKey==='ankleDF_cm'?ROM_TRAINING_CREDIT.cm:ROM_TRAINING_CREDIT.deg):0);
+  const k=KEEP_TRAINING[family];if(!k)return projectCapacity(raw,family,sex,ageNow,target,1);const m=STOP_RATE_MULT[family]||1;let v=raw*(1-stopFirstYear(family,raw));for(let a=ageNow;a<target;a++){const d=clamp(Math.max(annualDecline(k.stop,sex,a)*m,annualDecline(family,sex,a)),0,.12);v*=1-d;}return v;}
+/* People differ more with age: at 85-90, individual 4-5-year changes run from gains to twice the
+   average loss (Newcastle 85+; Kallman 1990). So the range also widens by up to 1.6x for target ages
+   from 75 to 85 (lit review 2026-09-25), whichever widening is larger. */
+function projectBandAt(raw,family,sex,ageNow,target){if(family==='none')return [raw,raw];const horizon=EVIDENCE_HORIZONS[family]||EVIDENCE_HORIZONS.none,base=FAMILY_BAND[family]??.45,yearsBeyond=Math.max(0,target-horizon.extrapolationStartAge),progress=clamp(yearsBeyond/20,0,1),widen=Math.max(1+(horizon.uncertaintyMultiplier-1)*progress,1+.6*clamp((target-75)/10,0,1)),b=base*widen;return [projectCapacity(raw,family,sex,ageNow,target,1+b),projectCapacity(raw,family,sex,ageNow,target,Math.max(.15,1-b))];}
 function projectBand(raw,family){return projectBandAt(raw,family,PATIENT.sex,AGE,TGT);}
 /* LT1 always sits below VO2max. Its share rises with age, so cap it at 85% of projected VO2max. */
 const LT1_MAX_SHARE=.85;
@@ -5903,9 +5992,66 @@ const VALD_P75={
   hipAbd_xBW:{src:'VALD ForceFrame hip abduction, age 50–60',age:55,male:373,female:268},
   hipAdd_xBW:{src:'VALD ForceFrame hip adduction, age 50–60',age:55,male:384,female:270},
   shoulderER_NmKg:{src:'VALD ForceFrame shoulder external rotation, age 50–60',age:55,male:154,female:93},
-  grip_lb:{src:'VALD DynaMo grip, age 60+',age:65,male:459.5,female:274.5,lb:true},
+  /* DynaMo grip: VALD pools everyone 60 and over. A pooled 60-79 sample's 75th percentile equals the
+     age-specific one at about 70 (Dodds 2014 centiles), so the band is anchored at 70. */
+  grip_lb:{src:'VALD DynaMo grip, age 60+',age:70,male:459.5,female:274.5,lb:true},
   anklePF_xBW:{src:'VALD ForceFrame ankle plantarflexion, seated, ages 40–59',age:50,male:1115.8,female:829.5}
 };
+/* VALD device norms, absolute force (N), by age band: [first age, last age, representative age,
+   [[percentile, N], ...]]. ForceFrame knee extension, knee flexion and calf: VALD Hub live norms
+   (Health population, MaxForce, pulled 2026-09-25). ForceFrame hip and shoulder: VALD Hub
+   Normative Data Report (captured 2026-06-16). DynaMo grip: Adult (20–60) and Senior (60+). */
+const VALD_NORM_BANDS={
+  kneeExt_xBW:{male:[[18,29,25,[[25,241.3],[50,323.3],[75,411.8],[90,512.5]]],[30,39,35,[[25,224.6],[50,304.8],[75,396.5],[90,511.6]]],[40,59,50,[[25,204],[50,265.3],[75,348.8],[90,433.9],[95,508],[99,689]]]],
+    female:[[18,29,25,[[25,176.8],[50,230.3],[75,301.8],[90,395.4]]],[30,39,35,[[25,155],[50,205],[75,268.5],[90,353]]],[40,59,50,[[25,137.3],[50,188],[75,247.3],[90,318.9],[95,382],[99,588]]]]},
+  kneeFlex_xBW:{male:[[18,29,25,[[25,166.3],[50,217.3],[75,275.8],[90,341.3]]],[30,39,35,[[25,147.4],[50,189.4],[75,245.5],[90,303]]],[40,49,45,[[25,137.8],[50,175.5],[75,222.3],[90,270.8]]],[50,59,55,[[25,123.3],[50,154.3],[75,197.8],[90,243.8]]]],
+    female:[[18,29,25,[[25,116.9],[50,149.3],[75,185.3],[90,229.1]]],[30,39,35,[[25,108.9],[50,139.3],[75,176.5],[90,218.6]]],[40,59,50,[[25,97.6],[50,120.8],[75,149.5],[90,181.2]]]]},
+  anklePF_xBW:{male:[[18,29,25,[[25,818.5],[50,1044],[75,1333],[90,1520.8]]],[30,39,35,[[25,725.3],[50,983],[75,1219.5],[90,1446.5]]],[40,59,50,[[25,678.3],[50,900.3],[75,1115.8],[90,1342.8]]]],
+    female:[[18,29,25,[[25,590.3],[50,826.1],[75,1079.5],[90,1242.8]]],[30,39,35,[[25,471.8],[50,689.8],[75,948.1],[90,1165.5]]],[40,59,50,[[25,438.3],[50,631],[75,829.5],[90,1018.5]]]]},
+  hipAbd_xBW:{male:[[20,29,25,[[25,320],[50,378],[75,435],[99,571]]],[30,39,35,[[25,320],[50,365],[75,416],[99,569]]],[40,49,45,[[25,302],[50,344],[75,390],[99,500]]],[50,59,55,[[25,288],[50,328],[75,373],[99,462]]]],
+    female:[[20,29,25,[[25,251],[50,287],[75,325],[99,421]]],[30,39,35,[[25,227],[50,279],[75,322],[99,431]]],[40,49,45,[[25,223],[50,260],[75,295],[99,408]]],[50,59,55,[[25,201],[50,234],[75,268],[99,359]]]]},
+  hipAdd_xBW:{male:[[20,29,25,[[25,295],[50,371],[75,447],[99,596]]],[30,39,35,[[25,289],[50,350],[75,415],[99,592]]],[40,49,45,[[25,282],[50,331],[75,378],[99,552]]],[50,59,55,[[25,290],[50,348],[75,384],[99,513]]]],
+    female:[[20,29,25,[[25,246],[50,292],[75,336],[99,443]]],[30,39,35,[[25,225],[50,277],[75,324],[99,417]]],[40,49,45,[[25,214],[50,253],[75,302],[99,415]]],[50,59,55,[[25,208],[50,238],[75,270],[99,388]]]]},
+  shoulderER_NmKg:{male:[[20,29,25,[[25,107],[50,145],[75,175],[99,253]]],[30,39,35,[[25,128],[50,157],[75,181],[99,250]]],[40,49,45,[[25,106],[50,145],[75,168],[99,241]]],[50,59,55,[[25,80],[50,116],[75,154],[99,225]]]],
+    female:[[20,29,25,[[25,81],[50,99],[75,118],[99,160]]],[30,39,35,[[25,73],[50,97],[75,113],[99,148]]],[40,49,45,[[25,72],[50,87],[75,104],[99,143]]],[50,59,55,[[25,55],[50,79],[75,93],[99,141]]]]},
+  grip_lb:{male:[[20,59,40,[[25,403.6],[50,493.8],[75,577.2],[99,783.2]]],[60,120,70,[[25,282.4],[50,370.4],[75,459.5],[99,678.6]],'pooled']],
+    female:[[20,59,40,[[25,253.4],[50,299.9],[75,344.2],[99,474.3]]],[60,120,70,[[25,180.2],[50,227],[75,274.5],[99,412.9]],'pooled']]}
+};
+/* Past the last VALD band (and across VALD's pooled 60+ grip band), the age standard follows the
+   cross-sectional 75th-percentile curve for that muscle and sex, scaled from the band's representative
+   age. Norms are extended with cross-sectional curves, never with the longitudinal rates used to
+   project patients: after 85 the two differ by up to 2x, because the people still tested at 90 are
+   survivors (lit review 2026-09-25). Values are the 75th percentile relative to an arbitrary age.
+   Grip: Dodds 2014 British centiles (12 studies, ~50,000 people), relative to 70; past 90, midway
+   between Tomkinson 2025 and Dodds' 85-90 rate. Shoulder: grip's decline raised to the power 0.9 in
+   men, and 0.7 to 75 then 1.0 in women (Pike 2022; Baillargeon 2024; Kim 2009; Nepomuceno 2026).
+   Legs: a cross-sectional knee-extension curve (McKay 2017; Mizuno 2021; Danneskiold-Samsøe 2009;
+   Harbo 2012) x each muscle's ratio x 0.95, because the 75th percentile falls a little more slowly
+   than the median (48 comparisons). Relative to the band's anchor: 50 for knee and calf, 55 for hip.
+   The calf follows the knee (rigid-dynamometer data; hand-held calf data hit a force ceiling). */
+const AGE_STANDARD_CURVE={
+  kneeExt_xBW:{male:[[50,1],[55,0.95],[60,0.9],[65,0.85],[70,0.79],[75,0.74],[80,0.68],[85,0.62],[90,0.56],[95,0.5],[100,0.446]],female:[[50,1],[55,0.96],[60,0.9],[65,0.85],[70,0.79],[75,0.72],[80,0.66],[85,0.59],[90,0.52],[95,0.46],[100,0.407]]},
+  anklePF_xBW:{male:[[50,1],[55,0.95],[60,0.9],[65,0.85],[70,0.79],[75,0.74],[80,0.68],[85,0.62],[90,0.56],[95,0.5],[100,0.446]],female:[[50,1],[55,0.96],[60,0.9],[65,0.85],[70,0.79],[75,0.72],[80,0.66],[85,0.59],[90,0.52],[95,0.46],[100,0.407]]},
+  kneeFlex_xBW:{male:[[50,1],[55,0.96],[60,0.91],[65,0.86],[70,0.8],[75,0.75],[80,0.69],[85,0.63],[90,0.57],[95,0.51],[100,0.456]],female:[[50,1],[55,0.96],[60,0.91],[65,0.86],[70,0.8],[75,0.74],[80,0.67],[85,0.61],[90,0.54],[95,0.48],[100,0.427]]},
+  hipAbd_xBW:{male:[[55,1],[60,0.95],[65,0.9],[70,0.85],[75,0.79],[80,0.74],[85,0.68],[90,0.62],[95,0.56],[100,0.506]],female:[[55,1],[60,0.95],[65,0.9],[70,0.84],[75,0.78],[80,0.71],[85,0.65],[90,0.58],[95,0.52],[100,0.466]]},
+  hipAdd_xBW:{male:[[55,1],[60,0.94],[65,0.88],[70,0.82],[75,0.75],[80,0.69],[85,0.62],[90,0.55],[95,0.49],[100,0.437]],female:[[55,1],[60,0.94],[65,0.88],[70,0.81],[75,0.74],[80,0.66],[85,0.59],[90,0.52],[95,0.45],[100,0.389]]},
+  grip_lb:{male:[[60,1.140],[65,1.079],[70,1],[75,.914],[80,.833],[85,.745],[90,.657],[95,.582],[100,.507]],female:[[60,1.122],[65,1.073],[70,1],[75,.916],[80,.824],[85,.723],[90,.628],[95,.550],[100,.473]]},
+  shoulderER_NmKg:{male:[[55,1],[60,.966],[65,.919],[70,.858],[75,.791],[80,.721],[85,.646],[90,.569],[95,.504],[100,.439]],female:[[55,1],[60,.975],[65,.945],[70,.899],[75,.846],[80,.761],[85,.668],[90,.580],[95,.508],[100,.437]]}
+};
+/* Norm distribution for a patient's age and sex, in N. */
+function valdNormAt(metric,sex,age){const s=sex==='female'?'female':'male',t=VALD_NORM_BANDS[metric]?.[s];if(!t)return null;
+  const band=t.find(([lo,hi])=>age>=lo&&age<=hi)||(age<t[0][0]?t[0]:null);if(band&&!band[4])return {knots:band[3],modeled:false,band:`${band[0]}–${band[1]}`};
+  const b=band||t[t.length-1],c=AGE_STANDARD_CURVE[metric]?.[s],k=c?lerp(age,c)/lerp(b[2],c):1;
+  return {knots:b[3].map(([p,v])=>[p,v*k]),modeled:Math.abs(k-1)>1e-9,band:b[4]?`${b[0]}+`:`${b[0]}–${b[1]}`};}
+/* Percentile of a force value within the age/sex distribution (null outside the knots' range). */
+function valdPercentile(metric,sex,age,newtons){const n=valdNormAt(metric,sex,age);if(!n||!Number.isFinite(newtons))return null;const k=n.knots;
+  if(newtons<k[0][1])return {below:k[0][0],modeled:n.modeled};if(newtons>=k[k.length-1][1])return {above:k[k.length-1][0],modeled:n.modeled};
+  for(let i=1;i<k.length;i++)if(newtons<k[i][1]){const [p0,v0]=k[i-1],[p1,v1]=k[i];return {pct:Math.round(p0+(p1-p0)*(newtons-v0)/(v1-v0)),modeled:n.modeled};}return null;}
+const N_PER_LB=4.44822;
+function toNewtons(metric,v){if(!Number.isFinite(+v))return null;if(metric==='grip_lb')return +v*N_PER_LB;const bw=+PATIENT.bodyWeight_lb;return Number.isFinite(bw)&&bw>0?+v*bw*0.45359237*9.80665:null;}
+function fromNewtons(metric,n){if(!Number.isFinite(n))return null;if(metric==='grip_lb')return n/N_PER_LB;const bw=+PATIENT.bodyWeight_lb;return Number.isFinite(bw)&&bw>0?n/(bw*0.45359237*9.80665):null;}
+function pctLabel(q){if(!q)return '';const who=`for ${PATIENT.sex==='female'?'women':'men'} your age`;return q.below!=null?`below the ${ordinal(q.below)} percentile ${who}`:q.above!=null?`above the ${ordinal(q.above)} percentile ${who}`:`about the ${ordinal(q.pct)} percentile ${who}`;}
+function valdP75ForAge(metric,sex,age){const n=valdNormAt(metric,sex,age);return n?{n:(n.knots.find(([p])=>p===75)||[])[1],modeled:n.modeled}:null;}
 function valdP75Target(metric,sex){const a=VALD_P75[metric];if(!a)return null;const age=typeof a.age==='object'?a.age[sex]:a.age,k=projectCapacity(1,METRICS[metric].family,sex,age,Math.max(age,TGT),1);
   if(a.xbw)return {value:a.xbw[sex]*k};const n=a[sex]*k;if(a.lb)return {value:n/4.44822};const bw=+PATIENT.bodyWeight_lb;
   return Number.isFinite(bw)&&bw>0?{value:n/(bw*0.45359237*9.80665),newtons:n}:{value:null,newtons:n};}
@@ -6058,10 +6204,12 @@ function makeComponent(r,raw,extra={}){
     const rr=resolveRequirement(r);if(rr.req==null||!Number.isFinite(+rr.req)||+rr.req<=0)return null;const req=+rr.req,unit=rr.unit||r.unit;
     const du=clamp(+r.demandUncertainty||0,0,.60),reqLo=req*(1-du),reqHi=req*(1+du);
     const family=extra.today?'none':(meta.family||'none');const projRaw=capToVO2(r.metric,projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)),stopRaw=capToVO2(r.metric,projectIfStopped(+raw,family,PATIENT.sex,AGE,TGT),true);const [projLo,projHi]=projectBand(+raw,family).map(v=>capToVO2(r.metric,v));
+    /* LT1 held down by projected VO2max: the fix is VO2max, so name the VO2max it takes. */
+    let lt1VO2=null;if(r.metric==='lt1_vo2'&&family!=='none'&&projRaw<projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)-1e-9){const rv=projectCapacity(1,METRICS.vo2.family,PATIENT.sex,AGE,TGT,1);lt1VO2={need:req/LT1_MAX_SHARE/Math.max(1e-6,rv),now:+PATIENT.metrics.vo2};}
     const lower=r.dir==='lower_better';const pct=v=>clamp(Math.floor((lower?req/v:v/req)*100),0,175);const curPct=pct(+raw),projPct=pct(projRaw);
     const reserveLo=lower?reqLo/projHi*100:projLo/reqHi*100,reserveHi=lower?reqHi/projLo*100:projHi/reqLo*100;
     const horizon=EVIDENCE_HORIZONS[family]||EVIDENCE_HORIZONS.none;
-    return {...extra,r,raw:+raw,projRaw,projLo,projHi,req,reqLo,reqHi,demandUncertainty:du,reserveLo,reserveHi,unit,measurementSource:meta.measurementSource||meta.src,taskSource:r.taskDemandSource||r.taskSource||r.src||'',taskEvidenceGrade:r.taskEvidenceGrade||null,taskDemandConfidence:r.taskDemandConfidence||'low',mappingConfidence:r.mappingConfidence||'low',forecastSource:(FORECAST_EVIDENCE[family]||FORECAST_EVIDENCE.none).src,forecastConfidence:horizon.forecastConfidence,evidenceHorizon:horizon,short:testName(r),grade:targetGrade(r),curPct,projPct,stopRaw,stopPct:pct(stopRaw),stg:shortTermGoal(r,family,req),projPctLo:pct(projLo),projPctHi:pct(projHi),static:family==='none',meetsNow:lower?+raw<=req*(1+1e-9):+raw>=req*(1-1e-9),meets:lower?projRaw<=req*(1+1e-9):+projRaw>=req*(1-1e-9),zone:(lower?projRaw<=req*(1+1e-9):+projRaw>=req*(1-1e-9))?'clear':'gap',conf:r.confidence||meta.confidence||'proxy',shortBy:Math.max(0,100-projPct),family};
+    return {...extra,lt1VO2,r,raw:+raw,projRaw,projLo,projHi,req,reqLo,reqHi,demandUncertainty:du,reserveLo,reserveHi,unit,measurementSource:meta.measurementSource||meta.src,taskSource:r.taskDemandSource||r.taskSource||r.src||'',taskEvidenceGrade:r.taskEvidenceGrade||null,taskDemandConfidence:r.taskDemandConfidence||'low',mappingConfidence:r.mappingConfidence||'low',forecastSource:(FORECAST_EVIDENCE[family]||FORECAST_EVIDENCE.none).src,forecastConfidence:horizon.forecastConfidence,evidenceHorizon:horizon,short:testName(r),grade:targetGrade(r),curPct,projPct,stopRaw,stopPct:pct(stopRaw),stg:shortTermGoal(r,family,req),projPctLo:pct(projLo),projPctHi:pct(projHi),static:family==='none',meetsNow:lower?+raw<=req*(1+1e-9):+raw>=req*(1-1e-9),meets:lower?projRaw<=req*(1+1e-9):+projRaw>=req*(1-1e-9),zone:(lower?projRaw<=req*(1+1e-9):+projRaw>=req*(1-1e-9))?'clear':'gap',conf:r.confidence||meta.confidence||'proxy',shortBy:Math.max(0,100-projPct),family};
 }
 /* Ideal test first. If it was not done (not offered, not cleared, pain, time, equipment), the
    next test the patient has stands in (BACKUPS). NT-UNABLE is a result and reads below target.
@@ -6191,19 +6339,32 @@ function radarFigureHTML(C,ev,{animate=true}={}){
 /* Short-term goal: build to it if today is below, otherwise hold at least it. The time frame is
    sized by the lift, since training gains taper: up to 10% within a year, up to 25% over 1–3
    years, up to 50% over 3–5 years; beyond that it is a long-term stretch rather than a short-term
-   goal. Rep, hold and screen stand-ins are judged against today's standard, so 1–3 years. */
+   goal. Rep, hold and screen stand-ins are judged against today's standard, so 1–3 years.
+   Aerobic fitness trains less than strength: previously inactive adults gain about 15–25% of VO2max
+   over 5–12 months (HERITAGE, Skinner 2001; Kohrt 1991), people already training about 5–10%
+   (Generation 100). So VO2max and LT1 use 10 / 20 / 30%, halved when VO2max is already at or above
+   the 75th percentile for age (4.10). */
+const LIFT_STEPS=[.10,.25,.50],AERO_STEPS=[.10,.20,.30];
+function liftSteps(metric){if(metric!=='vo2'&&metric!=='lt1_vo2')return LIFT_STEPS;const t=(VO2_GROUPS[PATIENT.sex==='female'?'female':'male'].filter(([lo])=>AGE>=lo).pop()||[])[1],v=+PATIENT.metrics.vo2;
+  return t&&Number.isFinite(v)&&v>=t[2]?AERO_STEPS.map(x=>x/2):AERO_STEPS;}
+const liftWhen=(l,T)=>l==null?'1–3 years':l<=T[0]?'within a year':l<=T[1]?'1–3 years':l<=T[2]?'3–5 years':'long-term stretch';
+/* Single-leg balance is timed to 60 s at EM. A goal past that can't be measured, so it reads as past
+   the test limit rather than a number to build to (balance falls steeply after 70 for everyone). */
+const TEST_LIMIT={balanceSL_EO_s:60};
+const pastLimit=(metric,stg)=>{const L=TEST_LIMIT[metric];return L&&stg>L*(1+1e-9)?L:null;};
 function stgText(c){const screen=c.r.unit==='grade',v=fmtU(c.stg,c.unit);if(c.unable)return {up:true,txt:screen?'Reach Proficient':`Build to ${v}`,sub:'1–3 years',when:'1–3 years',lift:null};
   const up=c.raw<c.stg*(1-1e-9),lift=c.raw>0?c.stg/c.raw-1:null;
+  const whenOf=l=>liftWhen(l,liftSteps(c.lt1VO2?'vo2':c.r.metric));
+  if(c.lt1VO2&&!c.meets){const n=c.lt1VO2,vl=n.now>0?n.need/n.now-1:null,l=Math.max(vl??0,up?lift??0:0),vo2=`VO₂max to ${fmtU(n.need,'mL/kg/min')}`;
+    return {up:true,viaVO2:true,txt:up?`Build to ${v}, and ${vo2}`:`Build ${vo2}`,sub:[vl!=null&&vl>0?`+${Math.max(1,Math.round(vl*100))}% VO₂max`:'',whenOf(l),up?'':'VO₂max caps this at '+TGT].filter(Boolean).join(' · '),when:whenOf(l),lift:l};}
   if(!up)return {up,txt:screen?'Stay Proficient':`Hold ≥ ${v}`,sub:'you’re above it',when:'',lift};
-  const when=c.today?'1–3 years':lift==null?'1–3 years':lift<=.10?'within a year':lift<=.25?'1–3 years':lift<=.50?'3–5 years':'long-term stretch';
+  const L=pastLimit(c.r.metric,c.stg);if(L)return {up,txt:`Past the ${fmtU(L,c.unit)} test limit`,sub:'long-term stretch',when:'long-term stretch',lift,pastLimit:L};
+  const when=c.today?'1–3 years':whenOf(lift);
   /* Rep and hold stand-ins read as the gap in their own units; percentages of small counts mislead. */
   const gap=c.today&&!screen?`+${fmtU(c.stg-c.raw,c.unit)}`:lift!=null&&!screen?`+${Math.max(1,Math.round(lift*100))}%`:'';
   return {up,txt:screen?'Reach Proficient':`Build to ${v}`,sub:[gap,when].filter(Boolean).join(' · '),when,lift};}
 /* A short test is reachable in the short term unless its lift is a long-term stretch. */
 const stgReachable=c=>c.meets||c.cappedUnknown||stgText(c).when!=='long-term stretch';
-/* VO2max performance groups by age and sex (Mandsager 2018 cut points, as in the patient report). */
-/* Each band: [first age, [25th, 50th, 75th, 97.7th percentile]]. */
-const VO2_GROUPS={male:[[0,[36,43,49,56]],[30,[35,40,46,53]],[40,[34,39,44,52]],[50,[29,36,41,50]],[60,[25,30,36,46]],[70,[21,25,30,41]],[80,[18,23,26,36]]],female:[[0,[31,38,44,52]],[30,[27,34,39,49]],[40,[25,32,37,47]],[50,[25,29,36,46]],[60,[22,26,32,41]],[70,[18,22,25,36]],[80,[15,19,22,31]]]};
 function vo2Group(v,age){const t=(VO2_GROUPS[PATIENT.sex==='female'?'female':'male'].filter(([lo])=>age>=lo).pop()||[])[1];if(!t||!Number.isFinite(+v))return '';const [p25,p50,p75,el]=t;return v>=el?'elite':v>=p75?'high':v>=p50?'above average':v>=p25?'below average':'low';}
 /* Component order within a goal: hard prerequisites first, then by weight. */
 function reqsInPriority(act){return scoreableReqs(act).map((r,i)=>({r,i})).sort((a,b)=>((b.r.role==='gate'||b.r.critical)-(a.r.role==='gate'||a.r.critical))||((+b.r.weight||1)-(+a.r.weight||1))||a.i-b.i).map(x=>x.r);}
@@ -6213,8 +6374,9 @@ function radarTableHTML(C,act){
   for(const r of order){const c=byMetric.get(r.metric);n++;
     if(!c){rows.push(`<tr class="untested"><td class="rtest"><span class="rnum">${n}</span>${testName(r)}<small>Not tested yet. Any of these counts: ${nameList(altTestNames(r.metric).map(inSentence),8)}.</small></td><td>—</td><td>—</td><td class="rstopv">—</td><td>${resolveRequirement(r).req==null?'—':fmtU(resolveRequirement(r).req,resolveRequirement(r).unit)}</td><td class="rres">Not tested</td><td class="rstg">Test it</td><td><span class="tg tg-${targetGrade(r)}" title="${TARGET_GRADES[targetGrade(r)]}">${targetGrade(r)}</span></td></tr>`);continue;}
     const g=stgText(c),judgedToday=c.today;
-    const vo2Ctx=c.r.metric==='vo2'&&!c.estFrom?`<small>${vo2Group(c.raw,AGE)} for your age</small>`:'';
-    rows.push(`<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest"><span class="rnum">${n}</span>${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}${c.estFrom?`<small>estimated as ${Math.round(LT1_FROM_VO2*100)}% of VO₂max</small>`:''}</td><td>${c.unable?'Unable':fmtU(c.raw,c.unit)}${c.capped?'<small>stopped at the test limit</small>':''}${vo2Ctx}</td><td>${judgedToday?'<small>judged today</small>':c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td class="rstopv">${c.unable||judgedToday?'—':c.static?fmtU(c.stopRaw,c.unit):`${fmtU(c.stopRaw,c.unit)}${c.stopPct<100?`<small>short by ${100-c.stopPct}%</small>`:''}`}</td><td>${fmtU(c.req,c.unit)}${judgedToday?'<small>Proficient for your age</small>':''}</td><td class="rres">${c.unable?'Unable today':c.meets?'✓ Clears':c.cappedUnknown?'At the test limit<small>re-test longer to confirm</small>':c.watch?`Watch · ${c.shortBy}% below`:judgedToday?'Below the standard':`Short by ${c.shortBy}%`}${c.meetsNow||c.unable||judgedToday?'':'<small>Already short today</small>'}</td><td class="rstg">${g.txt}${g.sub?`<small>${g.sub}${c.r.metric==='vo2'&&g.up?` · ${vo2Group(c.stg,AGE)} for your age`:''}</small>`:''}</td><td><span class="tg tg-${c.grade}" title="${TARGET_GRADES[c.grade]}">${c.grade}</span></td></tr>`);}
+    const vo2Ctx=c.r.metric==='vo2'&&!c.estFrom?`<small>${vo2Group(c.raw,AGE)} for your age</small>`:VALD_NORM_BANDS[c.r.metric]&&!c.unable?`<small>${pctLabel(valdPercentile(c.r.metric,PATIENT.sex,AGE,toNewtons(c.r.metric,c.raw)))}</small>`:'';
+    const p75now=VALD_NORM_BANDS[c.r.metric]?fromNewtons(c.r.metric,valdP75ForAge(c.r.metric,PATIENT.sex,AGE)?.n):null;
+    rows.push(`<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest"><span class="rnum">${n}</span>${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}${c.estFrom?`<small>estimated as ${Math.round(LT1_FROM_VO2*100)}% of VO₂max</small>`:''}</td><td>${c.unable?'Unable':fmtU(c.raw,c.unit)}${c.capped?'<small>stopped at the test limit</small>':''}${vo2Ctx}</td><td>${judgedToday?'<small>judged today</small>':c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td class="rstopv">${c.unable||judgedToday?'—':c.static?fmtU(c.stopRaw,c.unit):`${fmtU(c.stopRaw,c.unit)}${c.stopPct<100?`<small>short by ${100-c.stopPct}%</small>`:''}`}</td><td>${fmtU(c.req,c.unit)}${judgedToday?'<small>Proficient for your age</small>':''}</td><td class="rres">${c.unable?'Unable today':c.meets?'✓ Clears':c.cappedUnknown?'At the test limit<small>re-test longer to confirm</small>':c.watch?`Watch · ${c.shortBy}% below`:judgedToday?'Below the standard':`Short by ${c.shortBy}%`}${c.meetsNow||c.unable||judgedToday?'':'<small>Already short today</small>'}</td><td class="rstg">${g.txt}${g.sub?`<small>${g.sub}${c.r.metric==='vo2'&&g.up?` · ${vo2Group(c.stg,AGE)} for your age`:''}</small>`:''}${Number.isFinite(p75now)?`<small>75th percentile for your age: ${fmtU(p75now,c.unit)}</small>`:''}</td><td><span class="tg tg-${c.grade}" title="${TARGET_GRADES[c.grade]}">${c.grade}</span></td></tr>`);}
   return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>What this goal needs</th><th>Today</th><th>At ${TGT}, keep training</th><th>At ${TGT}, if you stop</th><th>Needed at ${TGT}</th><th>Result at ${TGT}</th><th>Goal, and when</th><th>Grade</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><div class="rtablenote">Listed most important first. When a test wasn’t done, a related test stands in; rep and hold tests and movement screens are judged against today’s standard for your age because they can’t be projected. Goal, and when: the level to build to so that, if you keep training, the glide path still reaches what the goal needs at ${TGT}; the time frame grows with the size of the lift. Grade (how firm the target is): A is set by the task itself, B comes from research or a closely related task, C is a clinical estimate still being validated.</div>`;
 }
 /* Glide path (Dan, 2026-09-25): for a test projected short at TGT, raise the starting point now so
@@ -6238,9 +6400,10 @@ function glideChartSVG(c){
   </svg>`;
 }
 function glidePathsHTML(C){
-  const opp=C.filter(c=>!c.meets&&!c.cappedUnknown&&!c.today);if(!opp.length)return '';
+  const opp=C.filter(c=>!c.meets&&!c.cappedUnknown&&!c.today&&!c.lt1VO2);if(!opp.length)return '';
   return `<div class="glidewrap"><div class="glidehead"><b>Raise the starting point</b><span>Where to build, and by when, so the glide path clears at ${TGT}.</span></div><div class="rlegend" style="margin:0 2px 8px"><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>If you keep training from today</span><span class="lg raise"><i></i>If you build to the goal first</span><span class="lg stop"><i></i>If training stops after that</span></div><div class="glidegrid">${opp.map(c=>{const endR=projectCapacity(c.stg,c.family,PATIENT.sex,Math.min(Math.max(TGT,AGE+1),AGE+2),Math.max(TGT,AGE+1),1),g=stgText(c);
     const aG=Math.min(Math.max(TGT,AGE+1),AGE+2),endS=projectIfStopped(c.stg,c.family,PATIENT.sex,aG,Math.max(TGT,AGE+1));
+    if(g.pastLimit)return `<div class="glidecard"><div class="glidettl">${c.short}</div><div class="glidecap">To still have ${fmtU(c.req,c.unit)} at ${TGT}, you’d need about ${fmtU(c.stg,c.unit)} today, more than the ${fmtU(g.pastLimit,c.unit)} the test can time. Balance drops quickly after 70 for everyone, so keep training it; a longer timed test will show your progress.</div></div>`;
     return `<div class="glidecard"><div class="glidettl">${c.short}${c.via?` <small style="font-weight:600;color:var(--muted)">in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</div>${glideChartSVG(c)}<div class="glidecap">${g.txt}${g.sub?` (${g.sub})`:''}. Keep training from there and you reach about <b>${fmtU(endR,c.unit)}</b> at ${TGT}; this goal needs ${fmtU(c.req,c.unit)}. If training stopped after that, you’d be near ${fmtU(endS,c.unit)}.</div></div>`;}).join('')}</div></div>`;
 }
 
@@ -6272,7 +6435,7 @@ function cardsHTML(C){
       <div class="ct qcat ${c.r.cat}">${c.short}</div>
       <div class="big"><span class="n">${fmtU(c.raw,c.unit)}</span> now → <span class="p">${fmtU(c.projRaw,c.unit)}</span>${c.static?' (held)':' proj.'}</div>
       <div class="pbar"><div class="f" style="width:${clamp(c.projPct/160*100,0,100).toFixed(0)}%"></div><div class="t" style="left:${(100/160*100).toFixed(0)}%"></div></div>
-      <div class="cap">Need ${fmtU(c.req,c.unit)} · projected ${c.projPct}% of it · goal: ${stgText(c).txt.replace('Build to','build to').replace('Hold','hold')}${stgText(c).sub&&stgText(c).up?` (${stgText(c).sub})`:''}</div>${c.static?'':`<div class="rng">illustrative range ${fmtU(c.projLo,c.unit)}–${fmtU(c.projHi,c.unit)} at ${TGT}</div>`}${flag}
+      <div class="cap">Need ${fmtU(c.req,c.unit)} · projected ${c.projPct}% of it · goal: ${stgText(c).txt.replace('Build to','build to').replace('Hold','hold').replace('Past the','past the')}${stgText(c).sub&&stgText(c).up?` (${stgText(c).sub})`:''}</div>${c.static?'':`<div class="rng">illustrative range ${fmtU(c.projLo,c.unit)}–${fmtU(c.projHi,c.unit)} at ${TGT}</div>`}${flag}
       <div class="raw"><span class="cdot ${c.conf}" title="${CONF_META[c.conf].label}">${CONF_META[c.conf].dot}</span> ${CONF_META[c.conf].label} · measurement: ${c.measurementSource||''}</div>
       <div class="cardwhy">${basisBadge(c.r)} ${c.r.why} <span class="evi">Target grade ${c.grade} (${TARGET_GRADES[c.grade].toLowerCase()})${c.r.protocolPending?', test protocol still being validated':''}. Task: ${c.taskSource||'clinical mapping pending'} · Forecast: ${c.forecastSource||'no numerical forecast'}</span></div>
     </div>`;
@@ -6368,6 +6531,8 @@ function assessmentContext(metric){
   }
   const raw=+entered;if(!Number.isFinite(raw))return null;
   if(VALD_PERCENTILE_METRICS.has(metric)){
+    const q=VALD_NORM_BANDS[metric]&&!Number.isFinite(+PATIENT.assessmentPercentiles?.[metric])?valdPercentile(metric,PATIENT.sex,AGE,toNewtons(metric,raw)):null;
+    if(q){const pc=q.pct??(q.below!=null?q.below/2:Math.min(99,q.above+5)),deficit=clamp((50-pc)/50*100,0,100);return {kind:'percentile',source:q.modeled?'VALD norms for age and sex, extended past VALD’s age bands with published age trends':'VALD norms for age and sex',percentile:pc,severity:deficit,deficit,label:pctLabel(q)};}
     const percentile=+PATIENT.assessmentPercentiles?.[metric];
     const percentileContext=PATIENT.assessmentPercentileContext,contextMatches=percentileContext&&+percentileContext.age===+PATIENT.age&&percentileContext.sex===PATIENT.sex;
     if(!contextMatches||!Number.isFinite(percentile)||percentile<1||percentile>99)return {kind:'unavailable',source:contextMatches?'VALD age/sex norm not entered':'VALD percentile context is stale',deficit:0,label:contextMatches?'no age/sex percentile entered':'age/sex percentile requires re-entry'};
@@ -6474,7 +6639,7 @@ function capRankItem(x,kind){const detail=kind==='priority'?priorityRationaleTex
 function capacitySummaryHTML(story){return `<div class="caprank"><div class="caprankcol good"><div class="caprankhead">✓ What you're protecting well</div>${story.topStrengths.map(x=>capRankItem(x,'strength')).join('')||'<div class="scnote">Add more assessment data to identify strengths.</div>'}</div><div class="caprankcol bad"><div class="caprankhead">⚠ Highest-leverage priorities for your goals</div>${story.topTrainingPriorities.slice(0,3).map(x=>capRankItem(x,'priority')).join('')||'<div class="scnote">No goal-linked priorities are present in the entered measures.</div>'}</div></div>`;}
 function capacityTableHTML(traj){
   const order={opportunity:0,watch:1,strength:2,support:3,trajectory:4,context:5};const rows=traj.slice().sort((a,b)=>order[a.status]-order[b.status]||b.goalsN-a.goalsN||(a.reservePct??999)-(b.reservePct??999));
-  const body=rows.map(x=>`<tr class="ctrow ${x.status}"><td><b>${x.meta.label}</b><span>${x.meta.measurementSource||x.meta.src||''}</span></td><td>${fmtU(x.raw,x.meta.unit)}</td><td>${x.stg==null?'—':`${x.raw>=x.stg?'hold':'build to'} ${fmtU(x.stg,x.meta.unit)}`}</td><td>${x.evidence.grade==='—'?'—':`${fmtU(x.proj,x.meta.unit)}<span>${fmtU(x.lo,x.meta.unit)}–${fmtU(x.hi,x.meta.unit)}</span>`}</td><td>${x.retention==null?'—':Math.round(x.retention)+'%'}</td><td>${x.avgDec==null?'—':x.avgDec.toFixed(1)+'%/dec'}</td><td>${x.reservePct==null?'—':`${Math.round(x.reservePct)}%${x.reserveLo!=null?`<span>${Math.round(x.reserveLo)}–${Math.round(x.reserveHi)}%</span>`:''}`}</td><td>${x.goalsN||'—'}</td><td><span class="ctbadge ${x.status}">${capStatusLabel(x)}</span><small>${x.evidence.grade==='—'?'':`evidence ${x.evidence.grade}`}</small></td></tr>`).join('');
+  const body=rows.map(x=>`<tr class="ctrow ${x.status}"><td><b>${x.meta.label}</b><span>${x.meta.measurementSource||x.meta.src||''}</span></td><td>${fmtU(x.raw,x.meta.unit)}</td><td>${x.stg==null?'—':x.raw<x.stg&&pastLimit(x.metric,x.stg)?`past the ${fmtU(TEST_LIMIT[x.metric],x.meta.unit)} test limit`:`${x.raw>=x.stg?'hold':'build to'} ${fmtU(x.stg,x.meta.unit)}`}</td><td>${x.evidence.grade==='—'?'—':`${fmtU(x.proj,x.meta.unit)}<span>${fmtU(x.lo,x.meta.unit)}–${fmtU(x.hi,x.meta.unit)}</span>`}</td><td>${x.retention==null?'—':Math.round(x.retention)+'%'}</td><td>${x.avgDec==null?'—':x.avgDec.toFixed(1)+'%/dec'}</td><td>${x.reservePct==null?'—':`${Math.round(x.reservePct)}%${x.reserveLo!=null?`<span>${Math.round(x.reserveLo)}–${Math.round(x.reserveHi)}%</span>`:''}`}</td><td>${x.goalsN||'—'}</td><td><span class="ctbadge ${x.status}">${capStatusLabel(x)}</span><small>${x.evidence.grade==='—'?'':`evidence ${x.evidence.grade}`}</small></td></tr>`).join('');
   return `<details class="dtl capacitydetails"><summary class="dtlsum">Clinician detail: all measured capacities <span class="dtlhint">${rows.length} numeric measures entered · clinician/deep dive</span></summary><div class="ctablewrap"><table class="ctable"><thead><tr><th>Capacity</th><th>Today</th><th>Goal, and when</th><th>Projected ${TGT}</th><th>Retained</th><th>Avg decline</th><th>Goal reserve*</th><th>Goals</th><th>Read</th></tr></thead><tbody>${body}</tbody></table></div><div class="model-note"><b>*Goal reserve</b> is shown only where a selected goal has a defensible task-specific threshold in the same test units. Rep and hold tests are tracked against the PCA standard for age and not projected; other supporting measures show their trajectory and goal leverage but no reserve percentage. Ranges combine longitudinal and task-demand uncertainty. Evidence A/B/C grades the decline model, not the quality of the patient’s test. Qualitative movement screens are intentionally not assigned numerical decline rates.</div></details>`;
 }
 function clinicianGoalCardsHTML(gs,ordered=false){
@@ -6696,7 +6861,7 @@ function printFrame(pageNum,total,cls,inner){
 }
 function printCompTable(C){
   return `<table class="ptbl"><thead><tr><th>Test</th><th>Now → ${TGT}</th><th>If you stop</th><th>Needs</th><th>At ${TGT}</th><th>Goal, and when</th><th>Target</th></tr></thead><tbody>`+
-    C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td class="pstop">${c.unable?'—':fmtU(c.stopRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.watch?'watch':c.zone}">${c.meets?'clears':c.cappedUnknown?'test limit':c.watch?'watch':'short '+c.shortBy+'%'}</td><td>${stgText(c).txt.replace('Build to','build to').replace('Hold','hold')}${stgText(c).sub&&stgText(c).up?` <small>${stgText(c).sub}</small>`:''}</td><td class="ptg">${c.grade}</td></tr>`).join('')+
+    C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td class="pstop">${c.unable?'—':fmtU(c.stopRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.watch?'watch':c.zone}">${c.meets?'clears':c.cappedUnknown?'test limit':c.watch?'watch':'short '+c.shortBy+'%'}</td><td>${stgText(c).txt.replace('Build to','build to').replace('Hold','hold').replace('Past the','past the')}${stgText(c).sub&&stgText(c).up?` <small>${stgText(c).sub}</small>`:''}</td><td class="ptg">${c.grade}</td></tr>`).join('')+
     `</tbody></table>`;
 }
 function printGoalPage(g,pageNum,total,goalNum,goalTotal){
@@ -6857,7 +7022,8 @@ $("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); i
 const COPY={
   scope:()=>`This model uses measured physical capacities from the Early Medical assessment, CPET, and selected context from DEXA. Each goal is judged on every one of its tests. Qualitative movement screens and DEXA context are shown separately and do not change a goal’s status.`,
   disclaimerLead:'How to read this.',
-  disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization; strength, power and aerobic capacity follow the decline of people who keep training (healthy-cohort rates through the 60s, about two-thirds of the general rate from 70, aerobic fitness at 0.7× the typical rate), range of motion declines at half the typical rate, balance follows published age norms, rep and hold tests are tracked but not projected, and isolated strength tests aim for the VALD 75th percentile carried to the target age, each with a deliberately broad uncertainty range. A test projected short gets a short-term goal: the level that keeps the glide path above what the goal needs, with a time frame sized to the lift (within a year up to +10%, 1–3 years up to +25%, 3–5 years up to +50%, beyond that a long-term stretch). A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. Training, disease, injury, body-weight change, and survivor effects can materially alter the trajectory.`
+  disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization. Strength, power and aerobic fitness follow the decline of healthy people who keep training, taken from long-term studies of the same people: about 1–1.5% a year in the 60s, 2% in the 70s and 3–4% after 85 for strength, with each muscle group at its own rate; power falls a little faster than strength; aerobic fitness falls more slowly than average until about 70, then close to the typical rate. Range of motion declines at half the typical rate for patients who keep up mobility work, balance follows published age norms (it falls steeply after 70 for everyone), rep and hold tests are tracked but not projected, and isolated strength tests aim for top-quarter strength (the VALD 75th percentile) kept up by training to the target age, each with a deliberately broad uncertainty range that widens after 75. A test projected short gets a short-term goal: the level that keeps the glide path above what the goal needs, with a time frame sized to the lift (within a year up to +10%, 1–3 years up to +25%, 3–5 years up to +50%, beyond that a long-term stretch; aerobic fitness trains less, so +10%, +20% and +30%, halved for people already fit for their age). A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. This assumes you stay healthy; in the last year or two of life, strength and fitness fall much faster whatever you do. Training mostly buys a head start of 10–20 years, and it keeps you from the extra losses that come with stopping. Disease, injury and body-weight change can also alter the trajectory.`
+
 };
 const DEMO_ARCHETYPES={
   balanced:{label:'Balanced all-rounder',sex:'male',age:54,bodyWeight_lb:175,metrics:BASELINE_METRICS,assessmentPercentiles:{hopRSI:58,anklePF_xBW:54,cmjPower_WkG:52,dropJump_RSI:48,beltSquatIso_xBW:61,broadJump_cm:55,kneeFlex_xBW:46,slVertJump_cm:50,hipAbd_xBW:43,hipAdd_xBW:41,kneeExt_xBW:38,grip_lb:57,shoulderER_NmKg:40}},
