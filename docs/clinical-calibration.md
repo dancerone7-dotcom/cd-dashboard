@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,30 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.9.1: ForceFrame knee norms from the VALD Hub (2026-09-25)
+
+The knee targets now anchor on VALD's own ForceFrame norms. They were pulled live from the VALD Hub on 2026-09-25: Health population, MaxForce, the same query contract the report generator uses. They replace the DynaMo handheld table used as a stand-in in 4.8.
+
+| Test | VALD band | Men 75th | Women 75th | Anchor age |
+|---|---|---|---|---|
+| Knee extension, seated 90° | 40–59, pooled | 349 N | 247 N | 50 |
+| Knee flexion, prone | men 50–59; women 40–59 | 198 N | 150 N | 55 men, 50 women |
+
+- **VALD's bands:** knee extension is pooled across 40–59 for both sexes. Knee flexion has separate 40–49 and 50–59 bands for men and one 40–59 band for women. Norms stop at 59.
+- **Full distributions pulled** (25th / 50th / 75th / 90th percentile):
+  - knee extension at 40–59: men 204 / 265 / 349 / 434 N; women 137 / 188 / 247 / 319 N;
+  - at 25: men's 75th percentile 412 N, women's 302 N.
+- **New targets at 90:**
+  - knee extension: 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman (was 0.29 / 0.26);
+  - knee flexion: 0.13 (was 0.14 / 0.12).
+- **ForceFrame reads well below DynaMo.** The DynaMo 60+ 75th percentile (396 N men) is higher than ForceFrame's 40–59 value (349 N). On the right device, Peter Wallach's 491–551 N is above the 90th percentile, not the 60th–70th estimated from DynaMo. His knee now clears at 90 with a 37% margin.
+- **Katayama & Yamasaki's belt-fixed dynamometer reads about 2.5× ForceFrame.** Healthy men in their 40s–50s average 0.77 × BW there, against a ForceFrame median of about 0.31. Their stairs threshold (0.50) lands near 0.20 on ForceFrame, close to the new target.
+- **The PCA knee standards look like they were set on a higher-reading device.**
+  - On ForceFrame, PCA Proficient for men (0.65 × BW at 50–60 and 0.73 at 40–50, for an 84-kg man) sits at the 96th–97th percentile.
+  - For women (0.55 and 0.61 at 68 kg) it sits at the 94th–95th.
+  - If EM tests knee extension on ForceFrame, PCA "Proficient" currently means the top 5% of VALD's Health population.
+- **Results:** Chad (knee judged via the goblet squat) and the demo patients' goal counts are unchanged.
 
 ## Model 4.9: sub-items, time-framed short-term goals and component audit (2026-09-25)
 

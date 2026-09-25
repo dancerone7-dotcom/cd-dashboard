@@ -782,9 +782,9 @@ svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
-const MODEL_VERSION='4.9';
+const MODEL_VERSION='4.9.1';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['A','B','C','R','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -824,7 +824,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Strength to take stairs, get up from the floor and move quickly without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -1025,7 +1025,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Walking while carrying needs leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -1283,7 +1283,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Hours of walking and standing need leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -1988,7 +1988,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Moving around the house and getting up and down need leg strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2050,7 +2050,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Rising from a standard seat without the hands depends on knee strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2233,7 +2233,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Walking in sand needs leg strength; sand adds effort. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2380,7 +2380,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Kneeling, getting up and walking the garden need leg strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2767,7 +2767,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Strength to take stairs, get up from the floor and move quickly without being limited. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -2925,7 +2925,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "The approach and lunge need leg strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -3183,7 +3183,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -3344,7 +3344,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4118,7 +4118,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "reqKind": "p75_force",
     "reqArgs": {},
@@ -4552,7 +4552,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4673,7 +4673,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Most of each stroke’s power comes from the leg drive. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4801,7 +4801,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Riding and getting on and off the bike need leg strength. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4819,7 +4819,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "Pulling through the pedal stroke uses the hamstrings. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo prone knee flexion, 75th percentile at ages 60+ (199 N men, 126 N women), carried to 90 on the keep-training decline and divided by body weight.",
+    "evi": "VALD ForceFrame prone knee flexion, 75th percentile at ages 50–59 for men (198 N) and 40–59 for women (150 N; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -4926,7 +4926,7 @@ const ACTIVITIES = {
     "group": "lower-strength",
     "basis": "research",
     "why": "An hour of walking needs leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
-    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
+    "evi": "VALD ForceFrame seated knee extension (90°), 75th percentile at ages 40–59 (349 N men, 247 N women; VALD Hub norms pulled 2026-09-25), carried to 90 on the keep-training decline and divided by body weight: about 0.22 × BW for a 180-lb man and 0.21 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 2.5× ForceFrame) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
@@ -5895,15 +5895,18 @@ function capToVO2(metric,v,stopped=false){if(metric!=='lt1_vo2')return v;const v
    body weight. Calf strength has no VALD band past 59 in the library, so it uses the report
    generator's fallback: Kanayama 2023, ages 75+, mean + 0.674 SD, already in × BW. */
 const VALD_P75={
-  kneeExt_xBW:{src:'VALD DynaMo knee extension, seated, age 60+',age:65,male:395.6,female:271.0},
-  kneeFlex_xBW:{src:'VALD DynaMo knee flexion, prone, age 60+',age:65,male:198.6,female:126.3},
+  /* Knee: VALD ForceFrame norms pulled live from the VALD Hub on 2026-09-25 (Health population,
+     MaxForce). VALD pools knee extension across 40–59 for both sexes and knee flexion across 40–59
+     for women; men's knee flexion has its own 50–59 band. The anchor age is the band midpoint. */
+  kneeExt_xBW:{src:'VALD ForceFrame knee extension, seated 90°, ages 40–59',age:50,male:348.8,female:247.3},
+  kneeFlex_xBW:{src:'VALD ForceFrame knee flexion, prone, ages 50–59 (men) and 40–59 (women)',age:{male:55,female:50},male:197.8,female:149.5},
   hipAbd_xBW:{src:'VALD ForceFrame hip abduction, age 50–60',age:55,male:373,female:268},
   hipAdd_xBW:{src:'VALD ForceFrame hip adduction, age 50–60',age:55,male:384,female:270},
   shoulderER_NmKg:{src:'VALD ForceFrame shoulder external rotation, age 50–60',age:55,male:154,female:93},
   grip_lb:{src:'VALD DynaMo grip, age 60+',age:65,male:459.5,female:274.5,lb:true},
   anklePF_xBW:{src:'Kanayama 2023 plantarflexion, age 75+ (VALD seated norms stop at 59)',age:78,xbw:{male:1.08,female:1.00}}
 };
-function valdP75Target(metric,sex){const a=VALD_P75[metric];if(!a)return null;const k=projectCapacity(1,METRICS[metric].family,sex,a.age,Math.max(a.age,TGT),1);
+function valdP75Target(metric,sex){const a=VALD_P75[metric];if(!a)return null;const age=typeof a.age==='object'?a.age[sex]:a.age,k=projectCapacity(1,METRICS[metric].family,sex,age,Math.max(age,TGT),1);
   if(a.xbw)return {value:a.xbw[sex]*k};const n=a[sex]*k;if(a.lb)return {value:n/4.44822};const bw=+PATIENT.bodyWeight_lb;
   return Number.isFinite(bw)&&bw>0?{value:n/(bw*0.45359237*9.80665),newtons:n}:{value:null,newtons:n};}
 const MET_CONVENTION={mlKgMinPerMET:3.5,src:'Aerobic goals store absolute oxygen cost for an older adult (Older Adult Compendium MET60+ × 2.7, Adult Compendium MET × 3.5); task demand stays fixed with age and sex'};
