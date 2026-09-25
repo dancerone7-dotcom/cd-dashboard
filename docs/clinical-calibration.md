@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -53,7 +53,7 @@ Dance, cycling, chores, beach sand, the festival and sexual expression keep thei
 
 **Knee extension counts for walking and stairs.** The input is now degrees short of straight (0 = fully straight; hyperextension counts as 0), and the target is 5° or less. It applies to walk 3 miles, stairs with 25 lb, the dog walk, the mountain hike, beach sand, the festival and walking golf, and to library activities that involve walking or stairs. It is judged today, not projected, grade C: standing and walking on a bent knee raises the quadriceps demand steeply as the angle grows (Perry 1975), and more than 5° short of straight is the usual clinical cut for a flexion contracture. Files saved in 4.12 convert (−8 becomes 8).
 
-**Other decisions.** The broad jump is two-footed; the input now says "both feet". The Notion PCA Standards row reads "SL Broad Jump" and should be renamed there, with Chris Hart's sign-off. Visceral fat stays off the CD page. No new tests.
+**Other decisions.** Visceral fat stays off the CD page. No new tests. **4.13.1:** the broad jump is the PCA's single-leg broad jump, measured by tape on the weaker leg. The input is labeled "Single-leg broad jump", no longer claims VALD ForceDecks, and drops its VALD percentile field (VALD has no broad-jump norm). No goal uses it, so results are unchanged. The demo patients' distances were scaled to single-leg values.
 
 **Results.** Test member A: 3 / 7 / 0, unchanged; the short-term VO₂max goals are now 58 for the hike (was 65), 42 for the walk (46) and 50 for tennis (48). Test member B: 1 / 1 / 8 → 1 / 2 / 7. Tennis becomes an opportunity: VO₂max 54.9 projects to 25.8 at 90 against 25.9, so the goal is 55 (+1%, within a year). Demo patient counts are unchanged. All-Proficient check: 110 of 594 short.
 
@@ -88,7 +88,7 @@ Dan's request: make sure nothing EM collects that matters for a CD is missed. Ch
 
 **Goal results are unchanged.** The new inputs are context, or not yet used by a goal. Test members: A 3 / 7 / 0; B 1 / 1 / 8. All-Proficient check: 110 of 594 short. All demo patients match.
 
-**Decided in 4.13:** the broad jump is two-footed; knee extension counts for the walking and stair goals; visceral fat stays off the CD page. Shoulder rotation joined the throwing goals with the goal library.
+**Decided in 4.13:** the broad jump is single-leg (4.13.1), as in the PCA Standards; knee extension counts for the walking and stair goals; visceral fat stays off the CD page. Shoulder rotation joined the throwing goals with the goal library.
 
 ## Model 4.12: goal library, 55 activities from the activity-demand review (2026-09-25)
 
