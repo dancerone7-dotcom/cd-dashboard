@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -28,7 +28,17 @@ Each target is the level at which that capacity stops limiting the task at the m
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
 
-## Data coverage: every test Early Medical collects (2026-09-25, redesign)
+## Model 4.12: one patient page, a clinician view and a three-step build (2026-09-25)
+
+Dan's direction: make it clear to a patient where they are now, where they need to be, and their top strengths and weaknesses; streamline the dashboard views; make the team's workflow obvious; brand it as Early Medical.
+
+- **Two views.** The patient page is one scrolling page in the Early Medical report style (Canva master template): goals at a glance, where you are today, strengths and opportunities with the capacity wheel, the next one to three years, and goal by goal. The clinician view keeps priorities, trajectories, every measured capacity and the goal audit. The older A, B and R layouts are gone.
+- **Strengths and opportunities.** The top four of each, ranked by how many goals they affect and by how far they sit above or below what those goals need at the target age. Each shows its percentile for age where published norms exist, or the Early Medical standard for age.
+- **Build in three steps:** patient, goals (with search and "What it needs" for each goal), then test results, then the report.
+- **Goal builder.** Start from a library activity or tick what the activity involves. Each test copies the rule a built-in goal uses, and the coach can change or remove any target. Saved goals keep their recipe and rebuild on import.
+- **Goal results are unchanged from 4.11:** test member A 3 / 7 / 0, test member B 1 / 1 / 8, all-Proficient check 110 of 594 short.
+
+## Model 4.12: data coverage, every test Early Medical collects (2026-09-25)
 
 Dan's request: make sure nothing EM collects that matters for a CD is missed. Checked against the EM Notion templates (PCA Standards, 62 tests; pROM tracker, 36 rows; DEXA tracker, 19 rows; CPET tracker, 18 rows), the report generator's parsers (CPET, DEXA, DARI CSV and JSON, PT intake, Injury Resilience Assessment workbook), the VALD tests EM runs, and the one-day assessment schedule.
 
@@ -55,7 +65,7 @@ Dan's request: make sure nothing EM collects that matters for a CD is missed. Ch
 - Knee extension range is context only for now. It could join the walking and stair goals: standing on a bent knee raises the quadriceps demand steeply as the angle grows (Perry 1975), and more than 5° short of straight is the usual clinical cut for a flexion contracture.
 - Visceral fat stays off the CD page unless you want it shown without a cut-point.
 
-## Goal library: 55 activities from the activity-demand review (2026-09-25, redesign)
+## Model 4.12: goal library, 55 activities from the activity-demand review (2026-09-25)
 
 The goal builder's "Start from an activity" list holds 55 activities people want to keep doing into their 80s: 16 sports, 14 snow and water, 12 walking, climbing and cycling, 5 mind-body and dance, and 8 home and travel. Demand profiles are graded 7 A, 25 B and 23 C, and 246 of 248 citations were re-checked against Europe PMC. Only 7 activities have demand data measured in adults over 60; most targets at 80–90 are extrapolations.
 
@@ -67,7 +77,7 @@ The goal builder's "Start from an activity" list holds 55 activities people want
 
 **Tests.** The review's 4–8 ranked tests per activity. Each takes its target from the built-in goal whose demand it matches, or else the first built-in goal that uses it, so library goals are judged like built-in ones. PCA rep and hold tests that no goal sets a target for (push-ups, planks, dead hang, chin-ups, Copenhagen, eyes-closed balance) are tracked against the standard for age and don't set the result. A stand-in named by the review (goblet squat, dumbbell external rotation) is entered under its main test, and steps in automatically when the main test is missing.
 
-**New targets (redesign):**
+**New targets:**
 
 | Test | Target at the goal age | Used for | Grade |
 |---|---|---|---|
