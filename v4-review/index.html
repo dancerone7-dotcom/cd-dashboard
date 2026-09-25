@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Centenarian Decathlon | Early Medical®</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ─────────────────────────────────────────────────────────────
    EARLY MEDICAL BRAND  (from generator design rules)
@@ -20,7 +20,7 @@
   --ok:#10b981; --ok-soft:#a7f3d0; --warn:#92400e; --gap:#bc2a2a;
   --line:rgba(15,23,42,.1);
   --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'Avenir','Avenir Next',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --sans:'Avenir','Avenir Next','Nunito Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -715,18 +715,146 @@ svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
 .glide .gneed{stroke:#3f9a6b;stroke-width:2;stroke-dasharray:2 3}.glide .gnow{fill:#2a7cfb}.glide .ggoal{fill:#3f9a6b;stroke:#fff;stroke-width:1.5}
 .glide .glbl{font:700 9.5px var(--sans)}.glide .glbl.k{fill:#bc2a2a}.glide .glbl.n{fill:#2f7d4f}.glide .glbl.t{fill:#2a7cfb}
 .rlegend .raise i{border-top:3px solid #3f9a6b}
+/* ── 2026-09-25 redesign: four-step workflow ── */
+.seg.steps button{display:inline-flex;align-items:center;gap:7px;padding:7px 15px}
+.seg.steps .sn{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font-size:10.5px;font-weight:700;background:rgba(57,64,75,.1);color:#39404b}
+.seg.steps button.on .sn{background:rgba(255,255,255,.25);color:#fff}
+.linkbtn{font-family:var(--sans);font-size:13px;font-weight:600;color:#39404b;background:transparent;border:1px solid rgba(57,64,75,.18);border-radius:999px;padding:6px 13px;cursor:pointer}
+.linkbtn:hover,.linkbtn.on{background:#39404b;color:#fff;border-color:#39404b}
+.linkbtn.inline{border:0;padding:0 0 0 4px;color:#c05e6d;text-decoration:underline;text-underline-offset:2px;font-size:12px}
+.linkbtn.inline:hover{background:transparent;color:#bc2a2a}
+body.step-patient .bstep:not([data-step="patient"]),body.step-goals .bstep:not([data-step="goals"]),body.step-results .bstep:not([data-step="results"]){display:none}
+.goaladd{display:flex;align-items:center;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.buildsticky .bsinner{display:flex;align-items:center;gap:14px}.buildsticky .bsmeta{flex:1}
+/* Early Medical app chrome: slate for active states and primary actions, coral for accents, no edge stripes */
+body{background:#f1f2f4}
+.appbar{background:#fff;box-shadow:0 1px 0 rgba(57,64,75,.08)}
+.brandmark{font-weight:500;color:#39404b}.brandmark span{color:#c05e6d}
+.seg button.on,.heroseg button.on{background:#39404b;border-color:#39404b;color:#fff}
+.btn.primary{background:#39404b;border-color:#39404b;color:#fff}.btn.primary:hover{background:#2c323b}
+.actbtn.on{background:#39404b}
+.fgroup{border-left:1px solid var(--line)}
+.eyebrow{color:#c05e6d}
+body.tab-report #tab-report>.rail{position:sticky;top:0;align-self:flex-start;max-height:100vh}
+.actbtn.ovbtn.on{background:#39404b;color:#fff;border-color:#39404b}
+input[type=checkbox]{accent-color:#39404b}
+.ovcard,.ovcard.z-clear,.ovcard.z-gap,.ovcard.z-incomplete,.ovcard.z-borderline{border-left:1px solid var(--line)}
+/* ── Patient page, Early Medical report style (Canva master template DAHMJHpwsJg): light pages, thin
+   Cormorant titles with italic accents, small coral eyebrows, slate cover and dividers, blue-to-coral rule ── */
+.slide.ptpage{--pt-ink:#39404b;--pt-coral:#c05e6d;--pt-blue:#2a7cfb;--pt-muted:#6b7280;--pt-line:#e5e8ec;--pt-paper:#fbfbfc;
+  background:var(--pt-paper);color:var(--pt-ink);border-radius:14px;box-shadow:0 18px 48px rgba(15,23,42,.08);overflow:hidden;min-height:0;display:block}
+.pt-cover{position:relative;background:#39404b;color:#fff;padding:92px 56px 44px}
+.pt-cover::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#2a7cfb,#c05e6d)}
+.pt-brand{position:absolute;top:20px;left:56px;font-family:var(--serif);font-size:17px;color:rgba(255,255,255,.82);letter-spacing:.3px}
+.pt-tagline{position:absolute;top:20px;right:28px;font-family:var(--serif);font-size:16px;color:rgba(255,255,255,.7)}
+.pt-tagline i{font-style:italic}.pt-tagline sup{font-size:8px;margin-left:1px}
+.pt-eyebrow{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--pt-coral);font-weight:600}
+.pt-eyebrow.light{color:#f2b3bb}
+.pt-cover h1{font-family:var(--serif);font-weight:400;font-size:54px;line-height:1.04;margin:10px 0 8px;color:#fff}
+.pt-coversub{font-family:var(--serif);font-size:23px;color:rgba(255,255,255,.9)}
+.pt-coversub em,.pt-title em,.pt-divider h2 em{font-style:italic}
+.pt-covermeta{margin-top:20px;font-size:12.5px;color:rgba(255,255,255,.68);letter-spacing:.2px}
+.pt-sec{padding:46px 56px 10px}
+.pt-head{margin-bottom:18px;max-width:780px}
+.pt-title{font-family:var(--serif);font-weight:400;font-size:38px;line-height:1.08;margin:6px 0 0;color:var(--pt-ink)}
+.pt-lede{font-size:13.5px;line-height:1.55;color:var(--pt-muted);margin:8px 0 0}
+.pt-empty{font-size:13px;color:var(--pt-muted);padding:14px 16px;border:1px dashed var(--pt-line);border-radius:12px;background:#fff}
+/* goals at a glance: the headline and goal cards, without colored edge stripes */
+.ptpage .goalheadline{padding:0 0 10px}
+.ptpage .gh-main{font-family:var(--serif);font-weight:400;font-size:26px;color:var(--pt-ink)}
+.ptpage .gh-read{font-size:12.5px;line-height:1.55;color:var(--pt-muted);max-width:820px;border-left:0;padding-left:0}
+.ptpage .radarread{border-left:0;border-radius:12px;background:#f7f8fa;padding:12px 16px}
+.ptpage .ovgrid{gap:14px}
+.ptpage .ovcard{background:#fff;border:1px solid var(--pt-line);border-left:1px solid var(--pt-line);border-radius:14px;padding:14px 12px;transition:border-color .15s,box-shadow .15s}
+.ptpage .ovcard:hover{border-color:#c9ced6;box-shadow:0 6px 18px rgba(15,23,42,.06)}
+.ptpage .ovcard.z-clear,.ptpage .ovcard.z-gap,.ptpage .ovcard.z-incomplete,.ptpage .ovcard.z-borderline{border-left-color:var(--pt-line)}
+.ptpage .ovname{font-family:var(--serif);font-size:16.5px;line-height:1.2;color:var(--pt-ink)}
+/* where you are today */
+.pt-panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pt-panel{background:#fff;border:1px solid var(--pt-line);border-radius:14px;padding:14px 18px 8px}
+.pt-ptitle{font-family:var(--serif);font-size:21px;margin:0 0 4px}
+.pt-mrow{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.7fr) minmax(0,1.4fr);gap:12px;align-items:center;padding:9px 0;border-top:1px solid #f0f2f4;font-size:13px}
+.pt-mname{line-height:1.25}
+.pt-mval{font-weight:700;text-align:right;white-space:nowrap}
+.pt-mvis small{display:block;font-size:10.5px;color:var(--pt-muted);margin-top:5px;line-height:1.3}
+.pt-bar{position:relative;height:6px;border-radius:3px;background:linear-gradient(90deg,#f3dde1 0%,#eceef2 35%,#eceef2 65%,#dbe7fb 100%);margin-top:3px}
+.pt-bar i{position:absolute;top:-2px;width:1px;height:10px;background:rgba(57,64,75,.22)}
+.pt-bar b{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
+.pt-bar.hi b{background:#3f9a6b}.pt-bar.ok b{background:#2a7cfb}.pt-bar.mid b{background:#c58a2a}.pt-bar.lo b{background:#bc2a2a}
+.pt-lvl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700}
+.pt-lvl i{width:9px;height:9px;border-radius:50%;background:currentColor}
+.pt-lvl.good{color:#2f7d4f}.pt-lvl.mid{color:#9a6512}.pt-lvl.low{color:#bc2a2a}
+.pt-more{margin:4px 0 6px}.pt-more summary{cursor:pointer;font-size:12px;color:var(--pt-coral);padding:6px 0}
+/* strengths and opportunities */
+.pt-sowrap{display:flex;flex-direction:column;gap:22px}
+.pt-wheel{background:#fff;border:1px solid var(--pt-line);border-radius:14px;padding:20px 24px 16px}
+.pt-wheel svg{max-width:720px;margin:0 auto}
+.pt-wheel .rlabel{font-size:13px}
+.pt-wlede{font-size:12.5px;color:var(--pt-muted);text-align:center;margin:4px auto 0;max-width:620px;line-height:1.45}
+.pt-wtitle{font-family:var(--serif);font-size:24px;text-align:center}.pt-wtitle em{font-style:italic}
+.pt-wheel svg{width:100%;height:auto;display:block}
+.pt-wheel p{font-size:11px;color:var(--pt-muted);text-align:center;margin:8px 12px 0;line-height:1.4}
+.pt-wheelkey{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:11.5px;color:var(--pt-ink)}
+.pt-wheelkey .k{display:inline-flex;align-items:center;gap:6px}
+.pt-wheelkey .k i{display:inline-block;width:20px;height:0}
+.pt-wheelkey .cur i{height:10px;border:2px solid #2563eb;background:rgba(37,99,235,.16);border-radius:2px;width:16px}
+.pt-wheelkey .proj i{border-top:2px dashed #bc2a2a}
+.pt-wheelkey .thr i{border-top:2px solid #10b981}
+.pt-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pt-coltitle{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;margin:2px 0 10px}
+.pt-coltitle.good{color:#2f7d4f}.pt-coltitle.work{color:var(--pt-coral)}
+.pt-card{background:#fff;border:1px solid var(--pt-line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.pt-cname{font-family:var(--serif);font-size:19px;line-height:1.15}
+.pt-cmeta{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-top:4px;font-size:12px}.pt-cmeta span{color:var(--pt-muted);font-size:11.5px}
+.pt-cgoals{font-size:12px;margin-top:6px;line-height:1.4}
+.pt-cstep{font-size:12px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--pt-line);color:var(--pt-coral)}
+.pt-cstep b{color:var(--pt-ink)}
+/* where you need to be */
+.pt-plan{background:#fff;border:1px solid var(--pt-line);border-radius:14px;overflow:hidden}
+.pt-prow{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.75fr) minmax(0,1.45fr) minmax(0,.85fr) minmax(0,1.6fr);gap:12px;padding:11px 18px;border-top:1px solid #f0f2f4;font-size:13px;align-items:center}
+.pt-phead{border-top:0;background:#f5f6f8;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--pt-muted);font-weight:700}
+.pt-pname{font-weight:700}.pt-pname small,.pt-pgoal small{display:block;font-weight:400;font-size:11px;color:var(--pt-muted)}
+.pt-when{font-size:12px;font-weight:700}
+.pt-when.w1{color:#2f7d4f}.pt-when.w2{color:#2a7cfb}.pt-when.w3{color:#9a6512}.pt-when.w4{color:var(--pt-coral)}
+.pt-pgoals{font-size:12px;color:var(--pt-muted);line-height:1.35}
+/* goal by goal */
+.pt-divider{background:#39404b;color:#fff;text-align:center;padding:48px 40px 44px;margin-top:44px}
+.pt-divider h2{font-family:var(--serif);font-weight:400;font-size:38px;margin:6px 0 0}
+.pt-divider p{margin:10px 0 0;font-size:13px;color:rgba(255,255,255,.72)}
+.pt-goallist{padding-top:28px}
+.pt-goal{background:#fff;border:1px solid var(--pt-line);border-radius:14px;margin-bottom:12px;overflow:hidden;scroll-margin-top:12px}
+.pt-goal>summary{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:3px 12px;align-items:center;padding:15px 20px;cursor:pointer;list-style:none}
+.pt-goal>summary::-webkit-details-marker{display:none}
+.pt-gdot{width:11px;height:11px;border-radius:50%;background:#94a3b8;grid-row:span 2}
+.pt-goal.z-clear .pt-gdot{background:#3f9a6b}.pt-goal.z-gap .pt-gdot{background:#c58a2a}
+.pt-gname{font-family:var(--serif);font-size:22px;line-height:1.15}
+.pt-gword{font-size:12px;font-weight:700;text-align:right}
+.pt-goal.z-clear .pt-gword{color:#2f7d4f}.pt-goal.z-gap .pt-gword{color:#9a6512}.pt-goal.z-incomplete .pt-gword{color:var(--pt-muted)}
+.pt-gcap{grid-column:2/4;font-size:12px;color:var(--pt-muted)}
+.pt-goal[open]>summary{border-bottom:1px solid var(--pt-line)}
+.pt-gbody .pv{padding:16px 20px 12px}
+.pt-read p{font-size:12.5px;line-height:1.65;color:var(--pt-muted);max-width:860px}
+.pt-foot{display:flex;justify-content:space-between;align-items:center;margin-top:34px;padding:14px 56px;border-top:2px solid;border-image:linear-gradient(90deg,#2a7cfb,#c05e6d) 1;font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--pt-muted)}
+.pt-foot .em{font-family:var(--serif);font-size:15px;letter-spacing:.2px;text-transform:none;color:var(--pt-ink)}
+.pt-foot .ost b{color:var(--pt-coral);font-weight:600}
+/* rail: table of contents for the patient page */
+.pt-toc .tocbtn{font-weight:600}
+.pt-tocsub{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700;margin:14px 8px 6px}
+@media (max-width:1100px){.pt-sowrap,.pt-panels{grid-template-columns:1fr}.pt-sec{padding:36px 28px 8px}.pt-cover{padding:84px 28px 40px}.pt-brand{left:28px}.pt-foot{padding:14px 28px}}
 </style>
 </head>
 <body class="tab-reference">
 
 <div class="appbar">
   <div class="brandmark">Early Medical<span>®</span></div>
-  <div class="seg" id="tabSeg" role="tablist" aria-label="Dashboard sections">
-    <button id="tab-reference-button" type="button" role="tab" aria-controls="tab-reference" aria-selected="true" data-tab="reference" class="on">Reference</button>
-    <button id="tab-build-button" type="button" role="tab" aria-controls="tab-build" aria-selected="false" data-tab="build">Build report</button>
-    <button id="tab-report-button" type="button" role="tab" aria-controls="tab-report" aria-selected="false" data-tab="report">Report</button>
+  <div class="seg steps" id="tabSeg" role="tablist" aria-label="Report steps">
+    <button id="tab-patient-button" type="button" role="tab" aria-controls="tab-build" aria-selected="false" data-tab="patient"><span class="sn">1</span>Patient</button>
+    <button id="tab-goals-button" type="button" role="tab" aria-controls="tab-build" aria-selected="false" data-tab="goals"><span class="sn">2</span>Goals</button>
+    <button id="tab-results-button" type="button" role="tab" aria-controls="tab-build" aria-selected="false" data-tab="results"><span class="sn">3</span>Test results</button>
+    <button id="tab-report-button" type="button" role="tab" aria-controls="tab-report" aria-selected="false" data-tab="report"><span class="sn">4</span>Report</button>
   </div>
   <div class="spacer"></div>
+  <button type="button" class="linkbtn" id="libBtn">Goal library</button>
   <div class="datactl">
     <label class="dlbl" for="dataSel">Sample patient</label>
     <select id="dataSel" aria-label="Sample patient">
@@ -738,7 +866,7 @@ svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
       <option value="older-resilient">Older resilient (72F)</option>
       <option value="older-deconditioned">Older deconditioned (76M)</option>
     </select>
-    <button type="button" id="dataRand" class="databtn" title="Randomise a new demonstration patient" aria-label="Randomise a new demonstration patient">🎲 Random</button>
+    <button type="button" id="dataRand" class="databtn" title="Load a random sample patient" aria-label="Load a random sample patient">Random</button>
   </div>
   <div class="patient-chip" id="patientChip"></div>
 </div>
@@ -766,8 +894,7 @@ svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
   <aside class="rail">
     <h4>This patient’s goals</h4>
     <div class="herobar"><div class="herobar-lbl">View</div>
-      <div class="heroseg" id="heroSeg"><button data-hero="C" class="on">Patient</button><button data-hero="D">Clinician</button>
-        <details class="morelayouts"><summary>Other layouts</summary><div class="morelayouts-btns"><button data-hero="A">Action plan</button><button data-hero="B">Trajectory</button><button data-hero="R">Capacity wheel</button></div></details></div></div>
+      <div class="heroseg" id="heroSeg"><button data-hero="C" class="on">Patient</button><button data-hero="D">Clinician</button></div></div>
     <button type="button" class="btn primary" style="margin:2px 8px 12px;width:calc(100% - 16px)" onclick="exportPDF()">Export as PDF</button>
     <div id="catalog"></div>
     <div class="addnote" id="addNote"></div>
@@ -786,7 +913,7 @@ const MODEL_VERSION='4.10.1';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
 const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
-const VALID_REPORT_MODES=new Set(['A','B','C','R','D']);
+const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
    2) PATIENT  - sample inputs (this is what the live app will inject
       from the patient JSON / VALD / passive-ROM exam).
@@ -6394,18 +6521,7 @@ function glidePathsHTML(C){
     return `<div class="glidecard"><div class="glidettl">${c.short}${c.via?` <small style="font-weight:600;color:var(--muted)">in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</div>${glideChartSVG(c)}<div class="glidecap">${g.txt}${g.sub?` (${g.sub})`:''}. Keep training from there and you reach about <b>${fmtU(endR,c.unit)}</b> at ${TGT}; this goal needs ${fmtU(c.req,c.unit)}. If training stopped after that, you’d be near ${fmtU(endS,c.unit)}.</div></div>`;}).join('')}</div></div>`;
 }
 
-function barChart(C){
-  const P=v=>clamp(v/175*100,0,100);
-  return `<div class="bchart"><div class="bscale"><span style="left:${P(100)}%">100% = required at ${TGT}</span></div>`+
-    C.map(c=>`<div class="brow">
-      <div class="blabel"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span><span class="bnm">${c.short}</span></div>
-      <div class="btrack">
-        <div class="bproj z-${c.zone}" style="width:${P(c.projPct)}%"></div>
-        <div class="bthr" style="left:${P(100)}%"></div>
-        <div class="bcur" style="left:${P(c.curPct)}%" title="current: ${c.curPct}% of requirement"></div>
-      </div>
-      <div class="bval z-${c.zone}">${c.projPct}%</div></div>`).join('')+`</div>`;
-}
+
 function statusBox(C){
   return `<div class="statusttl">Status at age ${TGT}</div>`+C.map(c=>{
     const lbl = c.zone==='clear'?'on track' : c.zone==='borderline'?'on the line' : c.shortBy+'% short';
@@ -6451,25 +6567,26 @@ function suggestComponents(name){const out=[],seen=new Set();
 const FOOT=`<div class="foot"><div class="em">Early Medical</div><div class="pillars">The Strategy</div></div>`;
 const TAGLINE=`<div class="tagline">Being <i>early</i> matters<sup>®</sup></div>`;
 
-function renderSlide(){
-  syncAge();const g=goalById(activeId);if(!g)return;const act=g.profileId?ACTIVITIES[g.profileId]:null;if(!act){renderPending(g);return;}
-  const C=components(act.reqs),S=supportComponents(act),ev=goalEvaluation(act,C),mods=modifiersFor(act),outlook=patientGoalOutlook(g,ev);const who=PATIENT.name?PATIENT.name+'’s ':'';
-  const missing=ev.missing.map(r=>inSentence(missingTestName(r))),bars=HERO==='A'||HERO==='B';
-  const head=`<div class="slide-head">${TAGLINE}<div class="head-row"><div><div class="eyebrow">${who}Centenarian Decathlon</div><h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div></div><div class="readiness"><div class="big r-${ev.zone}"><i class="sdot"></i>${ev.word}</div><div class="cap">${outlook.detail}</div></div></div>${bars?`<div class="takeaway">${outlook.note}</div>`:''}</div>`;
+function goalPageHTML(g,mode){
+  const act=ACTIVITIES[g.profileId],C=components(act.reqs),S=supportComponents(act),ev=goalEvaluation(act,C),mods=modifiersFor(act),outlook=patientGoalOutlook(g,ev);const who=PATIENT.name?PATIENT.name+'’s ':'';
+  const missing=ev.missing.map(r=>inSentence(missingTestName(r)));
+  const head=`<div class="slide-head">${TAGLINE}<div class="head-row"><div><div class="eyebrow">${who}Centenarian Decathlon</div><h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div></div><div class="readiness"><div class="big r-${ev.zone}"><i class="sdot"></i>${ev.word}</div><div class="cap">${outlook.detail}</div></div></div></div>`;
   const Csort=C.slice().sort((a,b)=>a.projPct-b.projPct);let main='';
-  if(!Csort.length)main=`<div class="supportonly"><b>No results entered for this goal yet.</b> Add its tests in Build report to see where you stand.</div>`;
-  else if(HERO==='A')main=`<div class="actionlead"><div class="allbl">${Csort[0].meets?'Protect':'Train first'}</div><div class="atxt"><b class="tk">${Csort[0].short}</b> ${Csort[0].meets?`has the smallest margin for this goal.`:`is the biggest shortfall for this goal, short by ${Csort[0].shortBy}% at ${TGT}.`} ${Csort[0].r.why||''}</div></div>${barChart(Csort)}`;
-  else if(HERO==='B')main=`<div class="modepanel"><div class="btitle">Current → projected → fixed task demand</div>${barChart(Csort)}<div class="modelede">Forecast bands widen after each evidence family's observed age horizon.</div></div>`;
-  else if(HERO==='D')main=`${radarFigureHTML(C,ev)}${glidePathsHTML(Csort)}<div class="modepanel">${cardsHTML(Csort)}</div>`;
+  if(!Csort.length)main=`<div class="supportonly"><b>No results entered for this goal yet.</b> Add its tests in Test results to see where you stand.</div>`;
+  else if(mode==='D')main=`${radarFigureHTML(C,ev)}${glidePathsHTML(Csort)}<div class="modepanel">${cardsHTML(Csort)}</div>`;
   else main=`${radarFigureHTML(C,ev)}${radarTableHTML(C,act)}${glidePathsHTML(Csort)}`;
   const supportHTML=S.length?`<details class="dtl"><summary class="dtlsum">Other useful measures <span class="dtlhint">clinician detail</span></summary><div class="supportgrid">${S.map(x=>`<div class="supportcard"><div><b>${x.metric==='lt1_vo2'?'Aerobic base (LT1)':patientShortLabel(x.short)}</b><span>${x.measurementSource||x.meta?.src||''}</span></div><div class="supportval">${x.retention!=null?Math.round(x.retention)+'% retained':assessmentContext(x.r.metric)?.level?`${assessmentContext(x.r.metric).level} for age`:'Tracked'}</div>${x.retention==null?'':`<div class="supportbar"><i style="width:${clamp(x.retention,0,100)}%"></i></div>`}<div class="supportnote">${x.r.why||''}${(()=>{const pv=+assessmentContext(x.r.metric)?.values?.[2];return TRACKED_TESTS.includes(x.r.metric)&&Number.isFinite(pv)?`<br><b>Goal, 1–3 years:</b> ${x.raw>=pv?'hold at least':'build to'} ${fmtU(pv,x.meta?.unit)} (Proficient for your age)`:'';})()}<br><small>${TRACKED_TESTS.includes(x.r.metric)?`Not projected to ${TGT}: compared with the PCA standard for your age at each re-test.`:x.forecastSource?`Forecast: ${x.forecastSource}`:''}</small></div></div>`).join('')}</div></details>`:'';
   const modHTML=mods.length?`<details class="dtl"><summary class="dtlsum">Movement findings <span class="dtlhint">clinician detail</span></summary><div class="pcards">${mods.map(x=>`<div class="pcard"><div class="ct qcat ${x.r.cat}">${patientShortLabel(shortLabel(x.r.label))}</div><div class="big"><span class="n">${x.value==null?'—':x.value}</span></div><div class="cap">${x.r.why||''}</div></div>`).join('')}</div></details>`:'';
   const numbersHTML=C.length?`<details class="dtl"><summary class="dtlsum">Test details and sources <span class="dtlhint">clinician detail</span></summary>${cardsHTML(C)}</details>`:'';
-  const detailBlocks=HERO==='D'?`${supportHTML}${modHTML}`:`${numbersHTML}${supportHTML}${modHTML}`;
-  const missNote=missing.length&&(bars||ev.zone==='gap')?`<div class="missnote">Not tested yet: <b>${nameList(missing,6)}</b>. Add ${missing.length===1?'it':'them'} in Build report for the full picture.</div>`:'';
-  const body=`<div class="pv" data-report-mode="${{A:'action',B:'trajectory',R:'capacity-wheel',D:'clinician-detail',C:'simple'}[HERO]||'simple'}">${missNote}${main}${detailBlocks}<div class="model-note"><b>Forecast, not a promise.</b> This is an estimate of how today's capacity may change with age. Training, injury and health changes can shift the trajectory.</div></div>`;
-  $("#slide").innerHTML=head+body+FOOT;$("#legend").innerHTML='';
-  document.querySelectorAll('#slide .rreplay').forEach(b=>b.onclick=()=>{const svg=b.parentElement.querySelector('svg.radar');svg.replaceWith(svg.cloneNode(true));});
+  const detailBlocks=mode==='D'?`${supportHTML}${modHTML}`:`${numbersHTML}${supportHTML}${modHTML}`;
+  const missNote=missing.length&&ev.zone==='gap'?`<div class="missnote">Not tested yet: <b>${nameList(missing,6)}</b>. Add ${missing.length===1?'it':'them'} in Test results for the full picture.</div>`:'';
+  const body=`<div class="pv" data-report-mode="${mode==='D'?'clinician-detail':'simple'}">${missNote}${main}${detailBlocks}<div class="model-note"><b>Forecast, not a promise.</b> This is an estimate of how today's capacity may change with age. Training, injury and health changes can shift the trajectory.</div></div>`;
+  return {head,body,ev};
+}
+const wireReplay=root=>root.querySelectorAll('.rreplay').forEach(b=>b.onclick=()=>{const svg=b.parentElement.querySelector('svg.radar');svg.replaceWith(svg.cloneNode(true));});
+function renderSlide(){
+  syncAge();const g=goalById(activeId);if(!g)return;if(!(g.profileId&&ACTIVITIES[g.profileId])){renderPending(g);return;}
+  const {head,body}=goalPageHTML(g,HERO);$("#slide").className='slide';$("#slide").innerHTML=head+body+FOOT;$("#legend").innerHTML='';wireReplay($("#slide"));
 }
 
 function renderPending(g){
@@ -6488,13 +6605,14 @@ function renderPending(g){
 
 function renderCatalog(){
   syncAge();const goals=GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId);if(goals.length&&!goals.some(g=>g.id===activeId))activeId=goals[0].id;
-  if(!goals.length){$("#catalog").innerHTML=`<div class="addnote">No goals selected yet. Pick this patient’s goals in <b>Build report</b>.</div>`;$("#addNote").innerHTML='';$("#slide").innerHTML='';return;}
-  const ov=`<button class="actbtn ovbtn ${showOverview?'on':''}" id="ovBtn"><span class="lbl">◆ Overview</span></button>`;
+  if(!goals.length){$("#catalog").innerHTML=`<div class="addnote">No goals selected yet. Pick this patient’s goals in <b>2 Goals</b>.</div>`;$("#addNote").innerHTML='';$("#slide").innerHTML='';return;}
+  if(HERO==='C'){renderPatientRail(goals);return;}
+  const ov=`<button class="actbtn ovbtn ${showOverview?'on':''}" id="ovBtn"><span class="lbl">Overview</span></button>`;
   $("#catalog").innerHTML=ov+goals.map(g=>{const act=ACTIVITIES[g.profileId],ev=goalEvaluation(act,components(act.reqs));return `<button class="actbtn z-${ev.zone} ${(!showOverview&&g.id===activeId)?'on':''}" data-id="${g.id}" title="${ev.cap}"><span class="ring" aria-hidden="true"></span><span class="lbl">${g.name}</span><span class="pct">${ev.word}</span></button>`;}).join('');
   $("#addNote").innerHTML=PATIENT.demoKey?`<b>${goals.length}</b> CD goals selected · full sample assessment data loaded.`:`<b>${goals.length}</b> goals selected. A goal missing a test shows Needs more data.`;
   $("#ovBtn").onclick=()=>{showOverview=true;renderCatalog();renderReportBody();};document.querySelectorAll('#tab-report .actbtn[data-id]').forEach(b=>b.onclick=()=>{showOverview=false;activeId=b.dataset.id;renderCatalog();renderReportBody();});
 }
-function renderReportBody(){showOverview?renderOverview():renderSlide();}
+function renderReportBody(){HERO==='C'?renderPatientPage():showOverview?renderOverview():renderSlide();}
 
 /* Small version of the goal radar for overview cards: same scale and colors, no labels. */
 function miniRadar(C){
@@ -6518,7 +6636,7 @@ function assessmentContext(metric){
   }
   const raw=+entered;if(!Number.isFinite(raw))return null;
   if(VALD_PERCENTILE_METRICS.has(metric)){
-    const q=hasNorms(metric)&&!Number.isFinite(+PATIENT.assessmentPercentiles?.[metric])?valdPercentile(metric,PATIENT.sex,AGE,toNewtons(metric,raw)):null;
+    const q=hasNorms(metric)?valdPercentile(metric,PATIENT.sex,AGE,toNewtons(metric,raw)):null;
     if(q){const pc=q.pct??(q.below!=null?q.below/2:Math.min(99,q.above+5)),deficit=clamp((50-pc)/50*100,0,100);return {kind:'percentile',source:metric==='grip_lb'?'Grip norms for age and sex (Dodds 2014, 12 British studies)':q.modeled?'VALD norms for age and sex, extended past VALD’s age bands with published age trends':'VALD norms for age and sex',percentile:pc,severity:deficit,deficit,label:pctLabel(q)};}
     const percentile=+PATIENT.assessmentPercentiles?.[metric];
     const percentileContext=PATIENT.assessmentPercentileContext,contextMatches=percentileContext&&+percentileContext.age===+PATIENT.age&&percentileContext.sex===PATIENT.sex;
@@ -6605,12 +6723,12 @@ function patientStory(goals,traj=capacityTrajectories(goals),options={}){
   const topTrainingPriorities=goalPriorityRaw.map(item=>toCapacity(item,'priority'));
   const strengthPool=traj.filter(x=>x.metric!=='lt1_vo2'&&x.status==='strength'&&!headlinePriorityMetrics.has(x.metric)&&!foundationMetrics.has(x.metric)).sort((a,b)=>b.strengthScore-a.strengthScore||(b.reservePct||0)-(a.reservePct||0));
   const fallbackStrength=traj.filter(x=>x.metric!=='lt1_vo2'&&x.reservePct>=90&&!headlinePriorityMetrics.has(x.metric)&&!foundationMetrics.has(x.metric)).sort((a,b)=>(b.reservePct||0)-(a.reservePct||0));
-  const strengthItems=(strengthPool.length?strengthPool:fallbackStrength).slice(0,3),strengthMetrics=new Set(strengthItems.map(item=>item.metric));
-  if(demoSelection&&strengthItems.length<3){
-    Object.keys(FOUNDATIONAL_SCREEN).map(metric=>{const meta=METRICS[metric],context=assessmentContext(metric),raw=+PATIENT.metrics[metric],proficient=+context?.values?.[2],rank=context?.kind==='percentile'?context.percentile:(Number.isFinite(raw)&&Number.isFinite(proficient)&&proficient>0?raw/proficient*50:50);return {metric,meta,context,rank};}).filter(item=>item.meta?.kind!=='grade'&&item.context&&(item.context.kind==='percentile'?item.context.percentile>=50:item.context.level==='Proficient')&&!strengthMetrics.has(item.metric)&&!headlinePriorityMetrics.has(item.metric)&&!foundationMetrics.has(item.metric)).sort((a,b)=>b.rank-a.rank||a.metric.localeCompare(b.metric)).forEach(item=>{if(strengthItems.length>=3)return;strengthItems.push({metric:item.metric,meta:item.meta,context:item.context,ids:[],names:[],pathway:'assessment-strength',strengthScore:item.rank});strengthMetrics.add(item.metric);});
-    traj.filter(item=>item.metric!=='lt1_vo2'&&!strengthMetrics.has(item.metric)&&!headlinePriorityMetrics.has(item.metric)&&!foundationMetrics.has(item.metric)&&item.status==='strength').sort((a,b)=>(b.strengthScore||0)-(a.strengthScore||0)||(b.reservePct||0)-(a.reservePct||0)).forEach(item=>{if(strengthItems.length>=3)return;strengthItems.push(item);strengthMetrics.add(item.metric);});
+  const strengthItems=(strengthPool.length?strengthPool:fallbackStrength).slice(0,4),strengthMetrics=new Set(strengthItems.map(item=>item.metric));
+  if(demoSelection&&strengthItems.length<4){
+    Object.keys(FOUNDATIONAL_SCREEN).map(metric=>{const meta=METRICS[metric],context=assessmentContext(metric),raw=+PATIENT.metrics[metric],proficient=+context?.values?.[2],rank=context?.kind==='percentile'?context.percentile:(Number.isFinite(raw)&&Number.isFinite(proficient)&&proficient>0?raw/proficient*50:50);return {metric,meta,context,rank};}).filter(item=>item.meta?.kind!=='grade'&&item.context&&(item.context.kind==='percentile'?item.context.percentile>=50:item.context.level==='Proficient')&&!strengthMetrics.has(item.metric)&&!headlinePriorityMetrics.has(item.metric)&&!foundationMetrics.has(item.metric)).sort((a,b)=>b.rank-a.rank||a.metric.localeCompare(b.metric)).forEach(item=>{if(strengthItems.length>=4)return;strengthItems.push({metric:item.metric,meta:item.meta,context:item.context,ids:[],names:[],pathway:'assessment-strength',strengthScore:item.rank});strengthMetrics.add(item.metric);});
+    traj.filter(item=>item.metric!=='lt1_vo2'&&!strengthMetrics.has(item.metric)&&!headlinePriorityMetrics.has(item.metric)&&!foundationMetrics.has(item.metric)&&item.status==='strength').sort((a,b)=>(b.strengthScore||0)-(a.strengthScore||0)||(b.reservePct||0)-(a.reservePct||0)).forEach(item=>{if(strengthItems.length>=4)return;strengthItems.push(item);strengthMetrics.add(item.metric);});
   }
-  const topStrengths=strengthItems.slice(0,3).map(item=>toCapacity(item,'strength'));
+  const topStrengths=strengthItems.slice(0,4).map(item=>toCapacity(item,'strength'));
   /* Skip findings already shown as a goal priority; say plainly whether any selected goal uses the rest. */
   const shownPriorities=new Set(topTrainingPriorities.slice(0,3).map(item=>item.metric)),goalsUsing=metric=>goals.filter(g=>{const dep=DEPENDENCY_MAP[metric];return dep&&(dep.clearanceGoals.includes(g.id)||dep.supportGoals.includes(g.id))||components(ACTIVITIES[g.profileId].reqs).some(c=>c.via&&c.r.metric===metric);}).length;
   const wholeBodyOpportunities=foundationRaw.filter(item=>!shownPriorities.has(item.metric)).map(item=>{const review=item.pathway==='clinical-review',level=item.context?.level,used=goalsUsing(item.metric),contextText=review?({"NT-PAIN":'Testing stopped because of pain',"NT-CONTRA":'Testing was contraindicated',"NT-UNABLE":'Testing could not be completed'}[level]||'Clinician review needed'):item.context?.kind==='percentile'?`${ordinal(Math.round(item.context.percentile))} percentile for age and sex`:`${level||'Opportunity'} on the current assessment`;return {metric:item.metric,label:patientCapacityLabel(item),area:item.area,kind:review?'clinician-review':'whole-body',contextText,note:review?'Review before interpreting performance or progressing training.':used?`Also part of ${used} of your goals.`:'Not tied to your goals, but worth training.'};});
@@ -6652,7 +6770,7 @@ function goalPrioritiesHTML(story,{limit=12,tiered=true}={}){
   return `<div class="priority-tiers">${tiers.map(tier=>{const tierItems=items.slice(tier.from,tier.to);return tierItems.length?`<section class="action-tier ${tier.cls}" data-priority-tier="${tier.cls}"><div class="action-tier-head"><span>${tier.range}</span>${tier.label}</div><div class="action-list">${tierItems.map((item,index)=>renderItem(item,tier.from+index)).join('')}</div></section>`:'';}).join('')}</div>`;
 }
 function wholeBodyOpportunitiesHTML(story){return `<div class="story-section story-foundation"><h2>Whole-body opportunities to protect training capacity</h2><div class="modelede">These findings from your assessment aren’t tied to one goal, but they matter for training well. They don’t change your goal results or predict injury.</div><div class="story-foundation-list">${story.wholeBodyOpportunities.map(item=>`<div class="story-foundation-item ${item.kind==='clinician-review'?'review':''}" data-story-foundation="${item.metric}"><b>${item.label}</b><span>${item.contextText} · ${item.area}</span><span>${item.note}</span></div>`).join('')||'<div class="scnote">No whole-body opportunities are flagged in the entered assessment.</div>'}</div></div>`;}
-function storyKeyHTML(story,showPriorities=true){return `<div class="story-key"><div class="story-key-group"><b>Protecting well</b>${story.topStrengths.map(item=>`<span data-story-strength="${item.metric}">${item.label}</span>`).join('')||'<span>Still identifying strengths</span>'}</div>${showPriorities?`<div class="story-key-group priority"><b>Goal priorities</b>${story.topTrainingPriorities.map(item=>`<span data-story-priority="${item.metric}">${item.label}</span>`).join('')||'<span>No goal-linked priorities flagged</span>'}</div>`:''}</div>`;}
+
 function foundationalSummaryHTML(){const items=foundationalPrioritySynthesis(),reviews=items.filter(item=>item.pathway==='clinical-review').slice(0,3),performance=items.filter(item=>item.pathway==='foundational'&&item.severity>=60).slice(0,3);return `${reviews.length?`<div class="protectstrip foundationstrip"><b>Clinician review findings:</b> ${reviews.map(item=>`${patientCapacityLabel(item)} (${item.contextLabel})`).join(' · ')}<span> These are test-omission reasons, not performance deficiencies. Review before interpreting or progressing training; they do not change CD clearance.</span></div>`:''}${performance.length?`<div class="protectstrip foundationstrip"><b>Foundational assessment concerns:</b> ${performance.map(item=>`${patientCapacityLabel(item)} (${item.contextLabel})`).join(' · ')}<span> These can constrain resilient training outside the selected goals. They require clinical context and do not predict injury or change CD clearance.</span></div>`:''}`;}
 function trajectoryRowsHTML(story,limit=8){
   const rows=story.topTrainingPriorities.filter(x=>Number.isFinite(x.raw)&&Number.isFinite(x.projected)).slice(0,limit),P=v=>clamp((v||0)/160*100,0,100);
@@ -6669,27 +6787,89 @@ function overviewWheelSVG(story){
   const axes=dimensions.map((d,i)=>{const a=ang(i),[x,y]=point(i,MAX),lx=cx+Math.cos(a)*(R+18),ly=cy+Math.sin(a)*(R+18),anchor=Math.abs(Math.cos(a))<.25?'middle':Math.cos(a)>0?'start':'end';return `<g data-wheel-axis="${d.metric}" data-wheel-goals="${d.wheelGoalsN}" data-wheel-basis="fixed-demand"><line class="raxis" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/><text class="rlabel" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}">${d.label}</text></g>`;}).join('');
   return `<svg viewBox="-130 0 750 450" role="img" aria-label="Capacity wheel; polygon area is not a score"><polygon class="rgrid" points="${ring(50)}"/><polygon class="rgrid" points="${ring(100)}"/><polygon class="rthr" points="${ring(100)}"/>${axes}<polygon class="rcur" points="${poly('currentPct')}"/><polygon class="rproj" points="${poly('projectedPct')}"/></svg>`;
 }
-function wheelKeyHTML(story){const dimensions=capacityWheelDimensions(story),priorities=dimensions.filter(item=>item.kind==='priority'),strengths=dimensions.filter(item=>item.kind==='strength'),other=dimensions.filter(item=>item.kind==='capacity');if(dimensions.length<3)return '<div class="story-key"><div class="story-key-group priority"><b>Not enough tests for a wheel yet</b><span>The wheel needs results for at least three tests used by the selected goals.</span></div></div>';return `<div class="story-key">${strengths.length?`<div class="story-key-group"><b>Protecting well</b>${strengths.map(item=>`<span data-story-strength="${item.metric}">${item.label}</span>`).join('')}</div>`:''}${other.length?`<div class="story-key-group"><b>Other tests</b>${other.map(item=>`<span>${item.label}<small>Used by ${item.wheelGoalsN} of ${item.selectedGoalTotal} selected goals</small></span>`).join('')}</div>`:''}<div class="story-key-group priority"><b>Goal priorities</b>${priorities.map(item=>`<span data-story-priority="${item.metric}">${item.label}<small>${priorityRationaleText(item)}</small></span>`).join('')||'<span>None of the goal priorities are on this wheel.</span>'}</div></div>`;}
+
 function clinicianAuditHTML(){
   const cell=a=>Array.isArray(a)?a.join(', ')||'—':a??'—';
   const register=currentGoalAuditRegister();
   return `<div class="audit-actions"><div><h2>Goal audit register</h2><div class="modelede">All 36 goals · roles, task definition, target grades, confidence, evidence horizon, and remaining assumptions. ${STATUS_RULE}</div></div><button class="btn" type="button" id="auditDownload">Download JSON</button></div><div class="auditwrap"><table class="audittable"><thead><tr><th>Goal</th><th>Complexity</th><th>Task definition</th><th>Target grades</th><th>Gates</th><th>Contributors</th><th>Support</th><th>Modifiers</th><th>Demand formula / source</th><th>Confidence</th><th>Forecast families / horizons</th><th>Remaining assumptions</th></tr></thead><tbody>${register.map(r=>`<tr><td><b>${r.goalName}</b></td><td>${r.complexity}/5</td><td>${r.taskDefinition}</td><td>${['A','B','C'].map(k=>{const n=r.targetGrades.filter(t=>t.grade===k).length;return n?`${k} ×${n}`:'';}).filter(Boolean).join(' · ')}${r.targetGrades.some(t=>t.protocolPending)?`<br><small>Protocol pending: ${r.targetGrades.filter(t=>t.protocolPending).map(t=>TEST_NAMES[t.metric]||t.metric).join(', ')}</small>`:''}</td><td>${cell(r.gateMetrics)}</td><td>${cell(r.calibratedContributors)}</td><td>${cell(r.supportMetrics)}</td><td>${cell(r.modifiers)}</td><td>${r.taskDemandFormula}<br><small>${r.taskDemandSource}</small></td><td>task ${r.taskDemandConfidence}<br>mapping ${r.mappingConfidence}</td><td>${r.forecastFamilies.map(f=>`${f}: ${(EVIDENCE_HORIZONS[f]||EVIDENCE_HORIZONS.none).observedAgeRange}`).join('<br>')}</td><td>${r.remainingAssumptions.map(a=>`${a.sourceType}: ${a.rationale}`).join('<br>')}</td></tr>`).join('')}</tbody></table></div>`;
 }
-let trajectoryExpanded=false;
 function reportModeHTML(mode,goals,options={}){
   const gs=goals.map(g=>{const act=ACTIVITIES[g.profileId],C=components(act.reqs),ev=goalEvaluation(act,C);return {g,act,C,ev};}),traj=capacityTrajectories(goals),story=patientStory(goals,traj,options);
-  if(mode==='A')return `<div class="modeview mode-action" data-report-mode="action">${modelConfidenceHTML(story)}<div class="modepanel"><h2>Highest-leverage priorities for your goals</h2><div class="modelede">This planning order combines direct goal capacities and measured capacities that support several selected goals.</div>${goalPrioritiesHTML(story)}</div><div class="story-section"><h2>What you're protecting well</h2>${storyKeyHTML(story,false)}</div>${wholeBodyOpportunitiesHTML(story)}<div><div class="btitle">Your goal outlooks</div>${patientGoalCardsHTML(story.goalOutlooks,true)}</div></div>`;
-  if(mode==='B'){const visible=trajectoryExpanded?12:8,canExpand=story.topTrainingPriorities.length>8;return `<div class="modeview mode-trajectory" data-report-mode="trajectory">${modelConfidenceHTML(story)}<div class="modepanel"><h2>Highest-leverage priorities for your goals - trajectory view</h2><div class="modelede">These follow the same goal-priority order as Action. Fixed-demand and support-only rows are shown separately by normalization basis.</div><div class="trajectory-key"><span class="goal-demand">Fixed goal need</span><span class="support-only">Support only</span></div>${trajectoryRowsHTML(story,visible)}${canExpand?`<div class="trajectory-controls"><button class="btn trajectory-toggle" id="trajectoryToggle" type="button" aria-expanded="${trajectoryExpanded}">${trajectoryExpanded?'Show top 8':'Show all '+Math.min(12,story.topTrainingPriorities.length)}</button></div>`:''}</div>${wholeBodyOpportunitiesHTML(story)}<div><div class="btitle">Your goal outlooks</div>${patientGoalCardsHTML(story.goalOutlooks)}</div></div>`;}
-  if(mode==='R')return `<div class="modeview mode-wheel" data-report-mode="capacity-wheel">${modelConfidenceHTML(story)}<div class="modepanel"><h2>Your capacity wheel</h2><div class="modelede">Each spoke is one test, scaled to the toughest target among your selected goals. 100% means you meet it.</div><div class="wheelwrap">${overviewWheelSVG(story)}<div class="wheellegend"><b>The same patient story, in one shape</b>${wheelKeyHTML(story)}<span>The shape’s area is not a score.</span></div></div></div>${wholeBodyOpportunitiesHTML(story)}<div><div class="btitle">Your goal outlooks</div>${patientGoalCardsHTML(story.goalOutlooks)}</div></div>`;
-  if(mode==='D')return `<div class="modeview mode-clinician" data-report-mode="clinician-detail">${foundationalSummaryHTML()}<div class="modepanel">${clinicianAuditHTML()}</div>${capacityTableHTML(traj)}<div><div class="btitle">Goal status</div>${clinicianGoalCardsHTML(gs)}</div></div>`;
-  return `<div class="modeview mode-simple" data-report-mode="simple">${goalHeadlineHTML(story)}${patientGoalCardsHTML(story.goalOutlooks,true)}${modelConfidenceHTML(story)}<div class="btitle">Your capacity story</div>${capacitySummaryHTML(story)}${wholeBodyOpportunitiesHTML(story)}<div class="scope"><b>Planning view.</b> This is a forecast for discussion, not a diagnosis or a promise of future performance.</div></div>`;
+  return `<div class="modeview mode-clinician" data-report-mode="clinician-detail">${modelConfidenceHTML(story)}${foundationalSummaryHTML()}<div><div class="btitle">Goal status</div>${clinicianGoalCardsHTML(gs)}</div><div class="modepanel"><h2>Priorities for the selected goals</h2><div class="modelede">Planning order: tests that hold back the most goals, by the most, come first.</div>${goalPrioritiesHTML(story)}</div><div class="modepanel"><h2>Trajectories to ${TGT}</h2><div class="trajectory-key"><span class="goal-demand">Fixed goal need</span><span class="support-only">Support only</span></div>${trajectoryRowsHTML(story,12)}</div>${capacityTableHTML(traj)}<div class="modepanel">${clinicianAuditHTML()}</div></div>`;
 }
+/* ── Patient page (Dan, 2026-09-25): one scrolling, Early Medical-styled page for the meeting. It shows
+   where the patient is now, where they need to be, their top strengths and opportunities, and each goal.
+   Strengths and opportunities are ranked by goal impact, with the percentile for age as context. ── */
+const PT_DOMAINS=[['aero','Aerobic fitness'],['strength','Strength'],['power','Power'],['balance','Balance and control'],['endurance','Endurance and core'],['mobility','Mobility'],['body','Body composition']];
+function ptDomain(m){if(m==='almi'||m==='ffmi'||m==='bmd_tscore')return 'body';const c=METRICS[m]?.cat;return c==='Aerobic'?'aero':c==='Power'?'power':c==='Balance'||c==='Eccentric'?'balance':c==='Endurance'||c==='Core'?'endurance':c==='Mobility'?'mobility':'strength';}
+const sexWord=()=>PATIENT.sex==='female'?'women':'men';
+/* VO2max group cut points (25th, 50th, 75th, 97.7th percentile) read as a percentile, for the bar. */
+function vo2Pct(v,age){const t=(VO2_GROUPS[PATIENT.sex==='female'?'female':'male'].filter(([lo])=>age>=lo).pop()||[])[1];if(!t||!Number.isFinite(+v))return null;if(v>=t[3])return 99;
+  const pts=[[0,0],[t[0],25],[t[1],50],[t[2],75],[t[3],97.7]];for(let i=1;i<pts.length;i++)if(v<pts[i][0]){const [a0,p0]=pts[i-1],[a1,p1]=pts[i];return Math.max(1,Math.round(p0+(p1-p0)*(v-a0)/(a1-a0)));}return 99;}
+const LEVEL_CLS={Proficient:'good',Normal:'good',Developing:'mid','Below Proficient':'mid','Low bone mass':'mid',Deficient:'low','Osteoporosis range':'low'};
+function ptContext(m,v){
+  if(m==='vo2'){const p=vo2Pct(+v,AGE);return p==null?null:{pct:p,label:`${capFirst(vo2Group(+v,AGE))} for ${sexWord()} your age`};}
+  if(m==='bmd_tscore'&&Number.isFinite(+v))return {level:+v>-1?'Normal':+v>-2.5?'Low bone mass':'Osteoporosis range',label:'Lowest hip or spine T-score'};
+  const c=assessmentContext(m);
+  if(c?.kind==='percentile')return {pct:c.percentile,label:capFirst(c.label)};
+  if(c?.kind==='native-band')return {level:c.level,label:'Early Medical standard for your age'};
+  if(c?.kind==='qualitative-grade')return {level:c.level,label:'Movement screen'};
+  const pv=proficientForAge(m);if(Number.isFinite(pv)&&Number.isFinite(+v))return {level:+v>=pv?'Proficient':'Below Proficient',label:`Proficient for your age: ${fmtU(pv,METRICS[m].unit)}`};
+  return null;}
+const pctCls=p=>p>=75?'hi':p>=50?'ok':p>=25?'mid':'lo';
+function ptMeasureRow(x){const c=x.ctx,val=x.meta.kind==='grade'?x.v:fmtU(+x.v,x.meta.unit);
+  const vis=c?.pct!=null?`<div class="pt-bar ${pctCls(c.pct)}" role="img" aria-label="${c.label}"><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><b style="left:${clamp(c.pct,1,99)}%"></b></div>`:c?.level?`<span class="pt-lvl ${LEVEL_CLS[c.level]||'mid'}"><i></i>${c.level}</span>`:'';
+  return `<div class="pt-mrow"><div class="pt-mname">${TEST_NAMES[x.m]||x.meta.label}</div><div class="pt-mval">${val}</div><div class="pt-mvis">${vis}${c?.label?`<small>${c.label}</small>`:''}</div></div>`;}
+function ptTodayHTML(goals){
+  const used=new Set();goals.forEach(g=>components(ACTIVITIES[g.profileId].reqs).forEach(c=>{used.add(c.r.metric);if(c.via)used.add(c.via);}));
+  const by={};for(const [m,meta] of Object.entries(METRICS)){const v=PATIENT.metrics[m];if(v==null||v==='')continue;if(meta.kind==='grade'?!GRADE_SCORE[v]:!Number.isFinite(+v))continue;(by[ptDomain(m)]=by[ptDomain(m)]||[]).push({m,meta,v,used:used.has(m),ctx:ptContext(m,v)});}
+  const name=x=>TEST_NAMES[x.m]||x.meta.label;
+  return PT_DOMAINS.filter(([d])=>by[d]?.length).map(([d,title])=>{const list=by[d].sort((a,b)=>(b.used-a.used)||((b.ctx?1:0)-(a.ctx?1:0))||name(a).localeCompare(name(b))),top=list.slice(0,5),rest=list.slice(5);
+    return `<div class="pt-panel"><div class="pt-ptitle">${title}</div>${top.map(ptMeasureRow).join('')}${rest.length?`<details class="pt-more"><summary>${rest.length} more result${rest.length===1?'':'s'}</summary>${rest.map(ptMeasureRow).join('')}</details>`:''}</div>`;}).join('')||'<div class="pt-empty">No test results entered yet.</div>';}
+/* The next one to three years: every test that falls short for a goal, at the level its hardest goal needs. */
+const WHEN_CLS={'within a year':'w1','1–3 years':'w2','3–5 years':'w3','long-term stretch':'w4'};
+function ptPlanRows(goals){const by=new Map();
+  goals.forEach(g=>{const act=ACTIVITIES[g.profileId],C=components(act.reqs);goalEvaluation(act,C);C.forEach(c=>{if(c.meets||c.cappedUnknown)return;const k=c.r.metric,e=by.get(k);if(!e){by.set(k,{c,goals:[g]});return;}e.goals.push(g);if((+c.stg||0)>(+e.c.stg||0))e.c=c;});});
+  return [...by.values()].map(e=>({...e,g:stgText(e.c)})).sort((a,b)=>b.goals.length-a.goals.length||a.c.projPct-b.c.projPct);}
+function ptPlanHTML(rows){
+  if(!rows.length)return `<div class="pt-empty">Every test you have clears what your goals need at ${TGT}. The plan is to hold these levels.</div>`;
+  return `<div class="pt-plan"><div class="pt-prow pt-phead"><span>Test</span><span>Today</span><span>Goal</span><span>By when</span><span>Helps these goals</span></div>${rows.map(r=>{const c=r.c,lift=(r.g.sub||'').split(' · ').find(x=>x.startsWith('+'));
+    return `<div class="pt-prow"><span class="pt-pname">${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</span><span>${c.unable?'Unable today':fmtU(c.raw,c.unit)}</span><span class="pt-pgoal">${r.g.txt}${lift?`<small>${lift}</small>`:''}</span><span class="pt-when ${WHEN_CLS[r.g.when]||'w2'}">${r.g.when||'1–3 years'}</span><span class="pt-pgoals">${nameList(r.goals.map(g=>g.name),2)}</span></div>`;}).join('')}</div>`;}
+function ptCard(x,kind,plan){const ctx=x.metric==='vo2'?ptContext('vo2',x.raw)?.label:x.assessmentContextText,step=kind==='priority'?plan.get(x.metric):null;
+  const goals=kind==='strength'?strengthDetailText(x):[goalCountText(x),Number.isFinite(x.projectedVulnerability)?`about ${Math.round(x.projectedVulnerability)}% lower by ${TGT} as you age`:''].filter(Boolean).join(' · ');
+  return `<div class="pt-card ${kind}"><div class="pt-cname">${x.label}</div><div class="pt-cmeta">${Number.isFinite(x.raw)?`<b>${fmtU(x.raw,x.unit)}</b>`:''}${ctx?`<span>${capFirst(ctx)}</span>`:''}</div><div class="pt-cgoals">${goals}</div>${step?`<div class="pt-cstep">Next: <b>${step.txt}</b>${step.when?` · ${step.when}`:''}</div>`:''}</div>`;}
+const ptHead=(eyebrow,title,lede='')=>`<div class="pt-head"><div class="pt-eyebrow">${eyebrow}</div><h2 class="pt-title">${title}</h2>${lede?`<p class="pt-lede">${lede}</p>`:''}</div>`;
+function ptGoalHTML(g){const {body,ev}=goalPageHTML(g,'C');return `<details class="pt-goal z-${ev.zone}" id="pt-g-${g.id}"><summary><span class="pt-gdot" aria-hidden="true"></span><span class="pt-gname">${g.name}</span><span class="pt-gword">${ev.word}</span><span class="pt-gcap">${ev.cap}</span></summary><div class="pt-gbody">${body}</div></details>`;}
+function openPatientGoal(id){const d=document.getElementById('pt-g-'+id);if(!d)return;d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'});}
+function renderPatientRail(goals){
+  const sec=[['pt-goals','Your goals'],['pt-today','Where you are today'],['pt-strengths','Strengths and opportunities'],['pt-next','The next 1–3 years'],['pt-bygoal','Goal by goal']];
+  $("#catalog").innerHTML=`<div class="pt-toc">${sec.map(([id,t])=>`<button class="actbtn tocbtn" data-jump="${id}"><span class="lbl">${t}</span></button>`).join('')}<div class="pt-tocsub">Goals</div>${goals.map(g=>{const act=ACTIVITIES[g.profileId],ev=goalEvaluation(act,components(act.reqs));return `<button class="actbtn z-${ev.zone}" data-jumpgoal="${g.id}" title="${ev.cap}"><span class="ring" aria-hidden="true"></span><span class="lbl">${g.name}</span><span class="pct">${ev.word}</span></button>`;}).join('')}</div>`;
+  $("#addNote").innerHTML=`<b>${goals.length}</b> CD goals · patient view`;
+  $("#catalog").querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'}));
+  $("#catalog").querySelectorAll('[data-jumpgoal]').forEach(b=>b.onclick=()=>openPatientGoal(b.dataset.jumpgoal));}
+function renderPatientPage(){
+  syncAge();const goals=GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId),slide=$("#slide");slide.className='slide ptpage';$("#legend").innerHTML='';
+  if(!goals.length){slide.innerHTML=`<section class="pt-sec">${ptHead('Your goals','No goals selected yet','Pick this patient’s goals in step 2.')}</section>`;return;}
+  const traj=capacityTrajectories(goals),story=patientStory(goals,traj,{demo:!!PATIENT.demoKey}),rows=ptPlanRows(goals),plan=new Map(rows.map(r=>[r.c.r.metric,r.g]));
+  let date='';try{date=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}catch(e){}
+  const meta=[`Age ${AGE}`,PATIENT.sex==='female'?'Female':'Male',PATIENT.bodyWeight_lb?`${PATIENT.bodyWeight_lb} lb`:'',`Planning to age ${TGT}`,PATIENT.clinician?`Prepared by ${PATIENT.clinician}`:'',date].filter(Boolean).join(' · ');
+  slide.innerHTML=`<section class="pt-cover"><div class="pt-brand">Early Medical</div><div class="pt-tagline">Being <i>early</i> matters<sup>®</sup></div><div class="pt-coverin"><div class="pt-eyebrow light">Centenarian Decathlon · your report</div><h1>${PATIENT.name||'Your report'}</h1><div class="pt-coversub">Your plan for the <em>marginal decade</em></div><div class="pt-covermeta">${meta}</div></div></section>
+<section class="pt-sec" id="pt-goals">${ptHead('At a glance',`Your goals at <em>${TGT}</em>`)}${goalHeadlineHTML(story)}${patientGoalCardsHTML(story.goalOutlooks,true)}</section>
+<section class="pt-sec" id="pt-today">${ptHead('Where you are today','Your <em>current</em> results',`Each result is compared with ${sexWord()} your age where published norms exist, and otherwise with Early Medical’s standard for your age.`)}<div class="pt-panels">${ptTodayHTML(goals)}</div></section>
+<section class="pt-sec" id="pt-strengths">${ptHead('Strengths and opportunities','What is working, and what to <em>build</em>',`Ranked by how many of your goals each one affects, and how far it sits above or below what they need at ${TGT}.`)}<div class="pt-sowrap"><div class="pt-cols"><div><div class="pt-coltitle good">Your strengths</div>${story.topStrengths.slice(0,4).map(x=>ptCard(x,'strength',plan)).join('')||'<div class="pt-empty">More results are needed to name your strengths.</div>'}</div><div><div class="pt-coltitle work">Your biggest opportunities</div>${story.topTrainingPriorities.slice(0,4).map(x=>ptCard(x,'priority',plan)).join('')||'<div class="pt-empty">No test is holding back a goal.</div>'}</div></div><div class="pt-wheel"><div class="pt-wtitle">Your capacity <em>wheel</em></div><p class="pt-wlede">Each spoke is one of your tests, scaled to the toughest target among your goals. Reaching the solid ring means that test covers every goal.</p>${overviewWheelSVG(story)}<div class="pt-wheelkey"><span class="k cur"><i></i>You today</span><span class="k proj"><i></i>At ${TGT}, if you keep training</span><span class="k thr"><i></i>What your goals need</span></div><p>The shape’s area is not a score.</p></div></div></section>
+<section class="pt-sec" id="pt-next">${ptHead('The next one to three years','Where you need to <em>be</em>',`The level to build each test to now, so that if you keep training it still covers what your goals need at ${TGT}.`)}${ptPlanHTML(rows)}</section>
+<section class="pt-divider" id="pt-bygoal"><div class="pt-eyebrow light">Your goals</div><h2>Goal by <em>goal</em></h2><p>Open a goal to see each test, where it is headed, and the level to build to.</p></section>
+<section class="pt-sec pt-goallist">${goals.map(ptGoalHTML).join('')}</section>
+<section class="pt-sec pt-read"><div class="pt-eyebrow">How to read this</div><p>${COPY.patientRead()}</p></section>
+<footer class="pt-foot"><span class="em">Early Medical</span><span class="ost">Objective · <b>Strategy</b> · Tactics</span></footer>`;
+  slide.querySelectorAll('.ovcard[data-id]').forEach(b=>b.onclick=()=>openPatientGoal(b.dataset.id));wireReplay(slide);}
+
 function downloadGoalAudit(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),statusRule:STATUS_RULE,targetGrades:TARGET_GRADES,goals:currentGoalAuditRegister()},null,2)],{type:'application/json'}));a.download='cd-v4-goal-audit-register.json';a.click();}
-/* Five live presentation modes. Each mode uses a different information hierarchy. */
+/* Two report views: 'C' the patient page, 'D' the clinician detail. */
 let HERO='C';
 function renderOverview(){
-  syncAge();const goals=GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId);$("#slide").innerHTML=`<div class="slide-head">${TAGLINE}<div class="head-row"><div><div class="eyebrow">${PATIENT.name?PATIENT.name+'’s ':''}Centenarian Decathlon</div><h1 class="slide-title">Your goals at <em>${TGT}</em></h1></div></div></div><div class="pv">${reportModeHTML(HERO,goals,{demo:!!PATIENT.demoKey})}</div>`+FOOT;
-  document.querySelectorAll('#slide .ovcard').forEach(b=>b.onclick=()=>{showOverview=false;activeId=b.dataset.id;renderCatalog();renderReportBody();});const audit=$("#auditDownload");if(audit)audit.onclick=downloadGoalAudit;const trajectoryToggle=$("#trajectoryToggle");if(trajectoryToggle)trajectoryToggle.onclick=()=>{trajectoryExpanded=!trajectoryExpanded;renderOverview();};$("#legend").innerHTML='';
+  syncAge();const goals=GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId);$("#slide").className='slide';$("#slide").innerHTML=`<div class="slide-head">${TAGLINE}<div class="head-row"><div><div class="eyebrow">${PATIENT.name?PATIENT.name+'’s ':''}Centenarian Decathlon · clinician detail</div><h1 class="slide-title">Goals at <em>${TGT}</em></h1></div></div></div><div class="pv">${reportModeHTML(HERO,goals,{demo:!!PATIENT.demoKey})}</div>`+FOOT;
+  document.querySelectorAll('#slide .ovcard').forEach(b=>b.onclick=()=>{showOverview=false;activeId=b.dataset.id;renderCatalog();renderReportBody();});const audit=$("#auditDownload");if(audit)audit.onclick=downloadGoalAudit;$("#legend").innerHTML='';
 }
 
 
@@ -6805,7 +6985,11 @@ function deleteActivity(id){
   markDirty();building=false; refId=(GOALS.find(g=>g.profileId)||{}).id; renderReference();
 }
 
-/* ── TAB 2 · Build report (input form) ── */
+/* ── Steps 1–3 (input form): one form, shown a step at a time ── */
+const BUILD_STEPS=['patient','goals','results'];let buildStep='patient';
+const STEP_COPY={patient:{title:'The patient',sub:'Who this report is for, and the age they are planning for.',next:'Next: goals →'},
+  goals:{title:'Their CD goals',sub:'Pick what matters to them in their marginal decade. Each goal is judged on the tests it needs.',next:'Next: test results →'},
+  results:{title:'Test results',sub:'Enter what was tested. Tests the selected goals use are marked; use NT… when a test wasn’t done.',next:'View report →'}};
 function markDirty(){dirty=true;updateDirtyState();}
 function clearDirty(){dirty=false;updateDirtyState();}
 function markDraftDirty(){draftDirty=true;}
@@ -6820,7 +7004,7 @@ function metricRangeValid(metric,value){const meta=METRICS[metric];if(!meta||met
 function patientFieldError(key,value,patient=PATIENT){const text=String(value??'').trim(),n=Number(value);if(key==='age')return text!==''&&Number.isInteger(n)&&n>=18&&n<=110?'':'Current age must be a whole number from 18 to 110.';if(key==='marginalDecadeAge')return text!==''&&Number.isInteger(n)&&n>=+patient.age&&n<=110?'':'Plan-to age must be a whole number from current age through 110.';if(key==='bodyWeight_lb')return text===''||Number.isFinite(n)&&n>=40&&n<=700?'':'Body weight must be blank or from 40 to 700 lb.';return '';}
 function setFieldError(input,message){const label=input?.closest('.fld');if(!label)return;label.classList.toggle('invalid',!!message);input.setAttribute('aria-invalid',String(!!message));let err=label.querySelector('.ferr');if(!err){err=document.createElement('span');err.className='ferr';label.appendChild(err);}err.textContent=message||'';}
 function updateBuildValidity(){const summary=$("#buildValidation"),invalid=Object.values(formErrors).filter(Boolean);if(summary){summary.classList.toggle('show',invalid.length>0);summary.textContent=invalid.length?`${invalid.length} invalid value${invalid.length===1?'':'s'} must be corrected before viewing or exporting the report.`:'';}document.querySelectorAll('[data-requires-valid]').forEach(button=>button.disabled=invalid.length>0);return invalid.length===0;}
-function assertReportInputsValid(){if(updateBuildValidity())return true;alert('Correct the highlighted invalid values in Build report before generating or exporting the report.');setTab('build');return false;}
+function assertReportInputsValid(){if(updateBuildValidity())return true;alert('Correct the highlighted invalid values in Test results before generating or exporting the report.');setTab('build');return false;}
 function updateGroupCount(grpEl){if(!grpEl)return;const ctrls=grpEl.querySelectorAll('[data-metric]');const filled=[...ctrls].filter(i=>String(i.value||'').trim()!=='').length;const c=grpEl.querySelector('.fgcount');if(c)c.textContent=filled+'/'+ctrls.length+' entered';}
 function neededMetricsFor(){const s=new Set(Object.keys(FOUNDATIONAL_SCREEN));GOALS.filter(g=>selectedGoals.has(g.id)&&g.profileId).forEach(g=>(ACTIVITIES[g.profileId].reqs||[]).forEach(r=>{if(r.metric)s.add(r.metric);}));return s;}
 function applyGoalFocus(){const bf=$("#buildForm");if(!bf)return;const needed=neededMetricsFor();let nc=0,tot=0;bf.querySelectorAll('.fgroup').forEach(grp=>{let any=false;grp.querySelectorAll('[data-metric]').forEach(inp=>{tot++;const need=needed.has(inp.dataset.metric);inp.closest('.fld').classList.toggle('needed',need);if(need){any=true;nc++;}});grp.classList.toggle('has-needed',any);});const has=selectedGoals.size>0;bf.classList.toggle('goalsel',has);bf.classList.toggle('focusgoals',has&&focusGoals);const fn=$("#focusn");if(fn)fn.textContent=has?`(${nc} of ${tot})`:'';const ftw=$("#focusTogWrap");if(ftw)ftw.style.display=has?'':'none';const gc=$("#goalCount");if(gc)gc.textContent=selectedGoals.size+' selected';const sc=$("#stickyCount");if(sc)sc.textContent=selectedGoals.size;}
@@ -6829,16 +7013,15 @@ function renderBuild(){
  const fields=METRIC_META.map(grp=>{const filled=grp.items.filter(([k])=>m[k]!=null&&m[k]!=='').length;return `<div class="fgroup ${grp.items.some(([k])=>needed.has(k))?'has-needed':''}" style="border-left-color:${groupAccent(grp.group)}"><div class="fgtitle">${grp.group}<span class="fgcount">${filled}/${grp.items.length} entered</span></div><div class="fgrid">${grp.items.map(([k,lbl,unit,lo,hi,kind])=>{if(kind==='grade')return `<label class="fld ${needed.has(k)?'needed':''}"><span class="flbl">${lbl} <span class="funit">qualitative</span></span><select data-metric="${k}"><option value="">not entered</option>${GRADE_OPTIONS.map(v=>`<option value="${v}" ${m[k]===v?'selected':''}>${v}</option>`).join('')}</select><span class="ferr"></span></label>`;const norm=VALD_PERCENTILE_METRICS.has(k)?`<label class="fld ${needed.has(k)?'needed':''}"><span class="flbl">${lbl} <span class="funit">VALD age/sex percentile · context only</span></span><input type="number" min="1" max="99" step="1" class="${PATIENT.assessmentPercentiles?.[k]==null?'empty':''}" data-percentile="${k}" value="${PATIENT.assessmentPercentiles?.[k]??''}" placeholder="1–99"><span class="ferr"></span></label>`:'';return `<label class="fld ${needed.has(k)?'needed':''}"><span class="flbl">${lbl} <span class="funit">${unit} · allowed ${lo}–${hi}</span></span><span class="finrow"><input type="number" min="${lo}" max="${hi}" step="any" class="${m[k]==null||m[k]===''?'empty':''}" data-metric="${k}" value="${m[k]??''}" placeholder="${lo}–${hi}">${ntSelect(k,lbl)}</span><span class="ferr"></span></label>${norm}`;}).join('')}</div></div>`;}).join('');
  const goalChk=g=>`<label class="gchk"><input type="checkbox" data-goal="${g.id}" ${selectedGoals.has(g.id)?'checked':''}><span>${g.name}</span></label>`,goalByName=new Map(GOALS.filter(g=>g.profileId).map(g=>[g.name,g])),placed=new Set(),goalGroup=(title,list)=>list.length?`<div class="gdom"><div class="gdomtitle">${title}</div><div class="gchks">${list.map(goalChk).join('')}</div></div>`:'';
  const goals=DOMAIN_GROUPS.map(([title,names])=>{const list=names.map(n=>goalByName.get(n)).filter(Boolean);list.forEach(g=>placed.add(g.id));return goalGroup(title,list);}).join('')+goalGroup('Custom activities',GOALS.filter(g=>g.profileId&&!placed.has(g.id)));
- $("#buildForm").innerHTML=`<div class="buildhead"><div><div class="eyebrow">Centenarian Decathlon · model ${MODEL_VERSION}</div><h1 class="slide-title">Build a patient report</h1></div><div class="buildactions"><span class="build-state ${dirty?'dirty':''}" data-dirty-state>${dirty?'Unsaved changes':'No unsaved changes'}</span><button type="button" class="btn" id="impBtn">Import…</button><button type="button" class="btn" id="expBtn" data-requires-valid>Export data</button><button type="button" class="btn primary" id="toReport" data-requires-valid>View report →</button></div></div><div id="buildValidation" class="validation-summary" role="alert"></div><div class="bsec"><div class="bsectitle">Patient</div><div class="fgrid"><label class="fld"><span class="flbl">Code / initials</span><input type="text" autocomplete="off" data-pt="name" value="${PATIENT.name||''}"><span class="ferr"></span></label><label class="fld"><span class="flbl">Sex</span><select data-pt="sex"><option value="male" ${PATIENT.sex==='male'?'selected':''}>male</option><option value="female" ${PATIENT.sex==='female'?'selected':''}>female</option></select><span class="ferr"></span></label><label class="fld"><span class="flbl">Current age <span class="funit">years · 18–110</span></span><input type="number" min="18" max="110" step="1" data-pt="age" value="${PATIENT.age}"><span class="ferr"></span></label><label class="fld"><span class="flbl">Plan-to age <span class="funit">marginal decade · years</span></span><input type="number" min="${PATIENT.age}" max="110" step="1" data-pt="marginalDecadeAge" value="${PATIENT.marginalDecadeAge}"><span class="ferr"></span></label><label class="fld"><span class="flbl">Body weight <span class="funit">lb · blank or 40–700</span></span><input type="number" min="40" max="700" step="0.1" data-pt="bodyWeight_lb" value="${PATIENT.bodyWeight_lb??''}"><span class="ferr"></span></label><label class="fld"><span class="flbl">Prepared by</span><input type="text" autocomplete="off" data-pt="clinician" value="${PATIENT.clinician||''}"><span class="ferr"></span></label></div><div class="privacy-note" role="note"><b>Privacy:</b> Use a study code or initials only. The dashboard processes entries in this browser, but exported JSON and PDFs contain the health data entered here. Store exports only in an approved clinical location; never commit them to GitHub.</div></div><div class="bsec"><div class="bsectitle">Step 1 · Goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div><div class="addnote goalsfirst">Pick the goals that matter to this patient.</div><div class="gdoms">${goals}</div></div><div class="meashead"><div class="bsectitle measlbl">Step 2 · Assessment measurements</div><label class="focustog" id="focusTogWrap"><input type="checkbox" id="focusTog" ${focusGoals?'checked':''}> Only show tests these goals use <span class="focusn" id="focusn"></span></label></div><div class="addnote goalsfirst">A few core screening tests stay visible even when no selected goal uses them. A low result there is worth a clinical look, not an injury prediction. Use NT… when a test wasn’t done.</div>${fields}<div class="buildsticky"><div class="bsinner"><span class="bsmeta"><b id="stickyCount">${selectedGoals.size}</b> goals selected · a goal missing a test shows Needs more data</span><button type="button" class="btn primary" id="toReport2" data-requires-valid>View report →</button></div></div><input type="file" id="impFile" accept="application/json" hidden>`;
+ $("#buildForm").innerHTML=`<div class="buildhead"><div><div class="eyebrow">Step ${BUILD_STEPS.indexOf(buildStep)+1} of 3 · Centenarian Decathlon</div><h1 class="slide-title">${STEP_COPY[buildStep].title}</h1><div class="slide-sub">${STEP_COPY[buildStep].sub}</div></div><div class="buildactions"><span class="build-state ${dirty?'dirty':''}" data-dirty-state>${dirty?'Unsaved changes':'No unsaved changes'}</span><button type="button" class="btn" id="impBtn">Import…</button><button type="button" class="btn" id="expBtn" data-requires-valid>Export data</button></div></div><div id="buildValidation" class="validation-summary" role="alert"></div><section class="bstep" data-step="patient"><div class="bsec"><div class="bsectitle">Patient</div><div class="fgrid"><label class="fld"><span class="flbl">Code / initials</span><input type="text" autocomplete="off" data-pt="name" value="${PATIENT.name||''}"><span class="ferr"></span></label><label class="fld"><span class="flbl">Sex</span><select data-pt="sex"><option value="male" ${PATIENT.sex==='male'?'selected':''}>male</option><option value="female" ${PATIENT.sex==='female'?'selected':''}>female</option></select><span class="ferr"></span></label><label class="fld"><span class="flbl">Current age <span class="funit">years · 18–110</span></span><input type="number" min="18" max="110" step="1" data-pt="age" value="${PATIENT.age}"><span class="ferr"></span></label><label class="fld"><span class="flbl">Plan-to age <span class="funit">marginal decade · years</span></span><input type="number" min="${PATIENT.age}" max="110" step="1" data-pt="marginalDecadeAge" value="${PATIENT.marginalDecadeAge}"><span class="ferr"></span></label><label class="fld"><span class="flbl">Body weight <span class="funit">lb · blank or 40–700</span></span><input type="number" min="40" max="700" step="0.1" data-pt="bodyWeight_lb" value="${PATIENT.bodyWeight_lb??''}"><span class="ferr"></span></label><label class="fld"><span class="flbl">Prepared by</span><input type="text" autocomplete="off" data-pt="clinician" value="${PATIENT.clinician||''}"><span class="ferr"></span></label></div><div class="privacy-note" role="note"><b>Privacy:</b> Use a study code or initials only. The dashboard processes entries in this browser, but exported JSON and PDFs contain the health data entered here. Store exports only in an approved clinical location; never commit them to GitHub.</div></div></section><section class="bstep" data-step="goals"><div class="bsec"><div class="bsectitle">CD goals <span class="funit" id="goalCount">${selectedGoals.size} selected</span></div><div class="addnote goalsfirst">Pick the goals that matter to this patient. <button type="button" class="linkbtn inline" id="openLibrary">See what each goal needs</button></div><div class="gdoms">${goals}</div><div class="goaladd"><button type="button" class="btn" id="addGoalBtn">+ Add a new goal</button><span>Build a goal that isn’t on the list; its tests and targets fill in from the goal library.</span></div></div></section><section class="bstep" data-step="results"><div class="meashead"><div class="bsectitle measlbl">Assessment measurements</div><label class="focustog" id="focusTogWrap"><input type="checkbox" id="focusTog" ${focusGoals?'checked':''}> Only show tests these goals use <span class="focusn" id="focusn"></span></label></div><div class="addnote goalsfirst">A few core screening tests stay visible even when no selected goal uses them. A low result there is worth a clinical look, not an injury prediction. Use NT… when a test wasn’t done.</div>${fields}</section><div class="buildsticky"><div class="bsinner"><button type="button" class="btn" id="stepBack" ${buildStep==='patient'?'hidden':''}>← Back</button><span class="bsmeta"><b id="stickyCount">${selectedGoals.size}</b> goals selected · a goal missing a test shows Needs more data</span><button type="button" class="btn primary" id="stepNext" ${buildStep==='results'?'data-requires-valid':''}>${STEP_COPY[buildStep].next}</button></div></div><input type="file" id="impFile" accept="application/json" hidden>`;
  $("#buildForm").querySelectorAll('[data-metric]').forEach(inp=>{const ev=inp.tagName==='SELECT'?'change':'input';inp.addEventListener(ev,()=>{delete PATIENT.demoKey;const metric=inp.dataset.metric,v=String(inp.value||'').trim();let error='';if(inp.tagName==='SELECT'){error=v===''||GRADE_OPTIONS.includes(v)?'':'Select a supported assessment result.';if(!error)PATIENT.metrics[metric]=v||null;}else{const meta=METRICS[metric],n=Number(v);error=v===''||Number.isFinite(n)&&(meta.lo==null||n>=meta.lo)&&(meta.hi==null||n<=meta.hi)?'':`${meta.label} must be blank or from ${meta.lo} to ${meta.hi} ${meta.unit}.`;if(!error)PATIENT.metrics[metric]=v===''?null:n;}formErrors['metric:'+metric]=error;setFieldError(inp,error);inp.classList.toggle('empty',v==='');updateGroupCount(inp.closest('.fgroup'));markDirty();updateBuildValidity();});});
  $("#buildForm").querySelectorAll('[data-nt]').forEach(sel=>sel.addEventListener('change',()=>{delete PATIENT.demoKey;const metric=sel.dataset.nt;PATIENT.notTested=PATIENT.notTested||{};if(sel.value)PATIENT.notTested[metric]=sel.value;else delete PATIENT.notTested[metric];sel.classList.toggle('on',!!sel.value);markDirty();}));
  $("#buildForm").querySelectorAll('[data-percentile]').forEach(inp=>inp.addEventListener('input',()=>{delete PATIENT.demoKey;const metric=inp.dataset.percentile,v=String(inp.value||'').trim(),n=Number(v),error=v===''||Number.isInteger(n)&&n>=1&&n<=99?'':'VALD percentile must be blank or a whole number from 1 to 99.';PATIENT.assessmentPercentiles=PATIENT.assessmentPercentiles||{};if(!error){if(v==='')delete PATIENT.assessmentPercentiles[metric];else{PATIENT.assessmentPercentiles[metric]=n;PATIENT.assessmentPercentileContext={age:PATIENT.age,sex:PATIENT.sex};}}formErrors['percentile:'+metric]=error;setFieldError(inp,error);inp.classList.toggle('empty',v==='');markDirty();updateBuildValidity();}));
  $("#buildForm").querySelectorAll('[data-pt]').forEach(inp=>{const ev=inp.tagName==='SELECT'?'change':'input';inp.addEventListener(ev,()=>{delete PATIENT.demoKey;const k=inp.dataset.pt,priorAge=PATIENT.age,priorSex=PATIENT.sex,error=patientFieldError(k,inp.value);formErrors['patient:'+k]=error;setFieldError(inp,error);if(!error){if(k==='age'||k==='marginalDecadeAge')PATIENT[k]=Number(inp.value);else if(k==='bodyWeight_lb')PATIENT[k]=String(inp.value).trim()===''?null:Number(inp.value);else PATIENT[k]=cleanText(inp.value);if((k==='age'&&PATIENT.age!==priorAge)||(k==='sex'&&PATIENT.sex!==priorSex))invalidatePercentileContext();if(k==='age'){const target=$("[data-pt=marginalDecadeAge]");if(target){target.min=PATIENT.age;const targetError=patientFieldError('marginalDecadeAge',target.value);formErrors['patient:marginalDecadeAge']=targetError;setFieldError(target,targetError);}}syncAge();renderChip();}markDirty();updateBuildValidity();});});
- $("#buildForm").querySelectorAll('input[data-goal]').forEach(c=>c.onchange=()=>{delete PATIENT.demoKey;c.checked?selectedGoals.add(c.dataset.goal):selectedGoals.delete(c.dataset.goal);markDirty();applyGoalFocus();});const ft=$("#focusTog");if(ft)ft.onchange=()=>{focusGoals=ft.checked;applyGoalFocus();};const toRep=()=>{if(assertReportInputsValid())setTab('report');};$("#toReport").onclick=toRep;const tr2=$("#toReport2");if(tr2)tr2.onclick=toRep;$("#expBtn").onclick=exportData;$("#impBtn").onclick=()=>$("#impFile").click();$("#impFile").onchange=importData;applyGoalFocus();updateBuildValidity();updateDirtyState();
+ $("#buildForm").querySelectorAll('input[data-goal]').forEach(c=>c.onchange=()=>{delete PATIENT.demoKey;c.checked?selectedGoals.add(c.dataset.goal):selectedGoals.delete(c.dataset.goal);markDirty();applyGoalFocus();});const ft=$("#focusTog");if(ft)ft.onchange=()=>{focusGoals=ft.checked;applyGoalFocus();};const toRep=()=>{if(assertReportInputsValid())setTab('report');},si=BUILD_STEPS.indexOf(buildStep);$("#stepNext").onclick=()=>si<BUILD_STEPS.length-1?setTab(BUILD_STEPS[si+1]):toRep();$("#stepBack").onclick=()=>si>0&&setTab(BUILD_STEPS[si-1]);$("#openLibrary").onclick=()=>setTab('reference');$("#addGoalBtn").onclick=()=>{setTab('reference');startBuilder();};$("#expBtn").onclick=exportData;$("#impBtn").onclick=()=>$("#impFile").click();$("#impFile").onchange=importData;applyGoalFocus();updateBuildValidity();updateDirtyState();
 }
 
 function pageVerdict(C,act){return goalEvaluation(act,C);}
-function pageTakeaway(g,C,v){return patientGoalOutlook(g,v).note;}
 function printFrame(pageNum,total,cls,inner){
   return `<section class="ppage ${cls}">
     <div class="ptagrow"><div class="ptag">Being <i>early</i> matters<sup class="treg">®</sup></div></div>
@@ -6854,24 +7037,10 @@ function printCompTable(C){
 function printGoalPage(g,pageNum,total,goalNum,goalTotal){
   const act=ACTIVITIES[g.profileId];
   const C=components(act.reqs);
-  const v=pageVerdict(C,act),outlook=patientGoalOutlook(g,v),tk=HERO==='A'||HERO==='B'?pageTakeaway(g,C,v):radarReadHTML(C,v);
+  const v=pageVerdict(C,act),outlook=patientGoalOutlook(g,v),tk=radarReadHTML(C,v);
   const qual=(act.reqs||[]).filter(r=>!r.metric);
-  const worst=v.worst, Csort=C.slice().sort((a,b)=>a.projPct-b.projPct);
-  const ckey=`<div class="ckey"><span><span class="ln cur"></span>Current</span><span><span class="ln proj"></span>Projected to ${TGT}</span><span><span class="ln thr"></span>Required</span></div>`;
   const qn=qual.length?`<div class="pgqnote">Also worked on, no numeric target: ${qual.map(q=>q.label.split('(')[0].trim()).join(' · ')}.</div>`:'';
-  let pmain;
-  if(!C.length){
-    pmain=`<div class="supportonly">No results entered for this goal yet.</div>`;
-  } else if(HERO!=='A'&&HERO!=='B'){
-    pmain=`<div class="pgmain pgradarmain"><div class="pgcharts">${radarSVG(C,{animate:false})}${radarLegendHTML({stop:true})}</div><div class="pgright">${printCompTable(C)}<div class="pgqnote">Target grades: A set by the task, B research-based, C clinical estimate still being validated. Red: you at ${TGT} if you keep training. Grey: if you stop. Goal, and when: the level to build to so the glide path still clears at ${TGT}.</div>${qn}</div></div>`;
-  } else {
-    const lead = (HERO==='A' && v.nGap) ? `<div class="actionlead" style="margin:8px 0 4px"><div class="allbl">Train first</div><div class="atxt"><b class="tk">${worst.short}</b>, about <b>${worst.shortBy}% short</b> at ${TGT}. ${worst.r.why||''}</div></div>` : '';
-    const useC = (HERO==='A'||HERO==='B') ? Csort : C;
-    const btitle = HERO==='B' ? `<div class="btitle" style="margin-top:8px">Where you are now vs. what you need at ${TGT}. Biggest gaps first.</div>` : '';
-    pmain=`${lead}<div class="pgmain">
-      <div class="pgcharts">${btitle}<div class="pgbars">${barChart(useC)}</div></div>
-      <div class="pgright">${ckey}${printCompTable(useC)}${qn}</div></div>`;
-  }
+  const pmain=!C.length?`<div class="supportonly">No results entered for this goal yet.</div>`:`<div class="pgmain pgradarmain"><div class="pgcharts">${radarSVG(C,{animate:false})}${radarLegendHTML({stop:true})}</div><div class="pgright">${printCompTable(C)}<div class="pgqnote">Target grades: A set by the task, B research-based, C clinical estimate still being validated. Red: you at ${TGT} if you keep training. Grey: if you stop. Goal, and when: the level to build to so the glide path still clears at ${TGT}.</div>${qn}</div></div>`;
   const pageZone=v.zone,pageLabel=`<i class="sdot"></i>${v.word}`,pageCap=outlook.detail;
   const inner=`<div class="pgtitle"><div><div class="pgeyebrow">Goal ${goalNum} of ${goalTotal}</div><h1 class="pgh1">${g.name}</h1>${act.sub?`<div class="pgsub">${act.sub}</div>`:''}</div>
       <div class="pgverdict r-${pageZone}"><div class="pgword">${pageLabel}</div><div class="pgcap">${pageCap}</div>${HERO==='D'?`<div class="pgclear">${Math.round(v.coverage*100)}% evidence</div>`:''}</div></div>
@@ -6881,9 +7050,6 @@ function printGoalPage(g,pageNum,total,goalNum,goalTotal){
 }
 function printModeSummaryHTML(mode,goals){
   const gs=goals.map(g=>{const act=ACTIVITIES[g.profileId],ev=goalEvaluation(act,components(act.reqs));return {g,act,ev};}),traj=capacityTrajectories(goals),story=patientStory(goals,traj,{demo:!!PATIENT.demoKey});
-  if(mode==='A')return `<div data-pdf-report-mode="action">${modelConfidenceHTML(story)}<div class="modepanel"><h2>Highest-leverage priorities for your goals</h2><div class="modelede">The top four are shown here. The full ordered list follows on the next page.</div>${goalPrioritiesHTML(story,{limit:4,tiered:false})}</div><div class="story-section"><h2>What you're protecting well</h2>${storyKeyHTML(story,false)}</div>${wholeBodyOpportunitiesHTML(story)}</div>`;
-  if(mode==='B')return `<div data-pdf-report-mode="trajectory">${modelConfidenceHTML(story)}<div class="modepanel"><h2>Your top goal-priority trajectories to ${TGT}</h2><div class="trajectory-key"><span class="goal-demand">Fixed goal need</span><span class="support-only">Support only</span></div>${trajectoryRowsHTML(story,8)}</div>${wholeBodyOpportunitiesHTML(story)}</div>`;
-  if(mode==='R')return `<div data-pdf-report-mode="capacity-wheel">${modelConfidenceHTML(story)}<div class="modepanel"><h2>Your capacity wheel</h2><div class="modelede">Every axis uses the same normalization: 100% is a defensible fixed goal demand.</div><div class="wheelwrap">${overviewWheelSVG(story)}<div class="wheellegend">${wheelKeyHTML(story)}<span>Support-only capacities are excluded. Polygon area is not a score.</span></div></div></div>${wholeBodyOpportunitiesHTML(story)}</div>`;
   if(mode==='D'){
     const gradeCounts=currentGoalAuditRegister().flatMap(r=>r.targetGrades).reduce((a,t)=>(a[t.grade]=(a[t.grade]||0)+1,a),{}),families=Object.entries(EVIDENCE_HORIZONS).filter(([f])=>f!=='none'&&f!=='mobility');
     return `<div data-pdf-report-mode="clinician-detail">${foundationalSummaryHTML()}<div class="modepanel"><h2>Clinician model audit</h2><div class="modelede">${STATUS_RULE} Every target is graded A, B or C for how firm it is.</div><div class="scorecard"><div class="sccol up"><div class="schd"><span class="scttl">Target grades, all 36 goals</span></div><div class="scqs">${['A','B','C'].map(k=>`<span class="scq">${gradeCounts[k]||0} ${k} · ${TARGET_GRADES[k].toLowerCase()}</span>`).join('')}</div></div><div class="sccol dn"><div class="schd"><span class="scttl">Model safeguards</span></div><div class="scqs"><span class="scq">any projected miss = opportunity with a short-term goal</span><span class="scq">missing tests cannot clear</span><span class="scq">every target graded</span><span class="scq">wider range past the evidence</span></div></div></div><table class="ptbl"><thead><tr><th>Forecast family</th><th>Observed age range / evidence horizon</th><th>Confidence</th></tr></thead><tbody>${families.map(([f,h])=>`<tr><td>${f}</td><td>${h.observedAgeRange}; modeling extrapolation starts ${h.extrapolationStartAge}${h.extrapolationStartBasis?` (${h.extrapolationStartBasis})`:''}</td><td>${h.forecastConfidence}</td></tr>`).join('')}</tbody></table></div></div>`;
@@ -6906,7 +7072,7 @@ function printCoverPage(goals,total){
   const who=PATIENT.name?PATIENT.name+'’s':'Your';
   let dateStr=''; try{ dateStr=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }catch(e){}
   const row=(k,v)=>`<div class="covrow"><span class="cmk">${k}</span><span class="cmv">${v}</span></div>`;
-  return `<section class="ppage pp-cover" data-report-mode="${{A:'action',B:'trajectory',R:'capacity-wheel',D:'clinician-detail',C:'simple'}[HERO]||'simple'}">
+  return `<section class="ppage pp-cover" data-report-mode="${HERO==='D'?'clinician-detail':'simple'}">
     <div class="covtagrow"><div class="ptag">Being <i>early</i> matters<sup class="treg">®</sup></div></div>
     <div class="covcore">
       <div class="coveyebrow">Functional Capacity Profile</div>
@@ -6936,7 +7102,7 @@ function buildPrintDoc(){
 function exportPDF(){
   if(!assertReportInputsValid())return;
   const doc=buildPrintDoc();
-  if(!doc){ alert('No goals in this report yet. Pick goals in Build report first.'); return; }
+  if(!doc){ alert('No goals in this report yet. Pick goals in step 2 first.'); return; }
   const pd=$("#printDoc"); pd.innerHTML=doc;
   document.body.classList.add('printing');
   window.onafterprint=()=>{ document.body.classList.remove('printing'); pd.innerHTML=''; window.onafterprint=null; };
@@ -6974,7 +7140,7 @@ function applyImportedData(d){
   /* PCA not-tested codes by metric (NT-UNABLE counts as a result; the others use stand-ins). */
   PATIENT.notTested={};if(d.notTested&&typeof d.notTested==='object'&&!Array.isArray(d.notTested))for(const [metric,code] of Object.entries(d.notTested))if(METRICS[metric]&&NT_CODES.includes(code))PATIENT.notTested[metric]=code;
   if(Array.isArray(d.goals))selectedGoals=new Set(d.goals.filter(id=>typeof id==='string'&&ACTIVITIES[id]));
-  HERO=VALID_REPORT_MODES.has(d.reportMode)?d.reportMode:'C';trajectoryExpanded=false;formErrors={};syncAge();clearDirty();return {warning:null};
+  HERO=VALID_REPORT_MODES.has(d.reportMode)?d.reportMode:'C';formErrors={};syncAge();clearDirty();return {warning:null};
 }
 function importData(e){
   const f=e.target.files[0]; if(!f)return; const r=new FileReader();
@@ -6993,22 +7159,26 @@ function renderChip(){
 window.addEventListener('beforeunload',event=>{if(!hasUnsavedChanges())return;event.preventDefault();event.returnValue='';});
 
 function setTab(t){
-  if(t==='report'&&Object.values(formErrors).some(Boolean)){alert('Correct the highlighted invalid values in Build report before generating the report.');t='build';}
-  tab=t; document.body.className='tab-'+t;
+  if(t==='build')t=buildStep;
+  if(t==='report'&&Object.values(formErrors).some(Boolean)){alert('Correct the highlighted invalid values in Test results before generating the report.');t=buildStep;}
+  const isStep=BUILD_STEPS.includes(t);if(isStep)buildStep=t;
+  tab=isStep?'build':t; document.body.className='tab-'+tab+(isStep?' step-'+t:'');
   document.querySelectorAll('#tabSeg button').forEach(x=>{const on=x.dataset.tab===t;x.classList.toggle('on',on);x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;});
+  $("#libBtn").classList.toggle('on',t==='reference');
   document.querySelectorAll('#heroSeg button').forEach(x=>x.classList.toggle('on',x.dataset.hero===HERO));
-  const moreLayouts=document.querySelector('.morelayouts');if(moreLayouts&&['A','B','R'].includes(HERO))moreLayouts.open=true;
   renderChip();
   if(t==='reference') renderReference();
-  else if(t==='build') renderBuild();
+  else if(isStep) renderBuild();
   else { renderCatalog(); renderReportBody(); }
 }
 $("#tabSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(b) setTab(b.dataset.tab);});
+$("#libBtn").addEventListener('click',()=>setTab('reference'));
 $("#tabSeg").addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;const tabs=[...document.querySelectorAll('#tabSeg button')],current=tabs.indexOf(document.activeElement);let next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(current+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;e.preventDefault();tabs[next].focus();setTab(tabs[next].dataset.tab);});
-$("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; HERO=b.dataset.hero;markDirty();trajectoryExpanded=false;document.querySelectorAll('#heroSeg button').forEach(x=>x.classList.toggle('on',x.dataset.hero===HERO));renderCatalog();renderReportBody();});
+$("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; HERO=b.dataset.hero;markDirty();document.querySelectorAll('#heroSeg button').forEach(x=>x.classList.toggle('on',x.dataset.hero===HERO));renderCatalog();renderReportBody();});
 const COPY={
   scope:()=>`This model uses measured physical capacities from the Early Medical assessment, CPET, and selected context from DEXA. Each goal is judged on every one of its tests. Qualitative movement screens and DEXA context are shown separately and do not change a goal’s status.`,
   disclaimerLead:'How to read this.',
+  patientRead:()=>`These are estimates, not promises. Each goal is set by what the activity itself takes at ${TGT}, and each of your results is projected forward from today using long-term studies of people who keep training. A goal is on track when every test it needs still reaches its target at ${TGT}. When a test falls short, it becomes an opportunity with a short-term goal: the level to build to now so that, as you age, it still covers what you need. The projections assume you stay healthy; illness, injury or stopping training change the picture, and training can change it for the better.`,
   disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization. Strength, power and aerobic fitness follow the decline of healthy people who keep training, taken from long-term studies of the same people: about 1–1.5% a year in the 60s, 2% in the 70s and 3–4% after 85 for strength, with each muscle group at its own rate; power falls a little faster than strength; aerobic fitness falls more slowly than average until about 70, then close to the typical rate. Range of motion declines at half the typical rate for patients who keep up mobility work, balance follows published age norms (it falls steeply after 70 for everyone), rep and hold tests are tracked but not projected, and isolated strength tests aim for top-quarter strength (the 75th percentile for age: VALD norms, British norms for grip) kept up by training to the target age; a stand-in for a test that wasn't done is judged today against the PCA Proficient standard for your age, each with a deliberately broad uncertainty range that widens after 75. A test projected short gets a short-term goal: the level that keeps the glide path above what the goal needs, with a time frame sized to the lift (within a year up to +10%, 1–3 years up to +25%, 3–5 years up to +50%, beyond that a long-term stretch; aerobic fitness trains less, so +10%, +20% and +30%, halved for people already fit for their age). A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. This assumes you stay healthy; in the last year or two of life, strength and fitness fall much faster whatever you do. Training mostly buys a head start of 10–20 years, and it keeps you from the extra losses that come with stopping. Disease, injury and body-weight change can also alter the trajectory.`
 
 };
