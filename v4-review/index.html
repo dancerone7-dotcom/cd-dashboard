@@ -841,6 +841,31 @@ input[type=checkbox]{accent-color:#39404b}
 .pt-toc .tocbtn{font-weight:600}
 .pt-tocsub{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700;margin:14px 8px 6px}
 @media (max-width:1100px){.pt-sowrap,.pt-panels{grid-template-columns:1fr}.pt-sec{padding:36px 28px 8px}.pt-cover{padding:84px 28px 40px}.pt-brand{left:28px}.pt-foot{padding:14px 28px}}
+/* ── goal builder ── */
+.gb .gb-step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.gb-h{display:flex;align-items:baseline;gap:10px;font-family:var(--serif);font-size:21px;color:#39404b;margin-bottom:10px}
+.gb-h small{font-family:var(--sans);font-size:11.5px;color:var(--muted)}
+.gb-n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#39404b;color:#fff;font-family:var(--sans);font-size:12px;font-weight:700;flex:0 0 24px;transform:translateY(-2px)}
+.gb-search{width:100%;font:inherit;font-size:13.5px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px}
+.gb-lib{display:flex;flex-wrap:wrap;gap:8px}
+.gb-act{display:flex;flex-direction:column;align-items:flex-start;gap:1px;background:#f7f8fa;border:1px solid var(--line);border-radius:10px;padding:7px 11px;cursor:pointer;font-family:var(--sans);text-align:left}
+.gb-act b{font-size:12.5px;color:#39404b}.gb-act span{font-size:10.5px;color:var(--muted)}
+.gb-act:hover{border-color:#b9c0c9}.gb-act.on{background:#39404b;border-color:#39404b}.gb-act.on b,.gb-act.on span{color:#fff}
+.gb-libnote{margin-top:10px;font-size:12px;line-height:1.5;color:#39404b}.gb-libnote small{display:block;color:var(--muted);margin-top:3px}
+.gb-none{font-size:12.5px;color:var(--muted)}
+.gb-demands{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 22px}
+.gb-dgroup{margin-bottom:8px}.gb-dtitle{font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:#c05e6d;font-weight:700;margin:4px 0 4px}
+.gb-chk{display:flex;align-items:center;gap:8px;font-size:13px;padding:3px 0;cursor:pointer;flex-wrap:wrap}
+.gb-load{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}.gb-load input{width:64px;padding:3px 6px;border:1px solid var(--line);border-radius:6px;font:inherit}
+.gb-aero{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.gb-aero input{width:70px;padding:4px 7px;border:1px solid var(--line);border-radius:6px;font:inherit}.gb-aero small{flex-basis:100%;color:var(--muted);font-size:11px}
+.gb-tests{width:100%;border-collapse:collapse;font-size:12.5px}
+.gb-tests th{text-align:left;font-size:10px;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted);padding:6px 8px;border-bottom:1px solid var(--line)}
+.gb-tests td{padding:8px;border-bottom:1px solid #f0f2f4;vertical-align:top}.gb-tests td small{display:block;color:var(--muted);font-size:10.5px;margin-top:2px}
+.gb-tests input{width:72px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;font:inherit}
+.gb-why{color:var(--muted);font-size:11.5px;max-width:260px}
+.gb-add{display:flex;gap:8px;align-items:center;margin-top:10px}.gb-add select{max-width:280px}.gb-add input{width:90px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.gb-removed{margin-top:8px;font-size:12px;color:var(--muted)}
 </style>
 </head>
 <body class="tab-reference">
@@ -5720,7 +5745,7 @@ for(const [activityId,task] of Object.entries(EXACT_PERFORMANCE_TASKS))Object.as
 const CALIBRATION_BREADTH={1:1,2:1,3:2,4:2,5:3};
 const CONFIDENCE_LABELS={high:'High',moderate:'Moderate',low:'Low'};
 const CALIBRATION_ELIGIBILITY_RULE={minimumTaskDemandConfidence:'moderate',minimumMappingConfidence:'moderate',description:'A calibration dimension counts only when at least one scoreable requirement in that dimension is actually measured for this patient, resolves to a task threshold in the same units, and has at least moderate task-demand confidence and at least moderate task-to-test mapping confidence. Low-confidence requirements may provide subordinate context but cannot satisfy breadth.'};
-for(const [activityId,activity] of Object.entries(ACTIVITIES)){
+function normalizeActivity(activity){
   if(!activity.taskDefinition)activity.taskDefinition=activity.sub||activity.name;
   for(const requirement of activity.reqs||[]){
     requirement.measurementSource=requirement.src||'';
@@ -5731,19 +5756,20 @@ for(const [activityId,activity] of Object.entries(ACTIVITIES)){
       requirement.taskDemandConfidence='high';requirement.mappingConfidence='high';
     }
     if(requirement.reqKind==='fixed_load_pctBW'){
-      const multiplier=Number(requirement.reqArgs?.reserve)||1;
+      const multiplier=Number(requirement.reqArgs?.reserve)||Number(requirement.reserveAssumption?.multiplier)||1;
       requirement.reserveAssumption={multiplier,sourceType:'Early Medical clinical assumption',rationale:'Planning reserve above the fixed external load; not a confirmed biomechanical threshold.',uncertainty:Math.max(.20,+requirement.demandUncertainty||0)};
       if(requirement.reqArgs)delete requirement.reqArgs.reserve;
       requirement.taskDemandConfidence='low';requirement.mappingConfidence='low';
       requirement.demandUncertainty=Math.max(.20,+requirement.demandUncertainty||0);
     }
     if(requirement.reqKind==='aerobic_vo2'){
-      const fraction=Number(requirement.reqArgs?.fraction)||.70;
+      const fraction=Number(requirement.reqArgs?.fraction)||Number(requirement.sustainableFractionAssumption?.value)||.70;
       requirement.sustainableFractionAssumption={value:fraction,sourceType:'Early Medical clinical assumption',rationale:'Maps task oxygen cost to a sustainable fraction of measured peak VO₂; individual durability and modality efficiency vary.',uncertainty:Math.max(.25,+requirement.demandUncertainty||0)};
       requirement.demandUncertainty=Math.max(requirement.sustainableFractionAssumption.uncertainty,+requirement.demandUncertainty||0);
     }
   }
 }
+for(const activity of Object.values(ACTIVITIES))normalizeActivity(activity);
 
 const CATS=["Mobility","Strength","Power","Aerobic","Eccentric","Balance","Core","Endurance"];
 
@@ -6914,70 +6940,161 @@ function renderReference(){
 function metricOptions(sel){const byCat={};for(const [k,m] of Object.entries(METRIC_REGISTRY)){if(m.kind==='grade'||m.confidence==='context')continue;(byCat[m.cat]=byCat[m.cat]||[]).push(k);}return `<option value="">choose a test…</option>`+Object.keys(byCat).sort().map(cat=>`<optgroup label="${cat}">${byCat[cat].map(k=>`<option value="${k}" ${k===sel?'selected':''}>${METRIC_REGISTRY[k].label} (${METRIC_REGISTRY[k].unit})</option>`).join('')}</optgroup>`).join('');}
 
 function startBuilder(editId){
-  if(editId&&ACTIVITIES[editId]){const a=ACTIVITIES[editId];
-    draft={editId, name:a.name, sub:a.sub||'', domain:a.domain||'', oneOff:!!a.oneOff, comps:a.reqs.filter(r=>r.metric).map(r=>({metric:r.metric,req:r.req==null?'':String(r.req),why:r.why||''}))};
-  } else { draft={editId:null,name:'',sub:'',domain:'',oneOff:false,comps:[{metric:'',req:'',why:''},{metric:'',req:'',why:''}]}; }
-  clearDraftDirty();building=true;renderReference();
+  const a=editId&&ACTIVITIES[editId];
+  /* Goals saved before the builder had recipes come back as coach-added tests. */
+  const spec=a?(a.spec?JSON.parse(JSON.stringify(a.spec)):{manual:(a.reqs||[]).filter(r=>r.metric&&Number.isFinite(+r.req)&&+r.req>0).map(r=>({metric:r.metric,req:+r.req,why:r.why||''}))}):{};
+  draft={editId:a?editId:null,name:a?a.name:'',sub:a?(a.sub||''):'',domain:a?(a.domain||''):'',oneOff:a?!!a.oneOff:false,spec:cleanSpec(spec)};
+  gbQuery='';clearDraftDirty();building=true;renderReference();
 }
+/* ── Goal builder engine (Dan, 2026-09-25): a new goal's tests and targets come from what the activity
+   involves. Each demand clones the requirement a built-in goal already uses for it, so new goals are
+   judged exactly like the built-in ones (same target rule, evidence and grade). Aerobic targets come
+   from the activity's energy cost (Compendium of Physical Activities) and duration. ── */
+const DEMANDS=[
+  ['Getting around',[['walk','Walking or standing for a long time'],['terrain','Uneven ground, sand or trails'],['stairs','Climbing stairs, hills or stepping up'],['descend','Going downhill or down steps'],['rise','Getting up from the floor or a low seat'],['squat','Deep squatting or kneeling']]],
+  ['Quick and athletic',[['sprint','Sprinting or quick starts'],['cut','Cutting, lateral moves or quick direction changes'],['jump','Jumping or landing'],['kick','Kicking a ball']]],
+  ['Upper body',[['throw','Throwing'],['strike','Swinging or striking (bat, club, racquet)'],['overhead','Reaching or lifting overhead'],['pull','Pulling, rowing or paddling'],['push','Pushing up from the ground or pressing'],['grip','Holding an implement or a pulling load (leash, reins, rope)'],['antirot','Resisting a twist (leash, recoil, off-center load)']]],
+  ['Loads, water and riding',[['carry','Carrying a load'],['lift','Lifting a load from the floor'],['water','Swimming or moving in water'],['horse','Riding a horse'],['bike','Riding a bike']]]
+];
+const DEMAND_LABEL=Object.fromEntries(DEMANDS.flatMap(([,items])=>items));
+/* [demand, built-in goal to copy from, metric]; loads and aerobic targets are set from the builder inputs. */
+const DEMAND_RULES={
+  walk:[['walk-3mi','kneeExt_xBW'],['walk-3mi','anklePF_xBW'],['walk-3mi','hipExt_deg']],
+  terrain:[['beach-sand','balanceSL_EO_s'],['beach-sand','anklePF_xBW'],['ski-green','hipAbd_xBW']],
+  stairs:[['stairs-load','kneeExt_xBW'],['dog-walk','loadedStepup_pctBW']],
+  descend:[['hike-pack','stepDown_in']],
+  rise:[['floor-rise','stsPower_Wkg'],['floor-rise','kneeExt_xBW'],['floor-rise','hipFlexion_deg'],['floor-rise','ankleDF_cm']],
+  squat:[['garden-2h','hipFlexion_deg'],['garden-2h','kneeFlexROM_deg'],['floor-rise','ankleDF_cm']],
+  sprint:[['tennis','kneeExt_xBW'],['tennis','hopRSI'],['cycle-10mi','kneeFlex_xBW'],['walk-3mi','anklePF_xBW']],
+  cut:[['football-kick','hipAbd_xBW'],['tennis','balanceSL_EO_s'],['tennis','kneeExt_xBW']],
+  jump:[['surf','cmjPower_WkG'],['tennis','hopRSI']],
+  kick:[['football-kick','slVertJump_cm'],['football-kick','hipAbd_xBW'],['football-kick','rotMBThrow_m'],['football-kick','balanceSL_EO_s']],
+  throw:[['tennis','shoulderER_NmKg'],['tennis','rotMBThrow_m'],['golf-18','thoracicRot_deg']],
+  strike:[['golf-18','rotMBThrow_m'],['tennis','shoulderER_NmKg'],['golf-18','thoracicRot_deg'],['golf-18','grip_lb']],
+  overhead:[['overhead-bin','shoulderFlexion_deg'],['overhead-bin','shoulderER_NmKg'],['overhead-bin','thoracicExt_deg']],
+  pull:[['kayak','loadedRow_pctBW'],['yacht','grip_lb']],
+  push:[['surf','benchIso_xBW']],
+  grip:[['golf-18','grip_lb']],
+  antirot:[['weapon','pallof_pctBW']],
+  carry:[['carry-grandkids','grip_lb']],
+  lift:[['carry-grandkids','kneeExt_xBW']],
+  water:[['swim-500m','shoulderFlexion_deg'],['swim-500m','loadedRow_pctBW'],['swim-500m','shoulderER_NmKg']],
+  horse:[['horseback','hipAdd_xBW'],['horseback','balanceSL_EO_s'],['horseback','hipAbdROM_deg'],['horseback','grip_lb']],
+  bike:[['cycle-10mi','kneeExt_xBW'],['cycle-10mi','kneeFlex_xBW']]
+};
+/* Built-in requirements to copy from: the first built-in goal's requirement for that metric. */
+function ruleTemplate(goalId,metric){const r=(ACTIVITIES[goalId]?.reqs||[]).find(x=>x.metric===metric);if(!r)return null;const c=JSON.parse(JSON.stringify(r));
+  delete c.measurementSource;delete c.taskDemandSource;if(c.reserveAssumption){c.reqArgs={...(c.reqArgs||{}),reserve:c.reserveAssumption.multiplier};delete c.reserveAssumption;}delete c.sustainableFractionAssumption;return c;}
+/* Aerobic targets from the energy cost: the sustainable share of VO2max falls with duration
+   (0.72 up to 45 min, 0.70 to 90, 0.67 to 120, then 0.65; the same shares as the built-in goals). */
+const aeroFraction=min=>min<=45?.72:min<=90?.70:min<=120?.67:.65;
+function aerobicReqs(met,minutes){if(!(met>0))return [];const fraction=aeroFraction(minutes||60),src='CPET + Compendium of Physical Activities 2024',why=`The activity costs about ${met} METs for ${minutes||60} minutes.`;
+  const out=[{cat:'Aerobic',label:'VO₂max',metric:'vo2',unit:'mL/kg/min',dir:'higher_better',req:null,role:'capacity',weight:1.15,group:'aerobic',basis:'research',why:`${why} VO₂max has to sit well above that cost to sustain it.`,evi:`Energy cost from the Compendium of Physical Activities (${met} METs), sustained at about ${Math.round(fraction*100)}% of VO₂max.`,src,reqKind:'aerobic_vo2',reqArgs:{met,fraction},confidence:'direct',demandUncertainty:.18}];
+  if((minutes||0)>=40)out.push({cat:'Aerobic',label:'Aerobic base (LT1)',metric:'lt1_vo2',unit:'mL/kg/min',dir:'higher_better',req:null,role:'capacity',weight:1.15,group:'aerobic',basis:'research',why:'Long bouts run on the aerobic base, not peak capacity.',evi:'LT1 is set just above the activity’s energy cost (×1.05), as for the built-in goals.',src:'CPET LT1/VT1',reqKind:'aerobic_lt1',reqArgs:{met,reserve:1.05},confidence:'direct',demandUncertainty:.2});
+  return out;}
+function loadReqs(demands,loads){const out=[];
+  if(demands.carry&&loads.carry>0){const t=ruleTemplate('carry-grandkids','suitcaseCarry_pctBW');t.reqArgs={loadLb:+loads.carry,reserve:1.25};t.why=`Carrying about ${loads.carry} lb while walking.`;t.role='capacity';t.critical=false;out.push(t);}
+  if(demands.lift&&loads.lift>0){const t=ruleTemplate('carry-grandkids','relDeadlift_pctBW');t.reqArgs={loadLb:+loads.lift,reserve:1.25};t.why=`Lifting about ${loads.lift} lb from the floor.`;t.role='capacity';t.critical=false;out.push(t);}
+  if(demands.overhead&&loads.overhead>0){const t=ruleTemplate('overhead-bin','ohPress_pctBW');t.reqArgs={loadLb:+loads.overhead,reserve:1.25};t.why=`Lifting about ${loads.overhead} lb overhead.`;t.role='capacity';t.critical=false;out.push(t);}
+  return out;}
+/* Any built-in requirement for a test, for library activities whose listed tests no ticked demand names. */
+function anyTemplate(metric){for(const [id,a] of Object.entries(ACTIVITIES)){if(a.custom)continue;const r=(a.reqs||[]).find(x=>x.metric===metric&&(x.role==='capacity'||x.role==='gate'));if(r)return ruleTemplate(id,metric);}return null;}
+/* The generated test list: aerobic tests from the energy cost, load tests, then either the library
+   activity's listed tests or, for a checklist-only goal, each ticked demand's most important test in
+   turn (round robin) up to MAX_RULE_TESTS. Each test comes from the built-in rule that names it. */
+const AERO_METRICS=new Set(['vo2','lt1_vo2']);
+function generateGoalReqs(spec){const demands=spec.demands||{},loads=spec.loads||{},seen=new Set(),out=[];
+  const add=r=>{if(!r||seen.has(r.metric))return false;seen.add(r.metric);out.push(r);return true;};
+  aerobicReqs(+spec.met,+spec.minutes).forEach(r=>add({...r,generatedBy:'energy'}));
+  loadReqs(demands,loads).forEach(r=>add({...r,generatedBy:'load'}));
+  const ticked=DEMANDS.flatMap(([,items])=>items).map(([d])=>d).filter(d=>demands[d]),rules=ticked.map(d=>(DEMAND_RULES[d]||[]).map(([g,m])=>({d,g,m})));
+  if(spec.tests?.length){for(const m of spec.tests){if(seen.has(m))continue;const src=rules.flat().find(x=>x.m===m),t=src?ruleTemplate(src.g,m):anyTemplate(m);if(t)add({...t,generatedBy:src?src.d:'library'});}}
+  else{let n=0;for(let i=0;n<MAX_RULE_TESTS&&rules.some(l=>l[i]);i++)for(const l of rules){if(n>=MAX_RULE_TESTS)break;const x=l[i];if(!x)continue;const t=ruleTemplate(x.g,x.m);if(t&&add({...t,generatedBy:x.d}))n++;}}
+  /* Sport-level balance (11 s) when the activity is quick or athletic; everyday (10 s) otherwise. */
+  const bi=out.findIndex(r=>r.metric==='balanceSL_EO_s');if(bi>=0&&['sprint','cut','jump','kick','throw','strike'].some(d=>demands[d])&&out[bi].req<11)out[bi]={...ruleTemplate('tennis','balanceSL_EO_s'),generatedBy:out[bi].generatedBy};
+  return out;}
+
+/* Activity library: researched energy cost (Compendium of Physical Activities 2024) and demands.
+   Filled from the 2026-09-25 activity-demand review. */
+const ACTIVITY_LIBRARY=[];
+/* A goal's recipe: the library activity it started from, what it involves, loads, energy cost and the
+   coach's edits. The tests are rebuilt from the recipe, so saved and imported goals stay on the rules. */
+const MAX_RULE_TESTS=6;
+function cleanSpec(sp){const s=sp&&typeof sp==='object'?sp:{},num=v=>{const n=Number(v);return Number.isFinite(n)&&n>0?n:null;};
+  const demands={};for(const k of Object.keys(DEMAND_LABEL))if(s.demands?.[k])demands[k]=true;
+  const loads={};for(const k of ['carry','lift','overhead']){const n=num(s.loads?.[k]);if(n&&n<=400)loads[k]=n;}
+  const overrides={};for(const [m,v] of Object.entries(s.overrides||{})){const n=num(v);if(METRICS[m]&&METRICS[m].kind!=='grade'&&n)overrides[m]=n;}
+  const manual=(Array.isArray(s.manual)?s.manual:[]).map(c=>({metric:METRICS[c?.metric]&&METRICS[c.metric].kind!=='grade'?c.metric:null,req:num(c?.req),why:cleanText(c?.why||'')})).filter(c=>c.metric&&c.req).slice(0,8);
+  const tests=(Array.isArray(s.tests)?s.tests:[]).filter(m=>METRICS[m]).slice(0,10);
+  return {libId:ACTIVITY_LIBRARY.some(a=>a.id===s.libId)?s.libId:'',demands,loads,met:num(s.met)&&num(s.met)<=20?num(s.met):null,minutes:num(s.minutes)&&num(s.minutes)<=600?num(s.minutes):null,
+    removed:(Array.isArray(s.removed)?s.removed:[]).filter(m=>METRICS[m]),overrides,manual,tests};}
+function goalReqsFromSpec(sp){const s=cleanSpec(sp);let reqs=generateGoalReqs(s).filter(r=>!s.removed.includes(r.metric));
+  reqs=reqs.map(r=>{const v=s.overrides[r.metric];if(!v)return r;const rule=describeTarget(r);return {...r,req:v,reqKind:null,reqArgs:{},basis:'coach',coachSet:true,evi:`Coach-set target. Rule default: ${rule}. ${r.evi||''}`.trim()};});
+  for(const c of s.manual){if(reqs.some(r=>r.metric===c.metric))continue;const meta=METRICS[c.metric];reqs.push({cat:meta.cat,label:meta.label,metric:c.metric,unit:meta.unit,dir:meta.dir,req:c.req,basis:'coach',coachSet:true,role:'capacity',weight:1,group:meta.cat.toLowerCase(),src:meta.src,why:c.why||`${meta.label} for this activity.`,evi:'Coach-added test.',confidence:meta.confidence||'proxy',generatedBy:'coach'});}
+  const tmp={reqs:JSON.parse(JSON.stringify(reqs))};normalizeActivity(tmp);return tmp.reqs;}
+/* How a target is set, in words, with this patient's number where one can be worked out. */
+function describeTarget(r){const rr=resolveRequirement(r),val=rr.req!=null?fmtU(rr.req,rr.unit):'';
+  if(r.reqKind==='p75_force')return `top-quarter strength kept up to ${TGT}${val?`: ${val} for this patient`:''}`;
+  if(r.reqKind==='aerobic_vo2')return `${r.reqArgs.met} METs at ${Math.round(r.reqArgs.fraction*100)}% of VO₂max${val?`: ${val}`:''}`;
+  if(r.reqKind==='aerobic_lt1')return `just above ${r.reqArgs.met} METs${val?`: ${val}`:''}`;
+  if(r.reqKind==='fixed_load_pctBW')return `${r.reqArgs.loadLb} lb × ${r.reserveAssumption?.multiplier||r.reqArgs.reserve||1.25}${val?`: ${val} for this patient`:''}`;
+  return val||'—';}
+function goalActivityFromSpec(base,spec){return {...base,spec:cleanSpec(spec),reqs:goalReqsFromSpec(spec)};}
+
+let gbQuery='';
+function libMatches(q){const t=q.trim().toLowerCase();if(!t)return ACTIVITY_LIBRARY.slice(0,12);return ACTIVITY_LIBRARY.filter(a=>(a.name+' '+(a.aka||'')).toLowerCase().includes(t)).slice(0,12);}
+function applyLibraryActivity(id){const a=ACTIVITY_LIBRARY.find(x=>x.id===id);if(!a)return;const s=draft.spec;
+  s.libId=a.id;s.demands=Object.fromEntries((a.demands||[]).map(d=>[d,true]));s.loads={...(a.loads||{})};s.met=a.met;s.minutes=a.minutes;s.tests=[...(a.tests||[])];s.removed=[];s.overrides={};
+  if(!draft.name)draft.name=a.goal||a.name;if(!draft.sub)draft.sub=a.sub||'';markDraftDirty();renderBuilder();}
 function renderBuilder(){
-  const esc=s=>(s||'').replace(/"/g,'&quot;');
-  const oor=c=>{const info=c.metric?METRIC_INFO[c.metric]:null;const v=parseFloat(c.req);return !!(info&&c.req!==''&&!isNaN(v)&&(v<info.lo||v>info.hi));};
-  const rows=draft.comps.map((c,i)=>{const info=c.metric?METRIC_INFO[c.metric]:null;
-    return `<div class="crow">
-      <select data-ci="${i}" data-f="metric">${metricOptions(c.metric)}</select>
-      <input type="number" step="any" data-ci="${i}" data-f="req" value="${esc(c.req)}" class="${oor(c)?'oor':''}" title="${info?('typical '+info.lo+'–'+info.hi+' '+info.unit):''}" placeholder="${info?('typ. '+info.lo+'–'+info.hi):'value'}">
-      <span class="cunit">${info?info.unit:''}</span>
-      <input type="text" data-ci="${i}" data-f="why" value="${esc(c.why)}" placeholder="why it matters (optional)">
-      <button class="crm" data-rm="${i}" title="remove">×</button></div>`;}).join("");
-  $("#refDetail").innerHTML=`<div class="slide-head">${TAGLINE}<div class="eyebrow">Custom activity${draft.editId?' · editing':''}</div>
-      <input class="namein" data-f="name" value="${esc(draft.name)}" placeholder="Activity name in the patient’s own words">
+  const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'),s=draft.spec,lib=s.libId?ACTIVITY_LIBRARY.find(a=>a.id===s.libId):null;
+  const reqs=goalReqsFromSpec(s);
+  const demandHTML=DEMANDS.map(([title,items])=>`<div class="gb-dgroup"><div class="gb-dtitle">${title}</div>${items.map(([k,label])=>`<label class="gb-chk"><input type="checkbox" data-demand="${k}" ${s.demands[k]?'checked':''}><span>${label}</span>${['carry','lift','overhead'].includes(k)&&s.demands[k]?`<span class="gb-load"><input type="number" min="1" max="400" step="1" data-load="${k}" value="${esc(s.loads[k]||'')}" placeholder="lb"> lb</span>`:''}</label>`).join('')}</div>`).join('');
+  const rows=reqs.map(r=>{const coach=r.coachSet,rule=coach&&r.generatedBy!=='coach'?'coach target':describeTarget(r);return `<tr><td><b>${TEST_NAMES[r.metric]||r.label}</b><small>${r.generatedBy==='coach'?'added by coach':r.generatedBy==='load'?'from the load':r.generatedBy==='energy'?'from the energy cost':r.generatedBy==='library'?'from the activity':DEMAND_LABEL[r.generatedBy]||''}</small></td><td>${rule}</td><td><input type="number" step="any" data-override="${r.metric}" value="${esc(s.overrides[r.metric]||(r.generatedBy==='coach'?r.req:''))}" placeholder="use rule"> <span class="cunit">${METRICS[r.metric]?.unit||''}</span></td><td class="gb-why">${esc(r.why||'')}</td><td><button class="crm" data-remove="${r.metric}" title="Remove this test">×</button></td></tr>`;}).join('');
+  $("#refDetail").innerHTML=`<div class="slide-head">${TAGLINE}<div class="eyebrow">New CD goal${draft.editId?' · editing':''}</div>
+      <input class="namein" data-f="name" value="${esc(draft.name)}" placeholder="The goal in the patient’s own words (e.g. Play softball with my grandkids)">
       <input class="subin" data-f="sub" value="${esc(draft.sub)}" placeholder="One-line description (optional)"></div>
-    <div class="pv">
-      <label class="libchk"><input type="checkbox" id="libToggle"${!draft.oneOff?' checked':''}><span><b>Add to the activity library</b><span class="d">Reusable for any patient. Uncheck to keep it a one-off for this report only.</span></span></label>
-      ${!draft.oneOff?`<div class="bsectitle" style="margin-top:14px">Category</div>
-      <select class="catin" data-f="domain"><option value="">Choose a bucket…</option>${DOMAIN_GROUPS.map(([d])=>`<option value="${d}"${draft.domain===d?' selected':''}>${d}</option>`).join('')}</select>`:''}
-      <div class="bsectitle" style="margin-top:14px">Components: pick the physical qualities this activity demands</div>
-      <div class="crows">${rows}</div>
-      <button class="btn" id="suggestB">✦ Suggest from name</button>
-      <button class="btn" id="addComp">+ Add component</button>
-      <div class="buildactions" style="margin-top:18px">
-        <button class="btn" id="cancelB">Cancel</button>
-        <button class="btn primary" id="saveB">${draft.editId?'Save changes':'Save activity'}</button></div>
-      <div class="refnote">Choose a measured test for each quality and set the requirement it demands. Category, decline rate, and confidence are inherited from the test. Saved activities join the catalog and can be added to any patient’s report.</div>
+    <div class="pv gb">
+      <section class="gb-step"><div class="gb-h"><span class="gb-n">1</span>Start from an activity <small>researched energy cost and demands; optional</small></div>
+        <input class="gb-search" id="gbSearch" type="search" value="${esc(gbQuery)}" placeholder="Search: softball, golf, kayaking, gardening…" autocomplete="off">
+        <div class="gb-lib">${libMatches(gbQuery).map(a=>`<button type="button" class="gb-act ${a.id===s.libId?'on':''}" data-lib="${a.id}"><b>${a.name}</b><span>${a.met} METs · ${a.minutes} min</span></button>`).join('')||'<span class="gb-none">No match. Describe it below instead.</span>'}</div>
+        ${lib?`<div class="gb-libnote"><b>${lib.name}:</b> ${esc(lib.note||'')} <small>${esc(lib.src||'')}</small></div>`:''}</section>
+      <section class="gb-step"><div class="gb-h"><span class="gb-n">2</span>What it involves <small>tick everything the activity asks of the body</small></div>
+        <div class="gb-demands">${demandHTML}</div>
+        <div class="gb-aero">Energy cost <input type="number" min="1" max="20" step="0.1" data-spec="met" value="${esc(s.met||'')}" placeholder="METs"> METs for <input type="number" min="1" max="600" step="1" data-spec="minutes" value="${esc(s.minutes||'')}" placeholder="min"> minutes <small>From the Compendium of Physical Activities; walking at 3 mph is about 3.5 METs.</small></div></section>
+      <section class="gb-step"><div class="gb-h"><span class="gb-n">3</span>Tests and targets <small>filled in from the same rules as the built-in goals; change or remove any</small></div>
+        ${rows?`<table class="gb-tests"><thead><tr><th>Test</th><th>Target rule</th><th>Coach target</th><th>Why</th><th></th></tr></thead><tbody>${rows}</tbody></table>`:'<div class="gb-none">Pick an activity or tick what it involves to fill in tests.</div>'}
+        <div class="gb-add"><select id="gbAddMetric">${metricOptions('')}</select><input type="number" step="any" id="gbAddReq" placeholder="target"><button class="btn" id="gbAddBtn" type="button">+ Add a test</button></div>
+        ${s.removed.length?`<div class="gb-removed">Removed: ${s.removed.map(m=>`<button type="button" class="linkbtn inline" data-restore="${m}">${TEST_NAMES[m]||METRICS[m].label} ↺</button>`).join(' ')}</div>`:''}</section>
+      <label class="libchk"><input type="checkbox" id="libToggle"${!draft.oneOff?' checked':''}><span><b>Add to the goal library</b><span class="d">Reusable for any patient. Uncheck to keep it a one-off for this report only.</span></span></label>
+      ${!draft.oneOff?`<select class="catin" data-f="domain"><option value="">Library category…</option>${DOMAIN_GROUPS.map(([dg])=>`<option value="${dg}"${draft.domain===dg?' selected':''}>${dg}</option>`).join('')}</select>`:''}
+      <div class="buildactions" style="margin-top:16px"><button class="btn" id="cancelB">Cancel</button><button class="btn primary" id="saveB">${draft.editId?'Save changes':'Save goal'}</button></div>
     </div>`;
-  $("#refDetail").querySelectorAll('[data-f]').forEach(el=>{
-    const ev=el.tagName==='SELECT'?'change':'input';
-    el.addEventListener(ev,()=>{ const ci=el.dataset.ci, f=el.dataset.f;
-      if(ci!==undefined) draft.comps[+ci][f]=el.value; else draft[f]=el.value;
-      markDraftDirty();
-      if(f==='req'){ const m=draft.comps[+ci].metric, info=m?METRIC_INFO[m]:null, v=parseFloat(el.value); el.classList.toggle('oor', !!(info&&el.value!==''&&!isNaN(v)&&(v<info.lo||v>info.hi))); }
-      if(f==='metric') renderBuilder(); });
-  });
-  $("#addComp").onclick=()=>{ if(draft.comps.length<8){draft.comps.push({metric:'',req:'',why:''});markDraftDirty();renderBuilder();} };
-  $("#suggestB").onclick=suggestForDraft;
-  $("#refDetail").querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{draft.comps.splice(+b.dataset.rm,1);if(!draft.comps.length)draft.comps.push({metric:'',req:'',why:''});markDraftDirty();renderBuilder();});
+  const root=$("#refDetail");
+  root.querySelectorAll('[data-f]').forEach(el=>el.addEventListener(el.tagName==='SELECT'?'change':'input',()=>{draft[el.dataset.f]=el.value;markDraftDirty();}));
+  const gs=$("#gbSearch");gs.addEventListener('input',()=>{gbQuery=gs.value;const pos=gs.selectionStart;renderBuilder();const g2=$("#gbSearch");g2.focus();g2.setSelectionRange(pos,pos);});
+  root.querySelectorAll('[data-lib]').forEach(b=>b.onclick=()=>applyLibraryActivity(b.dataset.lib));
+  root.querySelectorAll('[data-demand]').forEach(c=>c.onchange=()=>{c.checked?s.demands[c.dataset.demand]=true:delete s.demands[c.dataset.demand];s.tests=[];markDraftDirty();renderBuilder();});
+  root.querySelectorAll('[data-load]').forEach(i=>i.onchange=()=>{s.loads[i.dataset.load]=+i.value||null;markDraftDirty();renderBuilder();});
+  root.querySelectorAll('[data-spec]').forEach(i=>i.onchange=()=>{s[i.dataset.spec]=+i.value||null;markDraftDirty();renderBuilder();});
+  root.querySelectorAll('[data-override]').forEach(i=>i.onchange=()=>{const m=i.dataset.override,v=+i.value;const man=s.manual.find(c=>c.metric===m);if(man){if(v>0)man.req=v;}else if(v>0)s.overrides[m]=v;else delete s.overrides[m];markDraftDirty();renderBuilder();});
+  root.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{const m=b.dataset.remove;s.manual=s.manual.filter(c=>c.metric!==m);if(!s.removed.includes(m))s.removed.push(m);delete s.overrides[m];markDraftDirty();renderBuilder();});
+  root.querySelectorAll('[data-restore]').forEach(b=>b.onclick=()=>{s.removed=s.removed.filter(m=>m!==b.dataset.restore);markDraftDirty();renderBuilder();});
+  $("#gbAddBtn").onclick=()=>{const m=$("#gbAddMetric").value,v=+$("#gbAddReq").value;if(!m||!(v>0)){alert('Pick a test and enter its target.');return;}s.removed=s.removed.filter(x=>x!==m);s.manual=s.manual.filter(c=>c.metric!==m);s.manual.push({metric:m,req:v,why:''});markDraftDirty();renderBuilder();};
   $("#cancelB").onclick=()=>{discardDraft();renderReference();};
   $("#saveB").onclick=saveCustomActivity;
   const lt=$("#libToggle");if(lt)lt.onchange=()=>{draft.oneOff=!lt.checked;markDraftDirty();renderBuilder();};
 }
-function suggestForDraft(){
-  const name=(draft.name||'').trim(); if(!name){alert('Type the activity name first, then suggest.');return;}
-  const seen=new Set(), comps=[];
-  suggestComponents(name).forEach(s=>{const m=CAT_DEFAULT[s.cat]; if(m&&METRIC_REGISTRY[m]&&!seen.has(m)){seen.add(m); comps.push({metric:m,req:'',why:s.label});}});
-  if(!comps.length){alert('No keyword match for that name. Add components manually.');return;}
-  draft.comps=comps.slice(0,6);markDraftDirty();renderBuilder();
-}
 function saveCustomActivity(){
-  const name=cleanText(draft.name); if(!name){alert('Give the activity a name.');return;}
-  const comps=draft.comps.filter(c=>c.metric&&c.req!==''&&!isNaN(parseFloat(c.req)));
-  if(!comps.length){alert('Add at least one component with a required value.');return;}
-  const reqs=comps.map(c=>{const reg=METRIC_REGISTRY[c.metric];
-    return {cat:reg.cat,label:reg.label,metric:c.metric,unit:reg.unit,dir:reg.dir,req:parseFloat(c.req),basis:'coach',coachSet:true,role:'capacity',weight:1,group:reg.cat.toLowerCase(),src:reg.src,why:cleanText(c.why)||(reg.label+' for this activity.'),evi:'Coach-authored custom activity.',confidence:reg.confidence||'proxy'};});
+  const name=cleanText(draft.name);if(!name){alert('Give the goal a name.');return;}
+  const spec=cleanSpec(draft.spec),reqs=goalReqsFromSpec(spec);if(!reqs.length){alert('Pick an activity, tick what it involves, or add a test.');return;}
+  const base={name,sub:cleanText(draft.sub),complexity:Math.min(5,Math.max(2,Math.ceil(reqs.length/2))),custom:true,domain:cleanText(draft.domain,60),oneOff:!!draft.oneOff};
   let id=draft.editId;
-  if(id){ ACTIVITIES[id]=Object.assign({},ACTIVITIES[id],{name,sub:cleanText(draft.sub),domain:cleanText(draft.domain,60),oneOff:!!draft.oneOff,reqs}); const gg=goalById(id); if(gg)gg.name=name; }
-  else { id='custom-'+(customSeq++); ACTIVITIES[id]={name,sub:cleanText(draft.sub),complexity:2,custom:true,domain:cleanText(draft.domain,60),oneOff:!!draft.oneOff,reqs}; GOALS.push({id,name,profileId:id,custom:true}); selectedGoals.add(id); }
+  if(id){ACTIVITIES[id]=goalActivityFromSpec({...ACTIVITIES[id],...base},spec);const gg=goalById(id);if(gg)gg.name=name;}
+  else{id='custom-'+(customSeq++);ACTIVITIES[id]=goalActivityFromSpec(base,spec);GOALS.push({id,name,profileId:id,custom:true});selectedGoals.add(id);}
   commitDraftChanges();building=false;draft=null;refId=id;renderReference();
 }
+
 function deleteActivity(id){
   if(!ACTIVITIES[id]||!ACTIVITIES[id].custom)return;
   if(!confirm('Delete this custom activity? It will be removed from any report using it.'))return;
@@ -7132,6 +7249,7 @@ function applyImportedData(d){
   if(d.customActivities&&typeof d.customActivities==='object')for(const [id,a] of Object.entries(d.customActivities)){
     if(!/^custom-[a-z0-9_-]{1,40}$/i.test(id)||!a||typeof a!=='object'||ACTIVITIES[id])continue;
     const name=cleanText(a.name);if(!name)continue;
+    if(a.spec&&typeof a.spec==='object'){const act=goalActivityFromSpec({name,sub:cleanText(a.sub),complexity:clamp(Number(a.complexity)||2,1,5),custom:true,domain:cleanText(a.domain,60),oneOff:!!a.oneOff},a.spec);if(act.reqs.length)importedCustom.push([id,act]);continue;}
     const reqs=(Array.isArray(a.reqs)?a.reqs:[]).map(r=>{const meta=METRICS[r?.metric],req=Number(r?.req);if(!meta||meta.kind==='grade'||!Number.isFinite(req)||req<=0)return null;return {cat:meta.cat,label:meta.label,metric:r.metric,unit:meta.unit,dir:meta.dir,req,basis:'coach',coachSet:true,role:'capacity',weight:1,group:meta.cat.toLowerCase(),src:meta.src,why:cleanText(r.why)||(meta.label+' for this activity.'),evi:'Coach-authored custom activity.',confidence:meta.confidence||'proxy'};}).filter(Boolean).slice(0,8);
     if(!reqs.length)continue;importedCustom.push([id,{name,sub:cleanText(a.sub),complexity:clamp(Number(a.complexity)||2,1,5),custom:true,domain:cleanText(a.domain,60),oneOff:!!a.oneOff,reqs}]);
   }
