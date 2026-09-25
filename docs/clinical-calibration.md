@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,20 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.10.1: Dan's decisions on the 4.10 open items (2026-09-25)
+
+- **Git history:** Dan chose to keep the old commits as they are. The current doc keeps neutral labels for test members.
+- **Balance, uneven terrain and sport:** the target at 90 is now about 11 s, the top quarter for people in their 80s (Springer 2007, from the published mean and SD). It was 15 s, the PCA 80–90 Proficient level, which under realistic decline needed more today than the 60-s test can time. Applies to tennis, the mountain hike, skiing, surfing and kicking. The 10-s everyday targets and the 30-s balance goal are unchanged. For age 90 itself the top quarter is lower, about 6–7 s (extrapolated), so 11 s keeps some reserve.
+- **Stand-in tests are judged today** against the PCA Proficient standard for the patient's age, like the rep and hold stand-ins. Before, a stand-in aimed for the PCA 80–90 standard applied at exactly 90 while the patient was projected on within-person decline, which asked for more than Proficient today; for example, test member A's dumbbell external rotation needed 18.9 lb against 15 lb Proficient for that age. The PCA Proficient-by-age values for the stand-in lifts (belt squat, 30-s chair stand, back, front and goblet squat, kettlebell deadlift, landmine press) come from the PCA Standards pulled 2026-09-24; their 80–90 values match PCA-2026-09-03.
+- **Grip norms by exact age:** VALD pools its DynaMo grip norms into two bands (20–59 and 60+) and won't share the age mix. Grip now uses Dodds 2014: 12 British studies, about 50,000 people, with mean and SD every 5 years and no skew, interpolated by age. Past 90, the 90 values carry down at the review's rate.
+  - At 55, the 75th percentile is 116 lb for men (VALD's pooled 20–59 band said 130).
+  - Grip targets at 90: the 75th percentile at 70 (98 lb men, 60 lb women) carried to 90 on the keep-training decline, about 59 lb and 37 lb (4.10: 62 / 38).
+  - The dog walk needs the larger of that and the dog's 60-lb pull.
+- **Results:**
+  - Test members: A 3 on track / 7 opportunities / 0 need data; B 1 / 1 / 8.
+  - Demo patients: unchanged from 4.10.
+  - All-Proficient check: 110 of 594 short (4.10: 147). The remaining shortfalls are balance at 65 and fixed loads such as the 60-lb dog pull for women.
 
 ## Model 4.10: decline rates rebuilt from a six-part literature review (2026-09-25)
 

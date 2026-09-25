@@ -782,9 +782,9 @@ svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
-const MODEL_VERSION='4.10';
+const MODEL_VERSION='4.10.1';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['A','B','C','R','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -1007,7 +1007,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
-    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
+    "evi": "Grip 75th percentile at 70 from British norms by exact age (Dodds 2014, 12 studies, about 50,000 people: 98 lb men, 60 lb women), carried to 90 on the keep-training decline: about 59 lb for men and 37 lb for women. VALD pools its own grip norms into 20–59 and 60+, too coarse to set a standard by age.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -1406,7 +1406,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
-    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
+    "evi": "Grip 75th percentile at 70 from British norms by exact age (Dodds 2014, 12 studies, about 50,000 people: 98 lb men, 60 lb women), carried to 90 on the keep-training decline: about 59 lb for men and 37 lb for women. VALD pools its own grip norms into 20–59 and 60+, too coarse to set a standard by age.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -1605,7 +1605,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
-    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
+    "evi": "Grip 75th percentile at 70 from British norms by exact age (Dodds 2014, 12 studies, about 50,000 people: 98 lb men, 60 lb women), carried to 90 on the keep-training decline: about 59 lb for men and 37 lb for women. VALD pools its own grip norms into 20–59 and 60+, too coarse to set a standard by age.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -2527,13 +2527,16 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Holding a pulling 60-lb dog takes the same grip from anyone. Target: the same for men and women, because the load is.",
-    "evi": "The dog pulls the same on anyone, so men and women share one target: the men’s 75th percentile at 90 from VALD DynaMo grip norms (460 N for 60 and over, read as the level at about 70 and carried to 90 on the keep-training decline), about 62 lb. That also covers a 60-lb dog’s pull with a small margin.",
+    "evi": "The dog pulls the same on anyone, so men and women share one target: the larger of the men’s 75th percentile at 90 (British grip norms by age, Dodds 2014: 75th percentile at 70 carried to 90 on the keep-training decline, about 59 lb) and the 60-lb dog’s pull.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
     "reqKind": "p75_force",
-    "sexNeutral": "male"
+    "sexNeutral": "male",
+    "reqArgs": {
+     "minValue": 60
+    }
    },
    {
     "cat": "Strength",
@@ -2684,7 +2687,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
-    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
+    "evi": "Grip 75th percentile at 70 from British norms by exact age (Dodds 2014, 12 studies, about 50,000 people: 98 lb men, 60 lb women), carried to 90 on the keep-training decline: about 59 lb for men and 37 lb for women. VALD pools its own grip norms into 20–59 and 60+, too coarse to set a standard by age.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -2907,7 +2910,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
-    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
+    "evi": "Grip 75th percentile at 70 from British norms by exact age (Dodds 2014, 12 studies, about 50,000 people: 98 lb men, 60 lb women), carried to 90 on the keep-training decline: about 59 lb for men and 37 lb for women. VALD pools its own grip norms into 20–59 and 60+, too coarse to set a standard by age.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -2965,7 +2968,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Controlling recoil takes the same grip from anyone. Target: the same for men and women, because the load is.",
-    "evi": "Recoil is the same for anyone, so men and women share one target: the men’s 75th percentile at 90 from VALD DynaMo grip norms (460 N for 60 and over, read as the level at about 70 and carried to 90 on the keep-training decline), about 62 lb.",
+    "evi": "Recoil is the same for anyone, so men and women share one target: the men’s 75th percentile at 90 (British grip norms by age, Dodds 2014: 75th percentile at 70 carried to 90 on the keep-training decline), about 59 lb.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -3047,7 +3050,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
-    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
+    "evi": "Grip 75th percentile at 70 from British norms by exact age (Dodds 2014, 12 studies, about 50,000 people: 98 lb men, 60 lb women), carried to 90 on the keep-training decline: about 59 lb for men and 37 lb for women. VALD pools its own grip norms into 20–59 and 60+, too coarse to set a standard by age.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -3215,13 +3218,13 @@ const ACTIVITIES = {
     "metric": "balanceSL_EO_s",
     "unit": "s",
     "dir": "higher_better",
-    "req": 15,
+    "req": 11,
     "role": "capacity",
     "weight": 0.8,
     "group": "balance",
     "basis": "research",
-    "why": "Uneven terrain and sport need the PCA Proficient level for 80–90 (15 s).",
-    "evi": "Vellas 1997 (unable to stand 5 s on one leg = higher injurious-fall risk); Springer 2007 norms, ages 80–99: 6.2 s mean, 9.4 s best of 3; PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 6 s, Proficient 15 s.",
+    "why": "Uneven terrain and sport need balance in the top quarter for people in their 80s (about 11 s).",
+    "evi": "Springer 2007 norms, ages 80–99: 9.4 s mean (best of 3), top quarter about 11 s (lit review 2026-09-25, from the published mean and SD). Vellas 1997: unable to stand 5 s on one leg = higher injurious-fall risk. Set by Dan 2026-09-25 in place of the PCA 80–90 Proficient 15 s, which under realistic decline needs more than the 60-s test can time.",
     "src": "VALD / timed stance",
     "critical": false,
     "confidence": "direct",
@@ -3357,13 +3360,13 @@ const ACTIVITIES = {
     "metric": "balanceSL_EO_s",
     "unit": "s",
     "dir": "higher_better",
-    "req": 15,
+    "req": 11,
     "role": "capacity",
     "weight": 0.8,
     "group": "balance",
     "basis": "research",
-    "why": "Uneven terrain and sport need the PCA Proficient level for 80–90 (15 s).",
-    "evi": "Vellas 1997 (unable to stand 5 s on one leg = higher injurious-fall risk); Springer 2007 norms, ages 80–99: 6.2 s mean, 9.4 s best of 3; PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 6 s, Proficient 15 s.",
+    "why": "Uneven terrain and sport need balance in the top quarter for people in their 80s (about 11 s).",
+    "evi": "Springer 2007 norms, ages 80–99: 9.4 s mean (best of 3), top quarter about 11 s (lit review 2026-09-25, from the published mean and SD). Vellas 1997: unable to stand 5 s on one leg = higher injurious-fall risk. Set by Dan 2026-09-25 in place of the PCA 80–90 Proficient 15 s, which under realistic decline needs more than the 60-s test can time.",
     "src": "VALD / timed stance",
     "critical": false,
     "confidence": "direct",
@@ -3808,7 +3811,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
-    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
+    "evi": "Grip 75th percentile at 70 from British norms by exact age (Dodds 2014, 12 studies, about 50,000 people: 98 lb men, 60 lb women), carried to 90 on the keep-training decline: about 59 lb for men and 37 lb for women. VALD pools its own grip norms into 20–59 and 60+, too coarse to set a standard by age.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -4013,13 +4016,13 @@ const ACTIVITIES = {
     "metric": "balanceSL_EO_s",
     "unit": "s",
     "dir": "higher_better",
-    "req": 15,
+    "req": 11,
     "role": "capacity",
     "weight": 0.9,
     "group": "balance",
     "basis": "research",
-    "why": "Uneven terrain and sport need the PCA Proficient level for 80–90 (15 s).",
-    "evi": "Vellas 1997 (unable to stand 5 s on one leg = higher injurious-fall risk); Springer 2007 norms, ages 80–99: 6.2 s mean, 9.4 s best of 3; PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 6 s, Proficient 15 s.",
+    "why": "Uneven terrain and sport need balance in the top quarter for people in their 80s (about 11 s).",
+    "evi": "Springer 2007 norms, ages 80–99: 9.4 s mean (best of 3), top quarter about 11 s (lit review 2026-09-25, from the published mean and SD). Vellas 1997: unable to stand 5 s on one leg = higher injurious-fall risk. Set by Dan 2026-09-25 in place of the PCA 80–90 Proficient 15 s, which under realistic decline needs more than the 60-s test can time.",
     "src": "VALD / timed stance",
     "critical": false,
     "confidence": "direct",
@@ -4171,13 +4174,13 @@ const ACTIVITIES = {
     "metric": "balanceSL_EO_s",
     "unit": "s",
     "dir": "higher_better",
-    "req": 15,
+    "req": 11,
     "role": "capacity",
     "weight": 1.0,
     "group": "balance",
     "basis": "research",
-    "why": "Uneven terrain and sport need the PCA Proficient level for 80–90 (15 s).",
-    "evi": "Vellas 1997 (unable to stand 5 s on one leg = higher injurious-fall risk); Springer 2007 norms, ages 80–99: 6.2 s mean, 9.4 s best of 3; PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 6 s, Proficient 15 s.",
+    "why": "Uneven terrain and sport need balance in the top quarter for people in their 80s (about 11 s).",
+    "evi": "Springer 2007 norms, ages 80–99: 9.4 s mean (best of 3), top quarter about 11 s (lit review 2026-09-25, from the published mean and SD). Vellas 1997: unable to stand 5 s on one leg = higher injurious-fall risk. Set by Dan 2026-09-25 in place of the PCA 80–90 Proficient 15 s, which under realistic decline needs more than the 60-s test can time.",
     "src": "VALD / timed stance",
     "critical": false,
     "confidence": "direct",
@@ -4471,7 +4474,7 @@ const ACTIVITIES = {
     "group": "grip",
     "basis": "research",
     "why": "Grip strength for handling everyday things without being limited. Target: top-quarter strength, kept up by training to 90.",
-    "evi": "VALD DynaMo grip, 75th percentile for ages 60 and over (460 N men, 275 N women). VALD pools that band, so it is read as the level at about 70, then carried to 90 on the keep-training decline: about 62 lb for men and 38 lb for women, close to the 75th percentile at 90 in British norms (Dodds 2014: 65 lb and 38 lb).",
+    "evi": "Grip 75th percentile at 70 from British norms by exact age (Dodds 2014, 12 studies, about 50,000 people: 98 lb men, 60 lb women), carried to 90 on the keep-training decline: about 59 lb for men and 37 lb for women. VALD pools its own grip norms into 20–59 and 60+, too coarse to set a standard by age.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
@@ -5384,13 +5387,13 @@ const ACTIVITIES = {
     "metric": "balanceSL_EO_s",
     "unit": "s",
     "dir": "higher_better",
-    "req": 15,
+    "req": 11,
     "role": "capacity",
     "weight": 1.0,
     "group": "balance",
     "basis": "research",
-    "why": "Uneven terrain and sport need the PCA Proficient level for 80–90 (15 s).",
-    "evi": "Vellas 1997 (unable to stand 5 s on one leg = higher injurious-fall risk); Springer 2007 norms, ages 80–99: 6.2 s mean, 9.4 s best of 3; PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 6 s, Proficient 15 s.",
+    "why": "Uneven terrain and sport need balance in the top quarter for people in their 80s (about 11 s).",
+    "evi": "Springer 2007 norms, ages 80–99: 9.4 s mean (best of 3), top quarter about 11 s (lit review 2026-09-25, from the published mean and SD). Vellas 1997: unable to stand 5 s on one leg = higher injurious-fall risk. Set by Dan 2026-09-25 in place of the PCA 80–90 Proficient 15 s, which under realistic decline needs more than the 60-s test can time.",
     "src": "VALD / timed stance",
     "critical": false,
     "confidence": "direct",
@@ -5992,15 +5995,14 @@ const VALD_P75={
   hipAbd_xBW:{src:'VALD ForceFrame hip abduction, age 50–60',age:55,male:373,female:268},
   hipAdd_xBW:{src:'VALD ForceFrame hip adduction, age 50–60',age:55,male:384,female:270},
   shoulderER_NmKg:{src:'VALD ForceFrame shoulder external rotation, age 50–60',age:55,male:154,female:93},
-  /* DynaMo grip: VALD pools everyone 60 and over. A pooled 60-79 sample's 75th percentile equals the
-     age-specific one at about 70 (Dodds 2014 centiles), so the band is anchored at 70. */
-  grip_lb:{src:'VALD DynaMo grip, age 60+',age:70,male:459.5,female:274.5,lb:true},
+  /* Grip: British centiles by exact age (Dodds 2014; see GRIP_NORMS), 75th percentile at 70. */
+  grip_lb:{src:'Dodds 2014 grip centiles, age 70',age:70,male:437.0,female:268.2,lb:true},
   anklePF_xBW:{src:'VALD ForceFrame ankle plantarflexion, seated, ages 40–59',age:50,male:1115.8,female:829.5}
 };
 /* VALD device norms, absolute force (N), by age band: [first age, last age, representative age,
    [[percentile, N], ...]]. ForceFrame knee extension, knee flexion and calf: VALD Hub live norms
    (Health population, MaxForce, pulled 2026-09-25). ForceFrame hip and shoulder: VALD Hub
-   Normative Data Report (captured 2026-06-16). DynaMo grip: Adult (20–60) and Senior (60+). */
+   Normative Data Report (captured 2026-06-16). Grip uses GRIP_NORMS below. */
 const VALD_NORM_BANDS={
   kneeExt_xBW:{male:[[18,29,25,[[25,241.3],[50,323.3],[75,411.8],[90,512.5]]],[30,39,35,[[25,224.6],[50,304.8],[75,396.5],[90,511.6]]],[40,59,50,[[25,204],[50,265.3],[75,348.8],[90,433.9],[95,508],[99,689]]]],
     female:[[18,29,25,[[25,176.8],[50,230.3],[75,301.8],[90,395.4]]],[30,39,35,[[25,155],[50,205],[75,268.5],[90,353]]],[40,59,50,[[25,137.3],[50,188],[75,247.3],[90,318.9],[95,382],[99,588]]]]},
@@ -6013,17 +6015,14 @@ const VALD_NORM_BANDS={
   hipAdd_xBW:{male:[[20,29,25,[[25,295],[50,371],[75,447],[99,596]]],[30,39,35,[[25,289],[50,350],[75,415],[99,592]]],[40,49,45,[[25,282],[50,331],[75,378],[99,552]]],[50,59,55,[[25,290],[50,348],[75,384],[99,513]]]],
     female:[[20,29,25,[[25,246],[50,292],[75,336],[99,443]]],[30,39,35,[[25,225],[50,277],[75,324],[99,417]]],[40,49,45,[[25,214],[50,253],[75,302],[99,415]]],[50,59,55,[[25,208],[50,238],[75,270],[99,388]]]]},
   shoulderER_NmKg:{male:[[20,29,25,[[25,107],[50,145],[75,175],[99,253]]],[30,39,35,[[25,128],[50,157],[75,181],[99,250]]],[40,49,45,[[25,106],[50,145],[75,168],[99,241]]],[50,59,55,[[25,80],[50,116],[75,154],[99,225]]]],
-    female:[[20,29,25,[[25,81],[50,99],[75,118],[99,160]]],[30,39,35,[[25,73],[50,97],[75,113],[99,148]]],[40,49,45,[[25,72],[50,87],[75,104],[99,143]]],[50,59,55,[[25,55],[50,79],[75,93],[99,141]]]]},
-  grip_lb:{male:[[20,59,40,[[25,403.6],[50,493.8],[75,577.2],[99,783.2]]],[60,120,70,[[25,282.4],[50,370.4],[75,459.5],[99,678.6]],'pooled']],
-    female:[[20,59,40,[[25,253.4],[50,299.9],[75,344.2],[99,474.3]]],[60,120,70,[[25,180.2],[50,227],[75,274.5],[99,412.9]],'pooled']]}
+    female:[[20,29,25,[[25,81],[50,99],[75,118],[99,160]]],[30,39,35,[[25,73],[50,97],[75,113],[99,148]]],[40,49,45,[[25,72],[50,87],[75,104],[99,143]]],[50,59,55,[[25,55],[50,79],[75,93],[99,141]]]]}
 };
-/* Past the last VALD band (and across VALD's pooled 60+ grip band), the age standard follows the
+/* Past the last VALD band, the age standard follows the
    cross-sectional 75th-percentile curve for that muscle and sex, scaled from the band's representative
    age. Norms are extended with cross-sectional curves, never with the longitudinal rates used to
    project patients: after 85 the two differ by up to 2x, because the people still tested at 90 are
    survivors (lit review 2026-09-25). Values are the 75th percentile relative to an arbitrary age.
-   Grip: Dodds 2014 British centiles (12 studies, ~50,000 people), relative to 70; past 90, midway
-   between Tomkinson 2025 and Dodds' 85-90 rate. Shoulder: grip's decline raised to the power 0.9 in
+   Shoulder: the Dodds 2014 grip decline raised to the power 0.9 in
    men, and 0.7 to 75 then 1.0 in women (Pike 2022; Baillargeon 2024; Kim 2009; Nepomuceno 2026).
    Legs: a cross-sectional knee-extension curve (McKay 2017; Mizuno 2021; Danneskiold-Samsøe 2009;
    Harbo 2012) x each muscle's ratio x 0.95, because the 75th percentile falls a little more slowly
@@ -6035,11 +6034,20 @@ const AGE_STANDARD_CURVE={
   kneeFlex_xBW:{male:[[50,1],[55,0.96],[60,0.91],[65,0.86],[70,0.8],[75,0.75],[80,0.69],[85,0.63],[90,0.57],[95,0.51],[100,0.456]],female:[[50,1],[55,0.96],[60,0.91],[65,0.86],[70,0.8],[75,0.74],[80,0.67],[85,0.61],[90,0.54],[95,0.48],[100,0.427]]},
   hipAbd_xBW:{male:[[55,1],[60,0.95],[65,0.9],[70,0.85],[75,0.79],[80,0.74],[85,0.68],[90,0.62],[95,0.56],[100,0.506]],female:[[55,1],[60,0.95],[65,0.9],[70,0.84],[75,0.78],[80,0.71],[85,0.65],[90,0.58],[95,0.52],[100,0.466]]},
   hipAdd_xBW:{male:[[55,1],[60,0.94],[65,0.88],[70,0.82],[75,0.75],[80,0.69],[85,0.62],[90,0.55],[95,0.49],[100,0.437]],female:[[55,1],[60,0.94],[65,0.88],[70,0.81],[75,0.74],[80,0.66],[85,0.59],[90,0.52],[95,0.45],[100,0.389]]},
-  grip_lb:{male:[[60,1.140],[65,1.079],[70,1],[75,.914],[80,.833],[85,.745],[90,.657],[95,.582],[100,.507]],female:[[60,1.122],[65,1.073],[70,1],[75,.916],[80,.824],[85,.723],[90,.628],[95,.550],[100,.473]]},
   shoulderER_NmKg:{male:[[55,1],[60,.966],[65,.919],[70,.858],[75,.791],[80,.721],[85,.646],[90,.569],[95,.504],[100,.439]],female:[[55,1],[60,.975],[65,.945],[70,.899],[75,.846],[80,.761],[85,.668],[90,.580],[95,.508],[100,.437]]}
 };
+/* Grip norms by exact age (Dan, 2026-09-25): VALD pools its DynaMo grip norms into 20–59 and 60+ and
+   won't share the age mix, so grip uses the most accurate age-specific data: Dodds 2014 (12 British
+   studies, ~50,000 people; mean and SD in kg every 5 years, no skew, so centiles are mean + z·SD).
+   Linear between ages. Past 90 the 90 values are carried down at the review's rate. */
+const GRIP_NORMS={male:[[20,41.5,7.3],[25,48.8,8.7],[30,51.6,9.6],[35,51.6,10.1],[40,50.3,10.3],[45,48.8,10.3],[50,47.6,10.1],[55,46.2,9.8],[60,44.6,9.2],[65,42.3,8.6],[70,39.1,8.1],[75,35.6,7.6],[80,32.2,7.3],[85,28.5,7],[90,24.7,6.8],[95,21.9,6],[100,19.1,5.2]],
+  female:[[20,28.4,5.1],[25,30.6,5.6],[30,31.4,6],[35,31.3,6.2],[40,30.7,6.3],[45,29.9,6.4],[50,28.7,6.4],[55,27.5,6.4],[60,26.5,6.2],[65,25.3,6],[70,23.5,5.7],[75,21.4,5.4],[80,19.1,5.1],[85,16.6,4.7],[90,14.2,4.4],[95,12.4,3.9],[100,10.7,3.3]]};
+const Z_PCT=[[10,-1.2816],[25,-.6745],[50,0],[75,.6745],[90,1.2816]];
+function gripNormAt(sex,age){const t=GRIP_NORMS[sex],a=clamp(age,t[0][0],t[t.length-1][0]),i=Math.max(1,t.findIndex(r=>r[0]>=a)),[a0,m0,s0]=t[i-1],[a1,m1,s1]=t[i],f=(a-a0)/(a1-a0),m=m0+(m1-m0)*f,sd=s0+(s1-s0)*f;
+  return {knots:Z_PCT.map(([p,z])=>[p,(m+z*sd)*9.80665]),modeled:age>90,band:'by age'};}
+const hasNorms=metric=>metric==='grip_lb'||!!VALD_NORM_BANDS[metric];
 /* Norm distribution for a patient's age and sex, in N. */
-function valdNormAt(metric,sex,age){const s=sex==='female'?'female':'male',t=VALD_NORM_BANDS[metric]?.[s];if(!t)return null;
+function valdNormAt(metric,sex,age){const s=sex==='female'?'female':'male';if(metric==='grip_lb')return gripNormAt(s,age);const t=VALD_NORM_BANDS[metric]?.[s];if(!t)return null;
   const band=t.find(([lo,hi])=>age>=lo&&age<=hi)||(age<t[0][0]?t[0]:null);if(band&&!band[4])return {knots:band[3],modeled:false,band:`${band[0]}–${band[1]}`};
   const b=band||t[t.length-1],c=AGE_STANDARD_CURVE[metric]?.[s],k=c?lerp(age,c)/lerp(b[2],c):1;
   return {knots:b[3].map(([p,v])=>[p,v*k]),modeled:Math.abs(k-1)>1e-9,band:b[4]?`${b[0]}+`:`${b[0]}–${b[1]}`};}
@@ -6059,8 +6067,8 @@ const MET_CONVENTION={mlKgMinPerMET:3.5,src:'Aerobic goals store absolute oxygen
 function resolveRequirement(r){
   if(r.reqKind==='p75_force'){
     /* A fixed external load needs the same grip from everyone, so those targets use the men's value. */
-    const t=valdP75Target(r.metric,r.sexNeutral||(PATIENT.sex==='female'?'female':'male'));
-    return t&&t.value!=null?{req:t.value,unit:METRICS[r.metric]?.unit||r.unit}:{req:null,unit:METRICS[r.metric]?.unit||r.unit,why:'Body weight is required to convert the VALD force norm.'};
+    const t=valdP75Target(r.metric,r.sexNeutral||(PATIENT.sex==='female'?'female':'male')),floor=+r.reqArgs?.minValue||0;
+    return t&&t.value!=null?{req:Math.max(t.value,floor),unit:METRICS[r.metric]?.unit||r.unit}:{req:null,unit:METRICS[r.metric]?.unit||r.unit,why:'Body weight is required to convert the VALD force norm.'};
   }
   if(r.reqKind==='fixed_load_pctBW'){
     const bw=+PATIENT.bodyWeight_lb,load=+r.reqArgs?.loadLb,reserve=+r.reserveAssumption?.multiplier||1;
@@ -6100,32 +6108,13 @@ function targetGrade(r){
 }
 const TEST_NAMES={bwSquat_grade:'Bodyweight squat quality',slControl_grade:'Single-leg step-down quality',hinge_grade:'Hip hinge quality',toeTouch_grade:'Toe touch',priSquat_grade:'PRI squat',trendelenburg_grade:'Pelvic control on one leg',standingRotation_grade:'Standing rotation quality',gait_grade:'Gait quality',copenhagen_s:'Copenhagen hold',proneT_s:'Prone T hold',chinup_reps:'Chin-ups',rfeSplitSquat_pctBW:'Rear-foot-elevated split squat',vo2:'VO₂max',lt1_vo2:'Aerobic base (LT1)',ankleDF_cm:'Ankle dorsiflexion',anklePF_xBW:'Calf strength',backSquat_pctBW:'Back squat',balanceSL_EO_s:'Single-leg balance',calfRaise_reps:'Calf raises',cmjPower_WkG:'Jump power',dropJump_RSI:'Drop jump',grip_lb:'Grip strength',hamstringSLR_deg:'Straight-leg raise',hipAbd_xBW:'Hip abduction',hipFlexion_deg:'Hip flexion',hipIR_deg:'Hip rotation',hopRSI:'Pogo hops',kneeExt_xBW:'Knee extension',kneeFlex_xBW:'Knee flexion',loadedRow_pctBW:'Loaded row',loadedStepup_pctBW:'Loaded step-up',ohPress_pctBW:'Seated overhead press',pallof_pctBW:'Pallof hold',plankHeelWall_s:'Plank',pushup_reps:'Push-ups',relDeadlift_pctBW:'Deadlift',rotMBThrow_m:'Rotational throw',shoulderER_NmKg:'Rotator cuff',shoulderFlexion_deg:'Shoulder flexion',sidePlank_s:'Side plank',slVertJump_cm:'Single-leg jump',stepDown_in:'Step-down',stsPower_Wkg:'Sit-to-stand power',suitcaseCarry_pctBW:'Suitcase carry',thoracicExt_deg:'Upper-back extension',thoracicRot_deg:'Trunk rotation',chairStand_reps:'30-s chair stand',kneeFlexROM_deg:'Knee flexion range',hipExt_deg:'Hip extension range',hipER_deg:'Hip external rotation',hipAbdROM_deg:'Hip abduction range',sorensen_s:'Sorensen hold',splitSquat_reps:'Split squat',deadHang_s:'Dead hang',wallSit_s:'Wall sit',invertedRow_reps:'Inverted row',cuffExtRot_lb:'Dumbbell external rotation',gobletSquat_pctBW:'Goblet squat',frontSquat_pctBW:'Front squat',kbDeadlift_pctBW:'Kettlebell deadlift',beltSquatIso_xBW:'Belt squat',landmine_pctBW:'Landmine press'};
 const testName=r=>TEST_NAMES[r.metric]||shortLabel(r.label);
-/* Goals that are demanding for most capacities: stand-in tests use the PCA Proficient level for
-   these, and the start of the PCA Developing band for everyday goals. */
-const DEMANDING_GOALS=new Set(['tennis','hike-pack','ski-green','surf','sprint-triathlon','ocean-swim','snorkel-scuba','football-kick']);
-for(const [id,a] of Object.entries(ACTIVITIES))for(const r of a.reqs||[])r.demanding=DEMANDING_GOALS.has(id);
-/* PCA Standards, ages 80–90 (PCA-2026-09-03): [Developing starts, Proficient] by sex, for tests
-   that can stand in for a goal's ideal test. Grip uses the EWGSOP2 weakness cut-off. */
-const PCA80={beltSquatIso_xBW:{male:[2.05,2.95],female:[1.70,2.45]},chairStand_reps:{male:[10,14],female:[9,13]},backSquat_pctBW:{male:[40,60],female:[30,45]},frontSquat_pctBW:{male:[35,50],female:[25,40]},gobletSquat_pctBW:{male:[9,15],female:[9,15]},splitSquat_reps:{male:[3,6],female:[3,6]},stsPower_Wkg:{male:[2.6,4.1],female:[2.1,3.1]},calfRaise_reps:{male:[5,12],female:[9,18]},anklePF_xBW:{male:[.75,1.05],female:[.60,.85]},copenhagen_s:{male:[6,20],female:[6,20]},sidePlank_s:{male:[16,40],female:[16,40]},plankHeelWall_s:{male:[16,40],female:[16,40]},sorensen_s:{male:[40,80],female:[40,80]},kbDeadlift_pctBW:{male:[15,30],female:[15,30]},deadHang_s:{male:[20,80],female:[10,50]},grip_lb:{male:[60,70],female:[35,45]},chinup_reps:{male:[1,2],female:[1,1]},invertedRow_reps:{male:[4,7],female:[4,7]},loadedRow_pctBW:{male:[10,16],female:[7,13]},landmine_pctBW:{male:[7,10],female:[5,7]},pushup_reps:{male:[4,7],female:[4,7]},elevPushup_reps:{male:[4,7],female:[4,7]},cuffExtRot_lb:{male:[7.5,10],female:[5,7.5]},proneT_s:{male:[16,40],female:[16,40]},loadedStepup_pctBW:{male:[20,30],female:[20,30]},kneeExt_xBW:{male:[.30,.45],female:[.25,.35]}};
-const PCA80_PUBLISHED=new Set(['chairStand_reps','calfRaise_reps','stsPower_Wkg','grip_lb']);
-/* Stand-in tests, best first (capacity map, draft 1). One level only. Rep and hold tests don't
-   stand in (model 4.7): they are tracked, not projected. */
+/* Stand-in tests, best first (capacity map, draft 1). One level only. A stand-in is judged today
+   against PCA Proficient for the patient's age (Dan, 2026-09-25): the PCA 80–90 standards are
+   age-group values, so projecting a patient on within-person decline to meet them at 90 asked for
+   more than Proficient today (a 57-year-old's dumbbell external rotation needed 18.9 lb, Proficient 15). */
 const BACKUPS={kneeExt_xBW:['beltSquatIso_xBW','chairStand_reps','backSquat_pctBW','frontSquat_pctBW','gobletSquat_pctBW'],stsPower_Wkg:['chairStand_reps'],chairStand_reps:['stsPower_Wkg'],cmjPower_WkG:['stsPower_Wkg'],relDeadlift_pctBW:['kbDeadlift_pctBW'],ohPress_pctBW:['landmine_pctBW'],shoulderER_NmKg:['cuffExtRot_lb']};
-/* A stand-in's target sits where the ideal test's target sits between the PCA 80–90 Developing
-   start (0) and Proficient (1), so both ask for the same level. Ideal tests without PCA bands
-   fall back to the Developing start for everyday goals and Proficient for demanding ones. */
-function backupReq(r0,b){const band=PCA80[b],meta=METRICS[b];if(!band||!meta)return null;
-  /* A 75th-percentile target is Proficient by definition (Dan, 2026-09-25), so its stand-in aims for
-     the stand-in's own PCA Proficient level for 80–90, whatever the goal. */
-  const pos=sex=>{const ideal=PCA80[r0.metric]?.[sex];
-    if(r0.reqKind==='p75_force')return 1;
-    const t=+(r0.reqBySex?.[sex]??r0.req);return ideal&&!r0.reqKind&&Number.isFinite(t)?(t-ideal[0])/(ideal[1]-ideal[0]):(r0.demanding?1:0);};
-  const at=sex=>{const [d,p]=band[sex],v=d+pos(sex)*(p-d);return /reps/.test(meta.unit)?Math.ceil(v-1e-9):Math.round(v*100)/100;};
-  const m=at('male'),f=at('female'),t=pos(PATIENT.sex==='female'?'female':'male'),ideal=inSentence(testName(r0));
-  const level=Math.abs(t)<1e-9?'the start of the PCA Developing band':Math.abs(t-1)<1e-9?'the PCA Proficient level':t>1?`above the PCA Proficient level, to match the ${ideal} target`:`between the PCA Developing start and Proficient, to match the ${ideal} target`;
-  return {cat:meta.cat,label:meta.label,metric:b,unit:meta.unit,dir:'higher_better',req:m,reqBySex:{male:m,female:f},role:'capacity',weight:r0.weight||1,group:r0.group,basis:PCA80_PUBLISHED.has(b)?'research':'practice',why:`Stands in for ${ideal}, which was not tested. Target: ${level} for 80–90.`,evi:'PCA Standards, ages 80–90 (PCA-2026-09-03).',src:meta.src,confidence:meta.confidence||'direct',demandUncertainty:.25,demanding:r0.demanding,backupFor:r0.metric};}
 /* Model 4.9 (Dan, 2026-09-25): no goal should show a missing variable when a related test was done.
-   After the component's own test and the projected stand-ins (BACKUPS), each component falls back to:
+   After the component's own test and its stand-ins (BACKUPS, judged today), each component falls back to:
    'today' — a rep or hold test judged against the PCA Proficient standard for the patient's age
    today (these can't be projected to 90 reliably, and Proficient is the same "strong for your age"
    level the 75th-percentile targets are built on); 'grade' — a movement screen, Proficient or not;
@@ -6160,18 +6149,22 @@ const SUB_ITEMS={
    (live Notion PCA Standards, checked 2026-09-24). */
 const PCA_PROFICIENT_BY_AGE={splitSquat_reps:[10,10,9,8,7,6],invertedRow_reps:[10,10,9,8,7,7],chinup_reps:{male:[3,3,3,3,2,2],female:[2,2,2,2,1,1]},
   plankHeelWall_s:[60,60,55,50,45,40],wallSit_s:[60,60,55,50,45,40],copenhagen_s:[30,30,30,25,20,20],proneT_s:[60,60,55,50,45,40],
-  rfeSplitSquat_pctBW:{male:[30,30,25,25,20,18],female:[25,25,20,20,17,15]}};
+  rfeSplitSquat_pctBW:{male:[30,30,25,25,20,18],female:[25,25,20,20,17,15]},
+  /* Stand-in lifts (PCA Standards, pulled 2026-09-24; the 80–90 values match PCA-2026-09-03). */
+  beltSquatIso_xBW:{male:[5.0,5.0,4.5,4.05,3.45,2.95],female:[4.15,4.15,3.75,3.35,2.85,2.45]},chairStand_reps:{male:[22,22,20,18,17,14],female:[20,20,18,16,15,13]},
+  backSquat_pctBW:{male:[100,100,90,80,70,60],female:[80,80,70,65,55,45]},frontSquat_pctBW:{male:[85,85,75,70,60,50],female:[65,65,60,55,45,40]},
+  gobletSquat_pctBW:[25,25,20,20,17,15],kbDeadlift_pctBW:[50,50,45,40,35,30],landmine_pctBW:{male:[15,15,14,13,11,10],female:[10,10,9,8,7,7]}};
 function proficientForAge(metric){const sex=PATIENT.sex==='female'?'female':'male',a=+PATIENT.age||0,i=a<40?0:a>=80?5:Math.floor(a/10)-3;
   const band=['30-40','40-50','50-60','60-70','70-80','80-90'][i],em=EM_ASSESSMENT_BANDS[metric]?.[sex]?.[band];if(em)return +em[2];
   const t=PCA_PROFICIENT_BY_AGE[metric];if(!t)return null;return +(Array.isArray(t)?t:t[sex])[i];}
 const GRADE_SCORE={Proficient:3,Developing:2,Deficient:1};
 const LT1_FROM_VO2=.6;
-function subItemComponent(r0,mode,b,reason){
+function subItemComponent(r0,mode,b,reason,standIn=false){
   const meta=METRICS[b];if(!meta)return null;const nt=PATIENT.notTested?.[b],v=PATIENT.metrics[b];if(nt&&nt!=='NT-UNABLE')return null;
-  const base={cat:meta.cat,label:meta.label,metric:b,dir:'higher_better',role:'capacity',weight:r0.weight||1,group:r0.group,confidence:'proxy',demandUncertainty:.25,backupFor:r0.metric,demanding:r0.demanding};
+  const base={cat:meta.cat,label:meta.label,metric:b,dir:'higher_better',role:'capacity',weight:r0.weight||1,group:r0.group,confidence:'proxy',demandUncertainty:.25,backupFor:r0.metric};
   if(mode==='lt1'){const vo2=+v;if(nt||!Number.isFinite(vo2)||vo2<=0)return null;return makeComponent(r0,LT1_FROM_VO2*vo2,{estFrom:'vo2'});}
   if(mode==='today'){const pv=proficientForAge(b);if(!Number.isFinite(pv)||pv<=0)return null;const ideal=inSentence(testName(r0));
-    const r={...base,unit:meta.unit,req:pv,basis:'practice',why:`Stands in for ${ideal}, which was not tested. Rep and hold tests can’t be projected to 90, so this one is judged today against the PCA Proficient standard for your age.`,evi:'PCA Standards by age and sex (EM_PCA_02).',src:meta.src};
+    const r={...base,unit:meta.unit,req:pv,basis:'practice',why:standIn?`Stands in for ${ideal}, which was not tested. A stand-in test is judged today against the PCA Proficient standard for your age.`:`Stands in for ${ideal}, which was not tested. Rep and hold tests can’t be projected to 90, so this one is judged today against the PCA Proficient standard for your age.`,evi:'PCA Standards by age and sex (EM_PCA_02).',src:meta.src};
     if(nt==='NT-UNABLE')return makeComponent(r,0,{unable:true,via:r0.metric,viaReason:reason,today:true});
     if(v==null||v===''||!Number.isFinite(+v))return null;return makeComponent(r,+v,{via:r0.metric,viaReason:reason,today:true});}
   if(mode==='grade'){const g=GRADE_SCORE[v];if(!g)return null;const ideal=inSentence(testName(r0));
@@ -6223,13 +6216,7 @@ function components(reqs){
     let first=null;
     if(has){const c=makeComponent(r,+v,{capped:isCapped(r.metric,+v)});if(c&&(!c.capped||c.meets))return c;first=c;}
     const reason=nt||(first?'capped':'not tested');
-    for(const b of BACKUPS[r.metric]||[]){
-      const br=backupReq(r,b);if(!br)continue;const bnt=PATIENT.notTested?.[b],bv=PATIENT.metrics[b];
-      if(bnt==='NT-UNABLE')return makeComponent(br,0,{unable:true,via:r.metric,viaReason:reason});
-      if(bnt||bv==null||bv===''||!Number.isFinite(+bv))continue;
-      const c=makeComponent(br,+bv,{via:r.metric,viaReason:reason,capped:isCapped(b,+bv)});
-      if(c&&(!c.capped||c.meets))return c;
-    }
+    for(const b of BACKUPS[r.metric]||[]){const c=subItemComponent(r,'today',b,reason,true);if(c)return c;}
     for(const [mode,b] of SUB_ITEMS[r.metric]||[]){const c=subItemComponent(r,mode,b,reason);if(c)return c;}
     if(first){first.cappedUnknown=true;first.zone='watch';return first;}
     return null;
@@ -6374,10 +6361,10 @@ function radarTableHTML(C,act){
   for(const r of order){const c=byMetric.get(r.metric);n++;
     if(!c){rows.push(`<tr class="untested"><td class="rtest"><span class="rnum">${n}</span>${testName(r)}<small>Not tested yet. Any of these counts: ${nameList(altTestNames(r.metric).map(inSentence),8)}.</small></td><td>—</td><td>—</td><td class="rstopv">—</td><td>${resolveRequirement(r).req==null?'—':fmtU(resolveRequirement(r).req,resolveRequirement(r).unit)}</td><td class="rres">Not tested</td><td class="rstg">Test it</td><td><span class="tg tg-${targetGrade(r)}" title="${TARGET_GRADES[targetGrade(r)]}">${targetGrade(r)}</span></td></tr>`);continue;}
     const g=stgText(c),judgedToday=c.today;
-    const vo2Ctx=c.r.metric==='vo2'&&!c.estFrom?`<small>${vo2Group(c.raw,AGE)} for your age</small>`:VALD_NORM_BANDS[c.r.metric]&&!c.unable?`<small>${pctLabel(valdPercentile(c.r.metric,PATIENT.sex,AGE,toNewtons(c.r.metric,c.raw)))}</small>`:'';
-    const p75now=VALD_NORM_BANDS[c.r.metric]?fromNewtons(c.r.metric,valdP75ForAge(c.r.metric,PATIENT.sex,AGE)?.n):null;
+    const vo2Ctx=c.r.metric==='vo2'&&!c.estFrom?`<small>${vo2Group(c.raw,AGE)} for your age</small>`:hasNorms(c.r.metric)&&!c.unable?`<small>${pctLabel(valdPercentile(c.r.metric,PATIENT.sex,AGE,toNewtons(c.r.metric,c.raw)))}</small>`:'';
+    const p75now=hasNorms(c.r.metric)?fromNewtons(c.r.metric,valdP75ForAge(c.r.metric,PATIENT.sex,AGE)?.n):null;
     rows.push(`<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest"><span class="rnum">${n}</span>${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}${c.estFrom?`<small>estimated as ${Math.round(LT1_FROM_VO2*100)}% of VO₂max</small>`:''}</td><td>${c.unable?'Unable':fmtU(c.raw,c.unit)}${c.capped?'<small>stopped at the test limit</small>':''}${vo2Ctx}</td><td>${judgedToday?'<small>judged today</small>':c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td class="rstopv">${c.unable||judgedToday?'—':c.static?fmtU(c.stopRaw,c.unit):`${fmtU(c.stopRaw,c.unit)}${c.stopPct<100?`<small>short by ${100-c.stopPct}%</small>`:''}`}</td><td>${fmtU(c.req,c.unit)}${judgedToday?'<small>Proficient for your age</small>':''}</td><td class="rres">${c.unable?'Unable today':c.meets?'✓ Clears':c.cappedUnknown?'At the test limit<small>re-test longer to confirm</small>':c.watch?`Watch · ${c.shortBy}% below`:judgedToday?'Below the standard':`Short by ${c.shortBy}%`}${c.meetsNow||c.unable||judgedToday?'':'<small>Already short today</small>'}</td><td class="rstg">${g.txt}${g.sub?`<small>${g.sub}${c.r.metric==='vo2'&&g.up?` · ${vo2Group(c.stg,AGE)} for your age`:''}</small>`:''}${Number.isFinite(p75now)?`<small>75th percentile for your age: ${fmtU(p75now,c.unit)}</small>`:''}</td><td><span class="tg tg-${c.grade}" title="${TARGET_GRADES[c.grade]}">${c.grade}</span></td></tr>`);}
-  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>What this goal needs</th><th>Today</th><th>At ${TGT}, keep training</th><th>At ${TGT}, if you stop</th><th>Needed at ${TGT}</th><th>Result at ${TGT}</th><th>Goal, and when</th><th>Grade</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><div class="rtablenote">Listed most important first. When a test wasn’t done, a related test stands in; rep and hold tests and movement screens are judged against today’s standard for your age because they can’t be projected. Goal, and when: the level to build to so that, if you keep training, the glide path still reaches what the goal needs at ${TGT}; the time frame grows with the size of the lift. Grade (how firm the target is): A is set by the task itself, B comes from research or a closely related task, C is a clinical estimate still being validated.</div>`;
+  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>What this goal needs</th><th>Today</th><th>At ${TGT}, keep training</th><th>At ${TGT}, if you stop</th><th>Needed at ${TGT}</th><th>Result at ${TGT}</th><th>Goal, and when</th><th>Grade</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><div class="rtablenote">Listed most important first. When a test wasn’t done, a related test stands in and is judged against today’s standard for your age, as are rep and hold tests and movement screens, which can’t be projected. Goal, and when: the level to build to so that, if you keep training, the glide path still reaches what the goal needs at ${TGT}; the time frame grows with the size of the lift. Grade (how firm the target is): A is set by the task itself, B comes from research or a closely related task, C is a clinical estimate still being validated.</div>`;
 }
 /* Glide path (Dan, 2026-09-25): for a test projected short at TGT, raise the starting point now so
    the same keep-training decline still clears. Red dashed: from today. Green: build to the
@@ -6531,8 +6518,8 @@ function assessmentContext(metric){
   }
   const raw=+entered;if(!Number.isFinite(raw))return null;
   if(VALD_PERCENTILE_METRICS.has(metric)){
-    const q=VALD_NORM_BANDS[metric]&&!Number.isFinite(+PATIENT.assessmentPercentiles?.[metric])?valdPercentile(metric,PATIENT.sex,AGE,toNewtons(metric,raw)):null;
-    if(q){const pc=q.pct??(q.below!=null?q.below/2:Math.min(99,q.above+5)),deficit=clamp((50-pc)/50*100,0,100);return {kind:'percentile',source:q.modeled?'VALD norms for age and sex, extended past VALD’s age bands with published age trends':'VALD norms for age and sex',percentile:pc,severity:deficit,deficit,label:pctLabel(q)};}
+    const q=hasNorms(metric)&&!Number.isFinite(+PATIENT.assessmentPercentiles?.[metric])?valdPercentile(metric,PATIENT.sex,AGE,toNewtons(metric,raw)):null;
+    if(q){const pc=q.pct??(q.below!=null?q.below/2:Math.min(99,q.above+5)),deficit=clamp((50-pc)/50*100,0,100);return {kind:'percentile',source:metric==='grip_lb'?'Grip norms for age and sex (Dodds 2014, 12 British studies)':q.modeled?'VALD norms for age and sex, extended past VALD’s age bands with published age trends':'VALD norms for age and sex',percentile:pc,severity:deficit,deficit,label:pctLabel(q)};}
     const percentile=+PATIENT.assessmentPercentiles?.[metric];
     const percentileContext=PATIENT.assessmentPercentileContext,contextMatches=percentileContext&&+percentileContext.age===+PATIENT.age&&percentileContext.sex===PATIENT.sex;
     if(!contextMatches||!Number.isFinite(percentile)||percentile<1||percentile>99)return {kind:'unavailable',source:contextMatches?'VALD age/sex norm not entered':'VALD percentile context is stale',deficit:0,label:contextMatches?'no age/sex percentile entered':'age/sex percentile requires re-entry'};
@@ -7022,7 +7009,7 @@ $("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); i
 const COPY={
   scope:()=>`This model uses measured physical capacities from the Early Medical assessment, CPET, and selected context from DEXA. Each goal is judged on every one of its tests. Qualitative movement screens and DEXA context are shown separately and do not change a goal’s status.`,
   disclaimerLead:'How to read this.',
-  disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization. Strength, power and aerobic fitness follow the decline of healthy people who keep training, taken from long-term studies of the same people: about 1–1.5% a year in the 60s, 2% in the 70s and 3–4% after 85 for strength, with each muscle group at its own rate; power falls a little faster than strength; aerobic fitness falls more slowly than average until about 70, then close to the typical rate. Range of motion declines at half the typical rate for patients who keep up mobility work, balance follows published age norms (it falls steeply after 70 for everyone), rep and hold tests are tracked but not projected, and isolated strength tests aim for top-quarter strength (the VALD 75th percentile) kept up by training to the target age, each with a deliberately broad uncertainty range that widens after 75. A test projected short gets a short-term goal: the level that keeps the glide path above what the goal needs, with a time frame sized to the lift (within a year up to +10%, 1–3 years up to +25%, 3–5 years up to +50%, beyond that a long-term stretch; aerobic fitness trains less, so +10%, +20% and +30%, halved for people already fit for their age). A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. This assumes you stay healthy; in the last year or two of life, strength and fitness fall much faster whatever you do. Training mostly buys a head start of 10–20 years, and it keeps you from the extra losses that come with stopping. Disease, injury and body-weight change can also alter the trajectory.`
+  disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization. Strength, power and aerobic fitness follow the decline of healthy people who keep training, taken from long-term studies of the same people: about 1–1.5% a year in the 60s, 2% in the 70s and 3–4% after 85 for strength, with each muscle group at its own rate; power falls a little faster than strength; aerobic fitness falls more slowly than average until about 70, then close to the typical rate. Range of motion declines at half the typical rate for patients who keep up mobility work, balance follows published age norms (it falls steeply after 70 for everyone), rep and hold tests are tracked but not projected, and isolated strength tests aim for top-quarter strength (the 75th percentile for age: VALD norms, British norms for grip) kept up by training to the target age; a stand-in for a test that wasn't done is judged today against the PCA Proficient standard for your age, each with a deliberately broad uncertainty range that widens after 75. A test projected short gets a short-term goal: the level that keeps the glide path above what the goal needs, with a time frame sized to the lift (within a year up to +10%, 1–3 years up to +25%, 3–5 years up to +50%, beyond that a long-term stretch; aerobic fitness trains less, so +10%, +20% and +30%, halved for people already fit for their age). A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. This assumes you stay healthy; in the last year or two of life, strength and fitness fall much faster whatever you do. Training mostly buys a head start of 10–20 years, and it keeps you from the extra losses that come with stopping. Disease, injury and body-weight change can also alter the trajectory.`
 
 };
 const DEMO_ARCHETYPES={
