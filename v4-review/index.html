@@ -934,9 +934,9 @@ input[type=checkbox]{accent-color:#39404b}
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
-const MODEL_VERSION='4.10.1';
+const MODEL_VERSION='4.11';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -6050,21 +6050,30 @@ const KEEP_TRAINING={
   'act:lt1':{stop:'aero_threshold',metrics:['lt1_vo2'],
     evidence:{grade:'B',label:'Keeps training: aerobic base',src:'0.6x the VO2max rate, so its share of VO2max rises with age (SHIP 10-yr follow-up, Stubbe 2021; Paterson; FRIEND ventilatory threshold; range 0.4–0.75)'}}
 };
-/* If they stop: what training added fades over the first year, about 15% of strength, power and
-   aerobic fitness (older adults lose 14–18% of strength by 5–7 months, Lemmer 2000 and Henwood &
-   Taaffe 2008; trained men near 60 lose ~16% of VO2max in 3 months, then it levels off, Schulman
-   1996 and Coyle 1984; power falls no faster than strength, Bosquet 2013). Then decline follows the
-   general population. Stopping never declines more slowly than training. */
+/* If they stop (4.11, detraining review 2026-09-25): part of what training added fades in the first
+   year, then decline follows the general population, never more slowly than training.
+   - Strength: 30% of the surplus above the median for age and sex, 4–12% (about 8% for a typical
+     member), where norms exist; 8% otherwise; +2 points from 75. The old 15% came from short programs
+     in previously sedentary adults tested by 1RM; isometric strength falls less (5–12%), and a year
+     or more of training keeps most of the advantage for years (Leuven: ~0% isometric loss a year
+     after stopping; 82% of the advantage over controls kept at 7 years; Smith 2003).
+   - Power: 8%, reactive tests 11%: power detrains no faster than strength, rapid force a little
+     faster (Bosquet 2013).
+   - VO2max: half the surplus above the median, 8–18% (masters athletes lost 9–18% in 2–3 months,
+     then levelled off; Coyle 1984), then 1.2x the general rate only while still above a typical
+     person's path (former athletes stay ~20% above sedentary peers for 10–22 years). */
 /* VO2max performance groups by age and sex (Mandsager 2018 cut points, as in the patient report). */
 /* Each band: [first age, [25th, 50th, 75th, 97.7th percentile]]. */
 const VO2_GROUPS={male:[[0,[36,43,49,56]],[30,[35,40,46,53]],[40,[34,39,44,52]],[50,[29,36,41,50]],[60,[25,30,36,46]],[70,[21,25,30,41]],[80,[18,23,26,36]]],female:[[0,[31,38,44,52]],[30,[27,34,39,49]],[40,[25,32,37,47]],[50,[25,29,36,46]],[60,[22,26,32,41]],[70,[18,22,25,36]],[80,[15,19,22,31]]]};
-const STOP_FIRST_YEAR=.15;
-/* Aerobic stop line (lit review 2026-09-25): year 1 loses half of the surplus above the median VO2max
-   for age and sex (floor 5%, cap 20%; trained men near 60 lost 16% in 12 weeks), then 1.2x the general
-   rate, since detrained athletes keep losing faster for years. */
-function stopFirstYear(family,raw){if(family!=='act:aero'&&family!=='act:lt1')return STOP_FIRST_YEAR;const vo2=family==='act:aero'?+raw:+PATIENT.metrics.vo2,t=(VO2_GROUPS[PATIENT.sex==='female'?'female':'male'].filter(([lo])=>AGE>=lo).pop()||[])[1];
-  if(!Number.isFinite(vo2)||vo2<=0||!t)return STOP_FIRST_YEAR;return clamp(.5*(vo2-t[1])/vo2,.05,.20);}
-const STOP_RATE_MULT={'act:aero':1.2,'act:lt1':1.2};
+const STOP_STEP={strength:.08,power:.08,reactive:.11,aero:.12};
+const STOP_KIND={'act:lower':'strength','act:upper':'strength','act:cuff':'strength','act:kneeFlex':'strength','act:hipAbd':'strength','act:hipAdd':'strength','act:power':'power','act:throw':'power','act:sts':'power','act:reactive':'reactive','act:aero':'aero','act:lt1':'aero'};
+const STOP_AERO_MULT=1.2;
+const medianVO2=age=>((VO2_GROUPS[PATIENT.sex==='female'?'female':'male'].filter(([lo])=>age>=lo).pop()||[])[1]||[])[1];
+function stopFirstYear(family,raw,metric,age=AGE){const kind=STOP_KIND[family]||'strength';
+  if(kind==='aero'){const vo2=family==='act:aero'?+raw:+PATIENT.metrics.vo2,med=medianVO2(age);return Number.isFinite(vo2)&&vo2>0&&med?clamp(.5*(vo2-med)/vo2,.08,.18):STOP_STEP.aero;}
+  let step=STOP_STEP[kind];
+  if(kind==='strength'&&metric&&hasNorms(metric)){const p50=valdNormAt(metric,PATIENT.sex,age)?.knots.find(([p])=>p===50)?.[1],vN=toNewtons(metric,raw);if(Number.isFinite(p50)&&Number.isFinite(vN)&&vN>0)step=clamp(.30*(vN-p50)/vN,.04,.12);}
+  return step+(age>=75?.02:0);}
 (function registerKeepTraining(){for(const [fam,{stop,base=stop,metrics,evidence}] of Object.entries(KEEP_TRAINING)){DECLINE_CURVES[fam]=KEEP_TRAINING_CURVES[fam];FAMILY_BAND[fam]=FAMILY_BAND[base];
   EVIDENCE_HORIZONS[fam]=EVIDENCE_HORIZONS[base];FORECAST_EVIDENCE[fam]=evidence;for(const m of metrics)if(METRICS[m])METRICS[m].family=fam;}})();
 /* Rep and hold tests are tracked, not projected: reps and hold times fall much faster than
@@ -6121,8 +6130,11 @@ function projectCapacity(raw,family,sex,ageNow,target,mult=1){const rom=typeof f
   const fl=FAMILY_FLOOR[family];return fl!=null&&raw>fl?Math.max(v,fl):v;}
 /* The grey line: the patient stops training after this test. Range of motion also loses its
    training gain; balance and untracked families keep the red line. */
-function projectIfStopped(raw,family,sex,ageNow,target){const romKey=typeof family==='string'&&family.startsWith('rom:')?family.slice(4):null;if(romKey)return projectCapacity(raw,family,sex,ageNow,target,1/ROM_TRACK)-(ROM_DECLINE[romKey].pre||ROM_DECLINE[romKey].post?(romKey==='ankleDF_cm'?ROM_TRAINING_CREDIT.cm:ROM_TRAINING_CREDIT.deg):0);
-  const k=KEEP_TRAINING[family];if(!k)return projectCapacity(raw,family,sex,ageNow,target,1);const m=STOP_RATE_MULT[family]||1;let v=raw*(1-stopFirstYear(family,raw));for(let a=ageNow;a<target;a++){const d=clamp(Math.max(annualDecline(k.stop,sex,a)*m,annualDecline(family,sex,a)),0,.12);v*=1-d;}return v;}
+function projectIfStopped(raw,family,sex,ageNow,target,metric){const romKey=typeof family==='string'&&family.startsWith('rom:')?family.slice(4):null;if(romKey)return projectCapacity(raw,family,sex,ageNow,target,1/ROM_TRACK)-(ROM_DECLINE[romKey].pre||ROM_DECLINE[romKey].post?(romKey==='ankleDF_cm'?ROM_TRAINING_CREDIT.cm:ROM_TRAINING_CREDIT.deg):0);
+  const k=KEEP_TRAINING[family];if(!k)return projectCapacity(raw,family,sex,ageNow,target,1);const aero=STOP_KIND[family]==='aero';let v=raw*(1-stopFirstYear(family,raw,metric,ageNow));
+  /* A typical person's path for the aerobic 1.2x rule (LT1 at its usual share of VO2max). */
+  let med=aero?(medianVO2(ageNow)||0)*(family==='act:lt1'?LT1_FROM_VO2:1):0;
+  for(let a=ageNow;a<target;a++){const gen=annualDecline(k.stop,sex,a),d=clamp(Math.max(gen*(aero&&v>med?STOP_AERO_MULT:1),annualDecline(family,sex,a)),0,.12);v*=1-d;med*=1-gen;}return v;}
 /* People differ more with age: at 85-90, individual 4-5-year changes run from gains to twice the
    average loss (Newcastle 85+; Kallman 1990). So the range also widens by up to 1.6x for target ages
    from 75 to 85 (lit review 2026-09-25), whichever widening is larger. */
@@ -6130,7 +6142,7 @@ function projectBandAt(raw,family,sex,ageNow,target){if(family==='none')return [
 function projectBand(raw,family){return projectBandAt(raw,family,PATIENT.sex,AGE,TGT);}
 /* LT1 always sits below VO2max. Its share rises with age, so cap it at 85% of projected VO2max. */
 const LT1_MAX_SHARE=.85;
-function capToVO2(metric,v,stopped=false){if(metric!=='lt1_vo2')return v;const vo2=+PATIENT.metrics.vo2;if(!Number.isFinite(vo2)||vo2<=0)return v;const fam=METRICS.vo2.family;return Math.min(v,LT1_MAX_SHARE*(stopped?projectIfStopped(vo2,fam,PATIENT.sex,AGE,TGT):projectCapacity(vo2,fam,PATIENT.sex,AGE,TGT,1)));}
+function capToVO2(metric,v,stopped=false){if(metric!=='lt1_vo2')return v;const vo2=+PATIENT.metrics.vo2;if(!Number.isFinite(vo2)||vo2<=0)return v;const fam=METRICS.vo2.family;return Math.min(v,LT1_MAX_SHARE*(stopped?projectIfStopped(vo2,fam,PATIENT.sex,AGE,TGT,'vo2'):projectCapacity(vo2,fam,PATIENT.sex,AGE,TGT,1)));}
 /* Model 4.8 (Dan, 2026-09-25): isolated muscle force tests aim for the 75th percentile at the
    target age. Anchor: VALD's 75th percentile in the oldest age band it reports (Hub Normative
    Data Reports, Allied-Health, captured 2026-06-16; em-report-generator data/vald-norms-library).
@@ -6349,7 +6361,7 @@ function makeComponent(r,raw,extra={}){
     const meta=METRICS[r.metric];if(!meta||(meta.kind==='grade'&&!extra.gradeScreen))return null;
     const rr=resolveRequirement(r);if(rr.req==null||!Number.isFinite(+rr.req)||+rr.req<=0)return null;const req=+rr.req,unit=rr.unit||r.unit;
     const du=clamp(+r.demandUncertainty||0,0,.60),reqLo=req*(1-du),reqHi=req*(1+du);
-    const family=extra.today?'none':(meta.family||'none');const projRaw=capToVO2(r.metric,projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)),stopRaw=capToVO2(r.metric,projectIfStopped(+raw,family,PATIENT.sex,AGE,TGT),true);const [projLo,projHi]=projectBand(+raw,family).map(v=>capToVO2(r.metric,v));
+    const family=extra.today?'none':(meta.family||'none');const projRaw=capToVO2(r.metric,projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)),stopRaw=capToVO2(r.metric,projectIfStopped(+raw,family,PATIENT.sex,AGE,TGT,r.metric),true);const [projLo,projHi]=projectBand(+raw,family).map(v=>capToVO2(r.metric,v));
     /* LT1 held down by projected VO2max: the fix is VO2max, so name the VO2max it takes. */
     let lt1VO2=null;if(r.metric==='lt1_vo2'&&family!=='none'&&projRaw<projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)-1e-9){const rv=projectCapacity(1,METRICS.vo2.family,PATIENT.sex,AGE,TGT,1);lt1VO2={need:req/LT1_MAX_SHARE/Math.max(1e-6,rv),now:+PATIENT.metrics.vo2};}
     const lower=r.dir==='lower_better';const pct=v=>clamp(Math.floor((lower?req/v:v/req)*100),0,175);const curPct=pct(+raw),projPct=pct(projRaw);
@@ -6525,7 +6537,7 @@ function radarTableHTML(C,act){
 function glideChartSVG(c){
   const fam=c.family,sex=PATIENT.sex,a0=AGE,a1=Math.max(TGT,AGE+1),aG=Math.min(a1,a0+2),W=340,H=150,l=8,rt=86,t=14,b=24;
   const keep=a=>a>=a1?c.projRaw:projectCapacity(c.raw,fam,sex,a0,a,1),raise=a=>a<=aG?c.raw+(c.stg-c.raw)*(a-a0)/Math.max(1,aG-a0):projectCapacity(c.stg,fam,sex,aG,a,1),
-    lapse=a=>a<=aG?raise(a):projectIfStopped(c.stg,fam,sex,aG,a);
+    lapse=a=>a<=aG?raise(a):projectIfStopped(c.stg,fam,sex,aG,a,c.r.metric);
   const ages=[];for(let a=a0;a<=a1;a++)ages.push(a);const kv=ages.map(keep),rv=ages.map(raise),sv=ages.map(lapse),all=[c.req,...kv,...rv,...sv],top=Math.max(...all)*1.06||1,lo=Math.max(0,Math.min(...all)*.8);
   /* Not zero-based: the chart is about the gap between the two paths at the end. */
   const x=a=>l+(a-a0)/(a1-a0)*(W-l-rt),y=v=>t+(1-(clamp(v,lo,top)-lo)/Math.max(1e-9,top-lo))*(H-t-b),f=n=>n.toFixed(1),pl=vs=>ages.map((a,i)=>`${f(x(a))},${f(y(vs[i]))}`).join(' ');
@@ -6542,7 +6554,7 @@ function glideChartSVG(c){
 function glidePathsHTML(C){
   const opp=C.filter(c=>!c.meets&&!c.cappedUnknown&&!c.today&&!c.lt1VO2);if(!opp.length)return '';
   return `<div class="glidewrap"><div class="glidehead"><b>Raise the starting point</b><span>Where to build, and by when, so the glide path clears at ${TGT}.</span></div><div class="rlegend" style="margin:0 2px 8px"><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>If you keep training from today</span><span class="lg raise"><i></i>If you build to the goal first</span><span class="lg stop"><i></i>If training stops after that</span></div><div class="glidegrid">${opp.map(c=>{const endR=projectCapacity(c.stg,c.family,PATIENT.sex,Math.min(Math.max(TGT,AGE+1),AGE+2),Math.max(TGT,AGE+1),1),g=stgText(c);
-    const aG=Math.min(Math.max(TGT,AGE+1),AGE+2),endS=projectIfStopped(c.stg,c.family,PATIENT.sex,aG,Math.max(TGT,AGE+1));
+    const aG=Math.min(Math.max(TGT,AGE+1),AGE+2),endS=projectIfStopped(c.stg,c.family,PATIENT.sex,aG,Math.max(TGT,AGE+1),c.r.metric);
     if(g.pastLimit)return `<div class="glidecard"><div class="glidettl">${c.short}</div><div class="glidecap">To still have ${fmtU(c.req,c.unit)} at ${TGT}, you’d need about ${fmtU(c.stg,c.unit)} today, more than the ${fmtU(g.pastLimit,c.unit)} the test can time. Balance drops quickly after 70 for everyone, so keep training it; a longer timed test will show your progress.</div></div>`;
     return `<div class="glidecard"><div class="glidettl">${c.short}${c.via?` <small style="font-weight:600;color:var(--muted)">in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</div>${glideChartSVG(c)}<div class="glidecap">${g.txt}${g.sub?` (${g.sub})`:''}. Keep training from there and you reach about <b>${fmtU(endR,c.unit)}</b> at ${TGT}; this goal needs ${fmtU(c.req,c.unit)}. If training stopped after that, you’d be near ${fmtU(endS,c.unit)}.</div></div>`;}).join('')}</div></div>`;
 }

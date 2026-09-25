@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,22 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.11: the "if you stop" line follows the detraining literature (2026-09-25)
+
+Dan's direction: match the literature as closely as possible, but keep it realistic for Early Medical's population (coached, mostly training a year or more, tested on VALD isometric devices). The grey line shows the same patient if they stop training today: a first-year drop, then the general-population decline, never more slowly than the keep-training line.
+
+| | First-year drop | After year 1 | Basis | Grade |
+|---|---|---|---|---|
+| Strength | 30% of the surplus above the median for age and sex, 4–12%, where norms exist (VALD, grip); 8% otherwise; +2 points from age 75 | General rate | Isometric strength falls 5–12% after short programs (vs 10–20% by 1RM). After a year of training: ~0% isometric loss a year after stopping, 82% of the advantage over controls kept at 7 years (Leuven, Kennis 2013); +9–24% above baseline 3 years after stopping 2 years of training (Smith 2003) | C |
+| Power | 8%; hop and drop-jump reactivity 11% | General power rate | Power detrains no faster than strength in year one; rapid force a little faster (Bosquet 2013) | C |
+| VO₂max and LT1 | Half the surplus above the median for age and sex, 8–18% | 1.2× the general rate while still above a typical person's path, then the general rate | Masters athletes lost 9–18% in 2–3 months, then levelled off (Coyle 1984); the half-surplus rule predicts 16% vs 15% observed. 1.2× reproduces four long-term cohorts of athletes who stopped (−4% to +9%); former athletes stay ~20% above sedentary peers for 10–22 years | B–C |
+
+- The old 15% first-year strength loss came from short programs in previously sedentary older adults, measured by 1RM on the training machines. It was too large for long-term trainers tested isometrically.
+- Examples at 60 (180-lb man): knee extension at the median drops 4% in year one, at the 75th percentile 7%, near the top 12%. Grip at 120 lb drops about 5%. VO₂max 45 drops 17%; VO₂max 30 drops 8%.
+- Goal status is unchanged: the grey line never sets status. Test members: A 3 / 7 / 0; B 1 / 1 / 8. All-Proficient check: 110 of 594 short.
+- Gaps: no study followed masters lifters who stopped or used VALD tests; few data for ages 40–55 or women over 75. EM members' own retests after breaks of 3 months or more would be the best check.
+- Source review: session scratchpad `audit/lit2_detraining.md` (study table with PMIDs and derivations).
 
 ## Model 4.10.1: Dan's decisions on the 4.10 open items (2026-09-25)
 
