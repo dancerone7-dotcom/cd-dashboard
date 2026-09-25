@@ -7302,9 +7302,8 @@ function importData(e){
 
 function renderChip(){
   $("#patientChip").innerHTML = tab==='reference'
-    ? `<span class="meta">Reference · all activities, all requirements</span>`
-    : tab==='build' ? `<span class="meta">Building report…</span>`
-    : `<span class="nm">${PATIENT.name||'—'}</span><span class="meta">${PATIENT.sex} · age ${PATIENT.age} · marginal decade ${PATIENT.marginalDecadeAge}</span>`;
+    ? `<span class="meta">All goals and what each one needs · no patient data</span>`
+    : `<span class="nm">${PATIENT.name||'New patient'}</span><span class="meta">${PATIENT.sex} · age ${PATIENT.age} · planning to ${PATIENT.marginalDecadeAge}</span>`;
 }
 
 window.addEventListener('beforeunload',event=>{if(!hasUnsavedChanges())return;event.preventDefault();event.returnValue='';});
