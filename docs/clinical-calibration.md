@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,34 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.9.2: Proficient on ForceFrame tests is the VALD 75th percentile (2026-09-25)
+
+Dan's rule: on ForceFrame tests, Proficient is the VALD 75th percentile. There are two exceptions: a selected goal whose task needs more, or higher house norms for EM patients from Chris Hart, who is driving the ForceFrame integration.
+
+- **Calf target:** re-anchored on VALD's ForceFrame seated plantarflexion norms (VALD Hub, pulled 2026-09-25), replacing Kanayama 2023.
+  - The 75th percentile at 40–59 (pooled by VALD) is 1,116 N for men and 830 N for women.
+  - Carried to 90 on the keep-training decline, that is about 0.70 × BW for a 180-lb man and 0.69 for a 145-lb woman.
+  - Full distribution at 40–59 (25th / 50th / 75th / 90th): men 678 / 900 / 1,116 / 1,343 N; women 438 / 631 / 830 / 1,019 N. At 25 the 75th percentile is 1,333 N (men) and 1,080 N (women).
+- **Stand-ins:** a stand-in for a 75th-percentile strength target now aims for its own PCA Proficient level for 80–90 on every goal. Chad's goblet squat, for example, now aims for 15% BW; before, the position mapping put it at 9%.
+- **VALD Hub norms are absolute force only.** No body-weight-relative norms exist; every other metric name was rejected.
+- **Current PCA standards on the ForceFrame scale:**
+
+  | Standard | Reference body weight | Force | VALD percentile |
+  |---|---|---|---|
+  | Calf, men, Proficient 1.8 × BW (40–50) | 84 kg | about 1,480 N | about the 95th |
+  | Calf, men, Proficient 1.6 × BW (50–60) | 84 kg | — | about the 89th |
+  | Calf, women, Proficient 1.45 × BW (40–50) | 68 kg | — | about the 86th |
+  | Calf, women, Proficient 1.3 × BW (50–60) | 68 kg | — | about the 79th |
+  | Knee extension, men, Proficient | 84 kg | — | 96th–97th (see 4.9.1) |
+  | Knee extension, women, Proficient | 68 kg | — | 94th–95th |
+
+- **Proposed for the PCA (pending Dan and Chris Hart):** grade ForceFrame tests by VALD percentile for age and sex, the way the PCA already grades hip ad/ab and shoulder rotation:
+  - Proficient at or above the 75th;
+  - Developing from the 25th to the 75th;
+  - Deficient below the 25th.
+  - VALD's ForceFrame norms stop at 59, so patients 60 and older need an age slope, as the report generator already uses for hip and shoulder.
+- **Goal counts** for Chad, Peter and the demo patients are unchanged.
 
 ## Model 4.9.1: ForceFrame knee norms from the VALD Hub (2026-09-25)
 
