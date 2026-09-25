@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,86 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.8: 75th-percentile strength targets, opportunities and short-term goals (2026-09-25)
+
+Dan's direction, 2026-09-25:
+- Grip targets for fixed loads are the same for men and women.
+- Isolated muscle force tests use the VALD resources and age-projected decline for 75th-percentile targets.
+- Targets should be a stretch but realistic. Sniff-test with Chad Sweet (two years in the program) and Peter Wallach (did very well across the board).
+- Falling short on one test shouldn't read as "unable at 90". Show the glide path, and give every metric a short-term goal for the next 1–3 years.
+
+1. **Isolated muscle force tests aim for the 75th percentile at 90.**
+   - **Anchor:** the VALD 75th percentile in the oldest band VALD reports. Source: VALD Hub Normative Data Reports, Allied-Health population, captured 2026-06-16, in em-report-generator `data/vald-norms-library.json`.
+
+     | Test | VALD band | Men | Women |
+     |---|---|---|---|
+     | Knee extension | DynaMo seated, 60+ | 396 N | 271 N |
+     | Knee flexion | DynaMo prone, 60+ | 199 N | 126 N |
+     | Hip abduction | ForceFrame, 50–60 | 373 N | 268 N |
+     | Hip adduction | ForceFrame, 50–60 | 384 N | 270 N |
+     | Shoulder external rotation | ForceFrame, 50–60 | 154 N | 93 N |
+     | Grip | DynaMo, 60+ | 460 N | 275 N |
+
+   - **Calf:** VALD's seated calf norms stop at 59, so calf uses the report generator's fallback. That is Kanayama 2023, ages 75+, mean + 0.674 SD: 1.08 × BW for men and 1.00 for women.
+   - **Carried to 90 on the keep-training decline,** the same curve the patient is projected on. A patient at the 75th percentile in that band who keeps training lands exactly on the target.
+     - The report generator carries the same anchors forward with Stoll 2000's cross-sectional slopes. Those are gentler than within-person decline.
+     - Pairing them with a longitudinal patient projection would put the target above what even a 99th-percentile patient reaches. Peter's hip abduction is an example: 491 N at 44, about the VALD 99th percentile.
+   - **Divided by the patient's body weight,** because VALD norms are absolute force.
+   - **One target per test for every goal.** There is no longer an everyday/demanding split.
+
+   | Target at 90 | 180-lb man | 145-lb woman | Before |
+   |---|---|---|---|
+   | Knee extension | 0.29 × BW | 0.26 | 0.35 everyday, 0.45 demanding |
+   | Knee flexion | 0.14 | 0.12 | 0.16 |
+   | Hip abduction | 0.24 | 0.24 | 0.22–0.25 |
+   | Shoulder external rotation | 0.11 | 0.08 | 0.15–0.16, no source |
+   | Calf | 0.79 | 0.76 | 0.75 / 0.60 everyday, 1.05 / 0.85 demanding |
+   | Grip | 63 lb | 37 lb | 60 / 35 (weakness cut-off) |
+
+   - **Why the knee target moved.** The 0.35 / 0.45 thresholds came from Katayama & Yamasaki's belt-fixed dynamometer.
+     - That device reads about 1.8× higher than VALD at the same age. Healthy men in their 80s average 0.49 there and about 0.26 on VALD.
+     - On VALD, 0.35 at 90 sits around the 90th percentile for men and well above it for women, which is why almost nobody cleared it.
+     - The new target is close to the level at which every one of Katayama's hospital patients managed stairs, once the scale difference is allowed for.
+   - **Stand-ins** for these tests sit at the matching PCA 80–90 level, never below the Developing start. That start is where the VALD 75th percentile at 90 falls for knee strength.
+2. **Grip for fixed loads is the same for men and women.**
+   - This covers the dog walk (a 60-lb dog) and weapon handling (recoil). Target: the men's 75th percentile at 90, about 63 lb, which also covers a 60-lb dog's pull.
+   - Every other grip target is general hand strength and uses the 75th percentile by sex.
+3. **"Won't clear" is now "Opportunity."**
+   - A goal is still on track only when every test clears at 90.
+   - A projected shortfall is shown as an opportunity with a short-term goal, not a verdict.
+   - Opportunity is amber, not red.
+4. **A short-term goal (next 1–3 years) for every test.**
+   - Formula: target ÷ the share kept from today to 90 on the keep-training line. For range of motion it is target + degrees lost.
+   - The table shows "build to X" when today is below the goal and "hold at least X" when it is above.
+   - Tracked rep and hold tests: Proficient for their age.
+   - The clinician capacity table shows each measure's goal against the hardest target among the selected goals.
+5. **Glide-path charts** appear on each goal page for tests projected short. Each chart shows three things:
+   - today's path, red dashed;
+   - the path after building to the short-term goal over about two years and then gliding on the same decline, green;
+   - what the goal needs at 90.
+
+**Sniff test (the default 10 goals):**
+- **Chad Sweet** (57, two years in the program):
+  - Model 4.7: 0 on track, 5 won't clear, 5 need data. Model 4.8: 0 on track, 5 opportunities, 5 need data.
+  - His strength clears: deadlift, grip, and the goblet squat standing in for knee strength.
+  - VO₂max is an opportunity. Short-term goals: 38 for the walk (+14%), 40 for tennis (+20%), 54 for the hike (+62%).
+  - The other opportunities are aerobic base for the hike (32) and the dumbbell external rotation stand-in (13 lb, +5%).
+- **Peter Wallach** (44; VO₂max 54.9, ALMI 10.5, VALD January 2026):
+  - Model 4.7: 0 on track, 9 won't clear, 1 needs data. Model 4.8: 1 on track, 1 opportunity, 8 need data.
+  - Every strength test he has clears at 90. The one shortfall is VO₂max for the mountain hike: short-term goal 59 (+7%).
+  - The goals that need data are missing range of motion, loaded lifts, LT1, balance and hop RSI. None of these are in his VALD, CPET, DEXA or Notion records.
+- **Demo patients:** 0–7 of 10 on track (model 4.7: 0–3).
+- **All-Proficient synthetic patient:** 99 of 552 strength checks short (model 4.7: 180). Knee extension accounts for none of them (model 4.7: 81). The rest:
+  - demanding-goal loaded tests set at the 80–90 Proficient standard;
+  - fixed loads for lighter patients, including women's grip for the dog walk;
+  - calf strength for Proficient women, about 4% short, because the published calf norm has a smaller sex gap than EM's PCA bands.
+
+**Open:**
+- The static VALD library has no ForceFrame knee norms. The knee anchors are DynaMo seated extension and prone flexion: same positions, different device. Pull the ForceFrame knee norms from the VALD Hub to replace them.
+- The age mix of the DynaMo "60+" band is unknown. The anchor age is set at 65.
+- At older ages, EM's PCA knee bands and VALD disagree. The PCA 80–90 Proficient standard for men is 0.45 × BW; the VALD 75th percentile carried to 90 is 0.29.
+- Shoulder external rotation is entered as force ÷ body weight but labeled Nm/kg.
 
 ## Model 4.7: projections assume the patient keeps training (2026-09-24)
 

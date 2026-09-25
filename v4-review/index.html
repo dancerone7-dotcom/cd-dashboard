@@ -696,6 +696,24 @@ body{background:#eceff3}
 .radar .rgap.watch{stroke:#b7791f}.radar .rgapdot.watch{fill:#b7791f}.radar .rl.watchl{fill:#8a5a00;font-weight:700}
 .rtable tr.watch .rtest,.rtable tr.watch .rres{color:#8a5a00}.ptbl .pts.z-watch{color:#8a5a00}.minisvg .mgap.watch{fill:#b7791f}
 .z-watch{color:#8a5a00}
+/* Model 4.8: a projected shortfall is an opportunity (amber), not a red verdict; glide-path charts. */
+.readiness .big.r-gap,.ovword.z-gap,.pgverdict.r-gap .pgword,.actbtn.z-gap .pct,.zico.z-gap,.bval.z-gap,.obval.z-gap,.sctile .scz.z-gap,.srow.z-gap .df,.ptbl tr.z-gap .pts,.radarread.z-gap b,.rtable tr.miss .rtest,.rtable tr.miss .rres{color:#b45309}
+.actbtn.z-gap .ring{background:#e0a24a;color:#b45309}.ovcard.z-gap,.ovbarrow.z-gap,.sctile.z-gap,.radarread.z-gap{border-left-color:#e0a24a}
+.bproj.z-gap,.obfill.z-gap{background:#e0a24a}.pcard.z-gap{border-color:rgba(217,119,6,.35)}.srow.z-gap{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.28)}
+.radar .rl.miss{fill:#b45309}
+.rtable td.rstg small{color:var(--muted)}
+.rtable th,.rtable td{padding-left:8px;padding-right:8px}.rtable td.rstg{white-space:normal;min-width:118px}
+.glidewrap{margin:16px 0 8px}.glidehead{font-size:13.5px;color:var(--ink);margin:0 2px 8px}.glidehead span{color:var(--muted);margin-left:6px;font-size:12px}
+.glidegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.glidecard{border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px 12px 12px}
+.glidettl{font-weight:700;font-size:13px;color:var(--white);margin-bottom:2px}
+.glidecap{font-size:11.5px;line-height:1.45;color:var(--ink);margin-top:4px}
+svg.glide{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
+.glide .gaxis{stroke:rgba(15,23,42,.18)}.glide .gtick{font:600 9px var(--sans);fill:#64748b}
+.glide .gkeep{fill:none;stroke:#bc2a2a;stroke-width:2;stroke-dasharray:6 4}.glide .graise{fill:none;stroke:#3f9a6b;stroke-width:2.4}
+.glide .gneed{stroke:#3f9a6b;stroke-width:2;stroke-dasharray:2 3}.glide .gnow{fill:#2a7cfb}.glide .ggoal{fill:#3f9a6b;stroke:#fff;stroke-width:1.5}
+.glide .glbl{font:700 9.5px var(--sans)}.glide .glbl.k{fill:#bc2a2a}.glide .glbl.n{fill:#2f7d4f}.glide .glbl.t{fill:#2a7cfb}
+.rlegend .raise i{border-top:3px solid #3f9a6b}
 </style>
 </head>
 <body class="tab-reference">
@@ -763,9 +781,9 @@ body{background:#eceff3}
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
-const MODEL_VERSION='4.7';
+const MODEL_VERSION='4.8';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['A','B','C','R','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -800,17 +818,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.45,
     "role": "capacity",
     "weight": 1.4,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Strength to take stairs, get up from the floor and move quickly without being limited.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.45 × BW for stairs, getting up from the floor and demanding goals.",
+    "why": "Strength to take stairs, get up from the floor and move quickly without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Power",
@@ -983,21 +1001,17 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 60,
     "role": "capacity",
     "weight": 1.0,
     "group": "grip",
     "basis": "research",
-    "why": "Below the grip-weakness cut-off (27 kg men, 16 kg women), everyday handling starts to be limited.",
-    "evi": "Cruz-Jentoft 2019 (EWGSOP2): low grip strength is below 27 kg (men) and 16 kg (women); Dodds 2014 medians at 85: 29 kg (men), 17 kg (women).",
+    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 60,
-     "female": 35
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Strength",
@@ -1005,17 +1019,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Walking while carrying needs at least the 0.35 × BW walking level.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "Walking while carrying needs leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Core",
@@ -1228,21 +1242,17 @@ const ACTIVITIES = {
     "metric": "anklePF_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.75,
     "role": "capacity",
     "weight": 1.0,
     "group": "calf",
-    "basis": "practice",
-    "why": "Hours on your feet push off the balls of the feet. Set where this stops limiting an everyday task at 80–90: the start of the PCA Developing band (not Deficient).",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 0.75 × BW (men) and 0.60 (women), Proficient 1.05 and 0.85.",
+    "basis": "research",
+    "why": "Hours on your feet push off the balls of the feet. Target: stronger than 3 in 4 people at 90.",
+    "evi": "Kanayama 2023 isometric plantarflexion, ages 75+, 75th percentile (mean + 0.674 SD: 1.08 × BW men, 1.00 women), carried to 90 on the keep-training decline. VALD’s seated calf norms stop at 59, so this is the same fallback the patient report uses.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.25,
-    "reqBySex": {
-     "male": 0.75,
-     "female": 0.6
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Endurance",
@@ -1267,17 +1277,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Continuous walking and standing need about 0.35 × BW.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "Hours of walking and standing need leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Balance",
@@ -1390,21 +1400,17 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 60,
     "role": "capacity",
     "weight": 0.8,
     "group": "grip",
     "basis": "research",
-    "why": "Below the grip-weakness cut-off (27 kg men, 16 kg women), everyday handling starts to be limited.",
-    "evi": "Cruz-Jentoft 2019 (EWGSOP2): low grip strength is below 27 kg (men) and 16 kg (women); Dodds 2014 medians at 85: 29 kg (men), 17 kg (women).",
+    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 60,
-     "female": 35
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Core",
@@ -1498,21 +1504,17 @@ const ACTIVITIES = {
     "metric": "anklePF_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.75,
     "role": "capacity",
     "weight": 1.0,
     "group": "calf",
-    "basis": "practice",
-    "why": "Dancing is on the balls of the feet. Set where this stops limiting an everyday task at 80–90: the start of the PCA Developing band (not Deficient).",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03)",
+    "basis": "research",
+    "why": "Dancing is on the balls of the feet. Target: stronger than 3 in 4 people at 90.",
+    "evi": "Kanayama 2023 isometric plantarflexion, ages 75+, 75th percentile (mean + 0.674 SD: 1.08 × BW men, 1.00 women), carried to 90 on the keep-training decline. VALD’s seated calf norms stop at 59, so this is the same fallback the patient report uses.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.25,
-    "reqBySex": {
-     "male": 0.75,
-     "female": 0.6
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Balance",
@@ -1597,21 +1599,17 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 60,
     "role": "capacity",
     "weight": 1.5,
     "group": "grip",
     "basis": "research",
-    "why": "Below the grip-weakness cut-off (27 kg men, 16 kg women), everyday handling starts to be limited.",
-    "evi": "Cruz-Jentoft 2019 (EWGSOP2): low grip strength is below 27 kg (men) and 16 kg (women); Dodds 2014 medians at 85: 29 kg (men), 17 kg (women).",
+    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 60,
-     "female": 35
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Strength",
@@ -1619,15 +1617,14 @@ const ACTIVITIES = {
     "metric": "shoulderER_NmKg",
     "unit": "Nm/kg",
     "dir": "higher_better",
-    "req": 0.15,
     "role": "capacity",
     "weight": 1.0,
     "group": "shoulder",
-    "basis": "practice",
-    "why": "Rotator-cuff capacity stabilizes the shoulder while force is transmitted through the hand.",
-    "evi": "",
+    "basis": "research",
+    "why": "Rotator-cuff capacity stabilizes the shoulder while force is transmitted through the hand. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -1985,17 +1982,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Moving around the house and getting up and down need about 0.35 × BW.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "Moving around the house and getting up and down need leg strength. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Mobility",
@@ -2047,17 +2044,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 1.3,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Below about 0.35 × BW, rising from a standard seat starts to depend on help.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "Rising from a standard seat without the hands depends on knee strength. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Mobility",
@@ -2195,21 +2192,17 @@ const ACTIVITIES = {
     "metric": "anklePF_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.75,
     "role": "capacity",
     "weight": 0.9,
     "group": "calf",
-    "basis": "practice",
-    "why": "Soft sand makes every step a push-off. Set where this stops limiting an everyday task at 80–90: the start of the PCA Developing band (not Deficient).",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 0.75 × BW (men) and 0.60 (women), Proficient 1.05 and 0.85.",
+    "basis": "research",
+    "why": "Soft sand makes every step a push-off. Target: stronger than 3 in 4 people at 90.",
+    "evi": "Kanayama 2023 isometric plantarflexion, ages 75+, 75th percentile (mean + 0.674 SD: 1.08 × BW men, 1.00 women), carried to 90 on the keep-training decline. VALD’s seated calf norms stop at 59, so this is the same fallback the patient report uses.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.25,
-    "reqBySex": {
-     "male": 0.75,
-     "female": 0.6
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Endurance",
@@ -2234,17 +2227,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Walking needs about 0.35 × BW; sand adds effort, not a higher strength floor.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "Walking in sand needs leg strength; sand adds effort. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Balance",
@@ -2381,17 +2374,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Kneeling, getting up and walking the garden need about 0.35 × BW.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "Kneeling, getting up and walking the garden need leg strength. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Mobility",
@@ -2528,21 +2521,18 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 63,
     "role": "capacity",
     "weight": 1.1,
     "group": "grip",
-    "basis": "modeled",
-    "why": "Holding a pulling 60-lb dog or controlling recoil needs grip above the weakness cut-off.",
-    "evi": "Dodds 2014 grip norms (PLoS One, PMID 25474696): the 75th percentile at 90 is 29 kg (63 lb) for men and 17 kg (37 lb) for women. Set there, above the EWGSOP2 low-strength cut-off (27 / 16 kg), for extra control of a pulling load.",
+    "basis": "research",
+    "why": "Holding a pulling 60-lb dog takes the same grip from anyone. Target: the same for men and women, because the load is.",
+    "evi": "The dog pulls the same on anyone, so men and women share one target: the men’s 75th percentile at 90 from VALD DynaMo grip norms (460 N at 60+, carried to 90 on the keep-training decline), about 63 lb. That also covers a 60-lb dog’s pull with a small margin.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 63,
-     "female": 37
-    }
+    "reqKind": "p75_force",
+    "sexNeutral": "male"
    },
    {
     "cat": "Strength",
@@ -2669,15 +2659,14 @@ const ACTIVITIES = {
     "metric": "shoulderER_NmKg",
     "unit": "Nm/kg",
     "dir": "higher_better",
-    "req": 0.15,
     "role": "capacity",
     "weight": 1.0,
     "group": "shoulder",
-    "basis": "practice",
-    "why": "Cuff force stabilizes the humeral head during elevation and load.",
-    "evi": "",
+    "basis": "research",
+    "why": "Cuff force stabilizes the humeral head during elevation and load. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -2689,21 +2678,17 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 60,
     "role": "capacity",
     "weight": 0.8,
     "group": "grip",
     "basis": "research",
-    "why": "Below the grip-weakness cut-off (27 kg men, 16 kg women), everyday handling starts to be limited.",
-    "evi": "Cruz-Jentoft 2019 (EWGSOP2): low grip strength is below 27 kg (men) and 16 kg (women); Dodds 2014 medians at 85: 29 kg (men), 17 kg (women).",
+    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 60,
-     "female": 35
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Mobility",
@@ -2776,17 +2761,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.45,
     "role": "capacity",
     "weight": 1.1,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Strength to take stairs, get up from the floor and move quickly without being limited.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.45 × BW for stairs, getting up from the floor and demanding goals.",
+    "why": "Strength to take stairs, get up from the floor and move quickly without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Eccentric",
@@ -2916,21 +2901,17 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 60,
     "role": "capacity",
     "weight": 0.9,
     "group": "grip",
     "basis": "research",
-    "why": "Below the grip-weakness cut-off (27 kg men, 16 kg women), everyday handling starts to be limited.",
-    "evi": "Cruz-Jentoft 2019 (EWGSOP2): low grip strength is below 27 kg (men) and 16 kg (women); Dodds 2014 medians at 85: 29 kg (men), 17 kg (women).",
+    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 60,
-     "female": 35
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Strength",
@@ -2938,17 +2919,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 0.8,
     "group": "lower-strength",
     "basis": "research",
-    "why": "The approach and lunge need at least the 0.35 × BW walking level.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "The approach and lunge need leg strength. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Mobility",
@@ -2978,21 +2959,18 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 63,
     "role": "capacity",
     "weight": 1.4,
     "group": "grip",
-    "basis": "modeled",
-    "why": "Holding a pulling 60-lb dog or controlling recoil needs grip above the weakness cut-off.",
-    "evi": "Dodds 2014 grip norms (PLoS One, PMID 25474696): the 75th percentile at 90 is 29 kg (63 lb) for men and 17 kg (37 lb) for women. Set there, above the EWGSOP2 low-strength cut-off (27 / 16 kg), for extra control of a pulling load.",
+    "basis": "research",
+    "why": "Controlling recoil takes the same grip from anyone. Target: the same for men and women, because the load is.",
+    "evi": "Recoil is the same for anyone, so men and women share one target: the men’s 75th percentile at 90 from VALD DynaMo grip norms (460 N at 60+, carried to 90 on the keep-training decline), about 63 lb.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 63,
-     "female": 37
-    }
+    "reqKind": "p75_force",
+    "sexNeutral": "male"
    },
    {
     "cat": "Strength",
@@ -3000,15 +2978,14 @@ const ACTIVITIES = {
     "metric": "shoulderER_NmKg",
     "unit": "Nm/kg",
     "dir": "higher_better",
-    "req": 0.16,
     "role": "capacity",
     "weight": 1.0,
     "group": "shoulder",
-    "basis": "practice",
-    "why": "Cuff strength stabilizes the upper extremity.",
-    "evi": "",
+    "basis": "research",
+    "why": "Cuff strength stabilizes the upper extremity. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -3064,21 +3041,17 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 60,
     "role": "capacity",
     "weight": 1.0,
     "group": "grip",
     "basis": "research",
-    "why": "Below the grip-weakness cut-off (27 kg men, 16 kg women), everyday handling starts to be limited.",
-    "evi": "Cruz-Jentoft 2019 (EWGSOP2): low grip strength is below 27 kg (men) and 16 kg (women); Dodds 2014 medians at 85: 29 kg (men), 17 kg (women).",
+    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 60,
-     "female": 35
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Strength",
@@ -3204,17 +3177,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.45,
     "role": "capacity",
     "weight": 1.0,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Knee strength for fast starts, stops and single-leg loading.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.45 × BW for stairs, getting up from the floor and demanding goals.",
+    "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Strength",
@@ -3222,15 +3195,14 @@ const ACTIVITIES = {
     "metric": "hipAbd_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.25,
     "role": "capacity",
     "weight": 0.8,
     "group": "hip",
-    "basis": "practice",
-    "why": "Frontal-plane hip force stabilizes the plant leg.",
-    "evi": "",
+    "basis": "research",
+    "why": "Frontal-plane hip force stabilizes the plant leg. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -3366,17 +3338,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.45,
     "role": "capacity",
     "weight": 1.0,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Knee strength for fast starts, stops and single-leg loading.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.45 × BW for stairs, getting up from the floor and demanding goals.",
+    "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Balance",
@@ -3422,15 +3394,14 @@ const ACTIVITIES = {
     "metric": "shoulderER_NmKg",
     "unit": "Nm/kg",
     "dir": "higher_better",
-    "req": 0.16,
     "role": "capacity",
     "weight": 0.8,
     "group": "shoulder",
-    "basis": "practice",
-    "why": "Cuff strength supports repeated racquet acceleration/deceleration.",
-    "evi": "",
+    "basis": "research",
+    "why": "Cuff strength supports repeated racquet acceleration/deceleration. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -3569,15 +3540,14 @@ const ACTIVITIES = {
     "metric": "shoulderER_NmKg",
     "unit": "Nm/kg",
     "dir": "higher_better",
-    "req": 0.15,
     "role": "capacity",
     "weight": 0.9,
     "group": "shoulder",
-    "basis": "practice",
-    "why": "Cuff capacity supports repetitive overhead stroke mechanics.",
-    "evi": "",
+    "basis": "research",
+    "why": "Cuff capacity supports repetitive overhead stroke mechanics. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -3657,21 +3627,17 @@ const ACTIVITIES = {
     "metric": "anklePF_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 1.05,
     "role": "capacity",
     "weight": 0.9,
     "group": "plantarflexor-force",
-    "basis": "practice",
-    "why": "Set at the PCA Proficient level for 80–90: this goal is demanding for this capacity.",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03)",
+    "basis": "research",
+    "why": "Finning and climbing out of the water load the calves. Target: stronger than 3 in 4 people at 90.",
+    "evi": "Kanayama 2023 isometric plantarflexion, ages 75+, 75th percentile (mean + 0.674 SD: 1.08 × BW men, 1.00 women), carried to 90 on the keep-training decline. VALD’s seated calf norms stop at 59, so this is the same fallback the patient report uses.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 1.05,
-     "female": 0.85
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Core",
@@ -3781,15 +3747,14 @@ const ACTIVITIES = {
     "metric": "hipAbd_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.25,
     "role": "capacity",
     "weight": 1.0,
     "group": "hip",
-    "basis": "practice",
-    "why": "Hip force helps maintain pelvic control.",
-    "evi": "",
+    "basis": "research",
+    "why": "Hip force helps maintain pelvic control. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -3819,21 +3784,17 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 60,
     "role": "capacity",
     "weight": 0.7,
     "group": "grip",
     "basis": "research",
-    "why": "Below the grip-weakness cut-off (27 kg men, 16 kg women), everyday handling starts to be limited.",
-    "evi": "Cruz-Jentoft 2019 (EWGSOP2): low grip strength is below 27 kg (men) and 16 kg (women); Dodds 2014 medians at 85: 29 kg (men), 17 kg (women).",
+    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 60,
-     "female": 35
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Aerobic",
@@ -4015,21 +3976,17 @@ const ACTIVITIES = {
     "metric": "anklePF_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 1.05,
     "role": "capacity",
     "weight": 1.0,
     "group": "plantarflexor-force",
-    "basis": "practice",
-    "why": "Set at the PCA Proficient level for 80–90: this goal is demanding for this capacity.",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03)",
+    "basis": "research",
+    "why": "Climbing with a pack loads the calves. Target: stronger than 3 in 4 people at 90.",
+    "evi": "Kanayama 2023 isometric plantarflexion, ages 75+, 75th percentile (mean + 0.674 SD: 1.08 × BW men, 1.00 women), carried to 90 on the keep-training decline. VALD’s seated calf norms stop at 59, so this is the same fallback the patient report uses.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 1.05,
-     "female": 0.85
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Balance",
@@ -4137,15 +4094,14 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.45,
     "role": "capacity",
     "weight": 1.2,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Knee strength for fast starts, stops and single-leg loading.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.45 × BW for stairs, getting up from the floor and demanding goals.",
+    "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -4214,15 +4170,14 @@ const ACTIVITIES = {
     "metric": "hipAbd_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.25,
     "role": "capacity",
     "weight": 0.8,
     "group": "hip",
-    "basis": "practice",
-    "why": "Frontal-plane hip force supports edge control.",
-    "evi": "",
+    "basis": "research",
+    "why": "Frontal-plane hip force supports edge control. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -4338,15 +4293,14 @@ const ACTIVITIES = {
     "metric": "shoulderER_NmKg",
     "unit": "Nm/kg",
     "dir": "higher_better",
-    "req": 0.15,
     "role": "capacity",
     "weight": 0.8,
     "group": "shoulder",
-    "basis": "practice",
-    "why": "Cuff reserve supports repetitive stroke control.",
-    "evi": "",
+    "basis": "research",
+    "why": "Cuff reserve supports repetitive stroke control. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame shoulder external rotation, 75th percentile at ages 50–60 (154 N men, 93 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -4493,21 +4447,17 @@ const ACTIVITIES = {
     "metric": "grip_lb",
     "unit": "lb",
     "dir": "higher_better",
-    "req": 60,
     "role": "capacity",
     "weight": 0.7,
     "group": "grip",
     "basis": "research",
-    "why": "Below the grip-weakness cut-off (27 kg men, 16 kg women), everyday handling starts to be limited.",
-    "evi": "Cruz-Jentoft 2019 (EWGSOP2): low grip strength is below 27 kg (men) and 16 kg (women); Dodds 2014 medians at 85: 29 kg (men), 17 kg (women).",
+    "why": "Grip strength for handling everyday things without being limited. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo grip, 75th percentile at ages 60+ (460 N men, 275 N women), carried to 90 on the keep-training decline: about 63 lb for men and 37 lb for women, which matches the Dodds 2014 75th percentile at 90.",
     "src": "VALD DynaMo",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 60,
-     "female": 35
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Mobility",
@@ -4578,17 +4528,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.45,
     "role": "capacity",
     "weight": 0.9,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Knee strength for fast starts, stops and single-leg loading.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.45 × BW for stairs, getting up from the floor and demanding goals.",
+    "why": "Knee strength for fast starts, stops and single-leg loading. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Strength",
@@ -4596,21 +4546,17 @@ const ACTIVITIES = {
     "metric": "anklePF_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 1.05,
     "role": "capacity",
     "weight": 0.8,
     "group": "calf",
-    "basis": "practice",
-    "why": "Running loads the calf at several times body weight. Set at the PCA Proficient level for 80–90: this goal is demanding for this capacity.",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 0.75 × BW (men) and 0.60 (women), Proficient 1.05 and 0.85.",
+    "basis": "research",
+    "why": "Running loads the calf at several times body weight. Target: stronger than 3 in 4 people at 90.",
+    "evi": "Kanayama 2023 isometric plantarflexion, ages 75+, 75th percentile (mean + 0.674 SD: 1.08 × BW men, 1.00 women), carried to 90 on the keep-training decline. VALD’s seated calf norms stop at 59, so this is the same fallback the patient report uses.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.25,
-    "reqBySex": {
-     "male": 1.05,
-     "female": 0.85
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Endurance",
@@ -4813,17 +4759,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 1.1,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Riding and getting on and off the bike need about 0.35 × BW.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "Riding and getting on and off the bike need leg strength. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Strength",
@@ -4831,17 +4777,17 @@ const ACTIVITIES = {
     "metric": "kneeFlex_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.16,
     "role": "capacity",
     "weight": 0.8,
     "group": "lower-strength",
-    "basis": "practice",
-    "why": "PCA Developing for knee flexion is 40% of knee extension: 40% of the 0.40 × BW cycling target.",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 40% of knee extension.",
+    "basis": "research",
+    "why": "Pulling through the pedal stroke uses the hamstrings. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo prone knee flexion, 75th percentile at ages 60+ (199 N men, 126 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    }
   ]
  },
@@ -4903,21 +4849,17 @@ const ACTIVITIES = {
     "metric": "anklePF_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.75,
     "role": "capacity",
     "weight": 0.8,
     "group": "calf",
-    "basis": "practice",
-    "why": "Each step ends with a calf push-off. Set where this stops limiting an everyday task at 80–90: the start of the PCA Developing band (not Deficient).",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 0.75 × BW (men) and 0.60 (women), Proficient 1.05 and 0.85.",
+    "basis": "research",
+    "why": "Each step ends with a calf push-off. Target: stronger than 3 in 4 people at 90.",
+    "evi": "Kanayama 2023 isometric plantarflexion, ages 75+, 75th percentile (mean + 0.674 SD: 1.08 × BW men, 1.00 women), carried to 90 on the keep-training decline. VALD’s seated calf norms stop at 59, so this is the same fallback the patient report uses.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.25,
-    "reqBySex": {
-     "male": 0.75,
-     "female": 0.6
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Endurance",
@@ -4942,17 +4884,17 @@ const ACTIVITIES = {
     "metric": "kneeExt_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.35,
     "role": "capacity",
     "weight": 0.8,
     "group": "lower-strength",
     "basis": "research",
-    "why": "Below about 0.35 × BW, walking on your own starts to be limited.",
-    "evi": "Katayama & Yamasaki 2017 (Jpn J Rehabil Med 54:761, DOI 10.2490/jjrmc.54.761; data from Yamasaki 2002, Sogo Rehabil 30:747): among hospital rehab patients, 95% walked on their own at 0.35–0.39 × BW and all did above 0.40; all above 0.50 managed stairs. Healthy people in their 80s average 0.49 (men) and 0.39 (women). Body weight is already in the measure, so the task sets one target for men and women: 0.35 × BW for everyday goals.",
+    "why": "An hour of walking needs leg strength in reserve. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD DynaMo seated knee extension, 75th percentile at ages 60+ (396 N men, 271 N women), carried to 90 on the keep-training decline and divided by body weight: about 0.29 × BW for a 180-lb man and 0.26 for a 145-lb woman. That is close to the level at which every hospital rehab patient managed stairs in Katayama & Yamasaki 2017, once their belt-fixed dynamometer’s higher readings (about 1.8×) are allowed for.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
-    "demandUncertainty": 0.3
+    "demandUncertainty": 0.3,
+    "reqKind": "p75_force"
    },
    {
     "cat": "Mobility",
@@ -5486,15 +5428,14 @@ const ACTIVITIES = {
     "metric": "hipAbd_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.22,
     "role": "capacity",
     "weight": 0.8,
     "group": "hip",
-    "basis": "practice",
-    "why": "Frontal-plane hip force contributes to pelvic control.",
-    "evi": "",
+    "basis": "research",
+    "why": "Frontal-plane hip force contributes to pelvic control. Target: stronger than 3 in 4 people at 90.",
+    "evi": "VALD ForceFrame hip abduction, 75th percentile at ages 50–60 (373 N men, 268 N women), carried to 90 on the keep-training decline and divided by body weight.",
     "src": "VALD ForceFrame",
-    "reqKind": null,
+    "reqKind": "p75_force",
     "reqArgs": {},
     "critical": false,
     "confidence": "direct",
@@ -5506,21 +5447,17 @@ const ACTIVITIES = {
     "metric": "anklePF_xBW",
     "unit": "× BW",
     "dir": "higher_better",
-    "req": 0.75,
     "role": "capacity",
     "weight": 0.8,
     "group": "ankle",
-    "basis": "practice",
-    "why": "Set where this stops limiting an everyday task at 80–90: the start of the PCA Developing band (not Deficient).",
-    "evi": "PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03)",
+    "basis": "research",
+    "why": "The calf steadies the ankle on one leg. Target: stronger than 3 in 4 people at 90.",
+    "evi": "Kanayama 2023 isometric plantarflexion, ages 75+, 75th percentile (mean + 0.674 SD: 1.08 × BW men, 1.00 women), carried to 90 on the keep-training decline. VALD’s seated calf norms stop at 59, so this is the same fallback the patient report uses.",
     "src": "VALD ForceFrame",
     "critical": false,
     "confidence": "direct",
     "demandUncertainty": 0.3,
-    "reqBySex": {
-     "male": 0.75,
-     "female": 0.6
-    }
+    "reqKind": "p75_force"
    },
    {
     "cat": "Balance",
@@ -5912,8 +5849,33 @@ function projectBand(raw,family){return projectBandAt(raw,family,PATIENT.sex,AGE
 /* LT1 always sits below VO2max. Its share rises with age, so cap it at 85% of projected VO2max. */
 const LT1_MAX_SHARE=.85;
 function capToVO2(metric,v,stopped=false){if(metric!=='lt1_vo2')return v;const vo2=+PATIENT.metrics.vo2;if(!Number.isFinite(vo2)||vo2<=0)return v;const fam=METRICS.vo2.family;return Math.min(v,LT1_MAX_SHARE*(stopped?projectIfStopped(vo2,fam,PATIENT.sex,AGE,TGT):projectCapacity(vo2,fam,PATIENT.sex,AGE,TGT,1)));}
+/* Model 4.8 (Dan, 2026-09-25): isolated muscle force tests aim for the 75th percentile at the
+   target age. Anchor: VALD's 75th percentile in the oldest age band it reports (Hub Normative
+   Data Reports, Allied-Health, captured 2026-06-16; em-report-generator data/vald-norms-library).
+   That value is carried to the target age along the same keep-training decline the patient is
+   projected on, so someone at the 75th percentile in that band who keeps training lands exactly
+   on the target. VALD norms are absolute force, so the target is converted with the patient's
+   body weight. Calf strength has no VALD band past 59 in the library, so it uses the report
+   generator's fallback: Kanayama 2023, ages 75+, mean + 0.674 SD, already in × BW. */
+const VALD_P75={
+  kneeExt_xBW:{src:'VALD DynaMo knee extension, seated, age 60+',age:65,male:395.6,female:271.0},
+  kneeFlex_xBW:{src:'VALD DynaMo knee flexion, prone, age 60+',age:65,male:198.6,female:126.3},
+  hipAbd_xBW:{src:'VALD ForceFrame hip abduction, age 50–60',age:55,male:373,female:268},
+  hipAdd_xBW:{src:'VALD ForceFrame hip adduction, age 50–60',age:55,male:384,female:270},
+  shoulderER_NmKg:{src:'VALD ForceFrame shoulder external rotation, age 50–60',age:55,male:154,female:93},
+  grip_lb:{src:'VALD DynaMo grip, age 60+',age:65,male:459.5,female:274.5,lb:true},
+  anklePF_xBW:{src:'Kanayama 2023 plantarflexion, age 75+ (VALD seated norms stop at 59)',age:78,xbw:{male:1.08,female:1.00}}
+};
+function valdP75Target(metric,sex){const a=VALD_P75[metric];if(!a)return null;const k=projectCapacity(1,METRICS[metric].family,sex,a.age,Math.max(a.age,TGT),1);
+  if(a.xbw)return {value:a.xbw[sex]*k};const n=a[sex]*k;if(a.lb)return {value:n/4.44822};const bw=+PATIENT.bodyWeight_lb;
+  return Number.isFinite(bw)&&bw>0?{value:n/(bw*0.45359237*9.80665),newtons:n}:{value:null,newtons:n};}
 const MET_CONVENTION={mlKgMinPerMET:3.5,src:'Aerobic goals store absolute oxygen cost for an older adult (Older Adult Compendium MET60+ × 2.7, Adult Compendium MET × 3.5); task demand stays fixed with age and sex'};
 function resolveRequirement(r){
+  if(r.reqKind==='p75_force'){
+    /* A fixed external load needs the same grip from everyone, so those targets use the men's value. */
+    const t=valdP75Target(r.metric,r.sexNeutral||(PATIENT.sex==='female'?'female':'male'));
+    return t&&t.value!=null?{req:t.value,unit:METRICS[r.metric]?.unit||r.unit}:{req:null,unit:METRICS[r.metric]?.unit||r.unit,why:'Body weight is required to convert the VALD force norm.'};
+  }
   if(r.reqKind==='fixed_load_pctBW'){
     const bw=+PATIENT.bodyWeight_lb,load=+r.reqArgs?.loadLb,reserve=+r.reserveAssumption?.multiplier||1;
     if(!Number.isFinite(bw)||bw<=0)return {req:null,unit:METRICS[r.metric]?.unit||r.unit,why:'Body weight is required to convert the fixed external load.'};
@@ -5934,10 +5896,12 @@ function shortLabel(label){let s=(label||'').replace(/relative /ig,'').replace(/
 const CONF_META={direct:{dot:'●',label:'direct measure'},proxy:{dot:'◐',label:'proxy measure'},modifier:{dot:'◇',label:'movement/context modifier'},context:{dot:'◇',label:'context only'}};
 const basisBadge=r=>`<span class="badge ${r.basis==='task'||r.basis==='research'?'confirmed':'modeled'}">${r.basis==='task'?'◆ fixed task':r.basis==='research'?'✔ research':'~ '+(r.basis||'modeled')}</span>`;
 const ZICON={clear:'✓',gap:'⚠',incomplete:'?',watch:'◐'};
-/* Goal status, defined once. Every target counts: a goal is on track only when
-   every test still clears at the target age. Missing tests are a data state. */
-const GOAL_STATUS={clear:'On track',gap:'Won’t clear',incomplete:'Needs more data'};
-const STATUS_RULE='A goal is on track only when every one of its targets still clears at the target age. Any projected miss means it won’t clear. Missing tests with no miss mean it needs more data.';
+/* Goal status, defined once. A goal is on track when every test still clears at the target age.
+   A projected shortfall is an opportunity, not a verdict (Dan, 2026-09-25): each short test gets a
+   short-term goal that raises its starting point enough for the glide path to clear. Missing tests
+   are a data state. */
+const GOAL_STATUS={clear:'On track',gap:'Opportunity',incomplete:'Needs more data'};
+const STATUS_RULE='A goal is on track when every one of its targets still clears at the target age. If a test is projected short, the goal is an opportunity: that test gets a short-term goal for the next 1–3 years that puts it back on track. Missing tests with no shortfall mean it needs more data.';
 /* How firm each target number is. A: set by the task itself or a close
    published match. B: adapted from research or a related task. C: clinical
    estimate, pending validation. */
@@ -5945,7 +5909,7 @@ const TARGET_GRADES={A:'Task standard',B:'Research-based',C:'Clinical estimate'}
 function targetGrade(r){
   if(r.protocolPending)return 'C';
   if(r.reqKind==='aerobic_vo2'||r.reqKind==='aerobic_lt1')return r.taskEvidenceGrade||'C';
-  if(r.reqKind==='fixed_load_pctBW')return 'B';
+  if(r.reqKind==='fixed_load_pctBW'||r.reqKind==='p75_force')return 'B';
   return r.basis==='task'?'A':r.basis==='research'?'B':'C';
 }
 const TEST_NAMES={vo2:'VO₂max',lt1_vo2:'Aerobic base (LT1)',ankleDF_cm:'Ankle dorsiflexion',anklePF_xBW:'Calf strength',backSquat_pctBW:'Back squat',balanceSL_EO_s:'Single-leg balance',calfRaise_reps:'Calf raises',cmjPower_WkG:'Jump power',dropJump_RSI:'Drop jump',grip_lb:'Grip strength',hamstringSLR_deg:'Straight-leg raise',hipAbd_xBW:'Hip abduction',hipFlexion_deg:'Hip flexion',hipIR_deg:'Hip rotation',hopRSI:'Pogo hops',kneeExt_xBW:'Knee extension',kneeFlex_xBW:'Knee flexion',loadedRow_pctBW:'Loaded row',loadedStepup_pctBW:'Loaded step-up',ohPress_pctBW:'Seated overhead press',pallof_pctBW:'Pallof hold',plankHeelWall_s:'Plank',pushup_reps:'Push-ups',relDeadlift_pctBW:'Deadlift',rotMBThrow_m:'Rotational throw',shoulderER_NmKg:'Rotator cuff',shoulderFlexion_deg:'Shoulder flexion',sidePlank_s:'Side plank',slVertJump_cm:'Single-leg jump',stepDown_in:'Step-down',stsPower_Wkg:'Sit-to-stand power',suitcaseCarry_pctBW:'Suitcase carry',thoracicExt_deg:'Upper-back extension',thoracicRot_deg:'Trunk rotation',chairStand_reps:'30-s chair stand',kneeFlexROM_deg:'Knee flexion range',hipExt_deg:'Hip extension range',hipER_deg:'Hip external rotation',hipAbdROM_deg:'Hip abduction range',sorensen_s:'Sorensen hold',splitSquat_reps:'Split squat',deadHang_s:'Dead hang',wallSit_s:'Wall sit',invertedRow_reps:'Inverted row',cuffExtRot_lb:'Dumbbell external rotation',gobletSquat_pctBW:'Goblet squat',frontSquat_pctBW:'Front squat',kbDeadlift_pctBW:'Kettlebell deadlift',beltSquatIso_xBW:'Belt squat',landmine_pctBW:'Landmine press'};
@@ -5965,7 +5929,12 @@ const BACKUPS={kneeExt_xBW:['beltSquatIso_xBW','chairStand_reps','backSquat_pctB
    start (0) and Proficient (1), so both ask for the same level. Ideal tests without PCA bands
    fall back to the Developing start for everyday goals and Proficient for demanding ones. */
 function backupReq(r0,b){const band=PCA80[b],meta=METRICS[b];if(!band||!meta)return null;
-  const pos=sex=>{const ideal=PCA80[r0.metric]?.[sex],t=+(r0.reqBySex?.[sex]??r0.req);return ideal&&!r0.reqKind&&Number.isFinite(t)?(t-ideal[0])/(ideal[1]-ideal[0]):(r0.demanding?1:0);};
+  /* A 75th-percentile target is the same for every goal, so its stand-in is too: the matching PCA
+     level where the scales line up, otherwise the start of the PCA Developing band, which is where
+     the VALD 75th percentile at 90 falls for knee strength. */
+  const pos=sex=>{const ideal=PCA80[r0.metric]?.[sex];
+    if(r0.reqKind==='p75_force'){const t=valdP75Target(r0.metric,sex)?.value;return ideal&&Number.isFinite(t)?Math.max(0,(t-ideal[0])/(ideal[1]-ideal[0])):0;}
+    const t=+(r0.reqBySex?.[sex]??r0.req);return ideal&&!r0.reqKind&&Number.isFinite(t)?(t-ideal[0])/(ideal[1]-ideal[0]):(r0.demanding?1:0);};
   const at=sex=>{const [d,p]=band[sex],v=d+pos(sex)*(p-d);return /reps/.test(meta.unit)?Math.ceil(v-1e-9):Math.round(v*100)/100;};
   const m=at('male'),f=at('female'),t=pos(PATIENT.sex==='female'?'female':'male'),ideal=inSentence(testName(r0));
   const level=Math.abs(t)<1e-9?'the start of the PCA Developing band':Math.abs(t-1)<1e-9?'the PCA Proficient level':t>1?`above the PCA Proficient level, to match the ${ideal} target`:`between the PCA Developing start and Proficient, to match the ${ideal} target`;
@@ -5982,7 +5951,13 @@ const ordinal=n=>{const s=['th','st','nd','rd'],v=n%100;return n+(s[(v-20)%10]||
 const isAre=names=>names.length>1||/s$/i.test(names[0]||'')&&!/ss$/i.test(names[0])?'are':'is';
 const capFirst=t=>t.charAt(0).toUpperCase()+t.slice(1);
 /* A fixed-load target can't be set without body weight, so that is what's missing. */
-const missingTestName=r=>{const v=PATIENT.metrics[r.metric];return v!=null&&v!==''&&r.reqKind==='fixed_load_pctBW'?'body weight':testName(r);};
+const missingTestName=r=>{const v=PATIENT.metrics[r.metric];return v!=null&&v!==''&&(r.reqKind==='fixed_load_pctBW'||r.reqKind==='p75_force')?'body weight':testName(r);};
+/* Short-term goal (next 1–3 years): the level to build to now so the keep-training glide path
+   still reaches the target at TGT. It is target ÷ share kept to TGT; range of motion loses
+   degrees, so there it is target + degrees lost. Tests that aren't projected keep the target. */
+function shortTermGoal(r,family,req){if(family==='none'||r.dir==='lower_better')return req;const rom=typeof family==='string'&&family.startsWith('rom:');
+  const v=rom?req-projectCapacity(0,family,PATIENT.sex,AGE,TGT,1):req/Math.max(1e-6,projectCapacity(1,family,PATIENT.sex,AGE,TGT,1));
+  return /reps/.test(METRICS[r.metric]?.unit||'')?Math.ceil(v-1e-9):v;}
 /* One radar component: requirement r measured at raw (the ideal test or a stand-in). */
 function makeComponent(r,raw,extra={}){
     const meta=METRICS[r.metric];if(!meta||meta.kind==='grade')return null;
@@ -5992,7 +5967,7 @@ function makeComponent(r,raw,extra={}){
     const lower=r.dir==='lower_better';const pct=v=>clamp(Math.floor((lower?req/v:v/req)*100),0,175);const curPct=pct(+raw),projPct=pct(projRaw);
     const reserveLo=lower?reqLo/projHi*100:projLo/reqHi*100,reserveHi=lower?reqHi/projLo*100:projHi/reqLo*100;
     const horizon=EVIDENCE_HORIZONS[family]||EVIDENCE_HORIZONS.none;
-    return {...extra,r,raw:+raw,projRaw,projLo,projHi,req,reqLo,reqHi,demandUncertainty:du,reserveLo,reserveHi,unit,measurementSource:meta.measurementSource||meta.src,taskSource:r.taskDemandSource||r.taskSource||r.src||'',taskEvidenceGrade:r.taskEvidenceGrade||null,taskDemandConfidence:r.taskDemandConfidence||'low',mappingConfidence:r.mappingConfidence||'low',forecastSource:(FORECAST_EVIDENCE[family]||FORECAST_EVIDENCE.none).src,forecastConfidence:horizon.forecastConfidence,evidenceHorizon:horizon,short:testName(r),grade:targetGrade(r),curPct,projPct,stopRaw,stopPct:pct(stopRaw),projPctLo:pct(projLo),projPctHi:pct(projHi),static:family==='none',meetsNow:lower?+raw<=req*(1+1e-9):+raw>=req*(1-1e-9),meets:lower?projRaw<=req*(1+1e-9):+projRaw>=req*(1-1e-9),zone:(lower?projRaw<=req*(1+1e-9):+projRaw>=req*(1-1e-9))?'clear':'gap',conf:r.confidence||meta.confidence||'proxy',shortBy:Math.max(0,100-projPct),family};
+    return {...extra,r,raw:+raw,projRaw,projLo,projHi,req,reqLo,reqHi,demandUncertainty:du,reserveLo,reserveHi,unit,measurementSource:meta.measurementSource||meta.src,taskSource:r.taskDemandSource||r.taskSource||r.src||'',taskEvidenceGrade:r.taskEvidenceGrade||null,taskDemandConfidence:r.taskDemandConfidence||'low',mappingConfidence:r.mappingConfidence||'low',forecastSource:(FORECAST_EVIDENCE[family]||FORECAST_EVIDENCE.none).src,forecastConfidence:horizon.forecastConfidence,evidenceHorizon:horizon,short:testName(r),grade:targetGrade(r),curPct,projPct,stopRaw,stopPct:pct(stopRaw),stg:shortTermGoal(r,family,req),projPctLo:pct(projLo),projPctHi:pct(projHi),static:family==='none',meetsNow:lower?+raw<=req*(1+1e-9):+raw>=req*(1-1e-9),meets:lower?projRaw<=req*(1+1e-9):+projRaw>=req*(1-1e-9),zone:(lower?projRaw<=req*(1+1e-9):+projRaw>=req*(1-1e-9))?'clear':'gap',conf:r.confidence||meta.confidence||'proxy',shortBy:Math.max(0,100-projPct),family};
 }
 /* Ideal test first. If it was not done (not offered, not cleared, pain, time, equipment), the
    next test the patient has stands in (BACKUPS). NT-UNABLE is a result and reads below target.
@@ -6048,7 +6023,7 @@ function goalEvaluation(act,C){
   const task=C.filter(c=>c.r.taskTest),taskPasses=task.length>0&&task.every(c=>c.meets);
   const capped=C.filter(c=>c.cappedUnknown),below=C.filter(c=>!c.meets&&!c.cappedUnknown).sort((a,b)=>a.projPct-b.projPct),misses=taskPasses?[]:below,watch=[...(taskPasses?below:[]),...capped];
   C.forEach(c=>{c.watch=watch.includes(c);});let zone,cap;
-  if(misses.length){zone='gap';cap=`Held back by ${nameList(misses.map(c=>inSentence(c.short)))}`;}
+  if(misses.length){zone='gap';cap=`Build ${nameList(misses.map(c=>inSentence(c.short)))}`;}
   else if(missing.length&&!taskPasses){zone='incomplete';cap=`Still need ${nameList(missing.map(r=>inSentence(missingTestName(r))))}`;}
   else if(watch.length){zone='clear';cap=[taskPasses&&below.length?`${task[0].short} test clears; watch ${nameList(below.map(c=>inSentence(c.short)))}`:'',capped.length?`re-test ${nameList(capped.map(c=>inSentence(c.short)))} past the test limit`:''].filter(Boolean).join('; ');cap=capFirst(cap);}
   else{zone='clear';cap=`All ${C.length} tests clear at ${TGT}`;}
@@ -6092,7 +6067,7 @@ function radarSVG(C,{animate=true}={}){
     if(!c.meets)lines.push(c.unable?'unable today':c.cappedUnknown?'at the test limit':c.watch?`watch · ${c.shortBy}% below`:`${c.shortBy}% short`);
     const lh=14,y0=si<-.3?ly-(lines.length-1)*lh:si>.3?ly+10:ly-(lines.length-1)*lh/2+4;
     return `<text class="rl${c.meets?'':c.watch?' watchl':' miss'}" x="${lx}" y="${f(y0)}" text-anchor="${anchor}">${lines.map((t,j)=>`<tspan x="${lx}" dy="${j?lh:0}"${!c.meets&&j===lines.length-1?' class="rlv"':''}>${t}</tspan>`).join('')}</text>`;}).join('');
-  const misses=C.filter(c=>!c.meets&&!c.watch),watch=C.filter(c=>c.watch),label=`Radar of ${N} tests. ${misses.length?`Projected to fall short at ${TGT}: ${nameList(misses.map(c=>c.short),N)}.`:`All ${N} clear or pass the task test at ${TGT}.`}${watch.length?` Watch: ${nameList(watch.map(c=>c.short),N)}.`:''}`,o=`style="transform-origin:${cx}px ${cy}px"`;
+  const misses=C.filter(c=>!c.meets&&!c.watch),watch=C.filter(c=>c.watch),label=`Radar of ${N} tests. ${misses.length?`Projected short at ${TGT}, each with a short-term goal: ${nameList(misses.map(c=>c.short),N)}.`:`All ${N} clear or pass the task test at ${TGT}.`}${watch.length?` Watch: ${nameList(watch.map(c=>c.short),N)}.`:''}`,o=`style="transform-origin:${cx}px ${cy}px"`;
   return `<svg class="radar${animate?' play':''}" viewBox="0 0 540 400" role="img" aria-label="${label}">${rings}${axes}<polygon class="rz rneed" ${o} points="${shape(C.map(()=>100))}"/><polygon class="rz rnow" ${o} points="${shape(C.map(c=>c.curPct))}"/><polygon class="rz rstop" ${o} points="${shape(C.map(c=>c.stopPct))}"/><polygon class="rz r90" ${o} points="${shape(C.map(c=>c.projPct))}"/><g class="rz rmiss">${gaps}</g>${labels}</svg>`;
 }
 function radarLegendHTML({stop=false}={}){return `<div class="rlegend"><span class="lg need"><i></i>Needed at ${TGT}</span><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>At ${TGT} if you keep training</span>${stop?`<span class="lg stop"><i></i>At ${TGT} if you stop</span>`:''}</div>`;}
@@ -6103,7 +6078,7 @@ function radarReadHTML(C,ev){
     if(capped.length)parts.push(`<b>${capFirst(nameList(capped.map(c=>inSentence(c.short)),4))}</b> stopped at the test limit, so re-test ${capped.length===1?'it':'them'} longer to confirm.`);
     return parts.join(' ');}
   if(ev.zone==='gap'){const proj=misses.filter(c=>!c.unable),unable=misses.filter(c=>c.unable),parts=[];
-    if(proj.length)parts.push(`<b>${capFirst(nameList(proj.map(c=>inSentence(c.short)),4))}</b> ${isAre(proj.map(c=>c.short))} projected to fall short by ${TGT}.`);
+    if(proj.length)parts.push(`<b>${capFirst(nameList(proj.map(c=>inSentence(c.short)),4))}</b> ${isAre(proj.map(c=>c.short))} projected short of what this goal needs at ${TGT}. Build ${proj.length===1?'it':'them'} to the short-term goal${proj.length===1?'':'s'} below and the glide path clears.`);
     if(unable.length)parts.push(`<b>${capFirst(nameList(unable.map(c=>inSentence(c.short)),4))}</b> could not be done today.`);
     const capped=C.filter(c=>c.cappedUnknown),ok=C.filter(c=>c.meets);
     if(capped.length)parts.push(`<b>${capFirst(nameList(capped.map(c=>inSentence(c.short)),4))}</b> stopped at the test limit, so re-test ${capped.length===1?'it':'them'} longer to confirm.`);
@@ -6116,10 +6091,37 @@ function radarReadHTML(C,ev){
   return `Every test clears at ${TGT}.${tight?` Smallest margin: <b>${inSentence(tight.short)}</b>, ${margin?`${margin}% above`:'right at'} what’s needed.`:''}`;
 }
 function radarFigureHTML(C,ev,{animate=true}={}){
-  return `<div class="radarfig"><div class="radarplot">${radarSVG(C,{animate})}${animate&&C.length>=3?'<button type="button" class="rreplay" aria-label="Replay the radar animation">Replay</button>':''}</div><div class="radarside"><div class="radarread z-${ev.zone}">${radarReadHTML(C,ev)}</div>${radarLegendHTML({stop:true})}<p class="radarnote">Each spoke is one test. Green is what this goal needs at ${TGT}, blue is you today, red is you at ${TGT} if you keep training, and grey is you at ${TGT} if you stop. Where red falls inside green, that test won’t clear. The gap between red and grey is what keeping up your training is worth.</p></div></div>`;
+  return `<div class="radarfig"><div class="radarplot">${radarSVG(C,{animate})}${animate&&C.length>=3?'<button type="button" class="rreplay" aria-label="Replay the radar animation">Replay</button>':''}</div><div class="radarside"><div class="radarread z-${ev.zone}">${radarReadHTML(C,ev)}</div>${radarLegendHTML({stop:true})}<p class="radarnote">Each spoke is one test. Green is what this goal needs at ${TGT}, blue is you today, red is you at ${TGT} if you keep training, and grey is you at ${TGT} if you stop. Where red falls inside green, that test needs a higher starting point; its goal for the next 1–3 years is in the table. The gap between red and grey is what keeping up your training is worth.</p></div></div>`;
 }
+/* Short-term goal cell: build to it if today is below, otherwise hold at least it. */
+function stgText(c){const v=fmtU(c.stg,c.unit);if(c.unable)return {up:true,txt:`Build to ${v}`,sub:''};const up=c.raw<c.stg*(1-1e-9),lift=c.raw>0?Math.round((c.stg/c.raw-1)*100):null;
+  return up?{up,txt:`Build to ${v}`,sub:lift!=null?`+${Math.max(1,lift)}% from today`:''}:{up,txt:`Hold ≥ ${v}`,sub:'you’re above it'};}
 function radarTableHTML(C){
-  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>Test</th><th>Today</th><th>At ${TGT}, keep training</th><th>At ${TGT}, if you stop</th><th>Needed</th><th>Result at ${TGT}</th><th>Target</th></tr></thead><tbody>${C.map(c=>`<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest">${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${c.unable?'Unable':fmtU(c.raw,c.unit)}${c.capped?'<small>stopped at the test limit</small>':''}</td><td>${c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td class="rstopv">${c.unable?'—':c.static?fmtU(c.stopRaw,c.unit):`${fmtU(c.stopRaw,c.unit)}${c.stopPct<100?`<small>short by ${100-c.stopPct}%</small>`:''}`}</td><td>${fmtU(c.req,c.unit)}</td><td class="rres">${c.unable?'Unable today':c.meets?'✓ Clears':c.cappedUnknown?'At the test limit<small>re-test longer to confirm</small>':c.watch?`Watch · ${c.shortBy}% below`:`Short by ${c.shortBy}%`}${c.meetsNow||c.unable?'':'<small>Already short today</small>'}</td><td><span class="tg tg-${c.grade}">${c.grade}</span> ${TARGET_GRADES[c.grade]}</td></tr>`).join('')}</tbody></table></div><div class="rtablenote">Target grades: A is set by the task itself. B comes from research or a closely related task. C is a clinical estimate that is still being validated.</div>`;
+  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>Test</th><th>Today</th><th>At ${TGT}, keep training</th><th>At ${TGT}, if you stop</th><th>Needed at ${TGT}</th><th>Result at ${TGT}</th><th>Goal, next 1–3 yrs</th><th>Target</th></tr></thead><tbody>${C.map(c=>{const g=stgText(c);return `<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest">${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${c.unable?'Unable':fmtU(c.raw,c.unit)}${c.capped?'<small>stopped at the test limit</small>':''}</td><td>${c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td class="rstopv">${c.unable?'—':c.static?fmtU(c.stopRaw,c.unit):`${fmtU(c.stopRaw,c.unit)}${c.stopPct<100?`<small>short by ${100-c.stopPct}%</small>`:''}`}</td><td>${fmtU(c.req,c.unit)}</td><td class="rres">${c.unable?'Unable today':c.meets?'✓ Clears':c.cappedUnknown?'At the test limit<small>re-test longer to confirm</small>':c.watch?`Watch · ${c.shortBy}% below`:`Short by ${c.shortBy}%`}${c.meetsNow||c.unable?'':'<small>Already short today</small>'}</td><td class="rstg">${g.txt}${g.sub?`<small>${g.sub}</small>`:''}</td><td><span class="tg tg-${c.grade}">${c.grade}</span> ${TARGET_GRADES[c.grade]}</td></tr>`;}).join('')}</tbody></table></div><div class="rtablenote">Goal, next 1–3 yrs: the level to build to now so that, if you keep training, the glide path still reaches what the goal needs at ${TGT}. Target grades: A is set by the task itself. B comes from research or a closely related task. C is a clinical estimate that is still being validated.</div>`;
+}
+/* Glide path (Dan, 2026-09-25): for a test projected short at TGT, raise the starting point now so
+   the same keep-training decline still clears. Red dashed: from today. Green: build to the
+   short-term goal over about two years, then glide. */
+function glideChartSVG(c){
+  const fam=c.family,sex=PATIENT.sex,a0=AGE,a1=Math.max(TGT,AGE+1),aG=Math.min(a1,a0+2),W=340,H=150,l=8,rt=86,t=14,b=24;
+  const keep=a=>a>=a1?c.projRaw:projectCapacity(c.raw,fam,sex,a0,a,1),raise=a=>a<=aG?c.raw+(c.stg-c.raw)*(a-a0)/Math.max(1,aG-a0):projectCapacity(c.stg,fam,sex,aG,a,1);
+  const ages=[];for(let a=a0;a<=a1;a++)ages.push(a);const kv=ages.map(keep),rv=ages.map(raise),all=[c.req,...kv,...rv],top=Math.max(...all)*1.06||1,lo=Math.max(0,Math.min(...all)*.8);
+  /* Not zero-based: the chart is about the gap between the two paths at the end. */
+  const x=a=>l+(a-a0)/(a1-a0)*(W-l-rt),y=v=>t+(1-(clamp(v,lo,top)-lo)/Math.max(1e-9,top-lo))*(H-t-b),f=n=>n.toFixed(1),pl=vs=>ages.map((a,i)=>`${f(x(a))},${f(y(vs[i]))}`).join(' ');
+  const endR=rv[rv.length-1],yK=y(c.projRaw),yN=y(c.req),yR=y(endR),sep=(ya,yb)=>Math.abs(ya-yb)<12;
+  let lblN=yN+4,lblK=yK+4;if(sep(lblN,lblK)){if(yK>yN)lblK=lblN+12;else lblN=lblK+12;}
+  return `<svg class="glide" viewBox="0 0 ${W} ${H}" role="img" aria-label="${c.short}: today ${fmtU(c.raw,c.unit)}, at ${TGT} ${fmtU(c.projRaw,c.unit)} if you keep training, needs ${fmtU(c.req,c.unit)}. Building to ${fmtU(c.stg,c.unit)} first reaches about ${fmtU(endR,c.unit)}.">
+    <line class="gaxis" x1="${l}" y1="${H-b}" x2="${W-rt}" y2="${H-b}"/><text class="gtick" x="${l}" y="${H-8}">Today (${a0})</text><text class="gtick" x="${f(x(a1))}" y="${H-8}" text-anchor="end">${a1}</text>
+    <line class="gneed" x1="${f(x(Math.max(a0,a1-8)))}" y1="${f(yN)}" x2="${f(x(a1))}" y2="${f(yN)}"/>
+    <polyline class="gkeep" points="${pl(kv)}"/><polyline class="graise" points="${pl(rv)}"/>
+    <circle class="gnow" cx="${f(x(a0))}" cy="${f(y(c.raw))}" r="4"/><circle class="ggoal" cx="${f(x(aG))}" cy="${f(y(c.stg))}" r="4.5"/>
+    <text class="glbl n" x="${f(x(a1)+6)}" y="${f(lblN)}">Needs ${fmtU(c.req,c.unit)}</text><text class="glbl k" x="${f(x(a1)+6)}" y="${f(lblK)}">${fmtU(c.projRaw,c.unit)}</text>
+  </svg>`;
+}
+function glidePathsHTML(C){
+  const opp=C.filter(c=>!c.meets&&!c.cappedUnknown);if(!opp.length)return '';
+  return `<div class="glidewrap"><div class="glidehead"><b>Raise the starting point</b><span>Where to build in the next 1–3 years so the glide path clears at ${TGT}.</span></div><div class="rlegend" style="margin:0 2px 8px"><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>If you keep training from today</span><span class="lg raise"><i></i>If you build to the goal first</span></div><div class="glidegrid">${opp.map(c=>{const endR=projectCapacity(c.stg,c.family,PATIENT.sex,Math.min(Math.max(TGT,AGE+1),AGE+2),Math.max(TGT,AGE+1),1),g=stgText(c);
+    return `<div class="glidecard"><div class="glidettl">${c.short}${c.via?` <small style="font-weight:600;color:var(--muted)">in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</div>${glideChartSVG(c)}<div class="glidecap">${g.txt} (${c.unable?'from unable today':g.sub||'from today'}) in the next 1–3 years. Keep training from there and you reach about <b>${fmtU(endR,c.unit)}</b> at ${TGT}; this goal needs ${fmtU(c.req,c.unit)}.</div></div>`;}).join('')}</div></div>`;
 }
 
 function barChart(C){
@@ -6150,7 +6152,7 @@ function cardsHTML(C){
       <div class="ct qcat ${c.r.cat}">${c.short}</div>
       <div class="big"><span class="n">${fmtU(c.raw,c.unit)}</span> now → <span class="p">${fmtU(c.projRaw,c.unit)}</span>${c.static?' (held)':' proj.'}</div>
       <div class="pbar"><div class="f" style="width:${clamp(c.projPct/160*100,0,100).toFixed(0)}%"></div><div class="t" style="left:${(100/160*100).toFixed(0)}%"></div></div>
-      <div class="cap">Need ${fmtU(c.req,c.unit)} · projected ${c.projPct}% of it</div>${c.static?'':`<div class="rng">illustrative range ${fmtU(c.projLo,c.unit)}–${fmtU(c.projHi,c.unit)} at ${TGT}</div>`}${flag}
+      <div class="cap">Need ${fmtU(c.req,c.unit)} · projected ${c.projPct}% of it · goal, next 1–3 yrs: ${stgText(c).txt.replace('Build to','build to').replace('Hold','hold')}</div>${c.static?'':`<div class="rng">illustrative range ${fmtU(c.projLo,c.unit)}–${fmtU(c.projHi,c.unit)} at ${TGT}</div>`}${flag}
       <div class="raw"><span class="cdot ${c.conf}" title="${CONF_META[c.conf].label}">${CONF_META[c.conf].dot}</span> ${CONF_META[c.conf].label} · measurement: ${c.measurementSource||''}</div>
       <div class="cardwhy">${basisBadge(c.r)} ${c.r.why} <span class="evi">Target grade ${c.grade} (${TARGET_GRADES[c.grade].toLowerCase()})${c.r.protocolPending?', test protocol still being validated':''}. Task: ${c.taskSource||'clinical mapping pending'} · Forecast: ${c.forecastSource||'no numerical forecast'}</span></div>
     </div>`;
@@ -6188,9 +6190,9 @@ function renderSlide(){
   if(!Csort.length)main=`<div class="supportonly"><b>No results entered for this goal yet.</b> Add its tests in Build report to see where you stand.</div>`;
   else if(HERO==='A')main=`<div class="actionlead"><div class="allbl">${Csort[0].meets?'Protect':'Train first'}</div><div class="atxt"><b class="tk">${Csort[0].short}</b> ${Csort[0].meets?`has the smallest margin for this goal.`:`is the biggest shortfall for this goal, short by ${Csort[0].shortBy}% at ${TGT}.`} ${Csort[0].r.why||''}</div></div>${barChart(Csort)}`;
   else if(HERO==='B')main=`<div class="modepanel"><div class="btitle">Current → projected → fixed task demand</div>${barChart(Csort)}<div class="modelede">Forecast bands widen after each evidence family's observed age horizon.</div></div>`;
-  else if(HERO==='D')main=`${radarFigureHTML(C,ev)}<div class="modepanel">${cardsHTML(Csort)}</div>`;
-  else main=`${radarFigureHTML(C,ev)}${radarTableHTML(C)}`;
-  const supportHTML=S.length?`<details class="dtl"><summary class="dtlsum">Other useful measures <span class="dtlhint">clinician detail</span></summary><div class="supportgrid">${S.map(x=>`<div class="supportcard"><div><b>${x.metric==='lt1_vo2'?'Aerobic base (LT1)':patientShortLabel(x.short)}</b><span>${x.measurementSource||x.meta?.src||''}</span></div><div class="supportval">${x.retention!=null?Math.round(x.retention)+'% retained':assessmentContext(x.r.metric)?.level?`${assessmentContext(x.r.metric).level} for age`:'Tracked'}</div>${x.retention==null?'':`<div class="supportbar"><i style="width:${clamp(x.retention,0,100)}%"></i></div>`}<div class="supportnote">${x.r.why||''}<br><small>${TRACKED_TESTS.includes(x.r.metric)?`Not projected to ${TGT}: compared with the PCA standard for your age at each re-test.`:x.forecastSource?`Forecast: ${x.forecastSource}`:''}</small></div></div>`).join('')}</div></details>`:'';
+  else if(HERO==='D')main=`${radarFigureHTML(C,ev)}${glidePathsHTML(Csort)}<div class="modepanel">${cardsHTML(Csort)}</div>`;
+  else main=`${radarFigureHTML(C,ev)}${radarTableHTML(C)}${glidePathsHTML(Csort)}`;
+  const supportHTML=S.length?`<details class="dtl"><summary class="dtlsum">Other useful measures <span class="dtlhint">clinician detail</span></summary><div class="supportgrid">${S.map(x=>`<div class="supportcard"><div><b>${x.metric==='lt1_vo2'?'Aerobic base (LT1)':patientShortLabel(x.short)}</b><span>${x.measurementSource||x.meta?.src||''}</span></div><div class="supportval">${x.retention!=null?Math.round(x.retention)+'% retained':assessmentContext(x.r.metric)?.level?`${assessmentContext(x.r.metric).level} for age`:'Tracked'}</div>${x.retention==null?'':`<div class="supportbar"><i style="width:${clamp(x.retention,0,100)}%"></i></div>`}<div class="supportnote">${x.r.why||''}${(()=>{const pv=+assessmentContext(x.r.metric)?.values?.[2];return TRACKED_TESTS.includes(x.r.metric)&&Number.isFinite(pv)?`<br><b>Goal, next 1–3 yrs:</b> ${x.raw>=pv?'hold at least':'build to'} ${fmtU(pv,x.meta?.unit)} (Proficient for your age)`:'';})()}<br><small>${TRACKED_TESTS.includes(x.r.metric)?`Not projected to ${TGT}: compared with the PCA standard for your age at each re-test.`:x.forecastSource?`Forecast: ${x.forecastSource}`:''}</small></div></div>`).join('')}</div></details>`:'';
   const modHTML=mods.length?`<details class="dtl"><summary class="dtlsum">Movement findings <span class="dtlhint">clinician detail</span></summary><div class="pcards">${mods.map(x=>`<div class="pcard"><div class="ct qcat ${x.r.cat}">${patientShortLabel(shortLabel(x.r.label))}</div><div class="big"><span class="n">${x.value==null?'—':x.value}</span></div><div class="cap">${x.r.why||''}</div></div>`).join('')}</div></details>`:'';
   const numbersHTML=C.length?`<details class="dtl"><summary class="dtlsum">Test details and sources <span class="dtlhint">clinician detail</span></summary>${cardsHTML(C)}</details>`:'';
   const detailBlocks=HERO==='D'?`${supportHTML}${modHTML}`:`${numbersHTML}${supportHTML}${modHTML}`;
@@ -6312,7 +6314,7 @@ function capacityTrajectories(goals){
   const demandMap={},useMap={};
   goals.forEach(g=>{const act=ACTIVITIES[g.profileId];(act.reqs||[]).forEach(r=>{if(!r.metric||r.role==='modifier'||METRICS[r.metric]?.kind==='grade')return;(useMap[r.metric]=useMap[r.metric]||[]).push({goal:g,role:r.role,weight:+r.weight||1});if(r.role==='support')return;const rr=resolveRequirement(r);if(rr.req==null)return;const du=clamp(+r.demandUncertainty||0,0,.60);(demandMap[r.metric]=demandMap[r.metric]||[]).push({goal:g,req:+rr.req,reqLo:+rr.req*(1-du),reqHi:+rr.req*(1+du),unit:rr.unit||r.unit,dir:r.dir||'higher_better',role:r.role,weight:+r.weight||1,basis:r.basis,wheelEligible:true});});});
   const out=[];
-  Object.entries(METRICS).forEach(([metric,meta])=>{if(meta.kind==='grade')return;const raw=PATIENT.metrics[metric];if(raw==null||raw===''||!isFinite(+raw))return;const family=meta.family||'none',forecast=family!=='none';const proj=forecast?capToVO2(metric,projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)):+raw;const band=forecast?projectBand(+raw,family).map(v=>capToVO2(metric,v)):[+raw,+raw];const retention=(forecast&&+raw!==0)?proj/+raw*100:null;const avgDec=(forecast&&YRS>0&&+raw>0&&proj>0)?(1-Math.pow(proj/+raw,10/YRS))*100:null;const ds=demandMap[metric]||[],wheelDs=ds.filter(d=>d.wheelEligible),uses=useMap[metric]||[];const currentRatios=ds.map(d=>d.dir==='lower_better'?d.req/(+raw):(+raw)/d.req).filter(x=>isFinite(x)&&x>0);const currentReservePct=currentRatios.length?Math.min(...currentRatios)*100:null;const ratios=ds.map(d=>d.dir==='lower_better'?d.req/proj:proj/d.req).filter(x=>isFinite(x)&&x>0);const reservePct=ratios.length?Math.min(...ratios)*100:null;const conservative=ds.map(d=>d.dir==='lower_better'?d.reqLo/band[1]:band[0]/d.reqHi).filter(x=>isFinite(x)&&x>0);const optimistic=ds.map(d=>d.dir==='lower_better'?d.reqHi/band[0]:band[1]/d.reqLo).filter(x=>isFinite(x)&&x>0);const reserveLo=conservative.length?Math.min(...conservative)*100:null,reserveHi=optimistic.length?Math.min(...optimistic)*100:null;const wheelCurrentRatios=wheelDs.map(d=>d.dir==='lower_better'?d.req/(+raw):(+raw)/d.req).filter(x=>isFinite(x)&&x>0),wheelRatios=wheelDs.map(d=>d.dir==='lower_better'?d.req/proj:proj/d.req).filter(x=>isFinite(x)&&x>0),wheelConservative=wheelDs.map(d=>d.dir==='lower_better'?d.reqLo/band[1]:band[0]/d.reqHi).filter(x=>isFinite(x)&&x>0),wheelOptimistic=wheelDs.map(d=>d.dir==='lower_better'?d.reqHi/band[0]:band[1]/d.reqLo).filter(x=>isFinite(x)&&x>0),wheelCurrentPct=wheelCurrentRatios.length?Math.min(...wheelCurrentRatios)*100:null,wheelProjectedPct=wheelRatios.length?Math.min(...wheelRatios)*100:null,wheelRangeLo=wheelConservative.length?Math.min(...wheelConservative)*100:null,wheelRangeHi=wheelOptimistic.length?Math.min(...wheelOptimistic)*100:null;const goalsN=new Set(uses.map(d=>d.goal.id)).size,supportGoalsN=new Set(uses.filter(d=>d.role==='support').map(d=>d.goal.id)).size,wheelGoalIds=[...new Set(wheelDs.map(d=>d.goal.id))],wheelGoalsN=wheelGoalIds.length;let status='trajectory';if(!forecast)status='context';else if(reservePct!=null)status=reservePct>=110?'strength':reservePct>=90?'watch':'opportunity';else if(supportGoalsN)status='support';const ev=FORECAST_EVIDENCE[family]||FORECAST_EVIDENCE.none,horizon=EVIDENCE_HORIZONS[family]||EVIDENCE_HORIZONS.none;const eW={A:1,B:.85,C:.65,'—':.45}[ev.grade]||.65,leverage=1+Math.log2(1+goalsN);const opportunityScore=reservePct==null?0:Math.max(0,110-reservePct)*leverage*eW,strengthScore=reservePct==null?0:Math.max(0,reservePct-100)*leverage*eW;const protectionScore=(reservePct==null&&supportGoalsN&&avgDec!=null)?avgDec*(1+Math.log2(1+supportGoalsN))*eW:0;out.push({metric,meta,raw:+raw,proj,lo:band[0],hi:band[1],retention,avgDec,currentReservePct,reservePct,reserveLo,reserveHi,wheelCurrentPct,wheelProjectedPct,wheelRangeLo,wheelRangeHi,wheelGoalIds,wheelGoalsN,goalsN,supportGoalsN,status,evidence:ev,evidenceHorizon:horizon,forecastConfidence:horizon.forecastConfidence,opportunityScore,strengthScore,protectionScore});});
+  Object.entries(METRICS).forEach(([metric,meta])=>{if(meta.kind==='grade')return;const raw=PATIENT.metrics[metric];if(raw==null||raw===''||!isFinite(+raw))return;const family=meta.family||'none',forecast=family!=='none';const proj=forecast?capToVO2(metric,projectCapacity(+raw,family,PATIENT.sex,AGE,TGT,1)):+raw;const band=forecast?projectBand(+raw,family).map(v=>capToVO2(metric,v)):[+raw,+raw];const retention=(forecast&&+raw!==0)?proj/+raw*100:null;const avgDec=(forecast&&YRS>0&&+raw>0&&proj>0)?(1-Math.pow(proj/+raw,10/YRS))*100:null;const ds=demandMap[metric]||[],wheelDs=ds.filter(d=>d.wheelEligible),uses=useMap[metric]||[];const currentRatios=ds.map(d=>d.dir==='lower_better'?d.req/(+raw):(+raw)/d.req).filter(x=>isFinite(x)&&x>0);const currentReservePct=currentRatios.length?Math.min(...currentRatios)*100:null;const ratios=ds.map(d=>d.dir==='lower_better'?d.req/proj:proj/d.req).filter(x=>isFinite(x)&&x>0);const reservePct=ratios.length?Math.min(...ratios)*100:null;const conservative=ds.map(d=>d.dir==='lower_better'?d.reqLo/band[1]:band[0]/d.reqHi).filter(x=>isFinite(x)&&x>0);const optimistic=ds.map(d=>d.dir==='lower_better'?d.reqHi/band[0]:band[1]/d.reqLo).filter(x=>isFinite(x)&&x>0);const reserveLo=conservative.length?Math.min(...conservative)*100:null,reserveHi=optimistic.length?Math.min(...optimistic)*100:null;const wheelCurrentRatios=wheelDs.map(d=>d.dir==='lower_better'?d.req/(+raw):(+raw)/d.req).filter(x=>isFinite(x)&&x>0),wheelRatios=wheelDs.map(d=>d.dir==='lower_better'?d.req/proj:proj/d.req).filter(x=>isFinite(x)&&x>0),wheelConservative=wheelDs.map(d=>d.dir==='lower_better'?d.reqLo/band[1]:band[0]/d.reqHi).filter(x=>isFinite(x)&&x>0),wheelOptimistic=wheelDs.map(d=>d.dir==='lower_better'?d.reqHi/band[0]:band[1]/d.reqLo).filter(x=>isFinite(x)&&x>0),wheelCurrentPct=wheelCurrentRatios.length?Math.min(...wheelCurrentRatios)*100:null,wheelProjectedPct=wheelRatios.length?Math.min(...wheelRatios)*100:null,wheelRangeLo=wheelConservative.length?Math.min(...wheelConservative)*100:null,wheelRangeHi=wheelOptimistic.length?Math.min(...wheelOptimistic)*100:null;const hardest=ds.filter(d=>d.dir!=='lower_better').reduce((m,d)=>Math.max(m,d.req),-Infinity),stg=forecast&&Number.isFinite(hardest)?shortTermGoal({metric,dir:'higher_better'},family,hardest):Number.isFinite(hardest)?hardest:(TRACKED_TESTS.includes(metric)&&Number.isFinite(+assessmentContext(metric)?.values?.[2])?+assessmentContext(metric).values[2]:null);const goalsN=new Set(uses.map(d=>d.goal.id)).size,supportGoalsN=new Set(uses.filter(d=>d.role==='support').map(d=>d.goal.id)).size,wheelGoalIds=[...new Set(wheelDs.map(d=>d.goal.id))],wheelGoalsN=wheelGoalIds.length;let status='trajectory';if(!forecast)status='context';else if(reservePct!=null)status=reservePct>=110?'strength':reservePct>=90?'watch':'opportunity';else if(supportGoalsN)status='support';const ev=FORECAST_EVIDENCE[family]||FORECAST_EVIDENCE.none,horizon=EVIDENCE_HORIZONS[family]||EVIDENCE_HORIZONS.none;const eW={A:1,B:.85,C:.65,'—':.45}[ev.grade]||.65,leverage=1+Math.log2(1+goalsN);const opportunityScore=reservePct==null?0:Math.max(0,110-reservePct)*leverage*eW,strengthScore=reservePct==null?0:Math.max(0,reservePct-100)*leverage*eW;const protectionScore=(reservePct==null&&supportGoalsN&&avgDec!=null)?avgDec*(1+Math.log2(1+supportGoalsN))*eW:0;out.push({metric,meta,raw:+raw,proj,lo:band[0],hi:band[1],stg,retention,avgDec,currentReservePct,reservePct,reserveLo,reserveHi,wheelCurrentPct,wheelProjectedPct,wheelRangeLo,wheelRangeHi,wheelGoalIds,wheelGoalsN,goalsN,supportGoalsN,status,evidence:ev,evidenceHorizon:horizon,forecastConfidence:horizon.forecastConfidence,opportunityScore,strengthScore,protectionScore});});
   return out;
 }
 function capStatusLabel(x){return x.status==='strength'?'Strong reserve':x.status==='opportunity'?'Opportunity':x.status==='watch'?'Watch':x.status==='support'?'Supporting trajectory':x.status==='context'?'Tracked, not projected':'Trajectory only';}
@@ -6352,8 +6354,8 @@ function capRankItem(x,kind){const detail=kind==='priority'?priorityRationaleTex
 function capacitySummaryHTML(story){return `<div class="caprank"><div class="caprankcol good"><div class="caprankhead">✓ What you're protecting well</div>${story.topStrengths.map(x=>capRankItem(x,'strength')).join('')||'<div class="scnote">Add more assessment data to identify strengths.</div>'}</div><div class="caprankcol bad"><div class="caprankhead">⚠ Highest-leverage priorities for your goals</div>${story.topTrainingPriorities.slice(0,3).map(x=>capRankItem(x,'priority')).join('')||'<div class="scnote">No goal-linked priorities are present in the entered measures.</div>'}</div></div>`;}
 function capacityTableHTML(traj){
   const order={opportunity:0,watch:1,strength:2,support:3,trajectory:4,context:5};const rows=traj.slice().sort((a,b)=>order[a.status]-order[b.status]||b.goalsN-a.goalsN||(a.reservePct??999)-(b.reservePct??999));
-  const body=rows.map(x=>`<tr class="ctrow ${x.status}"><td><b>${x.meta.label}</b><span>${x.meta.measurementSource||x.meta.src||''}</span></td><td>${fmtU(x.raw,x.meta.unit)}</td><td>${x.evidence.grade==='—'?'—':`${fmtU(x.proj,x.meta.unit)}<span>${fmtU(x.lo,x.meta.unit)}–${fmtU(x.hi,x.meta.unit)}</span>`}</td><td>${x.retention==null?'—':Math.round(x.retention)+'%'}</td><td>${x.avgDec==null?'—':x.avgDec.toFixed(1)+'%/dec'}</td><td>${x.reservePct==null?'—':`${Math.round(x.reservePct)}%${x.reserveLo!=null?`<span>${Math.round(x.reserveLo)}–${Math.round(x.reserveHi)}%</span>`:''}`}</td><td>${x.goalsN||'—'}</td><td><span class="ctbadge ${x.status}">${capStatusLabel(x)}</span><small>${x.evidence.grade==='—'?'':`evidence ${x.evidence.grade}`}</small></td></tr>`).join('');
-  return `<details class="dtl capacitydetails"><summary class="dtlsum">Clinician detail: all measured capacities <span class="dtlhint">${rows.length} numeric measures entered · clinician/deep dive</span></summary><div class="ctablewrap"><table class="ctable"><thead><tr><th>Capacity</th><th>Today</th><th>Projected ${TGT}</th><th>Retained</th><th>Avg decline</th><th>Goal reserve*</th><th>Goals</th><th>Read</th></tr></thead><tbody>${body}</tbody></table></div><div class="model-note"><b>*Goal reserve</b> is shown only where a selected goal has a defensible task-specific threshold in the same test units. Rep and hold tests are tracked against the PCA standard for age and not projected; other supporting measures show their trajectory and goal leverage but no reserve percentage. Ranges combine longitudinal and task-demand uncertainty. Evidence A/B/C grades the decline model, not the quality of the patient’s test. Qualitative movement screens are intentionally not assigned numerical decline rates.</div></details>`;
+  const body=rows.map(x=>`<tr class="ctrow ${x.status}"><td><b>${x.meta.label}</b><span>${x.meta.measurementSource||x.meta.src||''}</span></td><td>${fmtU(x.raw,x.meta.unit)}</td><td>${x.stg==null?'—':`${x.raw>=x.stg?'hold':'build to'} ${fmtU(x.stg,x.meta.unit)}`}</td><td>${x.evidence.grade==='—'?'—':`${fmtU(x.proj,x.meta.unit)}<span>${fmtU(x.lo,x.meta.unit)}–${fmtU(x.hi,x.meta.unit)}</span>`}</td><td>${x.retention==null?'—':Math.round(x.retention)+'%'}</td><td>${x.avgDec==null?'—':x.avgDec.toFixed(1)+'%/dec'}</td><td>${x.reservePct==null?'—':`${Math.round(x.reservePct)}%${x.reserveLo!=null?`<span>${Math.round(x.reserveLo)}–${Math.round(x.reserveHi)}%</span>`:''}`}</td><td>${x.goalsN||'—'}</td><td><span class="ctbadge ${x.status}">${capStatusLabel(x)}</span><small>${x.evidence.grade==='—'?'':`evidence ${x.evidence.grade}`}</small></td></tr>`).join('');
+  return `<details class="dtl capacitydetails"><summary class="dtlsum">Clinician detail: all measured capacities <span class="dtlhint">${rows.length} numeric measures entered · clinician/deep dive</span></summary><div class="ctablewrap"><table class="ctable"><thead><tr><th>Capacity</th><th>Today</th><th>Goal, 1–3 yrs</th><th>Projected ${TGT}</th><th>Retained</th><th>Avg decline</th><th>Goal reserve*</th><th>Goals</th><th>Read</th></tr></thead><tbody>${body}</tbody></table></div><div class="model-note"><b>*Goal reserve</b> is shown only where a selected goal has a defensible task-specific threshold in the same test units. Rep and hold tests are tracked against the PCA standard for age and not projected; other supporting measures show their trajectory and goal leverage but no reserve percentage. Ranges combine longitudinal and task-demand uncertainty. Evidence A/B/C grades the decline model, not the quality of the patient’s test. Qualitative movement screens are intentionally not assigned numerical decline rates.</div></details>`;
 }
 function clinicianGoalCardsHTML(gs,ordered=false){
   const rows=ordered?gs.slice().sort((a,b)=>(a.ev.worst?.projPct??999)-(b.ev.worst?.projPct??999)):gs;
@@ -6363,10 +6365,10 @@ function patientGoalCardsHTML(outlooks,ordered=false){const rows=ordered?outlook
 /* Overview headline: how many goals are on track, and a key for the mini radars. */
 function goalHeadlineHTML(story){
   const n={clear:0,gap:0,incomplete:0};story.goalOutlooks.forEach(o=>n[o.status]++);
-  const sub=[n.gap?`${n.gap} won’t clear`:'',n.incomplete?`${n.incomplete} ${n.incomplete===1?'needs':'need'} more data`:''].filter(Boolean).join(' · ');
+  const sub=[n.gap?`${n.gap} ${n.gap===1?'is an opportunity':'are opportunities'}`:'',n.incomplete?`${n.incomplete} ${n.incomplete===1?'needs':'need'} more data`:''].filter(Boolean).join(' · ');
   const limits={};story.goalOutlooks.forEach(o=>{const g=goalById(o.goalId),act=ACTIVITIES[g.profileId];goalEvaluation(act,components(act.reqs)).misses.forEach(c=>{limits[c.short]=(limits[c.short]||0)+1;});});
   const top=Object.entries(limits).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([name,k])=>`${inSentence(name)} (${k} ${k===1?'goal':'goals'})`);
-  return `<div class="goalheadline"><div class="gh-main">On track for <b>${n.clear} of ${story.goalOutlooks.length}</b> goals at ${TGT}.</div>${sub?`<div class="gh-sub">${sub}${top.length?`. Holding back the most goals: ${nameList(top,3)}.`:''}</div>`:''}<div class="gh-read">A goal is on track when every one of its tests still reaches what it needs at ${TGT}, as long as you keep training. Red shows you at ${TGT} if you keep training; each goal page also shows where you’d be if you stopped.</div>${radarLegendHTML()}</div>`;
+  return `<div class="goalheadline"><div class="gh-main">On track for <b>${n.clear} of ${story.goalOutlooks.length}</b> goals at ${TGT}.</div>${sub?`<div class="gh-sub">${sub}${top.length?`. Biggest opportunities: ${nameList(top,3)}.`:''}</div>`:''}<div class="gh-read">A goal is on track when every one of its tests still reaches what it needs at ${TGT}, as long as you keep training. A test projected short is an opportunity: it gets a goal for the next 1–3 years that raises its starting point. Each goal page also shows where you’d be if you stopped.</div>${radarLegendHTML()}</div>`;
 }
 function modelConfidenceHTML(story){if(story.modelConfidence.demoAssessmentComplete)return `<div class="story-confidence" data-model-confidence="${story.modelConfidence.level}" data-demo-completeness="complete"><div><b>Complete illustrative example</b><span>Full sample assessment data are loaded for all 10 selected CD goals.</span></div><span class="story-confidence-label">10 CD goals · full sample data</span></div>`;return `<div class="story-confidence" data-model-confidence="${story.modelConfidence.level}"><div><b>How complete is the picture?</b><span>${story.modelConfidence.detail}</span></div><span class="story-confidence-label">${story.modelConfidence.label}</span></div>`;}
 function goalPrioritiesHTML(story,{limit=12,tiered=true}={}){
@@ -6454,7 +6456,7 @@ function refRadarSVG(act){
 function renderReference(){
   const list=GOALS.filter(g=>g.profileId);if(!list.some(g=>g.id===refId))refId=list[0].id;const byName={};list.forEach(g=>byName[g.name]=g);const used=new Set();const isOneOff=g=>g.custom&&ACTIVITIES[g.profileId]?.oneOff;const btn=g=>`<button class="actbtn ${g.id===refId&&!building?'on':''}" data-ref="${g.id}"><span class="lbl">${g.name}</span>${g.custom?`<span class="ctag">${isOneOff(g)?'one-off':'custom'}</span>`:''}</button>`;let rl='';DOMAIN_GROUPS.forEach(([dom,names])=>{const items=names.map(n=>byName[n]).filter(Boolean),customInDom=list.filter(g=>g.custom&&!isOneOff(g)&&ACTIVITIES[g.profileId]?.domain===dom),all=items.concat(customInDom);if(!all.length)return;all.forEach(g=>used.add(g.id));rl+=`<div class="refgroup"><div class="refghead">${dom}</div>${all.map(btn).join('')}</div>`;});const left=list.filter(g=>!used.has(g.id)&&!isOneOff(g));if(left.length)rl+=`<div class="refgroup"><div class="refghead">Added by you</div>${left.map(btn).join('')}</div>`;const one=list.filter(isOneOff);if(one.length)rl+=`<div class="refgroup oneoffgrp"><div class="refghead">One-off · this report</div>${one.map(btn).join('')}</div>`;$("#refList").innerHTML=rl+`<button class="addgoal ${building?'on':''}" id="newAct">+ Build a custom activity</button>`;document.querySelectorAll('#refList [data-ref]').forEach(b=>b.onclick=()=>{building=false;refId=b.dataset.ref;renderReference();});$("#newAct").onclick=()=>startBuilder();const rs=$("#refSearch");if(rs){rs.oninput=filterRefList;filterRefList();}if(building){renderBuilder();return;}
   const g=goalById(refId),act=ACTIVITIES[g.profileId];const cards=(act.reqs||[]).map(r=>{const meta=METRICS[r.metric]||{};if(r.role==='modifier')return `<div class="pcard"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig"><b>Context / modifier</b></div><div class="cap">${r.why||''}</div><div class="raw">◇ not included in readiness score · measurement: ${meta.measurementSource||r.src||''}</div></div>`;if(r.role==='support')return `<div class="pcard supportref"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig"><b>${TRACKED_TESTS.includes(r.metric)?'Tracked, doesn’t decide the goal':'Supporting trajectory'}</b></div><div class="cap">${TRACKED_TESTS.includes(r.metric)?`Compared with the PCA standard for age at each re-test. Rep and hold results aren’t projected to ${TGT}.`:'Feeds prioritization and decline modeling; no fabricated pass/fail threshold.'}</div><div class="raw">◐ measurement: ${meta.measurementSource||r.src||''}</div><div class="cardwhy">${r.why||''} <span class="evi">${r.calibrationNote||''} Forecast: ${(FORECAST_EVIDENCE[meta.family]||FORECAST_EVIDENCE.none).src}</span></div></div>`;const rr=resolveRequirement(r),req=rr.req,unit=rr.unit||r.unit;return `<div class="pcard"><div class="ct qcat ${r.cat}">${shortLabel(r.label)}</div><div class="reqbig">Requires <b>${r.reqBySex?`${fmtU(r.reqBySex.male,unit)} men · ${fmtU(r.reqBySex.female,unit)} women`:req==null?'patient-specific input':fmtU(req,unit)}</b></div><div class="cap">${r.role==='gate'?'Hard prerequisite':'Counts toward the goal'} · target grade ${targetGrade(r)}, ${TARGET_GRADES[targetGrade(r)].toLowerCase()}</div><div class="raw"><span class="cdot ${r.confidence||meta.confidence||'proxy'}">${CONF_META[r.confidence||meta.confidence||'proxy']?.dot||'◐'}</span> measurement: ${meta.measurementSource||r.src||''}</div><div class="cardwhy">${basisBadge(r)} ${r.why||''} <span class="evi">Target source: ${r.taskSource||r.evi||'clinical estimate, no published threshold'} · Decline model: ${(FORECAST_EVIDENCE[meta.family]||FORECAST_EVIDENCE.none).src}</span></div></div>`;}).join('');
-  const cats=[...new Set((act.reqs||[]).map(r=>r.cat).filter(Boolean))];const actions=act.custom?`<div class="buildactions" style="margin-bottom:12px"><button class="btn" id="editAct">Edit</button><button class="btn" id="delAct">Delete activity</button></div>`:'';$("#refDetail").innerHTML=`<div class="slide-head">${TAGLINE}<div class="eyebrow">Centenarian Decathlon · Activity model</div><h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div><div class="dchips"><span class="dchip"><span class="dd"></span>Complexity ${act.complexity||'?'} / 5</span><span class="dchip"><span class="dd"></span>${scoreableReqs(act).length} tests on the radar</span>${cats.map(c=>`<span class="dchip qcat ${c}"><span class="dd"></span>${c}</span>`).join('')}</div></div><div class="pv">${actions}<div class="refradarwrap">${refRadarSVG(act)}</div><div class="refgrid">${cards}</div><div class="refnote"><b>Model rule:</b> task demand stays fixed with age. Age and sex change projected capacity, not the suitcase, stair, distance or duration. Projections assume the patient keeps training: strength, power and aerobic fitness decline at the rates seen in people who stay active, range of motion at half the typical rate, and balance along published age norms. Being Proficient today is the floor, not the finish line. Rep and hold tests are tracked but don’t decide goals; a strength test does. Every test on the radar counts: if any one is projected to fall short at ${TGT}, the goal won’t clear. Movement findings add context but don’t change the result. Target grades: A is set by the task itself, B comes from research or a closely related task, C is a clinical estimate still being validated.</div></div>`+FOOT;if(act.custom){$("#editAct").onclick=()=>startBuilder(g.id);$("#delAct").onclick=()=>deleteActivity(g.id);}
+  const cats=[...new Set((act.reqs||[]).map(r=>r.cat).filter(Boolean))];const actions=act.custom?`<div class="buildactions" style="margin-bottom:12px"><button class="btn" id="editAct">Edit</button><button class="btn" id="delAct">Delete activity</button></div>`:'';$("#refDetail").innerHTML=`<div class="slide-head">${TAGLINE}<div class="eyebrow">Centenarian Decathlon · Activity model</div><h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div><div class="dchips"><span class="dchip"><span class="dd"></span>Complexity ${act.complexity||'?'} / 5</span><span class="dchip"><span class="dd"></span>${scoreableReqs(act).length} tests on the radar</span>${cats.map(c=>`<span class="dchip qcat ${c}"><span class="dd"></span>${c}</span>`).join('')}</div></div><div class="pv">${actions}<div class="refradarwrap">${refRadarSVG(act)}</div><div class="refgrid">${cards}</div><div class="refnote"><b>Model rule:</b> task demand stays fixed with age. Age and sex change projected capacity, not the suitcase, stair, distance or duration. Projections assume the patient keeps training: strength, power and aerobic fitness decline at the rates seen in people who stay active, range of motion at half the typical rate, and balance along published age norms. Isolated strength tests (VALD) aim for the 75th percentile at ${TGT}. Rep and hold tests are tracked but don’t decide goals; a strength test does. Every test on the radar counts: if one is projected short at ${TGT}, the goal is an opportunity and that test gets a goal for the next 1–3 years. Movement findings add context but don’t change the result. Target grades: A is set by the task itself, B comes from research or a closely related task, C is a clinical estimate still being validated.</div></div>`+FOOT;if(act.custom){$("#editAct").onclick=()=>startBuilder(g.id);$("#delAct").onclick=()=>deleteActivity(g.id);}
 }
 function metricOptions(sel){const byCat={};for(const [k,m] of Object.entries(METRIC_REGISTRY)){if(m.kind==='grade'||m.confidence==='context')continue;(byCat[m.cat]=byCat[m.cat]||[]).push(k);}return `<option value="">choose a test…</option>`+Object.keys(byCat).sort().map(cat=>`<optgroup label="${cat}">${byCat[cat].map(k=>`<option value="${k}" ${k===sel?'selected':''}>${METRIC_REGISTRY[k].label} (${METRIC_REGISTRY[k].unit})</option>`).join('')}</optgroup>`).join('');}
 
@@ -6572,8 +6574,8 @@ function printFrame(pageNum,total,cls,inner){
   </section>`;
 }
 function printCompTable(C){
-  return `<table class="ptbl"><thead><tr><th>Test</th><th>Now → ${TGT}</th><th>If you stop</th><th>Needs</th><th>At ${TGT}</th><th>Target</th></tr></thead><tbody>`+
-    C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td class="pstop">${c.unable?'—':fmtU(c.stopRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.watch?'watch':c.zone}">${c.meets?'clears':c.cappedUnknown?'test limit':c.watch?'watch':'short '+c.shortBy+'%'}</td><td class="ptg">${c.grade}</td></tr>`).join('')+
+  return `<table class="ptbl"><thead><tr><th>Test</th><th>Now → ${TGT}</th><th>If you stop</th><th>Needs</th><th>At ${TGT}</th><th>Goal, 1–3 yrs</th><th>Target</th></tr></thead><tbody>`+
+    C.map(c=>`<tr class="z-${c.zone}"><td class="ptq"><span class="zico z-${c.zone}">${ZICON[c.zone]}</span> ${c.short}${c.via?`<small>in place of ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))}</small>`:''}</td><td>${fmtU(c.raw,c.unit)} → ${fmtU(c.projRaw,c.unit)}</td><td class="pstop">${c.unable?'—':fmtU(c.stopRaw,c.unit)}</td><td>${fmtU(c.req,c.unit)}</td><td class="pts z-${c.watch?'watch':c.zone}">${c.meets?'clears':c.cappedUnknown?'test limit':c.watch?'watch':'short '+c.shortBy+'%'}</td><td>${stgText(c).txt.replace('Build to','build to').replace('Hold','hold')}</td><td class="ptg">${c.grade}</td></tr>`).join('')+
     `</tbody></table>`;
 }
 function printGoalPage(g,pageNum,total,goalNum,goalTotal){
@@ -6588,7 +6590,7 @@ function printGoalPage(g,pageNum,total,goalNum,goalTotal){
   if(!C.length){
     pmain=`<div class="supportonly">No results entered for this goal yet.</div>`;
   } else if(HERO!=='A'&&HERO!=='B'){
-    pmain=`<div class="pgmain pgradarmain"><div class="pgcharts">${radarSVG(C,{animate:false})}${radarLegendHTML({stop:true})}</div><div class="pgright">${printCompTable(C)}<div class="pgqnote">Target grades: A set by the task, B research-based, C clinical estimate still being validated. Red: you at ${TGT} if you keep training. Grey: if you stop.</div>${qn}</div></div>`;
+    pmain=`<div class="pgmain pgradarmain"><div class="pgcharts">${radarSVG(C,{animate:false})}${radarLegendHTML({stop:true})}</div><div class="pgright">${printCompTable(C)}<div class="pgqnote">Target grades: A set by the task, B research-based, C clinical estimate still being validated. Red: you at ${TGT} if you keep training. Grey: if you stop. Goal, 1–3 yrs: the level to build to now so the glide path still clears at ${TGT}.</div>${qn}</div></div>`;
   } else {
     const lead = (HERO==='A' && v.nGap) ? `<div class="actionlead" style="margin:8px 0 4px"><div class="allbl">Train first</div><div class="atxt"><b class="tk">${worst.short}</b>, about <b>${worst.shortBy}% short</b> at ${TGT}. ${worst.r.why||''}</div></div>` : '';
     const useC = (HERO==='A'||HERO==='B') ? Csort : C;
@@ -6611,7 +6613,7 @@ function printModeSummaryHTML(mode,goals){
   if(mode==='R')return `<div data-pdf-report-mode="capacity-wheel">${modelConfidenceHTML(story)}<div class="modepanel"><h2>Your capacity wheel</h2><div class="modelede">Every axis uses the same normalization: 100% is a defensible fixed goal demand.</div><div class="wheelwrap">${overviewWheelSVG(story)}<div class="wheellegend">${wheelKeyHTML(story)}<span>Support-only capacities are excluded. Polygon area is not a score.</span></div></div></div>${wholeBodyOpportunitiesHTML(story)}</div>`;
   if(mode==='D'){
     const gradeCounts=currentGoalAuditRegister().flatMap(r=>r.targetGrades).reduce((a,t)=>(a[t.grade]=(a[t.grade]||0)+1,a),{}),families=Object.entries(EVIDENCE_HORIZONS).filter(([f])=>f!=='none'&&f!=='mobility');
-    return `<div data-pdf-report-mode="clinician-detail">${foundationalSummaryHTML()}<div class="modepanel"><h2>Clinician model audit</h2><div class="modelede">${STATUS_RULE} Every target is graded A, B or C for how firm it is.</div><div class="scorecard"><div class="sccol up"><div class="schd"><span class="scttl">Target grades, all 36 goals</span></div><div class="scqs">${['A','B','C'].map(k=>`<span class="scq">${gradeCounts[k]||0} ${k} · ${TARGET_GRADES[k].toLowerCase()}</span>`).join('')}</div></div><div class="sccol dn"><div class="schd"><span class="scttl">Model safeguards</span></div><div class="scqs"><span class="scq">any projected miss = won’t clear</span><span class="scq">missing tests cannot clear</span><span class="scq">every target graded</span><span class="scq">wider range past the evidence</span></div></div></div><table class="ptbl"><thead><tr><th>Forecast family</th><th>Observed age range / evidence horizon</th><th>Confidence</th></tr></thead><tbody>${families.map(([f,h])=>`<tr><td>${f}</td><td>${h.observedAgeRange}; modeling extrapolation starts ${h.extrapolationStartAge}${h.extrapolationStartBasis?` (${h.extrapolationStartBasis})`:''}</td><td>${h.forecastConfidence}</td></tr>`).join('')}</tbody></table></div></div>`;
+    return `<div data-pdf-report-mode="clinician-detail">${foundationalSummaryHTML()}<div class="modepanel"><h2>Clinician model audit</h2><div class="modelede">${STATUS_RULE} Every target is graded A, B or C for how firm it is.</div><div class="scorecard"><div class="sccol up"><div class="schd"><span class="scttl">Target grades, all 36 goals</span></div><div class="scqs">${['A','B','C'].map(k=>`<span class="scq">${gradeCounts[k]||0} ${k} · ${TARGET_GRADES[k].toLowerCase()}</span>`).join('')}</div></div><div class="sccol dn"><div class="schd"><span class="scttl">Model safeguards</span></div><div class="scqs"><span class="scq">any projected miss = opportunity with a 1–3-year goal</span><span class="scq">missing tests cannot clear</span><span class="scq">every target graded</span><span class="scq">wider range past the evidence</span></div></div></div><table class="ptbl"><thead><tr><th>Forecast family</th><th>Observed age range / evidence horizon</th><th>Confidence</th></tr></thead><tbody>${families.map(([f,h])=>`<tr><td>${f}</td><td>${h.observedAgeRange}; modeling extrapolation starts ${h.extrapolationStartAge}${h.extrapolationStartBasis?` (${h.extrapolationStartBasis})`:''}</td><td>${h.forecastConfidence}</td></tr>`).join('')}</tbody></table></div></div>`;
   }
   return `<div data-pdf-report-mode="simple">${goalHeadlineHTML(story)}${patientGoalCardsHTML(story.goalOutlooks,true)}<div class="btitle">Your capacity story</div>${capacitySummaryHTML(story)}<div class="scope"><b>Next pages:</b> each goal has its own radar and test-by-test results.</div></div>`;
 }
@@ -6734,7 +6736,7 @@ $("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); i
 const COPY={
   scope:()=>`This model uses measured physical capacities from the Early Medical assessment, CPET, and selected context from DEXA. Each goal is judged on every one of its tests. Qualitative movement screens and DEXA context are shown separately and do not change a goal’s status.`,
   disclaimerLead:'How to read this.',
-  disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization; strength, power and aerobic capacity follow the decline of people who keep training (healthy-cohort rates through the 60s, about two-thirds of the general rate from 70, aerobic fitness at 0.7× the typical rate), range of motion declines at half the typical rate, balance follows published age norms, and rep and hold tests are tracked but not projected, each with a deliberately broad uncertainty range. A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. Training, disease, injury, body-weight change, and survivor effects can materially alter the trajectory.`
+  disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization; strength, power and aerobic capacity follow the decline of people who keep training (healthy-cohort rates through the 60s, about two-thirds of the general rate from 70, aerobic fitness at 0.7× the typical rate), range of motion declines at half the typical rate, balance follows published age norms, rep and hold tests are tracked but not projected, and isolated strength tests aim for the VALD 75th percentile carried to the target age, each with a deliberately broad uncertainty range. A test projected short gets a goal for the next 1–3 years: the level that keeps the glide path above what the goal needs. A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. Training, disease, injury, body-weight change, and survivor effects can materially alter the trajectory.`
 };
 const DEMO_ARCHETYPES={
   balanced:{label:'Balanced all-rounder',sex:'male',age:54,bodyWeight_lb:175,metrics:BASELINE_METRICS,assessmentPercentiles:{hopRSI:58,anklePF_xBW:54,cmjPower_WkG:52,dropJump_RSI:48,beltSquatIso_xBW:61,broadJump_cm:55,kneeFlex_xBW:46,slVertJump_cm:50,hipAbd_xBW:43,hipAdd_xBW:41,kneeExt_xBW:38,grip_lb:57,shoulderER_NmKg:40}},
