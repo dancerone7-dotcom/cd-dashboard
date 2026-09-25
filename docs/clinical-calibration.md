@@ -55,6 +55,35 @@ Dan's request: make sure nothing EM collects that matters for a CD is missed. Ch
 - Knee extension range is context only for now. It could join the walking and stair goals: standing on a bent knee raises the quadriceps demand steeply as the angle grows (Perry 1975), and more than 5° short of straight is the usual clinical cut for a flexion contracture.
 - Visceral fat stays off the CD page unless you want it shown without a cut-point.
 
+## Goal library: 55 activities from the activity-demand review (2026-09-25, redesign)
+
+The goal builder's "Start from an activity" list holds 55 activities people want to keep doing into their 80s: 16 sports, 14 snow and water, 12 walking, climbing and cycling, 5 mind-body and dance, and 8 home and travel. Demand profiles are graded 7 A, 25 B and 23 C, and 246 of 248 citations were re-checked against Europe PMC. Only 7 activities have demand data measured in adults over 60; most targets at 80–90 are extrapolations.
+
+**Aerobic targets.** Each activity keeps the review's numbers while the coach leaves its METs and minutes unchanged; changing either falls back to the builder's duration rule.
+
+- Oxygen cost: measured older-adult data first, then the Older Adult Compendium (MET60+ × 2.7), then the Adult Compendium (MET × 3.5 × 0.76 for self-paced activities; × 1.0 at a fixed pace, × 1.08 walking at a set speed). The 0.76 is the median older/adult cost ratio across 18 activities listed in both Compendiums.
+- Share of VO₂max by bout: 0.75 up to 20 minutes, 0.70 for 20–45, 0.65 for 45–75, 0.58 for 75–150 minutes of stop-and-go sport, 0.55 for 2–3 hours, 0.47–0.50 all day. Mode ceilings: swimming 0.85, fins 0.92, arm paddling 0.75. LT1 at the cost × 1.05 (× 1.10 past 2 hours; not for bouts under 5 minutes).
+- Example: slow-pitch softball costs 13.3 mL/kg/min (5.0 METs × 3.5 × 0.76) at 58% of VO₂max, so VO₂max 23 and LT1 14 at the goal age (grade C).
+
+**Tests.** The review's 4–8 ranked tests per activity. Each takes its target from the built-in goal whose demand it matches, or else the first built-in goal that uses it, so library goals are judged like built-in ones. PCA rep and hold tests that no goal sets a target for (push-ups, planks, dead hang, chin-ups, Copenhagen, eyes-closed balance) are tracked against the standard for age and don't set the result. A stand-in named by the review (goblet squat, dumbbell external rotation) is entered under its main test, and steps in automatically when the main test is missing.
+
+**New targets (redesign):**
+
+| Test | Target at the goal age | Used for | Grade |
+|---|---|---|---|
+| Shoulder internal rotation, 90/90 | ≥ 45° (flag under 35°) | Throwing | C: Roy 2009 (60+, passive) averages 62°, about 53° at 90 at −4° a decade |
+| Shoulder external rotation, 90/90 | ≥ 75° (flag under 65°) | Throwing | C: Roy 2009 averages 84°, about 75° at 90 |
+| Hip internal rotation (lead hip) | ≥ 30° | Swinging a club, bat or racquet | B: 31° in pain-free golfers against 21° with low back pain (Murray 2009; Vad 2004) |
+
+Shoulder rotation falls about 4° a decade each after 55 (total arc about 8°; Fleisig 2023 and Roy 2009 agree), half that for people who keep up mobility work. Rotation screening did not predict injury in softball, tennis or volleyball (Pozzi 2020), so these are capacity targets, not injury screens.
+
+**Built-in goals against the review.** Built-in VO₂max targets sit close to the review's matching activities. Tennis/padel/pickleball is 25 against doubles 26, pickleball 25 and padel 27, but singles tennis needs 37. Golf carrying is 27 (review 27), dance 22.5 (23 to 24), horseback 17 (18), open-water swim 32 (35), laps 28 (31), kayak 27 (30), surf 29 (32) and downhill ski 23 (26). The built-in dog walk is a 60-minute trail walk with a 60-lb dog (24); the review's 30–40 minute walk needs 17.
+
+**Open for Dan:**
+- Align the built-in goals with the review's aerobic numbers? Open-water swim, laps, kayak, surf and downhill ski would rise by 2 to 3.5 mL/kg/min. Tennis stays about the same unless it is split into singles and doubles.
+- Tests the review would add: a water-competency pass (swim, tread, exit), a sitting-rising or timed floor-transfer test, a cardiac-clearance flag for scuba, snorkeling, open water, skiing, hunting and singles tennis (most deaths of older participants there are cardiac), the shoulder ER:IR strength ratio from the ForceFrame test (≥ 0.80), a 10-m sprint, NordBord eccentric hamstring, and choice stepping reaction time.
+- Source files: the full review (report and JSON) is kept locally with the other 2026-09-25 literature reviews, not in this repository.
+
 ## Model 4.11: the "if you stop" line follows the detraining literature (2026-09-25)
 
 Dan's direction: match the literature as closely as possible, but keep it realistic for Early Medical's population (coached, mostly training a year or more, tested on VALD isometric devices). The grey line shows the same patient if they stop training today: a first-year drop, then the general-population decline, never more slowly than the keep-training line.
