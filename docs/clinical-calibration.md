@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, 2026-09-26)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,16 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.14: the remaining goal-audit decisions (2026-09-26)
+
+- **5 km run:** keeps 85% of VO₂max. A timed 5 km is a hard, race-like effort, so it needs VO₂max 33.5 at 90 (the review's steady-bout 70% would need 40.7).
+- **Lifting from the floor:** a ×1.25 margin for every floor lift. A 30-lb child and the car-seat child now need a 37.5-lb deadlift (was 45); the 20-lb chore load 25 lb (was 30). The garden bag and scuba gear were already ×1.25. Library goals use the same margin.
+- **Balance:** golf (finishing the swing on the lead leg, uneven turf) and the 60-minute trail walk with a 60-lb dog move to the sport and uneven-terrain level, 11 s at 90 (was 10).
+- **Tennis, padel or pickleball:** adds hip abduction, top-quarter strength for age kept up to 90 (about 0.25 × BW for a 180-lb man). Hip abduction tracks court agility in pickleball players (Myers 2024).
+- **Golf:** adds lead-hip internal rotation of 30° or more (31° in pain-free golfers against 21° with low back pain; Murray 2009, grade B) and hip adduction, top-quarter for age (lead-hip adduction tracks clubhead speed at 62; Lynn 2023; Tsai 2010).
+- **PCA ForceFrame bands:** the PCA keeps its house bands. The CD tool keeps judging ForceFrame tests against VALD's 75th percentile (4.9.2).
+- **Results:** test member A 3 / 7 / 0 and test member B 1 / 2 / 7, unchanged. Demo patient counts are unchanged; each demo's tennis goal now also names hip abduction. All-Proficient check: 110 short (606 targets checked; the new hip tests add stand-in checks that pass).
 
 ## Model 4.13: Dan's decisions on the 4.12 open items (2026-09-25)
 
@@ -240,7 +250,7 @@ Dan's rule: on ForceFrame tests, Proficient is the VALD 75th percentile. There a
   | Knee extension, men, Proficient | 84 kg | — | 96th–97th (see 4.9.1) |
   | Knee extension, women, Proficient | 68 kg | — | 94th–95th |
 
-- **Proposed for the PCA (pending Dan and Chris Hart):** grade ForceFrame tests by VALD percentile for age and sex, the way the PCA already grades hip ad/ab and shoulder rotation:
+- **Proposed for the PCA (Dan, 2026-09-26: keep the house bands; not adopted):** grade ForceFrame tests by VALD percentile for age and sex, the way the PCA already grades hip ad/ab and shoulder rotation:
   - Proficient at or above the 75th;
   - Developing from the 25th to the 75th;
   - Deficient below the 25th.

@@ -970,9 +970,9 @@ input[type=checkbox]{accent-color:#39404b}
 <div id="printDoc" aria-hidden="true"></div>
 
 <script>
-const MODEL_VERSION='4.13.1';
+const MODEL_VERSION='4.14';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -1155,7 +1155,7 @@ const ACTIVITIES = {
     "reqKind": "fixed_load_pctBW",
     "reqArgs": {
      "loadLb": 30,
-     "reserve": 1.5
+     "reserve": 1.25
     },
     "critical": true,
     "confidence": "direct",
@@ -1517,7 +1517,7 @@ const ACTIVITIES = {
     "reqKind": "fixed_load_pctBW",
     "reqArgs": {
      "loadLb": 30,
-     "reserve": 1.5
+     "reserve": 1.25
     },
     "critical": true,
     "confidence": "direct",
@@ -2108,13 +2108,13 @@ const ACTIVITIES = {
     "weight": 1.0,
     "group": "lift",
     "basis": "task",
-    "why": "Lifting a 20-lb laundry basket or grocery bag from the floor; the target adds a 50% reserve.",
+    "why": "Lifting a 20-lb laundry basket or grocery bag from the floor; the target adds a 25% reserve.",
     "evi": "",
     "src": "Early Medical assessment",
     "reqKind": "fixed_load_pctBW",
     "reqArgs": {
      "loadLb": 20,
-     "reserve": 1.5
+     "reserve": 1.25
     },
     "critical": false,
     "confidence": "direct",
@@ -2750,13 +2750,13 @@ const ACTIVITIES = {
     "metric": "balanceSL_EO_s",
     "unit": "s",
     "dir": "higher_better",
-    "req": 10,
+    "req": 11,
     "role": "capacity",
     "weight": 0.8,
     "group": "balance",
     "basis": "research",
-    "why": "Dressing on one leg, soft or moving ground and single-leg phases need about 10 s.",
-    "evi": "Vellas 1997 (unable to stand 5 s on one leg = higher injurious-fall risk); Springer 2007 norms, ages 80–99: 6.2 s mean, 9.4 s best of 3; PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 6 s, Proficient 15 s.",
+    "why": "A trail walk with a strong dog pulling needs balance in the top quarter for people in their 80s (about 11 s).",
+    "evi": "Springer 2007 norms, ages 80–99: 9.4 s mean (best of 3), top quarter about 11 s (lit review 2026-09-25, from the published mean and SD). Vellas 1997: unable to stand 5 s on one leg = higher injurious-fall risk. Set by Dan 2026-09-26: sport and uneven-terrain level.",
     "src": "VALD / timed stance",
     "critical": false,
     "confidence": "direct",
@@ -4639,13 +4639,13 @@ const ACTIVITIES = {
     "metric": "balanceSL_EO_s",
     "unit": "s",
     "dir": "higher_better",
-    "req": 10,
+    "req": 11,
     "role": "capacity",
     "weight": 0.8,
     "group": "balance",
     "basis": "research",
-    "why": "Dressing on one leg, soft or moving ground and single-leg phases need about 10 s.",
-    "evi": "Vellas 1997 (unable to stand 5 s on one leg = higher injurious-fall risk); Springer 2007 norms, ages 80–99: 6.2 s mean, 9.4 s best of 3; PCA Standards, ages 80–90 (EM_PCA_02, PCA-2026-09-03): Developing from 6 s, Proficient 15 s.",
+    "why": "Finishing the swing on the lead leg and walking uneven turf need balance in the top quarter for people in their 80s (about 11 s).",
+    "evi": "Springer 2007 norms, ages 80–99: 9.4 s mean (best of 3), top quarter about 11 s (lit review 2026-09-25, from the published mean and SD). Vellas 1997: unable to stand 5 s on one leg = higher injurious-fall risk. Set by Dan 2026-09-26: sport and uneven-terrain level.",
     "src": "VALD / timed stance",
     "critical": false,
     "confidence": "direct",
@@ -5812,6 +5812,11 @@ function normalizeActivity(activity){
 /* Model 4.13 (Dan, 2026-09-25): knee extension counts for the walking and stair goals. Judged today, not projected. */
 const KNEE_EXT_REQ={cat:'Mobility',label:'Knee extension range',metric:'kneeExtLag_deg',unit:'°',dir:'lower_better',req:5,role:'capacity',weight:.8,group:'knee-mobility',basis:'clinical',why:'A knee that stops more than 5° short of straight makes the thigh work harder with every step and stair.',evi:'Standing and walking on a bent knee raises the quadriceps demand steeply as the angle grows (Perry 1975); more than 5° short of straight is the usual clinical cut for a flexion contracture.',src:'pROM tracker',critical:false,confidence:'direct',demandUncertainty:.2};
 for(const id of ['walk-3mi','stairs-load','dog-walk','hike-pack','beach-sand','festival','golf-18'])ACTIVITIES[id]?.reqs.push({...KNEE_EXT_REQ});
+/* Model 4.14 (Dan, 2026-09-26): tennis adds hip abduction; golf adds lead-hip rotation and hip adduction. */
+{const clone=(goal,metric,extra)=>({...JSON.parse(JSON.stringify(ACTIVITIES[goal].reqs.find(r=>r.metric===metric))),...extra});
+ ACTIVITIES.tennis.reqs.push(clone('football-kick','hipAbd_xBW',{why:'Side-hip strength to push off and change direction on the court. Target: top-quarter strength, kept up by training to 90.',evi:ACTIVITIES['football-kick'].reqs.find(r=>r.metric==='hipAbd_xBW').evi+' Hip abduction strength tracks court agility in pickleball players (Myers 2024).'}));
+ ACTIVITIES['golf-18'].reqs.push({cat:'Mobility',label:'Hip internal rotation',metric:'hipIR_deg',unit:'°',dir:'higher_better',req:30,role:'capacity',weight:.9,group:'mobility',basis:'research',why:'Lead-hip rotation to turn through the swing without twisting the low back.',evi:'Lead-hip internal rotation of at least 30°: 31° in pain-free golfers against 21° in golfers with low back pain (Murray 2009; Vad 2004).',src:'Movement assessment',critical:false,confidence:'direct',demandUncertainty:.25},
+  clone('horseback','hipAdd_xBW',{weight:.8,why:'Lead-hip adduction strength to turn through the swing. Target: top-quarter strength, kept up by training to 90.',evi:ACTIVITIES.horseback.reqs.find(r=>r.metric==='hipAdd_xBW').evi+' Lead-hip adduction tracks clubhead speed at 62 and is weaker in golfers with low back pain (Lynn 2023; Tsai 2010).'}));}
 for(const activity of Object.values(ACTIVITIES))normalizeActivity(activity);
 
 const CATS=["Mobility","Strength","Power","Aerobic","Eccentric","Balance","Core","Endurance"];
@@ -7147,7 +7152,7 @@ function aerobicReqs(spec){const lib=spec.libId?ACTIVITY_LIBRARY.find(a=>a.id===
   const out=[{cat:'Aerobic',label:'VO₂max',metric:'vo2',unit:'mL/kg/min',dir:'higher_better',req:null,role:'capacity',weight:1.15,group:'aerobic',basis:'research',why:`${why} VO₂max has to sit well above that cost to sustain it.`,evi:`Oxygen cost ${costTxt}${+spec.met60>0?` (older-adult Compendium, ${spec.met60} METs60+)`:` (Compendium, ${spec.met} METs)`}, sustained at about ${Math.round(fraction*100)}% of VO₂max for ${minutes} minutes${mode<1?`, with a ${Math.round(mode*100)}% ceiling for arm or water work`:''}.`,src,reqKind:'aerobic_vo2',reqArgs:{costMlKgMin:+cost.toFixed(1),met:+(cost/3.5).toFixed(2),fraction,mode},confidence:'direct',demandUncertainty:.25}];
   if(minutes>=40)out.push({cat:'Aerobic',label:'Aerobic base (LT1)',metric:'lt1_vo2',unit:'mL/kg/min',dir:'higher_better',req:null,role:'capacity',weight:1.15,group:'aerobic',basis:'research',why:'Long bouts run on the aerobic base, not peak capacity.',evi:`LT1 just above the activity’s oxygen cost (×${minutes>=120?'1.10':'1.04'}), as for the built-in goals.`,src:'CPET LT1/VT1',reqKind:'aerobic_lt1',reqArgs:{costMlKgMin:+cost.toFixed(1),met:+(cost/3.5).toFixed(2),reserve:minutes>=120?1.10:1.04,mode},confidence:'direct',demandUncertainty:.25});
   return out;}
-/* Loads keep the built-in reserve for each test (carry ×1.25, lift from the floor ×1.5, overhead ×1.25);
+/* Loads keep the built-in reserve for each test (carry ×1.25, lift from the floor ×1.25, overhead ×1.25);
    stairs with a carried load use the load-based step-up from the stairs goal. */
 function loadReqs(demands,loads){const out=[],mk=(goal,metric,lb,why)=>{const t=ruleTemplate(goal,metric);if(!t)return;t.reqArgs={...(t.reqArgs||{}),loadLb:+lb};t.why=why;t.role='capacity';t.critical=false;out.push(t);};
   if(demands.carry&&loads.carry>0)mk('carry-grandkids','suitcaseCarry_pctBW',loads.carry,`Carrying about ${loads.carry} lb while walking.`);
