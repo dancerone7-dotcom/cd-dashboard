@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, 2026-09-26)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, 2026-09-26)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,39 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.15: patient clarity (2026-09-26)
+
+After a review of the patient page from the point of view of longevity, strength-and-conditioning and rehab experts, Dan approved four changes.
+
+- **One ranked priority list.** The headline ("Start with …"), the numbered priority cards and the numbered plan table all follow the same order: the goal-impact ranking behind the cards. The aerobic base row follows VO₂max.
+- **"On the line" (within test error).** A shortfall smaller than the usual difference between two tests of the same person can't be told apart from a clear, so the test and its goal read "On the line: re-test to confirm" instead of "Opportunity". The margin is the typical test-to-test variation:
+
+| Test type | Margin |
+|---|---|
+| VO₂max | 5% |
+| Aerobic base (LT1) | 8% |
+| Isometric strength, grip, jump height, throws | 7% |
+| Loaded lifts and carries (% of body weight) | 5% |
+| Sit-to-stand and jump power | 6% |
+| Reactive jumps (RSI) | 10% |
+| Holds and single-leg balance | 20% |
+| Rep tests | 2 reps |
+| Range of motion | 5° (knee-to-wall 1 cm; knee extension 3°) |
+| Step-down | one box height (2 in) |
+
+  These are typical ranges from reliability studies (for example CPET VO₂max 3–6%, isometric dynamometry 5–10%, goniometry about 5°), grade C. Goal order: a real shortfall makes an opportunity; otherwise missing tests make "needs more data"; otherwise a test on the line makes the goal "on the line". The priority list and the plan's glide paths skip tests on the line.
+- **Strengths.** After tests with reserve above their goals' need, the list fills to four with results above average for age (a percentile of 60 or more, or Proficient for age), goal-linked ones first. A test short or on the line for any selected goal is never listed.
+- **Plain language.**
+  - Tests judged against today's standard no longer show a "% lower by 90" figure.
+  - Goals with only one or two tests show small bars instead of a "More tests needed" circle.
+  - Movement screens no longer print the grade twice.
+  - Patient names replace internal labels: aerobic base (not LT1), breathing and trunk control, bone density, muscle mass (arms and legs), lean mass, deep squat position.
+  - Stand-ins read "standing in for the … test".
+  - Target grades stay in the clinician view but are off the patient table.
+  - Muscle mass and lean mass show the low cut-offs: appendicular lean mass index under 7.0 (men) or 5.5 (women) kg/m², EWGSOP2; fat-free mass index under 17 or 15, ESPEN 2015.
+- **Fix:** a blank result was read as zero ("Deficient") and could appear as a priority (an untested Sorensen hold, for example). Blank now means not tested.
+- **Results:** test member A 3 / 7 / 0 (unchanged). Test member B 1 / 1 / 8: tennis returns to needs more data, with VO₂max on the line (25.8 projected against 25.9). Demo patients: the balanced example has 5 goals on the line (2 on track, 3 opportunities); the others have up to 2. All-Proficient check unchanged.
 
 ## Model 4.14: the remaining goal-audit decisions (2026-09-26)
 
