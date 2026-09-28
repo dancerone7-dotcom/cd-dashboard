@@ -450,7 +450,7 @@ body:not(.tab-build) .datactl{display:none}
   .appbar,.rail{display:none!important}
   .stage{overflow:visible;padding:0}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  .ptpage .pt-card,.ptpage .pt-panel,.ptpage .pt-prow,.ptpage .ovcard,.ptpage .pt-wheel,.ptpage .pt-keep,.ptpage .rtable tr,.ptpage .glidecard,.ptpage .radarfig,.ptpage .pt-goal>summary{break-inside:avoid}
+.ptpage .pt-card,.ptpage .pt-panel,.ptpage .pt-prow,.ptpage .ovcard,.ptpage .pt-wheel,.ptpage .pt-keep,.ptpage .glidecard,.ptpage .radarfig,.ptpage .pt-goal>summary{break-inside:avoid}
   .ptpage .pt-divider{break-before:page}.ptpage .rreplay{display:none!important}
   .ptpage .pt-goal>summary{break-after:avoid}.ptpage .radarfig{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)!important;align-items:start}
 }
@@ -520,21 +520,9 @@ body:not(.tab-build) .datactl{display:none}
 .rlegend .now i{width:18px;height:11px;border:2px solid #2a7cfb;background:rgba(42,124,251,.14);border-radius:2px}
 .rlegend .p90 i{border-top:3px dashed #bc2a2a}
 .rlegend .stop i{border-top:2.5px solid #8e949b}
-.rtable td.rstopv{color:var(--muted)}
 .radarnote{font-size:11px;line-height:1.5;color:var(--muted);margin:0}
-.rtablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
-.rtable{border-collapse:collapse;width:100%;min-width:640px;font-size:12px}
-.rtable th{text-align:left;font-size:9.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line);background:rgba(15,23,42,.025)}
-.rtable td{padding:8px 10px;border-bottom:1px solid rgba(15,23,42,.06);vertical-align:top;white-space:nowrap}
-.rtable tr:last-child td{border-bottom:0}
-.rtable .rtest{font-weight:700;color:var(--white)}
-.rtable .rres{font-weight:700}
-.rtable tr.miss .rtest,.rtable tr.miss .rres{color:#bc2a2a}
-.rtable tr.ok .rres{color:#047857}
-.rtable small{display:block;font-size:10px;font-weight:600;color:var(--muted);margin-top:2px;white-space:normal;min-width:88px}
 .tg{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;font-size:10.5px;font-weight:800;margin-right:4px}
 .tg-A{background:#d1fae5;color:#065f46}.tg-B{background:#dbeafe;color:#1e40af}.tg-C{background:#f1f5f9;color:#475569}
-.rtablenote{font-size:10.5px;color:var(--muted);line-height:1.45;margin:6px 2px 10px}
 .readiness .big.r-incomplete{color:#475569}
 .ovcard.z-incomplete{border-left-color:#94a3b8}.ovword.z-incomplete,.zico.z-incomplete{color:#475569}
 .goalheadline{display:flex;flex-direction:column;gap:6px;padding:2px 2px 4px}
@@ -591,16 +579,13 @@ body{background:#eceff3}
 .btitle{color:#bc2a2a;letter-spacing:1.4px;font-weight:600}
 @media(max-width:760px){.slide-head{padding:34px 18px 14px}.pv{padding-left:14px;padding-right:14px}.slide-title{font-size:28px}.tagline{font-size:13px}}
 .radar .rgap.watch{stroke:#b7791f}.radar .rgapdot.watch{fill:#b7791f}.radar .rl.watchl{fill:#8a5a00;font-weight:700}
-.rtable tr.watch .rtest,.rtable tr.watch .rres{color:#8a5a00}.minisvg .mgap.watch{fill:#b7791f}
+.minisvg .mgap.watch{fill:#b7791f}
 .z-watch{color:#8a5a00}
 /* Model 4.8: a projected shortfall is an opportunity (amber), not a red verdict; glide-path charts. */
-.readiness .big.r-gap,.ovword.z-gap,.actbtn.z-gap .pct,.zico.z-gap,.bval.z-gap,.obval.z-gap,.sctile .scz.z-gap,.srow.z-gap .df,.radarread.z-gap b,.rtable tr.miss .rtest,.rtable tr.miss .rres{color:#b45309}
+.readiness .big.r-gap,.ovword.z-gap,.actbtn.z-gap .pct,.zico.z-gap,.bval.z-gap,.obval.z-gap,.sctile .scz.z-gap,.srow.z-gap .df,.radarread.z-gap b{color:#b45309}
 .actbtn.z-gap .ring{background:#e0a24a;color:#b45309}.ovcard.z-gap,.ovbarrow.z-gap,.sctile.z-gap,.radarread.z-gap{border-left-color:#e0a24a}
 .bproj.z-gap,.obfill.z-gap{background:#e0a24a}.pcard.z-gap{border-color:rgba(217,119,6,.35)}.srow.z-gap{background:rgba(217,119,6,.08);border-color:rgba(217,119,6,.28)}
 .radar .rl.miss{fill:#b45309}
-.rtable td.rstg small{color:var(--muted)}
-.rtable .rnum{display:inline-block;min-width:16px;color:var(--muted);font-weight:700}.rtable tr.untested td{color:var(--muted)}.rtable tr.untested .rtest{color:var(--ink)}
-.rtable th,.rtable td{padding-left:7px;padding-right:7px}.rtable td.rstg{white-space:normal;min-width:118px}.rtable td.rtest{white-space:normal;min-width:150px;max-width:210px}
 .glidewrap{margin:16px 0 8px}.glidehead{font-size:13.5px;color:var(--ink);margin:0 2px 8px}.glidehead span{color:var(--muted);margin-left:6px;font-size:12px}
 .glidegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
 .glidecard{border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px 12px 12px}
@@ -745,7 +730,7 @@ input[type=checkbox]{accent-color:#39404b}
 .pt-toc .tocbtn{font-weight:600}
 .pt-tocsub{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700;margin:14px 8px 6px}
 @media (max-width:1180px){.appbar{gap:10px;padding:10px 14px;flex-wrap:wrap}.datactl{order:4;width:100%;margin-right:0;justify-content:flex-end}.brandmark{font-size:19px;white-space:nowrap}.seg.steps button{padding:6px 10px;white-space:nowrap}.linkbtn{white-space:nowrap}.patient-chip .meta{display:none}
-  .ptpage .rtable th:nth-child(4),.ptpage .rtable td:nth-child(4){display:none}.ptpage .rtable{min-width:0}.ptpage .pt-gbody .pv{padding:12px 12px 8px}.ptpage .rtable th,.ptpage .rtable td{padding-left:5px;padding-right:5px}.ptpage .rtable td.rtest{min-width:118px}.ptpage .rtable td.rstg{min-width:96px}}
+.ptpage .pt-gbody .pv{padding:12px 12px 8px}}
 @media (max-width:900px){body.tab-report #tab-report>.rail{display:none}.pt-cols{grid-template-columns:1fr}.pt-prow{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr) minmax(0,1.3fr) minmax(0,.9fr)}.pt-prow>:nth-child(5){display:none}}
 @media (max-width:1100px){.pt-sowrap,.pt-panels{grid-template-columns:1fr}.pt-sec{padding:36px 28px 8px}.pt-cover{padding:84px 28px 40px}.pt-brand{left:28px}.pt-foot{padding:14px 28px}}
 /* ── goal builder ── */
@@ -813,10 +798,46 @@ input[type=checkbox]{accent-color:#39404b}
 .ptpage .pt-cmeta{font-size:13px}.ptpage .pt-cmeta span{font-size:12.5px}.ptpage .pt-cgoals,.ptpage .pt-cstep{font-size:13px}.ptpage .pt-cstep small{font-size:12px}
 .ptpage .pt-wlede{font-size:13.5px}.ptpage .pt-wheel p{font-size:12.5px}.ptpage .pt-wheelkey{font-size:12.5px}
 .ptpage .pt-prow{font-size:14px}.ptpage .pt-phead{font-size:11px}.ptpage .pt-pname small,.ptpage .pt-pgoal small{font-size:12px}.ptpage .pt-pgoals,.ptpage .pt-when{font-size:13px}
-.ptpage .pt-gcap{font-size:13px}.ptpage .pt-read p{font-size:14px}.ptpage .model-note{font-size:12.5px}.ptpage .radarnote,.ptpage .rtablenote{font-size:12.5px}
-.ptpage .rtable{font-size:13px}.ptpage .rtable small{font-size:11.5px}.ptpage .pt-keeprow{font-size:14px}.ptpage .pt-keeprow small{font-size:12.5px}.ptpage .pt-keepgoals{font-size:13px}
+.ptpage .pt-gcap{font-size:13px}.ptpage .pt-read p{font-size:14px}.ptpage .model-note{font-size:12.5px}.ptpage .radarnote{font-size:12.5px}
+.ptpage .pt-keeprow{font-size:14px}.ptpage .pt-keeprow small{font-size:12.5px}.ptpage .pt-keepgoals{font-size:13px}
 /* Phones: results stack under their name, plan rows label their own cells, and the wheel numbers its spokes. */
 .wnum,.pt-wheelnums{display:none}
+/* 4.17.2 current results: a compact key, the value over its unit, one mark per row, cards sized to their content. */
+.ptpage .pt-key{display:flex;flex-wrap:wrap;align-items:center;gap:10px 30px;margin:2px 0 18px;font-size:13px;max-width:none}
+.ptpage .pt-key .k{display:inline-flex;align-items:center;gap:10px}.ptpage .pt-key .pt-bar{display:inline-block;flex:0 0 96px;width:96px;margin:0}
+.ptpage .pt-panels{align-items:start}
+.ptpage .pt-mrow{grid-template-columns:minmax(0,1fr) 104px minmax(0,1.15fr);gap:14px;padding:11px 0}
+.ptpage .pt-mval{white-space:normal;line-height:1.2}.ptpage .pt-mval b{display:block;font-size:15px}.ptpage .pt-mval small{display:block;font-size:11.5px;font-weight:400;color:var(--pt-muted);margin-top:1px}
+.ptpage .pt-mvis small{margin-top:4px}
+/* 4.17.2 patient goal detail: a lead sentence, a two-shape radar and a three-column test list. */
+.pt-glead{font-size:15.5px;line-height:1.55;color:var(--pt-ink);margin:2px 0 16px;max-width:780px}
+.pt-gfig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center;margin-bottom:14px}.pt-gfig.nofig{grid-template-columns:1fr}
+.pt-gradar svg.radar{max-width:430px;margin:0 auto}.pt-gradar .rlegend{justify-content:center;margin-top:6px}
+.pt-gtests{border:1px solid var(--pt-line);border-radius:12px;overflow:hidden;background:#fff}
+.pt-gt{display:grid;grid-template-columns:minmax(0,1.1fr) auto minmax(0,1.3fr);gap:12px;padding:10px 14px;border-top:1px solid #f0f2f4;font-size:14px;align-items:start}
+.pt-gt:first-child{border-top:0}.pt-gth{background:#f5f6f8;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--pt-muted);font-weight:700;padding:8px 14px}
+.pt-gt .n{font-weight:600}.pt-gt .v{text-align:right;white-space:nowrap;font-weight:700}.pt-gth .v{font-weight:700}
+.pt-gt small{display:block;font-size:12px;font-weight:400;color:var(--pt-muted);margin-top:2px;line-height:1.35}.pt-gt .s span{font-weight:700}
+.pt-gt.ok .s span{color:#2f7d4f}.pt-gt.miss .s span{color:#9a6512}.pt-gt.line .s span{color:#b45309}.pt-gt.info .s span{color:var(--pt-muted)}
+.pt-gt.untested .n,.pt-gt.untested .s{color:var(--pt-muted);font-weight:400}
+@media (max-width:900px){.pt-gfig{grid-template-columns:1fr}}
+/* 4.17.2 age radar, the "until about" line and the goal-card age bars. */
+.pt-until{display:flex;flex-wrap:wrap;gap:4px 26px;margin:-6px 0 16px;font-size:14px;color:var(--pt-ink)}
+.pt-agerad{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pt-seg{display:inline-flex;border:1px solid var(--pt-line);border-radius:999px;padding:3px;background:#f5f6f8}
+.pt-seg button{font:inherit;font-size:12.5px;font-weight:600;border:0;background:none;color:var(--pt-muted);padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}.pt-seg button.on{background:#39404b;color:#fff}
+.pt-agerad .radar .r90{fill:rgba(42,124,251,.14);stroke:#2a7cfb;stroke-dasharray:none;stroke-width:2.2}
+.pt-agebar{display:flex;align-items:center;gap:10px;width:100%;max-width:420px}.pt-agebar input{flex:1;accent-color:#39404b}.pt-agemax{font-size:12px;color:var(--pt-muted)}
+.pt-play{width:30px;height:30px;flex:0 0 30px;border-radius:50%;border:1px solid var(--pt-line);background:#fff;cursor:pointer;font-size:12px;color:#39404b}
+.pt-agenow{font-size:13.5px;text-align:center;min-height:20px}
+.pt-ubar{position:relative;width:100%;height:8px;border-radius:4px;background:#f1f2f4;margin:10px 0 3px}.pt-ubar i{position:absolute;top:0;bottom:0;border-radius:4px}.pt-ubar i.ok{left:0;background:#8cc5a3}.pt-ubar i.short{background:#e8b77a}
+.pt-ubar b{position:absolute;top:-3px;width:3px;height:14px;border-radius:2px;background:#2a7cfb;transform:translateX(-50%)}
+.pt-uages{display:flex;justify-content:space-between;width:100%;font-size:11px;color:var(--pt-muted)}
+.ovuntil{display:flex;flex-direction:column;gap:1px;font-size:12.5px;line-height:1.4;margin-top:4px}.ovuntil.ok{color:#2f7d4f;font-weight:700}
+.pt-ukey{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--pt-ink);margin-top:6px}.pt-ukey span{display:inline-flex;align-items:center;gap:6px}
+.pt-ukey i{width:18px;height:8px;border-radius:4px}.pt-ukey i.ok{background:#8cc5a3}.pt-ukey i.short{background:#e8b77a}.pt-ukey b{width:3px;height:13px;border-radius:2px;background:#2a7cfb}
+@media print{.pt-seg,.pt-agebar{display:none!important}}
+@media (max-width:600px){.ptpage .pt-mrow{grid-template-columns:minmax(0,1fr) auto}.ptpage .pt-mvis{grid-column:1/-1}.pt-gt{grid-template-columns:minmax(0,1fr) auto}.pt-gt .s{grid-column:1/-1}.pt-gth{display:none}.pt-seg button{padding:6px 10px}}
 @media (max-width:600px){.pt-mrow{grid-template-columns:minmax(0,1fr) auto}.pt-mvis{grid-column:1/-1}
   .pt-phead{display:none}.pt-prow{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr) auto;gap:6px 12px;padding:12px 14px;align-items:start}.pt-prow>:first-child{grid-column:1/-1}
   .pt-prow>:nth-child(2)::before,.pt-prow>:nth-child(3)::before,.pt-prow>:nth-child(4)::before{display:block;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--pt-muted);font-weight:700;margin-bottom:2px}
@@ -891,9 +912,9 @@ input[type=checkbox]{accent-color:#39404b}
 
 
 <script>
-const MODEL_VERSION='4.17.1';
+const MODEL_VERSION='4.17.2';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -6442,21 +6463,21 @@ const GOAL_AUDIT_REGISTER=currentGoalAuditRegister();
 /* Goal radar. Each spoke is one test, scaled so the green ring (100%) is what
    the goal needs at the target age. It draws in reading order: what's needed,
    where the patient is today, then where they're projected to be. */
-function radarSVG(C,{animate=true}={}){
+function radarSVG(C,{animate=true,simple=false}={}){
   if(C.length<3)return `<div class="radar-empty">The radar needs results for at least three of this goal’s tests.</div>`;
   const N=C.length,cx=270,cy=200,R=128,MAX=150,ang=i=>(-90+i*360/N)*Math.PI/180;
   const at=(i,p)=>{const k=R*clamp(p,0,MAX)/MAX;return [cx+Math.cos(ang(i))*k,cy+Math.sin(ang(i))*k];};
   const f=n=>n.toFixed(1),shape=vals=>vals.map((p,i)=>at(i,p).map(f).join(',')).join(' ');
   const rings=[50,MAX].map(p=>`<polygon class="rg" points="${shape(C.map(()=>p))}"/>`).join('');
   const axes=C.map((c,i)=>{const [x,y]=at(i,MAX);return `<line class="ra" x1="${cx}" y1="${cy}" x2="${f(x)}" y2="${f(y)}"/>`;}).join('');
-  const gaps=C.map((c,i)=>{if(c.meets)return '';const [x1,y1]=at(i,c.projPct),[x2,y2]=at(i,100),w=c.watch?' watch':'';return `<line class="rgap${w}" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/><circle class="rgapdot${w}" cx="${f(x1)}" cy="${f(y1)}" r="4.5"/>`;}).join('');
+  const gaps=C.map((c,i)=>{if(c.meets||simple&&c.cappedUnknown&&fullHold(c))return '';const [x1,y1]=at(i,c.projPct),[x2,y2]=at(i,100),w=c.watch?' watch':'';return `<line class="rgap${w}" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/><circle class="rgapdot${w}" cx="${f(x1)}" cy="${f(y1)}" r="4.5"/>`;}).join('');
   const labels=C.map((c,i)=>{const a=ang(i),co=Math.cos(a),si=Math.sin(a),lx=f(cx+co*(R+16)),ly=cy+si*(R+16),anchor=Math.abs(co)<.25?'middle':co>0?'start':'end';
     const w=c.short.split(' '),half=Math.ceil(w.length/2),lines=c.short.length>13&&w.length>1?[w.slice(0,half).join(' '),w.slice(half).join(' ')]:[c.short];
-    if(!c.meets)lines.push(c.unable?'unable today':c.cappedUnknown?(fullHold(c)?'held the full test':'at the test limit'):c.watch?`watch · ${c.shortBy}% below`:`${c.shortBy}% short`);
+    if(!c.meets&&!simple)lines.push(c.unable?'unable today':c.cappedUnknown?(fullHold(c)?'held the full test':'at the test limit'):c.watch?`watch · ${c.shortBy}% below`:`${c.shortBy}% short`);
     const lh=14,y0=si<-.3?ly-(lines.length-1)*lh:si>.3?ly+10:ly-(lines.length-1)*lh/2+4;
-    return `<text class="rl${c.meets?'':c.watch?' watchl':' miss'}" x="${lx}" y="${f(y0)}" text-anchor="${anchor}">${lines.map((t,j)=>`<tspan x="${lx}" dy="${j?lh:0}"${!c.meets&&j===lines.length-1?' class="rlv"':''}>${t}</tspan>`).join('')}</text>`;}).join('');
+    return `<text class="rl${c.meets||simple&&c.cappedUnknown&&fullHold(c)?'':c.watch?' watchl':' miss'}" x="${lx}" y="${f(y0)}" text-anchor="${anchor}">${lines.map((t,j)=>`<tspan x="${lx}" dy="${j?lh:0}"${!c.meets&&j===lines.length-1?' class="rlv"':''}>${t}</tspan>`).join('')}</text>`;}).join('');
   const misses=C.filter(c=>!c.meets&&!c.watch),watch=C.filter(c=>c.watch),label=`Radar of ${N} tests. ${misses.length?`Projected short at ${TGT}, each with a short-term goal: ${nameList(misses.map(c=>c.short),N)}.`:`All ${N} clear or pass the task test at ${TGT}.`}${watch.length?` Watch: ${nameList(watch.map(c=>c.short),N)}.`:''}`,o=`style="transform-origin:${cx}px ${cy}px"`;
-  return `<svg class="radar${animate?' play':''}" viewBox="0 0 540 400" role="img" aria-label="${label}">${rings}${axes}<polygon class="rz rneed" ${o} points="${shape(C.map(()=>100))}"/><polygon class="rz rnow" ${o} points="${shape(C.map(c=>c.curPct))}"/><polygon class="rz rstop" ${o} points="${shape(C.map(c=>c.stopPct))}"/><polygon class="rz r90" ${o} points="${shape(C.map(c=>c.projPct))}"/><g class="rz rmiss">${gaps}</g>${labels}</svg>`;
+  return `<svg class="radar${animate?' play':''}" viewBox="0 0 540 400" role="img" aria-label="${label}">${rings}${axes}<polygon class="rz rneed" ${o} points="${shape(C.map(()=>100))}"/>${simple?'':`<polygon class="rz rnow" ${o} points="${shape(C.map(c=>c.curPct))}"/><polygon class="rz rstop" ${o} points="${shape(C.map(c=>c.stopPct))}"/>`}<polygon class="rz r90" ${o} points="${shape(C.map(c=>c.projPct))}"/><g class="rz rmiss">${gaps}</g>${labels}</svg>`;
 }
 function radarLegendHTML({stop=false}={}){return `<div class="rlegend"><span class="lg need"><i></i>Needed at ${TGT}</span><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>At ${TGT} if you keep training</span>${stop?`<span class="lg stop"><i></i>At ${TGT} if you stop</span>`:''}</div>`;}
 function radarReadHTML(C,ev){
@@ -6535,25 +6556,14 @@ const shortWords=c=>c.r.dir==='lower_better'?`${fmtU(+c.projRaw-c.req,c.unit)} o
 function vo2Group(v,age){const t=(VO2_GROUPS[PATIENT.sex==='female'?'female':'male'].filter(([lo])=>age>=lo).pop()||[])[1];if(!t||!Number.isFinite(+v))return '';const [p25,p50,p75,el]=t;return v>=el?'elite':v>=p75?'high':v>=p50?'above average':v>=p25?'below average':'low';}
 /* Component order within a goal: hard prerequisites first, then by weight. */
 function reqsInPriority(act){return scoreableReqs(act).map((r,i)=>({r,i})).sort((a,b)=>((b.r.role==='gate'||b.r.critical)-(a.r.role==='gate'||a.r.critical))||((+b.r.weight||1)-(+a.r.weight||1))||a.i-b.i).map(x=>x.r);}
-function altTestNames(metric){return [...new Set([metric,...(BACKUPS[metric]||[]),...(SUB_ITEMS[metric]||[]).map(([m,b])=>m==='lt1'?null:b)].filter(Boolean).map(m=>testName({metric:m,label:METRICS[m]?.label})))];}
-function radarTableHTML(C,act){
-  const byMetric=new Map(C.map(c=>[c.via||c.r.metric,c])),order=act?reqsInPriority(act):C.map(c=>c.r),rows=[];let n=0;
-  for(const r of order){const c=byMetric.get(r.metric);n++;
-    if(!c){rows.push(`<tr class="untested"><td class="rtest"><span class="rnum">${n}</span>${testName(r)}<small>Not tested yet.${altTestNames(r.metric).length>1?` Any of these counts: ${nameList(altTestNames(r.metric).map(inSentence),8)}.`:''}</small></td><td>—</td><td>—</td><td class="rstopv">—</td><td>${resolveRequirement(r).req==null?'—':fmtU(resolveRequirement(r).req,resolveRequirement(r).unit)}</td><td class="rres">Not tested</td><td class="rstg">Test it</td></tr>`);continue;}
-    const g=stgText(c),judgedToday=c.today;
-    const vo2Ctx=c.r.metric==='vo2'&&!c.estFrom?`<small>${vo2Group(c.raw,AGE)} for your age</small>`:hasNorms(c.r.metric)&&!c.unable?`<small>${pctLabel(valdPercentile(c.r.metric,PATIENT.sex,AGE,toNewtons(c.r.metric,c.raw)))}</small>`:'';
-    const p75now=hasNorms(c.r.metric)?fromNewtons(c.r.metric,valdP75ForAge(c.r.metric,PATIENT.sex,AGE)?.n):null;
-    rows.push(`<tr class="${c.meets?'ok':c.watch?'watch':'miss'}"><td class="rtest"><span class="rnum">${n}</span>${c.short}${c.via?`<small>standing in for the ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))} test</small>`:''}${c.estFrom?`<small>estimated as ${Math.round(LT1_FROM_VO2*100)}% of VO₂max</small>`:''}</td><td>${c.unable?'Unable':fmtU(c.raw,c.unit)}${c.capped?`<small>${fullHold(c)?'held the full test':'stopped at the test limit'}</small>`:''}${vo2Ctx}</td><td>${judgedToday?'<small>judged today</small>':c.static?`${fmtU(c.projRaw,c.unit)} <small>held steady</small>`:fmtU(c.projRaw,c.unit)}</td><td class="rstopv">${c.unable||judgedToday?'—':c.static?fmtU(c.stopRaw,c.unit):`${fmtU(c.stopRaw,c.unit)}${c.stopPct<100?`<small>short by ${100-c.stopPct}%</small>`:''}`}</td><td>${reqTxt(c)}${judgedToday?`<small>${c.r.today?'held today':'Proficient for your age'}</small>`:''}</td><td class="rres">${c.unable?'Unable today':c.meets?'✓ Clears':c.cappedUnknown?(fullHold(c)?'Held the full test':'At the test limit<small>re-test longer to confirm</small>'):c.borderline?'On the line<small>within test error; re-test to confirm</small>':c.watch?`Watch · ${c.shortBy}% below`:judgedToday?(c.r.today?'Not yet today':'Below the standard'):capFirst(shortWords(c))}${c.meetsNow||c.unable||judgedToday?'':'<small>Already short today</small>'}</td><td class="rstg">${g.txt}${g.sub?`<small>${g.sub}${c.r.metric==='vo2'&&g.up?` · ${vo2Group(g.stepVal??c.stg,AGE)} for your age`:''}</small>`:''}${g.stretch&&g.longTerm?`<small>Long-term: ${g.longTerm}</small>`:''}${Number.isFinite(p75now)?`<small>75th percentile for your age: ${fmtU(p75now,c.unit)}</small>`:''}</td></tr>`);}
-  return `<div class="rtablewrap"><table class="rtable"><thead><tr><th>What this goal needs</th><th>Today</th><th>At ${TGT}, keep training</th><th>At ${TGT}, if you stop</th><th>Needed at ${TGT}</th><th>Result at ${TGT}</th><th>Goal, and when</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><div class="rtablenote">Listed most important first. When a test wasn’t done, a related test stands in and is judged against today’s standard for your age, as are rep and hold tests and movement screens, which can’t be projected. Goal, and when: the level to build to over the next one to three years, sized to what training can realistically add. Where the goal needs more than that, the full level is shown as a long-term aim.</div>`;
-}
 /* Glide path (Dan, 2026-09-25): for a test projected short at TGT, raise the starting point now so
    the same keep-training decline still clears. Red dashed: from today. Green: build to the
    short-term goal over about two years, then glide. */
-function glideChartSVG(c){
+function glideChartSVG(c,simple=false){
   const S=stgText(c).stepVal??c.stg,fam=c.family,sex=PATIENT.sex,a0=AGE,a1=Math.max(TGT,AGE+1),aG=Math.min(a1,a0+2),W=340,H=150,l=8,rt=86,t=14,b=24;
   const keep=a=>a>=a1?c.projRaw:projectCapacity(c.raw,fam,sex,a0,a,1),raise=a=>a<=aG?c.raw+(S-c.raw)*(a-a0)/Math.max(1,aG-a0):projectCapacity(S,fam,sex,aG,a,1),
     lapse=a=>a<=aG?raise(a):projectIfStopped(S,fam,sex,aG,a,c.r.metric);
-  const ages=[];for(let a=a0;a<=a1;a++)ages.push(a);const kv=ages.map(keep),rv=ages.map(raise),sv=ages.map(lapse),all=[c.req,...kv,...rv,...sv],top=Math.max(...all)*1.06||1,lo=Math.max(0,Math.min(...all)*.8);
+  const ages=[];for(let a=a0;a<=a1;a++)ages.push(a);const kv=ages.map(keep),rv=ages.map(raise),sv=ages.map(lapse),all=[c.req,...kv,...rv,...(simple?[]:sv)],top=Math.max(...all)*1.06||1,lo=Math.max(0,Math.min(...all)*.8);
   /* Not zero-based: the chart is about the gap between the two paths at the end. */
   const x=a=>l+(a-a0)/(a1-a0)*(W-l-rt),y=v=>t+(1-(clamp(v,lo,top)-lo)/Math.max(1e-9,top-lo))*(H-t-b),f=n=>n.toFixed(1),pl=vs=>ages.map((a,i)=>`${f(x(a))},${f(y(vs[i]))}`).join(' ');
   const endR=rv[rv.length-1],yK=y(c.projRaw),yN=y(c.req),yR=y(endR),sep=(ya,yb)=>Math.abs(ya-yb)<12;
@@ -6561,17 +6571,17 @@ function glideChartSVG(c){
   return `<svg class="glide" viewBox="0 0 ${W} ${H}" role="img" aria-label="${c.short}: today ${fmtU(c.raw,c.unit)}, at ${TGT} ${fmtU(c.projRaw,c.unit)} if you keep training, needs ${reqTxt(c)}. Building to ${fmtU(S,c.unit)} first reaches about ${fmtU(endR,c.unit)}.">
     <line class="gaxis" x1="${l}" y1="${H-b}" x2="${W-rt}" y2="${H-b}"/><text class="gtick" x="${l}" y="${H-8}">Today (${a0})</text><text class="gtick" x="${f(x(a1))}" y="${H-8}" text-anchor="end">${a1}</text>
     <line class="gneed" x1="${f(x(Math.max(a0,a1-8)))}" y1="${f(yN)}" x2="${f(x(a1))}" y2="${f(yN)}"/>
-    <polyline class="gstop" points="${pl(sv)}"/><polyline class="gkeep" points="${pl(kv)}"/><polyline class="graise" points="${pl(rv)}"/>
+    ${simple?'':`<polyline class="gstop" points="${pl(sv)}"/>`}<polyline class="gkeep" points="${pl(kv)}"/><polyline class="graise" points="${pl(rv)}"/>
     <circle class="gnow" cx="${f(x(a0))}" cy="${f(y(c.raw))}" r="4"/><circle class="ggoal" cx="${f(x(aG))}" cy="${f(y(S))}" r="4.5"/>
     <text class="glbl n" x="${f(x(a1)+6)}" y="${f(lblN)}">Needs ${reqTxt(c)}</text><text class="glbl k" x="${f(x(a1)+6)}" y="${f(lblK)}">${fmtU(c.projRaw,c.unit)}</text>
   </svg>`;
 }
-function glidePathsHTML(C){
+function glidePathsHTML(C,simple=false){
   const opp=C.filter(c=>!c.meets&&!c.cappedUnknown&&!c.today&&!c.lt1VO2&&!c.borderline);if(!opp.length)return '';
-  return `<div class="glidewrap"><div class="glidehead"><b>Raise the starting point</b><span>Where to build, and by when, so the glide path clears at ${TGT}.</span></div><div class="rlegend" style="margin:0 2px 8px"><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>If you keep training from today</span><span class="lg raise"><i></i>If you build to the goal first</span><span class="lg stop"><i></i>If training stops after that</span></div><div class="glidegrid">${opp.map(c=>{const g=stgText(c),S=g.stepVal??c.stg,endR=projectCapacity(S,c.family,PATIENT.sex,Math.min(Math.max(TGT,AGE+1),AGE+2),Math.max(TGT,AGE+1),1);
+  return `<div class="glidewrap"><div class="glidehead">${simple?`<b>Why build now</b><span>A higher starting point carries further to ${TGT}.</span>`:`<b>Raise the starting point</b><span>Where to build, and by when, so the glide path clears at ${TGT}.</span>`}</div><div class="rlegend" style="margin:0 2px 8px"><span class="lg now"><i></i>You today</span><span class="lg p90"><i></i>If you keep training from today</span><span class="lg raise"><i></i>If you build to the goal first</span>${simple?'':'<span class="lg stop"><i></i>If training stops after that</span>'}</div><div class="glidegrid">${opp.map(c=>{const g=stgText(c),S=g.stepVal??c.stg,endR=projectCapacity(S,c.family,PATIENT.sex,Math.min(Math.max(TGT,AGE+1),AGE+2),Math.max(TGT,AGE+1),1);
     const aG=Math.min(Math.max(TGT,AGE+1),AGE+2),endS=projectIfStopped(S,c.family,PATIENT.sex,aG,Math.max(TGT,AGE+1),c.r.metric);
     if(g.pastLimit)return `<div class="glidecard"><div class="glidettl">${c.short}</div><div class="glidecap">To still have ${fmtU(c.req,c.unit)} at ${TGT}, you’d need about ${fmtU(c.stg,c.unit)} today, more than the ${fmtU(g.pastLimit,c.unit)} the test can time. Balance drops quickly after 70 for everyone, so keep training it; a longer timed test will show your progress.</div></div>`;
-    return `<div class="glidecard"><div class="glidettl">${c.short}${c.via?` <small style="font-weight:600;color:var(--muted)">standing in for the ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))} test</small>`:''}</div>${glideChartSVG(c)}<div class="glidecap">${g.txt}${g.sub?` (${g.sub})`:''}. Keep training from there and you reach about <b>${fmtU(endR,c.unit)}</b> at ${TGT}; this goal needs ${reqTxt(c)}.${g.stretch&&g.need?` Being on track at ${TGT} would take ${g.need} now, a long-term aim.`:''} If training stopped after that, you’d be near ${fmtU(endS,c.unit)}.</div></div>`;}).join('')}</div></div>`;
+    return `<div class="glidecard"><div class="glidettl">${c.short}${c.via?` <small style="font-weight:600;color:var(--muted)">standing in for the ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))} test</small>`:''}</div>${glideChartSVG(c,simple)}<div class="glidecap">${g.txt}${g.sub?` (${g.sub})`:''}. Keep training from there and you reach about <b>${fmtU(endR,c.unit)}</b> at ${TGT}; this goal needs ${reqTxt(c)}.${g.stretch&&g.need?` Being on track at ${TGT} would take ${g.need} now, a long-term aim.`:''}${simple?'':` If training stopped after that, you’d be near ${fmtU(endS,c.unit)}.`}</div></div>`;}).join('')}</div></div>`;
 }
 
 
@@ -6621,19 +6631,82 @@ function suggestComponents(name){const out=[],seen=new Set();
 const FOOT=`<div class="foot"><div class="em">Early Medical</div><div class="pillars">The Strategy</div></div>`;
 const TAGLINE=`<div class="tagline">Being <i>early</i> matters<sup>®</sup></div>`;
 
+/* Patient goal detail (4.17.2): one plain sentence, a two-shape radar beside a short list of the tests, then the build-first
+   charts. The clinician view keeps the full radar and cards. */
+/* Year by year (4.17.2, Dan 2026-09-28): each test's share of what the goal needs if the patient keeps training, builds the
+   short-term goal first (over two years, then glides) or stops. A goal lasts until its weakest test drops below what it
+   needs. A hold at the test limit counts as covered, and a goal whose own task test passes lasts as long as that test. */
+function trackValue(c,a,sc){const a0=AGE,aG=Math.min(Math.max(TGT,AGE+1),a0+2),step=c.meets||c.cappedUnknown?c.raw:(stgText(c).stepVal??c.stg),rise=()=>a<=aG?c.raw+(step-c.raw)*(a-a0)/Math.max(1,aG-a0):step;
+  if(c.static||c.unable)return sc!=='build'||c.meets?c.raw:rise();
+  let v=sc==='keep'?projectCapacity(c.raw,c.family,PATIENT.sex,a0,a,1):sc==='stop'?projectIfStopped(c.raw,c.family,PATIENT.sex,a0,a,c.r.metric):a<=aG?rise():projectCapacity(step,c.family,PATIENT.sex,aG,a,1);
+  const vo2=+PATIENT.metrics.vo2;if(c.r.metric==='lt1_vo2'&&vo2>0)v=Math.min(v,LT1_MAX_SHARE*(sc==='stop'?projectIfStopped(vo2,METRICS.vo2.family,PATIENT.sex,a0,a,'vo2'):projectCapacity(vo2,METRICS.vo2.family,PATIENT.sex,a0,a,1)));
+  return v;}
+function goalTrack(C){const a0=AGE,a1=Math.max(TGT,AGE+1),ages=[];for(let a=a0;a<=a1;a++)ages.push(a);
+  const share=(c,v)=>c.r.dir==='lower_better'?c.req/Math.max(v,1e-9):v/c.req,skip=C.map(c=>!!c.cappedUnknown);
+  const per=C.map(c=>Object.fromEntries(['keep','build','stop'].map(sc=>[sc,ages.map(a=>share(c,trackValue(c,a,sc)))])));
+  const idx=C.map((c,i)=>i),task=idx.filter(i=>C[i].r.taskTest),live=task.length&&task.every(i=>C[i].meets)?task:idx.filter(i=>!skip[i]);
+  const cross=sc=>{if(!live.length)return null;const g=ages.map((a,j)=>Math.min(...live.map(i=>per[i][sc][j])));if(g[0]<1)return a0;for(let j=1;j<g.length;j++)if(g[j]<1)return ages[j-1]+(g[j-1]-1)/(g[j-1]-g[j]);return null;};
+  return {a0,a1,ages,per,skip,cross:{keep:cross('keep'),build:cross('build'),stop:cross('stop')}};}
+const untilTxt=(x,a0)=>x==null?`past ${TGT}`:x<=a0+.01?'short today':`until about ${Math.round(x)}`;
+/* Goal cards: an age bar from today to the target age, green while the results cover the goal if the patient keeps training,
+   amber after; the blue mark is how far the short-term goals carry it. */
+function untilBarHTML(T){const X=a=>((clamp(a,T.a0,T.a1)-T.a0)/Math.max(1,T.a1-T.a0)*100).toFixed(1),k=T.cross.keep,b=T.cross.build;
+  return `<div class="pt-ubar" aria-hidden="true"><i class="ok" style="width:${X(k??T.a1)}%"></i>${k!=null?`<i class="short" style="left:${X(k)}%;right:0"></i>`:''}${k!=null&&(b==null||b>k+.5)?`<b style="left:${X(b??T.a1)}%"></b>`:''}</div><div class="pt-uages"><span>${T.a0}</span><span>${T.a1}</span></div>`;}
+function untilCardHTML(T){const k=T.cross.keep,b=T.cross.build;if(k==null)return `<div class="ovuntil ok">✓ Covered past ${TGT}</div>`;
+  return `<div class="ovuntil"><span>Keep training: <b>${untilTxt(k,T.a0)}</b></span>${b==null||b>k+.5?`<span>Build first: <b>${untilTxt(b,T.a0)}</b></span>`:''}</div>`;}
+/* The patient radar with an age slider: the "you" shape follows the chosen scenario from today to the target age. */
+function ageRadarHTML(C,T){const r3=v=>Math.round(Math.min(v,9)*1000)/1000,d={a0:T.a0,skip:T.skip,keep:T.per.map(p=>p.keep.map(r3)),build:T.per.map(p=>p.build.map(r3)),stop:T.per.map(p=>p.stop.map(r3))};
+  return `<div class="pt-agerad" data-track='${JSON.stringify(d)}'><div class="pt-seg" role="group" aria-label="Scenario"><button type="button" data-sc="keep" class="on">Keep training</button><button type="button" data-sc="build">Build first</button><button type="button" data-sc="stop">If you stop</button></div>${radarSVG(C,{animate:false,simple:true})}<div class="pt-agebar"><button type="button" class="pt-play" aria-label="Play from today to ${T.a1}">▶</button><input type="range" min="${T.a0}" max="${T.a1}" step="1" value="${T.a1}" aria-label="Age"><span class="pt-agemax">${T.a1}</span></div><div class="pt-agenow"></div><div class="rlegend"><span class="lg need"><i></i>What this goal needs</span><span class="lg now"><i></i>You</span></div></div>`;}
+/* Geometry matches radarSVG: centre 270,200, radius 128, rim at 150% of the need. */
+function wireAgeRadars(root){root.querySelectorAll('.pt-agerad').forEach(box=>{const d=JSON.parse(box.dataset.track),svg=box.querySelector('svg.radar');if(!svg)return;
+  const poly=svg.querySelector('.r90'),miss=svg.querySelector('.rmiss'),labels=[...svg.querySelectorAll('text.rl')],range=box.querySelector('input[type=range]'),now=box.querySelector('.pt-agenow'),N=d.keep.length;
+  const ang=i=>(-90+i*360/N)*Math.PI/180,at=(i,p)=>{const k=128*clamp(p,0,150)/150;return [270+Math.cos(ang(i))*k,200+Math.sin(ang(i))*k].map(n=>n.toFixed(1));};
+  const words={keep:'if you keep training',build:'if you build the short-term goals first',stop:'if you stop training'};let sc='keep';
+  const draw=()=>{const a=+range.value,j=a-d.a0,v=d[sc].map(x=>x[j]*100),short=v.map((p,i)=>p<100&&!d.skip[i]),n=short.filter(Boolean).length;
+    poly.setAttribute('points',v.map((p,i)=>at(i,p).join(',')).join(' '));
+    miss.innerHTML=v.map((p,i)=>{if(!short[i])return '';const [x1,y1]=at(i,p),[x2,y2]=at(i,100);return `<line class="rgap" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><circle class="rgapdot" cx="${x1}" cy="${y1}" r="4.5"/>`;}).join('');
+    labels.forEach((t,i)=>t.setAttribute('class','rl'+(short[i]?' miss':'')));
+    now.innerHTML=`<b>${a===d.a0?`Today (${a})`:`At ${a}`}</b>, ${words[sc]}: ${n?`${n} of ${N} tests short of what this goal needs`:'every test covers this goal'}`;};
+  box.querySelectorAll('[data-sc]').forEach(b=>b.onclick=()=>{sc=b.dataset.sc;box.querySelectorAll('[data-sc]').forEach(x=>x.classList.toggle('on',x===b));draw();});
+  range.oninput=()=>{clearInterval(box._t);draw();};
+  box.querySelector('.pt-play').onclick=()=>{clearInterval(box._t);range.value=d.a0;draw();box._t=setInterval(()=>{range.value=+range.value+1;draw();if(+range.value>=+range.max)clearInterval(box._t);},90);};
+  draw();});}
+function ptGoalLead(C,ev){
+  const names=cs=>nameList(cs.map(c=>inSentence(c.short)),4),near=ev.near||[],okN=C.filter(c=>c.meets||c.cappedUnknown&&fullHold(c)).length;
+  const done=okN?` ${okN} of the ${C.length} tests ${okN===1?'is':'are'} already on track.`:'',line=near.length?` <b>${capFirst(names(near))}</b> ${isAre(near.map(c=>c.short))} on the line.`:'';
+  if(ev.zone==='gap'){const m=ev.misses||[],build=m.filter(c=>!c.unable),unable=m.filter(c=>c.unable);
+    return `${build.length?`To be on track at ${TGT}, build <b>${names(build)}</b>.`:''}${unable.length?` <b>${capFirst(names(unable))}</b> couldn’t be done today.`:''}${line}${done}`.trim();}
+  if(ev.zone==='borderline')return `<b>${capFirst(names(near))}</b> ${isAre(near.map(c=>c.short))} on the line: close enough to what this goal needs that a re-test will tell. Keep ${near.length===1?'it':'them'} there or a little higher.${done}`;
+  if(ev.zone==='incomplete')return `We still need <b>${nameList(ev.missing.map(r=>inSentence(missingTestName(r))),4)}</b> to judge this goal.${line}${done}`;
+  const task=C.find(c=>c.r.taskTest),below=(ev.watch||[]).filter(c=>!c.cappedUnknown);
+  return task&&below.length?`You pass the <b>${inSentence(task.short)}</b> test itself, so this goal is on track. Keep an eye on <b>${names(below)}</b>.`:`Every test is on track for ${TGT}.`;}
+function ptGoalTestsHTML(C,act){
+  const by=new Map(C.map(c=>[c.via||c.r.metric,c])),rows=[];
+  for(const r of reqsInPriority(act)){const c=by.get(r.metric);
+    if(!c){rows.push(`<div class="pt-gt untested"><div class="n">${testName(r)}</div><div class="v">—</div><div class="s">Not tested yet</div></div>`);continue;}
+    const g=stgText(c),ok=c.meets||c.cappedUnknown&&fullHold(c),cls=ok?'ok':c.cappedUnknown?'info':c.borderline||c.watch?'line':'miss';
+    const main=ok?(c.capped&&fullHold(c)?'Held the full test':'On track'):c.cappedUnknown?'At the test limit':c.borderline?'On the line':c.watch?'Keep an eye on it':c.unable?'Unable today':g.txt;
+    const sub=ok||c.cappedUnknown?'':c.borderline?`${g.txt}, then re-test`:[c.watch||c.unable?g.txt:'',g.when,g.stretch&&g.need?`long-term ${c.static?g.longTerm:g.need}`:''].filter(Boolean).join(' · ');
+    const nm=`${c.short}${c.via?`<small>standing in for the ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))} test</small>`:''}${c.estFrom?'<small>estimated from VO₂max</small>':''}`;
+    rows.push(`<div class="pt-gt ${cls}"><div class="n">${nm}</div><div class="v">${c.unable?'Unable':fmtU(c.raw,c.unit)}</div><div class="s"><span>${ok?'✓ ':''}${main}</span>${sub?`<small>${sub}</small>`:''}</div></div>`);}
+  return `<div class="pt-gtests"><div class="pt-gt pt-gth"><div>Test</div><div class="v">Today</div><div>For this goal</div></div>${rows.join('')}</div>`;}
+function ptGoalMainHTML(C,act,ev){const T=goalTrack(C),k=T.cross.keep;
+  const until=ev.zone==='incomplete'||!C.length?'':`<div class="pt-until"><span>Keep training: <b>${untilTxt(k,T.a0)}</b></span>${k==null?'':`<span>Build first: <b>${untilTxt(T.cross.build,T.a0)}</b></span>`}<span>If you stop: <b>${untilTxt(T.cross.stop,T.a0)}</b></span></div>`;
+  const fig=C.length>=3?ageRadarHTML(C,T):'';
+  return `<p class="pt-glead">${ptGoalLead(C,ev)}</p>${until}<div class="pt-gfig${fig?'':' nofig'}">${fig}${ptGoalTestsHTML(C,act)}</div>`;}
 function goalPageHTML(g,mode){
   const act=ACTIVITIES[g.profileId],C=components(act.reqs),S=supportComponents(act),ev=goalEvaluation(act,C),mods=modifiersFor(act),outlook=patientGoalOutlook(g,ev);const who=PATIENT.name?PATIENT.name+'’s ':'';
   const missing=ev.missing.map(r=>inSentence(missingTestName(r)));
   const head=`<div class="slide-head">${TAGLINE}<div class="head-row"><div><div class="eyebrow">${who}Centenarian Decathlon</div><h1 class="slide-title">${g.name}</h1><div class="slide-sub">${act.sub||''}</div></div><div class="readiness"><div class="big r-${ev.zone}"><i class="sdot"></i>${ev.word}</div><div class="cap">${outlook.detail}</div></div></div></div>`;
   const Csort=C.slice().sort((a,b)=>a.projPct-b.projPct);let main='';
-  if(!Csort.length)main=`<div class="supportonly"><b>No results entered for this goal yet.</b> Add its tests in Test results to see where you stand.</div>`;
-  else if(mode==='D')main=`${radarFigureHTML(C,ev)}${glidePathsHTML(Csort)}<div class="modepanel">${cardsHTML(Csort)}</div>`;
-  else main=`${radarFigureHTML(C,ev)}${radarTableHTML(C,act)}${glidePathsHTML(Csort)}`;
+  if(mode!=='D')main=ptGoalMainHTML(C,act,ev)+glidePathsHTML(Csort,true);
+  else if(!Csort.length)main=`<div class="supportonly"><b>No results entered for this goal yet.</b> Add its tests in Test results to see where you stand.</div>`;
+  else main=`${radarFigureHTML(C,ev)}${glidePathsHTML(Csort)}<div class="modepanel">${cardsHTML(Csort)}</div>`;
   const supportHTML=S.length?`<details class="dtl"><summary class="dtlsum">Other useful measures <span class="dtlhint">clinician detail</span></summary><div class="supportgrid">${S.map(x=>`<div class="supportcard"><div><b>${x.metric==='lt1_vo2'?'Aerobic base (LT1)':patientShortLabel(x.short)}</b><span>${x.measurementSource||x.meta?.src||''}</span></div><div class="supportval">${x.retention!=null?Math.round(x.retention)+'% retained':assessmentContext(x.r.metric)?.level?`${assessmentContext(x.r.metric).level} for age`:'Tracked'}</div>${x.retention==null?'':`<div class="supportbar"><i style="width:${clamp(x.retention,0,100)}%"></i></div>`}<div class="supportnote">${x.r.why||''}${(()=>{const pv=+assessmentContext(x.r.metric)?.values?.[2];return TRACKED_TESTS.includes(x.r.metric)&&Number.isFinite(pv)?`<br><b>Goal, 1–3 years:</b> ${x.raw>=pv?'hold at least':'build to'} ${fmtU(pv,x.meta?.unit)} (Proficient for your age)`:'';})()}<br><small>${TRACKED_TESTS.includes(x.r.metric)?`Not projected to ${TGT}: compared with the PCA standard for your age at each re-test.`:x.forecastSource?`Forecast: ${x.forecastSource}`:''}</small></div></div>`).join('')}</div></details>`:'';
   const modHTML=mods.length?`<details class="dtl"><summary class="dtlsum">Movement findings <span class="dtlhint">clinician detail</span></summary><div class="pcards">${mods.map(x=>`<div class="pcard"><div class="ct qcat ${x.r.cat}">${patientShortLabel(shortLabel(x.r.label))}</div><div class="big"><span class="n">${x.value==null?'—':x.value}</span></div><div class="cap">${x.r.why||''}</div></div>`).join('')}</div></details>`:'';
   /* Evidence grades, sources and screens stay in the clinician view (4.17). */
   const detailBlocks=mode==='D'?`${supportHTML}${modHTML}`:'';
-  const missNote=missing.length&&ev.zone==='gap'?`<div class="missnote">Not tested yet: <b>${nameList(missing,6)}</b>. Add ${missing.length===1?'it':'them'} in Test results for the full picture.</div>`:'';
+  const missNote=mode==='D'&&missing.length&&ev.zone==='gap'?`<div class="missnote">Not tested yet: <b>${nameList(missing,6)}</b>. Add ${missing.length===1?'it':'them'} in Test results for the full picture.</div>`:'';
   const body=`<div class="pv" data-report-mode="${mode==='D'?'clinician-detail':'simple'}">${missNote}${main}${keepNoteHTML(act,mode)}${detailBlocks}<div class="model-note"><b>Forecast, not a promise.</b> This is an estimate of how today's capacity may change with age. Training, injury and health changes can shift the trajectory.</div></div>`;
   return {head,body,ev};
 }
@@ -6814,15 +6887,16 @@ function clinicianGoalCardsHTML(gs,ordered=false){
   const rows=ordered?gs.slice().sort((a,b)=>(a.ev.worst?.projPct??999)-(b.ev.worst?.projPct??999)):gs;
   return `<div class="ovgrid">${rows.map(s=>`<button class="ovcard z-${s.ev.zone}" data-id="${s.g.id}"><div class="ovname">${s.g.name}</div>${miniRadar(s.C)}<div class="ovword z-${s.ev.zone}"><i class="sdot"></i>${s.ev.word}</div><div class="ovcap">${s.ev.cap}</div></button>`).join('')}</div>`;
 }
-function patientGoalCardsHTML(outlooks,ordered=false){const rows=ordered?outlooks.slice().sort((a,b)=>a.sortScore-b.sortScore||a.goalName.localeCompare(b.goalName)):outlooks;return `<div class="ovgrid">${rows.map(outlook=>`<button class="ovcard z-${outlook.visualZone}" data-id="${outlook.goalId}" data-goal-outlook="${outlook.status}"><div class="ovname">${outlook.goalName}</div>${(()=>{const act=ACTIVITIES[goalById(outlook.goalId).profileId],C=components(act.reqs);goalEvaluation(act,C);return miniRadar(C);})()}<div class="ovword z-${outlook.visualZone}"><i class="sdot"></i>${outlook.label}</div><div class="ovcap">${outlook.note}</div></button>`).join('')}</div>`;}
-/* Overview headline: how many goals are on track, and a key for the mini radars. */
+function patientGoalCardsHTML(outlooks,ordered=false){const rows=ordered?outlooks.slice().sort((a,b)=>a.sortScore-b.sortScore||a.goalName.localeCompare(b.goalName)):outlooks;return `<div class="ovgrid">${rows.map(outlook=>{const act=ACTIVITIES[goalById(outlook.goalId).profileId],C=components(act.reqs),ev=goalEvaluation(act,C),T=goalTrack(C);
+  return `<button class="ovcard z-${outlook.visualZone}" data-id="${outlook.goalId}" data-goal-outlook="${outlook.status}"><div class="ovname">${outlook.goalName}</div><div class="ovword z-${outlook.visualZone}"><i class="sdot"></i>${outlook.label}</div>${ev.zone==='incomplete'?`<div class="ovcap">${outlook.note}</div>`:`${untilBarHTML(T)}${untilCardHTML(T)}`}</button>`;}).join('')}</div>`;}
+/* Overview headline: how many goals are on track, and a key for the age bars on the goal cards. */
 function goalHeadlineHTML(story){
   const n={clear:0,gap:0,borderline:0,incomplete:0};story.goalOutlooks.forEach(o=>n[o.status]++);
   const sub=[n.gap?`${n.gap} ${n.gap===1?'is an opportunity':'are opportunities'}`:'',n.borderline?`${n.borderline} ${n.borderline===1?'is':'are'} on the line`:'',n.incomplete?`${n.incomplete} ${n.incomplete===1?'needs':'need'} more data`:''].filter(Boolean).join(' · ');
   /* The same ranked list as the priority cards and the plan table. */
   const top=story.topTrainingPriorities.slice(0,3).map(x=>inSentence(x.label));
   let reach=0;story.goalOutlooks.forEach(o=>{if(o.status!=='gap')return;const g=goalById(o.goalId),act=ACTIVITIES[g.profileId],ev=goalEvaluation(act,components(act.reqs));if(!ev.missing.length&&ev.misses.every(stgReachable))reach++;});
-  return `<div class="goalheadline"><div class="gh-main">On track for <b>${n.clear} of ${story.goalOutlooks.length}</b> goals at ${TGT}.${reach?` Reaching your short-term goals makes it <b>${n.clear+reach}</b>.`:''}</div>${sub?`<div class="gh-sub">${sub}${top.length?`. Start with ${nameList(top,3)}.`:''}</div>`:''}<div class="gh-read">A goal is on track when every one of its tests still reaches what it needs at ${TGT}, as long as you keep training. A test projected short is an opportunity: it gets a short-term goal, sized to what training can realistically add, that raises its starting point. A test short by less than the usual difference between two tests is on the line: re-test to confirm. Each goal page also shows where you’d be if you stopped.</div>${radarLegendHTML()}</div>`;
+  return `<div class="goalheadline"><div class="gh-main">On track for <b>${n.clear} of ${story.goalOutlooks.length}</b> goals at ${TGT}.${reach?` Reaching your short-term goals makes it <b>${n.clear+reach}</b>.`:''}</div>${sub?`<div class="gh-sub">${sub}${top.length?`. Start with ${nameList(top,3)}.`:''}</div>`:''}<div class="gh-read">Each card runs from today to ${TGT}. It stays green while your results cover that goal, as long as you keep training, and turns amber once one falls short. The blue mark shows how far your short-term goals carry it. Open a goal for the details.</div><div class="pt-ukey"><span><i class="ok"></i>Covered</span><span><i class="short"></i>Falls short</span><span><b></b>With your short-term goals</span></div></div>`;
 }
 function modelConfidenceHTML(story){if(story.modelConfidence.demoAssessmentComplete)return `<div class="story-confidence" data-model-confidence="${story.modelConfidence.level}" data-demo-completeness="complete"><div><b>Complete illustrative example</b><span>Full sample assessment data are loaded for all 10 selected CD goals.</span></div><span class="story-confidence-label">10 CD goals · full sample data</span></div>`;return `<div class="story-confidence" data-model-confidence="${story.modelConfidence.level}"><div><b>How complete is the picture?</b><span>${story.modelConfidence.detail}</span></div><span class="story-confidence-label">${story.modelConfidence.label}</span></div>`;}
 function goalPrioritiesHTML(story,{limit=12,tiered=true}={}){
@@ -6953,15 +7027,25 @@ function ptContext(m,v){
   return null;}
 const pctCls=p=>p>=75?'hi':p>=50?'ok':p>=25?'mid':'lo';
 const ptLabel=(m,meta)=>PATIENT_ASSESSMENT_LABELS[m]||TEST_NAMES[m]||meta?.label||m;
-function ptMeasureRow(x){const c=x.ctx,val=x.meta.kind==='grade'?(c?.level?'':x.v):fmtU(+x.v,x.meta.unit);
+/* Current results (4.17.2): the number over a plain unit, one mark per row (a percentile bar or a level), and a caption only
+   when it adds something: a shorter percentile, the standard when below it, or what the number means. */
+const PT_UNIT={'% BW':['%','of body weight'],'% BW/hand':['%','of body weight, each hand'],'% BW added':['%','of body weight added'],'× BW':['×','body weight'],'mL/kg/min':['','mL/kg/min'],'kg/m²':['','kg/m²'],'W/kg':['','W/kg'],'m/s':['','m/s'],'T-score':['','T-score'],'Z-score':['','Z-score'],'reps/side':['','reps each side'],'s/side':[' s','each side'],'in box':[' in','box height']};
+function ptValueHTML(v,u){const t=fmtU(v,u),p=PT_UNIT[u];return p?`<b>${t.slice(0,t.lastIndexOf(u)).trim()}${p[0]}</b><small>${p[1]}</small>`:`<b>${t}</b>`;}
+const GOOD_LEVELS=new Set(['Proficient','Normal','Healthy range','Healthy','Full','Expected for age']);
+const ptShortCtx=l=>capFirst(String(l||'').replace(/^about the /i,'').replace(/ for (men|women) your age$| for your age and sex$| for your age$/,''));
+function ptCaption(x){const c=x.ctx;if(!c)return '';if(c.pct!=null)return ptShortCtx(c.label);
+  if(x.m==='bmd_tscore'&&c.level)return 'Lowest hip or spine';
+  if(c.level){if(GOOD_LEVELS.has(c.level)||x.meta.kind==='grade')return '';const pv=proficientForAge(x.m);return /^Proficient for your age/.test(c.label)?c.label:c.label==='Early Medical standard for your age'?(Number.isFinite(pv)?`Proficient for your age: ${fmtU(pv,x.meta.unit)}`:''):c.label;}
+  return x.m==='lt1_vo2'?c.label.replace(/; a higher share.*$/,''):c.label.replace(/ for (men|women) your age/,' for your age');}
+function ptMeasureRow(x){const c=x.ctx,val=x.meta.kind==='grade'?(c?.level?'':`<b>${x.v}</b>`):ptValueHTML(+x.v,x.meta.unit),cap=ptCaption(x);
   const vis=c?.pct!=null?`<div class="pt-bar ${pctCls(c.pct)}" role="img" aria-label="${c.label}"><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><b style="left:${clamp(c.pct,1,99)}%"></b></div>`:c?.level?`<span class="pt-lvl ${LEVEL_CLS[c.level]||'mid'}"><i></i>${c.level}</span>`:'';
-  return `<div class="pt-mrow"><div class="pt-mname">${ptLabel(x.m,x.meta)}</div><div class="pt-mval">${val}</div><div class="pt-mvis">${vis}${c?.label?`<small>${c.label}</small>`:''}</div></div>`;}
+  return `<div class="pt-mrow"><div class="pt-mname">${ptLabel(x.m,x.meta)}</div><div class="pt-mval">${val}</div><div class="pt-mvis">${vis}${cap?`<small>${cap}</small>`:''}</div></div>`;}
 function ptTodayHTML(goals){
   const used=new Set();goals.forEach(g=>components(ACTIVITIES[g.profileId].reqs).forEach(c=>{used.add(c.r.metric);if(c.via)used.add(c.via);}));
   const by={};for(const [m,meta] of Object.entries(METRICS)){const v=PATIENT.metrics[m];if(v==null||v==='')continue;if(meta.kind==='grade'?!GRADE_SCORE[v]:!Number.isFinite(+v))continue;(by[ptDomain(m)]=by[ptDomain(m)]||[]).push({m,meta,v,used:used.has(m),ctx:ptContext(m,v)});}
   const name=x=>ptLabel(x.m,x.meta);
   return PT_DOMAINS.filter(([d])=>by[d]?.length).map(([d,title])=>{const list=by[d].sort((a,b)=>(b.used-a.used)||((b.ctx?1:0)-(a.ctx?1:0))||name(a).localeCompare(name(b))),top=list.slice(0,5),rest=list.slice(5);
-    return `<div class="pt-panel"><div class="pt-ptitle">${title}</div>${top.map(ptMeasureRow).join('')}${rest.length?`<details class="pt-more"><summary>${rest.length} more result${rest.length===1?'':'s'}</summary>${rest.map(ptMeasureRow).join('')}</details>`:''}</div>`;}).join('')||'<div class="pt-empty">No test results entered yet.</div>';}
+    return `<div class="pt-panel"><div class="pt-ptitle">${title}</div>${top.map(ptMeasureRow).join('')}${rest.length?`<details class="pt-more"><summary>Show ${rest.length} more</summary>${rest.map(ptMeasureRow).join('')}</details>`:''}</div>`;}).join('')||'<div class="pt-empty">No test results entered yet.</div>';}
 /* The next one to three years: every test that falls short for a goal, at the level its hardest goal needs. */
 const WHEN_CLS={'within a year':'w1','1–3 years':'w2','3–5 years':'w3','long-term stretch':'w4'};
 function ptPlanRows(goals,story){const by=new Map();
@@ -7003,14 +7087,14 @@ function renderPatientPage(){
   /* Patients read "aerobic base" without the LT1 label (4.17). */
   slide.innerHTML=(`<section class="pt-cover"><div class="pt-brand">Early Medical</div><div class="pt-tagline">Being <i>early</i> matters<sup>®</sup></div><div class="pt-coverin"><div class="pt-eyebrow light">Centenarian Decathlon · your report</div><h1>${PATIENT.name||'Your report'}</h1><div class="pt-coversub">Your plan for the <em>marginal decade</em></div><div class="pt-covermeta">${meta}</div></div></section>
 <section class="pt-sec" id="pt-goals">${ptHead('At a glance',`Your goals at <em>${TGT}</em>`)}${goalHeadlineHTML(story)}${patientGoalCardsHTML(story.goalOutlooks,true)}</section>
-<section class="pt-sec" id="pt-today">${ptHead('Where you are today','Your <em>current</em> results',`Each result is compared with ${sexWord()} your age where published norms exist, and otherwise with Early Medical’s standard for your age.`)}<div class="pt-key"><div class="pt-bar ok" aria-hidden="true"><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><b style="left:62%"></b></div><span>The dot shows where you sit among ${sexWord()} your age; the marks are the 25th, 50th and 75th percentiles, and further right is stronger or fitter. Tests without published norms show Early Medical’s standard for your age instead.</span></div><div class="pt-panels">${ptTodayHTML(goals)}</div>${ptKeepHTML(goals)}</section>
+<section class="pt-sec" id="pt-today">${ptHead('Where you are today','Your <em>current</em> results')}<div class="pt-key"><span class="k"><span class="pt-bar ok" aria-hidden="true"><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><b style="left:62%"></b></span>Where you sit among ${sexWord()} your age. The marks are the 25th, 50th and 75th percentiles.</span><span class="k"><span class="pt-lvl good"><i></i>Proficient</span>Meets Early Medical’s standard for your age.</span></div><div class="pt-panels">${ptTodayHTML(goals)}</div>${ptKeepHTML(goals)}</section>
 <section class="pt-sec" id="pt-strengths">${ptHead('Strengths and opportunities','What is working, and what to <em>build</em>',`Ranked by how many of your goals each one affects, and how far it sits above or below what they need at ${TGT}.`)}<div class="pt-sowrap"><div class="pt-cols"><div><div class="pt-coltitle good">Your strengths</div>${story.topStrengths.slice(0,4).map(x=>ptCard(x,'strength',plan)).join('')||'<div class="pt-empty">More results are needed to name your strengths.</div>'}</div><div><div class="pt-coltitle work">Your top priorities</div>${story.topTrainingPriorities.slice(0,4).map((x,i)=>ptCard(x,'priority',plan,i+1)).join('')||'<div class="pt-empty">No test is holding back a goal.</div>'}</div></div><div class="pt-wheel"><div class="pt-wtitle">Your capacity <em>wheel</em></div><p class="pt-wlede">Each spoke is one of your tests, scaled to the toughest target among your goals. Reaching the solid ring means that test covers every goal.</p>${overviewWheelSVG(story)}${capacityWheelDimensions(story).length>=3?`<ol class="pt-wheelnums">${capacityWheelDimensions(story).map(d=>`<li>${d.label}</li>`).join('')}</ol>`:''}<div class="pt-wheelkey"><span class="k cur"><i></i>You today</span><span class="k proj"><i></i>At ${TGT}, if you keep training</span><span class="k thr"><i></i>What your goals need</span></div><p>The shape’s area is not a score.</p></div></div></section>
 <section class="pt-sec" id="pt-next">${ptHead('The next one to three years','Where you need to <em>be</em>',`What training can realistically add over the next one to three years. Where your goals need more than that, the full level is shown as a long-term aim.`)}${ptPlanHTML(rows)}</section>
 <section class="pt-divider" id="pt-bygoal"><div class="pt-eyebrow light">Your goals</div><h2>Goal by <em>goal</em></h2><p>Open a goal to see each test, where it is headed, and the level to build to.</p></section>
 <section class="pt-sec pt-goallist">${goals.map(ptGoalHTML).join('')}</section>
 <section class="pt-sec pt-read"><div class="pt-eyebrow">How to read this</div><p>${COPY.patientRead()}</p></section>
-<footer class="pt-foot"><span class="em">Early Medical</span><span class="ost">Objective · <b>Strategy</b> · Tactics</span></footer>`).replace(/\s?\(LT1\)/g,'');
-  slide.querySelectorAll('.ovcard[data-id]').forEach(b=>b.onclick=()=>openPatientGoal(b.dataset.id));wireReplay(slide);}
+<footer class="pt-foot"><span class="em">Early Medical</span><span class="ost">Objective · <b>Strategy</b> · Tactics</span></footer>`).replace(/\s?\(LT1\)/g,'').replace(/ % BW\/hand/g,'% of body weight, each hand').replace(/ % BW added/g,'% of body weight added').replace(/ % BW\b/g,'% of body weight').replace(/ × BW\b/g,'× body weight');
+  slide.querySelectorAll('.ovcard[data-id]').forEach(b=>b.onclick=()=>openPatientGoal(b.dataset.id));wireReplay(slide);wireAgeRadars(slide);}
 
 function downloadGoalAudit(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({modelVersion:MODEL_VERSION,generatedAt:new Date().toISOString(),statusRule:STATUS_RULE,targetGrades:TARGET_GRADES,goals:currentGoalAuditRegister()},null,2)],{type:'application/json'}));a.download='cd-v4-goal-audit-register.json';a.click();}
 /* Two report views: 'C' the patient page, 'D' the clinician detail. */

@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,20 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.17.2: patient page clean-up and the age radar (2026-09-28)
+
+Dan found the results section busy and the goal detail confusing, and asked for a better way to show decline and scenarios inside the radar. Presentation only: no target, projection or status changed.
+
+- **Current results:** one short key (the percentile bar, and the Proficient chip for Early Medical's standard) in place of two paragraphs. Each row shows the number over a plain unit ("160%" over "of body weight"), one mark, and a caption only when it adds something: a short percentile, the standard when the result is below it, or what the number means. Cards end where their content ends. "BW" no longer appears anywhere on the patient page.
+- **Goal detail (patient view):**
+  - One plain sentence, for example "To be on track at 90, build pogo hops, rotational throw and hip abduction. 5 of the 8 tests are already on track."
+  - An "until about" line: "Keep training: until about 70 · Build first: until about 80 · If you stop: until about 64".
+  - One radar with an age slider and three scenario buttons (keep training, build first, stop). The patient's shape moves year by year from today to the target age, and tests that fall inside what the goal needs are flagged. It opens at the target age with keep training, which matches the goal's status; print shows that view.
+  - A three-column test list (test, today, what this goal takes), and the build-first charts without the stop line.
+  - The seven-column table, the four-shape radar, its explanation paragraph and the replay button are gone from the patient view. The clinician view is unchanged.
+- **Goal cards:** an age bar from today to the target age (green while the results cover the goal if the patient keeps training, amber after, with a blue mark for how far the short-term goals carry it) and "Keep training: until about X · Build first: …", in place of the mini radars.
+- **How "until about" is worked out:** each test's share of what the goal needs, year by year, under each scenario. A goal lasts until its weakest test drops below what it needs. A hold at the test limit counts as covered, and a goal whose own task test passes lasts as long as that test does. "Build first" reaches the short-term goal over two years, then follows the keep-training decline. These ages come from the same projection as the "at 90" results and carry the same uncertainty, so they read "about".
 
 ## Model 4.17.1: balance at 9 s (2026-09-28)
 
