@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, 2026-09-26)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,43 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.16: short-term goals capped at what training can add (2026-09-26)
+
+The expert-panel review's item 2: goals like "build VO₂max from 33 to 58 (+75%)" are beyond what any training can add. A trainability review (57 sources, all PMIDs verified) set a one-year and a three-year cap per quality. Dan approved it on 2026-09-26, adding a floor for rep and hold tests.
+
+| Quality | New to training, 1 yr / 3 yr | Already trained, 1 yr / 3 yr | Age factor 60–74 / 75+ | Grade |
+|---|---|---|---|---|
+| VO₂max | +15% / +20% | +5% / +7% | 1.0 / 0.7 | A |
+| Aerobic base (LT1) | +12% / +18% | +5% / +7% | 1.0 / 0.7 | B |
+| Isometric strength | +15% / +20% | +4% / +7% | 1.0 / 1.0 | B |
+| Grip | +7% / +10% | +3% / +5% | 1.0 / 1.0 | B |
+| Loaded lifts and carries | +30% / +40% | +7% / +12% | 1.0 / 0.8 | B |
+| Power | +12% / +15% | +4% / +6% | 1.0 / 0.8 | B |
+| Reactive strength | +15% / +20% | +5% / +8% | 0.8 / 0.5 | C |
+| Single-leg balance, eyes open | +5 s / +7 s | +2 s / +3 s | 1.0 / 0.8 | B |
+| Single-leg balance, eyes closed | +1.5 s / +2 s | +0.5 s / +1 s | 1.0 / 0.8 | B |
+| Range of motion, large arcs | +8° / +10° | +3° / +4° | 1.0 / 1.0 | B |
+| Range of motion, small arcs (hip rotation and extension, shoulder rotation, thoracic) | +5° / +6° | +2° / +3° | 1.0 / 1.0 | B |
+| Knee-to-wall | +1.5 cm / +2 cm | +0.5 cm / +1 cm | 1.0 / 1.0 | C |
+| 30-s chair stand | +3 / +4 reps | +1 / +2 reps | 1.0 / 0.8 | B |
+| Other rep tests | +20% / +25%, at least +3 / +5 reps | +7% / +10% | 1.0 / 0.8 | C |
+| Holds | +30% / +40%, at least +10 s / +15 s | +10% / +15% | 1.0 / 0.8 | C |
+| Movement screens | one grade / two grades | one grade | 1.0 / 1.0 | C |
+
+- **Training status, per test:** trained at or above the 75th percentile, or Proficient, for age; part-trained from the 50th percentile, or Developing, which takes the midpoint of the two caps; otherwise new to training. VO₂max uses its age-group cuts.
+- **Nothing past three years.** No trial shows gains after about two years (Generation 100 declined about 2% a year after year 1 despite training), so beyond three years the aim is to keep the gain.
+- **What the patient sees:** a goal inside the one-year cap reads "within a year" and one inside the three-year cap "1–3 years". Past that, the goal is the realistic three-year step, and the full level needed now to be on track at 90 is shown as "Long-term: …". Glide charts build to the realistic step. "Reaching your short-term goals makes it N" counts only goals whose full need fits within three years.
+- **Floor (Dan, grade C):** from a low start, reps at body weight climb quickly as strength rises, so rep tests gain at least +3 reps in a year and +5 over three, and holds at least +10 s and +15 s.
+- **Examples:** test member A's VO₂max goal is 40 over 1–3 years (+20%), with 58 as the long-term need, and calf raises are 11 (from 6), with 27 long-term. Test member B, already elite, has VO₂max 59 (+7%), with 65 long-term.
+- **Results:** goal statuses are unchanged (A 3 / 7 / 0; B 1 / 1 / 8). A's "reaching your short-term goals" count is 4 (was 5).
+- **Uncertainties:**
+  - LT1 trials conflict.
+  - Holds, reactive strength and screens have no trials in adults over 40.
+  - There are no trials longer than 12 months for power, balance or range of motion.
+  - Most 75+ factors are judgment.
+  - The review also suggests using re-test history (trained after 12 months with half the first-year gain realised). The tool can't see history yet.
+- **Source files:** the full review is kept locally with the other literature reviews, not in this repository.
 
 ## Model 4.15: patient clarity (2026-09-26)
 
