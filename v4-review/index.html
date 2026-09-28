@@ -911,9 +911,9 @@ input[type=checkbox]{accent-color:#39404b}
 
 
 <script>
-const MODEL_VERSION='4.18.3';
+const MODEL_VERSION='4.18.4';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3','4.18','4.18.1','4.18.2','4.18.3']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3','4.18','4.18.1','4.18.2','4.18.3','4.18.4']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -6325,9 +6325,16 @@ const PCA_PROFICIENT_BY_AGE={splitSquat_reps:[10,10,9,8,7,6],invertedRow_reps:[1
   beltSquatIso_xBW:{male:[5.0,5.0,4.5,4.05,3.45,2.95],female:[4.15,4.15,3.75,3.35,2.85,2.45]},chairStand_reps:{male:[22,22,20,18,17,14],female:[20,20,18,16,15,13]},
   backSquat_pctBW:{male:[100,100,90,80,70,60],female:[80,80,70,65,55,45]},frontSquat_pctBW:{male:[85,85,75,70,60,50],female:[65,65,60,55,45,40]},
   gobletSquat_pctBW:[25,25,20,20,17,15],kbDeadlift_pctBW:[50,50,45,40,35,30],landmine_pctBW:{male:[15,15,14,13,11,10],female:[10,10,9,8,7,7]}};
-function proficientForAge(metric){const sex=PATIENT.sex==='female'?'female':'male',a=+PATIENT.age||0,i=a<40?0:a>=80?5:Math.floor(a/10)-3;
-  const band=['30-40','40-50','50-60','60-70','70-80','80-90'][i],em=EM_ASSESSMENT_BANDS[metric]?.[sex]?.[band];if(em)return +em[2];
-  const t=PCA_PROFICIENT_BY_AGE[metric];if(!t)return null;return +(Array.isArray(t)?t:t[sex])[i];}
+/* PCA Developing by age band for the tracker's gym checks that aren't in EM_ASSESSMENT_BANDS (PCA pull 2026-09-24,
+   pca_bands.json; its Proficient values match the table above). */
+const PCA_DEVELOPING_BY_AGE={gobletSquat_pctBW:[15,15,14,12,10,9],frontSquat_pctBW:{male:[60,60,55,50,40,35],female:[45,45,40,35,30,25]},backSquat_pctBW:{male:[70,70,65,55,50,40],female:[55,55,50,45,40,30]},
+  kbDeadlift_pctBW:[25,25,20,20,17,15],landmine_pctBW:{male:[10,10,9,8,7,7],female:[7,7,6,6,5,5]},copenhagen_s:[11,11,11,11,6,6],chairStand_reps:{male:[20,20,18,16,14,12],female:[17,17,16,14,12,11]}};
+/* A PCA level for the patient's age and sex: k=2 Proficient, k=1 Developing. */
+function pcaForAge(metric,k){const sex=PATIENT.sex==='female'?'female':'male',a=+PATIENT.age||0,i=a<40?0:a>=80?5:Math.floor(a/10)-3;
+  const band=['30-40','40-50','50-60','60-70','70-80','80-90'][i],em=EM_ASSESSMENT_BANDS[metric]?.[sex]?.[band];if(em)return +em[k];
+  const t=(k===2?PCA_PROFICIENT_BY_AGE:PCA_DEVELOPING_BY_AGE)[metric];if(!t)return null;return +(Array.isArray(t)?t:t[sex])[i];}
+function proficientForAge(metric){return pcaForAge(metric,2);}
+function developingForAge(metric){return pcaForAge(metric,1);}
 const GRADE_SCORE={Proficient:3,Developing:2,Deficient:1};
 const LT1_FROM_VO2=.6;
 function subItemComponent(r0,mode,b,reason,standIn=false){
@@ -7068,8 +7075,9 @@ function trackTargets(m,raw,need,lower){const has=Number.isFinite(need);
     return has?(lower?Math.min(raw,Math.max(need,v)):Math.max(raw,Math.min(need,v))):v;});}
 /* Gym checks (4.18.3, Dan 2026-09-28): a strength test only the clinic can run (ForceFrame, DynaMo) is checked in the gym
    with the related PCA test, a loaded one where PCA has it. The target is half of a year's gain on the patient's own result,
-   up to the PCA Proficient standard for their age, or the standard itself when there is no result yet. Power and aerobic
-   tests keep a stand-in with a share above where the patient starts. */
+   up to the PCA Proficient standard for their age, or the standard itself when there is no result yet. With no result and
+   a clinic result below average for age (4.18.4, Dan), the PCA Developing level comes first. Power and aerobic tests keep
+   a stand-in with a share above where the patient starts. */
 const PCA_CHECK={kneeExt_xBW:['gobletSquat_pctBW','frontSquat_pctBW','backSquat_pctBW'],beltSquatIso_xBW:['gobletSquat_pctBW','frontSquat_pctBW','backSquat_pctBW'],kneeFlex_xBW:['relDeadlift_pctBW','kbDeadlift_pctBW'],hipAbd_xBW:['suitcaseCarry_pctBW'],hipAdd_xBW:['copenhagen_s'],anklePF_xBW:['calfRaise_reps'],shoulderER_NmKg:['cuffExtRot_lb'],benchIso_xBW:['landmine_pctBW'],grip_lb:['deadHang_s'],stsPower_Wkg:['chairStand_reps']};
 const GYM_OTHER={cmjPower_WkG:{m:'broadJump_cm',more:'farther than your first jump'},slVertJump_cm:{m:'broadJump_cm',more:'farther than your first jump'},vo2:{name:'4 × 4-minute intervals',q:'vo2max',more:'more average output than your first week'},lt1_vo2:{name:'Zone 2',q:'lt1',more:'more output at the same heart rate'},hopRSI:{name:'Hop count in 20 s',q:'reactive',more:'more hops than your first count'},dropJump_RSI:{name:'Hop count in 20 s',q:'reactive',more:'more hops than your first count'}};
 const GYM_NAME={gobletSquat_pctBW:'Goblet squat, heaviest for 5',frontSquat_pctBW:'Front squat, heaviest for 5',backSquat_pctBW:'Back squat, heaviest for 3',relDeadlift_pctBW:'Deadlift, heaviest for 5',kbDeadlift_pctBW:'Kettlebell deadlift, heaviest for 5',suitcaseCarry_pctBW:'Suitcase carry, 60 s',copenhagen_s:'Copenhagen hold',calfRaise_reps:'Single-leg calf raises',cuffExtRot_lb:'Dumbbell external rotation, heaviest for 8',landmine_pctBW:'Landmine press',deadHang_s:'Dead hang',chairStand_reps:'30-second chair stand',broadJump_cm:'Single-leg broad jump'};
@@ -7077,14 +7085,15 @@ const CLINIC_ONLY=new Set([...Object.keys(PCA_CHECK),...Object.keys(GYM_OTHER),'
 /* Tracker numbers: compact in the cells ("0.34×", "45%"), with the unit spelled out on the "needed" line. */
 const fmtG=(v,u)=>u==='s/side'?`${fmtU(v,'s')} each side`:u==='reps/side'?`${fmtU(v,'reps')} each side`:u==='in box'?fmtU(v,u).replace(/ in box$/,' in'):fmtU(v,u).replace(/ × BW$/,'×').replace(/ % BW(\/hand| added)?$/,'%');
 const fmtW=(v,u)=>u==='s/side'?`${fmtU(v,'s')} each side`:u==='reps/side'?`${fmtU(v,'reps')} each side`:u==='in box'?`a ${Math.round(v)}-inch box`:fmtU(v,u);
-/* A gym load in pounds (share of body weight × body weight), to the nearest 5 lb, or 1 lb under 25 lb, and above today's. */
+/* A gym load in pounds (share of body weight × body weight), to the nearest 5 lb, or 2.5 lb under 25 lb, and above today's. */
 function gymVal(v,u,from){const bw=+PATIENT.bodyWeight_lb,pct=u==='% BW'||u==='% BW/hand';if(!pct)return fmtG(v,u);if(!(bw>0))return fmtU(v,u);
-  const r=x=>{const i=x>=25?5:1;return Math.round(x/i)*i;};let lb=r(v/100*bw);if(from!=null){const f=r(from/100*bw);if(lb<=f)lb=f+(f>=25?5:1);}
+  const r=x=>{const i=x>=25?5:2.5;return Math.round(x/i)*i;};let lb=r(v/100*bw);if(from!=null){const f=r(from/100*bw);if(lb<=f)lb=f+(f>=25?5:2.5);}
   return `${lb} lb${u==='% BW/hand'?' each hand':''}`;}
 function gymCheckHTML(m,via,raw){if(!CLINIC_ONLY.has(m))return null;const pca=PCA_CHECK[m]||PCA_CHECK[via],o=GYM_OTHER[m]||GYM_OTHER[via];
   if(pca){const s=pca.find(x=>+PATIENT.metrics[x]>0)||pca[0],u=METRICS[s].unit,P=proficientForAge(s),v=+PATIENT.metrics[s],has=v>0,hasP=P>0;
-    if(has||hasP){const step=has?trackTargets(s,v,null,false)[0]:P,t=has&&hasP&&P>v?Math.min(step,P):step;
-      const sub=[has?`Up from ${gymVal(v,u)}`:'',hasP&&(!has||P>v)?(t>=P*(1-1e-9)?'Proficient for your age':`Proficient for your age: ${gymVal(P,u)}`):''].filter(Boolean);
+    const Dv=!has&&hasP&&trainTier(m,raw)==='untrained'?developingForAge(s):null,dev=Dv>0&&Dv<P;
+    if(has||hasP){const step=has?trackTargets(s,v,null,false)[0]:dev?Dv:P,t=has&&hasP&&P>v?Math.min(step,P):step;
+      const sub=[has?`Up from ${gymVal(v,u)}`:'',dev?'Developing for your age':'',hasP&&(!has||P>v)?(t>=P*(1-1e-9)?'Proficient for your age':`Proficient for your age: ${gymVal(P,u)}`):''].filter(Boolean);
       return `<span class="gn">${GYM_NAME[s]}</span><b>${gymVal(t,u,has&&t>v?v:null)}</b>${sub.map(x=>`<small>${x}</small>`).join('')}`;}}
   if(o){const s=o.m,v=s?+PATIENT.metrics[s]:NaN,name=o.name||GYM_NAME[s];
     if(v>0)return `<span class="gn">${name}</span><b>${fmtG(trackTargets(s,v,null,false)[0],METRICS[s].unit)}</b><small>Up from ${fmtG(v,METRICS[s].unit)}</small>`;
