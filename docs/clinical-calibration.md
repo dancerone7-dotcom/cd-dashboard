@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, at most six tests per goal in 4.18, the patient-page summary and order in 4.18.1, the tracker in 4.18.2, its wording and loaded gym checks in 4.18.3, and Developing first in 4.18.4, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, at most six tests per goal in 4.18, the patient-page summary and order in 4.18.1, the tracker in 4.18.2, its wording and loaded gym checks in 4.18.3, Developing first in 4.18.4, and the patient-page wording pass in 4.18.5, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,19 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.18.5: patient-page wording pass (2026-09-28)
+
+Dan: "Do the same wording pass on the rest of the patient page." Presentation only: no status, projection or target changes.
+
+- **One set of goal words on the patient page:** On track, Nearly on track, Not on track yet, Needs more tests. The goal list and the side list now match the summary at the top (they said "Opportunity" and "Needs more data"). The clinician view keeps its words.
+- **Summary:** "You’re on track for 4 of your 10 goals at 90. 4 are nearly on track and 2 are not on track yet." The column note still says a re-test will tell.
+- **Cards:** "Part of N of your M goals" on strengths and priorities (was "Counts toward" and "Affects"), "still enough at 90", "about 48% lower by 90", "93rd percentile for men your age", "Proficient for your age".
+- **Goal detail:** "Ankle dorsiflexion is close to what this goal needs. Keep it there or a little higher, and a re-test will tell." Goals with missing tests say "The one test we have is on track" or "Both tests we have are on track" (was "1 of the 1 tests"). Caps read "Both tests clear at 90" (was "All 2 tests"), "Passes the single-leg balance test; keep an eye on hip abduction", and a full balance hold no longer shows as the goal's note. The test list says "within 3 years" and "needed for this goal: X" (was "1–3 years" and "long-term X").
+- **Glide charts:** "The higher you start, the higher you are at 90." Legend "If you reach your target first". Each chart reads "Your 3-year target is X. Keep training from there and you reach about Y at 90. This goal needs Z at 90, which takes W now." The balance note no longer suggests a longer timed test (Dan, 2026-09-27).
+- **Each goal's note** is one line: "An estimate, not a promise. Training and health can change it."
+- **Test names:** hip adduction, hip internal rotation, single-leg bridge hold, medicine-ball throws, big-toe flexion, bench press 1-rep max and a few others read in plain words.
+- **How to read this** is shorter, in flat sentences.
 
 ## Model 4.18.4: Developing first when below average (2026-09-28)
 
