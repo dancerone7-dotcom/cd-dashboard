@@ -450,7 +450,7 @@ body:not(.tab-build) .datactl{display:none}
   .appbar,.rail{display:none!important}
   .stage{overflow:visible;padding:0}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-.ptpage .pt-card,.ptpage .pt-panel,.ptpage .pt-prow,.ptpage .ovcard,.ptpage .pt-wheel,.ptpage .pt-keep,.ptpage .glidecard,.ptpage .radarfig,.ptpage .pt-goal>summary{break-inside:avoid}
+.ptpage .pt-card,.ptpage .pt-panel,.ptpage .pt-trow,.ptpage .ovcard,.ptpage .pt-wheel,.ptpage .pt-keep,.ptpage .glidecard,.ptpage .radarfig,.ptpage .pt-goal>summary{break-inside:avoid}
   .ptpage .pt-divider{break-before:page}.ptpage .rreplay{display:none!important}
   .ptpage .pt-goal>summary{break-after:avoid}.ptpage .radarfig{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)!important;align-items:start}
 }
@@ -696,16 +696,15 @@ input[type=checkbox]{accent-color:#39404b}
 .pt-cname{font-family:var(--serif);font-size:19px;line-height:1.15}
 .pt-cmeta{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-top:4px;font-size:12px}.pt-cmeta span{color:var(--pt-muted);font-size:11.5px}
 .pt-cgoals{font-size:12px;margin-top:6px;line-height:1.4}
-.pt-cstep{font-size:12px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--pt-line);color:var(--pt-coral)}
-.pt-cstep b{color:var(--pt-ink)}
-/* where you need to be */
-.pt-plan{background:#fff;border:1px solid var(--pt-line);border-radius:14px;overflow:hidden}
-.pt-prow{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.75fr) minmax(0,1.45fr) minmax(0,.85fr) minmax(0,1.6fr);gap:12px;padding:11px 18px;border-top:1px solid #f0f2f4;font-size:13px;align-items:center}
-.pt-phead{border-top:0;background:#f5f6f8;font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--pt-muted);font-weight:700}
-.pt-pname{font-weight:700}.pt-pname small,.pt-pgoal small{display:block;font-weight:400;font-size:11px;color:var(--pt-muted)}
-.pt-when{font-size:12px;font-weight:700}
-.pt-when.w1{color:#2f7d4f}.pt-when.w2{color:#2a7cfb}.pt-when.w3{color:#9a6512}.pt-when.w4{color:var(--pt-coral)}
-.pt-pgoals{font-size:12px;color:var(--pt-muted);line-height:1.35}
+/* the tracker (4.18.2) */
+.pt-track{background:#fff;border:1px solid var(--pt-line);border-radius:14px;overflow:hidden}
+.pt-trow{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.65fr) minmax(0,1.35fr) minmax(0,.8fr) minmax(0,.7fr);gap:12px;padding:12px 18px;border-top:1px solid #f0f2f4;font-size:14px;align-items:start;line-height:1.35}
+.pt-thead{border-top:0;background:#f5f6f8;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:var(--pt-muted);font-weight:700;align-items:end}
+.pt-tname{font-weight:700}.pt-trow small{display:block;font-weight:400;font-size:12px;color:var(--pt-muted);margin-top:2px}
+.pt-trow small.pt-twhy{margin-top:4px}.pt-trow small.ok{color:#2f7d4f;font-weight:700}
+.pt-tgym .gn{display:block;font-size:13px}.pt-tgym b{display:block}
+.pt-trest>summary{cursor:pointer;padding:11px 18px;border-top:1px solid #f0f2f4;font-size:13px;color:var(--pt-coral)}
+.pt-tnote{font-size:12.5px;color:var(--pt-muted);margin:10px 2px 0}
 /* goal by goal */
 .pt-divider{background:#39404b;color:#fff;text-align:center;padding:48px 40px 44px;margin-top:44px}
 .pt-divider h2{font-family:var(--serif);font-weight:400;font-size:38px;margin:6px 0 0}
@@ -731,7 +730,7 @@ input[type=checkbox]{accent-color:#39404b}
 .pt-tocsub{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700;margin:14px 8px 6px}
 @media (max-width:1180px){.appbar{gap:10px;padding:10px 14px;flex-wrap:wrap}.datactl{order:4;width:100%;margin-right:0;justify-content:flex-end}.brandmark{font-size:19px;white-space:nowrap}.seg.steps button{padding:6px 10px;white-space:nowrap}.linkbtn{white-space:nowrap}.patient-chip .meta{display:none}
 .ptpage .pt-gbody .pv{padding:12px 12px 8px}}
-@media (max-width:900px){body.tab-report #tab-report>.rail{display:none}.pt-cols{grid-template-columns:1fr}.pt-prow{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr) minmax(0,1.3fr) minmax(0,.9fr)}.pt-prow>:nth-child(5){display:none}}
+@media (max-width:900px){body.tab-report #tab-report>.rail{display:none}.pt-cols{grid-template-columns:1fr}.pt-trow{gap:10px;padding:11px 14px}}
 @media (max-width:1100px){.pt-sowrap,.pt-panels{grid-template-columns:1fr}.pt-sec{padding:36px 28px 8px}.pt-cover{padding:84px 28px 40px}.pt-brand{left:28px}.pt-foot{padding:14px 28px}}
 /* ── goal builder ── */
 .gb .gb-step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px}
@@ -789,15 +788,12 @@ input[type=checkbox]{accent-color:#39404b}
 .pt-card{position:relative}.pt-card .pt-rank{position:absolute;top:12px;right:12px;margin:0}.pt-card.priority .pt-cname{padding-right:28px}
 .pt-goal.z-borderline .pt-gdot{background:#c58a2a}.pt-goal.z-borderline .pt-gword{color:#92400e}
 .readiness .big.r-borderline{color:#92400e}
-.pt-when.w0{color:#6b7280}
-.pt-cstep small{display:block;color:var(--pt-muted);font-size:11px;margin-top:3px}
 /* 4.17 readability (review 2026-09-27): patients read this in their 60s to 80s, so darker captions and nothing under 12 px. */
 .ptpage{--pt-muted:#586071}
 .ptpage .pt-lede{font-size:14.5px}.ptpage .gh-read{font-size:14px}.ptpage .pt-key{font-size:12.5px}.ptpage .ovcap{font-size:12.5px}.ptpage .rlegend{font-size:12.5px}
 .ptpage .pt-mrow{font-size:14px}.ptpage .pt-mvis small{font-size:12px}
-.ptpage .pt-cmeta{font-size:13px}.ptpage .pt-cmeta span{font-size:12.5px}.ptpage .pt-cgoals,.ptpage .pt-cstep{font-size:13px}.ptpage .pt-cstep small{font-size:12px}
+.ptpage .pt-cmeta{font-size:13px}.ptpage .pt-cmeta span{font-size:12.5px}.ptpage .pt-cgoals{font-size:13px}
 .ptpage .pt-wlede{font-size:13.5px}.ptpage .pt-wheel p{font-size:12.5px}.ptpage .pt-wheelkey{font-size:12.5px}
-.ptpage .pt-prow{font-size:14px}.ptpage .pt-phead{font-size:11px}.ptpage .pt-pname small,.ptpage .pt-pgoal small{font-size:12px}.ptpage .pt-pgoals,.ptpage .pt-when{font-size:13px}
 .ptpage .pt-gcap{font-size:13px}.ptpage .pt-read p{font-size:14px}.ptpage .model-note{font-size:12.5px}.ptpage .radarnote{font-size:12.5px}
 .ptpage .pt-keeprow{font-size:14px}.ptpage .pt-keeprow small{font-size:12.5px}.ptpage .pt-keepgoals{font-size:13px}
 /* Phones: results stack under their name, plan rows label their own cells, and the wheel numbers its spokes. */
@@ -841,9 +837,9 @@ input[type=checkbox]{accent-color:#39404b}
 @media print{.pt-agebar{display:none!important}}
 @media (max-width:600px){.ptpage .pt-mrow{grid-template-columns:minmax(0,1fr) auto}.ptpage .pt-mvis{grid-column:1/-1}.pt-gt{grid-template-columns:minmax(0,1fr) auto}.pt-gt .s{grid-column:1/-1}.pt-gth{display:none}}
 @media (max-width:600px){.pt-mrow{grid-template-columns:minmax(0,1fr) auto}.pt-mvis{grid-column:1/-1}
-  .pt-phead{display:none}.pt-prow{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr) auto;gap:6px 12px;padding:12px 14px;align-items:start}.pt-prow>:first-child{grid-column:1/-1}
-  .pt-prow>:nth-child(2)::before,.pt-prow>:nth-child(3)::before,.pt-prow>:nth-child(4)::before{display:block;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--pt-muted);font-weight:700;margin-bottom:2px}
-  .pt-prow>:nth-child(2)::before{content:'Today'}.pt-prow>:nth-child(3)::before{content:'Goal'}.pt-prow>:nth-child(4)::before{content:'By when'}
+  .pt-thead{display:none}.pt-trow{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 14px;padding:12px 14px}.pt-tname{grid-column:1/-1}
+  .pt-trow>:nth-child(n+2)::before{display:block;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--pt-muted);font-weight:700;margin-bottom:2px}
+  .pt-trow>:nth-child(2)::before{content:'Today'}.pt-trow>:nth-child(3)::before{content:'3–6 months, gym'}.pt-trow>:nth-child(4)::before{content:'Re-test, 6–12 months'}.pt-trow>:nth-child(5)::before{content:'3 years'}
   .pt-wheel .rlabel{display:none}.pt-wheel .wnum{display:inline;font-size:34px;font-weight:700;fill:#39404b}.pt-wheelnums{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin:10px 0 0;padding-left:20px;font-size:13px}}
 .mbtrack{fill:#eef1f4}.mbnow{fill:rgba(37,99,235,.35)}.mb90{stroke:#bc2a2a;stroke-width:2;stroke-dasharray:2 2}.mbneed{stroke:#10b981;stroke-width:1.5}
 </style>
@@ -914,9 +910,9 @@ input[type=checkbox]{accent-color:#39404b}
 
 
 <script>
-const MODEL_VERSION='4.18.1';
+const MODEL_VERSION='4.18.2';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3','4.18','4.18.1']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3','4.18','4.18.1','4.18.2']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -6536,7 +6532,9 @@ function trainTier(metric,raw){if(metric==='vo2'||metric==='lt1_vo2'){const t=(V
 /* Floor for rep and hold tests from a low start (Dan, 2026-09-26; clinical estimate, grade C): reps at body weight climb
    quickly as strength rises, so at least +3 reps in a year and +5 over three, and holds at least +10 s and +15 s. */
 const TRAIN_FLOORS={endurance_reps:{y1:3,y3:5},endurance_holds:{y1:10,y3:15}};
-function realisticReach(metric,raw,years){const q=trainQuality(metric),cap=TRAIN_CAPS[q];if(!cap||!Number.isFinite(+raw))return null;const t=trainTier(metric,+raw),k=years<=1?'y1':'y3',af=AGE>=75?cap.age[1]:AGE>=60?cap.age[0]:1,g=(t==='mid'?(cap.untrained[k]+cap.trained[k])/2:cap[t][k])*af,v=cap.unit==='rel'?+raw*(1+g):+raw+g,fl=TRAIN_FLOORS[q];return fl?Math.max(v,+raw+fl[k]*af):v;}
+/* A year's (y1) or three years' (y3) realistic gain for a quality at a training tier, after the age factor. */
+function capGain(q,tier,years){const cap=TRAIN_CAPS[q];if(!cap)return null;const k=years<=1?'y1':'y3',af=AGE>=75?cap.age[1]:AGE>=60?cap.age[0]:1;return {rel:cap.unit==='rel',k,af,g:(tier==='mid'?(cap.untrained[k]+cap.trained[k])/2:cap[tier][k])*af};}
+function realisticReach(metric,raw,years){const q=trainQuality(metric);if(!TRAIN_CAPS[q]||!Number.isFinite(+raw))return null;const cg=capGain(q,trainTier(metric,+raw),years),v=cg.rel?+raw*(1+cg.g):+raw+cg.g,fl=TRAIN_FLOORS[q];return fl?Math.max(v,+raw+fl[cg.k]*cg.af):v;}
 function stepFor(metric,raw,need){const r1=realisticReach(metric,raw,1),r3=realisticReach(metric,raw,3);if(r1==null||!(need>raw))return {step:need,when:'1–3 years',stretch:false};
   if(need<=r1*(1+1e-9))return {step:need,when:'within a year',stretch:false};
   if(need<=r3*(1+1e-9))return {step:need,when:'1–3 years',stretch:false};
@@ -7045,8 +7043,7 @@ function ptTodayHTML(goals){
   const name=x=>ptLabel(x.m,x.meta);
   return PT_DOMAINS.filter(([d])=>by[d]?.length).map(([d,title])=>{const list=by[d].sort((a,b)=>(b.used-a.used)||((b.ctx?1:0)-(a.ctx?1:0))||name(a).localeCompare(name(b))),top=list.slice(0,5),rest=list.slice(5);
     return `<div class="pt-panel"><div class="pt-ptitle">${title}</div>${top.map(ptMeasureRow).join('')}${rest.length?`<details class="pt-more"><summary>Show ${rest.length} more</summary>${rest.map(ptMeasureRow).join('')}</details>`:''}</div>`;}).join('')||'<div class="pt-empty">No test results entered yet.</div>';}
-/* The next one to three years: every test that falls short for a goal, at the level its hardest goal needs. */
-const WHEN_CLS={'within a year':'w1','1–3 years':'w2','3–5 years':'w3','long-term stretch':'w4'};
+/* Every test that falls short for a goal, at the level its hardest goal needs (the tracker's rows). */
 function ptPlanRows(goals,story){const by=new Map();
   goals.forEach(g=>{const act=ACTIVITIES[g.profileId],C=components(act.reqs);goalEvaluation(act,C);C.forEach(c=>{if(c.meets||c.cappedUnknown)return;const k=c.r.metric,e=by.get(k);if(!e){by.set(k,{c,goals:[g]});return;}e.goals.push(g);if((+c.stg||0)>(+e.c.stg||0))e.c=c;});});
   /* Same order as the priority cards; aerobic base follows VO₂max; close tests come last. */
@@ -7059,20 +7056,49 @@ function ptPlanRows(goals,story){const by=new Map();
     if(r.c.raw>=r.c.stg*(1-1e-9)){vo2.goals=[...vo2.goals,...r.goals.filter(g=>!vo2.goals.includes(g))];r.drop=true;continue;}
     const st=stepFor('lt1_vo2',r.c.raw,r.c.stg);r.g={up:true,stretch:st.stretch,stepVal:st.step,longTerm:st.stretch?`${fmtU(r.c.stg,r.c.unit)} to be on track at ${TGT}`:null,txt:`Build to ${fmtU(st.step,r.c.unit)}`,sub:[`+${Math.max(1,Math.round((st.step/r.c.raw-1)*100))}%`,st.when].join(' · '),when:st.when};}
   return rows.filter(r=>!r.drop);}
-function ptPlanHTML(rows){
-  if(!rows.length)return `<div class="pt-empty">Every test you have clears what your goals need at ${TGT}. The plan is to hold these levels.</div>`;
-  return `<div class="pt-plan"><div class="pt-prow pt-phead"><span>Test</span><span>Today</span><span>Goal</span><span>By when</span><span>Helps these goals</span></div>${rows.map(r=>{const c=r.c,lift=(r.g.sub||'').split(' · ').find(x=>x.startsWith('+'));
-    return `<div class="pt-prow"><span class="pt-pname">${r.rank?`<i class="pt-rank">${r.rank}</i>`:''}${PATIENT_ASSESSMENT_LABELS[c.r.metric]||c.short}${c.via?`<small>standing in for the ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))} test</small>`:''}</span><span>${c.unable?'Unable today':fmtU(c.raw,c.unit)}</span><span class="pt-pgoal">${r.g.txt}${lift?`<small>${lift}</small>`:''}${r.g.stretch&&r.g.longTerm?`<small>Long-term: ${r.g.longTerm}</small>`:''}</span><span class="pt-when ${c.borderline?'w0':WHEN_CLS[r.g.when]||'w2'}">${r.g.when||(c.borderline?'Re-test':'1–3 years')}</span><span class="pt-pgoals">${nameList(r.goals.map(g=>g.name),2)}</span></div>`;}).join('')}</div>`;}
-function ptCard(x,kind,plan,rank){const ctx=x.metric==='vo2'?ptContext('vo2',x.raw)?.label:x.assessmentContextText,row=kind==='priority'?plan.get(x.metric):null,step=row?.g,judged=!!(row?.c?.today||row?.c?.static);
+/* Tracker (4.18.2, Dan 2026-09-28): each top priority gets a check in the gym at 3–6 months (half of a year's realistic
+   gain), the clinic re-test at 6–12 months (a year's) and a 3-year target, each capped at the level the goals need and
+   never behind today. Screens step up a grade; reps and dumbbell loads round down to whole numbers. Tests only the clinic
+   can run are checked in the gym with a stand-in (Dan's list): from the stand-in's own result when there is one,
+   otherwise as a share above where the patient starts. */
+const GYM_CHECK={kneeExt_xBW:['Goblet squat, heaviest for 5','gobletSquat_pctBW'],hipAbd_xBW:['Side plank hold','sidePlank_s'],hipAdd_xBW:['Copenhagen hold','copenhagen_s'],kneeFlex_xBW:['Single-leg bridge hold','slBridge_s'],anklePF_xBW:['Single-leg calf raises','calfRaise_reps'],shoulderER_NmKg:['Dumbbell external rotation, heaviest for 8','cuffExtRot_lb'],grip_lb:['Dead hang','deadHang_s'],cmjPower_WkG:['Single-leg broad jump','broadJump_cm'],slVertJump_cm:['Single-leg broad jump','broadJump_cm'],stsPower_Wkg:['30-second chair stand','chairStand_reps'],
+  vo2:['4 × 4-minute intervals',null,'vo2max','more average output'],lt1_vo2:['Zone 2 output at the same heart rate',null,'lt1','more'],hopRSI:['Hop count in 20 s',null,'reactive'],dropJump_RSI:['Hop count in 20 s',null,'reactive']};
+const CLINIC_ONLY=new Set([...Object.keys(GYM_CHECK),'beltSquatIso_xBW','benchIso_xBW','toe1_pctBW','toe25_pctBW']);
+function trackTargets(m,raw,need,lower){const has=Number.isFinite(need);
+  if(METRICS[m]?.kind==='grade'){const n=has?need:3,s=Math.min(n,raw+1);return [s,s,n];}
+  const L=TEST_LIMIT[m],whole=/reps/.test(METRICS[m]?.unit||'')||METRICS[m]?.unit==='lb'&&m!=='grip_lb';
+  return [.5,1,3].map(y=>{const r=realisticReach(m,raw,Math.max(1,y));if(r==null)return null;const g=Math.abs(r-raw)*(y<1?.5:1);
+    let v=lower?Math.max(0,raw-g):raw+g;if(whole&&!lower&&g>0)v=Math.max(Math.floor(v+1e-9),Math.floor(raw)+1);if(L)v=Math.min(v,L);
+    return has?(lower?Math.min(raw,Math.max(need,v)):Math.max(raw,Math.min(need,v))):v;});}
+function gymCheckHTML(m,via,raw){if(!CLINIC_ONLY.has(m))return null;const gc=GYM_CHECK[m]||GYM_CHECK[via];if(!gc)return 'Checked at your re-test';
+  const [name,sm,sq,more]=gc,u=sm&&METRICS[sm].unit,s=sm?+PATIENT.metrics[sm]:NaN;
+  if(s>0)return `<span class="gn">${name}</span><b>${fmtU(trackTargets(sm,s,null,false)[0],u)}</b><small>from ${fmtU(s,u).replace(/ % BW(\/hand)?$/,'%')} today</small>`;
+  const cg=capGain(sq||trainQuality(sm),trainTier(m,raw),1);if(!cg)return `<span class="gn">${name}</span>`;
+  return `<span class="gn">${name}</span><small>about ${cg.rel?`${Math.max(1,Math.round(cg.g*50))}% ${more||'above where you start'}`:`${Math.max(1,Math.round(cg.g/2))} more than where you start`}</small>`;}
+function ptTrackHTML(rows,story,plan){
+  const list=[];(story.topTrainingPriorities||[]).slice(0,4).forEach((x,i)=>{const r=plan.get(x.metric);if(!r&&!Number.isFinite(x.raw))return;list.push(r?{r,rank:i+1}:{x,rank:i+1});if(x.metric==='vo2'&&plan.has('lt1_vo2'))list.push({r:plan.get('lt1_vo2')});});
+  const shown=new Set(list.map(e=>e.r?e.r.c.r.metric:e.x.metric)),rest=rows.filter(r=>!shown.has(r.c.r.metric)).map(r=>({r}));
+  if(!list.length&&!rest.length)return `<div class="pt-empty">${Object.values(PATIENT.metrics||{}).some(v=>v!=null&&v!=='')?`Every test you have clears what your goals need at ${TGT}. The plan is to hold these levels.`:'Your targets appear here once your results are in.'}</div>`;
+  let hop=false;
+  /* Cells read "0.34×" and "45%": the why line under each name spells out the unit once. */
+  const tf=(v,u)=>fmtU(v,u).replace(/ × BW$/,'×').replace(/ % BW(\/hand| added)?$/,'%');
+  const row=({r,x,rank})=>{const c=r?.c,m=c?c.r.metric:x.metric,raw=c?c.raw:x.raw,unit=c?c.unit:x.unit,lower=c?.r.dir==='lower_better',need=c&&Number.isFinite(+c.stg)?+c.stg:null,t=trackTargets(m,raw,need,lower),L=TEST_LIMIT[m];
+    const hit=v=>need!=null&&(lower?v<=need*(1+1e-9):v>=need*(1-1e-9)),cell=v=>v==null?'—':v<=0&&!lower?'Able to do the test':`${tf(v,unit)}${lower?' or less':''}${hit(v)?'<small class="ok">✓ On track</small>':''}`;
+    const gym=gymCheckHTML(m,c?.via,raw);if(gym&&gym.includes('Hop count'))hop=true;
+    const why=!c?(x.chartBasis==='goal-demand'&&x.projectedPct>=100?`Already on track at ${TGT}`:''):need==null?'':unit==='grade'?'Proficient for your age':L&&need>L?`To be on track at ${TGT}: past the ${fmtU(L,unit)} test limit`:`${c.static?(c.r.today?'The goal itself':c.via?'Proficient for your age':'The standard for your age'):`To be on track at ${TGT}`}: ${fmtU(need,unit)}${lower?' or less':''}`;
+    return `<div class="pt-trow"><span class="pt-tname">${rank?`<i class="pt-rank">${rank}</i>`:''}${c?PATIENT_ASSESSMENT_LABELS[m]||c.short:x.label}${c?.via?`<small>standing in for the ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))} test</small>`:''}${why?`<small class="pt-twhy">${why}</small>`:''}</span><span>${c?.unable?'Unable today':tf(raw,unit)}${c?.borderline?'<small>close</small>':''}</span><span class="pt-tgym">${gym??cell(t[0])}</span><span>${cell(t[1])}</span><span>${cell(t[2])}</span></div>`;};
+  const main=list.length?list:rest,more=list.length?rest:[];
+  return `<div class="pt-track"><div class="pt-trow pt-thead"><span>Priority</span><span>Today</span><span>3–6 months, in the gym</span><span>Re-test at 6–12 months</span><span>3 years</span></div>${main.map(row).join('')}${more.length?`<details class="pt-trest"><summary>Show ${more.length} more ${more.length===1?'test':'tests'} to build</summary>${more.map(row).join('')}</details>`:''}</div>${hop?'<p class="pt-tnote">Hop count: quick, quiet two-foot hops for 20 seconds, counted by your coach.</p>':''}`;}
+function ptCard(x,kind,plan,rank){const ctx=x.metric==='vo2'?ptContext('vo2',x.raw)?.label:x.assessmentContextText,row=kind==='priority'?plan.get(x.metric):null,judged=!!(row?.c?.today||row?.c?.static);
   /* Tests judged against today's standard aren't projected, so they carry no "lower by 90" figure. */
   const decline=!judged&&Number.isFinite(x.projectedVulnerability)&&x.projectedVulnerability>=1?`about ${Math.round(x.projectedVulnerability)}% lower by ${TGT} as you age`:judged?(row.c.r.today?'judged on today’s result':'judged against the standard for your age'):'';
   const goals=kind==='strength'?(x.pathway==='assessment-strength'?(x.goalsN?`Part of ${x.goalsN} of your ${x.selectedGoalTotal} goals`:'Not tied to your goals, but worth keeping'):strengthDetailText(x)):[goalCountText(x),decline].filter(Boolean).join(' · ');
-  return `<div class="pt-card ${kind}">${rank?`<span class="pt-rank">${rank}</span>`:''}<div class="pt-cname">${x.label}</div><div class="pt-cmeta">${Number.isFinite(x.raw)?`<b>${fmtU(x.raw,x.unit)}</b>`:''}${ctx?`<span>${capFirst(ctx)}</span>`:''}</div><div class="pt-cgoals">${goals}</div>${step?`<div class="pt-cstep">Next: <b>${step.txt}</b>${step.when?` · ${step.when}`:''}${step.stretch&&step.longTerm?`<small>Long-term: ${step.longTerm}</small>`:''}</div>`:''}</div>`;}
+  return `<div class="pt-card ${kind}">${rank?`<span class="pt-rank">${rank}</span>`:''}<div class="pt-cname">${x.label}</div><div class="pt-cmeta">${Number.isFinite(x.raw)?`<b>${fmtU(x.raw,x.unit)}</b>`:''}${ctx?`<span>${capFirst(ctx)}</span>`:''}</div><div class="pt-cgoals">${goals}</div></div>`;}
 const ptHead=(eyebrow,title,lede='')=>`<div class="pt-head"><div class="pt-eyebrow">${eyebrow}</div><h2 class="pt-title">${title}</h2>${lede?`<p class="pt-lede">${lede}</p>`:''}</div>`;
 function ptGoalHTML(g){const {body,ev}=goalPageHTML(g,'C');return `<details class="pt-goal z-${ev.zone}" id="pt-g-${g.id}"><summary><span class="pt-gdot" aria-hidden="true"></span><span class="pt-gname">${g.name}</span><span class="pt-gword">${ev.word}</span><span class="pt-gcap">${ev.cap}</span></summary><div class="pt-gbody">${body}</div></details>`;}
 function openPatientGoal(id){const d=document.getElementById('pt-g-'+id);if(!d)return;d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'});}
 function renderPatientRail(goals){
-  const sec=[['pt-goals','Your goals'],['pt-strengths','Strengths and priorities'],['pt-next','The next 1–3 years'],['pt-bygoal','Goal by goal'],['pt-today','Your current results']];
+  const sec=[['pt-goals','Your goals'],['pt-strengths','Strengths and priorities'],['pt-next','Your tracker'],['pt-bygoal','Goal by goal'],['pt-today','Your current results']];
   $("#catalog").innerHTML=`<div class="pt-toc">${sec.map(([id,t])=>`<button class="actbtn tocbtn" data-jump="${id}"><span class="lbl">${t}</span></button>`).join('')}<div class="pt-tocsub">Goals</div>${goals.map(g=>{const act=ACTIVITIES[g.profileId],ev=goalEvaluation(act,components(act.reqs));return `<button class="actbtn z-${ev.zone}" data-jumpgoal="${g.id}" title="${ev.cap}"><span class="ring" aria-hidden="true"></span><span class="lbl">${g.name}</span><span class="pct">${ev.word}</span></button>`;}).join('')}</div>`;
   $("#addNote").innerHTML=`<b>${goals.length}</b> CD goals · patient view`;
   $("#catalog").querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'}));
@@ -7087,7 +7113,7 @@ function renderPatientPage(){
   slide.innerHTML=(`<section class="pt-cover"><div class="pt-brand">Early Medical</div><div class="pt-tagline">Being <i>early</i> matters<sup>®</sup></div><div class="pt-coverin"><div class="pt-eyebrow light">Centenarian Decathlon · your report</div><h1>${PATIENT.name||'Your report'}</h1><div class="pt-coversub">Your plan for the <em>marginal decade</em></div><div class="pt-covermeta">${meta}</div></div></section>
 <section class="pt-sec" id="pt-goals">${ptHead('At a glance',`Your goals at <em>${TGT}</em>`)}${ptSummaryHTML(story)}</section>
 <section class="pt-sec" id="pt-strengths">${ptHead('Strengths and priorities','What is working, and what to <em>build</em>',`Ranked by how many of your goals each one counts toward, and how far it sits above or below what they need at ${TGT}.`)}<div class="pt-sowrap"><div class="pt-cols"><div><div class="pt-coltitle good">Your strengths</div>${story.topStrengths.slice(0,4).map(x=>ptCard(x,'strength',plan)).join('')||'<div class="pt-empty">More results are needed to name your strengths.</div>'}</div><div><div class="pt-coltitle work">Your top priorities</div>${story.topTrainingPriorities.slice(0,4).map((x,i)=>ptCard(x,'priority',plan,i+1)).join('')||'<div class="pt-empty">No test is holding back a goal.</div>'}</div></div><div class="pt-wheel"><div class="pt-wtitle">Your capacity <em>wheel</em></div><p class="pt-wlede">Each spoke is one of your tests, scaled to the toughest target among your goals. Reaching the solid ring means that test covers every goal.</p>${overviewWheelSVG(story)}${capacityWheelDimensions(story).length>=3?`<ol class="pt-wheelnums">${capacityWheelDimensions(story).map(d=>`<li>${d.label}</li>`).join('')}</ol>`:''}<div class="pt-wheelkey"><span class="k cur"><i></i>You today</span><span class="k proj"><i></i>At ${TGT}, if you keep training</span><span class="k thr"><i></i>What your goals need</span></div><p>The shape’s area is not a score.</p></div></div></section>
-<section class="pt-sec" id="pt-next">${ptHead('The next one to three years','Where you need to <em>be</em>',`What training can realistically add over the next one to three years. Where your goals need more than that, the full level is shown as a long-term aim.`)}${ptPlanHTML(rows)}</section>
+<section class="pt-sec" id="pt-next">${ptHead('Your tracker','What to aim for, and <em>when</em>',`A check in the gym at 3 to 6 months, a clinic re-test at 6 to 12 months, and a 3-year target for each of your top priorities, sized to what training can realistically add.`)}${ptTrackHTML(rows,story,plan)}</section>
 <section class="pt-divider" id="pt-bygoal"><div class="pt-eyebrow light">Your goals</div><h2>Goal by <em>goal</em></h2><p>Open a goal to see each test, where it is headed, and the level to build to.</p></section>
 <section class="pt-sec pt-goallist">${goals.map(ptGoalHTML).join('')}</section>
 <section class="pt-sec" id="pt-today">${ptHead('Where you are today','Your <em>current</em> results')}<div class="pt-key"><span class="k"><span class="pt-bar ok" aria-hidden="true"><i style="left:25%"></i><i style="left:50%"></i><i style="left:75%"></i><b style="left:62%"></b></span>Where you sit among ${sexWord()} your age. The marks are the 25th, 50th and 75th percentiles.</span><span class="k"><span class="pt-lvl good"><i></i>Proficient</span>Meets Early Medical’s standard for your age.</span></div><div class="pt-panels">${ptTodayHTML(goals)}</div>${ptKeepHTML(goals)}</section>
@@ -7477,7 +7503,7 @@ $("#tabSeg").addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home'
 $("#heroSeg").addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; HERO=b.dataset.hero;markDirty();document.querySelectorAll('#heroSeg button').forEach(x=>x.classList.toggle('on',x.dataset.hero===HERO));renderCatalog();renderReportBody();});
 const COPY={
   disclaimerLead:'How to read this.',
-  patientRead:()=>`These are estimates, not promises. Each goal is set by what the activity itself takes at ${TGT}, and each of your results is projected forward from today using long-term studies of people who keep training. A goal is on track when every test it needs still reaches its target at ${TGT}. When a test falls short, it becomes an opportunity with a short-term goal: the level to build to over the next one to three years, sized to what training can realistically add. Where your goal needs more than that, the full level is shown as a long-term aim. The projections assume you stay healthy; illness, injury or stopping training change the picture, and training can change it for the better.`,
+  patientRead:()=>`These are estimates, not promises. Each goal is set by what the activity itself takes at ${TGT}, and each of your results is projected forward from today using long-term studies of people who keep training. A goal is on track when every test it needs still reaches its target at ${TGT}. When a test falls short, it becomes an opportunity. Your tracker gives it a check in the gym at 3 to 6 months, a re-test at 6 to 12 months and a 3-year target, each sized to what training can realistically add. Where your goals need more than three years of training can add, the full level is shown as a long-term aim. The projections assume you stay healthy; illness, injury or stopping training change the picture, and training can change it for the better.`,
   disclaimer:()=>`This is a scenario backcast, not an individual prediction. The task demand is held fixed; only calibrated task thresholds affect readiness, while all measured capacities can contribute trajectories and prioritization. Strength, power and aerobic fitness follow the decline of healthy people who keep training, taken from long-term studies of the same people: about 1–1.5% a year in the 60s, 2% in the 70s and 3–4% after 85 for strength, with each muscle group at its own rate; power falls a little faster than strength; aerobic fitness falls more slowly than average until about 70, then close to the typical rate. Range of motion declines at half the typical rate for patients who keep up mobility work, balance follows published age norms (it falls steeply after 70 for everyone), rep and hold tests are tracked but not projected, and isolated strength tests aim for top-quarter strength (the 75th percentile for age: VALD norms, British norms for grip) kept up by training to the target age; a stand-in for a test that wasn't done is judged today against the PCA Proficient standard for your age, each with a deliberately broad uncertainty range that widens after 75. A test projected short gets a short-term goal for the next one to three years, capped at what training can realistically add for that quality, age and training status (VO₂max, for example, about +15% in a year and +20% over three for someone new to training, and about a third of that for someone already fit); where the goal needs more, the full level is shown as a long-term aim. Single-leg balance needs 9 s at the target age, which a full 60-second hold today clears. A second line shows the same person if they stop training: what training added fades in the first year, then decline follows the general population. This assumes you stay healthy; in the last year or two of life, strength and fitness fall much faster whatever you do. Training mostly buys a head start of 10–20 years, and it keeps you from the extra losses that come with stopping. Disease, injury and body-weight change can also alter the trajectory.`
 
 };
