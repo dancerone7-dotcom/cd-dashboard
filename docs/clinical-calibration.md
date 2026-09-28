@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, and at most six tests per goal in 4.18, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,15 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.18: at most six tests per goal (2026-09-28)
+
+Dan: "no CD goal should have more than 5 or 6 variables to measure capacity"; radars get too complicated past that. He chose six, with VO₂max and aerobic base counting as one (both come from the same CPET).
+
+- **One aerobic spoke.** On every radar (patient and clinician) and in the patient's test list, VO₂max and aerobic base are one spoke, "Aerobic fitness", judged by the weaker of the two. The goal still needs both, and the page still shows both numbers.
+- **Built-in goals over six (Dan's approved cuts):** tennis loses rotator cuff (padel and pickleball serve underhand); the hike and stairs goals lose ankle dorsiflexion; golf loses grip, knee extension range and single-leg balance. Tennis keeps hip abduction, and golf keeps lead-hip rotation and hip adduction, which Dan added in 4.14. The goal library still copies these tests from these goals, so the cut requirements stay available to it.
+- **Library and coach-built goals:** capped at six the same way. Coach-added tests come first, then loads the coach entered, then the library's ranked tests (the activity review lists them in priority order) or, without a library entry, the aerobic tests and the demand rules. Tracked rep and hold tests and movement screens don't count. 38 of the 55 library activities drop their lowest-ranked one to four tests, most often knee extension range, the shoulder rotation ranges added for throwing, and VO₂max where the activity's energy cost is low.
+- **Results:** test members A (4 / 6 / 0) and B (1 / 1 / 8) are unchanged. In the balanced demo the stairs goal moves from on the line to on track, since ankle dorsiflexion no longer counts. The all-Proficient check runs 588 checks (was 606), 78 short.
 
 ## Model 4.17.3: no "build first" on the patient page (2026-09-28)
 

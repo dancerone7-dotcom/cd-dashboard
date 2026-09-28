@@ -911,9 +911,9 @@ input[type=checkbox]{accent-color:#39404b}
 
 
 <script>
-const MODEL_VERSION='4.17.3';
+const MODEL_VERSION='4.18';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3','4.18']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -5769,6 +5769,10 @@ for(const act of Object.values(ACTIVITIES))for(const r of act.reqs||[]){if(r.met
   r.why=r.why.replace(/ need(s?) about 10 s\./,' need$1 steady single-leg balance.').replace(/ need(s?) balance in the top quarter for people in their 80s \(about 11 s\)\./,' need$1 steady single-leg balance.')+' Target: 9 s at 90, which a full 60-second hold today clears.';
   r.evi='Set by Dan 2026-09-28: 9 s at 90. A full 60-s hold today keeps about 9.3 s on the balance norms, so a maxed-out hold always clears, and so does the PCA Proficient hold from 60 on. It sits between the median at 90 (about 7 s) and the top quarter for people in their 80s (about 11 s). '+String(r.evi||'').replace(/ ?Set by Dan 2026-09-26: sport and uneven-terrain level\./,'');}
 for(const activity of Object.values(ACTIVITIES))normalizeActivity(activity);
+/* Model 4.18 (Dan, 2026-09-28): at most six tests per goal, with VO₂max and aerobic base counting as one (same CPET). The
+   goal library still copies these tests from the trimmed goals, so they stay available as templates (CUT_REQS). */
+const GOAL_CUTS={tennis:['shoulderER_NmKg'],'hike-pack':['ankleDF_cm'],'stairs-load':['ankleDF_cm'],'golf-18':['grip_lb','kneeExtLag_deg','balanceSL_EO_s']},CUT_REQS={};
+for(const [id,ms] of Object.entries(GOAL_CUTS))ACTIVITIES[id].reqs=ACTIVITIES[id].reqs.filter(r=>{const cut=ms.includes(r.metric)&&r.role!=='modifier'&&r.role!=='support';if(cut)CUT_REQS[id+'|'+r.metric]=r;return !cut;});
 
 const CATS=["Mobility","Strength","Power","Aerobic","Eccentric","Balance","Core","Endurance"];
 
@@ -6462,7 +6466,12 @@ const GOAL_AUDIT_REGISTER=currentGoalAuditRegister();
 /* Goal radar. Each spoke is one test, scaled so the green ring (100%) is what
    the goal needs at the target age. It draws in reading order: what's needed,
    where the patient is today, then where they're projected to be. */
-function radarSVG(C,{animate=true,simple=false}={}){
+/* Model 4.18: VO₂max and aerobic base are one spoke, "Aerobic fitness", judged by the weaker of the two. */
+function radarSpokes(C){const v=C.find(c=>c.r.metric==='vo2'),l=C.find(c=>c.r.metric==='lt1_vo2');if(!v||!l)return C;
+  const w=l.projPct<v.projPct?l:v,both=v.meets&&l.meets,miss=c=>!c.meets&&!c.borderline&&!c.cappedUnknown;
+  const m={...w,short:'Aerobic fitness',merged:[v,l],curPct:Math.min(v.curPct,l.curPct),projPct:Math.min(v.projPct,l.projPct),stopPct:Math.min(v.stopPct,l.stopPct),meets:both,borderline:!both&&!miss(v)&&!miss(l),watch:!both&&(v.watch||l.watch),shortBy:Math.max(v.shortBy||0,l.shortBy||0)};
+  return C.filter(c=>c!==l).map(c=>c===v?m:c);}
+function radarSVG(C,{animate=true,simple=false}={}){C=radarSpokes(C);
   if(C.length<3)return `<div class="radar-empty">The radar needs results for at least three of this goal’s tests.</div>`;
   const N=C.length,cx=270,cy=200,R=128,MAX=150,ang=i=>(-90+i*360/N)*Math.PI/180;
   const at=(i,p)=>{const k=R*clamp(p,0,MAX)/MAX;return [cx+Math.cos(ang(i))*k,cy+Math.sin(ang(i))*k];};
@@ -6652,7 +6661,8 @@ function untilBarHTML(T){const X=a=>((clamp(a,T.a0,T.a1)-T.a0)/Math.max(1,T.a1-T
   return `<div class="pt-ubar" aria-hidden="true"><i class="ok" style="width:${X(k??T.a1)}%"></i>${k!=null?`<i class="short" style="left:${X(k)}%;right:0"></i>`:''}</div><div class="pt-uages"><span>${T.a0}</span><span>${T.a1}</span></div>`;}
 function untilCardHTML(T){const k=T.cross.keep;return k==null?`<div class="ovuntil ok">✓ Covered past ${TGT}</div>`:k<=T.a0+.01?'<div class="ovuntil"><b>Short today</b></div>':`<div class="ovuntil">Covered <b>until about ${Math.round(k)}</b></div>`;}
 /* The patient radar with an age slider: the "you" shape follows the chosen scenario from today to the target age. */
-function ageRadarHTML(C,T){const r3=v=>Math.round(Math.min(v,9)*1000)/1000,d={a0:T.a0,skip:T.skip,keep:T.per.map(p=>p.keep.map(r3)),stop:T.per.map(p=>p.stop.map(r3))};
+function ageRadarHTML(C,T){const r3=v=>Math.round(Math.min(v,9)*1000)/1000,S=radarSpokes(C),at=c=>T.per[C.indexOf(c)],arr=sc=>S.map(s=>(s.merged?at(s.merged[0])[sc].map((x,j)=>Math.min(x,at(s.merged[1])[sc][j])):at(s)[sc]).map(r3));
+  const d={a0:T.a0,skip:S.map(s=>!s.merged&&T.skip[C.indexOf(s)]),keep:arr('keep'),stop:arr('stop')};
   return `<div class="pt-agerad" data-track='${JSON.stringify(d)}'><div class="pt-seg" role="group" aria-label="Scenario"><button type="button" data-sc="keep" class="on">Keep training</button><button type="button" data-sc="stop">If you stop</button></div>${radarSVG(C,{animate:false,simple:true})}<div class="pt-agebar"><button type="button" class="pt-play" aria-label="Play from today to ${T.a1}">▶</button><input type="range" min="${T.a0}" max="${T.a1}" step="1" value="${T.a1}" aria-label="Age"><span class="pt-agemax">${T.a1}</span></div><div class="pt-agenow"></div><div class="rlegend"><span class="lg need"><i></i>What this goal needs</span><span class="lg now"><i></i>You</span></div></div>`;}
 /* Geometry matches radarSVG: centre 270,200, radius 128, rim at 150% of the need. */
 function wireAgeRadars(root){root.querySelectorAll('.pt-agerad').forEach(box=>{const d=JSON.parse(box.dataset.track),svg=box.querySelector('svg.radar');if(!svg)return;
@@ -6669,8 +6679,8 @@ function wireAgeRadars(root){root.querySelectorAll('.pt-agerad').forEach(box=>{c
   box.querySelector('.pt-play').onclick=()=>{clearInterval(box._t);range.value=d.a0;draw();box._t=setInterval(()=>{range.value=+range.value+1;draw();if(+range.value>=+range.max)clearInterval(box._t);},90);};
   draw();});}
 function ptGoalLead(C,ev){
-  const names=cs=>nameList(cs.map(c=>inSentence(c.short)),4),near=ev.near||[],okN=C.filter(c=>c.meets||c.cappedUnknown&&fullHold(c)).length;
-  const done=okN?` ${okN} of the ${C.length} tests ${okN===1?'is':'are'} already on track.`:'',line=near.length?` <b>${capFirst(names(near))}</b> ${isAre(near.map(c=>c.short))} on the line.`:'';
+  const names=cs=>nameList(radarSpokes(cs).map(c=>inSentence(c.short)),4),near=ev.near||[],S=radarSpokes(C),okN=S.filter(c=>c.meets||c.cappedUnknown&&fullHold(c)).length;
+  const done=okN?` ${okN} of the ${S.length} tests ${okN===1?'is':'are'} already on track.`:'',line=near.length?` <b>${capFirst(names(near))}</b> ${isAre(near.map(c=>c.short))} on the line.`:'';
   if(ev.zone==='gap'){const m=ev.misses||[],build=m.filter(c=>!c.unable),unable=m.filter(c=>c.unable);
     return `${build.length?`To be on track at ${TGT}, build <b>${names(build)}</b>.`:''}${unable.length?` <b>${capFirst(names(unable))}</b> couldn’t be done today.`:''}${line}${done}`.trim();}
   if(ev.zone==='borderline')return `<b>${capFirst(names(near))}</b> ${isAre(near.map(c=>c.short))} on the line: close enough to what this goal needs that a re-test will tell. Keep ${near.length===1?'it':'them'} there or a little higher.${done}`;
@@ -6678,14 +6688,14 @@ function ptGoalLead(C,ev){
   const task=C.find(c=>c.r.taskTest),below=(ev.watch||[]).filter(c=>!c.cappedUnknown);
   return task&&below.length?`You pass the <b>${inSentence(task.short)}</b> test itself, so this goal is on track. Keep an eye on <b>${names(below)}</b>.`:`Every test is on track for ${TGT}.`;}
 function ptGoalTestsHTML(C,act){
-  const by=new Map(C.map(c=>[c.via||c.r.metric,c])),rows=[];
-  for(const r of reqsInPriority(act)){const c=by.get(r.metric);
+  const S=radarSpokes(C),agg=S.find(c=>c.merged),by=new Map(S.map(c=>[c.via||c.r.metric,c])),rows=[];if(agg)for(const m of agg.merged)by.set(m.r.metric,agg);
+  let aggDone=false;for(const r of reqsInPriority(act)){const c=by.get(r.metric);if(c&&c===agg){if(aggDone)continue;aggDone=true;}
     if(!c){rows.push(`<div class="pt-gt untested"><div class="n">${testName(r)}</div><div class="v">—</div><div class="s">Not tested yet</div></div>`);continue;}
     const g=stgText(c),ok=c.meets||c.cappedUnknown&&fullHold(c),cls=ok?'ok':c.cappedUnknown?'info':c.borderline||c.watch?'line':'miss';
     const main=ok?(c.capped&&fullHold(c)?'Held the full test':'On track'):c.cappedUnknown?'At the test limit':c.borderline?'On the line':c.watch?'Keep an eye on it':c.unable?'Unable today':g.txt;
     const sub=ok||c.cappedUnknown?'':c.borderline?`${g.txt}, then re-test`:[c.watch||c.unable?g.txt:'',g.when,g.stretch&&g.need?`long-term ${c.static?g.longTerm:g.need}`:''].filter(Boolean).join(' · ');
-    const nm=`${c.short}${c.via?`<small>standing in for the ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))} test</small>`:''}${c.estFrom?'<small>estimated from VO₂max</small>':''}`;
-    rows.push(`<div class="pt-gt ${cls}"><div class="n">${nm}</div><div class="v">${c.unable?'Unable':fmtU(c.raw,c.unit)}</div><div class="s"><span>${ok?'✓ ':''}${main}</span>${sub?`<small>${sub}</small>`:''}</div></div>`);}
+    const nm=c.merged?`Aerobic fitness<small>VO₂max, with aerobic base at ${fmtU(c.merged[1].raw,c.merged[1].unit)}</small>`:`${c.short}${c.via?`<small>standing in for the ${inSentence(testName({metric:c.via,label:METRICS[c.via]?.label}))} test</small>`:''}${c.estFrom?'<small>estimated from VO₂max</small>':''}`;
+    rows.push(`<div class="pt-gt ${cls}"><div class="n">${nm}</div><div class="v">${c.unable?'Unable':fmtU(c.merged?c.merged[0].raw:c.raw,c.merged?c.merged[0].unit:c.unit)}</div><div class="s"><span>${ok?'✓ ':''}${main}</span>${sub?`<small>${sub}</small>`:''}</div></div>`);}
   return `<div class="pt-gtests"><div class="pt-gt pt-gth"><div>Test</div><div class="v">Today</div><div>For this goal</div></div>${rows.join('')}</div>`;}
 function ptGoalMainHTML(C,act,ev){const T=goalTrack(C),k=T.cross.keep;
   const until=ev.zone==='incomplete'||!C.length?'':`<div class="pt-until"><span>Keep training: <b>${untilTxt(k,T.a0)}</b></span><span>If you stop: <b>${untilTxt(T.cross.stop,T.a0)}</b></span></div>`;
@@ -6739,7 +6749,7 @@ function renderCatalog(){
 function renderReportBody(){HERO==='C'?renderPatientPage():showOverview?renderOverview():renderSlide();}
 
 /* Small version of the goal radar for overview cards: same scale and colors, no labels. */
-function miniRadar(C){
+function miniRadar(C){C=radarSpokes(C);
   if(C.length<3){if(!C.length)return `<svg viewBox="0 0 120 104" class="minisvg" aria-hidden="true"></svg>`;const x0=14,x1=106,X=v=>(x0+(x1-x0)*clamp(v,0,150)/150).toFixed(1);
     return `<svg viewBox="0 0 120 104" class="minisvg" aria-hidden="true">${C.map((c,i)=>{const y=C.length===1?47:34+i*26;return `<rect class="mbtrack" x="${x0}" y="${y}" width="${x1-x0}" height="10" rx="5"/><rect class="mbnow" x="${x0}" y="${y}" width="${(X(c.curPct)-x0).toFixed(1)}" height="10" rx="5"/><line class="mb90" x1="${X(c.projPct)}" y1="${y-3}" x2="${X(c.projPct)}" y2="${y+13}"/>`;}).join('')}<line class="mbneed" x1="${X(100)}" y1="22" x2="${X(100)}" y2="84"/></svg>`;}
   const N=C.length,R=42,cx=60,cy=52,MAX=150,ang=i=>(-90+i*360/N)*Math.PI/180;
@@ -7204,7 +7214,7 @@ const LIT_TEMPLATES={
 function supportTemplate(metric){const m=METRICS[metric];if(!m||m.kind==='grade')return null;
   return {cat:m.cat,label:m.label,metric,unit:m.unit,dir:m.dir,role:'support',weight:.6,group:m.cat.toLowerCase(),basis:'practice',why:`${m.label}.`,evi:'Compared with the Early Medical standard for age (PCA) at each re-test.',src:m.src,critical:false,confidence:m.confidence||'direct',demandUncertainty:.25};}
 /* Built-in requirements to copy from: the first built-in goal's requirement for that metric. */
-function ruleTemplate(goalId,metric){if(goalId==='_lit')return LIT_TEMPLATES[metric]?JSON.parse(JSON.stringify(LIT_TEMPLATES[metric])):null;const r=(ACTIVITIES[goalId]?.reqs||[]).find(x=>x.metric===metric);if(!r)return null;const c=JSON.parse(JSON.stringify(r));
+function ruleTemplate(goalId,metric){if(goalId==='_lit')return LIT_TEMPLATES[metric]?JSON.parse(JSON.stringify(LIT_TEMPLATES[metric])):null;const r=(ACTIVITIES[goalId]?.reqs||[]).find(x=>x.metric===metric)||CUT_REQS[goalId+'|'+metric];if(!r)return null;const c=JSON.parse(JSON.stringify(r));
   delete c.measurementSource;delete c.taskDemandSource;if(c.reserveAssumption){c.reqArgs={...(c.reqArgs||{}),reserve:c.reserveAssumption.multiplier};delete c.reserveAssumption;}delete c.sustainableFractionAssumption;return c;}
 /* Aerobic targets use the built-in goals' rule (TASK_DEMAND_EVIDENCE): the task's oxygen cost (older-adult
    Compendium MET60+ × 2.7 mL/kg/min where it exists, otherwise adult MET × 3.5), sustained at a share of
@@ -7270,9 +7280,18 @@ function cleanSpec(sp){const s=sp&&typeof sp==='object'?sp:{},num=v=>{const n=Nu
   const tests=(Array.isArray(s.tests)?s.tests:[]).filter(m=>METRICS[m]).slice(0,10);
   return {libId:ACTIVITY_LIBRARY.some(a=>a.id===s.libId)?s.libId:'',demands,loads,met60:num(s.met60)&&num(s.met60)<=20?num(s.met60):null,mode:num(s.mode)&&num(s.mode)<=1?num(s.mode):null,met:num(s.met)&&num(s.met)<=20?num(s.met):null,minutes:num(s.minutes)&&num(s.minutes)<=600?num(s.minutes):null,
     removed:(Array.isArray(s.removed)?s.removed:[]).filter(m=>METRICS[m]),overrides,manual,tests};}
+/* Model 4.18 (Dan, 2026-09-28): at most six tests per goal, VO₂max and aerobic base counting as one. Coach-added tests come
+   first, then the loads the coach entered, then the library's ranked tests (the activity review lists them in priority
+   order) or, without a library entry, the aerobic tests and the demand rules. Tracked and screen tests don't count. */
+const MAX_GOAL_TESTS=6;
+function capGoalReqs(reqs,tests=[]){const scored=r=>r.role!=='modifier'&&r.role!=='support'&&METRICS[r.metric]?.kind!=='grade',rank=r=>r.generatedBy==='coach'?0:r.generatedBy==='load'?1:2,pos=m=>{const i=tests.indexOf(m);return i<0?999:i;};
+  const order=reqs.map((r,i)=>({r,i})).filter(x=>scored(x.r)).sort((a,b)=>rank(a.r)-rank(b.r)||pos(a.r.metric)-pos(b.r.metric)||a.i-b.i),keep=new Set();let n=0,aero=false;
+  for(const {r} of order){const a=AERO_METRICS.has(r.metric);if(a&&aero){keep.add(r);continue;}if(n>=MAX_GOAL_TESTS)continue;keep.add(r);n++;if(a)aero=true;}
+  return reqs.filter(r=>!scored(r)||keep.has(r));}
 function goalReqsFromSpec(sp){const s=cleanSpec(sp);let reqs=generateGoalReqs(s).filter(r=>!s.removed.includes(r.metric));
   reqs=reqs.map(r=>{const v=s.overrides[r.metric];if(!v)return r;const rule=describeTarget(r);return {...r,req:v,reqKind:null,reqArgs:{},basis:'coach',coachSet:true,evi:`Coach-set target. Rule default: ${rule}. ${r.evi||''}`.trim()};});
   for(const c of s.manual){if(reqs.some(r=>r.metric===c.metric))continue;const meta=METRICS[c.metric];reqs.push({cat:meta.cat,label:meta.label,metric:c.metric,unit:meta.unit,dir:meta.dir,req:c.req,basis:'coach',coachSet:true,role:'capacity',weight:1,group:meta.cat.toLowerCase(),src:meta.src,why:c.why||`${meta.label} for this activity.`,evi:'Coach-added test.',confidence:meta.confidence||'proxy',generatedBy:'coach'});}
+  reqs=capGoalReqs(reqs,s.tests);
   const tmp={reqs:JSON.parse(JSON.stringify(reqs))};normalizeActivity(tmp);return tmp.reqs;}
 /* How a target is set, in words, with this patient's number where one can be worked out. */
 function describeTarget(r){if(r.role==='support')return 'tracked against the standard for age';const rr=resolveRequirement(r),val=rr.req!=null?fmtU(rr.req,rr.unit):'';
@@ -7421,8 +7440,8 @@ function applyImportedData(d){
     if(!/^custom-[a-z0-9_-]{1,40}$/i.test(id)||!a||typeof a!=='object'||ACTIVITIES[id])continue;
     const name=cleanText(a.name);if(!name)continue;
     if(a.spec&&typeof a.spec==='object'){const act=goalActivityFromSpec({name,sub:cleanText(a.sub),complexity:clamp(Number(a.complexity)||2,1,5),custom:true,domain:cleanText(a.domain,60),oneOff:!!a.oneOff},a.spec);if(act.reqs.length)importedCustom.push([id,act]);continue;}
-    const reqs=(Array.isArray(a.reqs)?a.reqs:[]).map(r=>{const meta=METRICS[r?.metric],req=Number(r?.req);if(!meta||meta.kind==='grade'||!Number.isFinite(req)||req<=0)return null;return {cat:meta.cat,label:meta.label,metric:r.metric,unit:meta.unit,dir:meta.dir,req,basis:'coach',coachSet:true,role:'capacity',weight:1,group:meta.cat.toLowerCase(),src:meta.src,why:cleanText(r.why)||(meta.label+' for this activity.'),evi:'Coach-authored custom activity.',confidence:meta.confidence||'proxy'};}).filter(Boolean).slice(0,8);
-    if(!reqs.length)continue;importedCustom.push([id,{name,sub:cleanText(a.sub),complexity:clamp(Number(a.complexity)||2,1,5),custom:true,domain:cleanText(a.domain,60),oneOff:!!a.oneOff,reqs}]);
+    const reqs=(Array.isArray(a.reqs)?a.reqs:[]).map(r=>{const meta=METRICS[r?.metric],req=Number(r?.req);if(!meta||meta.kind==='grade'||!Number.isFinite(req)||req<=0)return null;return {cat:meta.cat,label:meta.label,metric:r.metric,unit:meta.unit,dir:meta.dir,req,basis:'coach',coachSet:true,role:'capacity',weight:1,group:meta.cat.toLowerCase(),src:meta.src,why:cleanText(r.why)||(meta.label+' for this activity.'),evi:'Coach-authored custom activity.',confidence:meta.confidence||'proxy'};}).filter(Boolean);
+    if(!reqs.length)continue;importedCustom.push([id,{name,sub:cleanText(a.sub),complexity:clamp(Number(a.complexity)||2,1,5),custom:true,domain:cleanText(a.domain,60),oneOff:!!a.oneOff,reqs:capGoalReqs(reqs)}]);
   }
   importedCustom.forEach(([id,activity])=>{ACTIVITIES[id]=activity;GOALS.push({id,name:activity.name,profileId:id,custom:true});});
   PATIENT.name=cleanText(p.name??'');PATIENT.clinician=cleanText(p.clinician??'');PATIENT.sex=candidateSex;PATIENT.age=age;PATIENT.marginalDecadeAge=target;PATIENT.bodyWeight_lb=bw;PATIENT.metrics={};delete PATIENT.demoKey;for(const metric of Object.keys(METRICS))PATIENT.metrics[metric]=Object.prototype.hasOwnProperty.call(importedMetrics,metric)?importedMetrics[metric]:null;PATIENT.assessmentPercentiles=importedPercentiles;PATIENT.assessmentPercentileContext=Object.keys(importedPercentiles).length?{age,sex:candidateSex}:null;
