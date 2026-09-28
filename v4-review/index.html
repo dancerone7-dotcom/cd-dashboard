@@ -821,7 +821,7 @@ input[type=checkbox]{accent-color:#39404b}
 .pt-gt.ok .s span{color:#2f7d4f}.pt-gt.miss .s span{color:#9a6512}.pt-gt.line .s span{color:#b45309}.pt-gt.info .s span{color:var(--pt-muted)}
 .pt-gt.untested .n,.pt-gt.untested .s{color:var(--pt-muted);font-weight:400}
 @media (max-width:900px){.pt-gfig{grid-template-columns:1fr}}
-/* 4.17.2 age radar, the "until about" line and the goal-card age bars. */
+/* 4.17.2 age radar, the "until about" line and the goal-card age bars (build-first removed in 4.17.3). */
 .pt-until{display:flex;flex-wrap:wrap;gap:4px 26px;margin:-6px 0 16px;font-size:14px;color:var(--pt-ink)}
 .pt-agerad{display:flex;flex-direction:column;align-items:center;gap:8px}
 .pt-seg{display:inline-flex;border:1px solid var(--pt-line);border-radius:999px;padding:3px;background:#f5f6f8}
@@ -831,11 +831,10 @@ input[type=checkbox]{accent-color:#39404b}
 .pt-play{width:30px;height:30px;flex:0 0 30px;border-radius:50%;border:1px solid var(--pt-line);background:#fff;cursor:pointer;font-size:12px;color:#39404b}
 .pt-agenow{font-size:13.5px;text-align:center;min-height:20px}
 .pt-ubar{position:relative;width:100%;height:8px;border-radius:4px;background:#f1f2f4;margin:10px 0 3px}.pt-ubar i{position:absolute;top:0;bottom:0;border-radius:4px}.pt-ubar i.ok{left:0;background:#8cc5a3}.pt-ubar i.short{background:#e8b77a}
-.pt-ubar b{position:absolute;top:-3px;width:3px;height:14px;border-radius:2px;background:#2a7cfb;transform:translateX(-50%)}
 .pt-uages{display:flex;justify-content:space-between;width:100%;font-size:11px;color:var(--pt-muted)}
-.ovuntil{display:flex;flex-direction:column;gap:1px;font-size:12.5px;line-height:1.4;margin-top:4px}.ovuntil.ok{color:#2f7d4f;font-weight:700}
+.ovuntil{font-size:12.5px;line-height:1.4;margin-top:4px}.ovuntil.ok{color:#2f7d4f;font-weight:700}
 .pt-ukey{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--pt-ink);margin-top:6px}.pt-ukey span{display:inline-flex;align-items:center;gap:6px}
-.pt-ukey i{width:18px;height:8px;border-radius:4px}.pt-ukey i.ok{background:#8cc5a3}.pt-ukey i.short{background:#e8b77a}.pt-ukey b{width:3px;height:13px;border-radius:2px;background:#2a7cfb}
+.pt-ukey i{width:18px;height:8px;border-radius:4px}.pt-ukey i.ok{background:#8cc5a3}.pt-ukey i.short{background:#e8b77a}
 @media print{.pt-seg,.pt-agebar{display:none!important}}
 @media (max-width:600px){.ptpage .pt-mrow{grid-template-columns:minmax(0,1fr) auto}.ptpage .pt-mvis{grid-column:1/-1}.pt-gt{grid-template-columns:minmax(0,1fr) auto}.pt-gt .s{grid-column:1/-1}.pt-gth{display:none}.pt-seg button{padding:6px 10px}}
 @media (max-width:600px){.pt-mrow{grid-template-columns:minmax(0,1fr) auto}.pt-mvis{grid-column:1/-1}
@@ -912,9 +911,9 @@ input[type=checkbox]{accent-color:#39404b}
 
 
 <script>
-const MODEL_VERSION='4.17.2';
+const MODEL_VERSION='4.17.3';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -6633,35 +6632,33 @@ const TAGLINE=`<div class="tagline">Being <i>early</i> matters<sup>®</sup></div
 
 /* Patient goal detail (4.17.2): one plain sentence, a two-shape radar beside a short list of the tests, then the build-first
    charts. The clinician view keeps the full radar and cards. */
-/* Year by year (4.17.2, Dan 2026-09-28): each test's share of what the goal needs if the patient keeps training, builds the
-   short-term goal first (over two years, then glides) or stops. A goal lasts until its weakest test drops below what it
-   needs. A hold at the test limit counts as covered, and a goal whose own task test passes lasts as long as that test. */
-function trackValue(c,a,sc){const a0=AGE,aG=Math.min(Math.max(TGT,AGE+1),a0+2),step=c.meets||c.cappedUnknown?c.raw:(stgText(c).stepVal??c.stg),rise=()=>a<=aG?c.raw+(step-c.raw)*(a-a0)/Math.max(1,aG-a0):step;
-  if(c.static||c.unable)return sc!=='build'||c.meets?c.raw:rise();
-  let v=sc==='keep'?projectCapacity(c.raw,c.family,PATIENT.sex,a0,a,1):sc==='stop'?projectIfStopped(c.raw,c.family,PATIENT.sex,a0,a,c.r.metric):a<=aG?rise():projectCapacity(step,c.family,PATIENT.sex,aG,a,1);
-  const vo2=+PATIENT.metrics.vo2;if(c.r.metric==='lt1_vo2'&&vo2>0)v=Math.min(v,LT1_MAX_SHARE*(sc==='stop'?projectIfStopped(vo2,METRICS.vo2.family,PATIENT.sex,a0,a,'vo2'):projectCapacity(vo2,METRICS.vo2.family,PATIENT.sex,a0,a,1)));
+/* Year by year (4.17.2, Dan 2026-09-28): each test's share of what the goal needs if the patient keeps training or stops.
+   A goal lasts until its weakest test drops below what it needs. A hold at the test limit counts as covered, and a goal
+   whose own task test passes lasts as long as that test. Tests judged today hold their level. */
+function trackValue(c,a,sc){if(c.static||c.unable)return c.raw;
+  let v=sc==='keep'?projectCapacity(c.raw,c.family,PATIENT.sex,AGE,a,1):projectIfStopped(c.raw,c.family,PATIENT.sex,AGE,a,c.r.metric);
+  const vo2=+PATIENT.metrics.vo2;if(c.r.metric==='lt1_vo2'&&vo2>0)v=Math.min(v,LT1_MAX_SHARE*(sc==='stop'?projectIfStopped(vo2,METRICS.vo2.family,PATIENT.sex,AGE,a,'vo2'):projectCapacity(vo2,METRICS.vo2.family,PATIENT.sex,AGE,a,1)));
   return v;}
 function goalTrack(C){const a0=AGE,a1=Math.max(TGT,AGE+1),ages=[];for(let a=a0;a<=a1;a++)ages.push(a);
   const share=(c,v)=>c.r.dir==='lower_better'?c.req/Math.max(v,1e-9):v/c.req,skip=C.map(c=>!!c.cappedUnknown);
-  const per=C.map(c=>Object.fromEntries(['keep','build','stop'].map(sc=>[sc,ages.map(a=>share(c,trackValue(c,a,sc)))])));
+  const per=C.map(c=>Object.fromEntries(['keep','stop'].map(sc=>[sc,ages.map(a=>share(c,trackValue(c,a,sc)))])));
   const idx=C.map((c,i)=>i),task=idx.filter(i=>C[i].r.taskTest),live=task.length&&task.every(i=>C[i].meets)?task:idx.filter(i=>!skip[i]);
   const cross=sc=>{if(!live.length)return null;const g=ages.map((a,j)=>Math.min(...live.map(i=>per[i][sc][j])));if(g[0]<1)return a0;for(let j=1;j<g.length;j++)if(g[j]<1)return ages[j-1]+(g[j-1]-1)/(g[j-1]-g[j]);return null;};
-  return {a0,a1,ages,per,skip,cross:{keep:cross('keep'),build:cross('build'),stop:cross('stop')}};}
+  return {a0,a1,ages,per,skip,cross:{keep:cross('keep'),stop:cross('stop')}};}
 const untilTxt=(x,a0)=>x==null?`past ${TGT}`:x<=a0+.01?'short today':`until about ${Math.round(x)}`;
 /* Goal cards: an age bar from today to the target age, green while the results cover the goal if the patient keeps training,
-   amber after; the blue mark is how far the short-term goals carry it. */
-function untilBarHTML(T){const X=a=>((clamp(a,T.a0,T.a1)-T.a0)/Math.max(1,T.a1-T.a0)*100).toFixed(1),k=T.cross.keep,b=T.cross.build;
-  return `<div class="pt-ubar" aria-hidden="true"><i class="ok" style="width:${X(k??T.a1)}%"></i>${k!=null?`<i class="short" style="left:${X(k)}%;right:0"></i>`:''}${k!=null&&(b==null||b>k+.5)?`<b style="left:${X(b??T.a1)}%"></b>`:''}</div><div class="pt-uages"><span>${T.a0}</span><span>${T.a1}</span></div>`;}
-function untilCardHTML(T){const k=T.cross.keep,b=T.cross.build;if(k==null)return `<div class="ovuntil ok">✓ Covered past ${TGT}</div>`;
-  return `<div class="ovuntil"><span>Keep training: <b>${untilTxt(k,T.a0)}</b></span>${b==null||b>k+.5?`<span>Build first: <b>${untilTxt(b,T.a0)}</b></span>`:''}</div>`;}
+   amber after. */
+function untilBarHTML(T){const X=a=>((clamp(a,T.a0,T.a1)-T.a0)/Math.max(1,T.a1-T.a0)*100).toFixed(1),k=T.cross.keep;
+  return `<div class="pt-ubar" aria-hidden="true"><i class="ok" style="width:${X(k??T.a1)}%"></i>${k!=null?`<i class="short" style="left:${X(k)}%;right:0"></i>`:''}</div><div class="pt-uages"><span>${T.a0}</span><span>${T.a1}</span></div>`;}
+function untilCardHTML(T){const k=T.cross.keep;return k==null?`<div class="ovuntil ok">✓ Covered past ${TGT}</div>`:k<=T.a0+.01?'<div class="ovuntil"><b>Short today</b></div>':`<div class="ovuntil">Covered <b>until about ${Math.round(k)}</b></div>`;}
 /* The patient radar with an age slider: the "you" shape follows the chosen scenario from today to the target age. */
-function ageRadarHTML(C,T){const r3=v=>Math.round(Math.min(v,9)*1000)/1000,d={a0:T.a0,skip:T.skip,keep:T.per.map(p=>p.keep.map(r3)),build:T.per.map(p=>p.build.map(r3)),stop:T.per.map(p=>p.stop.map(r3))};
-  return `<div class="pt-agerad" data-track='${JSON.stringify(d)}'><div class="pt-seg" role="group" aria-label="Scenario"><button type="button" data-sc="keep" class="on">Keep training</button><button type="button" data-sc="build">Build first</button><button type="button" data-sc="stop">If you stop</button></div>${radarSVG(C,{animate:false,simple:true})}<div class="pt-agebar"><button type="button" class="pt-play" aria-label="Play from today to ${T.a1}">▶</button><input type="range" min="${T.a0}" max="${T.a1}" step="1" value="${T.a1}" aria-label="Age"><span class="pt-agemax">${T.a1}</span></div><div class="pt-agenow"></div><div class="rlegend"><span class="lg need"><i></i>What this goal needs</span><span class="lg now"><i></i>You</span></div></div>`;}
+function ageRadarHTML(C,T){const r3=v=>Math.round(Math.min(v,9)*1000)/1000,d={a0:T.a0,skip:T.skip,keep:T.per.map(p=>p.keep.map(r3)),stop:T.per.map(p=>p.stop.map(r3))};
+  return `<div class="pt-agerad" data-track='${JSON.stringify(d)}'><div class="pt-seg" role="group" aria-label="Scenario"><button type="button" data-sc="keep" class="on">Keep training</button><button type="button" data-sc="stop">If you stop</button></div>${radarSVG(C,{animate:false,simple:true})}<div class="pt-agebar"><button type="button" class="pt-play" aria-label="Play from today to ${T.a1}">▶</button><input type="range" min="${T.a0}" max="${T.a1}" step="1" value="${T.a1}" aria-label="Age"><span class="pt-agemax">${T.a1}</span></div><div class="pt-agenow"></div><div class="rlegend"><span class="lg need"><i></i>What this goal needs</span><span class="lg now"><i></i>You</span></div></div>`;}
 /* Geometry matches radarSVG: centre 270,200, radius 128, rim at 150% of the need. */
 function wireAgeRadars(root){root.querySelectorAll('.pt-agerad').forEach(box=>{const d=JSON.parse(box.dataset.track),svg=box.querySelector('svg.radar');if(!svg)return;
   const poly=svg.querySelector('.r90'),miss=svg.querySelector('.rmiss'),labels=[...svg.querySelectorAll('text.rl')],range=box.querySelector('input[type=range]'),now=box.querySelector('.pt-agenow'),N=d.keep.length;
   const ang=i=>(-90+i*360/N)*Math.PI/180,at=(i,p)=>{const k=128*clamp(p,0,150)/150;return [270+Math.cos(ang(i))*k,200+Math.sin(ang(i))*k].map(n=>n.toFixed(1));};
-  const words={keep:'if you keep training',build:'if you build the short-term goals first',stop:'if you stop training'};let sc='keep';
+  const words={keep:'if you keep training',stop:'if you stop training'};let sc='keep';
   const draw=()=>{const a=+range.value,j=a-d.a0,v=d[sc].map(x=>x[j]*100),short=v.map((p,i)=>p<100&&!d.skip[i]),n=short.filter(Boolean).length;
     poly.setAttribute('points',v.map((p,i)=>at(i,p).join(',')).join(' '));
     miss.innerHTML=v.map((p,i)=>{if(!short[i])return '';const [x1,y1]=at(i,p),[x2,y2]=at(i,100);return `<line class="rgap" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><circle class="rgapdot" cx="${x1}" cy="${y1}" r="4.5"/>`;}).join('');
@@ -6691,7 +6688,7 @@ function ptGoalTestsHTML(C,act){
     rows.push(`<div class="pt-gt ${cls}"><div class="n">${nm}</div><div class="v">${c.unable?'Unable':fmtU(c.raw,c.unit)}</div><div class="s"><span>${ok?'✓ ':''}${main}</span>${sub?`<small>${sub}</small>`:''}</div></div>`);}
   return `<div class="pt-gtests"><div class="pt-gt pt-gth"><div>Test</div><div class="v">Today</div><div>For this goal</div></div>${rows.join('')}</div>`;}
 function ptGoalMainHTML(C,act,ev){const T=goalTrack(C),k=T.cross.keep;
-  const until=ev.zone==='incomplete'||!C.length?'':`<div class="pt-until"><span>Keep training: <b>${untilTxt(k,T.a0)}</b></span>${k==null?'':`<span>Build first: <b>${untilTxt(T.cross.build,T.a0)}</b></span>`}<span>If you stop: <b>${untilTxt(T.cross.stop,T.a0)}</b></span></div>`;
+  const until=ev.zone==='incomplete'||!C.length?'':`<div class="pt-until"><span>Keep training: <b>${untilTxt(k,T.a0)}</b></span><span>If you stop: <b>${untilTxt(T.cross.stop,T.a0)}</b></span></div>`;
   const fig=C.length>=3?ageRadarHTML(C,T):'';
   return `<p class="pt-glead">${ptGoalLead(C,ev)}</p>${until}<div class="pt-gfig${fig?'':' nofig'}">${fig}${ptGoalTestsHTML(C,act)}</div>`;}
 function goalPageHTML(g,mode){
@@ -6896,7 +6893,7 @@ function goalHeadlineHTML(story){
   /* The same ranked list as the priority cards and the plan table. */
   const top=story.topTrainingPriorities.slice(0,3).map(x=>inSentence(x.label));
   let reach=0;story.goalOutlooks.forEach(o=>{if(o.status!=='gap')return;const g=goalById(o.goalId),act=ACTIVITIES[g.profileId],ev=goalEvaluation(act,components(act.reqs));if(!ev.missing.length&&ev.misses.every(stgReachable))reach++;});
-  return `<div class="goalheadline"><div class="gh-main">On track for <b>${n.clear} of ${story.goalOutlooks.length}</b> goals at ${TGT}.${reach?` Reaching your short-term goals makes it <b>${n.clear+reach}</b>.`:''}</div>${sub?`<div class="gh-sub">${sub}${top.length?`. Start with ${nameList(top,3)}.`:''}</div>`:''}<div class="gh-read">Each card runs from today to ${TGT}. It stays green while your results cover that goal, as long as you keep training, and turns amber once one falls short. The blue mark shows how far your short-term goals carry it. Open a goal for the details.</div><div class="pt-ukey"><span><i class="ok"></i>Covered</span><span><i class="short"></i>Falls short</span><span><b></b>With your short-term goals</span></div></div>`;
+  return `<div class="goalheadline"><div class="gh-main">On track for <b>${n.clear} of ${story.goalOutlooks.length}</b> goals at ${TGT}.${reach?` Reaching your short-term goals makes it <b>${n.clear+reach}</b>.`:''}</div>${sub?`<div class="gh-sub">${sub}${top.length?`. Start with ${nameList(top,3)}.`:''}</div>`:''}<div class="gh-read">Each card runs from today to ${TGT}. It stays green while your results cover that goal, as long as you keep training, and turns amber once one falls short. Open a goal for the details.</div><div class="pt-ukey"><span><i class="ok"></i>Covered</span><span><i class="short"></i>Falls short</span></div></div>`;
 }
 function modelConfidenceHTML(story){if(story.modelConfidence.demoAssessmentComplete)return `<div class="story-confidence" data-model-confidence="${story.modelConfidence.level}" data-demo-completeness="complete"><div><b>Complete illustrative example</b><span>Full sample assessment data are loaded for all 10 selected CD goals.</span></div><span class="story-confidence-label">10 CD goals · full sample data</span></div>`;return `<div class="story-confidence" data-model-confidence="${story.modelConfidence.level}"><div><b>How complete is the picture?</b><span>${story.modelConfidence.detail}</span></div><span class="story-confidence-label">${story.modelConfidence.label}</span></div>`;}
 function goalPrioritiesHTML(story,{limit=12,tiered=true}={}){
