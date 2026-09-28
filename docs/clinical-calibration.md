@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,10 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.17.1: balance at 9 s (2026-09-28)
+
+Dan moved the balance level at 90 from 9.3 s to 9 s for the same 15 goals. At 9.3 s, a 65-year-old at the PCA Proficient hold (35 s) projected to 9.26 s and read "on the line" on all 15 goals. At 9 s that hold clears, and a full 60-s hold still clears at any age (it keeps about 9.3 s). The all-Proficient check drops from 108 to 78 of 606 short: the 30 balance checks that read "on the line" now clear. Test members A (4 / 6 / 0) and B (1 / 1 / 8) are unchanged.
 
 ## Model 4.17: balance at the full hold, the PDF is the patient page, review fixes (2026-09-27)
 
@@ -780,7 +784,7 @@ The internal standards workbook is a read-only source reference. Its Notes sheet
 
 ## Balance protocol decision
 
-Project direction: single-leg balance is standardized as **seconds held**. The task target and the age-decline scenario both remain in seconds. The 30-second goal compares today's timed-stance seconds with its 30-second target, and the other balance goals compare projected seconds at the target age with 9.3 s (model 4.17). These fields are not labeled as VALD CoP outputs.
+Project direction: single-leg balance is standardized as **seconds held**. The task target and the age-decline scenario both remain in seconds. The 30-second goal compares today's timed-stance seconds with its 30-second target, and the other balance goals compare projected seconds at the target age with 9 s (model 4.17.1). These fields are not labeled as VALD CoP outputs.
 
 Proposed capture SOP for those seconds fields: firm surface, arms at sides, eyes open or closed as labeled, 60-second cap, best of two trials per side, and enter the weaker side. The metric choice is settled; the capture details remain visibly marked `SOP approval pending` until the clinical protocol owner ratifies them.
 
