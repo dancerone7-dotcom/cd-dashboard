@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, at most six tests per goal in 4.18, the patient-page summary and order in 4.18.1, the tracker in 4.18.2, its wording and loaded gym checks in 4.18.3, Developing first in 4.18.4, and the patient-page wording pass in 4.18.5, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, at most six tests per goal in 4.18, the patient-page summary and order in 4.18.1, the tracker in 4.18.2, its wording and loaded gym checks in 4.18.3, Developing first in 4.18.4, the patient-page wording pass in 4.18.5, and re-test tracking in 4.19, 2026-09-28)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,17 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.19: re-test tracking (2026-09-28)
+
+Dan picked re-test tracking as the next step, with progress shown in the tracker plus one summary line. Statuses, projections and targets for the current results are unchanged.
+
+- **Data:** each patient file can carry the date of the current results (`testDate`), when each result was last measured (`metricDates`), and earlier dated tests (`history`: date, age, body weight, results and not-tested codes as they stood). Files without them import as before.
+- **Re-tests:** "Start a re-test" in Test results saves the current results as a dated test. Results re-entered after that get the new date; the rest carry forward from the last test with their own date, so a partial re-test (for example the 3 to 6 month gym check) still gives a full report.
+- **Summary:** "Since your last test in December 2025, 2 more goals are on track." Goals then are judged with the results and age at that test, against the same goals.
+- **Tracker:** a "Last test" column shows the earlier result and its date. Today shows "✓ Target hit" or "Target was X" against the target set at the last test: the 3 to 6 month target when the tests are under nine months apart, otherwise the 6 to 12 month target. Results not re-tested read "Not re-tested".
+- **Current results:** "Was X in <month>" under a re-tested result that changed, or "Tested <month>" under one carried forward.
+- The balanced demo carries a sample earlier test (December 2025) so the review link shows the feature.
 
 ## Model 4.18.5: patient-page wording pass (2026-09-28)
 
