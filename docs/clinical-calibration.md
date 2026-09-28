@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,30 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.17: balance at the full hold, the PDF is the patient page, review fixes (2026-09-27)
+
+A full review of 4.16 ran 214 synthetic patients (seven profiles at ages 40 to 85, as men and as women, with target ages of 80, 85 and 90; patients built at the 10th, 50th and 90th percentile for age), 16 edge cases and all 55 library activities. There were no errors, and raising a result, being older or choosing an earlier target age never made a goal worse. Dan's decisions on what it found:
+
+- **Single-leg balance at 90 is 9.3 s** for the 15 goals that used 10 or 11 s. That is what a full 60-s hold today keeps on the balance norms (45 s to 50, 35 at 60, 20 at 70, 10 at 80, 7 at 90), so a maxed-out hold always clears. At 10 to 11 s, balance couldn't read on track for anyone under 55 and was the top priority for almost every test patient, including people at the 90th percentile. 9.3 s sits between the median at 90 (about 7 s) and the top quarter for people in their 80s (about 11 s). Grade C (clinical).
+- **A hold at the test bar counts as a full hold.** A hold of 45 s or more that still projects short reads "held the full test": the goal stays on track, and there is no prompt to test longer (Dan: no need to test to that extent).
+- **The 30-second balance goal is judged on today's hold.** Carried to 90 on the norms, a 30-s hold at 90 would take about 160 s today, past the test. It is the goal's own task test, so passing it today clears the goal and any other short test is flagged to watch.
+- **Export as PDF prints the patient page**, with every goal opened. The older print layout is gone.
+
+Fixes from the same review:
+
+- **VO₂max percentile below the 25th** now follows a normal tail fitted to the 25th and 50th percentiles, not a straight line from zero. A 60-year-old man at 20 mL/kg/min reads about the 9th percentile (was the 20th).
+- **Body weight is required** once a result is relative to it. Without it those targets can't be set and stand-ins took over silently (a typical patient went from 1 goal on track to 0). An aerobic base above VO₂max is flagged. Both block the report and the PDF, not saving the data.
+- **Entry limits:** rep and hold tests start at 0; VO₂max from 8, aerobic base from 5 and grip from 10 lb; push-ups to 100 and dead hang to 300 s. Times under 10 s show one decimal.
+- **Patient page:**
+  - No clinician blocks (evidence grades, sources, movement findings) inside the goal sections, and no LT1 label.
+  - "How to read this" and the clinician explainer describe the 4.16 time frames.
+  - Tests judged today read "Long-term: X, Proficient for your age", not "to be on track at 90".
+  - An aerobic-base row held down only by VO₂max folds into the VO₂max row, so the plan shows one VO₂max number.
+  - "Any of these counts" appears only when more than one test would count.
+- **Readability:** darker captions and no patient text under 12 px. On phones, results stack under their names, plan rows label their own cells, and the capacity wheel numbers its spokes with a key.
+- **Clinician priorities** say "judged against the standard for your age" instead of "about 0% lower by 90".
+- **Results:** test member A 4 / 6 / 0 (the 30-second balance goal clears on today's full hold, with calf raises to watch); test member B unchanged at 1 / 1 / 8. The all-Proficient check is 108 of 606 short (was 110). A 65-year-old at the PCA Proficient hold (35 s) projects to 9.26 s, 0.04 s under 9.3, so reads "on the line".
 
 ## Model 4.16: short-term goals capped at what training can add (2026-09-26)
 
@@ -756,7 +780,7 @@ The internal standards workbook is a read-only source reference. Its Notes sheet
 
 ## Balance protocol decision
 
-Project direction: single-leg balance is standardized as **seconds held**. The task target and the age-decline scenario both remain in seconds. The 30-second goal therefore compares projected timed-stance seconds directly with a fixed 30-second target. These fields are not labeled as VALD CoP outputs.
+Project direction: single-leg balance is standardized as **seconds held**. The task target and the age-decline scenario both remain in seconds. The 30-second goal compares today's timed-stance seconds with its 30-second target, and the other balance goals compare projected seconds at the target age with 9.3 s (model 4.17). These fields are not labeled as VALD CoP outputs.
 
 Proposed capture SOP for those seconds fields: firm surface, arms at sides, eyes open or closed as labeled, 60-second cap, best of two trials per side, and enter the weaker side. The metric choice is settled; the capture details remain visibly marked `SOP approval pending` until the clinical protocol owner ratifies them.
 
