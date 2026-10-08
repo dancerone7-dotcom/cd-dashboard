@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, at most six tests per goal in 4.18, the patient-page summary and order in 4.18.1, the tracker in 4.18.2, its wording and loaded gym checks in 4.18.3, Developing first in 4.18.4, the patient-page wording pass in 4.18.5, re-test tracking in 4.19, 2026-09-28; coach feedback in 4.20 and pounds entry in 4.21, 2026-10-08)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, at most six tests per goal in 4.18, the patient-page summary and order in 4.18.1, the tracker in 4.18.2, its wording and loaded gym checks in 4.18.3, Developing first in 4.18.4, the patient-page wording pass in 4.18.5, re-test tracking in 4.19, 2026-09-28; coach feedback in 4.20, pounds entry in 4.21 and screen notes in 4.22, 2026-10-08)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,12 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.22: a coach's note on movement screens (2026-10-08)
+
+- Each movement screen keeps its short list of common faults to tick, and now also has an "Anything else you saw" box for the coach's own words, for example "weight falls forward and they can't sit back to load the legs." It shows when the screen is below Proficient, alongside the ticked faults.
+- The note appears as written on the patient page (under the screen in Current results, and on any goal where the screen stands in for a missing test), and in the clinician view. It never changes a result; only the ticked faults decide which tests a screen bears on.
+- The note is saved with the file and carries forward at a re-test, like the ticked faults.
 
 ## Model 4.21: enter body-weight tests in pounds; asymmetry flag at 10% (2026-10-08)
 
