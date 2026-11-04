@@ -1,6 +1,6 @@
 # Clinical calibration and protocol register
 
-Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, at most six tests per goal in 4.18, the patient-page summary and order in 4.18.1, the tracker in 4.18.2, its wording and loaded gym checks in 4.18.3, Developing first in 4.18.4, the patient-page wording pass in 4.18.5, re-test tracking in 4.19, 2026-09-28; coach feedback in 4.20, pounds entry in 4.21, screen notes in 4.22 and the patient page in the room in 4.23, 2026-10-08)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
+Status: **approved for team review and demo use with graded targets (model 4.1, 2026-09-24; decline recalibrated in model 4.7, 2026-09-24; strength targets and status reframed in model 4.8, sub-items and time-framed goals in model 4.9, ForceFrame knee norms in 4.9.1, ForceFrame Proficient = VALD 75th percentile in 4.9.2, decline rates rebuilt from a six-part literature review in 4.10, Dan's decisions on its open items in 4.10.1, the stop line from the detraining literature in 4.11, the patient page, data coverage and the goal library in 4.12, Dan's decisions on its open items in 4.13 and 4.13.1, 2026-09-25; the remaining goal-audit decisions in 4.14, patient clarity in 4.15, short-term goals capped at what training can add in 4.16, 2026-09-26; balance at the full hold, the patient-page PDF and the review fixes in 4.17, 2026-09-27; balance at 9 s in 4.17.1 and the patient-page clean-up with the age radar in 4.17.2 and 4.17.3, at most six tests per goal in 4.18, the patient-page summary and order in 4.18.1, the tracker in 4.18.2, its wording and loaded gym checks in 4.18.3, Developing first in 4.18.4, the patient-page wording pass in 4.18.5, re-test tracking in 4.19, 2026-09-28; coach feedback in 4.20, pounds entry in 4.21, screen notes in 4.22 and the patient page in the room in 4.23, 2026-10-08; battery names and generator files in 4.24, 2026-11-03)**. This is not clinical-use approval. This file records target values, their grades, and operational definitions.
 
 ## Status rule (model 4.1)
 
@@ -27,6 +27,16 @@ Each target is the level at which that capacity stops limiting the task at the m
 3. **Otherwise, the PCA's own 80–90 standard for the patient's sex:** the start of Developing (not Deficient) for everyday goals, Proficient for demanding goals (tennis, mountain hike, ski, surf, 5 km run, ocean swim, SCUBA, kicking).
 
 Targets from sex-specific cut-offs carry separate values for men and women. Task-derived targets are the same for both.
+
+## Model 4.24: test names match the PCA battery; files from the report generator (2026-11-03)
+
+No target, status or count changes.
+
+- **Names:** tests carry the PCA battery names from the 2026-10-28 restructure. Single-leg pogos are now the single-leg hop test (same VALD SLHJ test), and the coach labels read incline push-up, chest-supported row and prone knee flexion isometric. Patient-facing names stay plain.
+- **Bilateral hop test** (VALD HJ, repeated hops RSI) is a new input. It shows in current results; no goal uses it until a target is set.
+- **Eyes-closed balance** accepts holds up to 60 seconds, the cap in the proposed balance procedure (was 45).
+- **Files from the report generator:** the generator's new "CD file" button writes an import file from the form, parsed CPET and DEXA, live VALD and the PCA screen grades. Results outside this tool's entry ranges are left out and listed in the file's notes. PCA strength numbers are still entered here.
+- **Goals for the deck:** exported files now list each goal's name, the patient's words and its status (`goalSummary`), so the deck shows the same goals when the file is uploaded to its CD goals slot.
 
 ## Model 4.23: the patient page in the room (2026-10-08)
 
