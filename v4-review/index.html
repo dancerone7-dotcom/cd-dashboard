@@ -737,6 +737,17 @@ input[type=checkbox]{accent-color:#39404b}
   .pt-one .pt-track{font-size:10.5px}.pt-one .pt-trow{padding:5px 8px}.pt-one .pt-tbar{height:5px;margin-top:4px}
   .pt-one .po-retest{margin:8px 0 0;font-size:11.5px}.pt-one .po-foot{margin:6px 0 0;font-size:9.5px;color:#586071}
 }
+
+/* 4.25 Email PDF dialog */
+.pdfdlg{position:fixed;inset:0;z-index:90;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;padding:16px}
+.pdfbox{background:#fff;color:#1f2733;border-radius:14px;width:100%;max-width:470px;padding:20px 22px;box-shadow:0 18px 50px rgba(0,0,0,.25);font:14px/1.45 var(--sans)}
+.pdfbox h3{margin:0 0 12px;font:500 22px var(--serif)}
+.pdfopt{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border:1px solid #e3e6ea;border-radius:10px;margin-bottom:8px;cursor:pointer}
+.pdfopt input{margin-top:3px;accent-color:#39404b}.pdfopt b{display:block;font-weight:600}.pdfopt small{display:block;color:#586071;font-size:12.5px}
+.pdfnote{font-size:12.5px;color:#586071;margin:10px 0}
+.pdfstat{min-height:20px;font-size:13px;margin:6px 0 12px;word-break:break-word}
+.pdfbtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+@media print{.pdfdlg{display:none!important}}
 /* 4.23 Present mode */
 html.presenting .appbar,html.presenting #tab-report .rail{display:none!important}
 html.presenting #tab-report .stage{padding:18px 0 96px}
@@ -975,6 +986,7 @@ html.presenting .presbar{display:flex}
       <div class="heroseg" id="heroSeg"><button data-hero="C" class="on">Patient</button><button data-hero="D">Clinician</button></div></div>
     <button type="button" class="btn primary" style="margin:2px 8px 12px;width:calc(100% - 16px)" onclick="exportPDF()">Export as PDF</button>
     <button type="button" class="btn" style="margin:0 8px 8px;width:calc(100% - 16px)" onclick="printOnePage()" title="One printed page to take home: goals, priorities with dated targets and the next re-test.">One-page summary</button>
+    <button type="button" class="btn" style="margin:0 8px 8px;width:calc(100% - 16px)" onclick="emailPdfDialog()" title="Make a PDF of the report on this computer and send it from your own email.">Email PDF</button>
     <button type="button" class="btn" style="margin:0 8px 12px;width:calc(100% - 16px)" onclick="startPresent()" title="Full screen for showing the report in the room. Arrow keys or a clicker step through it; Esc ends.">Present</button>
     <div id="catalog"></div>
     <div class="addnote" id="addNote"></div>
@@ -989,9 +1001,9 @@ html.presenting .presbar{display:flex}
 
 
 <script>
-const MODEL_VERSION='4.24';
+const MODEL_VERSION='4.25';
 /* Data exported by these versions uses the same fields and imports cleanly (results recompute on the current model). */
-const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3','4.18','4.18.1','4.18.2','4.18.3','4.18.4','4.18.5','4.19','4.20','4.21','4.22','4.23','4.24']);
+const IMPORTABLE_MODEL_VERSIONS=new Set(['4.4','4.5','4.6','4.7','4.8','4.9','4.9.1','4.9.2','4.10','4.10.1','4.11','4.12','4.13','4.13.1','4.14','4.15','4.16','4.17','4.17.1','4.17.2','4.17.3','4.18','4.18.1','4.18.2','4.18.3','4.18.4','4.18.5','4.19','4.20','4.21','4.22','4.23','4.24','4.25']);
 const APPROVED_SOURCE_COMMIT='a9a2d06548972359593d79e36aef8c5519d2ca45';
 const VALID_REPORT_MODES=new Set(['C','D']);
 /* ══════════════════════════════════════════════════════════════
@@ -7715,6 +7727,67 @@ document.addEventListener('keydown',e=>{if(!presenting()||e.target.closest?.('in
 document.addEventListener('click',e=>{const b=e.target.closest?.('#presBar [data-pres]');if(!b)return;const v=b.dataset.pres;if(v==='x')stopPresent();else presentGo((PRESENT??0)+(+v));});
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&presenting())stopPresent();});
 addEventListener('resize',presentZoom);
+/* 4.25 (Dan): email the report as a PDF from the coach's own email. The PDF is made in this browser from the print
+   layout (html2canvas and jsPDF, loaded from cdnjs on first use); nothing is uploaded. Where the browser can share
+   files, the share menu attaches it to a new message in Mail or Outlook; otherwise it is saved and an email draft
+   opens for the coach to drop it into. */
+const PDF_LIBS=['https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'];
+let pdfLibs=null;
+const loadPdfLibs=()=>pdfLibs||(pdfLibs=Promise.all(PDF_LIBS.map(src=>new Promise((ok,no)=>{const sc=document.createElement('script');sc.src=src;sc.onload=ok;sc.onerror=()=>{pdfLibs=null;no(new Error('The PDF tools could not load. Check the internet connection and try again.'));};document.head.appendChild(sc);}))));
+const PDF_W=740,PDF_PAGE_H=Math.floor(PDF_W*10.2/7.7),PDF_SCALE=1.6;   // css px across 7.7 x 10.2 in: letter with 0.4 in margins
+function printCssText(){let css='';for(const sh of document.styleSheets){let rules;try{rules=sh.cssRules;}catch(e){continue;}for(const r of rules)if(r instanceof CSSMediaRule&&/\bprint\b/.test(r.media.mediaText))for(const x of r.cssRules)css+=x.cssText+'\n';}return css;}
+/* Page cuts never split a card, row, paragraph or chart: a cut must sit outside every keep-together box. */
+const PDF_KEEP='.pt-card,.pt-panel,.pt-trow,.pt-wheel,.pt-keep,.pt-goal>summary,.pt-gt,.pt-hold,.pt-holdrow,.pt-sumcol,.pt-sg,.pt-head,.pt-agerad,.pt-mrow,.radarfig,p,li,h1,h2,h3,tr,svg,.po-g';
+function keepRanges(el){const top=el.getBoundingClientRect().top;return [...el.querySelectorAll(PDF_KEEP)].map(n=>{const r=n.getBoundingClientRect();return [r.top-top,r.bottom-top];}).filter(([a,b])=>b-a>0&&b-a<PDF_PAGE_H);}
+function bestCut(ranges,from,room){for(let y=Math.floor(from+room);y>from+room*.4;y-=2)if(!ranges.some(([a,b])=>a-3<y&&y<b+3))return y;return from+room;}
+async function buildReportPdf(kind,progress=()=>{}){
+  await loadPdfLibs();const {jsPDF}=window.jspdf,one=kind==='one',prior=HERO;HERO='C';setTab('report');
+  const html=document.documentElement,wrap=document.querySelector('#tab-report .stage>div'),style=document.createElement('style'),shut=one?[]:[...document.querySelectorAll('#slide details:not([open])')];
+  const oldW=wrap.style.width,oldMax=wrap.style.maxWidth;shut.forEach(d=>d.open=true);style.textContent=printCssText()+'\n.pt-gfig{grid-template-columns:1fr!important}.pt-gfig .pt-agerad{max-width:460px;margin:0 auto}';document.head.appendChild(style);if(one)html.classList.add('print-one');wrap.style.width=PDF_W+'px';wrap.style.maxWidth=PDF_W+'px';
+  try{if(document.fonts)await document.fonts.ready;await new Promise(r=>setTimeout(r,80));
+    const slide=$("#slide"),parts=one?[slide.querySelector('#pt-one')]:[...slide.children].filter(el=>el.id!=='pt-one'&&el.offsetHeight>0),pdf=new jsPDF({unit:'in',format:'letter',compress:true}),ppi=PDF_W/7.7;
+    let y=0;const newPage=()=>{pdf.addPage();y=0;};
+    for(let i=0;i<parts.length;i++){const el=parts[i],W=el.offsetWidth,H=el.offsetHeight;progress(i+1,parts.length);
+      const ranges=keepRanges(el),canvas=await html2canvas(el,{scale:PDF_SCALE,backgroundColor:'#ffffff',useCORS:true,logging:false}),k=canvas.width/W;
+      if(one){const fit=Math.min(1,PDF_PAGE_H/H);pdf.addImage(canvas.toDataURL('image/jpeg',.88),'JPEG',.4,.4,7.7*fit*W/PDF_W,H*fit/ppi);break;}
+      if(el.matches('.pt-divider')&&y>0)newPage();
+      let from=0;
+      while(from<H-1){let room=PDF_PAGE_H-y;if(room<90&&y>0){newPage();room=PDF_PAGE_H;}
+        let to=H-from<=room?H:bestCut(ranges,from,room);if(to-from<40&&y>0){newPage();continue;}
+        const c=document.createElement('canvas');c.width=canvas.width;c.height=Math.max(1,Math.round((to-from)*k));c.getContext('2d').drawImage(canvas,0,Math.round(from*k),canvas.width,c.height,0,0,c.width,c.height);
+        pdf.addImage(c.toDataURL('image/jpeg',.82),'JPEG',.4,.4+y/ppi,7.7*W/PDF_W,(to-from)/ppi);y+=to-from+6;from=to;if(from<H-1)newPage();}}
+    return {blob:pdf.output('blob'),pages:pdf.getNumberOfPages()};
+  }finally{style.remove();html.classList.remove('print-one');wrap.style.width=oldW;wrap.style.maxWidth=oldMax;shut.forEach(d=>d.open=false);if(prior!=='C'){HERO=prior;setTab('report');}}}
+const pdfFileName=kind=>`${(PATIENT.name||'Patient').replace(/[^A-Za-z0-9]+/g,'_').replace(/^_|_$/g,'')||'Patient'}_CD_${kind==='one'?'summary':'report'}_${PATIENT.testDate||isoToday()}.pdf`;
+function saveBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);}
+const pdfEmailText=()=>`Hi,\n\nAttached is the Centenarian Decathlon report from ${fmtDay(PATIENT.testDate||isoToday())}.\n\n`;
+function openEmailDraft(){const a=document.createElement('a');a.href=`mailto:?subject=${encodeURIComponent('Centenarian Decathlon report')}&body=${encodeURIComponent(pdfEmailText())}`;document.body.appendChild(a);a.click();a.remove();}
+function emailPdfDialog(){
+  if(!assertReportInputsValid())return;const cross=crossFieldErrors();if(cross.length){alert(cross.join(' '));setTab('build');return;}
+  if(!GOALS.some(g=>selectedGoals.has(g.id)&&g.profileId)){alert('No goals in this report yet. Pick goals in step 2 first.');return;}
+  document.getElementById('pdfDlg')?.remove();const dlg=document.createElement('div');dlg.id='pdfDlg';dlg.className='pdfdlg';
+  dlg.innerHTML=`<div class="pdfbox" role="dialog" aria-modal="true" aria-labelledby="pdfTtl"><h3 id="pdfTtl">Email the report as a PDF</h3>
+<label class="pdfopt"><input type="radio" name="pdfKind" value="full" checked> <span><b>Full report</b><small>Every section, with all goals opened</small></span></label>
+<label class="pdfopt"><input type="radio" name="pdfKind" value="one"> <span><b>One-page summary</b><small>Goals, what holds them back, dated targets and the next re-test</small></span></label>
+<p class="pdfnote">The PDF is made on this computer and goes out from your own email. It holds health information, so send it only from your clinic email.</p>
+<div class="pdfstat" id="pdfStat" aria-live="polite"></div><div class="pdfbtns" id="pdfBtns"></div></div>`;
+  document.body.appendChild(dlg);const stat=dlg.querySelector('#pdfStat'),btns=dlg.querySelector('#pdfBtns'),close=()=>dlg.remove();
+  const showMake=()=>{btns.innerHTML='<button type="button" class="btn" data-pdf="close">Cancel</button><button type="button" class="btn primary" data-pdf="make">Make the PDF</button>';};
+  let file=null;showMake();
+  dlg.addEventListener('click',async e=>{const b=e.target.closest('[data-pdf]');if(e.target===dlg)return close();if(!b)return;const act=b.dataset.pdf;
+    if(act==='close')return close();
+    if(act==='make'){const kind=dlg.querySelector('input[name=pdfKind]:checked').value;dlg.querySelectorAll('input[name=pdfKind]').forEach(x=>x.disabled=true);btns.innerHTML='';stat.textContent='Loading the PDF tools…';
+      try{const {blob,pages}=await buildReportPdf(kind,(i,n)=>{stat.textContent=`Making the PDF: part ${i} of ${n}…`;});
+        file=new File([blob],pdfFileName(kind),{type:'application/pdf'});
+        stat.innerHTML=`Ready: <b>${file.name}</b> · ${pages} page${pages===1?'':'s'} · ${(blob.size/1048576).toFixed(1)} MB`;
+        const canShare=!!(navigator.canShare&&navigator.canShare({files:[file]}));
+        btns.innerHTML=`${canShare?'<button type="button" class="btn primary" data-pdf="share">Attach to an email</button>':''}<button type="button" class="btn${canShare?'':' primary'}" data-pdf="draft">Save and open an email draft</button><button type="button" class="btn" data-pdf="save">Save only</button><button type="button" class="btn" data-pdf="close">Close</button>`;
+      }catch(err){stat.textContent=String(err.message||err);dlg.querySelectorAll('input[name=pdfKind]').forEach(x=>x.disabled=false);showMake();}
+      return;}
+    if(!file)return;
+    if(act==='share'){try{await navigator.share({files:[file],title:'Centenarian Decathlon report',text:pdfEmailText()});stat.textContent='Sent to your share menu. Pick Mail or Outlook there.';}catch(err){if(err&&err.name!=='AbortError')stat.textContent='Sharing didn’t work here. Use "Save and open an email draft".';}return;}
+    if(act==='draft'){saveBlob(file,file.name);openEmailDraft();stat.innerHTML=`Saved to your Downloads folder as <b>${file.name}</b>. Drag it into the email that just opened.`;return;}
+    if(act==='save'){saveBlob(file,file.name);stat.innerHTML=`Saved to your Downloads folder as <b>${file.name}</b>.`;}});}
 function printOnePage(){
   if(!assertReportInputsValid())return;const cross=crossFieldErrors();if(cross.length){alert(cross.join(' '));setTab('build');return;}
   if(!GOALS.some(g=>selectedGoals.has(g.id)&&g.profileId)){alert('No goals in this report yet. Pick goals in step 2 first.');return;}
